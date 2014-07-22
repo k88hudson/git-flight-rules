@@ -1,6 +1,11 @@
 # Flight rules for git
 
-## Adding unstaged changes to the previous commit
+## Conventions for this document
+
+For clarity's sake all examples in this document use customized bash prompt in order to indicate the current branch and whether or not there are staged changes. The branch is enclosed in brackets, and a `*` next to the branch name indicates staged changes.
+
+
+## Adding staged changes to the previous commit
 
 ```
 (my-branch*)$ git commit --amend
