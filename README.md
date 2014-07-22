@@ -1,12 +1,12 @@
 # Flight rules for git
 
-### I need to add unstaged changes to the previous commit
+## Adding unstaged changes to the previous commit
 
 ```
 (my-branch*)$ git commit --amend
 ```
 
-## How do I combine commits?
+## Combining commits
 
 You need to do something called an interactive rebase.
 
