@@ -1,6 +1,6 @@
 # Flight rules for git
 
-## What are "flight rules"?
+### What are "flight rules"?
 
 >  *Flight Rules* are the hard-earned body of knowledge recorded in manuals that list, step-by-step, what to do if X occurs, and why. Essentially, they are extremely detailed, scenario-specific standard operating procedures. [...]
 
@@ -9,18 +9,18 @@
 &mdash; Chris Hadfield, *An Astronaut's Guide to Life*.
 
 
-## Conventions for this document
+### Conventions for this document
 
 For clarity's sake all examples in this document use customized bash prompt in order to indicate the current branch and whether or not there are staged changes. The branch is enclosed in brackets, and a `*` next to the branch name indicates staged changes.
 
 
-## Adding staged changes to the previous commit
+## I need to add staged changes to the previous commit
 
 ```
 (my-branch*)$ git commit --amend
 ```
 
-## Combining commits
+## I need to combine commits
 
 You need to do something called an interactive rebase.
 
