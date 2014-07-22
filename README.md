@@ -1,5 +1,14 @@
 # Flight rules for git
 
+## What are "flight rules"?
+
+>  *Flight Rules* are the hard-earned body of knowledge recorded in manuals that list, step-by-step, what to do if X occurs, and why. Essentially, they are extremely detailed, scenario-specific standard operating procedures. [...]
+
+> NASA has been capturing our missteps, disasters and solutions since the early 1960s, when Mercury-era ground teams first started gathering "lessons learned" into a compendium that now lists thousands of problematic sitautions, from engine failure to busted hatch handles to computer glitches, and their solutions.
+
+&mdash; Chris Hadfield, *An Astronaut's Guide to Life*.
+
+
 ## Conventions for this document
 
 For clarity's sake all examples in this document use customized bash prompt in order to indicate the current branch and whether or not there are staged changes. The branch is enclosed in brackets, and a `*` next to the branch name indicates staged changes.
