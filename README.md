@@ -160,6 +160,23 @@ If at any time you want to stop the entire rebase and go back to the original st
 (my-branch)$ git rebase --abort
 ```
 
+#### When I try to push, I get an error message:
+
+```
+To https://github.com/yourusername/repo.git
+! [rejected]        mybranch -> mybranch (non-fast-forward)
+error: failed to push some refs to 'https://github.com/tanay1337/webmaker.org.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+
+Since rebasing **replaces the old commit(s) with a new one**, you must force push (`-f`) your changes. Be careful when you do this!
+
+```
+(mybranch) $ git push origin mybranch -f
+```
 
 ## I committed to master instead of a new branch
 
