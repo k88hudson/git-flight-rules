@@ -172,7 +172,7 @@ hint: 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 ```
 
-Since rebasing **replaces the old commit(s) with a new one**, you must force push (`-f`) your changes. Be careful when you do this!
+Since rebasing **replaces the old commit(s) with a new one**, you must force push (`-f`) your changes. Be careful when you do this - *always* make sure you specify a branch!
 
 ```
 (mybranch) $ git push origin mybranch -f
