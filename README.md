@@ -16,13 +16,14 @@ A [guide for astronauts](http://www.jsc.nasa.gov/news/columbia/fr_generic.pdf) (
 
 For clarity's sake all examples in this document use customized bash prompt in order to indicate the current branch and whether or not there are staged changes. The branch is enclosed in parentheses, and a `*` next to the branch name indicates staged changes.
 
-
+<a name="amend"></a>
 ## I need to add staged changes to the previous commit
 
 ```
 (my-branch*)$ git commit --amend
 ```
 
+<a name="interactive-rebase"></a>
 ## I need to combine commits
 
 You need to do something called an interactive rebase.
@@ -107,6 +108,7 @@ If everything is successful, you should see something like this:
 
 ### Possible issues with interactive rebases
 
+<a name="noop"></a>
 #### The rebase editing screen says 'noop'
 
 If you're seeing this:
@@ -119,6 +121,7 @@ That means you are trying to rebase against a branch that is at an identical com
 * making sure your master branch is where it should be
 * rebase against `HEAD~2` or earlier instead
 
+<a name="merge-conflict"></a>
 #### There were conflicts
 
 If you are unable to successfully complete the rebase, you may have to resolve conflicts.
@@ -160,6 +163,7 @@ If at any time you want to stop the entire rebase and go back to the original st
 (my-branch)$ git rebase --abort
 ```
 
+<a name="force-push"></a>
 #### When I try to push, I get an error message:
 
 ```
@@ -178,6 +182,7 @@ Since rebasing **replaces the old commit(s) with a new one**, you must force pus
 (mybranch) $ git push origin mybranch -f
 ```
 
+<a name="commit-wrong-branch"></a>
 ## I committed to master instead of a new branch
 
 
@@ -198,6 +203,7 @@ For example, if the hash of the commit that your master branch is supposed to be
 HEAD is now at a13b85e
 ```
 
+<a name="cherry-pick"></a>
 ## I made several commits on a single branch that should be on different branches
 
 Say you are on your master branch. Running `git log`, you see you have made two commits:
@@ -246,7 +252,7 @@ Now, let's *cherry-pick* the commit for bug #21 on top of our branch. That means
 (21)$ git cherry-pick e3851e8
 ```
 
-At this point, there is a possibility there might be conflicts. See the **There were conflicts** section in the interactive rebasing section (above) for how to resolve conflicts.
+At this point, there is a possibility there might be conflicts. See the [**There were conflicts**](#merge-conflict) section in the [interactive rebasing section above](#interactive-rebase) for how to resolve conflicts.
 
 
 Now let's create a new branch for bug #14, also based on master
@@ -262,4 +268,3 @@ And finally, let's cherry-pick the commit for bug #14:
 ```
 (14)$ git cherry-pick 5ea5173
 ```
-
