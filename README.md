@@ -109,6 +109,15 @@ If everything is successful, you should see something like this:
 ```
 (master)$ Successfully rebased and updated refs/heads/master.
 ```
+### Possible issues with merging
+Safe merging strategy:
+```sh
+(master)$ git merge --no-ff --no-commit featurebranch
+```
+#### I need to merge a branch into a single commit
+```sh
+(master)$ git merge --squash featurebranch
+```
 
 ### Possible issues with interactive rebases
 
@@ -152,6 +161,11 @@ some code
 ```
 
 You will need to resolve the differences between the code that was added in your new commit (in the example, everything from the middle line to `new-commit`) and your `HEAD`.
+
+Sometimes these merges are complicated and you should use a visual diff editor:
+```sh
+(master*)$ git mergetool -t opendiff
+```
 
 After you have resolved all conflicts and tested your code, `git add` the files you have changed, and then continue the rebase with `git rebase --continue`
 
@@ -267,4 +281,3 @@ And finally, let's cherry-pick the commit for bug #14:
 ```
 (14)$ git cherry-pick 5ea5173
 ```
-
