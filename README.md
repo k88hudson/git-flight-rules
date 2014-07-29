@@ -21,7 +21,12 @@ For clarity's sake all examples in this document use customized bash prompt in o
 
 ```
 (my-branch*)$ git commit --amend
+
 ```
+
+### I tried to push my amended commit to a remote, but I got an error message
+
+Note that, as with rebasing (see below), amending **replaces the old commit with a new one**, so you must force push (`-f`) your changes if you have already pushed the pre-amended commit to your remote. Be careful when you do this &ndash; *always* make sure you specify a branch!
 
 ## I need to combine commits
 
@@ -172,7 +177,7 @@ hint: 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 ```
 
-Since rebasing **replaces the old commit(s) with a new one**, you must force push (`-f`) your changes. Be careful when you do this - *always* make sure you specify a branch!
+Since rebasing **replaces the old commit(s) with a new one**, you must force push (`-f`) your changes. Be careful when you do this &ndash; *always* make sure you specify a branch!
 
 ```
 (mybranch) $ git push origin mybranch -f
