@@ -268,3 +268,110 @@ And finally, let's cherry-pick the commit for bug #14:
 (14)$ git cherry-pick 5ea5173
 ```
 
+## I need to merge two Git repositories into one (or add a Git repo to an existing one)
+
+Create a new project repo
+
+```
+~/dev
+$ mkdir parent
+
+~/dev
+$ cd parent/
+
+~/dev/parent
+$ git init
+Initialized empty Git repository in ~/dev/parent/.git/
+```
+
+Now we need to create a commit; this is not optional because things break otherwise.
+
+```
+~/dev/parent (master #)
+$ touch .gitignore
+
+~/dev/parent (master #)
+$ git commit -am "commit"
+[master (root-commit) fc6f5ad] commit
+ 0 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 .gitignore
+```
+
+Merge Project A Into Subdirectory
+
+Next add a remote to the first project we’d like to import. We’ll give the remote a name (projectA) and pass the -f option so that it will fetch the contents of this remote immediately.
+
+```
+~/dev/parent (master)
+$ git remote add -f projectA /path/to/projectA
+Updating projectA
+warning: no common commits
+remote: Counting objects: 16, done.
+remote: Compressing objects: 100% (16/16), done.
+remote: Total 16 (delta 7), reused 0 (delta 0)
+Unpacking objects: 100% (16/16), done.
+From /path/to/projectA
+ * [new branch]      master     -> projectA/master
+```
+
+Now, let’s run a merge but not commit the result (--no-commit flag). We also need to specify the merge strategy ours with the -s switch.
+
+```
+~/dev/parent (master)
+$ git merge -s ours --no-commit projectA/master
+Automatic merge went well; stopped before committing as requested
+```
+
+Now that we are in merging mode, we’ll read in the tree from the remote, taking care to provide a subdirectory into which the subproject will go. This is specified with with --prefix switch. Also, add the -u flag to update the working tree with our changes.
+
+```
+~/dev/parent (master|MERGING)
+$ git read-tree --prefix=projA/ -u projectA/master
+```
+
+The remote has been merged into its own subdirectory and the changes have been staged. Now we can simply commit them.
+
+```
+~/dev/parent (master +|MERGING)
+$ git commit -m "merging project A into subdirectory"
+[master 4d2d50d] merging project A into subdirectory
+```
+
+Merge Project B Into Subdirectory
+
+At this point, we have Project A merged into its own subdirectory within our new parent project. Merging in Project B uses the same simple steps as above.
+
+```
+~/dev/parent (master)
+$ git remote add -f projectB /path/to/projectB
+Updating projectB
+warning: no common commits
+remote: Counting objects: 47, done.
+remote: Compressing objects: 100% (47/47), done.
+remote: Total 47 (delta 23), reused 0 (delta 0)
+Unpacking objects: 100% (47/47), done.
+From /path/to/projectB
+ * [new branch]      master     -> projectB/master
+
+~/dev/parent (master)
+$ git merge -s ours --no-commit projectB/master
+Automatic merge went well; stopped before committing as requested
+
+~/dev/parent (master|MERGING)
+$ git read-tree --prefix=projB/ -u projectB/master
+
+~/dev/parent (master +|MERGING)
+$ git commit -m "merging project B into subdirectory"
+[master 8f41792] merging project B into subdirectory
+```
+
+Pulling In Updates
+
+If the original repositories (Projects A and B in this example) continue to live on elsewhere as separate projects, you can easily pull in updates to your new parent repo. Using the sub-tree merge strategy, the updates will be applied properly to the applicable subdirectory.
+
+```
+~/dev/parent (master)
+$ git pull -s subtree projectA master
+```
+
+However, if you no longer have any need for the original repositories, they can be deleted and the remotes in your new parent project can safely be removed.
