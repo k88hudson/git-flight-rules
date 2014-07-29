@@ -279,15 +279,15 @@ $ git init
 Initialized empty Git repository in ~/dev/parent/.git/
 ```
 
-Now we need to create an initial commit; this is not optional because things break otherwise.
+Now we need to create a commit; this is not optional because things break otherwise.
 
 ```
 ~/dev/parent (master #)
 $ touch .gitignore
 
 ~/dev/parent (master #)
-$ git ci -am "initial commit"
-[master (root-commit) fc6f5ad] initial commit
+$ git ci -am "commit"
+[master (root-commit) fc6f5ad] commit
  0 files changed, 0 insertions(+), 0 deletions(-)
  create mode 100644 .gitignore
 ```
