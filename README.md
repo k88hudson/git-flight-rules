@@ -286,7 +286,7 @@ Now we need to create a commit; this is not optional because things break otherw
 $ touch .gitignore
 
 ~/dev/parent (master #)
-$ git ci -am "commit"
+$ git commit -am "commit"
 [master (root-commit) fc6f5ad] commit
  0 files changed, 0 insertions(+), 0 deletions(-)
  create mode 100644 .gitignore
