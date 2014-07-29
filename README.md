@@ -268,3 +268,50 @@ And finally, let's cherry-pick the commit for bug #14:
 (14)$ git cherry-pick 5ea5173
 ```
 
+## I need to 'undo' a single commit pushed up to master
+
+Say we pushed an ill-advised commit to `master`. Running `git log` we see
+
+```
+(master)$ git log
+
+commit c0ffe8f3355850568f9520fe00c93174806fba52
+Author: Alex Lee <alexlee@exampledomain123.com>
+Date:   Tue Jul 22 16:29:02 2014 -0400
+
+    Bad commit that breaks everything
+
+commit e3851e817c451cc36f2e6f3049db528415e3c114
+Author: Alex Lee <alexlee@exampledomain123.com>
+Date:   Tue Jul 22 15:39:27 2014 -0400
+
+    Bug #21 - Added CSRF protection
+    
+     .......
+    
+```
+With `git revert` we can create a new commit that undoes the changes made by a given commit without altering history.
+This is considered safer than `reset` for single commits, since `reset` re-writes history and is essentially
+an undo that cannot be undone.
+
+We take note of the hash of the bad commit `c0ffe8f` and run:
+```
+git revert c0ffe8f
+```
+
+We will now see something like this in the text editor:
+
+```
+Revert "Bad commit that breaks everything"
+
+This reverts commit c0ffe8f3355850568f9520fe00c93174806fba52.
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#       deleted:    README.md
+#
+```
+
+We can change the commit message to whatever we like and then `git push origin master` to reverse our bad changes.
