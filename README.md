@@ -315,3 +315,30 @@ This reverts commit c0ffe8f3355850568f9520fe00c93174806fba52.
 ```
 
 We can change the commit message to whatever we like and then `git push origin master` to reverse our bad changes.
+
+`git log` will now look like:
+
+```
+commit 690becc3c2297ae10cc845764bec1da758693a05
+Author: talwai <aaditya.21@gmail.com>
+Date:   Tue Jul 29 10:46:42 2014 -0700
+
+    Revert "Bad commit that breaks everything"
+    
+    This reverts commit c0ffe8f3355850568f9520fe00c93174806fba52.
+
+commit c0ffe8f3355850568f9520fe00c93174806fba52
+Author: Alex Lee <alexlee@exampledomain123.com>
+Date:   Tue Jul 22 16:29:02 2014 -0400
+
+    Bad commit that breaks everything
+
+commit e3851e817c451cc36f2e6f3049db528415e3c114
+Author: Alex Lee <alexlee@exampledomain123.com>
+Date:   Tue Jul 22 15:39:27 2014 -0400
+
+    Bug #21 - Added CSRF protection
+    
+     .......
+    
+```
