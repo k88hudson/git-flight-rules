@@ -112,6 +112,18 @@ If everything is successful, you should see something like this:
 (master)$ Successfully rebased and updated refs/heads/master.
 ```
 
+<a name="rebase-unpushed-commits"></a>
+#### I want to combine only unpushed commits
+
+Sometimes you have several work in progress commits that you want to combine before you push them upstream. You don't want to accidentally combine any commits that have already been pushed upstream because someone else may have already made commits that reference them.
+
+```
+(master)$ git rebase -i @{u}
+```
+
+This will do an interactive rebase that lists only the commits that you haven't already pushed, so it will be safe to reorder/fix/squash anything in the list.
+
+
 ### Possible issues with interactive rebases
 
 <a name="noop"></a>
