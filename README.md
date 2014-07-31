@@ -40,7 +40,7 @@ If you are working in a branch that is/will become a pull-request against `maste
 (my-branch)$ git rebase -i master
 ```
 
-If you aren't working against another branch you'll have to rebase relative to your `HEAD`. If you want to squish the last 2 commits, for example, you'll have to rebase against `HEAD~2`. For the last 3, `HEAD~3`, etc.
+If you aren't working against another branch you'll have to rebase relative to your `HEAD`. If you want to squash the last 2 commits, for example, you'll have to rebase against `HEAD~2`. For the last 3, `HEAD~3`, etc.
 
 ```
 (master)$ git rebase -i HEAD~2
