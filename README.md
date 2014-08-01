@@ -281,28 +281,28 @@ Confirm that you haven't pushed your changes to the server.
 `git status` should show how many commits you are ahead of origin:
 
 ```
-$ git status
-# On branch bug123
-# Your branch is ahead of 'origin/bug123' by 2 commits.
+(bug24)$ git status
+# On branch bug24
+# Your branch is ahead of 'origin/bug24' by 2 commits.
 #   (use "git push" to publish your local commits)
 #
 ```
 
 ```
 # one commit
-git reset --hard HEAD^
+(bug24)$ git reset --hard HEAD^
 # two commits
-git reset --hard HEAD^^
+(bug24)$ git reset --hard HEAD^^
 # four commits
-git reset --hard HEAD~4
+(bug24)$ git reset --hard HEAD~4
 ```
 
 ## I want to discard my local, uncommitted changes
 
 ```
-git reset --hard
+(master)$ git reset --hard
 # or
-git checkout -f
+(master)$ git checkout -f
 ```
 
 ## I want to add changes in one file to two different commits
@@ -312,6 +312,6 @@ git checkout -f
 ## I want to remove a file from git but keep the file
 
 ```
-git rm --cached log.txt
+(master)$ git rm --cached log.txt
 ```
 
