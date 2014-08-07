@@ -2,11 +2,12 @@
 
 ## Table of Contents
 * [Amending Commits](#amend)
+    * [Forcing Pushes](#force-push)
 * [Combining Commits](#interactive-rebase)
   * Rebasing Errors:
     * [noop](#noop)
     * [Merge Conflicts](#merge-conflicts)
-    * [Forcing Pushes](#force-push)
+    * [Forcing Pushes](#force-push-rebase)
 * [Commit on Wrong Branch](#commit-wrong-branch)
 * [Re-Commit Under Another Branch](#cherry-pick)
 
@@ -179,7 +180,7 @@ If at any time you want to stop the entire rebase and go back to the original st
 (my-branch)$ git rebase --abort
 ```
 
-<a name="force-push"></a>
+<a name="force-push-rebase"></a>
 #### When I try to push, I get an error message:
 
 ```
