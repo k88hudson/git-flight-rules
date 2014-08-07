@@ -4,9 +4,9 @@
 * [Amending Commits](#amend)
 * [Combining Commits](#interactive-rebase)
   * Rebasing Errors:
-  * [noop](#noop)
-  * [Merge Conflicts](#merge-conflicts)
-  * [Forcing Pushes](#force-push)
+    * [noop](#noop)
+    * [Merge Conflicts](#merge-conflicts)
+    * [Forcing Pushes](#force-push)
 * [Commit on Wrong Branch](#commit-wrong-branch)
 * [Re-Commit Under Another Branch](#cherry-pick)
 
