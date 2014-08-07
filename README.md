@@ -1,5 +1,14 @@
 # Flight rules for git
 
+## Table of Contents
+* [Amending Commits](#amend)
+* [Combining Commits](#interactive-rebase)
+  * Rebasing Errors:
+  * [noop](#noop)
+  * [Merge Conflicts](#merge-conflicts)
+  * [Forcing Pushes](#force-push)
+* [Commit on Wrong Branch](#commit-wrong-branch)
+* [Re-Commit Under Another Branch](#cherry-pick)
 
 ### What are "flight rules"?
 
@@ -28,6 +37,7 @@ For clarity's sake all examples in this document use customized bash prompt in o
 ### I tried to push my amended commit to a remote, but I got an error message
 
 Note that, as with rebasing (see below), amending **replaces the old commit with a new one**, so you must force push (`-f`) your changes if you have already pushed the pre-amended commit to your remote. Be careful when you do this &ndash; *always* make sure you specify a branch!
+
 
 <a name="interactive-rebase"></a>
 ## I need to combine commits
