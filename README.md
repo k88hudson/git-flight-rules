@@ -188,6 +188,17 @@ Since rebasing **replaces the old commit(s) with a new one**, you must force pus
 (mybranch) $ git push origin mybranch -f
 ```
 
+<a name="commit-wrong-author"></a>
+## I committed with the wrong name and email configured
+
+If it's a single commit, amend it
+
+```
+$ git commit --amend --author "New Authorname <authoremail@mydomain.com>" 
+```
+
+If you need to change all of history, see the man page for 'git filter-branch'
+
 <a name="commit-wrong-branch"></a>
 ## I committed to master instead of a new branch
 
