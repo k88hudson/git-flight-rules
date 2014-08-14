@@ -29,6 +29,16 @@ For clarity's sake all examples in this document use customized bash prompt in o
 
 Note that, as with rebasing (see below), amending **replaces the old commit with a new one**, so you must force push (`-f`) your changes if you have already pushed the pre-amended commit to your remote. Be careful when you do this &ndash; *always* make sure you specify a branch!
 
+<a name="undo-commit"></a>
+## I need to undo my last commit
+
+To reset Git to the state it was in before you made your last commit (while keeping your staged changes):
+
+```
+(my-branch*)$ git reset --soft HEAD@{1}
+
+```
+
 <a name="interactive-rebase"></a>
 ## I need to combine commits
 
