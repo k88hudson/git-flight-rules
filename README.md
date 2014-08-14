@@ -274,3 +274,12 @@ And finally, let's cherry-pick the commit for bug #14:
 ```
 (14)$ git cherry-pick 5ea5173
 ```
+
+<a name="diff-last"></a>
+## What did I just do?
+
+Let's say that you just blindly committed changes with `git commit -a` and you're not sure what the actual content of the commit you just made was. You can check the difference between your current HEAD and what your HEAD just was with:
+
+```
+(master)$ git diff HEAD@{1} HEAD
+```
