@@ -274,3 +274,73 @@ And finally, let's cherry-pick the commit for bug #14:
 ```
 (14)$ git cherry-pick 5ea5173
 ```
+
+
+## I accidentaly deleted my branch
+
+If you're regularly pushing to remote, you should be safe most of the time. But still sometimes you may end up deleting your branches. Let's say we create a branch and create a new file:
+
+```
+(master)$ git checkout -b branch-1
+(branch-1)$ git branch
+(branch-1)$ touch foo.txt
+(branch-1)$ ls
+README.md foo.txt
+```
+
+Let's add it and commit.
+
+```
+(branch-1)$ git add .
+(branch-1)$ git commit -m 'foo.txt added'
+(branch-1)$ foo.txt added
+ 1 files changed, 1 insertions(+)
+ create mode 100644 foo.txt
+(branch-1)$ git log
+
+commit 4e3cd85a670ced7cc17a2b5d8d3d809ac88d5012
+Author: siemiatj <kuba@saucelabs.com>
+Date:   Wed Jul 30 00:34:10 2014 +0200
+
+    foo.txt added
+
+commit 69204cdf0acbab201619d95ad8295928e7f411d5
+Author: Kate Hudson <k88hudson@gmail.com>
+Date:   Tue Jul 29 13:14:46 2014 -0400
+
+    Fixes #6: Force pushing after amending commits
+```
+
+Now we're switching back to master and 'accidentaly' removing our branch.
+
+```
+(branch-1)$ git checkout master
+Switched to branch 'master'
+Your branch is up-to-date with 'origin/master'.
+(master)$ git branch -D branch-1
+Deleted branch branch-1 (was 4e3cd85).
+(master)$ echo oh noes, deleted my branch!
+oh noes, deleted my branch!
+```
+
+At this point you should get familiar with 'reflog', an upgraded logger. It stores the history of all the action in the repo.
+
+```
+(master)$ git reflog
+69204cd HEAD@{0}: checkout: moving from branch-1 to master
+4e3cd85 HEAD@{1}: commit: foo.txt added
+69204cd HEAD@{2}: checkout: moving from master to branch-1
+```
+
+As you can see we have commit hash from our deleted branch. Let's see if we can restore our deleted branch.
+
+```
+(master)$ git checkout -b branch-1-help
+Switched to a new branch 'branch-1-help'
+(branch-1-help)$ git reset --hard 4e3cd85
+HEAD is now at 4e3cd85 foo.txt added
+(branch-1-help)$ ls
+README.md foo.txt
+```
+
+Voila! We got our removed file back. Git reflog is also useful when rebasing goes terribly wrong.
