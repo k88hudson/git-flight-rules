@@ -304,6 +304,13 @@ And finally, let's cherry-pick the commit for bug #14:
 (14)$ git cherry-pick 5ea5173
 ```
 
+<a name="delete-stale-local-branches">
+## I want to delete local branches that were deleted upstream
+Once you merge a pull request on github, it gives you the option to delete the merged branch in your fork. If you aren't planning to keep working on the branch, it's cleaner to delete the local copies of the branch so you don't end up cluttering up your working checkout with a lot of stale branches.
+
+```bash
+$ git fetch -p
+```
 
 ## I accidentaly deleted my branch
 
