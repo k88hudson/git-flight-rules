@@ -304,7 +304,7 @@ And finally, let's cherry-pick the commit for bug #14:
 (14)$ git cherry-pick 5ea5173
 ```
 
-
+<a name='restore-a-deleted-branch'>
 ## I accidentaly deleted my branch
 
 If you're regularly pushing to remote, you should be safe most of the time. But still sometimes you may end up deleting your branches. Let's say we create a branch and create a new file:
