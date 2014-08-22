@@ -29,6 +29,8 @@ For clarity's sake all examples in this document use customized bash prompt in o
 
 Note that, as with rebasing (see below), amending **replaces the old commit with a new one**, so you must force push (`-f`) your changes if you have already pushed the pre-amended commit to your remote. Be careful when you do this &ndash; *always* make sure you specify a branch!
 
+In fact, if you are not the only developer using the repo **avoid force pushing**. It is best to create and push a new commit rather than force-pushing the amended commit as it has the potential to mess with the shared history.
+
 <a name="interactive-rebase"></a>
 ## I need to combine commits
 
