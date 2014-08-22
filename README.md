@@ -217,12 +217,10 @@ If you need to change all of history, see the man page for 'git filter-branch'
 ## I committed to master instead of a new branch
 
 
-Check out a new branch, then return to your master branch
+Create the new branch while remaining on master:
 
 ```
-(master)$ git checkout -b new-branch 
-(new-branch)$ git checkout master
-(master)$
+(master)$ git branch new-branch 
 ```
 
 Find out what the commit hash you want to set your master branch to (`git log` should do the trick). Then reset to that hash.
@@ -232,6 +230,12 @@ For example, if the hash of the commit that your master branch is supposed to be
 ```
 (master)$ git reset --hard a13b85e
 HEAD is now at a13b85e
+```
+
+Checkout the new branch to continue working:
+
+```
+(master)$ git checkout new-branch
 ```
 
 <a name="cherry-pick"></a>
