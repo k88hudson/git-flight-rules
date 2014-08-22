@@ -399,6 +399,7 @@ On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```. 
     puhs = push
     pul = pull
     s = status
+    unpushed = log @{u}
     wc = whatchanged
     wip = rebase -i @{u}
     zap = fetch -p
