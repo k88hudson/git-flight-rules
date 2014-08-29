@@ -386,18 +386,15 @@ On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```. 
     c = commit
     ca = commit --amend
     ci = commit -a
+    co = checkout
     d = diff
     dc = diff --changed
-    dif = diff
     ds = diff --staged
     f = fetch
     loll = log --graph --decorate --pretty=oneline --abbrev-commit
     m = merge
     one = log --pretty=oneline
     outstanding = rebase -i @{u}
-    psuh = push
-    puhs = push
-    pul = pull
     s = status
     unpushed = log @{u}
     wc = whatchanged
