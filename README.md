@@ -226,7 +226,7 @@ Create the new branch while remaining on master:
 Reset the branch master to the previous commit:
 
 ```
-(master)$ git reset --hard master~1
+(master)$ git reset --hard HEAD^
 ```
 
 Checkout the new branch to continue working:
