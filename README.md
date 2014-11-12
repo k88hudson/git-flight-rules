@@ -208,7 +208,7 @@ Since rebasing **replaces the old commit(s) with a new one**, you must force pus
 If it's a single commit, amend it
 
 ```
-$ git commit --amend --author "New Authorname <authoremail@mydomain.com>" 
+$ git commit --amend --author "New Authorname <authoremail@mydomain.com>"
 ```
 
 If you need to change all of history, see the man page for 'git filter-branch'
@@ -220,7 +220,7 @@ If you need to change all of history, see the man page for 'git filter-branch'
 Create the new branch while remaining on master:
 
 ```
-(master)$ git branch new-branch 
+(master)$ git branch new-branch
 ```
 
 Find out what the commit hash you want to set your master branch to (`git log` should do the trick). Then reset to that hash.
@@ -251,7 +251,7 @@ Author: Alex Lee <alexlee@exampledomain123.com>
 Date:   Tue Jul 22 15:39:27 2014 -0400
 
     Bug #21 - Added CSRF protection
-    
+
 commit 5ea51731d150f7ddc4a365437931cd8be3bf3131
 Author: Alex Lee <alexlee@exampledomain123.com>
 Date:   Tue Jul 22 15:39:12 2014 -0400
@@ -373,3 +373,22 @@ README.md foo.txt
 ```
 
 Voila! We got our removed file back. Git reflog is also useful when rebasing goes terribly wrong.
+
+<a name="pull-wrong-branch"></a>
+## I pulled from/into the wrong branch
+
+This is another chance to use `git reflog` to see where your HEAD pointed before the bad pull.
+
+```
+(master)$ git reflog
+ab7555f HEAD@{0}: pull origin wrong-branch: Fast-forward
+c5bc55a HEAD@{1}: checkout: checkout message goes here
+```
+
+Simply reset your branch back to the desired commit:
+
+```
+git reset --hard c5bc55a
+```
+
+Done.
