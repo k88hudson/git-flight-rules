@@ -1,5 +1,6 @@
 # Flight rules for git
 
+How to solve common git problems.
 
 ### What are "flight rules"?
 
@@ -373,3 +374,32 @@ README.md foo.txt
 ```
 
 Voila! We got our removed file back. Git reflog is also useful when rebasing goes terribly wrong.
+
+<a name="delete-last-commit"></a>
+## Delete/remove last pushed commit
+```
+git reset HEAD^ --hard
+git push -f [remote] [branch]
+```
+
+<a name="delete-any-commit"></a>
+## Delete/remove arbitrary commit
+```
+git rebase --onto SHA1_OF_BAD_COMMIT^ SHA1_OF_BAD_COMMIT
+git push -f [remote] [branch]
+```
+
+<a name="delete-tag"></a>
+## Delete tag
+```
+git tag -d <tag_name>
+git push <remote> :refs/tags/<tag_name>
+```
+
+<a name="clone-submodules"></a>
+## Clone all submodules
+```
+git clone --recursive git://github.com/foo/bar.git
+# if already cloned:
+git submodule update --init --recursive
+```
