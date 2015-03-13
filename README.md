@@ -386,3 +386,31 @@ README.md foo.txt
 ```
 
 Voila! We got our removed file back. Git reflog is also useful when rebasing goes terribly wrong.
+
+<a name="adding-command-aliases"></a>
+## I want to add aliases for some git commands
+
+On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```.  I've added some example aliases I use as shortcuts (and some of my common typos) in the ```[aliases]``` section as shown below:
+
+```
+[aliases]
+    a = add
+    amend = --amend
+    c = commit
+    ca = commit --amend
+    ci = commit -a
+    co = checkout
+    d = diff
+    dc = diff --changed
+    ds = diff --staged
+    f = fetch
+    loll = log --graph --decorate --pretty=oneline --abbrev-commit
+    m = merge
+    one = log --pretty=oneline
+    outstanding = rebase -i @{u}
+    s = status
+    unpushed = log @{u}
+    wc = whatchanged
+    wip = rebase -i @{u}
+    zap = fetch -p
+```
