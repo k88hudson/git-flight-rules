@@ -226,7 +226,7 @@ If you need to change all of history, see the man page for 'git filter-branch'
 Create the new branch while remaining on master:
 
 ```
-(master)$ git branch new-branch 
+(master)$ git branch new-branch
 ```
 
 Find out what the commit hash you want to set your master branch to (`git log` should do the trick). Then reset to that hash.
@@ -257,7 +257,7 @@ Author: Alex Lee <alexlee@exampledomain123.com>
 Date:   Tue Jul 22 15:39:27 2014 -0400
 
     Bug #21 - Added CSRF protection
-    
+
 commit 5ea51731d150f7ddc4a365437931cd8be3bf3131
 Author: Alex Lee <alexlee@exampledomain123.com>
 Date:   Tue Jul 22 15:39:12 2014 -0400
