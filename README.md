@@ -17,6 +17,12 @@ A [guide for astronauts](http://www.jsc.nasa.gov/news/columbia/fr_generic.pdf) (
 For clarity's sake all examples in this document use customized bash prompt in order to indicate the current branch and whether or not there are staged changes. The branch is enclosed in parentheses, and a `*` next to the branch name indicates staged changes.
 
 <a name="amend"></a>
+## I wrote the wrong thing in a commit message
+
+```sh
+git commit --amend
+``` 
+
 ## I need to add staged changes to the previous commit
 
 ```
@@ -29,7 +35,7 @@ For clarity's sake all examples in this document use customized bash prompt in o
 
 Note that, as with rebasing (see below), amending **replaces the old commit with a new one**, so you must force push (`-f`) your changes if you have already pushed the pre-amended commit to your remote. Be careful when you do this &ndash; *always* make sure you specify a branch!
 
-In fact, if you are not the only developer using the repo **avoid force pushing**. It is best to create and push a new commit rather than force-pushing the amended commit as it has the potential to mess with the shared history.
+In general, **avoid force pushing**. It is best to create and push a new commit rather than force-pushing the amended commit as it has will cause conflicts in the source history for any other developer who has interacted with the branch in question or any child branches. 
 
 <a name="interactive-rebase"></a>
 ## I need to combine commits
@@ -220,7 +226,7 @@ If you need to change all of history, see the man page for 'git filter-branch'
 Create the new branch while remaining on master:
 
 ```
-(master)$ git branch new-branch 
+(master)$ git branch new-branch
 ```
 
 Find out what the commit hash you want to set your master branch to (`git log` should do the trick). Then reset to that hash.
@@ -251,7 +257,7 @@ Author: Alex Lee <alexlee@exampledomain123.com>
 Date:   Tue Jul 22 15:39:27 2014 -0400
 
     Bug #21 - Added CSRF protection
-    
+
 commit 5ea51731d150f7ddc4a365437931cd8be3bf3131
 Author: Alex Lee <alexlee@exampledomain123.com>
 Date:   Tue Jul 22 15:39:12 2014 -0400
@@ -304,8 +310,16 @@ And finally, let's cherry-pick the commit for bug #14:
 (14)$ git cherry-pick 5ea5173
 ```
 
+<a name="delete-stale-local-branches">
+## I want to delete local branches that were deleted upstream
+Once you merge a pull request on github, it gives you the option to delete the merged branch in your fork. If you aren't planning to keep working on the branch, it's cleaner to delete the local copies of the branch so you don't end up cluttering up your working checkout with a lot of stale branches.
+
+```bash
+$ git fetch -p
+```
+
 <a name='restore-a-deleted-branch'>
-## I accidentaly deleted my branch
+## I accidentally deleted my branch
 
 If you're regularly pushing to remote, you should be safe most of the time. But still sometimes you may end up deleting your branches. Let's say we create a branch and create a new file:
 
@@ -373,3 +387,31 @@ README.md foo.txt
 ```
 
 Voila! We got our removed file back. Git reflog is also useful when rebasing goes terribly wrong.
+
+<a name="adding-command-aliases"></a>
+## I want to add aliases for some git commands
+
+On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```.  I've added some example aliases I use as shortcuts (and some of my common typos) in the ```[aliases]``` section as shown below:
+
+```
+[aliases]
+    a = add
+    amend = --amend
+    c = commit
+    ca = commit --amend
+    ci = commit -a
+    co = checkout
+    d = diff
+    dc = diff --changed
+    ds = diff --staged
+    f = fetch
+    loll = log --graph --decorate --pretty=oneline --abbrev-commit
+    m = merge
+    one = log --pretty=oneline
+    outstanding = rebase -i @{u}
+    s = status
+    unpushed = log @{u}
+    wc = whatchanged
+    wip = rebase -i @{u}
+    zap = fetch -p
+```
