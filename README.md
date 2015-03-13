@@ -311,7 +311,7 @@ And finally, let's cherry-pick the commit for bug #14:
 ```
 
 
-## I accidentaly deleted my branch
+## I accidentally deleted my branch
 
 If you're regularly pushing to remote, you should be safe most of the time. But still sometimes you may end up deleting your branches. Let's say we create a branch and create a new file:
 
