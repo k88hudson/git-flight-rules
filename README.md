@@ -17,6 +17,12 @@ A [guide for astronauts](http://www.jsc.nasa.gov/news/columbia/fr_generic.pdf) (
 For clarity's sake all examples in this document use customized bash prompt in order to indicate the current branch and whether or not there are staged changes. The branch is enclosed in parentheses, and a `*` next to the branch name indicates staged changes.
 
 <a name="amend"></a>
+## I wrote the wrong thing in a commit message
+
+```sh
+git commit --amend
+``` 
+
 ## I need to add staged changes to the previous commit
 
 ```
