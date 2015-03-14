@@ -42,7 +42,7 @@ In general, **avoid force pushing**. It is best to create and push a new commit 
 
 You need to do something called an interactive rebase.
 
-If you are working in a branch that is/will become a pull-request against `master`, you can rebase against your `master` branch. Make sure it is up to date:
+If you are working in a branch that is/will become a pull-request against `master`, you can rebase against your `master` branch. Make sure the master branch is up to date, then:
 
 ```
 (my-branch)$ git rebase -i master
