@@ -229,13 +229,10 @@ Create the new branch while remaining on master:
 (master)$ git branch new-branch
 ```
 
-Find out what the commit hash you want to set your master branch to (`git log` should do the trick). Then reset to that hash.
-
-For example, if the hash of the commit that your master branch is supposed to be at is `a13b85e`:
+Reset the branch master to the previous commit:
 
 ```
-(master)$ git reset --hard a13b85e
-HEAD is now at a13b85e
+(master)$ git reset --hard HEAD^
 ```
 
 Checkout the new branch to continue working:
