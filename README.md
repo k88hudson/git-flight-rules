@@ -22,19 +22,9 @@ For clarity's sake all examples in this document use customized bash prompt in o
   - [I need to add staged changes to the previous commit](#i-need-to-add-staged-changes-to-the-previous-commit)
     - [I tried to push my amended commit to a remote, but I got an error message](#i-tried-to-push-my-amended-commit-to-a-remote-but-i-got-an-error-message)
   - [I need to combine commits](#i-need-to-combine-commits)
-      - [I want to combine only unpushed commits](#i-want-to-combine-only-unpushed-commits)
-    - [Possible issues with interactive rebases](#possible-issues-with-interactive-rebases)
-      - [The rebase editing screen says 'noop'](#the-rebase-editing-screen-says-noop)
-      - [There were conflicts](#there-were-conflicts)
+    - [Possible issues with merging](#possible-issues-with-merging)
+      - [Safe merging strategy:](#safe-merging-strategy)
 - [some code](#some-code)
-      - [When I try to push, I get an error message:](#when-i-try-to-push-i-get-an-error-message)
-  - [I committed with the wrong name and email configured](#i-committed-with-the-wrong-name-and-email-configured)
-  - [I committed to master instead of a new branch](#i-committed-to-master-instead-of-a-new-branch)
-  - [I made several commits on a single branch that should be on different branches](#i-made-several-commits-on-a-single-branch-that-should-be-on-different-branches)
-  - [I want to delete local branches that were deleted upstream](#i-want-to-delete-local-branches-that-were-deleted-upstream)
-  - [I accidentally deleted my branch](#i-accidentally-deleted-my-branch)
-  - [I want to add aliases for some git commands](#i-want-to-add-aliases-for-some-git-commands)
-  - [I pulled from/into the wrong branch](#i-pulled-frominto-the-wrong-branch)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
