@@ -1,8 +1,9 @@
+# Flight rules for git
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [Flight rules for git](#flight-rules-for-git)
     - [What are "flight rules"?](#what-are-flight-rules)
     - [Conventions for this document](#conventions-for-this-document)
   - [I wrote the wrong thing in a commit message](#i-wrote-the-wrong-thing-in-a-commit-message)
@@ -23,9 +24,6 @@
   - [I want to add aliases for some git commands](#i-want-to-add-aliases-for-some-git-commands)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-# Flight rules for git
-
 
 ### What are "flight rules"?
 
