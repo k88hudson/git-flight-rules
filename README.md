@@ -436,3 +436,22 @@ On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```. 
     wip = rebase -i @{u}
     zap = fetch -p
 ```
+
+<a name="pull-wrong-branch"></a>
+## I pulled from/into the wrong branch
+
+This is another chance to use `git reflog` to see where your HEAD pointed before the bad pull.
+
+```
+(master)$ git reflog
+ab7555f HEAD@{0}: pull origin wrong-branch: Fast-forward
+c5bc55a HEAD@{1}: checkout: checkout message goes here
+```
+
+Simply reset your branch back to the desired commit:
+
+```
+git reset --hard c5bc55a
+```
+
+Done.
