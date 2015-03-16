@@ -34,6 +34,7 @@ For clarity's sake all examples in this document use customized bash prompt in o
   - [I want to delete local branches that were deleted upstream](#i-want-to-delete-local-branches-that-were-deleted-upstream)
   - [I accidentally deleted my branch](#i-accidentally-deleted-my-branch)
   - [I want to add aliases for some git commands](#i-want-to-add-aliases-for-some-git-commands)
+  - [I pulled from/into the wrong branch](#i-pulled-frominto-the-wrong-branch)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
