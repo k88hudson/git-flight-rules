@@ -22,19 +22,9 @@ For clarity's sake all examples in this document use customized bash prompt in o
   - [I need to add staged changes to the previous commit](#i-need-to-add-staged-changes-to-the-previous-commit)
     - [I tried to push my amended commit to a remote, but I got an error message](#i-tried-to-push-my-amended-commit-to-a-remote-but-i-got-an-error-message)
   - [I need to combine commits](#i-need-to-combine-commits)
-      - [I want to combine only unpushed commits](#i-want-to-combine-only-unpushed-commits)
-    - [Possible issues with interactive rebases](#possible-issues-with-interactive-rebases)
-      - [The rebase editing screen says 'noop'](#the-rebase-editing-screen-says-noop)
-      - [There were conflicts](#there-were-conflicts)
+    - [Possible issues with merging](#possible-issues-with-merging)
+      - [Safe merging strategy:](#safe-merging-strategy)
 - [some code](#some-code)
-      - [When I try to push, I get an error message:](#when-i-try-to-push-i-get-an-error-message)
-  - [I committed with the wrong name and email configured](#i-committed-with-the-wrong-name-and-email-configured)
-  - [I committed to master instead of a new branch](#i-committed-to-master-instead-of-a-new-branch)
-  - [I made several commits on a single branch that should be on different branches](#i-made-several-commits-on-a-single-branch-that-should-be-on-different-branches)
-  - [I want to delete local branches that were deleted upstream](#i-want-to-delete-local-branches-that-were-deleted-upstream)
-  - [I accidentally deleted my branch](#i-accidentally-deleted-my-branch)
-  - [I want to add aliases for some git commands](#i-want-to-add-aliases-for-some-git-commands)
-  - [I pulled from/into the wrong branch](#i-pulled-frominto-the-wrong-branch)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -141,6 +131,17 @@ If everything is successful, you should see something like this:
 ```
 (master)$ Successfully rebased and updated refs/heads/master.
 ```
+### Possible issues with merging
+#### Safe merging strategy:
+```--no-commit``` performs the merge but pretends the merge failed and does not autocommit, giving the user a chance to inspect and further tweak the merge result before committing. ```no-ff``` maintains evidence that a feature branch once existed, keeping project history consistent.
+
+```sh
+(master)$ git merge --no-ff --no-commit featurebranch
+```
+#### I need to merge a branch into a single commit
+```sh
+(master)$ git merge --squash featurebranch
+```
 
 <a name="rebase-unpushed-commits"></a>
 #### I want to combine only unpushed commits
@@ -199,6 +200,11 @@ some code
 
 You will need to resolve the differences between the code that was added in your new commit (in the example, everything from the middle line to `new-commit`) and your `HEAD`.
 
+Sometimes these merges are complicated and you should use a visual diff editor:
+```sh
+(master*)$ git mergetool -t opendiff
+```
+
 After you have resolved all conflicts and tested your code, `git add` the files you have changed, and then continue the rebase with `git rebase --continue`
 
 ```
@@ -248,7 +254,9 @@ If you need to change all of history, see the man page for 'git filter-branch'
 Create the new branch while remaining on master:
 
 ```
-(master)$ git branch new-branch
+(master)$ git checkout -b new-branch
+(new-branch)$ git checkout master
+(master)$
 ```
 
 Find out what the commit hash you want to set your master branch to (`git log` should do the trick). Then reset to that hash. `git push` will make sure that this change is reflected on your remote. 
