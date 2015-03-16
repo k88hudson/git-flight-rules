@@ -141,6 +141,17 @@ If everything is successful, you should see something like this:
 ```
 (master)$ Successfully rebased and updated refs/heads/master.
 ```
+### Possible issues with merging
+#### Safe merging strategy:
+```--no-commit``` performs the merge but pretends the merge failed and does not autocommit, giving the user a chance to inspect and further tweak the merge result before committing. ```no-ff``` maintains evidence that a feature branch once existed, keeping project history consistent.
+
+```sh
+(master)$ git merge --no-ff --no-commit featurebranch
+```
+#### I need to merge a branch into a single commit
+```sh
+(master)$ git merge --squash featurebranch
+```
 
 <a name="rebase-unpushed-commits"></a>
 #### I want to combine only unpushed commits
@@ -199,6 +210,11 @@ some code
 
 You will need to resolve the differences between the code that was added in your new commit (in the example, everything from the middle line to `new-commit`) and your `HEAD`.
 
+Sometimes these merges are complicated and you should use a visual diff editor:
+```sh
+(master*)$ git mergetool -t opendiff
+```
+
 After you have resolved all conflicts and tested your code, `git add` the files you have changed, and then continue the rebase with `git rebase --continue`
 
 ```
@@ -248,7 +264,9 @@ If you need to change all of history, see the man page for 'git filter-branch'
 Create the new branch while remaining on master:
 
 ```
-(master)$ git branch new-branch
+(master)$ git checkout -b new-branch
+(new-branch)$ git checkout master
+(master)$
 ```
 
 Find out what the commit hash you want to set your master branch to (`git log` should do the trick). Then reset to that hash. `git push` will make sure that this change is reflected on your remote. 
