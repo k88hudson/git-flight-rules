@@ -1,11 +1,23 @@
 # Flight rules for git
 
+#### What are "flight rules"?
+
+A [guide for astronauts](http://www.jsc.nasa.gov/news/columbia/fr_generic.pdf) (now, programmers using git) about what to do when things go wrong.
+
+>  *Flight Rules* are the hard-earned body of knowledge recorded in manuals that list, step-by-step, what to do if X occurs, and why. Essentially, they are extremely detailed, scenario-specific standard operating procedures. [...]
+
+> NASA has been capturing our missteps, disasters and solutions since the early 1960s, when Mercury-era ground teams first started gathering "lessons learned" into a compendium that now lists thousands of problematic situations, from engine failure to busted hatch handles to computer glitches, and their solutions.
+
+&mdash; Chris Hadfield, *An Astronaut's Guide to Life*.
+
+#### Conventions for this document
+
+For clarity's sake all examples in this document use customized bash prompt in order to indicate the current branch and whether or not there are staged changes. The branch is enclosed in parentheses, and a `*` next to the branch name indicates staged changes.
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-  - [What are "flight rules"?](#what-are-flight-rules)
-  - [Conventions for this document](#conventions-for-this-document)
   - [I wrote the wrong thing in a commit message](#i-wrote-the-wrong-thing-in-a-commit-message)
   - [I need to add staged changes to the previous commit](#i-need-to-add-staged-changes-to-the-previous-commit)
     - [I tried to push my amended commit to a remote, but I got an error message](#i-tried-to-push-my-amended-commit-to-a-remote-but-i-got-an-error-message)
@@ -24,21 +36,6 @@
   - [I want to add aliases for some git commands](#i-want-to-add-aliases-for-some-git-commands)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-### What are "flight rules"?
-
-A [guide for astronauts](http://www.jsc.nasa.gov/news/columbia/fr_generic.pdf) (now, programmers using git) about what to do when things go wrong.
-
->  *Flight Rules* are the hard-earned body of knowledge recorded in manuals that list, step-by-step, what to do if X occurs, and why. Essentially, they are extremely detailed, scenario-specific standard operating procedures. [...]
-
-> NASA has been capturing our missteps, disasters and solutions since the early 1960s, when Mercury-era ground teams first started gathering "lessons learned" into a compendium that now lists thousands of problematic situations, from engine failure to busted hatch handles to computer glitches, and their solutions.
-
-&mdash; Chris Hadfield, *An Astronaut's Guide to Life*.
-
-
-### Conventions for this document
-
-For clarity's sake all examples in this document use customized bash prompt in order to indicate the current branch and whether or not there are staged changes. The branch is enclosed in parentheses, and a `*` next to the branch name indicates staged changes.
 
 <a name="amend"></a>
 ## I wrote the wrong thing in a commit message
