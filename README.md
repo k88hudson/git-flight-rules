@@ -4,8 +4,8 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-    - [What are "flight rules"?](#what-are-flight-rules)
-    - [Conventions for this document](#conventions-for-this-document)
+  - [What are "flight rules"?](#what-are-flight-rules)
+  - [Conventions for this document](#conventions-for-this-document)
   - [I wrote the wrong thing in a commit message](#i-wrote-the-wrong-thing-in-a-commit-message)
   - [I need to add staged changes to the previous commit](#i-need-to-add-staged-changes-to-the-previous-commit)
     - [I tried to push my amended commit to a remote, but I got an error message](#i-tried-to-push-my-amended-commit-to-a-remote-but-i-got-an-error-message)
