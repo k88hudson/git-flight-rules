@@ -110,7 +110,9 @@ If everything is successful, you should see something like this:
 (master)$ Successfully rebased and updated refs/heads/master.
 ```
 ### Possible issues with merging
-Safe merging strategy:
+#### Safe merging strategy:
+```--no-commit``` performs the merge but pretends the merge failed and does not autocommit, giving the user a chance to inspect and further tweak the merge result before committing. ```no-ff``` maintains evidence that a feature branch once existed, keeping project history consistent.
+
 ```sh
 (master)$ git merge --no-ff --no-commit featurebranch
 ```
@@ -203,7 +205,7 @@ Since rebasing **replaces the old commit(s) with a new one**, you must force pus
 Check out a new branch, then return to your master branch
 
 ```
-(master)$ git checkout -b new-branch 
+(master)$ git checkout -b new-branch
 (new-branch)$ git checkout master
 (master)$
 ```
@@ -229,7 +231,7 @@ Author: Alex Lee <alexlee@exampledomain123.com>
 Date:   Tue Jul 22 15:39:27 2014 -0400
 
     Bug #21 - Added CSRF protection
-    
+
 commit 5ea51731d150f7ddc4a365437931cd8be3bf3131
 Author: Alex Lee <alexlee@exampledomain123.com>
 Date:   Tue Jul 22 15:39:12 2014 -0400
