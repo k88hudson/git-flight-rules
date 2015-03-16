@@ -34,6 +34,7 @@ For clarity's sake all examples in this document use customized bash prompt in o
   - [I want to delete local branches that were deleted upstream](#i-want-to-delete-local-branches-that-were-deleted-upstream)
   - [I accidentally deleted my branch](#i-accidentally-deleted-my-branch)
   - [I want to add aliases for some git commands](#i-want-to-add-aliases-for-some-git-commands)
+  - [I pulled from/into the wrong branch](#i-pulled-frominto-the-wrong-branch)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -436,3 +437,22 @@ On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```. 
     wip = rebase -i @{u}
     zap = fetch -p
 ```
+
+<a name="pull-wrong-branch"></a>
+## I pulled from/into the wrong branch
+
+This is another chance to use `git reflog` to see where your HEAD pointed before the bad pull.
+
+```
+(master)$ git reflog
+ab7555f HEAD@{0}: pull origin wrong-branch: Fast-forward
+c5bc55a HEAD@{1}: checkout: checkout message goes here
+```
+
+Simply reset your branch back to the desired commit:
+
+```
+git reset --hard c5bc55a
+```
+
+Done.
