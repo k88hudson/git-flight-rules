@@ -1,3 +1,29 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Flight rules for git](#flight-rules-for-git)
+    - [What are "flight rules"?](#what-are-flight-rules)
+    - [Conventions for this document](#conventions-for-this-document)
+  - [I wrote the wrong thing in a commit message](#i-wrote-the-wrong-thing-in-a-commit-message)
+  - [I need to add staged changes to the previous commit](#i-need-to-add-staged-changes-to-the-previous-commit)
+    - [I tried to push my amended commit to a remote, but I got an error message](#i-tried-to-push-my-amended-commit-to-a-remote-but-i-got-an-error-message)
+  - [I need to combine commits](#i-need-to-combine-commits)
+      - [I want to combine only unpushed commits](#i-want-to-combine-only-unpushed-commits)
+    - [Possible issues with interactive rebases](#possible-issues-with-interactive-rebases)
+      - [The rebase editing screen says 'noop'](#the-rebase-editing-screen-says-noop)
+      - [There were conflicts](#there-were-conflicts)
+- [some code](#some-code)
+      - [When I try to push, I get an error message:](#when-i-try-to-push-i-get-an-error-message)
+  - [I committed with the wrong name and email configured](#i-committed-with-the-wrong-name-and-email-configured)
+  - [I committed to master instead of a new branch](#i-committed-to-master-instead-of-a-new-branch)
+  - [I made several commits on a single branch that should be on different branches](#i-made-several-commits-on-a-single-branch-that-should-be-on-different-branches)
+  - [I want to delete local branches that were deleted upstream](#i-want-to-delete-local-branches-that-were-deleted-upstream)
+  - [I accidentally deleted my branch](#i-accidentally-deleted-my-branch)
+  - [I want to add aliases for some git commands](#i-want-to-add-aliases-for-some-git-commands)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Flight rules for git
 
 
