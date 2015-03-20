@@ -30,7 +30,6 @@ For clarity's sake all examples in this document use customized bash prompt in o
   - [Possible issues with interactive rebases](#possible-issues-with-interactive-rebases)
     - [The rebase editing screen says 'noop'](#the-rebase-editing-screen-says-noop)
     - [There were conflicts](#there-were-conflicts)
-    - [When I try to push, I get an error message:](#when-i-try-to-push-i-get-an-error-message)
 - [I committed with the wrong name and email configured](#i-committed-with-the-wrong-name-and-email-configured)
 - [I committed to master instead of a new branch](#i-committed-to-master-instead-of-a-new-branch)
 - [I made several commits on a single branch that should be on different branches](#i-made-several-commits-on-a-single-branch-that-should-be-on-different-branches)
@@ -58,9 +57,24 @@ git commit --amend
 <a name="force-push"></a>
 ### I tried to push my amended commit to a remote, but I got an error message
 
+```sh
+To https://github.com/yourusername/repo.git
+! [rejected]        mybranch -> mybranch (non-fast-forward)
+error: failed to push some refs to 'https://github.com/tanay1337/webmaker.org.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+
 Note that, as with rebasing (see below), amending **replaces the old commit with a new one**, so you must force push (`-f`) your changes if you have already pushed the pre-amended commit to your remote. Be careful when you do this &ndash; *always* make sure you specify a branch!
 
+```sh
+(mybranch) $ git push origin mybranch -f
+```
+
 In general, **avoid force pushing**. It is best to create and push a new commit rather than force-pushing the amended commit as it has will cause conflicts in the source history for any other developer who has interacted with the branch in question or any child branches. 
+
 
 <a name="interactive-rebase"></a>
 ## I need to combine commits
@@ -227,25 +241,6 @@ After you have resolved all conflicts and tested your code, `git add` the files 
 If at any time you want to stop the entire rebase and go back to the original state of your branch, you can do so:
 ```
 (my-branch)$ git rebase --abort
-```
-
-<a name="force-push"></a>
-#### When I try to push, I get an error message:
-
-```
-To https://github.com/yourusername/repo.git
-! [rejected]        mybranch -> mybranch (non-fast-forward)
-error: failed to push some refs to 'https://github.com/tanay1337/webmaker.org.git'
-hint: Updates were rejected because the tip of your current branch is behind
-hint: its remote counterpart. Integrate the remote changes (e.g.
-hint: 'git pull ...') before pushing again.
-hint: See the 'Note about fast-forwards' in 'git push --help' for details.
-```
-
-Since rebasing **replaces the old commit(s) with a new one**, you must force push (`-f`) your changes. Be careful when you do this &ndash; *always* make sure you specify a branch!
-
-```
-(mybranch) $ git push origin mybranch -f
 ```
 
 <a name="commit-wrong-author"></a>
