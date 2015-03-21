@@ -37,6 +37,10 @@ For clarity's sake all examples in this document use customized bash prompt in o
 - [I accidentally deleted my branch](#i-accidentally-deleted-my-branch)
 - [I want to add aliases for some git commands](#i-want-to-add-aliases-for-some-git-commands)
 - [I pulled from/into the wrong branch](#i-pulled-frominto-the-wrong-branch)
+- [I want to discard local commits so my branch is the same as one on the server](#i-want-to-discard-local-commits-so-my-branch-is-the-same-as-one-on-the-server)
+- [I want to discard my local, uncommitted changes](#i-want-to-discard-my-local-uncommitted-changes)
+- [I want to add changes in one file to two different commits](#i-want-to-add-changes-in-one-file-to-two-different-commits)
+- [I want to remove a file from git but keep the file](#i-want-to-remove-a-file-from-git-but-keep-the-file)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -471,3 +475,56 @@ git reset --hard c5bc55a
 ```
 
 Done.
+
+<a href="discard-local-commits"></a>
+## I want to discard local commits so my branch is the same as one on the server
+
+Confirm that you haven't pushed your changes to the server.
+
+`git status` should show how many commits you are ahead of origin:
+
+```sh
+(bug24)$ git status
+# On branch bug24
+# Your branch is ahead of 'origin/bug24' by 2 commits.
+#   (use "git push" to publish your local commits)
+#
+```
+
+One way of reseting to match origin (to have the same as what is on the remote) is to do this:
+
+```sh
+(master)$ git reset --hard origin/bug24
+```
+
+If you want to only reset to some commit between origin and your local, you can do this: 
+
+```sh
+# one commit
+(bug24)$ git reset --hard HEAD^
+# two commits
+(bug24)$ git reset --hard HEAD^^
+# four commits
+(bug24)$ git reset --hard HEAD~4
+```
+
+<a href="discard-local-uncommited-changes"></a>
+## I want to discard my local, uncommitted changes
+
+```sh
+(master)$ git reset --hard
+# or
+(master)$ git checkout -f
+```
+
+<a href="stage-in-two-commits"></a>
+## I want to add changes in one file to two different commits
+
+`git add` will add the entire file to a commit. `git add -p` will allow to interactively select which changes you want to add.
+
+<a href="remove-from-git"></a>
+## I want to remove a file from git but keep the file
+
+```sh
+(master)$ git rm --cached log.txt
+```
