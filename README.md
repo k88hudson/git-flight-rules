@@ -41,6 +41,11 @@ For clarity's sake all examples in this document use customized bash prompt in o
 - [I want to discard my local, uncommitted changes](#i-want-to-discard-my-local-uncommitted-changes)
 - [I want to add changes in one file to two different commits](#i-want-to-add-changes-in-one-file-to-two-different-commits)
 - [I want to remove a file from git but keep the file](#i-want-to-remove-a-file-from-git-but-keep-the-file)
+- [Deleting Commits and Tags](#deleting-commits-and-tags)
+  - [Delete/remove last pushed commit](#deleteremove-last-pushed-commit)
+  - [Delete/remove arbitrary commit](#deleteremove-arbitrary-commit)
+  - [Delete tag](#delete-tag)
+- [Clone all submodules](#clone-all-submodules)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -527,4 +532,42 @@ If you want to only reset to some commit between origin and your local, you can 
 
 ```sh
 (master)$ git rm --cached log.txt
+```
+
+<a name="deleting"></a>
+## Deleting Commits and Tags
+
+If you need to delete pushed commits, you can use the following. However, it will irreversabily change your history, and mess up the history of anyone else who had already pulled from the repository. In short, you should never do this, ever. 
+
+<a name="delete-pushed-commit"></a>
+### Delete/remove last pushed commit
+
+```sh
+git reset HEAD^ --hard
+git push -f [remote] [branch]
+```
+
+<a name="delete-any-commit"></a>
+### Delete/remove arbitrary commit
+
+```sh
+git rebase --onto SHA1_OF_BAD_COMMIT^ SHA1_OF_BAD_COMMIT
+git push -f [remote] [branch]
+```
+
+<a name="delete-tag"></a>
+### Delete tag
+
+```sh
+git tag -d <tag_name>
+git push <remote> :refs/tags/<tag_name>
+```
+
+<a name="clone-submodules"></a>
+## Clone all submodules
+
+```sh
+git clone --recursive git://github.com/foo/bar.git
+# If already cloned:
+git submodule update --init --recursive
 ```
