@@ -12,7 +12,7 @@ A [guide for astronauts](http://www.jsc.nasa.gov/news/columbia/fr_generic.pdf) (
 
 #### Conventions for this document
 
-For clarity's sake all examples in this document use customized bash prompt in order to indicate the current branch and whether or not there are staged changes. The branch is enclosed in parentheses, and a `*` next to the branch name indicates staged changes.
+For clarity's sake all examples in this document use a customized bash prompt in order to indicate the current branch and whether or not there are staged changes. The branch is enclosed in parentheses, and a `*` next to the branch name indicates staged changes.
 
 [![Join the chat at https://gitter.im/k88hudson/git-flight-rules](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/k88hudson/git-flight-rules?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -54,7 +54,7 @@ For clarity's sake all examples in this document use customized bash prompt in o
 
 ```sh
 git commit --amend
-``` 
+```
 
 ## I need to add staged changes to the previous commit
 
@@ -82,7 +82,7 @@ Note that, as with rebasing (see below), amending **replaces the old commit with
 (mybranch) $ git push origin mybranch -f
 ```
 
-In general, **avoid force pushing**. It is best to create and push a new commit rather than force-pushing the amended commit as it has will cause conflicts in the source history for any other developer who has interacted with the branch in question or any child branches. 
+In general, **avoid force pushing**. It is best to create and push a new commit rather than force-pushing the amended commit as it has will cause conflicts in the source history for any other developer who has interacted with the branch in question or any child branches.
 
 
 <a name="interactive-rebase"></a>
@@ -258,7 +258,7 @@ If at any time you want to stop the entire rebase and go back to the original st
 If it's a single commit, amend it
 
 ```
-$ git commit --amend --author "New Authorname <authoremail@mydomain.com>" 
+$ git commit --amend --author "New Authorname <authoremail@mydomain.com>"
 ```
 
 If you need to change all of history, see the man page for 'git filter-branch'
@@ -275,7 +275,7 @@ Create the new branch while remaining on master:
 (master)$
 ```
 
-Find out what the commit hash you want to set your master branch to (`git log` should do the trick). Then reset to that hash. `git push` will make sure that this change is reflected on your remote. 
+Find out what the commit hash you want to set your master branch to (`git log` should do the trick). Then reset to that hash. `git push` will make sure that this change is reflected on your remote.
 
 For example, if the hash of the commit that your master branch is supposed to be at is `a13b85e`:
 
@@ -424,7 +424,7 @@ One way of reseting to match origin (to have the same as what is on the remote) 
 (master)$ git reset --hard origin/bug24
 ```
 
-If you want to only reset to some commit between origin and your local, you can do this: 
+If you want to only reset to some commit between origin and your local, you can do this:
 
 ```sh
 # one commit
@@ -549,7 +549,7 @@ Voila! We got our removed file back. Git reflog is also useful when rebasing goe
 <a name="delete-pushed-commit"></a>
 ### Delete/remove last pushed commit
 
-If you need to delete pushed commits, you can use the following. However, it will irreversabily change your history, and mess up the history of anyone else who had already pulled from the repository. In short, if you're not sure, you should never do this, ever. 
+If you need to delete pushed commits, you can use the following. However, it will irreversabily change your history, and mess up the history of anyone else who had already pulled from the repository. In short, if you're not sure, you should never do this, ever.
 
 ```sh
 git reset HEAD^ --hard
@@ -559,7 +559,7 @@ git push -f [remote] [branch]
 <a name="delete-any-commit"></a>
 ### Delete/remove arbitrary commit
 
-The same warning applies as above. Never do this if possible. 
+The same warning applies as above. Never do this if possible.
 
 ```sh
 git rebase --onto SHA1_OF_BAD_COMMIT^ SHA1_OF_BAD_COMMIT
