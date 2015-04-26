@@ -444,6 +444,15 @@ If you want to only reset to some commit between origin and your local, you can 
 (master)$ git checkout -f
 ```
 
+<a name="diff-last"></a>
+## What did I just do?
+
+Let's say that you just blindly committed changes with `git commit -a` and you're not sure what the actual content of the commit you just made was. You can check the difference between your current HEAD and what your HEAD just was with:
+
+```
+(master)$ git diff HEAD@{1} HEAD
+```
+
 <a href="stage-in-two-commits"></a>
 ## I want to add changes in one file to two different commits
 
@@ -573,4 +582,3 @@ git push -f [remote] [branch]
 git tag -d <tag_name>
 git push <remote> :refs/tags/<tag_name>
 ```
-
