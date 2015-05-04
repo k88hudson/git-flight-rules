@@ -22,6 +22,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
 - [I wrote the wrong thing in a commit message](#i-wrote-the-wrong-thing-in-a-commit-message)
 - [I need to add staged changes to the previous commit](#i-need-to-add-staged-changes-to-the-previous-commit)
   - [I tried to push my amended commit to a remote, but I got an error message](#i-tried-to-push-my-amended-commit-to-a-remote-but-i-got-an-error-message)
+  - [I rebased, but I don't want to force push.](#i-rebased-but-i-dont-want-to-force-push)
 - [I need to combine commits](#i-need-to-combine-commits)
   - [Possible issues with merging](#possible-issues-with-merging)
     - [Safe merging strategy:](#safe-merging-strategy)
@@ -87,6 +88,20 @@ Note that, as with rebasing (see below), amending **replaces the old commit with
 ```
 
 In general, **avoid force pushing**. It is best to create and push a new commit rather than force-pushing the amended commit as it has will cause conflicts in the source history for any other developer who has interacted with the branch in question or any child branches.
+
+<a name="force-push-rebase"></a>
+### I rebased, but I don't want to force push.
+
+Unfortunately, you have to force push, if you want those changes to be reflected on the remote branch. This is because you have fast forwarded your commit, and changed git history. The remote branch won't accept changes unless you force push. This is one of the main reasons many people use a merge workflow, instead of a rebasing workflow - large teams can get into trouble with developers force pushing. Use this with caution. A safer way to use rebase is not to reflect your changes on the remote branch at all, and instead to do the following:
+
+```sh
+git checkout branch
+git rebase -i master
+git checkout master
+git merge --ff-only branch
+```
+
+For more, see [this SO thread](http://stackoverflow.com/questions/11058312/how-can-i-use-git-rebase-without-requiring-a-forced-push). 
 
 <a name="interactive-rebase"></a>
 ## I need to combine commits
