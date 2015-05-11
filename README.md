@@ -37,6 +37,9 @@ For clarity's sake all examples in this document use a customized bash prompt in
 - [I pulled from/into the wrong branch](#i-pulled-frominto-the-wrong-branch)
 - [I want to discard local commits so my branch is the same as one on the server](#i-want-to-discard-local-commits-so-my-branch-is-the-same-as-one-on-the-server)
 - [I want to discard my local, uncommitted changes](#i-want-to-discard-my-local-uncommitted-changes)
+- [I want to move my unstaged edits to a new branch](#i-want-to-move-my-unstaged-edits-to-a-new-branch)
+- [I want to move my unstaged edits to a different, existing branch](#i-want-to-move-my-unstaged-edits-to-a-different-existing-branch)
+- [What did I just do?](#what-did-i-just-do)
 - [I want to add changes in one file to two different commits](#i-want-to-add-changes-in-one-file-to-two-different-commits)
 - [I want to remove a file from git but keep the file](#i-want-to-remove-a-file-from-git-but-keep-the-file)
 - [Clone all submodules](#clone-all-submodules)
@@ -442,6 +445,22 @@ If you want to only reset to some commit between origin and your local, you can 
 (master)$ git reset --hard
 # or
 (master)$ git checkout -f
+```
+
+<a href="move-unstaged-edits-to-new-branch"></a>
+## I want to move my unstaged edits to a new branch
+
+```sh
+$ git checkout -b new-branch
+```
+
+<a href="move-unstaged-edits-to-old-branch"></a>
+## I want to move my unstaged edits to a different, existing branch
+
+```sh
+$ git stash
+$ git checkout branch2
+$ git stash pop
 ```
 
 <a name="diff-last"></a>
