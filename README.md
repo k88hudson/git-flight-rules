@@ -87,6 +87,15 @@ Note that, as with rebasing (see below), amending **replaces the old commit with
 
 In general, **avoid force pushing**. It is best to create and push a new commit rather than force-pushing the amended commit as it has will cause conflicts in the source history for any other developer who has interacted with the branch in question or any child branches.
 
+<a name="undo-commit"></a>
+## I need to undo my last commit
+
+To reset Git to the state it was in before you made your last commit (while keeping your staged changes):
+
+```
+(my-branch*)$ git reset --soft HEAD@{1}
+
+```
 
 <a name="interactive-rebase"></a>
 ## I need to combine commits
