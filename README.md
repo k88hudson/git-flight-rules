@@ -47,6 +47,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
   - [I want to delete local branches that were deleted upstream](#i-want-to-delete-local-branches-that-were-deleted-upstream)
   - [I accidentally deleted my branch](#i-accidentally-deleted-my-branch)
   - [Delete/remove last pushed commit](#deleteremove-last-pushed-commit)
+  - [Delete/remove last local commit](#deleteremove-last-local-commit)
   - [Delete/remove arbitrary commit](#deleteremove-arbitrary-commit)
   - [Delete tag](#delete-tag)
 
@@ -86,7 +87,6 @@ Note that, as with rebasing (see below), amending **replaces the old commit with
 ```
 
 In general, **avoid force pushing**. It is best to create and push a new commit rather than force-pushing the amended commit as it has will cause conflicts in the source history for any other developer who has interacted with the branch in question or any child branches.
-
 
 <a name="interactive-rebase"></a>
 ## I need to combine commits
@@ -583,6 +583,18 @@ If you need to delete pushed commits, you can use the following. However, it wil
 git reset HEAD^ --hard
 git push -f [remote] [branch]
 ```
+
+<a name="undo-commit"></a>
+### Delete/remove last local commit
+
+If you haven't pushed, to reset Git to the state it was in before you made your last commit (while keeping your staged changes):
+
+```
+(my-branch*)$ git reset --soft HEAD@{1}
+
+```
+
+This only works if you haven't pushed. If you have pushed, the only truly safe thing to do is `git revert SHAofBadCommit`. That will create a new commit that undoes all the previous commit's changes. Or, if the branched you pushed to is rebase-safe (ie. other devs aren't expected to pull from it), you can just use `git push -f`. For more, see [the above section](#deleteremove-last-pushed-commit).
 
 <a name="delete-any-commit"></a>
 ### Delete/remove arbitrary commit
