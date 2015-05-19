@@ -102,7 +102,7 @@ git checkout master
 git merge --ff-only branch
 ```
 
-For more, see [this SO thread](http://stackoverflow.com/questions/11058312/how-can-i-use-git-rebase-without-requiring-a-forced-push). 
+For more, see [this SO thread](http://stackoverflow.com/questions/11058312/how-can-i-use-git-rebase-without-requiring-a-forced-push).
 
 <a name="interactive-rebase"></a>
 ## I need to combine commits
@@ -300,7 +300,7 @@ Reset the branch master to the previous commit:
 (master)$ git reset --hard HEAD^
 ```
 
-`HEAD^` is short for `HEAD^1`. You can reset further through the generations by specifying which `HEAD` to set to. 
+`HEAD^` is short for `HEAD^1`. You can reset further through the generations by specifying which `HEAD` to set to.
 
 Alternatively, if you don't want to use `HEAD^`, find out what the commit hash you want to set your master branch to (`git log` should do the trick). Then reset to that hash. `git push` will make sure that this change is reflected on your remote.
 
@@ -643,4 +643,5 @@ git push <remote> :refs/tags/<tag_name>
 
 If someone has sent you a pull request on GitHub, but then deleted their original fork, you will be unable to clone their commits or to use `git am`. In such cases, it is best to manually look at their commits and copy them into a new branch on your local. Then, commit.
 
-After commiting, change the author of the previous commit. To do this, see how to [change author](#commit-wrong-author). Then, apply whatever changes needed on to, and make a new pull request. 
+After commiting, change the author of the previous commit. To do this, see how to [change author](#commit-wrong-author). Then, apply whatever changes needed on to, and make a new pull request.
+
