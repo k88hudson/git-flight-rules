@@ -293,18 +293,26 @@ Create the new branch while remaining on master:
 (master)$
 ```
 
-Find out what the commit hash you want to set your master branch to (`git log` should do the trick). Then reset to that hash. `git push` will make sure that this change is reflected on your remote.
+Reset the branch master to the previous commit:
+
+```sh
+(master)$ git reset --hard HEAD^
+```
+
+`HEAD^` is short for `HEAD^1`. You can reset further through the generations by specifying which `HEAD` to set to. 
+
+Alternatively, if you don't want to use `HEAD^`, find out what the commit hash you want to set your master branch to (`git log` should do the trick). Then reset to that hash. `git push` will make sure that this change is reflected on your remote.
 
 For example, if the hash of the commit that your master branch is supposed to be at is `a13b85e`:
 
-```
+```sh
 (master)$ git reset --hard a13b85e
 HEAD is now at a13b85e
 ```
 
 Checkout the new branch to continue working:
 
-```
+```sh
 (master)$ git checkout new-branch
 ```
 
