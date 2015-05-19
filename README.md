@@ -645,3 +645,13 @@ If someone has sent you a pull request on GitHub, but then deleted their origina
 
 After commiting, change the author of the previous commit. To do this, see how to [change author](#commit-wrong-author). Then, apply whatever changes needed on to, and make a new pull request.
 
+# Other resources
+
+## Tutorials
+
+* [git-workflow](https://github.com/asmeurer/git-workflow) - [Aaron Meurer](https://github.com/asmeurer)'s howto on using git to contribute to open source repositories
+
+## Scripts & Tools
+
+* [git-extra-commands](https://github.com/unixorn/git-extra-commands) - a collection of useful extra git scripts
+* [Source Tree](https://www.sourcetreeapp.com/) - a free graphical git client for Windows and OS X
