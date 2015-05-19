@@ -51,6 +51,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
   - [Delete/remove last local commit](#deleteremove-last-local-commit)
   - [Delete/remove arbitrary commit](#deleteremove-arbitrary-commit)
   - [Delete tag](#delete-tag)
+- [Deleted Patch](#deleted-patch)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -636,3 +637,10 @@ git push -f [remote] [branch]
 git tag -d <tag_name>
 git push <remote> :refs/tags/<tag_name>
 ```
+
+<a name="deleted-patch"></a>
+## Deleted Patch
+
+If someone has sent you a pull request on GitHub, but then deleted their original fork, you will be unable to clone their commits or to use `git am`. In such cases, it is best to manually look at their commits and copy them into a new branch on your local. Then, commit.
+
+After commiting, change the author of the previous commit. To do this, see how to [change author](#commit-wrong-author). Then, apply whatever changes needed on to, and make a new pull request. 
