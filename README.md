@@ -52,6 +52,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [Delete/remove arbitrary commit](#deleteremove-arbitrary-commit)
     - [Delete tag](#delete-tag)
   - [Deleted Patch](#deleted-patch)
+  - [Check if all commits on a branch are merged](#check-if-all-commits-on-a-branch-are-merged)
 - [Other Resources](#other-resources)
   - [Books](#books)
   - [Tutorials](#tutorials)
@@ -649,6 +650,21 @@ git push <remote> :refs/tags/<tag_name>
 If someone has sent you a pull request on GitHub, but then deleted their original fork, you will be unable to clone their commits or to use `git am`. In such cases, it is best to manually look at their commits and copy them into a new branch on your local. Then, commit.
 
 After commiting, change the author of the previous commit. To do this, see how to [change author](#commit-wrong-author). Then, apply whatever changes needed on to, and make a new pull request.
+
+<a name="check-if-all-commits-on-a-branch-are-merged"></a>
+## Check if all commits on a branch are merged
+
+To check if all commits on a branch are merged into another branch, you should diff between the heads (or any commits) of those branches:
+
+```sh
+(master)$ git log --graph --left-right --cherry-pick --oneline HEAD...feature/120-on-scroll
+```
+
+This will tell you if any commits are in one but not the other, and will give you a list of any nonshared between the branches. Another option is to do this:
+
+```sh
+(master)$ git log master ^feature/120-on-scroll --no-merges
+```
 
 # Other Resources
 
