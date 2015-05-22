@@ -654,6 +654,7 @@ After commiting, change the author of the previous commit. To do this, see how t
 ## Books
 
 * [Pro Git](https://git-scm.com/book/en/v2) - Scott Chacon's excellent git book
+
 ## Tutorials
 
 * [git-workflow](https://github.com/asmeurer/git-workflow) - [Aaron Meurer](https://github.com/asmeurer)'s howto on using git to contribute to open source repositories
