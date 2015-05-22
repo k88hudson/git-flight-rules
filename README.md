@@ -53,6 +53,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [Delete tag](#delete-tag)
   - [Deleted Patch](#deleted-patch)
 - [Other Resources](#other-resources)
+  - [Books](#books)
   - [Tutorials](#tutorials)
   - [Scripts & Tools](#scripts-&-tools)
 
@@ -650,11 +651,16 @@ After commiting, change the author of the previous commit. To do this, see how t
 
 # Other Resources
 
+## Books
+
+* [Pro Git](https://git-scm.com/book/en/v2) - Scott Chacon's excellent git book
 ## Tutorials
 
 * [git-workflow](https://github.com/asmeurer/git-workflow) - [Aaron Meurer](https://github.com/asmeurer)'s howto on using git to contribute to open source repositories
 
 ## Scripts & Tools
 
-* [git-extra-commands](https://github.com/unixorn/git-extra-commands) - a collection of useful extra git scripts
 * [Source Tree](https://www.sourcetreeapp.com/) - a free graphical git client for Windows and OS X
+* [git-cola](https://git-cola.github.io/) - another git client for Windows and OS X
+* [git-extra-commands](https://github.com/unixorn/git-extra-commands) - a collection of useful extra git scripts
+* [gitx-dev](https://rowanj.github.io/gitx/) - another graphical git client for OS X
