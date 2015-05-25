@@ -56,6 +56,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
   - [Books](#books)
   - [Tutorials](#tutorials)
   - [Scripts & Tools](#scripts-&-tools)
+  - [GUI Clients](#gui-clients)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
