@@ -666,3 +666,4 @@ After commiting, change the author of the previous commit. To do this, see how t
 * [git-extra-commands](https://github.com/unixorn/git-extra-commands) - a collection of useful extra git scripts
 * [gitx-dev](https://rowanj.github.io/gitx/) - another graphical git client for OS X
 * [Source Tree](https://www.sourcetreeapp.com/) - a free graphical git client for Windows and OS X
+* [Tower](http://www.git-tower.com/) - graphical git client for OS X (paid)
