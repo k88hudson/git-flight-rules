@@ -674,6 +674,7 @@ This will tell you if any commits are in one but not the other, and will give yo
 
 ## Tutorials
 
+* [Getting solid at Git rebase vs. merge](https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa)
 * [git-workflow](https://github.com/asmeurer/git-workflow) - [Aaron Meurer](https://github.com/asmeurer)'s howto on using git to contribute to open source repositories
 
 ## Scripts & Tools
