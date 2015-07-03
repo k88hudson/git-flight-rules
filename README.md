@@ -457,6 +457,10 @@ One way of reseting to match origin (to have the same as what is on the remote) 
 (master)$ git reset --hard origin/bug24
 ```
 
+
+<a href="discard-local-uncommited-changes"></a>
+## I want to discard my local, uncommitted changes
+
 If you want to only reset to some commit between origin and your local, you can do this:
 
 ```sh
@@ -466,13 +470,6 @@ If you want to only reset to some commit between origin and your local, you can 
 (bug24)$ git reset --hard HEAD^^
 # four commits
 (bug24)$ git reset --hard HEAD~4
-```
-
-<a href="discard-local-uncommited-changes"></a>
-## I want to discard my local, uncommitted changes
-
-```sh
-(master)$ git reset --hard
 # or
 (master)$ git checkout -f
 ```
