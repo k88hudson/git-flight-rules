@@ -38,6 +38,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
   - [I pulled from/into the wrong branch](#i-pulled-frominto-the-wrong-branch)
   - [I want to discard local commits so my branch is the same as one on the server](#i-want-to-discard-local-commits-so-my-branch-is-the-same-as-one-on-the-server)
   - [I want to discard my local, uncommitted changes](#i-want-to-discard-my-local-uncommitted-changes)
+  - [I accidentally did a hard reset, and I want my changes back](#i-accidentally-did-a-hard-reset-and-i-want-my-changes-back)
   - [I want to move my unstaged edits to a new branch](#i-want-to-move-my-unstaged-edits-to-a-new-branch)
   - [I want to move my unstaged edits to a different, existing branch](#i-want-to-move-my-unstaged-edits-to-a-different-existing-branch)
   - [What did I just do?](#what-did-i-just-do)
@@ -473,6 +474,23 @@ If you want to only reset to some commit between origin and your local, you can 
 # or
 (master)$ git checkout -f
 ```
+
+<a href="undo-git-reset-hard"></a>
+## I accidentally did a hard reset, and I want my changes back
+
+If you accidentally do `git reset --hard`, you can normally still get your commit back, as git keeps a log of everything for a few days.
+
+```sh
+$(master) git reflog
+```
+
+You'll see a list of your past commits, and a commit for the reset. Choose the SHA of the commit you want to return to, and reset again:
+
+```sh
+$(master) git reset --hard SHA1234
+```
+
+And you should be good to go.
 
 <a href="move-unstaged-edits-to-new-branch"></a>
 ## I want to move my unstaged edits to a new branch
