@@ -696,6 +696,7 @@ This will tell you if any commits are in one but not the other, and will give yo
 
 * [firstaidgit.io](http://firstaidgit.io/) A searchable selection of the most frequently asked Git questions
 * [git-extra-commands](https://github.com/unixorn/git-extra-commands) - a collection of useful extra git scripts
+* [git-extras](https://github.com/tj/git-extras) - GIT utilities -- repo summary, repl, changelog population, author commit percentages and more
 
 ## GUI Clients
 * [git-cola](https://git-cola.github.io/) - another git client for Windows and OS X
