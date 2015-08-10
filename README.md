@@ -34,6 +34,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
   - [I committed with the wrong name and email configured](#i-committed-with-the-wrong-name-and-email-configured)
   - [I committed to master instead of a new branch](#i-committed-to-master-instead-of-a-new-branch)
   - [I made several commits on a single branch that should be on different branches](#i-made-several-commits-on-a-single-branch-that-should-be-on-different-branches)
+  - [I want to add part of a new file, but not the whole file](#i-want-to-add-part-of-a-new-file-but-not-the-whole-file)
   - [I want to add aliases for some git commands](#i-want-to-add-aliases-for-some-git-commands)
   - [I pulled from/into the wrong branch](#i-pulled-frominto-the-wrong-branch)
   - [I want to discard local commits so my branch is the same as one on the server](#i-want-to-discard-local-commits-so-my-branch-is-the-same-as-one-on-the-server)
@@ -389,6 +390,23 @@ And finally, let's cherry-pick the commit for bug #14:
 ```
 (14)$ git cherry-pick 5ea5173
 ```
+
+<a name="commit-partial-new-file"></a>
+## I want to add part of a new file, but not the whole file
+
+Normally, if you want to stage part of a file, you run this:
+
+```sh
+$ git add --patch filename.x
+```
+
+`-p` will work for short. This will open interactive mode. You would be able to use the `s` option to split the commit - however, if the file is new, you will not have this option. To add a new file, do this:
+
+```sh
+git add -N filename.x
+```
+
+Then, you will need to use the `e` option to manually choose which lines to add. Running `git diff --cached` will show you which lines you have staged compared to which are still saved locally.
 
 <a name="adding-command-aliases"></a>
 ## I want to add aliases for some git commands
