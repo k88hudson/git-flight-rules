@@ -67,9 +67,13 @@ For clarity's sake all examples in this document use a customized bash prompt in
 <a name="amend"></a>
 ## I wrote the wrong thing in a commit message
 
+If you wrote the wrong thing and the commit has not yet been pushed, you can do the following to change the commit message:
+
 ```sh
 git commit --amend
 ```
+
+If you have already pushed the message, you can amend the commit and force push, but this is not recommended.
 
 ## I need to add staged changes to the previous commit
 
