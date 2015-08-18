@@ -50,8 +50,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
   - [Deleting Objects](#deleting-objects)
     - [I want to delete local branches that were deleted upstream](#i-want-to-delete-local-branches-that-were-deleted-upstream)
     - [I accidentally deleted my branch](#i-accidentally-deleted-my-branch)
-    - [Delete/remove last pushed commit](#deleteremove-last-pushed-commit)
-    - [Delete/remove last local commit](#deleteremove-last-local-commit)
+    - [I want to delete or remove my last commit](#i-want-to-delete-or-remove-my-last-commit)
     - [Delete/remove arbitrary commit](#deleteremove-arbitrary-commit)
     - [Delete tag](#delete-tag)
   - [Deleted Patch](#deleted-patch)
@@ -293,7 +292,6 @@ If you need to change all of history, see the man page for 'git filter-branch'
 
 <a name="commit-wrong-branch"></a>
 ## I committed to master instead of a new branch
-
 
 Create the new branch while remaining on master:
 
@@ -646,7 +644,7 @@ README.md foo.txt
 Voila! We got our removed file back. Git reflog is also useful when rebasing goes terribly wrong.
 
 <a name="delete-pushed-commit"></a>
-### Delete/remove last pushed commit
+### I want to delete or remove my last commit
 
 If you need to delete pushed commits, you can use the following. However, it will irreversabily change your history, and mess up the history of anyone else who had already pulled from the repository. In short, if you're not sure, you should never do this, ever.
 
@@ -654,9 +652,6 @@ If you need to delete pushed commits, you can use the following. However, it wil
 git reset HEAD^ --hard
 git push -f [remote] [branch]
 ```
-
-<a name="undo-commit"></a>
-### Delete/remove last local commit
 
 If you haven't pushed, to reset Git to the state it was in before you made your last commit (while keeping your staged changes):
 
