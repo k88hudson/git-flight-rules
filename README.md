@@ -722,6 +722,7 @@ This will tell you if any commits are in one but not the other, and will give yo
 
 ## GUI Clients
 * [git-cola](https://git-cola.github.io/) - another git client for Windows and OS X
+* [GitUp](https://github.com/git-up/GitUp) - A newish GUI that has some very opinionated ways of dealing with git's complications
 * [gitx-dev](https://rowanj.github.io/gitx/) - another graphical git client for OS X
 * [Source Tree](https://www.sourcetreeapp.com/) - a free graphical git client for Windows and OS X
 * [Tower](http://www.git-tower.com/) - graphical git client for OS X (paid)
