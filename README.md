@@ -55,6 +55,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [Delete tag](#delete-tag)
   - [Deleted Patch](#deleted-patch)
   - [Check if all commits on a branch are merged](#check-if-all-commits-on-a-branch-are-merged)
+  - [I've no idea what I did wrong](#ive-no-idea-what-i-did-wrong)
 - [Other Resources](#other-resources)
   - [Books](#books)
   - [Tutorials](#tutorials)
@@ -701,6 +702,33 @@ This will tell you if any commits are in one but not the other, and will give yo
 ```sh
 (master)$ git log master ^feature/120-on-scroll --no-merges
 ```
+
+<a href="#ive-no-idea-what-i-did-wrong"></a>
+## I've no idea what I did wrong
+
+So, you're screwed - you `reset` something, or you merged the wrong branch, or you force pushed and now you can't find your commits. You know, at some point, you were doing alright, and you want to go back to some state you were at.
+
+This is what `git reflog` is for. `reflog` keeps track of any changes to the tip of a branch, even if that tip isn't referenced by a branch or a tag. Basically, every time HEAD changes, a new entry is added to the reflog. This only works for local repositories, sadly, and it only tracks movements (not changes to a file that weren't recorded anywhere, for instance).
+
+```sh
+(master)$ git reflog
+0a2e358 HEAD@{0}: reset: moving to HEAD~2
+0254ea7 HEAD@{1}: checkout: moving from 2.2 to master
+c10f740 HEAD@{2}: checkout: moving from master to 2.2
+```
+
+The reflog above shows a checkout from master to the 2.2 branch and back. From there, there's a hard reset to an older commit. The latest activity is represented at the top labeled `HEAD@{0}`.
+
+If it turns out that you accidentially moved back, the reflog will contain the commit master pointed to (0254ea7) before you accidentially dropped 2 commits.
+
+```sh
+$ git reset --hard 0254ea7
+```
+
+Using git reset it is then possible to change master back to the commit it was before. This provides a safety net in case history was accidentially changed.
+
+(copied and edited from [Source](https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog)).
+
 
 # Other Resources
 
