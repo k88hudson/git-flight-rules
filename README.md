@@ -751,6 +751,7 @@ Using git reset it is then possible to change master back to the commit it was b
 
 ## GUI Clients
 * [git-cola](https://git-cola.github.io/) - another git client for Windows and OS X
+* [GitUp](https://github.com/git-up/GitUp) - A newish GUI that has some very opinionated ways of dealing with git's complications
 * [gitx-dev](https://rowanj.github.io/gitx/) - another graphical git client for OS X
 * [Source Tree](https://www.sourcetreeapp.com/) - a free graphical git client for Windows and OS X
 * [Tower](http://www.git-tower.com/) - graphical git client for OS X (paid)
