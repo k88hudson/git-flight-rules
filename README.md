@@ -68,12 +68,12 @@ For clarity's sake all examples in this document use a customized bash prompt in
 ## I wrote the wrong thing in a commit message
 
 ```sh
-git commit --amend
+$ git commit --amend
 ```
 
 ## I need to add staged changes to the previous commit
 
-```
+```sh
 (my-branch*)$ git commit --amend
 
 ```
@@ -94,7 +94,7 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 Note that, as with rebasing (see below), amending **replaces the old commit with a new one**, so you must force push (`-f`) your changes if you have already pushed the pre-amended commit to your remote. Be careful when you do this &ndash; *always* make sure you specify a branch!
 
 ```sh
-(mybranch) $ git push origin mybranch -f
+(my-branch)$ git push origin mybranch -f
 ```
 
 In general, **avoid force pushing**. It is best to create and push a new commit rather than force-pushing the amended commit as it has will cause conflicts in the source history for any other developer who has interacted with the branch in question or any child branches.
@@ -105,10 +105,10 @@ In general, **avoid force pushing**. It is best to create and push a new commit 
 Unfortunately, you have to force push, if you want those changes to be reflected on the remote branch. This is because you have fast forwarded your commit, and changed git history. The remote branch won't accept changes unless you force push. This is one of the main reasons many people use a merge workflow, instead of a rebasing workflow - large teams can get into trouble with developers force pushing. Use this with caution. A safer way to use rebase is not to reflect your changes on the remote branch at all, and instead to do the following:
 
 ```sh
-git checkout branch
-git rebase -i master
-git checkout master
-git merge --ff-only branch
+(master)$ git checkout my-branch
+(my-branch)$ git rebase -i master
+(my-branch)$ git checkout master
+(master)$ git merge --ff-only my-branch
 ```
 
 For more, see [this SO thread](http://stackoverflow.com/questions/11058312/how-can-i-use-git-rebase-without-requiring-a-forced-push).
@@ -120,19 +120,19 @@ You need to do something called an interactive rebase.
 
 If you are working in a branch that is/will become a pull-request against `master`, you can rebase against your `master` branch. Make sure the master branch is up to date, then:
 
-```
+```sh
 (my-branch)$ git rebase -i master
 ```
 
 If you aren't working against another branch you'll have to rebase relative to your `HEAD`. If you want to squash the last 2 commits, for example, you'll have to rebase against `HEAD~2`. For the last 3, `HEAD~3`, etc.
 
-```
+```sh
 (master)$ git rebase -i HEAD~2
 ```
 
 After you run the interactive rebase command, you will see something like this in your  text editor:
 
-```
+```vim
 pick 01b2fd8 New awesome feature
 pick b729ad5 fixup
 pick e3851e8 another fix
@@ -160,7 +160,7 @@ All the lines beginning with a `#` are comments, they won't affect your rebase.
 
 If you want to **combine all your commits with the oldest (first) commit**, you should edit the letter next to each commit except the first to say `f`:
 
-```
+```vim
 pick 01b2fd8 New awesome feature
 f b729ad5 fixup
 f e3851e8 another fix
@@ -168,7 +168,7 @@ f e3851e8 another fix
 
 If you want to combine all your commit with the oldest commit **and rename the commit**, you should additionally add an `r` next to the first commit:
 
-```
+```vim
 r 01b2fd8 New awesome feature
 f b729ad5 fixup
 f e3851e8 another fix
@@ -176,7 +176,7 @@ f e3851e8 another fix
 
 You can then rename the commit in the next text prompt that pops up.
 
-```
+```vim
 Newer, awesomer features
 
 # Please enter the commit message for your changes. Lines starting
@@ -192,19 +192,22 @@ Newer, awesomer features
 
 If everything is successful, you should see something like this:
 
-```
+```sh
 (master)$ Successfully rebased and updated refs/heads/master.
 ```
+
 ### Possible issues with merging
 #### Safe merging strategy:
 `--no-commit` performs the merge but pretends the merge failed and does not autocommit, giving the user a chance to inspect and further tweak the merge result before committing. `no-ff` maintains evidence that a feature branch once existed, keeping project history consistent.
 
 ```sh
-(master)$ git merge --no-ff --no-commit featurebranch
+(master)$ git merge --no-ff --no-commit my-branch
 ```
+
 #### I need to merge a branch into a single commit
+
 ```sh
-(master)$ git merge --squash featurebranch
+(master)$ git merge --squash my-branch
 ```
 
 <a name="rebase-unpushed-commits"></a>
@@ -212,7 +215,7 @@ If everything is successful, you should see something like this:
 
 Sometimes you have several work in progress commits that you want to combine before you push them upstream. You don't want to accidentally combine any commits that have already been pushed upstream because someone else may have already made commits that reference them.
 
-```
+```sh
 (master)$ git rebase -i @{u}
 ```
 
@@ -241,7 +244,7 @@ If you are unable to successfully complete the rebase, you may have to resolve c
 
 First run `git status` to see which files have conflicts in them:
 
-```
+```sh
 (my-branch)$ git status
 On branch my-branch
 Changes not staged for commit:
@@ -253,7 +256,7 @@ Changes not staged for commit:
 
 In this example, `README.md` has conflicts. Open that file and look for the following:
 
-```
+```vim
    <<<<<<< HEAD
    some code
    =========
@@ -264,19 +267,21 @@ In this example, `README.md` has conflicts. Open that file and look for the foll
 You will need to resolve the differences between the code that was added in your new commit (in the example, everything from the middle line to `new-commit`) and your `HEAD`.
 
 Sometimes these merges are complicated and you should use a visual diff editor:
+
 ```sh
 (master*)$ git mergetool -t opendiff
 ```
 
 After you have resolved all conflicts and tested your code, `git add` the files you have changed, and then continue the rebase with `git rebase --continue`
 
-```
+```sh
 (my-branch)$ git add README.md
 (my-branch)$ git rebase --continue
 ```
 
 If at any time you want to stop the entire rebase and go back to the original state of your branch, you can do so:
-```
+
+```sh
 (my-branch)$ git rebase --abort
 ```
 
@@ -285,7 +290,7 @@ If at any time you want to stop the entire rebase and go back to the original st
 
 If it's a single commit, amend it
 
-```
+```sh
 $ git commit --amend --author "New Authorname <authoremail@mydomain.com>"
 ```
 
@@ -296,9 +301,9 @@ If you need to change all of history, see the man page for 'git filter-branch'
 
 Create the new branch while remaining on master:
 
-```
-(master)$ git checkout -b new-branch
-(new-branch)$ git checkout master
+```sh
+(master)$ git checkout -b my-branch
+(my-branch)$ git checkout master
 (master)$
 ```
 
@@ -322,7 +327,7 @@ HEAD is now at a13b85e
 Checkout the new branch to continue working:
 
 ```sh
-(master)$ git checkout new-branch
+(master)$ git checkout my-branch
 ```
 
 <a name="cherry-pick"></a>
@@ -330,7 +335,7 @@ Checkout the new branch to continue working:
 
 Say you are on your master branch. Running `git log`, you see you have made two commits:
 
-```
+```sh
 (master)$ git log
 
 commit e3851e817c451cc36f2e6f3049db528415e3c114
@@ -356,21 +361,21 @@ Let's take note of our commit hashes for each bug (`e3851e8` for #21, `5ea5173` 
 
 First, let's reset our master branch to the correct commit (`a13b85e`):
 
-```
+```sh
 (master)$ git reset --hard a13b85e
 HEAD is now at a13b85e
 ```
 
 Now, we can create a fresh branch for our bug #21 branch:
 
-```
+```sh
 (master)$ git checkout -b 21
 (21)$
 ```
 
 Now, let's *cherry-pick* the commit for bug #21 on top of our branch. That means we will be applying that commit, and only that commit, directly on top of whatever our head is at.
 
-```
+```sh
 (21)$ git cherry-pick e3851e8
 ```
 
@@ -379,7 +384,7 @@ At this point, there is a possibility there might be conflicts. See the [**There
 
 Now let's create a new branch for bug #14, also based on master
 
-```
+```sh
 (21)$ git checkout master
 (master)$ git checkout -b 14
 (14)$
@@ -387,7 +392,7 @@ Now let's create a new branch for bug #14, also based on master
 
 And finally, let's cherry-pick the commit for bug #14:
 
-```
+```sh
 (14)$ git cherry-pick 5ea5173
 ```
 
@@ -403,7 +408,7 @@ $ git add --patch filename.x
 `-p` will work for short. This will open interactive mode. You would be able to use the `s` option to split the commit - however, if the file is new, you will not have this option. To add a new file, do this:
 
 ```sh
-git add -N filename.x
+$ git add -N filename.x
 ```
 
 Then, you will need to use the `e` option to manually choose which lines to add. Running `git diff --cached` will show you which lines you have staged compared to which are still saved locally.
@@ -413,7 +418,7 @@ Then, you will need to use the `e` option to manually choose which lines to add.
 
 On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```.  I've added some example aliases I use as shortcuts (and some of my common typos) in the ```[aliases]``` section as shown below:
 
-```
+```vim
 [aliases]
     a = add
     amend = --amend
@@ -441,7 +446,7 @@ On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```. 
 
 This is another chance to use `git reflog` to see where your HEAD pointed before the bad pull.
 
-```
+```sh
 (master)$ git reflog
 ab7555f HEAD@{0}: pull origin wrong-branch: Fast-forward
 c5bc55a HEAD@{1}: checkout: checkout message goes here
@@ -449,8 +454,8 @@ c5bc55a HEAD@{1}: checkout: checkout message goes here
 
 Simply reset your branch back to the desired commit:
 
-```
-git reset --hard c5bc55a
+```sh
+$ git reset --hard c5bc55a
 ```
 
 Done.
@@ -463,9 +468,9 @@ Confirm that you haven't pushed your changes to the server.
 `git status` should show how many commits you are ahead of origin:
 
 ```sh
-(bug24)$ git status
-# On branch bug24
-# Your branch is ahead of 'origin/bug24' by 2 commits.
+(my-branch)$ git status
+# On branch my-branch
+# Your branch is ahead of 'origin/my-branch' by 2 commits.
 #   (use "git push" to publish your local commits)
 #
 ```
@@ -473,7 +478,7 @@ Confirm that you haven't pushed your changes to the server.
 One way of reseting to match origin (to have the same as what is on the remote) is to do this:
 
 ```sh
-(master)$ git reset --hard origin/bug24
+(master)$ git reset --hard origin/my-branch
 ```
 
 
@@ -484,11 +489,11 @@ If you want to only reset to some commit between origin and your local, you can 
 
 ```sh
 # one commit
-(bug24)$ git reset --hard HEAD^
+(my-branch)$ git reset --hard HEAD^
 # two commits
-(bug24)$ git reset --hard HEAD^^
+(my-branch)$ git reset --hard HEAD^^
 # four commits
-(bug24)$ git reset --hard HEAD~4
+(my-branch)$ git reset --hard HEAD~4
 # or
 (master)$ git checkout -f
 ```
@@ -499,13 +504,13 @@ If you want to only reset to some commit between origin and your local, you can 
 If you accidentally do `git reset --hard`, you can normally still get your commit back, as git keeps a log of everything for a few days.
 
 ```sh
-$(master) git reflog
+(master)$ git reflog
 ```
 
 You'll see a list of your past commits, and a commit for the reset. Choose the SHA of the commit you want to return to, and reset again:
 
 ```sh
-$(master) git reset --hard SHA1234
+(master)$ git reset --hard SHA1234
 ```
 
 And you should be good to go.
@@ -514,7 +519,7 @@ And you should be good to go.
 ## I want to move my unstaged edits to a new branch
 
 ```sh
-$ git checkout -b new-branch
+$ git checkout -b my-branch
 ```
 
 <a href="move-unstaged-edits-to-old-branch"></a>
@@ -522,7 +527,7 @@ $ git checkout -b new-branch
 
 ```sh
 $ git stash
-$ git checkout branch2
+$ git checkout my-branch
 $ git stash pop
 ```
 
@@ -531,7 +536,7 @@ $ git stash pop
 
 Let's say that you just blindly committed changes with `git commit -a` and you're not sure what the actual content of the commit you just made was. You can check the difference between your current HEAD and what your HEAD just was with:
 
-```
+```sh
 (master)$ git diff HEAD@{1} HEAD
 ```
 
@@ -558,9 +563,9 @@ Let's say that you just blindly committed changes with `git commit -a` and you'r
 ## Clone all submodules
 
 ```sh
-git clone --recursive git://github.com/foo/bar.git
+$ git clone --recursive git://github.com/foo/bar.git
 # If already cloned:
-git submodule update --init --recursive
+$ git submodule update --init --recursive
 ```
 
 <a name="deleting"></a>
@@ -570,7 +575,7 @@ git submodule update --init --recursive
 ### I want to delete local branches that were deleted upstream
 Once you merge a pull request on github, it gives you the option to delete the merged branch in your fork. If you aren't planning to keep working on the branch, it's cleaner to delete the local copies of the branch so you don't end up cluttering up your working checkout with a lot of stale branches.
 
-```bash
+```sh
 $ git fetch -p
 ```
 
@@ -579,23 +584,23 @@ $ git fetch -p
 
 If you're regularly pushing to remote, you should be safe most of the time. But still sometimes you may end up deleting your branches. Let's say we create a branch and create a new file:
 
-```
-(master)$ git checkout -b branch-1
-(branch-1)$ git branch
-(branch-1)$ touch foo.txt
-(branch-1)$ ls
+```sh
+(master)$ git checkout -b my-branch
+(my-branch)$ git branch
+(my-branch)$ touch foo.txt
+(my-branch)$ ls
 README.md foo.txt
 ```
 
 Let's add it and commit.
 
-```
-(branch-1)$ git add .
-(branch-1)$ git commit -m 'foo.txt added'
-(branch-1)$ foo.txt added
+```sh
+(my-branch)$ git add .
+(my-branch)$ git commit -m 'foo.txt added'
+(my-branch)$ foo.txt added
  1 files changed, 1 insertions(+)
  create mode 100644 foo.txt
-(branch-1)$ git log
+(my-branch)$ git log
 
 commit 4e3cd85a670ced7cc17a2b5d8d3d809ac88d5012
 Author: siemiatj <kuba@saucelabs.com>
@@ -612,12 +617,12 @@ Date:   Tue Jul 29 13:14:46 2014 -0400
 
 Now we're switching back to master and 'accidentaly' removing our branch.
 
-```
-(branch-1)$ git checkout master
+```sh
+(my-branch)$ git checkout master
 Switched to branch 'master'
 Your branch is up-to-date with 'origin/master'.
-(master)$ git branch -D branch-1
-Deleted branch branch-1 (was 4e3cd85).
+(master)$ git branch -D my-branch
+Deleted branch my-branch (was 4e3cd85).
 (master)$ echo oh noes, deleted my branch!
 oh noes, deleted my branch!
 ```
@@ -626,19 +631,19 @@ At this point you should get familiar with 'reflog', an upgraded logger. It stor
 
 ```
 (master)$ git reflog
-69204cd HEAD@{0}: checkout: moving from branch-1 to master
+69204cd HEAD@{0}: checkout: moving from my-branch to master
 4e3cd85 HEAD@{1}: commit: foo.txt added
-69204cd HEAD@{2}: checkout: moving from master to branch-1
+69204cd HEAD@{2}: checkout: moving from master to my-branch
 ```
 
 As you can see we have commit hash from our deleted branch. Let's see if we can restore our deleted branch.
 
-```
-(master)$ git checkout -b branch-1-help
-Switched to a new branch 'branch-1-help'
-(branch-1-help)$ git reset --hard 4e3cd85
+```sh
+(master)$ git checkout -b my-branch-help
+Switched to a new branch 'my-branch-help'
+(my-branch-help)$ git reset --hard 4e3cd85
 HEAD is now at 4e3cd85 foo.txt added
-(branch-1-help)$ ls
+(my-branch-help)$ ls
 README.md foo.txt
 ```
 
@@ -650,8 +655,8 @@ Voila! We got our removed file back. Git reflog is also useful when rebasing goe
 If you need to delete pushed commits, you can use the following. However, it will irreversabily change your history, and mess up the history of anyone else who had already pulled from the repository. In short, if you're not sure, you should never do this, ever.
 
 ```sh
-git reset HEAD^ --hard
-git push -f [remote] [branch]
+$ git reset HEAD^ --hard
+$ git push -f [remote] [branch]
 ```
 
 If you haven't pushed, to reset Git to the state it was in before you made your last commit (while keeping your staged changes):
@@ -669,16 +674,16 @@ This only works if you haven't pushed. If you have pushed, the only truly safe t
 The same warning applies as above. Never do this if possible.
 
 ```sh
-git rebase --onto SHA1_OF_BAD_COMMIT^ SHA1_OF_BAD_COMMIT
-git push -f [remote] [branch]
+$ git rebase --onto SHA1_OF_BAD_COMMIT^ SHA1_OF_BAD_COMMIT
+$ git push -f [remote] [branch]
 ```
 
 <a name="delete-tag"></a>
 ### Delete tag
 
 ```sh
-git tag -d <tag_name>
-git push <remote> :refs/tags/<tag_name>
+$ git tag -d <tag_name>
+$ git push <remote> :refs/tags/<tag_name>
 ```
 
 <a name="deleted-patch"></a>
