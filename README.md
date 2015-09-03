@@ -52,6 +52,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I accidentally deleted my branch](#i-accidentally-deleted-my-branch)
     - [I want to delete or remove my last commit](#i-want-to-delete-or-remove-my-last-commit)
     - [Delete/remove arbitrary commit](#deleteremove-arbitrary-commit)
+    - [I want to delete a branch](#i-want-to-delete-a-branch)
     - [Delete tag](#delete-tag)
   - [Deleted Patch](#deleted-patch)
   - [Check if all commits on a branch are merged](#check-if-all-commits-on-a-branch-are-merged)
@@ -681,6 +682,27 @@ The same warning applies as above. Never do this if possible.
 ```sh
 $ git rebase --onto SHA1_OF_BAD_COMMIT^ SHA1_OF_BAD_COMMIT
 $ git push -f [remote] [branch]
+```
+
+<a name="i-want-to-delete-a-branch"></a>
+### I want to delete a branch
+
+To delete a remote branch:
+
+```sh
+(master)$ git push origin --delete my-branch
+```
+
+You can also do:
+
+```sh
+(master)$ git push origin :my-branch
+```
+
+To delete a local branch:
+
+```sh
+(master)$ git branch -D my-branch
 ```
 
 <a name="delete-tag"></a>
