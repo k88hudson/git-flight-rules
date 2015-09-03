@@ -481,8 +481,7 @@ One way of reseting to match origin (to have the same as what is on the remote) 
 (master)$ git reset --hard origin/my-branch
 ```
 
-
-<a href="discard-local-uncommited-changes"></a>
+<a href="i-want-to-discard-my-local-uncommitted-changes"></a>
 ## I want to discard my local, uncommitted changes
 
 If you want to only reset to some commit between origin and your local, you can do this:
@@ -496,6 +495,12 @@ If you want to only reset to some commit between origin and your local, you can 
 (my-branch)$ git reset --hard HEAD~4
 # or
 (master)$ git checkout -f
+```
+
+To reset only a specific file, you can use that the filename as the argument:
+
+```sh
+$ git reset filename
 ```
 
 <a href="undo-git-reset-hard"></a>
