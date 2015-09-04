@@ -74,6 +74,13 @@ If you wrote the wrong thing and the commit has not yet been pushed, you can do 
 $ git commit --amend
 ```
 
+Another way to change the commit message:
+
+```sh
+$ git reset --soft HEAD^
+$ git commit -a -m 'xxxxxxx'
+```
+
 If you have already pushed the message, you can amend the commit and force push, but this is not recommended.
 
 ## I need to add staged changes to the previous commit
