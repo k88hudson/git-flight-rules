@@ -74,7 +74,7 @@ If you wrote the wrong thing and the commit has not yet been pushed, you can do 
 $ git commit --amend
 ```
 
-The another way to change commit message:
+Another way to change the commit message:
 
 ```sh
 $ git reset --soft HEAD^
