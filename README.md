@@ -45,6 +45,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
   - [What did I just do?](#what-did-i-just-do)
   - [I want to add changes in one file to two different commits](#i-want-to-add-changes-in-one-file-to-two-different-commits)
   - [I want to remove a file from git but keep the file](#i-want-to-remove-a-file-from-git-but-keep-the-file)
+  - [I want to remove a file from a commit](#i-want-to-remove-a-file-from-a-commit)
   - [I want to change a file name's capitalization, without changing the contents of the file.](#i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file)
   - [Clone all submodules](#clone-all-submodules)
   - [Deleting Objects](#deleting-objects)
@@ -568,6 +569,19 @@ Let's say that you just blindly committed changes with `git commit -a` and you'r
 ```sh
 (master)$ git rm --cached log.txt
 ```
+
+<a href="#i-want-to-remove-a-file-from-a-commit"></a>
+## I want to remove a file from a commit
+
+In order to remove a file from a commit, do the following:
+
+```sh
+$ git checkout HEAD~2 myfile
+$ git add -A
+$ git commit --amend
+```
+
+This is particularly useful when you have an open patch and you have commited an unnecessary file, and need to force push to update the patch on a remote.
 
 <a href="i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file"></a>
 ## I want to change a file name's capitalization, without changing the contents of the file.
