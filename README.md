@@ -55,6 +55,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [Delete/remove arbitrary commit](#deleteremove-arbitrary-commit)
     - [I want to delete a branch](#i-want-to-delete-a-branch)
     - [Delete tag](#delete-tag)
+  - [Recover a deleted tag](#recover-tag)
   - [Deleted Patch](#deleted-patch)
   - [Check if all commits on a branch are merged](#check-if-all-commits-on-a-branch-are-merged)
   - [I've no idea what I did wrong](#ive-no-idea-what-i-did-wrong)
@@ -737,6 +738,23 @@ To delete a local branch:
 $ git tag -d <tag_name>
 $ git push <remote> :refs/tags/<tag_name>
 ```
+
+<a name="recover-tag"></a>
+## Recover a deleted tag
+
+If you want to recover a tag that was already deleted, you can do so by following these steps: First, you need to find the unreachable tag:
+
+```sh
+$ git fsck --unreachable | grep tag
+```
+
+Make a note of the tag's hash. Then, restore the deleted tag with following, making use of git's [update-ref](http://git-scm.com/docs/git-update-ref):
+
+```sh
+git update-ref refs/tags/NAME <hash>
+```
+
+Your tag should now have been restored.
 
 <a name="deleted-patch"></a>
 ## Deleted Patch
