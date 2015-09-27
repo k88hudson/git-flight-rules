@@ -751,7 +751,7 @@ $ git fsck --unreachable | grep tag
 Make a note of the tag's hash. Then, restore the deleted tag with following, making use of git's [update-ref](http://git-scm.com/docs/git-update-ref):
 
 ```sh
-git update-ref refs/tags/NAME <hash>
+git update-ref refs/tags/<tag_name> <hash>
 ```
 
 Your tag should now have been restored.
