@@ -456,7 +456,7 @@ Date:   Tue Jul 29 13:14:46 2014 -0400
     Fixes #6: Force pushing after amending commits
 ```
 
-Now we're switching back to master and 'accidentaly' removing our branch.
+Now we're switching back to master and 'accidentally' removing our branch.
 
 ```sh
 (my-branch)$ git checkout master
