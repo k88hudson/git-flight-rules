@@ -57,6 +57,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
   - [Miscellaneous Objects](#miscellaneous-objects)
     - [Clone all submodules](#clone-all-submodules)
     - [Delete tag](#delete-tag)
+    - [Recover a deleted tag](#recover-a-deleted-tag)
     - [Deleted Patch](#deleted-patch)
   - [Tracking Files](#tracking-files)
     - [I want to change a file name's capitalization, without changing the contents of the file.](#i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file)
@@ -736,6 +737,23 @@ $ git submodule update --init --recursive
 $ git tag -d <tag_name>
 $ git push <remote> :refs/tags/<tag_name>
 ```
+
+<a name="recover-tag"></a>
+### Recover a deleted tag
+
+If you want to recover a tag that was already deleted, you can do so by following these steps: First, you need to find the unreachable tag:
+
+```sh
+$ git fsck --unreachable | grep tag
+```
+
+Make a note of the tag's hash. Then, restore the deleted tag with following, making use of git's [update-ref](http://git-scm.com/docs/git-update-ref):
+
+```sh
+$ git update-ref refs/tags/<tag_name> <hash>
+```
+
+Your tag should now have been restored.
 
 <a name="deleted-patch"></a>
 ### Deleted Patch
