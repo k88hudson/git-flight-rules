@@ -64,6 +64,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to remove a file from git but keep the file](#i-want-to-remove-a-file-from-git-but-keep-the-file)
   - [Configuration](#configuration)
     - [I want to add aliases for some git commands](#i-want-to-add-aliases-for-some-git-commands)
+    - [I want to cache a username and password for a repository](#credential-helper)
   - [I've no idea what I did wrong](#ive-no-idea-what-i-did-wrong)
 - [Other Resources](#other-resources)
   - [Books](#books)
@@ -808,6 +809,20 @@ On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```. 
     zap = fetch -p
 ```
 
+<a name="credential-helper"></a>
+### I want to cache a username and password for a repository
+
+You might have a repository that requires authentication.  In which case you can cache a username and password so you don't have to enter it on every push / pull. Credential helper can do this for you.
+
+```sh
+$ git config --global credential.helper cache
+# Set git to use the credential memory cache
+```
+
+```sh
+$ git config --global credential.helper 'cache --timeout=3600'
+# Set the cache to timeout after 1 hour (setting is in seconds)
+```
 
 <a href="#ive-no-idea-what-i-did-wrong"></a>
 ## I've no idea what I did wrong
