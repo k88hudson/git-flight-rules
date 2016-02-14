@@ -86,6 +86,12 @@ Let's say that you just blindly committed changes with `git commit -a` and you'r
 (master)$ git diff HEAD@{1} HEAD
 ```
 
+or
+
+```sh
+$ git log -n1 -p
+```
+
 <a name="#i-wrote-the-wrong-thing-in-a-commit-message"></a>
 ### I wrote the wrong thing in a commit message
 
