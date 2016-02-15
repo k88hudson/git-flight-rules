@@ -446,13 +446,13 @@ Let's add it and commit.
 (my-branch)$ git log
 
 commit 4e3cd85a670ced7cc17a2b5d8d3d809ac88d5012
-Author: siemiatj <kuba@saucelabs.com>
+Author: siemiatj <siemiatj@example.com>
 Date:   Wed Jul 30 00:34:10 2014 +0200
 
     foo.txt added
 
 commit 69204cdf0acbab201619d95ad8295928e7f411d5
-Author: Kate Hudson <k88hudson@gmail.com>
+Author: Kate Hudson <katehudson@example.com>
 Date:   Tue Jul 29 13:14:46 2014 -0400
 
     Fixes #6: Force pushing after amending commits
