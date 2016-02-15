@@ -356,19 +356,19 @@ Say you are on your master branch. Running `git log`, you see you have made two 
 (master)$ git log
 
 commit e3851e817c451cc36f2e6f3049db528415e3c114
-Author: Alex Lee <alexlee@exampledomain123.com>
+Author: Alex Lee <alexlee@example.com>
 Date:   Tue Jul 22 15:39:27 2014 -0400
 
     Bug #21 - Added CSRF protection
 
 commit 5ea51731d150f7ddc4a365437931cd8be3bf3131
-Author: Alex Lee <alexlee@exampledomain123.com>
+Author: Alex Lee <alexlee@example.com>
 Date:   Tue Jul 22 15:39:12 2014 -0400
 
     Bug #14 - Fixed spacing on title
 
 commit a13b85e984171c6e2a1729bb061994525f626d14
-Author: Aki Rose <akirose@exampledomain123.com>
+Author: Aki Rose <akirose@example.com>
 Date:   Tue Jul 21 01:12:48 2014 -0400
 
     First commit
