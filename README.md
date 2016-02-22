@@ -80,10 +80,10 @@ For clarity's sake all examples in this document use a customized bash prompt in
 <a name="diff-last"></a>
 ### What did I just commit?
 
-Let's say that you just blindly committed changes with `git commit -a` and you're not sure what the actual content of the commit you just made was. You can check the difference between your current HEAD and what your HEAD just was with:
+Let's say that you just blindly committed changes with `git commit -a` and you're not sure what the actual content of the commit you just made was. You can show the latest commit on your current HEAD with:
 
 ```sh
-(master)$ git diff HEAD@{1} HEAD
+(master)$ git show
 ```
 
 or
@@ -101,11 +101,10 @@ If you wrote the wrong thing and the commit has not yet been pushed, you can do 
 $ git commit --amend
 ```
 
-Another way to change the commit message:
+You can specify the commit message inline if you want:
 
 ```sh
-$ git reset --soft HEAD^
-$ git commit -a -m 'xxxxxxx'
+$ git commit --amend -m 'xxxxxxx'
 ```
 
 If you have already pushed the message, you can amend the commit and force push, but this is not recommended.
@@ -128,7 +127,7 @@ If you need to change all of history, see the man page for 'git filter-branch'.
 In order to remove a file from a commit, do the following:
 
 ```sh
-$ git checkout HEAD~2 myfile
+$ git checkout HEAD^ myfile
 $ git add -A
 $ git commit --amend
 ```
@@ -163,6 +162,8 @@ The same warning applies as above. Never do this if possible.
 $ git rebase --onto SHA1_OF_BAD_COMMIT^ SHA1_OF_BAD_COMMIT
 $ git push -f [remote] [branch]
 ```
+
+Or do an [interactive rebase](#interactive-rebase) and remove the line(s) correspoding to commit(s) you want to see removed.
 
 <a name="#force-push"></a>
 ### I tried to push my amended commit to a remote, but I got an error message
@@ -539,9 +540,14 @@ For more, see [this SO thread](http://stackoverflow.com/questions/11058312/how-c
 <a name="interactive-rebase"></a>
 ### I need to combine commits
 
-You need to do something called an interactive rebase.
+Let's suppose you are working in a branch that is/will become a pull-request against `master`. In the simplest case when all you want to do is to combine *all* commits into a single one and you don't care about commit timestamps, you can reset and recommit. Make sure the master branch is up to date and all your changes committed, then:
 
-If you are working in a branch that is/will become a pull-request against `master`, you can rebase against your `master` branch. Make sure the master branch is up to date, then:
+```sh
+(my-branch)$ git reset --soft master
+(my-branch)$ git commit -am "New awesome feature"
+```
+
+If you want more control, and also to preserve timestamps, you need to do something called an interactive rebase:
 
 ```sh
 (my-branch)$ git rebase -i master
@@ -556,6 +562,7 @@ If you aren't working against another branch you'll have to rebase relative to y
 After you run the interactive rebase command, you will see something like this in your  text editor:
 
 ```vim
+pick a9c8a1d Some refactoring
 pick 01b2fd8 New awesome feature
 pick b729ad5 fixup
 pick e3851e8 another fix
@@ -581,20 +588,24 @@ pick e3851e8 another fix
 
 All the lines beginning with a `#` are comments, they won't affect your rebase.
 
-If you want to **combine all your commits with the oldest (first) commit**, you should edit the letter next to each commit except the first to say `f`:
+Then you replace `pick` commands with any in the list above, and you can also remove commits by removing corresponding lines.
+
+For example, if you want to **leave the oldest (first) commit alone and combine all the following commits with the second oldest**, you should edit the letter next to each commit except the first and the second to say `f`:
 
 ```vim
+pick a9c8a1d Some refactoring
 pick 01b2fd8 New awesome feature
 f b729ad5 fixup
 f e3851e8 another fix
 ```
 
-If you want to combine all your commit with the oldest commit **and rename the commit**, you should additionally add an `r` next to the first commit:
+If you want to combine these commits **and rename the commit**, you should additionally add an `r` next to the second commit or simply use `s` instead of `f`:
 
 ```vim
-r 01b2fd8 New awesome feature
-f b729ad5 fixup
-f e3851e8 another fix
+pick a9c8a1d Some refactoring
+pick 01b2fd8 New awesome feature
+s b729ad5 fixup
+s e3851e8 another fix
 ```
 
 You can then rename the commit in the next text prompt that pops up.
@@ -714,6 +725,8 @@ After you have resolved all conflicts and tested your code, `git add` the files 
 (my-branch)$ git add README.md
 (my-branch)$ git rebase --continue
 ```
+
+If after resolving all the conflicts you end up with an identical tree to what it was before the commit, you need to `git rebase --skip` instead.
 
 If at any time you want to stop the entire rebase and go back to the original state of your branch, you can do so:
 
