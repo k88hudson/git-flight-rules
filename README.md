@@ -541,7 +541,7 @@ Let's suppose you are working in a branch that is/will become a pull-request aga
 (my-branch)$ git commit -am "New awesome feature"
 ```
 
-If you want more control, and also preserve timestamps, you need to do something called an interactive rebase:
+If you want more control, and also to preserve timestamps, you need to do something called an interactive rebase:
 
 ```sh
 (my-branch)$ git rebase -i master
