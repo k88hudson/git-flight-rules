@@ -375,9 +375,9 @@ You can solve it:
 this will get the contents of that file in branch `solution` to your branch `develop`:
 
 ```sh
-#On branch develop
-#Your branch is up-to-date with 'origin/develop'.
-#Changes to be committed:
+# On branch develop
+# Your branch is up-to-date with 'origin/develop'.
+# Changes to be committed:
 #  (use "git reset HEAD <file>..." to unstage)
 #
 #        modified:   file1.txt
