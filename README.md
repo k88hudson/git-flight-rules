@@ -366,7 +366,7 @@ Say you have:
   * branch `solution`, with the solution to your spike. One ahead of `develop`.
   * branch `develop`, where you want to add your changes.
 
-You can solve it:
+You can solve it bringing the contents to your branch:
 
 ```sh
 (develop)$ git checkout solution -- file1.txt
