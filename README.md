@@ -354,6 +354,37 @@ Checkout the new branch to continue working:
 (master)$ git checkout my-branch
 ```
 
+<a name="keep-whole-file"></a>
+### I want to keep the whole file from another ref-ish
+
+Say you have a working spike, with hundreds of changes. Everything is working. Now, you commit into another branch to save that work.
+
+When you want to put it into a branch (maybe feature, maybe `develop`), you're interested in keeping whole files. You want to split your big commit into smaller ones.
+
+Say you have:
+
+  * branch `solution`, with the solution to your spike. One ahead of `develop`.
+  * branch `develop`, where you want to add your changes.
+
+You can solve it:
+
+```sh
+(develop)$ git checkout solution -- file1.txt
+```
+
+this will get the contents of that file in branch `solution` to your branch `develop`:
+
+```sh
+#On branch develop
+#Your branch is up-to-date with 'origin/develop'.
+#Changes to be committed:
+#  (use "git reset HEAD <file>..." to unstage)
+#
+#        modified:   file1.txt
+```
+
+then, commit as usual.
+
 <a name="cherry-pick"></a>
 ### I made several commits on a single branch that should be on different branches
 
