@@ -358,7 +358,11 @@ Checkout the new branch to continue working:
 <a name="keep-whole-file"></a>
 ### I want to keep the whole file from another ref-ish
 
-Say you have a working spike, with hundreds of changes. Everything is working. Now, you commit into another branch to save that work.
+Say you have a working spike, with hundreds of changes. Everything is working. Now, you commit into another branch to save that work:
+
+```sh
+(solution)$ git add -A && git commit -m "Adding all changes from this spike into one big commit."
+```
 
 When you want to put it into a branch (maybe feature, maybe `develop`), you're interested in keeping whole files. You want to split your big commit into smaller ones.
 
