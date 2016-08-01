@@ -358,7 +358,7 @@ Checkout the new branch to continue working:
 <a name="keep-whole-file"></a>
 ### I want to keep the whole file from another ref-ish
 
-Say you have a working spike[^1], with hundreds of changes. Everything is working. Now, you commit into another branch to save that work:
+Say you have a working spike<sup id="footnote-link-1">[1](#footnote-1)</sup>, with hundreds of changes. Everything is working. Now, you commit into another branch to save that work:
 
 ```sh
 (solution)$ git add -A && git commit -m "Adding all changes from this spike into one big commit."
@@ -934,4 +934,5 @@ Using git reset it is then possible to change master back to the commit it was b
 * [Tower](http://www.git-tower.com/) - graphical git client for OS X (paid)
 
 
-[^1]: Spike solutions: solutions to analyze or solve the problem. These solutions are used for estimation and discarded once everyone gets clear visualization of the problem. Source: https://en.wikipedia.org/wiki/Extreme_programming_practices -> Release -> exploration phase
+
+<b id="footnote-1">1</b> Spike solutions: solutions to analyze or solve the problem. These solutions are used for estimation and discarded once everyone gets clear visualization of the problem. Source: https://en.wikipedia.org/wiki/Extreme_programming_practices -> Release -> exploration phase. [↩](#footnote-link-1)
