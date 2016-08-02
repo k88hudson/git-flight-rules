@@ -64,7 +64,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to remove a file from git but keep the file](#i-want-to-remove-a-file-from-git-but-keep-the-file)
   - [Configuration](#configuration)
     - [I want to add aliases for some git commands](#i-want-to-add-aliases-for-some-git-commands)
-    - [I want to cache a username and password for a repository](#credential-helper)
+    - [I want to cache a username and password for a repository](#i-want-to-cache-a-username-and-password-for-a-repository)
   - [I've no idea what I did wrong](#ive-no-idea-what-i-did-wrong)
 - [Other Resources](#other-resources)
   - [Books](#books)
