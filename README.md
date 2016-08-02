@@ -358,7 +358,7 @@ Checkout the new branch to continue working:
 <a name="keep-whole-file"></a>
 ### I want to keep the whole file from another ref-ish
 
-Say you have a working spike<sup id="footnote-link-1">[1](#footnote-1)</sup>, with hundreds of changes. Everything is working. Now, you commit into another branch to save that work:
+Say you have a working spike (see note), with hundreds of changes. Everything is working. Now, you commit into another branch to save that work:
 
 ```sh
 (solution)$ git add -A && git commit -m "Adding all changes from this spike into one big commit."
@@ -377,7 +377,7 @@ You can solve it bringing the contents to your branch:
 (develop)$ git checkout solution -- file1.txt
 ```
 
-this will get the contents of that file in branch `solution` to your branch `develop`:
+This will get the contents of that file in branch `solution` to your branch `develop`:
 
 ```sh
 # On branch develop
@@ -388,7 +388,9 @@ this will get the contents of that file in branch `solution` to your branch `dev
 #        modified:   file1.txt
 ```
 
-then, commit as usual.
+Then, commit as usual.
+
+Note: Spike solutions are made to analyze or solve the problem. These solutions are used for estimation and discarded once everyone gets clear visualization of the problem. ~ [Wikipedia](https://en.wikipedia.org/wiki/Extreme_programming_practices).
 
 <a name="cherry-pick"></a>
 ### I made several commits on a single branch that should be on different branches
@@ -932,7 +934,3 @@ Using git reset it is then possible to change master back to the commit it was b
 * [gitx-dev](https://rowanj.github.io/gitx/) - another graphical git client for OS X
 * [Source Tree](https://www.sourcetreeapp.com/) - a free graphical git client for Windows and OS X
 * [Tower](http://www.git-tower.com/) - graphical git client for OS X (paid)
-
-
-
-<b id="footnote-1">1</b> Spike solutions: solutions to analyze or solve the problem. These solutions are used for estimation and discarded once everyone gets clear visualization of the problem. Source: https://en.wikipedia.org/wiki/Extreme_programming_practices -> Release -> exploration phase. [↩](#footnote-link-1)
