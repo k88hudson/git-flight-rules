@@ -40,6 +40,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I pulled from/into the wrong branch](#i-pulled-frominto-the-wrong-branch)
     - [I want to discard local commits so my branch is the same as one on the server](#i-want-to-discard-local-commits-so-my-branch-is-the-same-as-one-on-the-server)
     - [I committed to master instead of a new branch](#i-committed-to-master-instead-of-a-new-branch)
+    - [I want to keep the whole file from another ref-ish](#i-want-to-keep-the-whole-file-from-another-ref-ish)
     - [I made several commits on a single branch that should be on different branches](#i-made-several-commits-on-a-single-branch-that-should-be-on-different-branches)
     - [I want to delete local branches that were deleted upstream](#i-want-to-delete-local-branches-that-were-deleted-upstream)
     - [I accidentally deleted my branch](#i-accidentally-deleted-my-branch)
@@ -353,6 +354,41 @@ Checkout the new branch to continue working:
 ```sh
 (master)$ git checkout my-branch
 ```
+
+<a name="keep-whole-file"></a>
+### I want to keep the whole file from another ref-ish
+
+Say you have a working spike<sup id="footnote-link-1">[1](#footnote-1)</sup>, with hundreds of changes. Everything is working. Now, you commit into another branch to save that work:
+
+```sh
+(solution)$ git add -A && git commit -m "Adding all changes from this spike into one big commit."
+```
+
+When you want to put it into a branch (maybe feature, maybe `develop`), you're interested in keeping whole files. You want to split your big commit into smaller ones.
+
+Say you have:
+
+  * branch `solution`, with the solution to your spike. One ahead of `develop`.
+  * branch `develop`, where you want to add your changes.
+
+You can solve it bringing the contents to your branch:
+
+```sh
+(develop)$ git checkout solution -- file1.txt
+```
+
+this will get the contents of that file in branch `solution` to your branch `develop`:
+
+```sh
+# On branch develop
+# Your branch is up-to-date with 'origin/develop'.
+# Changes to be committed:
+#  (use "git reset HEAD <file>..." to unstage)
+#
+#        modified:   file1.txt
+```
+
+then, commit as usual.
 
 <a name="cherry-pick"></a>
 ### I made several commits on a single branch that should be on different branches
@@ -896,3 +932,7 @@ Using git reset it is then possible to change master back to the commit it was b
 * [gitx-dev](https://rowanj.github.io/gitx/) - another graphical git client for OS X
 * [Source Tree](https://www.sourcetreeapp.com/) - a free graphical git client for Windows and OS X
 * [Tower](http://www.git-tower.com/) - graphical git client for OS X (paid)
+
+
+
+<b id="footnote-1">1</b> Spike solutions: solutions to analyze or solve the problem. These solutions are used for estimation and discarded once everyone gets clear visualization of the problem. Source: https://en.wikipedia.org/wiki/Extreme_programming_practices -> Release -> exploration phase. [↩](#footnote-link-1)
