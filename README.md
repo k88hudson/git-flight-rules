@@ -133,12 +133,12 @@ $ git add -A
 $ git commit --amend
 ```
 
-This is particularly useful when you have an open patch and you have commited an unnecessary file, and need to force push to update the patch on a remote.
+This is particularly useful when you have an open patch and you have committed an unnecessary file, and need to force push to update the patch on a remote.
 
 <a name="delete-pushed-commit"></a>
 ### I want to delete or remove my last commit
 
-If you need to delete pushed commits, you can use the following. However, it will irreversabily change your history, and mess up the history of anyone else who had already pulled from the repository. In short, if you're not sure, you should never do this, ever.
+If you need to delete pushed commits, you can use the following. However, it will irreversibly change your history, and mess up the history of anyone else who had already pulled from the repository. In short, if you're not sure, you should never do this, ever.
 
 ```sh
 $ git reset HEAD^ --hard
@@ -164,7 +164,7 @@ $ git rebase --onto SHA1_OF_BAD_COMMIT^ SHA1_OF_BAD_COMMIT
 $ git push -f [remote] [branch]
 ```
 
-Or do an [interactive rebase](#interactive-rebase) and remove the line(s) correspoding to commit(s) you want to see removed.
+Or do an [interactive rebase](#interactive-rebase) and remove the line(s) corresponding to commit(s) you want to see removed.
 
 <a name="#force-push"></a>
 ### I tried to push my amended commit to a remote, but I got an error message
@@ -315,7 +315,7 @@ Confirm that you haven't pushed your changes to the server.
 #
 ```
 
-One way of reseting to match origin (to have the same as what is on the remote) is to do this:
+One way of resetting to match origin (to have the same as what is on the remote) is to do this:
 
 ```sh
 (master)$ git reset --hard origin/my-branch
@@ -818,7 +818,7 @@ Your tag should now have been restored.
 
 If someone has sent you a pull request on GitHub, but then deleted their original fork, you will be unable to clone their commits or to use `git am`. In such cases, it is best to manually look at their commits and copy them into a new branch on your local. Then, commit.
 
-After commiting, change the author of the previous commit. To do this, see how to [change author](#commit-wrong-author). Then, apply whatever changes needed on to, and make a new pull request.
+After committing, change the author of the previous commit. To do this, see how to [change author](#commit-wrong-author). Then, apply whatever changes needed on to, and make a new pull request.
 
 ## Tracking Files
 
@@ -897,13 +897,13 @@ c10f740 HEAD@{2}: checkout: moving from master to 2.2
 
 The reflog above shows a checkout from master to the 2.2 branch and back. From there, there's a hard reset to an older commit. The latest activity is represented at the top labeled `HEAD@{0}`.
 
-If it turns out that you accidentially moved back, the reflog will contain the commit master pointed to (0254ea7) before you accidentially dropped 2 commits.
+If it turns out that you accidentally moved back, the reflog will contain the commit master pointed to (0254ea7) before you accidentally dropped 2 commits.
 
 ```sh
 $ git reset --hard 0254ea7
 ```
 
-Using git reset it is then possible to change master back to the commit it was before. This provides a safety net in case history was accidentially changed.
+Using git reset it is then possible to change master back to the commit it was before. This provides a safety net in case history was accidentally changed.
 
 (copied and edited from [Source](https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog)).
 
