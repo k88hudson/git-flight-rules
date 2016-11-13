@@ -846,7 +846,7 @@ On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```. 
 ```vim
 [aliases]
     a = add
-    amend = --amend
+    amend = commit --amend
     c = commit
     ca = commit --amend
     ci = commit -a
