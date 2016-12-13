@@ -32,6 +32,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I need to add staged changes to the previous commit](#i-need-to-add-staged-changes-to-the-previous-commit)
     - [I want to stage part of a new file, but not the whole file](#i-want-to-stage-part-of-a-new-file-but-not-the-whole-file)
     - [I want to add changes in one file to two different commits](#i-want-to-add-changes-in-one-file-to-two-different-commits)
+    - [I want to stage my unstaged edits, and unstage my staged edits](#i-want-to-stage-my-unstaged-edits-and-unstage-my-staged-edits)
   - [Unstaged Edits](#unstaged-edits)
     - [I want to move my unstaged edits to a new branch](#i-want-to-move-my-unstaged-edits-to-a-new-branch)
     - [I want to move my unstaged edits to a different, existing branch](#i-want-to-move-my-unstaged-edits-to-a-different-existing-branch)
@@ -238,6 +239,18 @@ Then, you will need to use the `e` option to manually choose which lines to add.
 
 `git add` will add the entire file to a commit. `git add -p` will allow to interactively select which changes you want to add.
 
+
+<a href="unstaging-edits-and-staging-the-unstaged"></a>
+### I want to stage my unstaged edits, and unstage my staged edits
+
+This is tricky. The best I figure is that you should stash your unstaged edits. Then, reset. After that, pop your stashed edits back, and add them.
+
+```sh
+$ git stash -k
+$ git reset --hard
+$ git stash pop
+$ git add -A
+```
 
 ## Unstaged Edits
 
