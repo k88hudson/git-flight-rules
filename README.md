@@ -46,6 +46,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I accidentally deleted my branch](#i-accidentally-deleted-my-branch)
     - [I want to delete a branch](#i-want-to-delete-a-branch)
   - [Rebasing and Merging](#rebasing-and-merging)
+    - [I want to undo rebase/merge](#undo-rebase)
     - [I rebased, but I don't want to force push.](#i-rebased-but-i-dont-want-to-force-push)
     - [I need to combine commits](#i-need-to-combine-commits)
       - [Safe merging strategy](#safe-merging-strategy)
@@ -560,6 +561,15 @@ To delete a local branch:
 
 
 ## Rebasing and Merging
+
+<a name="undo-rebase">
+### I want to undo rebase/merge
+
+You may have merge/rebase your current branch with a wrong branch, or you simply cannot manage to achieve a correct result or even finish the rebase/merge process. Git is saving the original HEAD pointer in ORIG_HEAD, so it is simple to recover you're branch at the state before the rebase/merge.
+
+```sh
+(my-branch)$ git reset --hard ORIG_HEAD
+```
 
 <a name="force-push-rebase"></a>
 ### I rebased, but I don't want to force push.
