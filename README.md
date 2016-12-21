@@ -565,7 +565,7 @@ To delete a local branch:
 <a name="undo-rebase">
 ### I want to undo rebase/merge
 
-You may have merge/rebase your current branch with a wrong branch, or you simply cannot manage to achieve a correct result or even finish the rebase/merge process. Git is saving the original HEAD pointer in ORIG_HEAD, so it is simple to recover you're branch at the state before the rebase/merge.
+You may have merge/rebase your current branch with a wrong branch, or you simply cannot manage to achieve a correct result or even finish the rebase/merge process. Git is saving the original HEAD pointer in ORIG_HEAD, so it is simple to recover your branch at the state before the rebase/merge.
 
 ```sh
 (my-branch)$ git reset --hard ORIG_HEAD
