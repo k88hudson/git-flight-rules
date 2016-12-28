@@ -36,6 +36,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to move my unstaged edits to a new branch](#i-want-to-move-my-unstaged-edits-to-a-new-branch)
     - [I want to move my unstaged edits to a different, existing branch](#i-want-to-move-my-unstaged-edits-to-a-different-existing-branch)
     - [I want to discard my local, uncommitted changes](#i-want-to-discard-my-local-uncommitted-changes)
+    - [I want to discard specific unstaged changes](#i-want-to-discard-specific-unstaged-changes)
   - [Branches](#branches)
     - [I pulled from/into the wrong branch](#i-pulled-frominto-the-wrong-branch)
     - [I want to discard local commits so my branch is the same as one on the server](#i-want-to-discard-local-commits-so-my-branch-is-the-same-as-one-on-the-server)
@@ -277,6 +278,28 @@ To reset only a specific file, you can use that the filename as the argument:
 
 ```sh
 $ git reset filename
+```
+
+<a href="i-want-to-discard-specific-unstaged-changes"></a>
+### I want to discard specific unstaged changes
+
+When you want to get rid of some, but not all changes in your working copy.
+
+First strategy, stash all good changes, reset working copy, reapply good changes.
+
+```sh
+$ git stash -p
+# Select all of the snippets you want to save
+$ git reset --hard
+$ git stash pop
+```
+
+Alternate strategy, stash undesired changes, drop stash.
+
+```sh
+$ git stash -p
+# Select all of the snippets you don't want to save
+git stash drop
 ```
 
 ## Branches
