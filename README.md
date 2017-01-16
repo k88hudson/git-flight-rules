@@ -975,6 +975,7 @@ Using git reset it is then possible to change master back to the commit it was b
 * [git-fire](https://github.com/qw3rtman/git-fire) - git-fire is a Git plugin that helps in the event of an emergency by adding all current files, committing, and pushing to a new branch (to prevent merge conflicts).
 
 ## GUI Clients
+* [GitKraken](https://www.gitkraken.com/) - The downright luxurious Git client,for Windows, Mac & Linux
 * [git-cola](https://git-cola.github.io/) - another git client for Windows and OS X
 * [GitUp](https://github.com/git-up/GitUp) - A newish GUI that has some very opinionated ways of dealing with git's complications
 * [gitx-dev](https://rowanj.github.io/gitx/) - another graphical git client for OS X
