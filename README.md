@@ -364,9 +364,7 @@ One way of resetting to match origin (to have the same as what is on the remote)
 Create the new branch while remaining on master:
 
 ```sh
-(master)$ git checkout -b my-branch
-(my-branch)$ git checkout master
-(master)$
+(master)$ git branch my-branch
 ```
 
 Reset the branch master to the previous commit:
