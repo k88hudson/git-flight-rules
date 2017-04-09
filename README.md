@@ -299,21 +299,11 @@ $ git reset filename
 
 When you want to get rid of some, but not all changes in your working copy.
 
-First strategy, stash all good changes, reset working copy, reapply good changes.
+Checkout undesired changes, keep good changes.
 
 ```sh
-$ git stash -p
-# Select all of the snippets you want to save
-$ git reset --hard
-$ git stash pop
-```
-
-Alternate strategy, stash undesired changes, drop stash.
-
-```sh
-$ git stash -p
-# Select all of the snippets you don't want to save
-git stash drop
+$ git checkout -p
+# Answer y to all of the snippets you want to drop
 ```
 
 ## Branches
