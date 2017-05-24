@@ -969,8 +969,9 @@ Using git reset it is then possible to change master back to the commit it was b
 * [firstaidgit.io](http://firstaidgit.io/) A searchable selection of the most frequently asked Git questions
 * [git-extra-commands](https://github.com/unixorn/git-extra-commands) - a collection of useful extra git scripts
 * [git-extras](https://github.com/tj/git-extras) - GIT utilities -- repo summary, repl, changelog population, author commit percentages and more
-* [git-tips](https://github.com/git-tips/tips) - Small git tips
 * [git-fire](https://github.com/qw3rtman/git-fire) - git-fire is a Git plugin that helps in the event of an emergency by adding all current files, committing, and pushing to a new branch (to prevent merge conflicts).
+* [git-tips](https://github.com/git-tips/tips) - Small git tips
+* [git-town](https://github.com/Originate/git-town) - Generic, high-level Git workflow support! http://www.git-town.com
 
 ## GUI Clients
 * [GitKraken](https://www.gitkraken.com/) - The downright luxurious Git client,for Windows, Mac & Linux
