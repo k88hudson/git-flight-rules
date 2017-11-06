@@ -985,6 +985,7 @@ Using git reset it is then possible to change master back to the commit it was b
 ## Books
 
 * [Pro Git](https://git-scm.com/book/en/v2) - Scott Chacon's excellent git book
+* [Git Internals](https://github.com/pluralsight/git-internals-pdf) - Scott Chacon's other excellent git book
 
 ## Tutorials
 
