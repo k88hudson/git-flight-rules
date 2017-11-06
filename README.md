@@ -47,6 +47,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to delete local branches that were deleted upstream](#i-want-to-delete-local-branches-that-were-deleted-upstream)
     - [I accidentally deleted my branch](#i-accidentally-deleted-my-branch)
     - [I want to delete a branch](#i-want-to-delete-a-branch)
+    - [I want to checkout to a remote branch that someone else is working on](#i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on)
   - [Rebasing and Merging](#rebasing-and-merging)
     - [I want to undo rebase/merge](#undo-rebase)
     - [I rebased, but I don't want to force push.](#i-rebased-but-i-dont-want-to-force-push)
@@ -600,6 +601,26 @@ To delete a local branch:
 (master)$ git branch -D my-branch
 ```
 
+<a name="i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on"></a>
+### I want to checkout to a remote branch that someone else is working on
+
+First, fetch all branches from remote:
+
+```sh
+(master)$ git fetch --all
+```
+
+Say you want to checkout to `daves` from the remote.
+
+```sh
+(master)$ git checkout --track origin/daves
+Branch daves set up to track remote branch daves from origin.
+Switched to a new branch 'daves'
+```
+
+(`--track` is shorthand for `git checkout -b [branch] [remotename]/[branch]`)
+
+This will give you a local copy of the branch `daves`, and any update that has been pushed will also show up remotely.
 
 ## Rebasing and Merging
 
