@@ -509,7 +509,7 @@ Once you merge a pull request on github, it gives you the option to delete the m
 $ git fetch -p
 ```
 
-<a name='restore-a-deleted-branch'>
+<a name='restore-a-deleted-branch'></a>
 ### I accidentally deleted my branch
 
 If you're regularly pushing to remote, you should be safe most of the time. But still sometimes you may end up deleting your branches. Let's say we create a branch and create a new file:
@@ -603,7 +603,7 @@ To delete a local branch:
 
 ## Rebasing and Merging
 
-<a name="undo-rebase">
+<a name="undo-rebase"></a>
 ### I want to undo rebase/merge
 
 You may have merged or rebased your current branch with a wrong branch, or you can't figure it out or finish the rebase/merge process. Git saves the original HEAD pointer in a variable called ORIG_HEAD before doing dangerous operations, so it is simple to recover your branch at the state before the rebase/merge.
