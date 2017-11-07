@@ -105,8 +105,7 @@ If you wrote the wrong thing and the commit has not yet been pushed, you can do 
 ```sh
 $ git commit --amend
 ```
-
-You can specify the commit message inline if you want:
+This will open your default text editor, where you can edit the message. On the other hand, you can do this all in one command:
 
 ```sh
 $ git commit --amend -m 'xxxxxxx'
