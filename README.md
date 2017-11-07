@@ -145,7 +145,7 @@ If you need to delete pushed commits, you can use the following. However, it wil
 
 ```sh
 $ git reset HEAD^ --hard
-$ git push -f [remote] [branch]
+$ git push --force-with-lease [remote] [branch]
 ```
 
 If you haven't pushed, to reset Git to the state it was in before you made your last commit (while keeping your staged changes):
@@ -155,7 +155,7 @@ If you haven't pushed, to reset Git to the state it was in before you made your 
 
 ```
 
-This only works if you haven't pushed. If you have pushed, the only truly safe thing to do is `git revert SHAofBadCommit`. That will create a new commit that undoes all the previous commit's changes. Or, if the branched you pushed to is rebase-safe (ie. other devs aren't expected to pull from it), you can just use `git push -f`. For more, see [the above section](#deleteremove-last-pushed-commit).
+This only works if you haven't pushed. If you have pushed, the only truly safe thing to do is `git revert SHAofBadCommit`. That will create a new commit that undoes all the previous commit's changes. Or, if the branched you pushed to is rebase-safe (ie. other devs aren't expected to pull from it), you can just use `git push --force-with-lease`. For more, see [the above section](#deleteremove-last-pushed-commit).
 
 <a name="delete-any-commit"></a>
 ### Delete/remove arbitrary commit
@@ -164,7 +164,7 @@ The same warning applies as above. Never do this if possible.
 
 ```sh
 $ git rebase --onto SHA1_OF_BAD_COMMIT^ SHA1_OF_BAD_COMMIT
-$ git push -f [remote] [branch]
+$ git push --force-with-lease [remote] [branch]
 ```
 
 Or do an [interactive rebase](#interactive-rebase) and remove the line(s) corresponding to commit(s) you want to see removed.
@@ -182,14 +182,15 @@ hint: 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 ```
 
-Note that, as with rebasing (see below), amending **replaces the old commit with a new one**, so you must force push (`-f`) your changes if you have already pushed the pre-amended commit to your remote. Be careful when you do this &ndash; *always* make sure you specify a branch!
+Note that, as with rebasing (see below), amending **replaces the old commit with a new one**, so you must force push (`--force-with-lease`) your changes if you have already pushed the pre-amended commit to your remote. Be careful when you do this &ndash; *always* make sure you specify a branch!
 
 ```sh
-(my-branch)$ git push origin mybranch -f
+(my-branch)$ git push origin mybranch --force-with-lease
 ```
 
-In general, **avoid force pushing**. It is best to create and push a new commit rather than force-pushing the amended commit as it has will cause conflicts in the source history for any other developer who has interacted with the branch in question or any child branches.
+In general, **avoid force pushing**. It is best to create and push a new commit rather than force-pushing the amended commit as it has will cause conflicts in the source history for any other developer who has interacted with the branch in question or any child branches. `--force-with-lease` will still fail, if someone else was also working on the same branch as you, and your push would overwrite those changes.
 
+If you are *absolutely* sure that nobody is working on the same branch or you want to update the tip of the branch *unconditionally*, you can use `--force` (`-f`), but this should be avoided in general.
 
 <a href="undo-git-reset-hard"></a>
 ### I accidentally did a hard reset, and I want my changes back
