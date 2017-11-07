@@ -1002,10 +1002,11 @@ Using git reset it is then possible to change master back to the commit it was b
 * [git-tips](https://github.com/git-tips/tips) - Small git tips
 * [git-town](https://github.com/Originate/git-town) - Generic, high-level Git workflow support! http://www.git-town.com
 
-## GUI Clients
+## GUI/TUI Clients
 * [GitKraken](https://www.gitkraken.com/) - The downright luxurious Git client,for Windows, Mac & Linux
 * [git-cola](https://git-cola.github.io/) - another git client for Windows and OS X
 * [GitUp](https://github.com/git-up/GitUp) - A newish GUI that has some very opinionated ways of dealing with git's complications
 * [gitx-dev](https://rowanj.github.io/gitx/) - another graphical git client for OS X
 * [Source Tree](https://www.sourcetreeapp.com/) - a free graphical git client for Windows and OS X
 * [Tower](http://www.git-tower.com/) - graphical git client for OS X (paid)
+* [tig](https://jonas.github.io/tig/) - terminal text-mode interface for Git
