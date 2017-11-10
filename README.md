@@ -1011,3 +1011,4 @@ Using git reset it is then possible to change master back to the commit it was b
 * [Source Tree](https://www.sourcetreeapp.com/) - a free graphical git client for Windows and OS X
 * [Tower](http://www.git-tower.com/) - graphical git client for OS X (paid)
 * [tig](https://jonas.github.io/tig/) - terminal text-mode interface for Git
+* [Magit](https://magit.vc/) - Interface to git implemented as an Emacs package.
