@@ -381,9 +381,13 @@ Reset the branch master to the previous commit:
 (master)$ git reset --hard HEAD^
 ```
 
-`HEAD^` is short for `HEAD^1`. You can reset further through the generations by specifying which `HEAD` to set to.
+`HEAD^` is short for `HEAD^1`.  This stands for the first parent of HEAD, similarly `HEAD^2` stands for the second parent of the commit (merges can have 2 parents).
 
-Alternatively, if you don't want to use `HEAD^`, find out what the commit hash you want to set your master branch to (`git log` should do the trick). Then reset to that hash. `git push` will make sure that this change is reflected on your remote.
+`HEAD^1`  is identical to `HEAD~1`. You can reset further through the generations by specifying which `HEAD` to set to.
+
+For example: `HEAD^1^1^1` is the same as saying `HEAD~3`.
+
+Alternatively, if you don't want to use `HEAD~`, find out what the commit hash you want to set your master branch to (`git log` should do the trick). Then reset to that hash. `git push` will make sure that this change is reflected on your remote.
 
 For example, if the hash of the commit that your master branch is supposed to be at is `a13b85e`:
 
