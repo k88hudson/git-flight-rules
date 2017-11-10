@@ -132,7 +132,7 @@ In order to remove a file from a commit, do the following:
 
 ```sh
 $ git checkout HEAD^ myfile
-$ git add -A
+$ git add myfile
 $ git commit --amend
 ```
 
