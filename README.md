@@ -47,6 +47,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to delete local branches that were deleted upstream](#i-want-to-delete-local-branches-that-were-deleted-upstream)
     - [I accidentally deleted my branch](#i-accidentally-deleted-my-branch)
     - [I want to delete a branch](#i-want-to-delete-a-branch)
+    - [I want to rename a branch](#i-want-to-rename-a-branch)
     - [I want to checkout to a remote branch that someone else is working on](#i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on)
   - [Rebasing and Merging](#rebasing-and-merging)
     - [I want to undo rebase/merge](#undo-rebase)
@@ -599,6 +600,21 @@ To delete a local branch:
 
 ```sh
 (master)$ git branch -D my-branch
+```
+
+<a name="i-want-to-rename-a-branch"></a>
+### I want to rename a branch
+
+To rename a local current branch:
+
+```sh
+(master)$ git branch -m new-name
+```
+
+To rename a local different branch:
+
+```sh
+(master)$ git branch -m old-name new-name
 ```
 
 <a name="i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on"></a>
