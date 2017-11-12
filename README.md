@@ -133,11 +133,11 @@ In order to remove a file from a commit, do the following:
 
 ```sh
 $ git checkout HEAD^ myfile
-$ git add -A
-$ git commit --amend
+$ git add myfile
+$ git commit --amend --no-edit
 ```
 
-This is particularly useful when you have an open patch and you have committed an unnecessary file, and need to force push to update the patch on a remote.
+This is particularly useful when you have an open patch and you have committed an unnecessary file, and need to force push to update the patch on a remote. The `--no-edit` option is used to keep the existing commit message.
 
 <a name="delete-pushed-commit"></a>
 ### I want to delete or remove my last commit
