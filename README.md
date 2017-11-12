@@ -904,9 +904,13 @@ Your tag should now have been restored.
 <a name="deleted-patch"></a>
 ### Deleted Patch
 
-If someone has sent you a pull request on GitHub, but then deleted their original fork, you will be unable to clone their commits or to use `git am`. In such cases, it is best to manually look at their commits and copy them into a new branch on your local. Then, commit.
+If someone has sent you a pull request on GitHub, but then deleted their original fork, you will be unable to clone their repository or to use `git am` as the [.diff, .patch](https://github.com/blog/967-github-secrets) urls become unavailable. But you can checkout the PR itself using [GitHub's special refs](https://gist.github.com/piscisaureus/3342247). To fetch the content of PR#1 into a new branch called pr_1:
 
-After committing, change the author of the previous commit. To do this, see how to [change author](#commit-wrong-author). Then, apply whatever changes needed on to, and make a new pull request.
+```sh
+$ git fetch origin refs/pull/1/head:pr_1
+From github.com:foo/bar
+ * [new ref]         refs/pull/1/head -> pr_1
+```
 
 ## Tracking Files
 
