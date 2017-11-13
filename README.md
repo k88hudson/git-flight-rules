@@ -387,6 +387,10 @@ Reset the branch master to the previous commit:
 
 For example: `HEAD^1^1^1` is the same as saying `HEAD~3`.
 
+`HEAD^2` **is not** equivalent to `HEAD~2`.
+
+`HEAD^^` **is** equivalent to `HEAD~2`.
+
 Alternatively, if you don't want to use `HEAD~`, find out what the commit hash you want to set your master branch to (`git log` should do the trick). Then reset to that hash. `git push` will make sure that this change is reflected on your remote.
 
 For example, if the hash of the commit that your master branch is supposed to be at is `a13b85e`:
