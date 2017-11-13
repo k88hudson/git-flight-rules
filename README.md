@@ -825,7 +825,7 @@ Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
-	modified:   README.md
+  modified:   README.md
 ```
 
 In this example, `README.md` has conflicts. Open that file and look for the following:
@@ -840,7 +840,16 @@ In this example, `README.md` has conflicts. Open that file and look for the foll
 
 You will need to resolve the differences between the code that was added in your new commit (in the example, everything from the middle line to `new-commit`) and your `HEAD`.
 
-Sometimes these merges are complicated and you should use a visual diff editor:
+If you want to keep one branch's version of the code, you can use `--ours` or `--theirs`:
+
+```sh
+(master*)$ git checkout --ours README.md
+```
+
+- When *merging*, use `--ours` to keep changes from the current branch.
+- When *rebasing*, use `--theirs` to keep changes from the current branch. For an explanation of this swap, see [this note in the git documentation](https://git-scm.com/docs/git-rebase#git-rebase---merge).
+
+If the merges are more complicated, you can use a visual diff editor:
 
 ```sh
 (master*)$ git mergetool -t opendiff
