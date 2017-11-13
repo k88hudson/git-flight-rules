@@ -68,6 +68,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
   - [Tracking Files](#tracking-files)
     - [I want to change a file name's capitalization, without changing the contents of the file.](#i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file)
     - [I want to remove a file from git but keep the file](#i-want-to-remove-a-file-from-git-but-keep-the-file)
+    - [I want to revert a file to a specific revision](#i-want-to-revert-a-file-to-a-specific-revision)
   - [Configuration](#configuration)
     - [I want to add aliases for some git commands](#i-want-to-add-aliases-for-some-git-commands)
     - [I want to cache a username and password for a repository](#i-want-to-cache-a-username-and-password-for-a-repository)
@@ -926,6 +927,21 @@ From github.com:foo/bar
 
 ```sh
 (master)$ git rm --cached log.txt
+```
+
+<a href="i-want-to-revert-a-file-to-a-specific-revision"></a>
+### I want to revert a file to a specific revision
+
+Assuming the hash of the commit you want is c5f567:
+
+```sh
+(master)$ git checkout c5f567 -- file1/to/restore file2/to/restore
+```
+
+If you want to revert to changes made just 1 commit before c5f567, pass the commit hash as c5f567~1:
+
+```sh
+(master)$ git checkout c5f567~1 -- file1/to/restore file2/to/restore
 ```
 
 ## Configuration
