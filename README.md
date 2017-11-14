@@ -28,6 +28,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [Delete/remove arbitrary commit](#deleteremove-arbitrary-commit)
     - [I tried to push my amended commit to a remote, but I got an error message](#i-tried-to-push-my-amended-commit-to-a-remote-but-i-got-an-error-message)
     - [I accidentally did a hard reset, and I want my changes back](#i-accidentally-did-a-hard-reset-and-i-want-my-changes-back)
+    - [I want to edit root commit](#i-want-to-edit-root-commit)
   - [Staging](#staging)
     - [I need to add staged changes to the previous commit](#i-need-to-add-staged-changes-to-the-previous-commit)
     - [I want to stage part of a new file, but not the whole file](#i-want-to-stage-part-of-a-new-file-but-not-the-whole-file)
@@ -210,6 +211,35 @@ You'll see a list of your past commits, and a commit for the reset. Choose the S
 ```
 
 And you should be good to go.
+
+<a href="i-want-to-edit-root-commit"></a>
+### I want to edit root commit
+
+Check out root commit first.
+
+```sh
+git checkout <sha1-of-root>
+```
+
+Edit commit changes and message.
+
+```sh
+git commit --amend
+```
+
+Pick commits from the second one to the latest.
+
+```sh
+git cherry-pick <sha1-of-second-commit>^..<sha1-of-latest-commit>
+```
+
+And it's done!
+
+Or after Git version 1.7.12, you could simply use:
+
+```sh
+git rebase -i --root
+```
 
 ## Staging
 
