@@ -33,6 +33,7 @@
     - [删除任意提交(commit)](#%E5%88%A0%E9%99%A4%E4%BB%BB%E6%84%8F%E6%8F%90%E4%BA%A4commit)
     - [我尝试推一个修正后的提交(amended commit)到远程，但是报错：](#%E6%88%91%E5%B0%9D%E8%AF%95%E6%8E%A8%E4%B8%80%E4%B8%AA%E4%BF%AE%E6%AD%A3%E5%90%8E%E7%9A%84%E6%8F%90%E4%BA%A4amended-commit%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BD%86%E6%98%AF%E6%8A%A5%E9%94%99)
     - [我意外的做了一次硬重置(hard reset)，我想找回我的内容](#%E6%88%91%E6%84%8F%E5%A4%96%E7%9A%84%E5%81%9A%E4%BA%86%E4%B8%80%E6%AC%A1%E7%A1%AC%E9%87%8D%E7%BD%AEhard-reset%E6%88%91%E6%83%B3%E6%89%BE%E5%9B%9E%E6%88%91%E7%9A%84%E5%86%85%E5%AE%B9)
+    - [我想修改根提交](#%E6%88%91%E6%83%B3%E4%BF%AE%E6%94%B9%E6%A0%B9%E6%8F%90%E4%BA%A4)
   - [暂存(Staging)](#%E6%9A%82%E5%AD%98staging)
     - [我需要把暂存的内容添加到上一次的提交(commit)](#%E6%88%91%E9%9C%80%E8%A6%81%E6%8A%8A%E6%9A%82%E5%AD%98%E7%9A%84%E5%86%85%E5%AE%B9%E6%B7%BB%E5%8A%A0%E5%88%B0%E4%B8%8A%E4%B8%80%E6%AC%A1%E7%9A%84%E6%8F%90%E4%BA%A4commit)
     - [我想要暂存一个新文件的一部分，而不是这个文件的全部](#%E6%88%91%E6%83%B3%E8%A6%81%E6%9A%82%E5%AD%98%E4%B8%80%E4%B8%AA%E6%96%B0%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%80%E9%83%A8%E5%88%86%E8%80%8C%E4%B8%8D%E6%98%AF%E8%BF%99%E4%B8%AA%E6%96%87%E4%BB%B6%E7%9A%84%E5%85%A8%E9%83%A8)
@@ -211,6 +212,34 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 ```
 
 这样就完成了。
+
+### 我想修改根提交
+
+首先，先切换到根提交。
+
+```sh
+git checkout <sha1-of-root>
+```
+
+修改根提交的内容跟信息。
+
+```sh
+git commit --amend
+```
+
+`cherry-pick` 选取从第二个开始到最后一个 commit。
+
+```sh
+git cherry-pick <sha1-of-second-commit>^..<sha1-of-latest-commit>
+```
+
+完成！
+
+另外，如果 Git 版本是 1.7.2 版之后，你可以直接用：
+
+```sh
+git rebase -i --root
+```
 
 ## 暂存(Staging)
 
