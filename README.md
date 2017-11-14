@@ -825,7 +825,7 @@ Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
-  modified:   README.md
+  both modified:   README.md
 ```
 
 In this example, `README.md` has conflicts. Open that file and look for the following:
@@ -846,8 +846,8 @@ If you want to keep one branch's version of the code, you can use `--ours` or `-
 (master*)$ git checkout --ours README.md
 ```
 
-- When *merging*, use `--ours` to keep changes from the current branch.
-- When *rebasing*, use `--theirs` to keep changes from the current branch. For an explanation of this swap, see [this note in the git documentation](https://git-scm.com/docs/git-rebase#git-rebase---merge).
+- When *merging*, use `--ours` to keep changes from the local branch, or `--theirs` to keep changes from the other branch.
+- When *rebasing*, use `--theirs` to keep changes from the local branch, or `--ours` to keep changes from the other branch. For an explanation of this swap, see [this note in the git documentation](https://git-scm.com/docs/git-rebase#git-rebase---merge).
 
 If the merges are more complicated, you can use a visual diff editor:
 
