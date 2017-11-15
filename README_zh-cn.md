@@ -916,10 +916,10 @@ $ git update-ref refs/tags/<tag_name> <hash>
 <a name="adding-command-aliases"></a>
 ### 我想给一些Git命令添加别名(alias)
 
-在 OS X 和 Linux 下, 你的 Git的配置文件储存在 ```~/.gitconfig```。我在```[aliases]``` 部分添加了一些快捷别名(和一些我容易拼写错误的)，如下:
+在 OS X 和 Linux 下, 你的 Git的配置文件储存在 ```~/.gitconfig```。我在```[alias]``` 部分添加了一些快捷别名(和一些我容易拼写错误的)，如下:
 
 ```vim
-[aliases]
+[alias]
     a = add
     amend = commit --amend
     c = commit

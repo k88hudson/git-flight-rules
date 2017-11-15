@@ -960,10 +960,10 @@ If you want to revert to changes made just 1 commit before c5f567, pass the comm
 <a name="adding-command-aliases"></a>
 ### I want to add aliases for some git commands
 
-On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```.  I've added some example aliases I use as shortcuts (and some of my common typos) in the ```[aliases]``` section as shown below:
+On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```.  I've added some example aliases I use as shortcuts (and some of my common typos) in the ```[alias]``` section as shown below:
 
 ```vim
-[aliases]
+[alias]
     a = add
     amend = commit --amend
     c = commit
