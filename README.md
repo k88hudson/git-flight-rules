@@ -1060,3 +1060,5 @@ Using git reset it is then possible to change master back to the commit it was b
 * [tig](https://jonas.github.io/tig/) - terminal text-mode interface for Git
 * [Magit](https://magit.vc/) - Interface to git implemented as an Emacs package.
 * [GitExtensions](https://github.com/gitextensions/gitextensions) - a shell extension, a Visual Studio 2010-2015 plugin and a standalone Git repository tool.
+* [Fork](https://git-fork.com/) - a fast and friendly git client for Mac (beta)
+* [gmaster](https://gmaster.io/) - a git client for Windows that has 3-way merge, analyze refactors, semantic diff and merge (beta)
