@@ -65,6 +65,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [Delete tag](#delete-tag)
     - [Recover a deleted tag](#recover-a-deleted-tag)
     - [Deleted Patch](#deleted-patch)
+    - [Stash with message](#stash-msg)
   - [Tracking Files](#tracking-files)
     - [I want to change a file name's capitalization, without changing the contents of the file.](#i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file)
     - [I want to remove a file from git but keep the file](#i-want-to-remove-a-file-from-git-but-keep-the-file)
@@ -922,6 +923,13 @@ If someone has sent you a pull request on GitHub, but then deleted their origina
 $ git fetch origin refs/pull/1/head:pr_1
 From github.com:foo/bar
  * [new ref]         refs/pull/1/head -> pr_1
+```
+
+<a name="stash-msg"></a>
+### Stash with message
+
+```sh
+$ git stash save <message>
 ```
 
 ## Tracking Files
