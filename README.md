@@ -237,7 +237,8 @@ $ git add --patch filename.x
 $ git add -N filename.x
 ```
 
-Then, you will need to use the `e` option to manually choose which lines to add. Running `git diff --cached` will show you which lines you have staged compared to which are still saved locally.
+Then, you will need to use the `e` option to manually choose which lines to add. Running `git diff --cached` or 
+`git diff --staged` will show you which lines you have staged compared to which are still saved locally.
 
 
 <a href="stage-in-two-commits"></a>
