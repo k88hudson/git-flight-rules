@@ -60,12 +60,16 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [Possible issues with interactive rebases](#possible-issues-with-interactive-rebases)
       - [The rebase editing screen says 'noop'](#the-rebase-editing-screen-says-noop)
       - [There were conflicts](#there-were-conflicts)
+  - [Stashing](#stashing)
+    - [Stash all edits](#stash-all-edits)
+    - [Stash specific file](#stash-specific-file)
+    - [Stash with message](#stash-msg)
+    - [Apply a specific stash from list](#stash-apply-specific)
   - [Miscellaneous Objects](#miscellaneous-objects)
     - [Clone all submodules](#clone-all-submodules)
     - [Delete tag](#delete-tag)
     - [Recover a deleted tag](#recover-a-deleted-tag)
     - [Deleted Patch](#deleted-patch)
-    - [Stash with message](#stash-msg)
   - [Tracking Files](#tracking-files)
     - [I want to change a file name's capitalization, without changing the contents of the file.](#i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file)
     - [I want to remove a file from git but keep the file](#i-want-to-remove-a-file-from-git-but-keep-the-file)
@@ -872,6 +876,51 @@ If at any time you want to stop the entire rebase and go back to the original st
 ```sh
 (my-branch)$ git rebase --abort
 ```
+<a name="stashing"></a>
+## Stash
+
+<a name="stash-all-edits"></a>
+### Stash all edits
+
+To stash all the edits in your working directory
+
+```sh
+$ git stash
+```
+
+<a name="stash-specific-file"></a>
+### Stash specific file
+
+To stash only one file from your working directory
+
+```sh
+$ git stash push working-directory-path/filename.ext
+```
+
+<a name="stash-msg"></a>
+### Stash with message
+
+```sh
+$ git stash save <message>
+```
+
+<a name="stash-apply-specific"></a>
+### Apply a specific stash from list
+
+First check your list of stashes with message using
+
+```sh
+$ git stash list
+```
+
+Then apply a specific stash from the list using
+
+```sh
+$ git stash apply "stash@{n}"
+```
+
+Here, 'n' indicates the position of the stash in the stack. The topmost stash will be position 0.
+
 
 <a name="miscellaneous-objects"></a>
 ## Miscellaneous Objects
@@ -923,13 +972,6 @@ If someone has sent you a pull request on GitHub, but then deleted their origina
 $ git fetch origin refs/pull/1/head:pr_1
 From github.com:foo/bar
  * [new ref]         refs/pull/1/head -> pr_1
-```
-
-<a name="stash-msg"></a>
-### Stash with message
-
-```sh
-$ git stash save <message>
 ```
 
 ## Tracking Files
