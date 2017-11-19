@@ -297,7 +297,7 @@ If you want to only reset to some commit between origin and your local, you can 
 (master)$ git checkout -f
 ```
 
-To reset only a specific file, you can use that the filename as the argument:
+To reset only a specific file, you can use that filename as the argument:
 
 ```sh
 $ git reset filename
