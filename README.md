@@ -83,6 +83,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
   - [Tutorials](#tutorials)
   - [Scripts and Tools](#scripts-and-tools)
   - [GUI Clients](#gui-clients)
+  - [Code Quality](#code-quality)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -241,7 +242,7 @@ $ git add --patch filename.x
 $ git add -N filename.x
 ```
 
-Then, you will need to use the `e` option to manually choose which lines to add. Running `git diff --cached` or 
+Then, you will need to use the `e` option to manually choose which lines to add. Running `git diff --cached` or
 `git diff --staged` will show you which lines you have staged compared to which are still saved locally.
 
 
@@ -1113,3 +1114,7 @@ Using git reset it is then possible to change master back to the commit it was b
 * [GitExtensions](https://github.com/gitextensions/gitextensions) - a shell extension, a Visual Studio 2010-2015 plugin and a standalone Git repository tool.
 * [Fork](https://git-fork.com/) - a fast and friendly git client for Mac (beta)
 * [gmaster](https://gmaster.io/) - a git client for Windows that has 3-way merge, analyze refactors, semantic diff and merge (beta)
+
+## Code Quality
+
+* [Git Cop](https://github.com/bkuhlmann/git-cop) - Enforces Git rebase workflow with consistent Git commits for a clean and easy to read/debug project history. Can be used as a Git Hook, part of Continuous Integration, and/or both.
