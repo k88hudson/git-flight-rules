@@ -39,6 +39,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to discard my local, uncommitted changes](#i-want-to-discard-my-local-uncommitted-changes)
     - [I want to discard specific unstaged changes](#i-want-to-discard-specific-unstaged-changes)
   - [Branches](#branches)
+    - [Create a branch from a commit](#create-branch-from-commit)
     - [I pulled from/into the wrong branch](#i-pulled-frominto-the-wrong-branch)
     - [I want to discard local commits so my branch is the same as one on the server](#i-want-to-discard-local-commits-so-my-branch-is-the-same-as-one-on-the-server)
     - [I committed to master instead of a new branch](#i-committed-to-master-instead-of-a-new-branch)
@@ -333,6 +334,12 @@ $ git stash drop
 ```
 
 ## Branches
+<a name="create-branch-from-commit"></a>
+### Create a branch from a commit
+```sh
+$ git checkout -b <branch> <SHA1_OF_COMMIT>
+```
+
 
 <a name="pull-wrong-branch"></a>
 ### I pulled from/into the wrong branch
