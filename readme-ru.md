@@ -29,7 +29,7 @@
     - [Я попытался запушить исправленный коммит на удаленную ветку, но у меня появилось сообщение об ошибке](#i-tried-to-push-my-amended-commit-to-a-remote-but-i-got-an-error-message)
     - [Я случайно сделал жесткий сброс, и я хочу, чтобы мои изменения вернулись](#i-accidentally-did-a-hard-reset-and-i-want-my-changes-back)
   - [Staging](#staging)
-    - [I need to add staged changes to the previous commit](#i-need-to-add-staged-changes-to-the-previous-commit)
+    - [Мне нужно добавить внесенные изменения к предыдущему коммиту](#i-need-to-add-staged-changes-to-the-previous-commit)
     - [I want to stage part of a new file, but not the whole file](#i-want-to-stage-part-of-a-new-file-but-not-the-whole-file)
     - [I want to add changes in one file to two different commits](#i-want-to-add-changes-in-one-file-to-two-different-commits)
     - [I want to stage my unstaged edits, and unstage my staged edits](#i-want-to-stage-my-unstaged-edits-and-unstage-my-staged-edits)
