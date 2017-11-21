@@ -19,118 +19,118 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-  - [Редактирование коммитов](#editing-commits)
-    - [Что я только что закоммитил?](#what-did-i-just-commit)
-    - [Я сделал ошибку в сообщении коммита](#i-wrote-the-wrong-thing-in-a-commit-message)
-    - [Я сделал коммит с неправильным имям и адресом электронной почты](#i-committed-with-the-wrong-name-and-email-configured)
-    - [Я хочу удалить файл из коммита](#i-want-to-remove-a-file-from-a-commit)
-    - [Я хочу удалить мой последний коммит](#i-want-to-delete-or-remove-my-last-commit)
-    - [Удаление произвольного коммит](#deleteremove-arbitrary-commit)
-    - [Я попытался запушить исправленный коммит на удаленную ветку, но у меня появилось сообщение об ошибке](#i-tried-to-push-my-amended-commit-to-a-remote-but-i-got-an-error-message)
-    - [Я случайно сделал жесткий сброс, и я хочу, чтобы мои изменения вернулись](#i-accidentally-did-a-hard-reset-and-i-want-my-changes-back)
+  - [Редактирование коммитов](#%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82%D0%BE%D0%B2)
+    - [Что я только что закоммитил?](#%D1%87%D1%82%D0%BE-%D1%8F-%D1%82%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE-%D1%87%D1%82%D0%BE-%D0%B7%D0%B0%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82%D0%B8%D0%BB)
+    - [Я сделал ошибку в сообщении коммита](#%D1%8F-%D1%81%D0%B4%D0%B5%D0%BB%D0%B0%D0%BB-%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D1%83-%D0%B2-%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B8-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82%D0%B0)
+    - [Я сделал коммит с неправильным имям и адресом электронной почты](#%D1%8F-%D1%81%D0%B4%D0%B5%D0%BB%D0%B0%D0%BB-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82-%D1%81-%D0%BD%D0%B5%D0%BF%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D1%8C%D0%BD%D1%8B%D0%BC-%D0%B8%D0%BC%D1%8F%D0%BC-%D0%B8-%D0%B0%D0%B4%D1%80%D0%B5%D1%81%D0%BE%D0%BC-%D1%8D%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D0%BD%D0%BD%D0%BE%D0%B9-%D0%BF%D0%BE%D1%87%D1%82%D1%8B)
+    - [Я хочу удалить файл из коммита](#%D1%8F-%D1%85%D0%BE%D1%87%D1%83-%D1%83%D0%B4%D0%B0%D0%BB%D0%B8%D1%82%D1%8C-%D1%84%D0%B0%D0%B9%D0%BB-%D0%B8%D0%B7-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82%D0%B0)
+    - [Я хочу удалить мой последний коммит](#%D1%8F-%D1%85%D0%BE%D1%87%D1%83-%D1%83%D0%B4%D0%B0%D0%BB%D0%B8%D1%82%D1%8C-%D0%BC%D0%BE%D0%B9-%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%D0%B4%D0%BD%D0%B8%D0%B9-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82)
+    - [Удаление произвольного коммит](#%D1%83%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BF%D1%80%D0%BE%D0%B8%D0%B7%D0%B2%D0%BE%D0%BB%D1%8C%D0%BD%D0%BE%D0%B3%D0%BE-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82)
+    - [Я попытался запушить исправленный коммит на удаленную ветку, но у меня появилось сообщение об ошибке](#%D1%8F-%D0%BF%D0%BE%D0%BF%D1%8B%D1%82%D0%B0%D0%BB%D1%81%D1%8F-%D0%B7%D0%B0%D0%BF%D1%83%D1%88%D0%B8%D1%82%D1%8C-%D0%B8%D1%81%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82-%D0%BD%D0%B0-%D1%83%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%BD%D1%83%D1%8E-%D0%B2%D0%B5%D1%82%D0%BA%D1%83-%D0%BD%D0%BE-%D1%83-%D0%BC%D0%B5%D0%BD%D1%8F-%D0%BF%D0%BE%D1%8F%D0%B2%D0%B8%D0%BB%D0%BE%D1%81%D1%8C-%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BE%D0%B1-%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D0%B5)
+    - [Я случайно сделал жесткий сброс, и я хочу, чтобы мои изменения вернулись](#%D1%8F-%D1%81%D0%BB%D1%83%D1%87%D0%B0%D0%B9%D0%BD%D0%BE-%D1%81%D0%B4%D0%B5%D0%BB%D0%B0%D0%BB-%D0%B6%D0%B5%D1%81%D1%82%D0%BA%D0%B8%D0%B9-%D1%81%D0%B1%D1%80%D0%BE%D1%81-%D0%B8-%D1%8F-%D1%85%D0%BE%D1%87%D1%83-%D1%87%D1%82%D0%BE%D0%B1%D1%8B-%D0%BC%D0%BE%D0%B8-%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F-%D0%B2%D0%B5%D1%80%D0%BD%D1%83%D0%BB%D0%B8%D1%81%D1%8C)
   - [Staging](#staging)
-    - [Мне нужно добавить внесенные изменения к предыдущему коммиту](#i-need-to-add-staged-changes-to-the-previous-commit)
-    - [Я хочу сгенерировать часть нового файла, но не весь файл](#i-want-to-stage-part-of-a-new-file-but-not-the-whole-file)
-    - [Я хочу добавить измененния в один файл в двух коммитах](#i-want-to-add-changes-in-one-file-to-two-different-commits)
+    - [Мне нужно добавить внесенные изменения к предыдущему коммиту](#%D0%BC%D0%BD%D0%B5-%D0%BD%D1%83%D0%B6%D0%BD%D0%BE-%D0%B4%D0%BE%D0%B1%D0%B0%D0%B2%D0%B8%D1%82%D1%8C-%D0%B2%D0%BD%D0%B5%D1%81%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5-%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F-%D0%BA-%D0%BF%D1%80%D0%B5%D0%B4%D1%8B%D0%B4%D1%83%D1%89%D0%B5%D0%BC%D1%83-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82%D1%83)
+    - [I want to stage part of a new file, but not the whole file](#i-want-to-stage-part-of-a-new-file-but-not-the-whole-file)
+    - [Я хочу добавить измененния в один файл в двух коммитах](#%D1%8F-%D1%85%D0%BE%D1%87%D1%83-%D0%B4%D0%BE%D0%B1%D0%B0%D0%B2%D0%B8%D1%82%D1%8C-%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%BD%D0%B8%D1%8F-%D0%B2-%D0%BE%D0%B4%D0%B8%D0%BD-%D1%84%D0%B0%D0%B9%D0%BB-%D0%B2-%D0%B4%D0%B2%D1%83%D1%85-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82%D0%B0%D1%85)
     - [I want to stage my unstaged edits, and unstage my staged edits](#i-want-to-stage-my-unstaged-edits-and-unstage-my-staged-edits)
   - [Unstaged Edits](#unstaged-edits)
     - [I want to move my unstaged edits to a new branch](#i-want-to-move-my-unstaged-edits-to-a-new-branch)
     - [I want to move my unstaged edits to a different, existing branch](#i-want-to-move-my-unstaged-edits-to-a-different-existing-branch)
-    - [Я хочу отменить мои локальные, незакоммиченные измененния](#i-want-to-discard-my-local-uncommitted-changes)
+    - [Я хочу отменить мои локальные, незакоммиченные измененния](#%D1%8F-%D1%85%D0%BE%D1%87%D1%83-%D0%BE%D1%82%D0%BC%D0%B5%D0%BD%D0%B8%D1%82%D1%8C-%D0%BC%D0%BE%D0%B8-%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%BD%D0%B5%D0%B7%D0%B0%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%87%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5-%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%BD%D0%B8%D1%8F)
     - [I want to discard specific unstaged changes](#i-want-to-discard-specific-unstaged-changes)
-  - [Ветки](#branches)
+  - [Branches](#branches)
     - [I pulled from/into the wrong branch](#i-pulled-frominto-the-wrong-branch)
     - [I want to discard local commits so my branch is the same as one on the server](#i-want-to-discard-local-commits-so-my-branch-is-the-same-as-one-on-the-server)
-    - [Я закоммитил в мастер, вместо новой ветки](#i-committed-to-master-instead-of-a-new-branch)
+    - [Я закоммитил в мастер, вместо новой ветки](#%D1%8F-%D0%B7%D0%B0%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82%D0%B8%D0%BB-%D0%B2-%D0%BC%D0%B0%D1%81%D1%82%D0%B5%D1%80-%D0%B2%D0%BC%D0%B5%D1%81%D1%82%D0%BE-%D0%BD%D0%BE%D0%B2%D0%BE%D0%B9-%D0%B2%D0%B5%D1%82%D0%BA%D0%B8)
     - [I want to keep the whole file from another ref-ish](#i-want-to-keep-the-whole-file-from-another-ref-ish)
     - [I made several commits on a single branch that should be on different branches](#i-made-several-commits-on-a-single-branch-that-should-be-on-different-branches)
     - [I want to delete local branches that were deleted upstream](#i-want-to-delete-local-branches-that-were-deleted-upstream)
-    - [Я случайно удалил свою ветку](#i-accidentally-deleted-my-branch)
-    - [Я хочу удалить ветку](#i-want-to-delete-a-branch)
-    - [Я хочу переименовать ветку](#i-want-to-rename-a-branch)
-    - [Я хочу переключится на удаленную ветку пока кто-то работает с ней](#i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on)
-  - [Rebasing и Merging](#rebasing-and-merging)
-    - [Я хочу отменить rebase/merge](#undo-rebase)
+    - [Я случайно удалил свою ветку](#%D1%8F-%D1%81%D0%BB%D1%83%D1%87%D0%B0%D0%B9%D0%BD%D0%BE-%D1%83%D0%B4%D0%B0%D0%BB%D0%B8%D0%BB-%D1%81%D0%B2%D0%BE%D1%8E-%D0%B2%D0%B5%D1%82%D0%BA%D1%83)
+    - [Я хочу удалить ветку](#%D1%8F-%D1%85%D0%BE%D1%87%D1%83-%D1%83%D0%B4%D0%B0%D0%BB%D0%B8%D1%82%D1%8C-%D0%B2%D0%B5%D1%82%D0%BA%D1%83)
+    - [Я хочу переименовать ветку](#%D1%8F-%D1%85%D0%BE%D1%87%D1%83-%D0%BF%D0%B5%D1%80%D0%B5%D0%B8%D0%BC%D0%B5%D0%BD%D0%BE%D0%B2%D0%B0%D1%82%D1%8C-%D0%B2%D0%B5%D1%82%D0%BA%D1%83)
+    - [Я хочу переключится на удаленную ветку пока кто-то работает с ней](#%D1%8F-%D1%85%D0%BE%D1%87%D1%83-%D0%BF%D0%B5%D1%80%D0%B5%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%81%D1%8F-%D0%BD%D0%B0-%D1%83%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%BD%D1%83%D1%8E-%D0%B2%D0%B5%D1%82%D0%BA%D1%83-%D0%BF%D0%BE%D0%BA%D0%B0-%D0%BA%D1%82%D0%BE-%D1%82%D0%BE-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D1%82-%D1%81-%D0%BD%D0%B5%D0%B9)
+  - [Rebasing и Merging](#rebasing-%D0%B8-merging)
+    - [Я хочу отменить rebase/merge](#%D1%8F-%D1%85%D0%BE%D1%87%D1%83-%D0%BE%D1%82%D0%BC%D0%B5%D0%BD%D0%B8%D1%82%D1%8C-rebasemerge)
     - [I rebased, but I don't want to force push.](#i-rebased-but-i-dont-want-to-force-push)
-    - [Я хочу скомбинировать коммиты](#i-need-to-combine-commits)
-      - [Безопасная merging стратегия](#safe-merging-strategy)
+    - [I need to combine commits](#i-need-to-combine-commits)
+      - [Safe merging strategy](#safe-merging-strategy)
       - [I need to merge a branch into a single commit](#i-need-to-merge-a-branch-into-a-single-commit)
-      - [Я хочу скомбинировать только не запушенные коммиты](#i-want-to-combine-only-unpushed-commits)
-    - [Проверить что все коммиты смердженны](#check-if-all-commits-on-a-branch-are-merged)
+      - [I want to combine only unpushed commits](#i-want-to-combine-only-unpushed-commits)
+    - [Проверить что все коммиты на ветке смердженны](#%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%B8%D1%82%D1%8C-%D1%87%D1%82%D0%BE-%D0%B2%D1%81%D0%B5-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82%D1%8B-%D0%BD%D0%B0-%D0%B2%D0%B5%D1%82%D0%BA%D0%B5-%D1%81%D0%BC%D0%B5%D1%80%D0%B4%D0%B6%D0%B5%D0%BD%D0%BD%D1%8B)
     - [Possible issues with interactive rebases](#possible-issues-with-interactive-rebases)
       - [The rebase editing screen says 'noop'](#the-rebase-editing-screen-says-noop)
       - [There were conflicts](#there-were-conflicts)
-  - [Разное](#miscellaneous-objects)
+  - [Разное](#%D1%80%D0%B0%D0%B7%D0%BD%D0%BE%D0%B5)
     - [Clone all submodules](#clone-all-submodules)
-    - [Удалить тег](#delete-tag)
-    - [Вернуть удаленный тег](#recover-a-deleted-tag)
-    - [Удалить патч](#deleted-patch)
-  - [Отслеживание файлов](#tracking-files)
+    - [Удалить тег](#%D1%83%D0%B4%D0%B0%D0%BB%D0%B8%D1%82%D1%8C-%D1%82%D0%B5%D0%B3)
+    - [Вернуть удаленный тег](#%D0%B2%D0%B5%D1%80%D0%BD%D1%83%D1%82%D1%8C-%D1%83%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9-%D1%82%D0%B5%D0%B3)
+    - [Deleted Patch](#deleted-patch)
+  - [Отслеживание файлов](#%D0%BE%D1%82%D1%81%D0%BB%D0%B5%D0%B6%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2)
     - [I want to change a file name's capitalization, without changing the contents of the file.](#i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file)
-    - [Я хочу убрать файл с git, но файл оставить](#i-want-to-remove-a-file-from-git-but-keep-the-file)
+    - [Я хочу убрать файл с git, но файл оставить](#%D1%8F-%D1%85%D0%BE%D1%87%D1%83-%D1%83%D0%B1%D1%80%D0%B0%D1%82%D1%8C-%D1%84%D0%B0%D0%B9%D0%BB-%D1%81-git-%D0%BD%D0%BE-%D1%84%D0%B0%D0%B9%D0%BB-%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D1%82%D1%8C)
     - [I want to revert a file to a specific revision](#i-want-to-revert-a-file-to-a-specific-revision)
-  - [Конфигурация](#configuration)
-    - [Я хочу добавить альясы для команд git](#i-want-to-add-aliases-for-some-git-commands)
-    - [Я хочу закешировать логин и пароль для для репозитория](#i-want-to-cache-a-username-and-password-for-a-repository)
-  - [Я понятия не имею, что я сделал неправильно](#ive-no-idea-what-i-did-wrong)
-- [Другие источники](#other-resources)
-  - [Книги](#books)
-  - [Туториалы](#tutorials)
-  - [Скрипты и инструменты](#scripts-and-tools)
-  - [GUI Клиенты](#gui-clients)
+  - [Конфигурация](#%D0%BA%D0%BE%D0%BD%D1%84%D0%B8%D0%B3%D1%83%D1%80%D0%B0%D1%86%D0%B8%D1%8F)
+    - [Я хочу добавить альясы для команд git](#%D1%8F-%D1%85%D0%BE%D1%87%D1%83-%D0%B4%D0%BE%D0%B1%D0%B0%D0%B2%D0%B8%D1%82%D1%8C-%D0%B0%D0%BB%D1%8C%D1%8F%D1%81%D1%8B-%D0%B4%D0%BB%D1%8F-%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4-git)
+    - [Я хочу закешировать логин и пароль для для репозитория](#%D1%8F-%D1%85%D0%BE%D1%87%D1%83-%D0%B7%D0%B0%D0%BA%D0%B5%D1%88%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C-%D0%BB%D0%BE%D0%B3%D0%B8%D0%BD-%D0%B8-%D0%BF%D0%B0%D1%80%D0%BE%D0%BB%D1%8C-%D0%B4%D0%BB%D1%8F-%D0%B4%D0%BB%D1%8F-%D1%80%D0%B5%D0%BF%D0%BE%D0%B7%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D1%8F)
+  - [Я понятия не имею, что я сделал неправильно](#%D1%8F-%D0%BF%D0%BE%D0%BD%D1%8F%D1%82%D0%B8%D1%8F-%D0%BD%D0%B5-%D0%B8%D0%BC%D0%B5%D1%8E-%D1%87%D1%82%D0%BE-%D1%8F-%D1%81%D0%B4%D0%B5%D0%BB%D0%B0%D0%BB-%D0%BD%D0%B5%D0%BF%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D1%8C%D0%BD%D0%BE)
+- [Другие источники](#%D0%B4%D1%80%D1%83%D0%B3%D0%B8%D0%B5-%D0%B8%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D0%BA%D0%B8)
+  - [Книги](#%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8)
+  - [Туториалы](#%D1%82%D1%83%D1%82%D0%BE%D1%80%D0%B8%D0%B0%D0%BB%D1%8B)
+  - [Скрипты и инструменты](#%D1%81%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D1%8B-%D0%B8-%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D1%8B)
+  - [GUI Клиенты](#gui-%D0%BA%D0%BB%D0%B8%D0%B5%D0%BD%D1%82%D1%8B)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-## Editing Commits
+## Редактирование коммитов
 
 <a name="diff-last"></a>
-### What did I just commit?
+### Что я только что закоммитил?
 
-Let's say that you just blindly committed changes with `git commit -a` and you're not sure what the actual content of the commit you just made was. You can show the latest commit on your current HEAD with:
+Предположим, что вы просто слепо закоммитили изменения с помощью `git commit -a` и вы не знаете, каков фактический контент совершенного вами коммита. Вы можете посмотреть последний коммит на текущем HEAD с помощью:
 
 ```sh
 (master)$ git show
 ```
 
-or
+или
 
 ```sh
 $ git log -n1 -p
 ```
 
 <a name="#i-wrote-the-wrong-thing-in-a-commit-message"></a>
-### I wrote the wrong thing in a commit message
+### Я сделал ошибку в сообщении коммита
 
-If you wrote the wrong thing and the commit has not yet been pushed, you can do the following to change the commit message:
+Если вы сделали ошибку в сообщении коммита и еще не запушили его, вы можете сделать следующее, чтобы изменить сообщение:
 
 ```sh
 $ git commit --amend
 ```
-This will open your default text editor, where you can edit the message. On the other hand, you can do this all in one command:
+Это откроет текстовый редактор по умолчанию, где вы можете отредактировать сообщение. С другой стороны, вы можете сделать это все в одной команде:
 
 ```sh
 $ git commit --amend -m 'xxxxxxx'
 ```
 
-If you have already pushed the message, you can amend the commit and force push, but this is not recommended.
+Если вы уже запушили, вы можете изменить коммит и принудительно запушить, но это не рекомендуется.
 
 <a name="commit-wrong-author"></a>
-### I committed with the wrong name and email configured
+### Я сделал коммит с неправильным имям и адресом электронной почты
 
-If it's a single commit, amend it
+Если это один коммит, исправьте его
 
 ```sh
 $ git commit --amend --author "New Authorname <authoremail@mydomain.com>"
 ```
 
-If you need to change all of history, see the man page for 'git filter-branch'.
+Если вам нужно изменить всю историю, смотрите справку для 'git filter-branch'
 
 
 <a href="#i-want-to-remove-a-file-from-a-commit"></a>
-### I want to remove a file from a commit
+### Я хочу удалить файл из коммита
 
-In order to remove a file from a commit, do the following:
+Чтобы удалить файл из коммита, выполните следующие действия:
 
 ```sh
 $ git checkout HEAD^ myfile
@@ -138,41 +138,41 @@ $ git add myfile
 $ git commit --amend --no-edit
 ```
 
-This is particularly useful when you have an open patch and you have committed an unnecessary file, and need to force push to update the patch on a remote. The `--no-edit` option is used to keep the existing commit message.
+Это особенно полезно, когда у вас есть открытый патч, и вы закоммитили ненужный файл, и вам нужно заставить push обновить патч на удаленной ветке. Опция `--no-edit` используется для сохранения существующего сообщения коммита.
 
 <a name="delete-pushed-commit"></a>
-### I want to delete or remove my last commit
+### Я хочу удалить мой последний коммит
 
-If you need to delete pushed commits, you can use the following. However, it will irreversibly change your history, and mess up the history of anyone else who had already pulled from the repository. In short, if you're not sure, you should never do this, ever.
+Если вам нужно удалить запушенные коммиты, вы можете использовать следующее. Тем не менее, это необратимо изменит вашу историю и испортит историю любого, кто уже взял пулл из репозитория. Короче говоря, если вы не уверены, не делайте этого, никогда.
 
 ```sh
 $ git reset HEAD^ --hard
 $ git push --force-with-lease [remote] [branch]
 ```
 
-If you haven't pushed, to reset Git to the state it was in before you made your last commit (while keeping your staged changes):
+Если вы не запушили, чтобы сбросить Git в состояние, в котором оно было, прежде чем вы сделали свой последний коммит (сохраняя свои поэтапные изменения):
 
 ```
 (my-branch*)$ git reset --soft HEAD@{1}
 
 ```
 
-This only works if you haven't pushed. If you have pushed, the only truly safe thing to do is `git revert SHAofBadCommit`. That will create a new commit that undoes all the previous commit's changes. Or, if the branch you pushed to is rebase-safe (ie. other devs aren't expected to pull from it), you can just use `git push --force-with-lease`. For more, see [the above section](#deleteremove-last-pushed-commit).
+Это работает, только если вы не запушили. Если вы запушили, единственная по-настоящему безопасная вещь - `git revert SHAofBadCommit`. Это создаст новый коммит, который отменит все предыдущие закомиченные изменения. Или, если ветка на которую вы запушили, является безопасной для восстановления (т.e. другие разработчики не должны пулить из нее), вы можете просто использовать `git push -force-with-lease`. Подробнее см.[the above section](#deleteremove-last-pushed-commit).
 
 <a name="delete-any-commit"></a>
-### Delete/remove arbitrary commit
+### Удаление произвольного коммит
 
-The same warning applies as above. Never do this if possible.
+Такое же предупреждение, как указано выше. Никогда не делайте этого, если это возможно.
 
 ```sh
 $ git rebase --onto SHA1_OF_BAD_COMMIT^ SHA1_OF_BAD_COMMIT
 $ git push --force-with-lease [remote] [branch]
 ```
 
-Or do an [interactive rebase](#interactive-rebase) and remove the line(s) corresponding to commit(s) you want to see removed.
+Или выполните [interactive rebase](#interactive-rebase) и удалите строку (строки), соответствующего коммита, которого вы хотите удалить.
 
 <a name="#force-push"></a>
-### I tried to push my amended commit to a remote, but I got an error message
+### Я попытался запушить исправленный коммит на удаленную ветку, но у меня появилось сообщение об ошибке
 
 ```sh
 To https://github.com/yourusername/repo.git
@@ -195,7 +195,7 @@ In general, **avoid force pushing**. It is best to create and push a new commit 
 If you are *absolutely* sure that nobody is working on the same branch or you want to update the tip of the branch *unconditionally*, you can use `--force` (`-f`), but this should be avoided in general.
 
 <a href="undo-git-reset-hard"></a>
-### I accidentally did a hard reset, and I want my changes back
+### Я случайно сделал жесткий сброс, и я хочу, чтобы мои изменения вернулись
 
 If you accidentally do `git reset --hard`, you can normally still get your commit back, as git keeps a log of everything for a few days.
 
@@ -214,7 +214,7 @@ And you should be good to go.
 ## Staging
 
 <a href="#i-need-to-add-staged-changes-to-the-previous-commit"></a>
-### I need to add staged changes to the previous commit
+### Мне нужно добавить внесенные изменения к предыдущему коммиту
 
 ```sh
 (my-branch*)$ git commit --amend
@@ -240,7 +240,7 @@ Then, you will need to use the `e` option to manually choose which lines to add.
 
 
 <a href="stage-in-two-commits"></a>
-### I want to add changes in one file to two different commits
+### Я хочу добавить измененния в один файл в двух коммитах
 
 `git add` will add the entire file to a commit. `git add -p` will allow to interactively select which changes you want to add.
 
@@ -276,7 +276,7 @@ $ git stash pop
 ```
 
 <a href="i-want-to-discard-my-local-uncommitted-changes"></a>
-### I want to discard my local, uncommitted changes
+### Я хочу отменить мои локальные, незакоммиченные измененния
 
 If you want to only reset to some commit between origin and your local, you can do this:
 
@@ -369,7 +369,7 @@ One way of resetting to match origin (to have the same as what is on the remote)
 ```
 
 <a name="commit-wrong-branch"></a>
-### I committed to master instead of a new branch
+### Я закоммитил в мастер, вместо новой ветки
 
 Create the new branch while remaining on master:
 
@@ -515,7 +515,7 @@ $ git fetch -p
 ```
 
 <a name='restore-a-deleted-branch'></a>
-### I accidentally deleted my branch
+### Я случайно удалил свою ветку
 
 If you're regularly pushing to remote, you should be safe most of the time. But still sometimes you may end up deleting your branches. Let's say we create a branch and create a new file:
 
@@ -585,7 +585,7 @@ README.md foo.txt
 Voila! We got our removed file back. Git reflog is also useful when rebasing goes terribly wrong.
 
 <a name="i-want-to-delete-a-branch"></a>
-### I want to delete a branch
+### Я хочу удалить ветку
 
 To delete a remote branch:
 
@@ -606,7 +606,7 @@ To delete a local branch:
 ```
 
 <a name="i-want-to-rename-a-branch"></a>
-### I want to rename a branch
+### Я хочу переименовать ветку
 
 To rename a local current branch:
 
@@ -621,7 +621,7 @@ To rename a local different branch:
 ```
 
 <a name="i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on"></a>
-### I want to checkout to a remote branch that someone else is working on
+### Я хочу переключится на удаленную ветку пока кто-то работает с ней
 
 First, fetch all branches from remote:
 
@@ -641,10 +641,10 @@ Switched to a new branch 'daves'
 
 This will give you a local copy of the branch `daves`, and any update that has been pushed will also show up remotely.
 
-## Rebasing and Merging
+## Rebasing и Merging
 
 <a name="undo-rebase"></a>
-### I want to undo rebase/merge
+### Я хочу отменить rebase/merge
 
 You may have merged or rebased your current branch with a wrong branch, or you can't figure it out or finish the rebase/merge process. Git saves the original HEAD pointer in a variable called ORIG_HEAD before doing dangerous operations, so it is simple to recover your branch at the state before the rebase/merge.
 
@@ -784,7 +784,7 @@ Sometimes you have several work in progress commits that you want to combine bef
 This will do an interactive rebase that lists only the commits that you haven't already pushed, so it will be safe to reorder/fix/squash anything in the list.
 
 <a name="check-if-all-commits-on-a-branch-are-merged"></a>
-### Check if all commits on a branch are merged
+### Проверить что все коммиты на ветке смердженны
 
 To check if all commits on a branch are merged into another branch, you should diff between the heads (or any commits) of those branches:
 
@@ -873,7 +873,7 @@ If at any time you want to stop the entire rebase and go back to the original st
 ```
 
 <a name="miscellaneous-objects"></a>
-## Miscellaneous Objects
+## Разное
 
 <a name="clone-submodules"></a>
 ### Clone all submodules
@@ -889,7 +889,7 @@ $ git submodule update --init --recursive
 ```
 
 <a name="delete-tag"></a>
-### Delete tag
+### Удалить тег
 
 ```sh
 $ git tag -d <tag_name>
@@ -897,7 +897,7 @@ $ git push <remote> :refs/tags/<tag_name>
 ```
 
 <a name="recover-tag"></a>
-### Recover a deleted tag
+### Вернуть удаленный тег
 
 If you want to recover a tag that was already deleted, you can do so by following these steps: First, you need to find the unreachable tag:
 
@@ -924,7 +924,7 @@ From github.com:foo/bar
  * [new ref]         refs/pull/1/head -> pr_1
 ```
 
-## Tracking Files
+## Отслеживание файлов
 
 <a href="i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file"></a>
 ### I want to change a file name's capitalization, without changing the contents of the file.
@@ -934,7 +934,7 @@ From github.com:foo/bar
 ```
 
 <a href="remove-from-git"></a>
-### I want to remove a file from git but keep the file
+### Я хочу убрать файл с git, но файл оставить
 
 ```sh
 (master)$ git rm --cached log.txt
@@ -955,10 +955,10 @@ If you want to revert to changes made just 1 commit before c5f567, pass the comm
 (master)$ git checkout c5f567~1 -- file1/to/restore file2/to/restore
 ```
 
-## Configuration
+## Конфигурация
 
 <a name="adding-command-aliases"></a>
-### I want to add aliases for some git commands
+### Я хочу добавить альясы для команд git
 
 On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```.  I've added some example aliases I use as shortcuts (and some of my common typos) in the ```[alias]``` section as shown below:
 
@@ -986,7 +986,7 @@ On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```. 
 ```
 
 <a name="credential-helper"></a>
-### I want to cache a username and password for a repository
+### Я хочу закешировать логин и пароль для для репозитория
 
 You might have a repository that requires authentication.  In which case you can cache a username and password so you don't have to enter it on every push / pull. Credential helper can do this for you.
 
@@ -1001,7 +1001,7 @@ $ git config --global credential.helper 'cache --timeout=3600'
 ```
 
 <a href="#ive-no-idea-what-i-did-wrong"></a>
-## I've no idea what I did wrong
+## Я понятия не имею, что я сделал неправильно
 
 So, you're screwed - you `reset` something, or you merged the wrong branch, or you force pushed and now you can't find your commits. You know, at some point, you were doing alright, and you want to go back to some state you were at.
 
@@ -1027,21 +1027,21 @@ Using git reset it is then possible to change master back to the commit it was b
 (copied and edited from [Source](https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog)).
 
 
-# Other Resources
+# Другие источники
 
-## Books
+## Книги
 
 * [Pro Git](https://git-scm.com/book/en/v2) - Scott Chacon's excellent git book
 * [Git Internals](https://github.com/pluralsight/git-internals-pdf) - Scott Chacon's other excellent git book
 
-## Tutorials
+## Туториалы
 
 * [Learn Git branching](https://learngitbranching.js.org/) An interactive web based branching/merging/rebasing tutorial
 * [Getting solid at Git rebase vs. merge](https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa)
 * [git-workflow](https://github.com/asmeurer/git-workflow) - [Aaron Meurer](https://github.com/asmeurer)'s howto on using git to contribute to open source repositories
 * [GitHub as a workflow](http://hugogiraudel.com/2015/08/13/github-as-a-workflow/) - An interesting take on using GitHub as a workflow, particularly with empty PRs
 
-## Scripts and Tools
+## Скрипты и инструменты
 
 * [firstaidgit.io](http://firstaidgit.io/) A searchable selection of the most frequently asked Git questions
 * [git-extra-commands](https://github.com/unixorn/git-extra-commands) - a collection of useful extra git scripts
@@ -1050,7 +1050,7 @@ Using git reset it is then possible to change master back to the commit it was b
 * [git-tips](https://github.com/git-tips/tips) - Small git tips
 * [git-town](https://github.com/Originate/git-town) - Generic, high-level Git workflow support! http://www.git-town.com
 
-## GUI Clients
+## GUI Клиенты
 * [GitKraken](https://www.gitkraken.com/) - The downright luxurious Git client,for Windows, Mac & Linux
 * [git-cola](https://git-cola.github.io/) - another git client for Windows and OS X
 * [GitUp](https://github.com/git-up/GitUp) - A newish GUI that has some very opinionated ways of dealing with git's complications
