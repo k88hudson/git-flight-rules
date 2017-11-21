@@ -1126,3 +1126,5 @@ Using git reset it is then possible to change master back to the commit it was b
 * [GitExtensions](https://github.com/gitextensions/gitextensions) - a shell extension, a Visual Studio 2010-2015 plugin and a standalone Git repository tool.
 * [Fork](https://git-fork.com/) - a fast and friendly git client for Mac (beta)
 * [gmaster](https://gmaster.io/) - a git client for Windows that has 3-way merge, analyze refactors, semantic diff and merge (beta)
+* [gitk](https://git-scm.com/docs/gitk) - a git client for linux to allow simple view of repo state.
+
