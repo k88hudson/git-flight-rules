@@ -896,6 +896,12 @@ To stash all the edits in your working directory
 $ git stash
 ```
 
+If you also want to stash untracked files, use `-u` option.
+
+```sh
+$ git stash -u
+```
+
 <a name="stash-specific-file"></a>
 ### Stash specific file
 
