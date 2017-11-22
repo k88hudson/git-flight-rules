@@ -63,7 +63,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
       - [There were conflicts](#there-were-conflicts)
   - [Stashing](#stashing)
     - [Stash all edits](#stash-all-edits)
-    - [Stash specific file](#stash-specific-file)
+    - [Stash specific files](#stash-specific-files)
     - [Stash with message](#stash-msg)
     - [Apply a specific stash from list](#stash-apply-specific)
   - [Miscellaneous Objects](#miscellaneous-objects)
@@ -902,13 +902,19 @@ If you also want to stash untracked files, use `-u` option.
 $ git stash -u
 ```
 
-<a name="stash-specific-file"></a>
-### Stash specific file
+<a name="stash-specific-files"></a>
+### Stash specific files
 
 To stash only one file from your working directory
 
 ```sh
 $ git stash push working-directory-path/filename.ext
+```
+
+To stash multiple files from your working directory
+
+```sh
+$ git stash push working-directory-path/filename1.ext <space> working-directory-path/filename2.ext
 ```
 
 <a name="stash-msg"></a>
