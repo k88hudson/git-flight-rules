@@ -667,6 +667,11 @@ $ git config push.default current
 $ git push -u
 ```
 
+If you do not want to change the git configuration, you can also use:
+
+```sh
+$ git push -u <remote> HEAD
+```
 
 ## Rebasing and Merging
 
