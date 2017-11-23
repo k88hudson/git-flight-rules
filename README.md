@@ -663,7 +663,7 @@ This will give you a local copy of the branch `daves`, and any update that has b
 ### I want to create a new remote branch from current local one
 
 ```sh
-$ git config --global push.default current
+$ git config push.default current
 $ git push -u
 ```
 
@@ -1027,8 +1027,8 @@ From github.com:foo/bar
 ### I want to overwrite local files when doing a git pull.
 
 ```sh
-$ git fetch --all
-$ git reset --hard origin/master
+(master)$ git fetch --all
+(master)$ git reset --hard origin/master
 ```
 
 <a href="remove-from-git"></a>
@@ -1089,11 +1089,18 @@ On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```. 
 You can’t! git doesn’t support this, but there’s a hack. You can create a .gitignore file in the directory with the following contents:
 
 
+ # Ignore everything in this directory
+ *
+ # Except this file
+ !.gitignore
+
+Another common convention is to make an empty file in the folder, titled .gitkeep.
+
 ```sh
-$ # Ignore everything in this directory
-$ *
-$ # Except this file
-$ !.gitignore
+
+$ mkdir mydir
+$ touch mydir/.gitkeep
+
 ```
 
 <a name="credential-helper"></a>
