@@ -1091,21 +1091,20 @@ On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```. 
 <a name="adding-empty-repository"></a>
 ### I want to add an empty directory to my repository
 
-You can’t! git doesn’t support this, but there’s a hack. You can create a .gitignore file in the directory with the following contents:
+You can’t! Git doesn’t support this, but there’s a hack. You can create a .gitignore file in the directory with the following contents:
 
-
+```
  # Ignore everything in this directory
  *
  # Except this file
  !.gitignore
+```
 
 Another common convention is to make an empty file in the folder, titled .gitkeep.
 
 ```sh
-
 $ mkdir mydir
 $ touch mydir/.gitkeep
-
 ```
 
 <a name="credential-helper"></a>
@@ -1130,6 +1129,11 @@ $ git config --global credential.helper 'cache --timeout=3600'
 $ git config core.fileMode false
 ```
 
+If you want to make this the default behaviour for logged-in users, then use:
+
+```sh
+$ git config --global core.fileMode false
+```
 
 <a href="#ive-no-idea-what-i-did-wrong"></a>
 ## I've no idea what I did wrong
