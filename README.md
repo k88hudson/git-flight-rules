@@ -84,6 +84,8 @@ For clarity's sake all examples in this document use a customized bash prompt in
   - [Tutorials](#tutorials)
   - [Scripts and Tools](#scripts-and-tools)
   - [GUI Clients](#gui-clients)
+- [Git Cheat Sheet](#git_cheat_sheet)
+ 
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -1134,3 +1136,4 @@ Using git reset it is then possible to change master back to the commit it was b
 * [gmaster](https://gmaster.io/) - a git client for Windows that has 3-way merge, analyze refactors, semantic diff and merge (beta)
 * [gitk](https://git-scm.com/docs/gitk) - a git client for linux to allow simple view of repo state.
 
+## Git Cheat Sheet
