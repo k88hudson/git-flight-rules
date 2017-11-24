@@ -914,7 +914,7 @@ $ git stash push working-directory-path/filename.ext
 To stash multiple files from your working directory
 
 ```sh
-$ git stash push working-directory-path/filename1.ext <space> working-directory-path/filename2.ext
+$ git stash push working-directory-path/filename1.ext working-directory-path/filename2.ext
 ```
 
 <a name="stash-msg"></a>
