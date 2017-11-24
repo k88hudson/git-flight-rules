@@ -84,7 +84,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
   - [Tutorials](#tutorials)
   - [Scripts and Tools](#scripts-and-tools)
   - [GUI Clients](#gui-clients)
-- [Git Cheat Sheet](#git_cheat_sheet)
+- [Git Cheat Sheet](#git-cheat-sheet)
  
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
