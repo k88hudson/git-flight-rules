@@ -1137,3 +1137,12 @@ Using git reset it is then possible to change master back to the commit it was b
 * [gitk](https://git-scm.com/docs/gitk) - a git client for linux to allow simple view of repo state.
 
 ## Git Cheat Sheet
+* [Create]
+  *Clone an existing repository
+  ```sh
+  $ git clone ssh://user@domain.com/repo.git
+  ```
+  * Create a new local repository
+   ```sh
+  $ git init
+  ```
