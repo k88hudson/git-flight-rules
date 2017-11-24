@@ -84,8 +84,6 @@ For clarity's sake all examples in this document use a customized bash prompt in
   - [Tutorials](#tutorials)
   - [Scripts and Tools](#scripts-and-tools)
   - [GUI Clients](#gui-clients)
-- [Git Cheat Sheet](#git-cheat-sheet)
- 
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -1137,12 +1135,21 @@ Using git reset it is then possible to change master back to the commit it was b
 * [gitk](https://git-scm.com/docs/gitk) - a git client for linux to allow simple view of repo state.
 
 ## Git Cheat Sheet
-* [Create]
-  *Clone an existing repository
+* Create
+  * Clone an existing repository
   ```sh
   $ git clone ssh://user@domain.com/repo.git
   ```
   * Create a new local repository
-   ```sh
+  ```sh
   $ git init
   ```
+* Local Changes
+	* Changed files in your working directory
+    	```sh
+  		$ git status
+ 		 ```
+    * Changes to tracked files
+    	```sh
+        $ git diff
+        ```
