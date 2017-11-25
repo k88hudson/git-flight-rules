@@ -662,12 +662,13 @@ This will give you a local copy of the branch `daves`, and any update that has b
 <a name="i-want-to-create-a-new-remote-branch-from-current-local-one"></a>
 ### I want to create a new remote branch from current local one
 
-The following command will always push to a remote branch named origin, even if there are other remote branches with different names:
 
 ```sh
-$ git config push.default current
-$ git push -u
+$ git config push.default upstream
+$ git push -u origin HEAD
 ```
+
+If you want to check out the other default configs which ```git push``` can take, visit the documentation for Git at https://git-scm.com/docs/git-config#git-config-pushdefault
 
 If you do not want to change the git configuration, you can also use:
 
@@ -681,7 +682,7 @@ The following command will push all branches that exist locally and remotely wit
 $ git push
 ```
 
-This command is usually appropriate when a developer pushes to his own public repository, but may be confusing if not dangerous when using a shared repository.
+
 
 ## Rebasing and Merging
 
