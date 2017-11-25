@@ -662,6 +662,8 @@ This will give you a local copy of the branch `daves`, and any update that has b
 <a name="i-want-to-create-a-new-remote-branch-from-current-local-one"></a>
 ### I want to create a new remote branch from current local one
 
+The following command will always push to a remote branch named origin, even if there are other remote branches with different names:
+
 ```sh
 $ git config push.default current
 $ git push -u
@@ -672,6 +674,14 @@ If you do not want to change the git configuration, you can also use:
 ```sh
 $ git push -u <remote> HEAD
 ```
+
+The following command will push all branches that exist locally and remotely with the same name:
+
+```sh
+$ git push
+```
+
+This command is usually appropriate when a developer pushes to his own public repository, but may be confusing if not dangerous when using a shared repository.
 
 ## Rebasing and Merging
 
@@ -1106,6 +1116,8 @@ Another common convention is to make an empty file in the folder, titled .gitkee
 $ mkdir mydir
 $ touch mydir/.gitkeep
 ```
+
+You can also name the file as just .keep , in which case the second line above would be ```touch mydir/.keep``` 
 
 <a name="credential-helper"></a>
 ### I want to cache a username and password for a repository
