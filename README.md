@@ -676,12 +676,13 @@ If you do not want to change the git configuration, you can also use:
 $ git push -u <remote> HEAD
 ```
 
-The following command will push all branches that exist locally and remotely with the same name:
+With the ```upstream``` mode and the ```simple``` mode (default in Git 2.0), the following command will push the current branch w.r.t. the remote branch that has been registered previously with -u :
 
 ```sh
 $ git push
 ```
 
+The behavior of the other modes of ```git push``` is described in the doc of push.default.
 
 
 ## Rebasing and Merging
