@@ -1110,7 +1110,7 @@ Using git reset it is then possible to change master back to the commit it was b
 * [Getting solid at Git rebase vs. merge](https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa)
 * [git-workflow](https://github.com/asmeurer/git-workflow) - [Aaron Meurer](https://github.com/asmeurer)'s howto on using git to contribute to open source repositories
 * [GitHub as a workflow](http://hugogiraudel.com/2015/08/13/github-as-a-workflow/) - An interesting take on using GitHub as a workflow, particularly with empty PRs
-* [Githug] - A game to learn more common git workflows
+* [Githug](https://github.com/Gazler/githug) - A game to learn more common git workflows
 
 ## Scripts and Tools
 
