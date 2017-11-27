@@ -38,6 +38,8 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to move my unstaged edits to a different, existing branch](#i-want-to-move-my-unstaged-edits-to-a-different-existing-branch)
     - [I want to discard my local, uncommitted changes](#i-want-to-discard-my-local-uncommitted-changes)
     - [I want to discard specific unstaged changes](#i-want-to-discard-specific-unstaged-changes)
+    - [I want to discard specific unstaged files](#i-want-to-discard-specific-unstaged-files)
+    - [I want to discard all of my local changes](#i-want-to-discard-all-of-my-local-changes)
   - [Branches](#branches)
     - [Create a branch from a commit](#create-branch-from-commit)
     - [I pulled from/into the wrong branch](#i-pulled-frominto-the-wrong-branch)
@@ -336,6 +338,28 @@ Alternatively, stash your undesired changes, and then drop stash.
 $ git stash -p
 # Select all of the snippets you don't want to save
 $ git stash drop
+```
+
+### I want to discard specific unstaged files
+
+When you want to get rid of one specific file in your working copy.
+
+```sh
+$ git checkout myFile
+```
+
+Alternatively, to discard multiple files in your working copy, list them all.
+
+```sh
+$ git checkout myFirstFile mySecondFile
+```
+
+### I want to discard all of my local changes
+
+When you want to get rid of all of your local uncommitted changes
+
+```sh
+$ git checkout .
 ```
 
 ## Branches
