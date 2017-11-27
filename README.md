@@ -212,6 +212,8 @@ If you are *absolutely* sure that nobody is working on the same branch or you wa
 
 If you accidentally do `git reset --hard`, you can normally still get your commit back, as git keeps a log of everything for a few days.
 
+Note: This is only valid if your work is backed up, i.e., either committed or stashed. `git reset --hard` _will remove_ uncommitted modifications, so use it with caution. (A safer option is `git reset --keep`.)
+
 ```sh
 (master)$ git reflog
 ```
