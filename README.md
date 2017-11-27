@@ -50,6 +50,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to delete a branch](#i-want-to-delete-a-branch)
     - [I want to rename a branch](#i-want-to-rename-a-branch)
     - [I want to checkout to a remote branch that someone else is working on](#i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on)
+    - [I want to create a new remote branch from current local one](#i-want-to-create-a-new-remote-branch-from-current-local-one)
   - [Rebasing and Merging](#rebasing-and-merging)
     - [I want to undo rebase/merge](#undo-rebase)
     - [I rebased, but I don't want to force push.](#i-rebased-but-i-dont-want-to-force-push)
@@ -68,16 +69,20 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [Apply a specific stash from list](#stash-apply-specific)
   - [Miscellaneous Objects](#miscellaneous-objects)
     - [Clone all submodules](#clone-all-submodules)
+    - [Remove a submodule](#remove-a-submodule)
     - [Delete tag](#delete-tag)
     - [Recover a deleted tag](#recover-a-deleted-tag)
     - [Deleted Patch](#deleted-patch)
   - [Tracking Files](#tracking-files)
     - [I want to change a file name's capitalization, without changing the contents of the file.](#i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file)
+    - [I want to overwrite local files when doing a git pull](#i-want-to-overwrite-local-files-when-doing-a-git-pull)
     - [I want to remove a file from git but keep the file](#i-want-to-remove-a-file-from-git-but-keep-the-file)
     - [I want to revert a file to a specific revision](#i-want-to-revert-a-file-to-a-specific-revision)
   - [Configuration](#configuration)
     - [I want to add aliases for some git commands](#i-want-to-add-aliases-for-some-git-commands)
+    - [I want to add an empty directory to my repository](#i-want-to-add-an-empty-directory-to-my-repository)
     - [I want to cache a username and password for a repository](#i-want-to-cache-a-username-and-password-for-a-repository)
+    - [I want to make Git ignore permissions and filemode changes](#i-want-to-make-git-ignore-permissions-and-filemode-changes)
   - [I've no idea what I did wrong](#ive-no-idea-what-i-did-wrong)
 - [Other Resources](#other-resources)
   - [Books](#books)
@@ -654,6 +659,32 @@ Switched to a new branch 'daves'
 
 This will give you a local copy of the branch `daves`, and any update that has been pushed will also show up remotely.
 
+<a name="i-want-to-create-a-new-remote-branch-from-current-local-one"></a>
+### I want to create a new remote branch from current local one
+
+
+```sh
+$ git config push.default upstream
+$ git push -u origin HEAD
+```
+
+If you want to check out the other default configs which ```git push``` can take, visit the documentation for Git at https://git-scm.com/docs/git-config#git-config-pushdefault
+
+If you do not want to change the git configuration, you can also use:
+
+```sh
+$ git push -u <remote> HEAD
+```
+
+With the ```upstream``` mode and the ```simple``` mode (default in Git 2.0), the following command will push the current branch w.r.t. the remote branch that has been registered previously with -u :
+
+```sh
+$ git push
+```
+
+The behavior of the other modes of ```git push``` is described in the doc of push.default.
+
+
 ## Rebasing and Merging
 
 <a name="undo-rebase"></a>
@@ -958,6 +989,18 @@ If already cloned:
 $ git submodule update --init --recursive
 ```
 
+<a name="delete-submodule"></a>
+### Remove a submodule
+
+Creating a submodule is pretty straight-forward, but deleting them less so. The commands you need are:
+
+```sh
+$ git submodule deinit submodulename   
+$ git rm submodulename
+$ git rm --cached submodulename
+$ rm -rf .git/modules/submodulename
+```
+
 <a name="delete-tag"></a>
 ### Delete tag
 
@@ -1001,6 +1044,14 @@ From github.com:foo/bar
 
 ```sh
 (master)$ git mv --force myfile MyFile
+```
+
+<a href="i-want-to-overwrite-local-files-when-doing-a-git-pull"></a>
+### I want to overwrite local files when doing a git pull.
+
+```sh
+(master)$ git fetch --all
+(master)$ git reset --hard origin/master
 ```
 
 <a href="remove-from-git"></a>
@@ -1055,6 +1106,27 @@ On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```. 
     zap = fetch -p
 ```
 
+<a name="adding-empty-repository"></a>
+### I want to add an empty directory to my repository
+
+You can’t! Git doesn’t support this, but there’s a hack. You can create a .gitignore file in the directory with the following contents:
+
+```
+ # Ignore everything in this directory
+ *
+ # Except this file
+ !.gitignore
+```
+
+Another common convention is to make an empty file in the folder, titled .gitkeep.
+
+```sh
+$ mkdir mydir
+$ touch mydir/.gitkeep
+```
+
+You can also name the file as just .keep , in which case the second line above would be ```touch mydir/.keep``` 
+
 <a name="credential-helper"></a>
 ### I want to cache a username and password for a repository
 
@@ -1068,6 +1140,19 @@ $ git config --global credential.helper cache
 ```sh
 $ git config --global credential.helper 'cache --timeout=3600'
 # Set the cache to timeout after 1 hour (setting is in seconds)
+```
+
+<a name="i-want-to-make-git-ignore-permissions-and-filemode-changes"></a>
+### I want to make Git ignore permissions and filemode changes
+
+```sh
+$ git config core.fileMode false
+```
+
+If you want to make this the default behaviour for logged-in users, then use:
+
+```sh
+$ git config --global core.fileMode false
 ```
 
 <a href="#ive-no-idea-what-i-did-wrong"></a>
