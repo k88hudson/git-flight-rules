@@ -39,6 +39,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to discard my local, uncommitted changes](#i-want-to-discard-my-local-uncommitted-changes)
     - [I want to discard specific unstaged changes](#i-want-to-discard-specific-unstaged-changes)
   - [Branches](#branches)
+    - [Create a branch from a commit](#create-branch-from-commit)
     - [I pulled from/into the wrong branch](#i-pulled-frominto-the-wrong-branch)
     - [I want to discard local commits so my branch is the same as one on the server](#i-want-to-discard-local-commits-so-my-branch-is-the-same-as-one-on-the-server)
     - [I committed to master instead of a new branch](#i-committed-to-master-instead-of-a-new-branch)
@@ -49,6 +50,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to delete a branch](#i-want-to-delete-a-branch)
     - [I want to rename a branch](#i-want-to-rename-a-branch)
     - [I want to checkout to a remote branch that someone else is working on](#i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on)
+    - [I want to create a new remote branch from current local one](#i-want-to-create-a-new-remote-branch-from-current-local-one)
   - [Rebasing and Merging](#rebasing-and-merging)
     - [I want to undo rebase/merge](#undo-rebase)
     - [I rebased, but I don't want to force push.](#i-rebased-but-i-dont-want-to-force-push)
@@ -60,18 +62,27 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [Possible issues with interactive rebases](#possible-issues-with-interactive-rebases)
       - [The rebase editing screen says 'noop'](#the-rebase-editing-screen-says-noop)
       - [There were conflicts](#there-were-conflicts)
+  - [Stashing](#stashing)
+    - [Stash all edits](#stash-all-edits)
+    - [Stash specific files](#stash-specific-files)
+    - [Stash with message](#stash-msg)
+    - [Apply a specific stash from list](#stash-apply-specific)
   - [Miscellaneous Objects](#miscellaneous-objects)
     - [Clone all submodules](#clone-all-submodules)
+    - [Remove a submodule](#remove-a-submodule)
     - [Delete tag](#delete-tag)
     - [Recover a deleted tag](#recover-a-deleted-tag)
     - [Deleted Patch](#deleted-patch)
   - [Tracking Files](#tracking-files)
     - [I want to change a file name's capitalization, without changing the contents of the file.](#i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file)
+    - [I want to overwrite local files when doing a git pull](#i-want-to-overwrite-local-files-when-doing-a-git-pull)
     - [I want to remove a file from git but keep the file](#i-want-to-remove-a-file-from-git-but-keep-the-file)
     - [I want to revert a file to a specific revision](#i-want-to-revert-a-file-to-a-specific-revision)
   - [Configuration](#configuration)
     - [I want to add aliases for some git commands](#i-want-to-add-aliases-for-some-git-commands)
+    - [I want to add an empty directory to my repository](#i-want-to-add-an-empty-directory-to-my-repository)
     - [I want to cache a username and password for a repository](#i-want-to-cache-a-username-and-password-for-a-repository)
+    - [I want to make Git ignore permissions and filemode changes](#i-want-to-make-git-ignore-permissions-and-filemode-changes)
   - [I've no idea what I did wrong](#ive-no-idea-what-i-did-wrong)
 - [Other Resources](#other-resources)
   - [Books](#books)
@@ -190,7 +201,7 @@ Note that, as with rebasing (see below), amending **replaces the old commit with
 (my-branch)$ git push origin mybranch --force-with-lease
 ```
 
-In general, **avoid force pushing**. It is best to create and push a new commit rather than force-pushing the amended commit as it has will cause conflicts in the source history for any other developer who has interacted with the branch in question or any child branches. `--force-with-lease` will still fail, if someone else was also working on the same branch as you, and your push would overwrite those changes.
+In general, **avoid force pushing**. It is best to create and push a new commit rather than force-pushing the amended commit as it will cause conflicts in the source history for any other developer who has interacted with the branch in question or any child branches. `--force-with-lease` will still fail, if someone else was also working on the same branch as you, and your push would overwrite those changes.
 
 If you are *absolutely* sure that nobody is working on the same branch or you want to update the tip of the branch *unconditionally*, you can use `--force` (`-f`), but this should be avoided in general.
 
@@ -236,7 +247,8 @@ $ git add --patch filename.x
 $ git add -N filename.x
 ```
 
-Then, you will need to use the `e` option to manually choose which lines to add. Running `git diff --cached` will show you which lines you have staged compared to which are still saved locally.
+Then, you will need to use the `e` option to manually choose which lines to add. Running `git diff --cached` or 
+`git diff --staged` will show you which lines you have staged compared to which are still saved locally.
 
 
 <a href="stage-in-two-commits"></a>
@@ -291,7 +303,7 @@ If you want to only reset to some commit between origin and your local, you can 
 (master)$ git checkout -f
 ```
 
-To reset only a specific file, you can use that the filename as the argument:
+To reset only a specific file, you can use that filename as the argument:
 
 ```sh
 $ git reset filename
@@ -327,6 +339,12 @@ $ git stash drop
 ```
 
 ## Branches
+<a name="create-branch-from-commit"></a>
+### Create a branch from a commit
+```sh
+$ git checkout -b <branch> <SHA1_OF_COMMIT>
+```
+
 
 <a name="pull-wrong-branch"></a>
 ### I pulled from/into the wrong branch
@@ -641,6 +659,32 @@ Switched to a new branch 'daves'
 
 This will give you a local copy of the branch `daves`, and any update that has been pushed will also show up remotely.
 
+<a name="i-want-to-create-a-new-remote-branch-from-current-local-one"></a>
+### I want to create a new remote branch from current local one
+
+
+```sh
+$ git config push.default upstream
+$ git push -u origin HEAD
+```
+
+If you want to check out the other default configs which ```git push``` can take, visit the documentation for Git at https://git-scm.com/docs/git-config#git-config-pushdefault
+
+If you do not want to change the git configuration, you can also use:
+
+```sh
+$ git push -u <remote> HEAD
+```
+
+With the ```upstream``` mode and the ```simple``` mode (default in Git 2.0), the following command will push the current branch w.r.t. the remote branch that has been registered previously with -u :
+
+```sh
+$ git push
+```
+
+The behavior of the other modes of ```git push``` is described in the doc of push.default.
+
+
 ## Rebasing and Merging
 
 <a name="undo-rebase"></a>
@@ -871,6 +915,63 @@ If at any time you want to stop the entire rebase and go back to the original st
 ```sh
 (my-branch)$ git rebase --abort
 ```
+<a name="stashing"></a>
+## Stash
+
+<a name="stash-all-edits"></a>
+### Stash all edits
+
+To stash all the edits in your working directory
+
+```sh
+$ git stash
+```
+
+If you also want to stash untracked files, use `-u` option.
+
+```sh
+$ git stash -u
+```
+
+<a name="stash-specific-files"></a>
+### Stash specific files
+
+To stash only one file from your working directory
+
+```sh
+$ git stash push working-directory-path/filename.ext
+```
+
+To stash multiple files from your working directory
+
+```sh
+$ git stash push working-directory-path/filename1.ext working-directory-path/filename2.ext
+```
+
+<a name="stash-msg"></a>
+### Stash with message
+
+```sh
+$ git stash save <message>
+```
+
+<a name="stash-apply-specific"></a>
+### Apply a specific stash from list
+
+First check your list of stashes with message using
+
+```sh
+$ git stash list
+```
+
+Then apply a specific stash from the list using
+
+```sh
+$ git stash apply "stash@{n}"
+```
+
+Here, 'n' indicates the position of the stash in the stack. The topmost stash will be position 0.
+
 
 <a name="miscellaneous-objects"></a>
 ## Miscellaneous Objects
@@ -886,6 +987,18 @@ If already cloned:
 
 ```sh
 $ git submodule update --init --recursive
+```
+
+<a name="delete-submodule"></a>
+### Remove a submodule
+
+Creating a submodule is pretty straight-forward, but deleting them less so. The commands you need are:
+
+```sh
+$ git submodule deinit submodulename   
+$ git rm submodulename
+$ git rm --cached submodulename
+$ rm -rf .git/modules/submodulename
 ```
 
 <a name="delete-tag"></a>
@@ -931,6 +1044,14 @@ From github.com:foo/bar
 
 ```sh
 (master)$ git mv --force myfile MyFile
+```
+
+<a href="i-want-to-overwrite-local-files-when-doing-a-git-pull"></a>
+### I want to overwrite local files when doing a git pull.
+
+```sh
+(master)$ git fetch --all
+(master)$ git reset --hard origin/master
 ```
 
 <a href="remove-from-git"></a>
@@ -985,6 +1106,27 @@ On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```. 
     zap = fetch -p
 ```
 
+<a name="adding-empty-repository"></a>
+### I want to add an empty directory to my repository
+
+You can’t! Git doesn’t support this, but there’s a hack. You can create a .gitignore file in the directory with the following contents:
+
+```
+ # Ignore everything in this directory
+ *
+ # Except this file
+ !.gitignore
+```
+
+Another common convention is to make an empty file in the folder, titled .gitkeep.
+
+```sh
+$ mkdir mydir
+$ touch mydir/.gitkeep
+```
+
+You can also name the file as just .keep , in which case the second line above would be ```touch mydir/.keep``` 
+
 <a name="credential-helper"></a>
 ### I want to cache a username and password for a repository
 
@@ -998,6 +1140,19 @@ $ git config --global credential.helper cache
 ```sh
 $ git config --global credential.helper 'cache --timeout=3600'
 # Set the cache to timeout after 1 hour (setting is in seconds)
+```
+
+<a name="i-want-to-make-git-ignore-permissions-and-filemode-changes"></a>
+### I want to make Git ignore permissions and filemode changes
+
+```sh
+$ git config core.fileMode false
+```
+
+If you want to make this the default behaviour for logged-in users, then use:
+
+```sh
+$ git config --global core.fileMode false
 ```
 
 <a href="#ive-no-idea-what-i-did-wrong"></a>
@@ -1040,6 +1195,7 @@ Using git reset it is then possible to change master back to the commit it was b
 * [Getting solid at Git rebase vs. merge](https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa)
 * [git-workflow](https://github.com/asmeurer/git-workflow) - [Aaron Meurer](https://github.com/asmeurer)'s howto on using git to contribute to open source repositories
 * [GitHub as a workflow](http://hugogiraudel.com/2015/08/13/github-as-a-workflow/) - An interesting take on using GitHub as a workflow, particularly with empty PRs
+* [Githug](https://github.com/Gazler/githug) - A game to learn more common git workflows
 
 ## Scripts and Tools
 
@@ -1062,3 +1218,5 @@ Using git reset it is then possible to change master back to the commit it was b
 * [GitExtensions](https://github.com/gitextensions/gitextensions) - a shell extension, a Visual Studio 2010-2015 plugin and a standalone Git repository tool.
 * [Fork](https://git-fork.com/) - a fast and friendly git client for Mac (beta)
 * [gmaster](https://gmaster.io/) - a git client for Windows that has 3-way merge, analyze refactors, semantic diff and merge (beta)
+* [gitk](https://git-scm.com/docs/gitk) - a git client for linux to allow simple view of repo state.
+
