@@ -60,6 +60,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
       - [Safe merging strategy](#safe-merging-strategy)
       - [I need to merge a branch into a single commit](#i-need-to-merge-a-branch-into-a-single-commit)
       - [I want to combine only unpushed commits](#i-want-to-combine-only-unpushed-commits)
+      - [I need to abort the merge](#i-need-to-abort-the-merge)
     - [Check if all commits on a branch are merged](#check-if-all-commits-on-a-branch-are-merged)
     - [Possible issues with interactive rebases](#possible-issues-with-interactive-rebases)
       - [The rebase editing screen says 'noop'](#the-rebase-editing-screen-says-noop)
@@ -852,6 +853,16 @@ Sometimes you have several work in progress commits that you want to combine bef
 ```
 
 This will do an interactive rebase that lists only the commits that you haven't already pushed, so it will be safe to reorder/fix/squash anything in the list.
+
+#### I need to abort the merge
+
+Sometimes the merge can produce problems in certain files, in those cases we can use the option `abort` to abort the current conflict resolution process, and try to reconstruct the pre-merge state.
+
+```sh
+(my-branch)$ git merge --abort
+```
+
+This command is available since git version >= 1.7.4
 
 <a name="check-if-all-commits-on-a-branch-are-merged"></a>
 ### Check if all commits on a branch are merged
