@@ -854,6 +854,7 @@ Sometimes you have several work in progress commits that you want to combine bef
 
 This will do an interactive rebase that lists only the commits that you haven't already pushed, so it will be safe to reorder/fix/squash anything in the list.
 
+<a name="i-need-to-abort-the-merge"></a>
 #### I need to abort the merge
 
 Sometimes the merge can produce problems in certain files, in those cases we can use the option `abort` to abort the current conflict resolution process, and try to reconstruct the pre-merge state.
