@@ -252,7 +252,7 @@ $ git add --patch filename.x
 $ git add -N filename.x
 ```
 
-Then, you will need to use the `e` option to manually choose which lines to add. Running `git diff --cached` or 
+Then, you will need to use the `e` option to manually choose which lines to add. Running `git diff --cached` or
 `git diff --staged` will show you which lines you have staged compared to which are still saved locally.
 
 
@@ -295,24 +295,37 @@ $ git stash pop
 <a href="i-want-to-discard-my-local-uncommitted-changes"></a>
 ### I want to discard my local, uncommitted changes
 
-If you want to only reset to some commit between origin and your local, you can do this:
+This will unstage all files you might have staged with git add:
 
 ```sh
-# one commit
-(my-branch)$ git reset --hard HEAD^
-# two commits
-(my-branch)$ git reset --hard HEAD^^
-# four commits
-(my-branch)$ git reset --hard HEAD~4
-# or
-(master)$ git checkout -f
+$ git reset
 ```
 
-To reset only a specific file, you can use that filename as the argument:
+This will revert all local uncommitted changes (should be executed in repo root):
 
 ```sh
-$ git reset filename
+$ git checkout .
 ```
+
+You can also revert uncommitted changes to a particular file or directory:
+
+```sh
+$ git checkout [some_dir|file.txt]
+```
+
+Yet another way to revert all uncommitted changes (longer to type, but works from any subdirectory):
+
+```sh
+$ git reset --hard HEAD
+```
+
+This will remove all local untracked files, so only git tracked files remain:
+
+```sh
+$ git clean -fdx
+```
+
+WARNING: -x will also remove all ignored files!
 
 <a href="i-want-to-discard-specific-unstaged-changes"></a>
 ### I want to discard specific unstaged changes
@@ -1163,7 +1176,7 @@ $ mkdir mydir
 $ touch mydir/.gitkeep
 ```
 
-You can also name the file as just .keep , in which case the second line above would be ```touch mydir/.keep``` 
+You can also name the file as just .keep , in which case the second line above would be ```touch mydir/.keep```
 
 <a name="credential-helper"></a>
 ### I want to cache a username and password for a repository
@@ -1257,4 +1270,3 @@ Using git reset it is then possible to change master back to the commit it was b
 * [Fork](https://git-fork.com/) - a fast and friendly git client for Mac (beta)
 * [gmaster](https://gmaster.io/) - a git client for Windows that has 3-way merge, analyze refactors, semantic diff and merge (beta)
 * [gitk](https://git-scm.com/docs/gitk) - a git client for linux to allow simple view of repo state.
-
