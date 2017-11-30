@@ -36,7 +36,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
   - [Unstaged Edits](#unstaged-edits)
     - [I want to move my unstaged edits to a new branch](#i-want-to-move-my-unstaged-edits-to-a-new-branch)
     - [I want to move my unstaged edits to a different, existing branch](#i-want-to-move-my-unstaged-edits-to-a-different-existing-branch)
-    - [I want to discard my local uncommitted changes(staged and unstaged)](#i-want-to-discard-my-local-uncommitted-changes)
+    - [I want to discard my local uncommitted changes (staged and unstaged)](#i-want-to-discard-my-local-uncommitted-changes)
     - [I want to discard specific unstaged changes](#i-want-to-discard-specific-unstaged-changes)
     - [I want to discard specific unstaged files](#i-want-to-discard-specific-unstaged-files)
     - [I want to discard only my unstaged local changes](#i-want-to-discard-only-my-unstaged-local-changes)
@@ -293,7 +293,7 @@ $ git stash pop
 ```
 
 <a href="i-want-to-discard-my-local-uncommitted-changes"></a>
-### I want to discard my local uncommitted changes(staged and unstaged)
+### I want to discard my local uncommitted changes (staged and unstaged)
 
 If you want to discard all your local staged and unstaged changes, you can do this:
 
