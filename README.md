@@ -40,6 +40,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to discard specific unstaged changes](#i-want-to-discard-specific-unstaged-changes)
     - [I want to discard specific unstaged files](#i-want-to-discard-specific-unstaged-files)
     - [I want to discard only my unstaged local changes](#i-want-to-discard-only-my-unstaged-local-changes)
+    - [I want to discard all of my untracked files](#i-want-to-discard-all-my-untracked-files)
   - [Branches](#branches)
     - [Create a branch from a commit](#create-branch-from-commit)
     - [I pulled from/into the wrong branch](#i-pulled-frominto-the-wrong-branch)
@@ -360,7 +361,7 @@ When you want to get rid of all of your unstaged local uncommitted changes
 ```sh
 $ git checkout .
 ```
-
+<a href="i-want-to-discard-all-my-untracked-files"></a>
 ### I want to discard all of my untracked files
 
 When you want to get rid of all of your untracked files
