@@ -302,6 +302,7 @@ If you want to discard all your local staged and unstaged changes, you can do th
 (my-branch)$ git reset --hard
 # or
 (master)$ git checkout -f
+```
 
 This will unstage all files you might have staged with git add:
 
