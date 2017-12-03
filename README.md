@@ -36,10 +36,11 @@ For clarity's sake all examples in this document use a customized bash prompt in
   - [Unstaged Edits](#unstaged-edits)
     - [I want to move my unstaged edits to a new branch](#i-want-to-move-my-unstaged-edits-to-a-new-branch)
     - [I want to move my unstaged edits to a different, existing branch](#i-want-to-move-my-unstaged-edits-to-a-different-existing-branch)
-    - [I want to discard my local, uncommitted changes](#i-want-to-discard-my-local-uncommitted-changes)
+    - [I want to discard my local uncommitted changes (staged and unstaged)](#i-want-to-discard-my-local-uncommitted-changes-staged-and-unstaged)
     - [I want to discard specific unstaged changes](#i-want-to-discard-specific-unstaged-changes)
     - [I want to discard specific unstaged files](#i-want-to-discard-specific-unstaged-files)
-    - [I want to discard all of my local changes](#i-want-to-discard-all-of-my-local-changes)
+    - [I want to discard only my unstaged local changes](#i-want-to-discard-only-my-unstaged-local-changes)
+    - [I want to discard all of my untracked files](#i-want-to-discard-all-my-untracked-files)
   - [Branches](#branches)
     - [Create a branch from a commit](#create-branch-from-commit)
     - [I pulled from/into the wrong branch](#i-pulled-frominto-the-wrong-branch)
@@ -293,7 +294,15 @@ $ git stash pop
 ```
 
 <a href="i-want-to-discard-my-local-uncommitted-changes"></a>
-### I want to discard my local, uncommitted changes
+### I want to discard my local uncommitted changes (staged and unstaged)
+
+If you want to discard all your local staged and unstaged changes, you can do this:
+
+```sh
+(my-branch)$ git reset --hard
+# or
+(master)$ git checkout -f
+```
 
 This will unstage all files you might have staged with git add:
 
@@ -356,6 +365,7 @@ $ git stash -p
 $ git stash drop
 ```
 
+<a href="i-want-to-discard-specific-unstaged-files"></a>
 ### I want to discard specific unstaged files
 
 When you want to get rid of one specific file in your working copy.
@@ -370,12 +380,21 @@ Alternatively, to discard multiple files in your working copy, list them all.
 $ git checkout myFirstFile mySecondFile
 ```
 
-### I want to discard all of my local changes
+<a href="i-want-to-discard-only-my-unstaged-local-changes"></a>
+### I want to discard only my unstaged local changes
 
-When you want to get rid of all of your local uncommitted changes
+When you want to get rid of all of your unstaged local uncommitted changes
 
 ```sh
 $ git checkout .
+```
+<a href="i-want-to-discard-all-my-untracked-files"></a>
+### I want to discard all of my untracked files
+
+When you want to get rid of all of your untracked files
+
+```sh
+$ git clean -f
 ```
 
 ## Branches
