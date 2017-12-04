@@ -78,7 +78,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [Recover a deleted tag](#recover-a-deleted-tag)
     - [Deleted Patch](#deleted-patch)
   - [Tracking Files](#tracking-files)
-    - [I want to change a file name's capitalization, without changing the contents of the file.](#i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file)
+    - [I want to change a file name's capitalization, without changing the contents of the file](#i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file)
     - [I want to overwrite local files when doing a git pull](#i-want-to-overwrite-local-files-when-doing-a-git-pull)
     - [I want to remove a file from Git but keep the file](#i-want-to-remove-a-file-from-git-but-keep-the-file)
     - [I want to revert a file to a specific revision](#i-want-to-revert-a-file-to-a-specific-revision)
@@ -756,7 +756,7 @@ You may have merged or rebased your current branch with a wrong branch, or you c
 ```
 
 <a name="force-push-rebase"></a>
-### I rebased, but I don't want to force push.
+### I rebased, but I don't want to force push
 
 Unfortunately, you have to force push, if you want those changes to be reflected on the remote branch. This is because you have fast forwarded your commit, and changed git history. The remote branch won't accept changes unless you force push. This is one of the main reasons many people use a merge workflow, instead of a rebasing workflow - large teams can get into trouble with developers force pushing. Use this with caution. A safer way to use rebase is not to reflect your changes on the remote branch at all, and instead to do the following:
 
@@ -1110,14 +1110,14 @@ From github.com:foo/bar
 ## Tracking Files
 
 <a href="i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file"></a>
-### I want to change a file name's capitalization, without changing the contents of the file.
+### I want to change a file name's capitalization, without changing the contents of the file
 
 ```sh
 (master)$ git mv --force myfile MyFile
 ```
 
 <a href="i-want-to-overwrite-local-files-when-doing-a-git-pull"></a>
-### I want to overwrite local files when doing a git pull.
+### I want to overwrite local files when doing a git pull
 
 ```sh
 (master)$ git fetch --all
