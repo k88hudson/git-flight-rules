@@ -691,13 +691,13 @@ To delete a local branch that HAS NOT been merged to the current branch or an up
 <a name="i-want-to-rename-a-branch"></a>
 ### I want to rename a branch
 
-To rename a local current branch:
+To rename the current (local) branch:
 
 ```sh
 (master)$ git branch -m new-name
 ```
 
-To rename a local different branch:
+To rename a different (local) branch:
 
 ```sh
 (master)$ git branch -m old-name new-name
@@ -735,7 +735,7 @@ $ git push -u origin HEAD
 
 If you want to check out the other default configs which ```git push``` can take, visit the documentation for Git at https://git-scm.com/docs/git-config#git-config-pushdefault
 
-If you do not want to change the git configuration, you can also use:
+If you do not want to change the configuration, you can also use:
 
 ```sh
 $ git push -u <remote> HEAD
