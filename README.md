@@ -2,7 +2,7 @@
 
 #### What are "flight rules"?
 
-A [guide for astronauts](http://www.jsc.nasa.gov/news/columbia/fr_generic.pdf) (now, programmers using Git) about what to do when things go wrong.
+A [guide for astronauts](https://www.jsc.nasa.gov/news/columbia/fr_generic.pdf) (now, programmers using Git) about what to do when things go wrong.
 
 >  *Flight Rules* are the hard-earned body of knowledge recorded in manuals that list, step-by-step, what to do if X occurs, and why. Essentially, they are extremely detailed, scenario-specific standard operating procedures. [...]
 
@@ -773,7 +773,7 @@ Unfortunately, you have to force push, if you want those changes to be reflected
 (master)$ git merge --ff-only my-branch
 ```
 
-For more, see [this SO thread](http://stackoverflow.com/questions/11058312/how-can-i-use-git-rebase-without-requiring-a-forced-push).
+For more, see [this SO thread](https://stackoverflow.com/questions/11058312/how-can-i-use-git-rebase-without-requiring-a-forced-push).
 
 <a name="interactive-rebase"></a>
 ### I need to combine commits
@@ -1094,7 +1094,7 @@ If you want to recover a tag that was already deleted, you can do so by followin
 $ git fsck --unreachable | grep tag
 ```
 
-Make a note of the tag's hash. Then, restore the deleted tag with following, making use of [`git update-ref`](http://git-scm.com/docs/git-update-ref):
+Make a note of the tag's hash. Then, restore the deleted tag with following, making use of [`git update-ref`](https://git-scm.com/docs/git-update-ref):
 
 ```sh
 $ git update-ref refs/tags/<tag_name> <hash>
@@ -1270,7 +1270,7 @@ Using `git reset` it is then possible to change master back to the commit it was
 * [Learn Git branching](https://learngitbranching.js.org/) An interactive web based branching/merging/rebasing tutorial
 * [Getting solid at Git rebase vs. merge](https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa)
 * [git-workflow](https://github.com/asmeurer/git-workflow) - [Aaron Meurer](https://github.com/asmeurer)'s howto on using Git to contribute to open source repositories
-* [GitHub as a workflow](http://hugogiraudel.com/2015/08/13/github-as-a-workflow/) - An interesting take on using GitHub as a workflow, particularly with empty PRs
+* [GitHub as a workflow](https://hugogiraudel.com/2015/08/13/github-as-a-workflow/) - An interesting take on using GitHub as a workflow, particularly with empty PRs
 * [Githug](https://github.com/Gazler/githug) - A game to learn more common Git workflows
 
 ## Scripts and Tools
@@ -1288,7 +1288,7 @@ Using `git reset` it is then possible to change master back to the commit it was
 * [GitUp](https://github.com/git-up/GitUp) - A newish GUI that has some very opinionated ways of dealing with Git's complications
 * [gitx-dev](https://rowanj.github.io/gitx/) - another graphical Git client for OS X
 * [Source Tree](https://www.sourcetreeapp.com/) - a free graphical Git client for Windows and OS X
-* [Tower](http://www.git-tower.com/) - graphical Git client for OS X (paid)
+* [Tower](https://www.git-tower.com/) - graphical Git client for OS X (paid)
 * [tig](https://jonas.github.io/tig/) - terminal text-mode interface for Git
 * [Magit](https://magit.vc/) - Interface to Git implemented as an Emacs package.
 * [GitExtensions](https://github.com/gitextensions/gitextensions) - a shell extension, a Visual Studio 2010-2015 plugin and a standalone Git repository tool.
