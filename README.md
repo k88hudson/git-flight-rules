@@ -588,7 +588,7 @@ And finally, let's cherry-pick the commit for bug #14:
 Once you merge a pull request on GitHub, it gives you the option to delete the merged branch in your fork. If you aren't planning to keep working on the branch, it's cleaner to delete the local copies of the branch so you don't end up cluttering up your working checkout with a lot of stale branches.
 
 ```sh
-$ git fetch -p
+$ git fetch -p upstream
 ```
 
 <a name='restore-a-deleted-branch'></a>
