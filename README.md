@@ -23,7 +23,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [What did I just commit?](#what-did-i-just-commit)
     - [I wrote the wrong thing in a commit message](#i-wrote-the-wrong-thing-in-a-commit-message)
     - [I committed with the wrong name and email configured](#i-committed-with-the-wrong-name-and-email-configured)
-    - [I want to remove a file from a commit](#i-want-to-remove-a-file-from-a-commit)
+    - [I want to remove a file from the previous commit](#i-want-to-remove-a-file-from-the-previous-commit)
     - [I want to delete or remove my last commit](#i-want-to-delete-or-remove-my-last-commit)
     - [Delete/remove arbitrary commit](#deleteremove-arbitrary-commit)
     - [I tried to push my amended commit to a remote, but I got an error message](#i-tried-to-push-my-amended-commit-to-a-remote-but-i-got-an-error-message)
@@ -142,10 +142,10 @@ $ git commit --amend --author "New Authorname <authoremail@mydomain.com>"
 If you need to change all of history, see the man page for `git filter-branch`.
 
 
-<a href="#i-want-to-remove-a-file-from-a-commit"></a>
-### I want to remove a file from a commit
+<a href="#i-want-to-remove-a-file-from-the-previous-commit"></a>
+### I want to remove a file from the previous commit
 
-In order to remove a file from a commit, do the following:
+In order to remove changes for a file from the previous commit, do the following:
 
 ```sh
 $ git checkout HEAD^ myfile
