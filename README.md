@@ -679,6 +679,12 @@ You can also do:
 To delete a local branch:
 
 ```sh
+(master)$ git branch -d my-branch
+```
+
+To delete a local branch that HAS NOT been merged to the current branch or an upstream:
+
+```sh
 (master)$ git branch -D my-branch
 ```
 
