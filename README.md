@@ -139,7 +139,7 @@ If it's a single commit, amend it
 $ git commit --amend --author "New Authorname <authoremail@mydomain.com>"
 ```
 
-If you need to change all of history, see the man page for 'git filter-branch'.
+If you need to change all of history, see the man page for `git filter-branch`.
 
 
 <a href="#i-want-to-remove-a-file-from-a-commit"></a>
@@ -304,7 +304,7 @@ If you want to discard all your local staged and unstaged changes, you can do th
 (master)$ git checkout -f
 ```
 
-This will unstage all files you might have staged with git add:
+This will unstage all files you might have staged with `git add`:
 
 ```sh
 $ git reset
@@ -659,7 +659,7 @@ HEAD is now at 4e3cd85 foo.txt added
 README.md foo.txt
 ```
 
-Voila! We got our removed file back. Git reflog is also useful when rebasing goes terribly wrong.
+Voila! We got our removed file back. `git reflog` is also useful when rebasing goes terribly wrong.
 
 <a name="i-want-to-delete-a-branch"></a>
 ### I want to delete a branch
@@ -1088,7 +1088,7 @@ If you want to recover a tag that was already deleted, you can do so by followin
 $ git fsck --unreachable | grep tag
 ```
 
-Make a note of the tag's hash. Then, restore the deleted tag with following, making use of git's [update-ref](http://git-scm.com/docs/git-update-ref):
+Make a note of the tag's hash. Then, restore the deleted tag with following, making use of [`git update-ref`](http://git-scm.com/docs/git-update-ref):
 
 ```sh
 $ git update-ref refs/tags/<tag_name> <hash>
@@ -1247,7 +1247,7 @@ If it turns out that you accidentally moved back, the reflog will contain the co
 $ git reset --hard 0254ea7
 ```
 
-Using git reset it is then possible to change master back to the commit it was before. This provides a safety net in case history was accidentally changed.
+Using `git reset` it is then possible to change master back to the commit it was before. This provides a safety net in case history was accidentally changed.
 
 (copied and edited from [Source](https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog)).
 
