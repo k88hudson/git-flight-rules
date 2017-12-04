@@ -1,8 +1,8 @@
-# Flight rules for git
+# Flight rules for Git
 
 #### What are "flight rules"?
 
-A [guide for astronauts](http://www.jsc.nasa.gov/news/columbia/fr_generic.pdf) (now, programmers using git) about what to do when things go wrong.
+A [guide for astronauts](http://www.jsc.nasa.gov/news/columbia/fr_generic.pdf) (now, programmers using Git) about what to do when things go wrong.
 
 >  *Flight Rules* are the hard-earned body of knowledge recorded in manuals that list, step-by-step, what to do if X occurs, and why. Essentially, they are extremely detailed, scenario-specific standard operating procedures. [...]
 
@@ -80,10 +80,10 @@ For clarity's sake all examples in this document use a customized bash prompt in
   - [Tracking Files](#tracking-files)
     - [I want to change a file name's capitalization, without changing the contents of the file.](#i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file)
     - [I want to overwrite local files when doing a git pull](#i-want-to-overwrite-local-files-when-doing-a-git-pull)
-    - [I want to remove a file from git but keep the file](#i-want-to-remove-a-file-from-git-but-keep-the-file)
+    - [I want to remove a file from Git but keep the file](#i-want-to-remove-a-file-from-git-but-keep-the-file)
     - [I want to revert a file to a specific revision](#i-want-to-revert-a-file-to-a-specific-revision)
   - [Configuration](#configuration)
-    - [I want to add aliases for some git commands](#i-want-to-add-aliases-for-some-git-commands)
+    - [I want to add aliases for some Git commands](#i-want-to-add-aliases-for-some-git-commands)
     - [I want to add an empty directory to my repository](#i-want-to-add-an-empty-directory-to-my-repository)
     - [I want to cache a username and password for a repository](#i-want-to-cache-a-username-and-password-for-a-repository)
     - [I want to make Git ignore permissions and filemode changes](#i-want-to-make-git-ignore-permissions-and-filemode-changes)
@@ -328,7 +328,7 @@ Yet another way to revert all uncommitted changes (longer to type, but works fro
 $ git reset --hard HEAD
 ```
 
-This will remove all local untracked files, so only git tracked files remain:
+This will remove all local untracked files, so only files tracked by Git remain:
 
 ```sh
 $ git clean -fdx
@@ -895,7 +895,7 @@ Sometimes the merge can produce problems in certain files, in those cases we can
 (my-branch)$ git merge --abort
 ```
 
-This command is available since git version >= 1.7.4
+This command is available since Git version >= 1.7.4
 
 <a name="check-if-all-commits-on-a-branch-are-merged"></a>
 ### Check if all commits on a branch are merged
@@ -963,7 +963,7 @@ If you want to keep one branch's version of the code, you can use `--ours` or `-
 ```
 
 - When *merging*, use `--ours` to keep changes from the local branch, or `--theirs` to keep changes from the other branch.
-- When *rebasing*, use `--theirs` to keep changes from the local branch, or `--ours` to keep changes from the other branch. For an explanation of this swap, see [this note in the git documentation](https://git-scm.com/docs/git-rebase#git-rebase---merge).
+- When *rebasing*, use `--theirs` to keep changes from the local branch, or `--ours` to keep changes from the other branch. For an explanation of this swap, see [this note in the Git documentation](https://git-scm.com/docs/git-rebase#git-rebase---merge).
 
 If the merges are more complicated, you can use a visual diff editor:
 
@@ -1125,7 +1125,7 @@ From github.com:foo/bar
 ```
 
 <a href="remove-from-git"></a>
-### I want to remove a file from git but keep the file
+### I want to remove a file from Git but keep the file
 
 ```sh
 (master)$ git rm --cached log.txt
@@ -1149,7 +1149,7 @@ If you want to revert to changes made just 1 commit before c5f567, pass the comm
 ## Configuration
 
 <a name="adding-command-aliases"></a>
-### I want to add aliases for some git commands
+### I want to add aliases for some Git commands
 
 On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```.  I've added some example aliases I use as shortcuts (and some of my common typos) in the ```[alias]``` section as shown below:
 
@@ -1256,36 +1256,36 @@ Using git reset it is then possible to change master back to the commit it was b
 
 ## Books
 
-* [Pro Git](https://git-scm.com/book/en/v2) - Scott Chacon's excellent git book
-* [Git Internals](https://github.com/pluralsight/git-internals-pdf) - Scott Chacon's other excellent git book
+* [Pro Git](https://git-scm.com/book/en/v2) - Scott Chacon's excellent book about Git
+* [Git Internals](https://github.com/pluralsight/git-internals-pdf) - Scott Chacon's other excellent book about Git
 
 ## Tutorials
 
 * [Learn Git branching](https://learngitbranching.js.org/) An interactive web based branching/merging/rebasing tutorial
 * [Getting solid at Git rebase vs. merge](https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa)
-* [git-workflow](https://github.com/asmeurer/git-workflow) - [Aaron Meurer](https://github.com/asmeurer)'s howto on using git to contribute to open source repositories
+* [git-workflow](https://github.com/asmeurer/git-workflow) - [Aaron Meurer](https://github.com/asmeurer)'s howto on using Git to contribute to open source repositories
 * [GitHub as a workflow](http://hugogiraudel.com/2015/08/13/github-as-a-workflow/) - An interesting take on using GitHub as a workflow, particularly with empty PRs
-* [Githug](https://github.com/Gazler/githug) - A game to learn more common git workflows
+* [Githug](https://github.com/Gazler/githug) - A game to learn more common Git workflows
 
 ## Scripts and Tools
 
 * [firstaidgit.io](http://firstaidgit.io/) A searchable selection of the most frequently asked Git questions
-* [git-extra-commands](https://github.com/unixorn/git-extra-commands) - a collection of useful extra git scripts
+* [git-extra-commands](https://github.com/unixorn/git-extra-commands) - a collection of useful extra Git scripts
 * [git-extras](https://github.com/tj/git-extras) - GIT utilities -- repo summary, repl, changelog population, author commit percentages and more
 * [git-fire](https://github.com/qw3rtman/git-fire) - git-fire is a Git plugin that helps in the event of an emergency by adding all current files, committing, and pushing to a new branch (to prevent merge conflicts).
-* [git-tips](https://github.com/git-tips/tips) - Small git tips
+* [git-tips](https://github.com/git-tips/tips) - Small Git tips
 * [git-town](https://github.com/Originate/git-town) - Generic, high-level Git workflow support! http://www.git-town.com
 
 ## GUI Clients
 * [GitKraken](https://www.gitkraken.com/) - The downright luxurious Git client,for Windows, Mac & Linux
-* [git-cola](https://git-cola.github.io/) - another git client for Windows and OS X
-* [GitUp](https://github.com/git-up/GitUp) - A newish GUI that has some very opinionated ways of dealing with git's complications
-* [gitx-dev](https://rowanj.github.io/gitx/) - another graphical git client for OS X
-* [Source Tree](https://www.sourcetreeapp.com/) - a free graphical git client for Windows and OS X
-* [Tower](http://www.git-tower.com/) - graphical git client for OS X (paid)
+* [git-cola](https://git-cola.github.io/) - another Git client for Windows and OS X
+* [GitUp](https://github.com/git-up/GitUp) - A newish GUI that has some very opinionated ways of dealing with Git's complications
+* [gitx-dev](https://rowanj.github.io/gitx/) - another graphical Git client for OS X
+* [Source Tree](https://www.sourcetreeapp.com/) - a free graphical Git client for Windows and OS X
+* [Tower](http://www.git-tower.com/) - graphical Git client for OS X (paid)
 * [tig](https://jonas.github.io/tig/) - terminal text-mode interface for Git
-* [Magit](https://magit.vc/) - Interface to git implemented as an Emacs package.
+* [Magit](https://magit.vc/) - Interface to Git implemented as an Emacs package.
 * [GitExtensions](https://github.com/gitextensions/gitextensions) - a shell extension, a Visual Studio 2010-2015 plugin and a standalone Git repository tool.
-* [Fork](https://git-fork.com/) - a fast and friendly git client for Mac (beta)
-* [gmaster](https://gmaster.io/) - a git client for Windows that has 3-way merge, analyze refactors, semantic diff and merge (beta)
-* [gitk](https://git-scm.com/docs/gitk) - a git client for linux to allow simple view of repo state.
+* [Fork](https://git-fork.com/) - a fast and friendly Git client for Mac (beta)
+* [gmaster](https://gmaster.io/) - a Git client for Windows that has 3-way merge, analyze refactors, semantic diff and merge (beta)
+* [gitk](https://git-scm.com/docs/gitk) - a Git client for linux to allow simple view of repo state.
