@@ -1,5 +1,6 @@
 # Flight rules for Git
 
+
 #### What are "flight rules"?
 
 A [guide for astronauts](https://www.jsc.nasa.gov/news/columbia/fr_generic.pdf) (now, programmers using Git) about what to do when things go wrong.
@@ -590,6 +591,8 @@ Once you merge a pull request on GitHub, it gives you the option to delete the m
 ```sh
 $ git fetch -p upstream
 ```
+
+where, `upstream` is the e remote you want to fetch from.
 
 <a name='restore-a-deleted-branch'></a>
 ### I accidentally deleted my branch
