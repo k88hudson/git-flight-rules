@@ -36,10 +36,11 @@
   - [Неподготовленные правки](#%D0%9D%D0%B5%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5-%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8)
     - [Я хочу переместить мои неподготовленные правки в новую ветку](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D0%BF%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D1%81%D1%82%D0%B8%D1%82%D1%8C-%D0%BC%D0%BE%D0%B8-%D0%BD%D0%B5%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5-%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8-%D0%B2-%D0%BD%D0%BE%D0%B2%D1%83%D1%8E-%D0%B2%D0%B5%D1%82%D0%BA%D1%83)
     - [Я хочу переместить неподготовленные правки в другую существующую ветку](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D0%BF%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D1%81%D1%82%D0%B8%D1%82%D1%8C-%D0%BD%D0%B5%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5-%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8-%D0%B2-%D0%B4%D1%80%D1%83%D0%B3%D1%83%D1%8E-%D1%81%D1%83%D1%89%D0%B5%D1%81%D1%82%D0%B2%D1%83%D1%8E%D1%89%D1%83%D1%8E-%D0%B2%D0%B5%D1%82%D0%BA%D1%83)
-    - [Я хочу отменить мои локальные несохраненные изменения](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D0%BE%D1%82%D0%BC%D0%B5%D0%BD%D0%B8%D1%82%D1%8C-%D0%BC%D0%BE%D0%B8-%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%BD%D0%B5%D1%81%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5-%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F)
+    - [Я хочу отменить мои локальные несохраненные изменения (подготовленные и неподготовленные)](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D0%BE%D1%82%D0%BC%D0%B5%D0%BD%D0%B8%D1%82%D1%8C-%D0%BC%D0%BE%D0%B8-%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%BD%D0%B5%D1%81%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5-%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F-%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5-%D0%B8-%D0%BD%D0%B5%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5)
     - [Я хочу отменить некоторые неподготовленные изменения](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D0%BE%D1%82%D0%BC%D0%B5%D0%BD%D0%B8%D1%82%D1%8C-%D0%BD%D0%B5%D0%BA%D0%BE%D1%82%D0%BE%D1%80%D1%8B%D0%B5-%D0%BD%D0%B5%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5-%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F)
     - [Я хочу отбросить неподготовленные изменения в некоторых файлах](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D0%BE%D1%82%D0%B1%D1%80%D0%BE%D1%81%D0%B8%D1%82%D1%8C-%D0%BD%D0%B5%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5-%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F-%D0%B2-%D0%BD%D0%B5%D0%BA%D0%BE%D1%82%D0%BE%D1%80%D1%8B%D1%85-%D1%84%D0%B0%D0%B9%D0%BB%D0%B0%D1%85)
-    - [Я хочу убрать все мои локальные изменения](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D1%83%D0%B1%D1%80%D0%B0%D1%82%D1%8C-%D0%B2%D1%81%D0%B5-%D0%BC%D0%BE%D0%B8-%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F)
+    - [Я хочу убрать все неподготовленные локальные изменения](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D1%83%D0%B1%D1%80%D0%B0%D1%82%D1%8C-%D0%B2%D1%81%D0%B5-%D0%BD%D0%B5%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5-%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F)
+    - [Я хочу удалить все неотслеживаемые файлы](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D1%83%D0%B4%D0%B0%D0%BB%D0%B8%D1%82%D1%8C-%D0%B2%D1%81%D0%B5-%D0%BD%D0%B5%D0%BE%D1%82%D1%81%D0%BB%D0%B5%D0%B6%D0%B8%D0%B2%D0%B0%D0%B5%D0%BC%D1%8B%D0%B5-%D1%84%D0%B0%D0%B9%D0%BB%D1%8B)
   - [Ветки](#%D0%92%D0%B5%D1%82%D0%BA%D0%B8)
     - [Создать ветку на определенном коммите](#%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C-%D0%B2%D0%B5%D1%82%D0%BA%D1%83-%D0%BD%D0%B0-%D0%BE%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%BD%D0%BE%D0%BC-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82%D0%B5)
     - [Я стянул изменения (pull) из неправильной ветки или в неправильную ветку](#%D0%AF-%D1%81%D1%82%D1%8F%D0%BD%D1%83%D0%BB-%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F-pull-%D0%B8%D0%B7-%D0%BD%D0%B5%D0%BF%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9-%D0%B2%D0%B5%D1%82%D0%BA%D0%B8-%D0%B8%D0%BB%D0%B8-%D0%B2-%D0%BD%D0%B5%D0%BF%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D1%8C%D0%BD%D1%83%D1%8E-%D0%B2%D0%B5%D1%82%D0%BA%D1%83)
@@ -149,6 +150,13 @@ $ git commit --amend --author "New Authorname <authoremail@mydomain.com>"
 ```sh
 $ git checkout HEAD^ myfile
 $ git add myfile
+$ git commit --amend --no-edit
+```
+
+Когда в коммит был добавлен новый файл и вы хотите его удалить (только из Git), выполните:
+
+```sh
+$ git rm --cached myfile
 $ git commit --amend --no-edit
 ```
 
@@ -293,7 +301,15 @@ $ git stash pop
 ```
 
 <a href="i-want-to-discard-my-local-uncommitted-changes"></a>
-### Я хочу отменить мои локальные несохраненные изменения
+### Я хочу отменить мои локальные несохраненные изменения (подготовленные и неподготовленные)
+
+Если Вы хотите отменить все подготовленные и неподготовленные изменения, то можете сделать так:
+
+```sh
+(my-branch)$ git reset --hard
+# or
+(master)$ git checkout -f
+```
 
 Это уберет из индекса все подготовленные изменения:
 
@@ -356,6 +372,7 @@ $ git stash -p
 $ git stash drop
 ```
 
+<a href="i-want-to-discard-specific-unstaged-files"></a>
 ### Я хочу отбросить неподготовленные изменения в некоторых файлах
 
 Когда Вы хотите убрать изменения какого-то файла в Вашей рабочей копии.
@@ -370,12 +387,21 @@ $ git checkout myFile
 $ git checkout myFirstFile mySecondFile
 ```
 
-### Я хочу убрать все мои локальные изменения
+<a href="i-want-to-discard-only-my-unstaged-local-changes"></a>
+### Я хочу убрать все неподготовленные локальные изменения
 
-Когда Вы хотите убрать все несохраненные локальные изменения.
+Когда Вы хотите убрать все неподготовленные локальные изменения
 
 ```sh
 $ git checkout .
+```
+<a href="i-want-to-discard-all-my-untracked-files"></a>
+### Я хочу удалить все неотслеживаемые файлы
+
+Когда Вы хотите удалить все неотслеживаемые файлы
+
+```sh
+$ git clean -f
 ```
 
 ## Ветки
