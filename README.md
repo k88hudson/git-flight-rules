@@ -740,7 +740,7 @@ If you would also like to set that remote branch as upstream for the current one
 $ git push -u <remote>
 ```
 
-With the `upstream` mode and the `simple` (default in Git 2.0) mode of the `push.default` config, the following command will push the current branch w.r.t. the remote branch that has been registered previously with -u :
+With the `upstream` mode and the `simple` (default in Git 2.0) mode of the `push.default` config, the following command will push the current branch with regards to the remote branch that has been registered previously with `-u`:
 
 ```sh
 $ git push
