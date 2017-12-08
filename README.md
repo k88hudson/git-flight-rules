@@ -592,7 +592,7 @@ Once you merge a pull request on GitHub, it gives you the option to delete the m
 $ git fetch -p upstream
 ```
 
-where, `upstream` is the e remote you want to fetch from.
+where, `upstream` is the remote you want to fetch from.
 
 <a name='restore-a-deleted-branch'></a>
 ### I accidentally deleted my branch
