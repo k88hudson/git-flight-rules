@@ -1,5 +1,7 @@
 # Flight rules for Git
 
+🌍
+*[English](README.md) ∙ [Русский](README_ru.md) ∙ [简体中文](README_zh-cn.md)*
 
 #### What are "flight rules"?
 

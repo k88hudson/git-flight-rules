@@ -1,5 +1,8 @@
 # Git飞行规则(Flight Rules)
 
+🌍
+*[English](README.md) ∙ [Русский](README_ru.md) ∙ [简体中文](README_zh-cn.md)*
+
 #### 前言
 
 - 英文原版[README](https://github.com/k88hudson/git-flight-rules/blob/master/README.md)
