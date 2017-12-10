@@ -72,7 +72,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [Stash specific files](#stash-specific-files)
     - [Stash with message](#stash-with-message)
     - [Apply a specific stash from list](#apply-a-specific-stash-from-list)
-  - [Finding](#findig)
+  - [Finding](#finding)
     - [I want to find a string in any commit](#i-want-to-find-a-string-in-any-commit)
     - [I want to find by author/committer](#i-want-to-find-by-author-committer)
   - [Miscellaneous Objects](#miscellaneous-objects)
