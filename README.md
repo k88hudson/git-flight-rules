@@ -74,6 +74,9 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [Stash specific files](#stash-specific-files)
     - [Stash with message](#stash-with-message)
     - [Apply a specific stash from list](#apply-a-specific-stash-from-list)
+  - [Finding](#finding)
+    - [I want to find a string in any commit](#i-want-to-find-a-string-in-any-commit)
+    - [I want to find by author/committer](#i-want-to-find-by-author-committer)
   - [Miscellaneous Objects](#miscellaneous-objects)
     - [Clone all submodules](#clone-all-submodules)
     - [Remove a submodule](#remove-a-submodule)
@@ -865,7 +868,7 @@ Newer, awesomer features
 # You are currently editing a commit while rebasing branch 'master' on '8074d12'.
 #
 # Changes to be committed:
-#	modified:   README.md
+#   modified:   README.md
 #
 
 ```
@@ -999,6 +1002,7 @@ If at any time you want to stop the entire rebase and go back to the original st
 ```sh
 (my-branch)$ git rebase --abort
 ```
+
 <a name="stashing"></a>
 ## Stash
 
@@ -1056,6 +1060,37 @@ $ git stash apply "stash@{n}"
 
 Here, 'n' indicates the position of the stash in the stack. The topmost stash will be position 0.
 
+<a name="finding"></a>
+## Finding
+
+<a name="i-want-to-find-a-string-in-any-commit"></a>
+### I want to find a string in any commit
+
+To find a certain string which was introduced in any commit, you can use the following structure:
+
+```sh
+$ git log -S "string to find"
+```
+
+Commons parameters:
+
+* `--source` means to show the ref name given on the command line by which each commit was reached.
+
+* `--all` means to start from every branch.
+
+* `--reverse` prints in reverse order, it means that will show the first commit that made the change.
+
+<a name="i-want-to-find-by-author-committer"></a>
+### I want to find by author/committer
+
+To find all commits by author/committer you can use:
+
+```sh
+$ git log --author=<name or email>
+$ git log --committer=<name or email>
+```
+
+Keep in mind that author and committer are not the same. The `--author` is the person who originally wrote the code; on the other hand, the `--committer`, is the person who committed the code on behalf of the original author.
 
 <a name="miscellaneous-objects"></a>
 ## Miscellaneous Objects
