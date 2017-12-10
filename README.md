@@ -74,6 +74,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [Apply a specific stash from list](#apply-a-specific-stash-from-list)
   - [Finding](#findig)
     - [I want to find a string in any commit](#i-want-to-find-a-string-in-any-commit)
+    - [I want to find by author/committer](#i-want-to-find-by-author-committer)
   - [Miscellaneous Objects](#miscellaneous-objects)
     - [Clone all submodules](#clone-all-submodules)
     - [Remove a submodule](#remove-a-submodule)
@@ -1076,6 +1077,18 @@ Commons parameters:
 * `--all` means to start from every branch.
 
 * `--reverse` prints in reverse order, it means that will show the first commit that made the change.
+
+<a name="i-want-to-find-by-author-committer"></a>
+### I want to find by author/committer
+
+To find all commits by author/committer you can use:
+
+```sh
+$ git log --author=<name or email>
+$ git log --committer=<name or email>
+```
+
+Keep in mind that author and committer are not the same. The `--author` is the person who originally wrote the code; on the other hand, the `--committer`, is the person who committed the code on behalf of the original author.
 
 <a name="miscellaneous-objects"></a>
 ## Miscellaneous Objects
