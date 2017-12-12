@@ -57,6 +57,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to rename a branch](#i-want-to-rename-a-branch)
     - [I want to checkout to a remote branch that someone else is working on](#i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on)
     - [I want to create a new remote branch from current local one](#i-want-to-create-a-new-remote-branch-from-current-local-one)
+    - [I want to set my HEAD to track the default remote branch](#i-want-to-set-my-head-to-track-the-default-remote-branch)
   - [Rebasing and Merging](#rebasing-and-merging)
     - [I want to undo rebase/merge](#i-want-to-undo-rebasemerge)
     - [I rebased, but I don't want to force push](#i-rebased-but-i-dont-want-to-force-push)
@@ -766,6 +767,23 @@ $ git push
 
 The behavior of the other modes of ```git push``` is described in the doc of push.default.
 
+<a name="i-want-to-set-my-HEAD-to-track-the-default-remote-branch"></a>
+### I want to set my HEAD to track the default remote branch
+
+By checking your remote branches, you can see which remote branch your HEAD is tracking. In some cases, this is not the desired branch.
+
+```sh
+$ git branch -rr
+  origin/HEAD -> origin/gh-pages
+  origin/master
+```
+
+To change `origin/HEAD` to track `origin/master`, you can run this command:
+
+```sh
+$ git remote set-head origin --auto
+origin/HEAD set to master
+```
 
 ## Rebasing and Merging
 
