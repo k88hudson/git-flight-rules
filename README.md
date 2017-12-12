@@ -142,7 +142,13 @@ If you have already pushed the message, you can amend the commit and force push,
 If it's a single commit, amend it
 
 ```sh
-$ git commit --amend --author "New Authorname <authoremail@mydomain.com>"
+$ git commit --amend --no-edit --author "New Authorname <authoremail@mydomain.com>"
+```
+
+An alternative is to correctly configure your author settings in `git config --global author.(name|email)` and then use
+
+```sh
+$ git commit --amend --reset-author --no-edit
 ```
 
 If you need to change all of history, see the man page for `git filter-branch`.
