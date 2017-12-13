@@ -93,7 +93,7 @@
 <a name="diff-last"></a>
 ### 我刚才提交了什么?
 
-如果你用 `git commit -a` 提交了一次变化(changes)，而你又不确定到底这次提交了哪些面容。 你就可以用下面的命令显示当前`HEAD`上的最近一次的提交(commit):
+如果你用 `git commit -a` 提交了一次变化(changes)，而你又不确定到底这次提交了哪些内容。 你就可以用下面的命令显示当前`HEAD`上的最近一次的提交(commit):
 
 ```sh
 (master)$ git show
