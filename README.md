@@ -45,6 +45,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to discard only my unstaged local changes](#i-want-to-discard-only-my-unstaged-local-changes)
     - [I want to discard all of my untracked files](#i-want-to-discard-all-of-my-untracked-files)
   - [Branches](#branches)
+    - [I want to list all branches](#i-want-to-list-all-branches)
     - [Create a branch from a commit](#create-a-branch-from-a-commit)
     - [I pulled from/into the wrong branch](#i-pulled-frominto-the-wrong-branch)
     - [I want to discard local commits so my branch is the same as one on the server](#i-want-to-discard-local-commits-so-my-branch-is-the-same-as-one-on-the-server)
@@ -418,6 +419,27 @@ $ git clean -f
 ```
 
 ## Branches
+<a name="i-want-to-list-all-branches"></a>
+### I want to list all branches
+
+List local branches
+
+```sh
+$ git branch
+```
+
+List remote branches
+
+```sh
+$ git branch -r
+```
+
+List all branches (both local and remote)
+
+```sh
+$ git branch -a
+```
+
 <a name="create-branch-from-commit"></a>
 ### Create a branch from a commit
 ```sh
