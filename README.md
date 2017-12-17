@@ -84,9 +84,11 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [Clone all submodules](#clone-all-submodules)
     - [Remove a submodule](#remove-a-submodule)
   - [Miscellaneous Objects](#miscellaneous-objects)
+    - [Restore a deleted file](#restore-a-deleted-file)
     - [Delete tag](#delete-tag)
     - [Recover a deleted tag](#recover-a-deleted-tag)
     - [Deleted Patch](#deleted-patch)
+    - [Exporting a repository as a Zip file](#exporting-a-repository-as-a-zip-file)
   - [Tracking Files](#tracking-files)
     - [I want to change a file name's capitalization, without changing the contents of the file](#i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file)
     - [I want to overwrite local files when doing a git pull](#i-want-to-overwrite-local-files-when-doing-a-git-pull)
@@ -118,10 +120,16 @@ Let's say that you just blindly committed changes with `git commit -a` and you'r
 (master)$ git show
 ```
 
-or
+Or
 
 ```sh
 $ git log -n1 -p
+```
+
+If you want to see a file at a specific commit, you can also do this (where `<commitid>` is the commit you're interested in):
+
+```sh
+$ git show <commitid>:filename
 ```
 
 <a name="#i-wrote-the-wrong-thing-in-a-commit-message"></a>
@@ -1187,6 +1195,19 @@ $ rm -rf .git/modules/submodulename
 <a name="miscellaneous-objects"></a>
 ## Miscellaneous Objects
 
+### Restore a deleted file
+
+First find the commit when the file last existed:
+
+```sh
+$ git rev-list -n 1 HEAD -- filename
+```
+
+Then checkout that file:
+
+```
+git checkout deletingcommitid^ -- filename
+```
 
 <a name="delete-tag"></a>
 ### Delete tag
@@ -1222,6 +1243,12 @@ If someone has sent you a pull request on GitHub, but then deleted their origina
 $ git fetch origin refs/pull/1/head:pr_1
 From github.com:foo/bar
  * [new ref]         refs/pull/1/head -> pr_1
+```
+
+### Exporting a repository as a Zip file
+
+```sh
+$ git archive --format zip --output /full/path/to/zipfile.zip master
 ```
 
 ## Tracking Files
