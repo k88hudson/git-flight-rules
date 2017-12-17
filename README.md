@@ -22,6 +22,12 @@ For clarity's sake all examples in this document use a customized bash prompt in
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
+  - [Configuration](#configuration)
+    - [I want to set a global user](#i-want-to-set-a-global-user)
+    - [I want to add command line coloring for Git](#i-want-to-add-command-line-coloring-for-git)
+  - [Repositories](#repositories)
+    - [I want to start a local repository](#i-want-to-start-a-local-repository)
+    - [I want to clone a remote repository](#i-want-to-clone-a-remote-repository)
   - [Editing Commits](#editing-commits)
     - [What did I just commit?](#what-did-i-just-commit)
     - [I wrote the wrong thing in a commit message](#i-wrote-the-wrong-thing-in-a-commit-message)
@@ -82,9 +88,13 @@ For clarity's sake all examples in this document use a customized bash prompt in
   - [Finding](#finding)
     - [I want to find a string in any commit](#i-want-to-find-a-string-in-any-commit)
     - [I want to find by author/committer](#i-want-to-find-by-authorcommitter)
+<<<<<<< HEAD
     - [I want to list commits containing specific files](#i-want-to-list-commits-containing-specific-files)
     - [Find a tag where a commit is referenced](#find-a-tag-where-a-commit-is-referenced)
   - [Submodules](#submodules)
+=======
+  - [Miscellaneous Objects](#miscellaneous-objects)
+>>>>>>> Adding Git Cheatsheet commands
     - [Clone all submodules](#clone-all-submodules)
     - [Remove a submodule](#remove-a-submodule)
   - [Miscellaneous Objects](#miscellaneous-objects)
@@ -98,7 +108,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to overwrite local files when doing a git pull](#i-want-to-overwrite-local-files-when-doing-a-git-pull)
     - [I want to remove a file from Git but keep the file](#i-want-to-remove-a-file-from-git-but-keep-the-file)
     - [I want to revert a file to a specific revision](#i-want-to-revert-a-file-to-a-specific-revision)
-  - [Configuration](#configuration)
+  - [Configuration](#configuration-1)
     - [I want to add aliases for some Git commands](#i-want-to-add-aliases-for-some-git-commands)
     - [I want to add an empty directory to my repository](#i-want-to-add-an-empty-directory-to-my-repository)
     - [I want to cache a username and password for a repository](#i-want-to-cache-a-username-and-password-for-a-repository)
@@ -112,6 +122,60 @@ For clarity's sake all examples in this document use a customized bash prompt in
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+<<<<<<< HEAD
+=======
+
+## Configuration
+
+### I want to set a global user
+
+To configure user information used across all local repositories, and to set a name that is identifiable for credit when review version history:
+
+```sh
+$ git config --global user.name “[firstname lastname]”
+```
+
+To set an email address that will be associated with each history marker:
+
+```sh
+git config --global user.email “[valid-email]”
+```
+
+### I want to add command line coloring for Git
+
+To set automatic command line coloring for Git for easy reviewing:
+
+```sh
+$ git config --global color.ui auto
+```
+
+## Repositories
+
+### I want to start a local repository
+
+To initialize an existing directory as a Git repository:
+
+```sh
+(my-folder) $ git init
+```
+
+### I want to clone a remote repository
+
+To clone (copy) a remote repository, copy the url for the repository, and run:
+
+```sh
+$ git clone [url]
+```
+
+This will save it to a folder named the same as the remote repository's. Make sure you have connection to the remote server you are cloning from (for most purposes this means making sure you are connected to the internet).
+
+To clone it into a folder with a different name than the default repository name:
+
+```sh
+$ git clone [url] name-of-new-folder
+```
+
+>>>>>>> Adding Git Cheatsheet commands
 ## Editing Commits
 
 <a name="diff-last"></a>
