@@ -80,9 +80,10 @@ For clarity's sake all examples in this document use a customized bash prompt in
   - [Finding](#finding)
     - [I want to find a string in any commit](#i-want-to-find-a-string-in-any-commit)
     - [I want to find by author/committer](#i-want-to-find-by-authorcommitter)
-  - [Miscellaneous Objects](#miscellaneous-objects)
+  - [Submodules](#submodules)
     - [Clone all submodules](#clone-all-submodules)
     - [Remove a submodule](#remove-a-submodule)
+  - [Miscellaneous Objects](#miscellaneous-objects)
     - [Delete tag](#delete-tag)
     - [Recover a deleted tag](#recover-a-deleted-tag)
     - [Deleted Patch](#deleted-patch)
@@ -1156,8 +1157,7 @@ $ git log --committer=<name or email>
 
 Keep in mind that author and committer are not the same. The `--author` is the person who originally wrote the code; on the other hand, the `--committer`, is the person who committed the code on behalf of the original author.
 
-<a name="miscellaneous-objects"></a>
-## Miscellaneous Objects
+## Submodules
 
 <a name="clone-submodules"></a>
 ### Clone all submodules
@@ -1183,6 +1183,10 @@ $ git rm submodulename
 $ git rm --cached submodulename
 $ rm -rf .git/modules/submodulename
 ```
+
+<a name="miscellaneous-objects"></a>
+## Miscellaneous Objects
+
 
 <a name="delete-tag"></a>
 ### Delete tag
