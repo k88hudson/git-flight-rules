@@ -154,7 +154,7 @@ An alternative is to correctly configure your author settings in `git config --g
 $ git commit --amend --reset-author --no-edit
 ```
 
-If you need to change all of history, see the man page for `git filter-branch`.
+If you need to change all of history, see the main page for `git filter-branch`.
 
 
 <a href="#i-want-to-remove-a-file-from-the-previous-commit"></a>
