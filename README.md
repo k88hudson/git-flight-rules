@@ -58,6 +58,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to rename a branch](#i-want-to-rename-a-branch)
     - [I want to checkout to a remote branch that someone else is working on](#i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on)
     - [I want to create a new remote branch from current local one](#i-want-to-create-a-new-remote-branch-from-current-local-one)
+    - [I want to set a remote branch as the upstream for a local branch](#i-want-to-set-a-remote-branch-as-the-upstream-for-a-local-branch)
     - [I want to set my HEAD to track the default remote branch](#i-want-to-set-my-head-to-track-the-default-remote-branch)
   - [Rebasing and Merging](#rebasing-and-merging)
     - [I want to undo rebase/merge](#i-want-to-undo-rebasemerge)
@@ -78,7 +79,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [Apply a specific stash from list](#apply-a-specific-stash-from-list)
   - [Finding](#finding)
     - [I want to find a string in any commit](#i-want-to-find-a-string-in-any-commit)
-    - [I want to find by author/committer](#i-want-to-find-by-author-committer)
+    - [I want to find by author/committer](#i-want-to-find-by-authorcommitter)
   - [Miscellaneous Objects](#miscellaneous-objects)
     - [Clone all submodules](#clone-all-submodules)
     - [Remove a submodule](#remove-a-submodule)
@@ -788,6 +789,23 @@ $ git push
 ```
 
 The behavior of the other modes of ```git push``` is described in the doc of push.default.
+
+<a name="i-want-to-set-a-remote-branch-as-the-upstream-for-a-local-branch"></a>
+### I want to set a remote branch as the upstream for a local branch
+
+You can set a remote branch as the upstream for the current local branch using:
+
+```sh
+$ git branch --set-upstream-to [remotename]/[branch]
+# or, using the shorthand:
+$ git branch -u [remotename]/[branch]
+```
+
+To set the upstream remote branch for another local branch:
+
+```sh
+$ git branch -u [remotename]/[branch] [local-branch]
+```
 
 <a name="i-want-to-set-my-HEAD-to-track-the-default-remote-branch"></a>
 ### I want to set my HEAD to track the default remote branch
