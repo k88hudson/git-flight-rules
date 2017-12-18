@@ -797,7 +797,7 @@ You can set a remote branch as the upstream for the current local branch using:
 
 ```sh
 $ git branch --set-upstream-to [remotename]/[branch]
-$ or, using the shorthand:
+# or, using the shorthand:
 $ git branch -u [remotename]/[branch]
 ```
 
