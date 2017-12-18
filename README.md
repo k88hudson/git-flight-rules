@@ -79,7 +79,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [Apply a specific stash from list](#apply-a-specific-stash-from-list)
   - [Finding](#finding)
     - [I want to find a string in any commit](#i-want-to-find-a-string-in-any-commit)
-    - [I want to find by author/committer](#i-want-to-find-by-author-committer)
+    - [I want to find by author/committer](#i-want-to-find-by-authorcommitter)
   - [Miscellaneous Objects](#miscellaneous-objects)
     - [Clone all submodules](#clone-all-submodules)
     - [Remove a submodule](#remove-a-submodule)
