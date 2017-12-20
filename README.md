@@ -1,7 +1,7 @@
 # Flight rules for Git
 
 🌍
-*[English](README.md) ∙ [Русский](README_ru.md) ∙ [简体中文](README_zh-cn.md)*
+*[English](README.md) ∙ [Русский](README_ru.md) ∙ [简体中文](README_zh-CN.md)*
 
 #### What are "flight rules"?
 
@@ -1186,7 +1186,7 @@ $ git submodule update --init --recursive
 Creating a submodule is pretty straight-forward, but deleting them less so. The commands you need are:
 
 ```sh
-$ git submodule deinit submodulename   
+$ git submodule deinit submodulename
 $ git rm submodulename
 $ git rm --cached submodulename
 $ rm -rf .git/modules/submodulename
