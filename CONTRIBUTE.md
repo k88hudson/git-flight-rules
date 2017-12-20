@@ -29,7 +29,7 @@ This is a community built document. Dive in and help out!
 
 ## Translation
 
-We are useing with a translation tool called [GitLocalize][gl] and follow the steps to get started with your contribution:
+We are using with a translation tool called [GitLocalize][gl] and follow the steps to get started with your contribution:
 
 1. Go to [GitLocalize's k88hudson/git-flight-rules repository][gl-repo].
 1. Sign up using your GitHub account :octocat:.
