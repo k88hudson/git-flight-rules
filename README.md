@@ -1425,7 +1425,7 @@ Using `git reset` it is then possible to change master back to the commit it was
 * [git-cola](https://git-cola.github.io/) - another Git client for Windows and OS X
 * [GitUp](https://github.com/git-up/GitUp) - A newish GUI that has some very opinionated ways of dealing with Git's complications
 * [gitx-dev](https://rowanj.github.io/gitx/) - another graphical Git client for OS X
-* [Source Tree](https://www.sourcetreeapp.com/) - a free graphical Git client for Windows and OS X
+* [Sourcetree](https://www.sourcetreeapp.com/) - Simplicity meets power in a beautiful and free Git GUI. For Windows and Mac.
 * [Tower](https://www.git-tower.com/) - graphical Git client for OS X (paid)
 * [tig](https://jonas.github.io/tig/) - terminal text-mode interface for Git
 * [Magit](https://magit.vc/) - Interface to Git implemented as an Emacs package.
