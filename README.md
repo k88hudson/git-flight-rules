@@ -1405,6 +1405,7 @@ Using `git reset` it is then possible to change master back to the commit it was
 
 ## Tutorials
 
+* [Atlassian's Git tutorial](https://www.atlassian.com/git/tutorials) Get Git right with tutorials from beginner to advanced. 
 * [Learn Git branching](https://learngitbranching.js.org/) An interactive web based branching/merging/rebasing tutorial
 * [Getting solid at Git rebase vs. merge](https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa)
 * [git-workflow](https://github.com/asmeurer/git-workflow) - [Aaron Meurer](https://github.com/asmeurer)'s howto on using Git to contribute to open source repositories
