@@ -38,7 +38,6 @@ We use a translation called [GitLocalize][gl]. Please follow these steps to get 
 1. When you are done, send the translation for reviews.
 1. The reviewed translation will be sent as a Pull Request to GitHub by the language moderator in the community.
 
-
 To learn more about how GitLocalize works, visit their [help page][gl-help]. If you find any issues or feature requests, please file them in [GitLocalize's issue tracker][gl-issue-tracker].
 
 [gl]: https://gitlocalize.com
