@@ -365,7 +365,7 @@ This will remove all local untracked files, so only files tracked by Git remain:
 $ git clean -fd
 ```
 
-`-x` will also remove all ignored files!
+`-x` will also remove all ignored files.
 
 <a href="i-want-to-discard-specific-unstaged-changes"></a>
 ### I want to discard specific unstaged changes
