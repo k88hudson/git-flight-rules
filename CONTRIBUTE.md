@@ -43,4 +43,4 @@ To learn more about how GitLocalize works, visit their [help page][gl-help]. If 
 [gl]: https://gitlocalize.com
 [gl-help]: https://docs.gitlocalize.com/ 
 [gl-issue-tracker]: https://github.com/gitlocalize/feedback
-[gl-repo]: https://gitlocalize/repo/598
+[gl-repo]: https://gitlocalize.com/repo/598
