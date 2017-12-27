@@ -109,24 +109,24 @@ Pour des raisons de clarté tous les exemples dans ce document utilise un prompt
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-## Editing Commits
+## Editer des Commits
 
 <a name="diff-last"></a>
-### What did I just commit?
+### Qu'est-ce que je viens de commit?
 
-Let's say that you just blindly committed changes with `git commit -a` and you're not sure what the actual content of the commit you just made was. You can show the latest commit on your current HEAD with:
+Disons que vous venez de commit quelque chose aveuglément avec `git commit -a` et vous n'êtes pas sûr de ce qu'il y a réelement dans le commit que vous venez de faire. Vous pouvez révéler le contenu du dernier commit de votre HEAD actuel avec:
 
 ```sh
 (master)$ git show
 ```
 
-Or
+Ou
 
 ```sh
 $ git log -n1 -p
 ```
 
-If you want to see a file at a specific commit, you can also do this (where `<commitid>` is the commit you're interested in):
+Si vous voulez voir un fichier à un commit spécifique, vous pouvez aussi faire (where `<commitid>` est le commit qui vous intéresse):
 
 ```sh
 $ git show <commitid>:filename
