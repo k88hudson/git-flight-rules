@@ -1,7 +1,7 @@
 #! /usr/bin/env node
-var doctoc = require("doctoc");
-var shell = require("shelljs");
-var glob = require("glob");
+const doctoc = require("doctoc");
+const shell = require("shelljs");
+const glob = require("glob");
 
 /*
     Generate menu for all ReadMe with DocToc
