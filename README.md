@@ -822,7 +822,7 @@ $ git branch -u [remotename]/[branch] [local-branch]
 By checking your remote branches, you can see which remote branch your HEAD is tracking. In some cases, this is not the desired branch.
 
 ```sh
-$ git branch -rr
+$ git branch -r
   origin/HEAD -> origin/gh-pages
   origin/master
 ```
