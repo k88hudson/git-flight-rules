@@ -55,6 +55,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to delete local branches that were deleted upstream](#i-want-to-delete-local-branches-that-were-deleted-upstream)
     - [I accidentally deleted my branch](#i-accidentally-deleted-my-branch)
     - [I want to delete a branch](#i-want-to-delete-a-branch)
+    - [I want to delete multiple branches](#i-want-to-delete-multiple-branches)
     - [I want to rename a branch](#i-want-to-rename-a-branch)
     - [I want to checkout to a remote branch that someone else is working on](#i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on)
     - [I want to create a new remote branch from current local one](#i-want-to-create-a-new-remote-branch-from-current-local-one)
@@ -740,6 +741,15 @@ To delete a local branch that *has not* been merged to the current branch or an 
 
 ```sh
 (master)$ git branch -D my-branch
+```
+
+<a name="i-want-to-delete-multiple-branches"></a>
+### I want to delete multiple branches
+
+Say you want to delete all branches that start with `fix/`:
+
+```sh
+(master)$ git branch | grep 'fix/' | xargs git branch -d
 ```
 
 <a name="i-want-to-rename-a-branch"></a>
