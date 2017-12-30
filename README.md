@@ -1202,7 +1202,7 @@ $ git log --name-status -- **/*.js
 <a name="find-a-tag-where-a-commit-is-referenced"></a>
 ### Find a tag where a commit is referenced
 
-To find all tags containing a specific commit
+To find all tags containing a specific commit:
 
 ```sh
 $ git tag --contains <commitid>
