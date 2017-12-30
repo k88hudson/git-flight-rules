@@ -33,7 +33,7 @@ We use a translation tool called [GitLocalize][gl]. Please follow these steps to
 
 1. Go to [GitLocalize's k88hudson/git-flight-rules repository][gl-repo].
 1. Sign up using your GitHub account :octocat:.
-1. Find the document you are going to translate. 
+1. Find the document you are going to translate.
 1. Happy translating :sparkles: .
 1. When you are done, send the translation for reviews.
 1. The reviewed translation will be sent as a Pull Request to GitHub by the language moderator in the community.
@@ -41,6 +41,6 @@ We use a translation tool called [GitLocalize][gl]. Please follow these steps to
 To learn more about how GitLocalize works, visit their [help page][gl-help]. If you find any issues or feature requests, please file them in [GitLocalize's issue tracker][gl-issue-tracker].
 
 [gl]: https://gitlocalize.com
-[gl-help]: https://docs.gitlocalize.com/ 
+[gl-help]: https://docs.gitlocalize.com/
 [gl-issue-tracker]: https://github.com/gitlocalize/feedback
 [gl-repo]: https://gitlocalize.com/repo/598
