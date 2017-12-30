@@ -97,6 +97,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to overwrite local files when doing a git pull](#i-want-to-overwrite-local-files-when-doing-a-git-pull)
     - [I want to remove a file from Git but keep the file](#i-want-to-remove-a-file-from-git-but-keep-the-file)
     - [I want to revert a file to a specific revision](#i-want-to-revert-a-file-to-a-specific-revision)
+    - [I want to list changes of a specific file between commits or branches](#i-want-to-list-changes-of-a-specific-file-between-commits-or-branches)
   - [Configuration](#configuration)
     - [I want to add aliases for some Git commands](#i-want-to-add-aliases-for-some-git-commands)
     - [I want to add an empty directory to my repository](#i-want-to-add-an-empty-directory-to-my-repository)
@@ -1331,6 +1332,21 @@ If you want to revert to changes made just 1 commit before c5f567, pass the comm
 
 ```sh
 (master)$ git checkout c5f567~1 -- file1/to/restore file2/to/restore
+```
+
+<a href="i-want-to-list-changes-of-a-specific-file-between-commits-or-branches"></a>
+### I want to list changes of a specific file between commits or branches
+
+Assuming you want to compare last commit with file from commit c5f567:
+
+```sh
+$ git diff HEAD:path_to_file/file c5f567:path_to_file/file
+```
+
+Same goes for branches:
+
+```sh
+$ git diff master:path_to_file/file staging:path_to_file/file
 ```
 
 ## Configuration
