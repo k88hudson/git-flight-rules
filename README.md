@@ -81,6 +81,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
   - [Finding](#finding)
     - [I want to find a string in any commit](#i-want-to-find-a-string-in-any-commit)
     - [I want to find by author/committer](#i-want-to-find-by-authorcommitter)
+    - [I want to list commits containing specific files](#i-want-to-list-commits-containing-specific-files)
   - [Submodules](#submodules)
     - [Clone all submodules](#clone-all-submodules)
     - [Remove a submodule](#remove-a-submodule)
@@ -1174,6 +1175,30 @@ $ git log --committer=<name or email>
 ```
 
 Keep in mind that author and committer are not the same. The `--author` is the person who originally wrote the code; on the other hand, the `--committer`, is the person who committed the code on behalf of the original author.
+
+<a name="i-want-to-list-commits-containing-specific-files"></a>
+### I want to list commits containing specific files
+
+To find all commits containing a specific file you can use:
+
+
+```sh
+$ git log -- <path to file>
+```
+
+You would usually specify an exact path, but you may also use wild cards in the path and file name:
+
+```sh
+$ git log -- **/*.js
+```
+
+While using wildcards, it's useful to inform `--name-status` to see the list of commited files:
+
+```sh
+$ git log --name-status -- **/*.js
+```
+
+
 
 ## Submodules
 
