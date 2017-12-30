@@ -82,7 +82,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to find a string in any commit](#i-want-to-find-a-string-in-any-commit)
     - [I want to find by author/committer](#i-want-to-find-by-authorcommitter)
     - [I want to list commits containing specific files](#i-want-to-list-commits-containing-specific-files)
-    - [I want to find a tag where a commit is referenced](#i-want-to-find-a-tag-where-a-commit-is-referenced)
+    - [Find a tag where a commit is referenced](#find-a-tag-where-a-commit-is-referenced)
   - [Submodules](#submodules)
     - [Clone all submodules](#clone-all-submodules)
     - [Remove a submodule](#remove-a-submodule)
@@ -1199,8 +1199,8 @@ While using wildcards, it's useful to inform `--name-status` to see the list of 
 $ git log --name-status -- **/*.js
 ```
 
-<a name="i-want-to-find-a-tag-where-a-commit-is-referenced"></a>
-### I want to find a tag where a commit is referenced
+<a name="find-a-tag-where-a-commit-is-referenced"></a>
+### Find a tag where a commit is referenced
 
 To find all tags containing a specific commit
 
