@@ -108,7 +108,6 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-
 ## Редактирование коммитов
 
 <a name="diff-last"></a>
@@ -164,7 +163,6 @@ $ git commit --amend --reset-author --no-edit
 ```
 
 Если Вам нужно изменить всю историю, то смотрите документацию для `git filter-branch`.
-
 
 <a href="#i-want-to-remove-a-file-from-the-previous-commit"></a>
 ### Я хочу удалить файл из предыдущего коммита
@@ -287,12 +285,10 @@ $ git add -N filename.x
 Затем используйте опцию `e` для ручного выбора строк. Запустив `git diff --cached` или
 `git diff --staged`, Вы увидите какие строки вы подготовили по-сравнению с тем, что сохранено в рабочей копии.
 
-
 <a href="stage-in-two-commits"></a>
 ### Я хочу добавить изменения одного файла в два разных коммита
 
 `git add` добавляет в коммит весь файл целиком. `git add -p` позволяет интерактивно выбрать изменения, которые Вы хотите добавить.
-
 
 <a href="unstaging-edits-and-staging-the-unstaged"></a>
 ### Я хочу подготовить свои неподготовленные правки и убрать из подготовки то, что уже подготовлено
@@ -456,7 +452,6 @@ $ git branch -a
 $ git checkout -b <branch> <SHA1_OF_COMMIT>
 ```
 
-
 <a name="pull-wrong-branch"></a>
 ### Я стянул изменения (pull) из неправильной ветки или в неправильную ветку
 
@@ -619,7 +614,6 @@ HEAD is now at a13b85e
 
 На этом этапе есть вероятность конфликтов. О том как разрешить конфликты см. в главе [**Здесь были конфликты**](#merge-conflict) в [разделе интерактивное перебазирование выше](#interactive-rebase).
 
-
 Теперь давайте создадим новую ветку для бага #14, которая также основана на master
 
 ```sh
@@ -633,7 +627,6 @@ HEAD is now at a13b85e
 ```sh
 (14)$ git cherry-pick 5ea5173
 ```
-
 
 <a name="delete-stale-local-branches"></a>
 ### Я хочу удалить локальные ветки, которые были удалены в upstream
@@ -1394,7 +1387,6 @@ $ git reset --hard 0254ea7
 С помощью `git reset` можно вернуть ветку master обратно на коммит, на котором она была прежде. Это обеспечивает безопасность при случайном изменении истории.
 
 (взято из [Источник](https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog)).
-
 
 # Другие ресурсы
 

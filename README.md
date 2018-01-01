@@ -111,7 +111,6 @@ For clarity's sake all examples in this document use a customized bash prompt in
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-
 ## Editing Commits
 
 <a name="diff-last"></a>
@@ -167,7 +166,6 @@ $ git commit --amend --reset-author --no-edit
 ```
 
 If you need to change all of history, see the man page for `git filter-branch`.
-
 
 <a href="#i-want-to-remove-a-file-from-the-previous-commit"></a>
 ### I want to remove a file from the previous commit
@@ -290,12 +288,10 @@ $ git add -N filename.x
 Then, you will need to use the `e` option to manually choose which lines to add. Running `git diff --cached` or
 `git diff --staged` will show you which lines you have staged compared to which are still saved locally.
 
-
 <a href="stage-in-two-commits"></a>
 ### I want to add changes in one file to two different commits
 
 `git add` will add the entire file to a commit. `git add -p` will allow to interactively select which changes you want to add.
-
 
 <a href="unstaging-edits-and-staging-the-unstaged"></a>
 ### I want to stage my unstaged edits, and unstage my staged edits
@@ -459,7 +455,6 @@ $ git branch -a
 $ git checkout -b <branch> <SHA1_OF_COMMIT>
 ```
 
-
 <a name="pull-wrong-branch"></a>
 ### I pulled from/into the wrong branch
 
@@ -622,7 +617,6 @@ Now, let's *cherry-pick* the commit for bug #21 on top of our branch. That means
 
 At this point, there is a possibility there might be conflicts. See the [**There were conflicts**](#merge-conflict) section in the [interactive rebasing section above](#interactive-rebase) for how to resolve conflicts.
 
-
 Now let's create a new branch for bug #14, also based on master
 
 ```sh
@@ -636,7 +630,6 @@ And finally, let's cherry-pick the commit for bug #14:
 ```sh
 (14)$ git cherry-pick 5ea5173
 ```
-
 
 <a name="delete-stale-local-branches"></a>
 ### I want to delete local branches that were deleted upstream
@@ -1182,7 +1175,6 @@ Keep in mind that author and committer are not the same. The `--author` is the p
 
 To find all commits containing a specific file you can use:
 
-
 ```sh
 $ git log -- <path to file>
 ```
@@ -1437,7 +1429,6 @@ $ git reset --hard 0254ea7
 Using `git reset` it is then possible to change master back to the commit it was before. This provides a safety net in case history was accidentally changed.
 
 (copied and edited from [Source](https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog)).
-
 
 # Other Resources
 
