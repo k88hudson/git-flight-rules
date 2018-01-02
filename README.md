@@ -602,7 +602,7 @@ First, let's reset our master branch to the correct commit (`a13b85e`):
 HEAD is now at a13b85e
 ```
 
-Now, we can create a fresh branch for our bug #21 branch:
+Now, we can create a fresh branch for our bug #21:
 
 ```sh
 (master)$ git checkout -b 21
