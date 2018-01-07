@@ -44,7 +44,6 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to discard specific unstaged files](#i-want-to-discard-specific-unstaged-files)
     - [I want to discard only my unstaged local changes](#i-want-to-discard-only-my-unstaged-local-changes)
     - [I want to discard all of my untracked files](#i-want-to-discard-all-of-my-untracked-files)
-    - [I made changes on the wrong branch](#i-made-changes-on-the-wrong-branch)
   - [Branches](#branches)
     - [I want to list all branches](#i-want-to-list-all-branches)
     - [Create a branch from a commit](#create-a-branch-from-a-commit)
@@ -62,6 +61,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to create a new remote branch from current local one](#i-want-to-create-a-new-remote-branch-from-current-local-one)
     - [I want to set a remote branch as the upstream for a local branch](#i-want-to-set-a-remote-branch-as-the-upstream-for-a-local-branch)
     - [I want to set my HEAD to track the default remote branch](#i-want-to-set-my-head-to-track-the-default-remote-branch)
+    - [I made changes on the wrong branch](#i-made-changes-on-the-wrong-branch)
   - [Rebasing and Merging](#rebasing-and-merging)
     - [I want to undo rebase/merge](#i-want-to-undo-rebasemerge)
     - [I rebased, but I don't want to force push](#i-rebased-but-i-dont-want-to-force-push)
@@ -430,14 +430,12 @@ $ git clean -f
 
 ### I made changes on the wrong branch
 
-You've made uncommitted changes and realise you're on the wrong branch 
+You've made uncommitted changes and realise you're on the wrong branch. Stash changes and apply them to the branch you want:
 
-Stash changes and apply them to the branch you want
-
-```
-git stash
-git checkout <branch you want to be on>
-git stash apply
+```sh
+(wrong_branch)$ git stash
+(wrong_branch)$ git checkout <branch you want to be on>
+(correct_branch)$ git stash apply
 ```
 
 ## Branches
