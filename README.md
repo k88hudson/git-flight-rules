@@ -428,16 +428,6 @@ When you want to get rid of all of your untracked files
 $ git clean -f
 ```
 
-### I made changes on the wrong branch
-
-You've made uncommitted changes and realise you're on the wrong branch. Stash changes and apply them to the branch you want:
-
-```sh
-(wrong_branch)$ git stash
-(wrong_branch)$ git checkout <correct_branch>
-(correct_branch)$ git stash apply
-```
-
 ## Branches
 <a name="i-want-to-list-all-branches"></a>
 ### I want to list all branches
@@ -848,6 +838,16 @@ To change `origin/HEAD` to track `origin/master`, you can run this command:
 ```sh
 $ git remote set-head origin --auto
 origin/HEAD set to master
+```
+
+### I made changes on the wrong branch
+
+You've made uncommitted changes and realise you're on the wrong branch. Stash changes and apply them to the branch you want:
+
+```sh
+(wrong_branch)$ git stash
+(wrong_branch)$ git checkout <correct_branch>
+(correct_branch)$ git stash apply
 ```
 
 ## Rebasing and Merging
