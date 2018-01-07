@@ -61,6 +61,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to create a new remote branch from current local one](#i-want-to-create-a-new-remote-branch-from-current-local-one)
     - [I want to set a remote branch as the upstream for a local branch](#i-want-to-set-a-remote-branch-as-the-upstream-for-a-local-branch)
     - [I want to set my HEAD to track the default remote branch](#i-want-to-set-my-head-to-track-the-default-remote-branch)
+    - [I made changes on the wrong branch](#i-made-changes-on-the-wrong-branch)
   - [Rebasing and Merging](#rebasing-and-merging)
     - [I want to undo rebase/merge](#i-want-to-undo-rebasemerge)
     - [I rebased, but I don't want to force push](#i-rebased-but-i-dont-want-to-force-push)
@@ -837,6 +838,16 @@ To change `origin/HEAD` to track `origin/master`, you can run this command:
 ```sh
 $ git remote set-head origin --auto
 origin/HEAD set to master
+```
+
+### I made changes on the wrong branch
+
+You've made uncommitted changes and realise you're on the wrong branch. Stash changes and apply them to the branch you want:
+
+```sh
+(wrong_branch)$ git stash
+(wrong_branch)$ git checkout <correct_branch>
+(correct_branch)$ git stash apply
 ```
 
 ## Rebasing and Merging
