@@ -434,7 +434,7 @@ You've made uncommitted changes and realise you're on the wrong branch. Stash ch
 
 ```sh
 (wrong_branch)$ git stash
-(wrong_branch)$ git checkout <branch you want to be on>
+(wrong_branch)$ git checkout <correct_branch>
 (correct_branch)$ git stash apply
 ```
 
