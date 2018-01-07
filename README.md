@@ -45,7 +45,8 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to discard only my unstaged local changes](#i-want-to-discard-only-my-unstaged-local-changes)
     - [I want to discard all of my untracked files]
     (#i-want-to-discard-all-of-my-untracked-files)
-    - [I made changes on the wrong branch](#i-made-changes-on-the-wrong-branch)
+    - [I made changes on the wrong branch]
+    (#i-made-changes-on-the-wrong-branch)
   - [Branches](#branches)
     - [I want to list all branches](#i-want-to-list-all-branches)
     - [Create a branch from a commit](#create-a-branch-from-a-commit)
