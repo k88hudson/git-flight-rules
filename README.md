@@ -43,7 +43,9 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to discard specific unstaged changes](#i-want-to-discard-specific-unstaged-changes)
     - [I want to discard specific unstaged files](#i-want-to-discard-specific-unstaged-files)
     - [I want to discard only my unstaged local changes](#i-want-to-discard-only-my-unstaged-local-changes)
-    - [I want to discard all of my untracked files](#i-want-to-discard-all-of-my-untracked-files)
+    - [I want to discard all of my untracked files]
+    (#i-want-to-discard-all-of-my-untracked-files)
+    - [I made changes on the wrong branch](#i-made-changes-on-the-wrong-branch)
   - [Branches](#branches)
     - [I want to list all branches](#i-want-to-list-all-branches)
     - [Create a branch from a commit](#create-a-branch-from-a-commit)
@@ -425,6 +427,18 @@ When you want to get rid of all of your untracked files
 
 ```sh
 $ git clean -f
+```
+
+### I made changes on the wrong branch
+
+You've made uncommitted changes and realise you're on the wrong branch 
+
+Stash changes and apply them to the branch you want
+
+```
+git stash
+git checkout <branch you want to be on>
+git stash apply
 ```
 
 ## Branches
