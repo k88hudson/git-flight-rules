@@ -55,11 +55,13 @@
     - [Я хочу удалить локальные ветки, которые были удалены в upstream](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D1%83%D0%B4%D0%B0%D0%BB%D0%B8%D1%82%D1%8C-%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%B2%D0%B5%D1%82%D0%BA%D0%B8-%D0%BA%D0%BE%D1%82%D0%BE%D1%80%D1%8B%D0%B5-%D0%B1%D1%8B%D0%BB%D0%B8-%D1%83%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D1%8B-%D0%B2-upstream)
     - [Я нечаянно удалил мою ветку](#%D0%AF-%D0%BD%D0%B5%D1%87%D0%B0%D1%8F%D0%BD%D0%BD%D0%BE-%D1%83%D0%B4%D0%B0%D0%BB%D0%B8%D0%BB-%D0%BC%D0%BE%D1%8E-%D0%B2%D0%B5%D1%82%D0%BA%D1%83)
     - [Я хочу удалить ветку](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D1%83%D0%B4%D0%B0%D0%BB%D0%B8%D1%82%D1%8C-%D0%B2%D0%B5%D1%82%D0%BA%D1%83)
+    - [Я хочу удалить несколько веток](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D1%83%D0%B4%D0%B0%D0%BB%D0%B8%D1%82%D1%8C-%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE-%D0%B2%D0%B5%D1%82%D0%BE%D0%BA)
     - [Я хочу переименовать ветку](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D0%BF%D0%B5%D1%80%D0%B5%D0%B8%D0%BC%D0%B5%D0%BD%D0%BE%D0%B2%D0%B0%D1%82%D1%8C-%D0%B2%D0%B5%D1%82%D0%BA%D1%83)
     - [Я хочу перейти на удаленную ветку, над которой работает кто-то еще](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D0%BF%D0%B5%D1%80%D0%B5%D0%B9%D1%82%D0%B8-%D0%BD%D0%B0-%D1%83%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%BD%D1%83%D1%8E-%D0%B2%D0%B5%D1%82%D0%BA%D1%83-%D0%BD%D0%B0%D0%B4-%D0%BA%D0%BE%D1%82%D0%BE%D1%80%D0%BE%D0%B9-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D1%82-%D0%BA%D1%82%D0%BE-%D1%82%D0%BE-%D0%B5%D1%89%D0%B5)
     - [Я хочу создать новую удаленную ветку из текущей локальной](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C-%D0%BD%D0%BE%D0%B2%D1%83%D1%8E-%D1%83%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%BD%D1%83%D1%8E-%D0%B2%D0%B5%D1%82%D0%BA%D1%83-%D0%B8%D0%B7-%D1%82%D0%B5%D0%BA%D1%83%D1%89%D0%B5%D0%B9-%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9)
     - [Я хочу настроить локальную ветку на отслеживание удаленной (upstream) ветки](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B8%D1%82%D1%8C-%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D1%8C%D0%BD%D1%83%D1%8E-%D0%B2%D0%B5%D1%82%D0%BA%D1%83-%D0%BD%D0%B0-%D0%BE%D1%82%D1%81%D0%BB%D0%B5%D0%B6%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%83%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%BD%D0%BE%D0%B9-upstream-%D0%B2%D0%B5%D1%82%D0%BA%D0%B8)
     - [Я хочу настроить HEAD на отслеживание основной удаленной ветки](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B8%D1%82%D1%8C-head-%D0%BD%D0%B0-%D0%BE%D1%82%D1%81%D0%BB%D0%B5%D0%B6%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B9-%D1%83%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%BD%D0%BE%D0%B9-%D0%B2%D0%B5%D1%82%D0%BA%D0%B8)
+    - [Я сделал изменения в неправильной ветке](#%D0%AF-%D1%81%D0%B4%D0%B5%D0%BB%D0%B0%D0%BB-%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F-%D0%B2-%D0%BD%D0%B5%D0%BF%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9-%D0%B2%D0%B5%D1%82%D0%BA%D0%B5)
   - [Перебазирование (rebase) и слияние (merge)](#%D0%9F%D0%B5%D1%80%D0%B5%D0%B1%D0%B0%D0%B7%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-rebase-%D0%B8-%D1%81%D0%BB%D0%B8%D1%8F%D0%BD%D0%B8%D0%B5-merge)
     - [Я хочу отменить перебазирование/слияние](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D0%BE%D1%82%D0%BC%D0%B5%D0%BD%D0%B8%D1%82%D1%8C-%D0%BF%D0%B5%D1%80%D0%B5%D0%B1%D0%B0%D0%B7%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D1%81%D0%BB%D0%B8%D1%8F%D0%BD%D0%B8%D0%B5)
     - [Я сделал перебазирование, но я не хочу делать принудительный push](#%D0%AF-%D1%81%D0%B4%D0%B5%D0%BB%D0%B0%D0%BB-%D0%BF%D0%B5%D1%80%D0%B5%D0%B1%D0%B0%D0%B7%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BD%D0%BE-%D1%8F-%D0%BD%D0%B5-%D1%85%D0%BE%D1%87%D1%83-%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C-%D0%BF%D1%80%D0%B8%D0%BD%D1%83%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-push)
@@ -80,6 +82,8 @@
   - [Поиск](#%D0%9F%D0%BE%D0%B8%D1%81%D0%BA)
     - [Я хочу найти строку в коммитах](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D0%BD%D0%B0%D0%B9%D1%82%D0%B8-%D1%81%D1%82%D1%80%D0%BE%D0%BA%D1%83-%D0%B2-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82%D0%B0%D1%85)
     - [Я хочу искать по автору или сохранившему изменения (committer)](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D0%B8%D1%81%D0%BA%D0%B0%D1%82%D1%8C-%D0%BF%D0%BE-%D0%B0%D0%B2%D1%82%D0%BE%D1%80%D1%83-%D0%B8%D0%BB%D0%B8-%D1%81%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D0%B8%D0%B2%D1%88%D0%B5%D0%BC%D1%83-%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F-committer)
+    - [Я хочу получить список коммитов, содержащих заданный файл](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C-%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82%D0%BE%D0%B2-%D1%81%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D1%89%D0%B8%D1%85-%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D0%B9-%D1%84%D0%B0%D0%B9%D0%BB)
+    - [Найти метки для заданного коммита](#%D0%9D%D0%B0%D0%B9%D1%82%D0%B8-%D0%BC%D0%B5%D1%82%D0%BA%D0%B8-%D0%B4%D0%BB%D1%8F-%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82%D0%B0)
   - [Субмодули](#%D0%A1%D1%83%D0%B1%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B8)
     - [Клонировать все субмодули](#%D0%9A%D0%BB%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C-%D0%B2%D1%81%D0%B5-%D1%81%D1%83%D0%B1%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B8)
     - [Удалить субмодуль](#%D0%A3%D0%B4%D0%B0%D0%BB%D0%B8%D1%82%D1%8C-%D1%81%D1%83%D0%B1%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8C)
@@ -131,7 +135,6 @@ $ git log -n1 -p
 $ git show <commitid>:filename
 ```
 
-<a name="#i-wrote-the-wrong-thing-in-a-commit-message"></a>
 ### Я неправильно написал сообщение коммита
 
 Если Вы неправильно сохранили коммит, но еще не сделали `push`, то для исправления сообщения коммита сделайте следующее:
@@ -139,6 +142,7 @@ $ git show <commitid>:filename
 ```sh
 $ git commit --amend
 ```
+
 Это откроет текстовый редактор по-умолчанию, в котором Вы сможете исправить сообщение. С другой стороны Вы можете сделать это одной командой:
 
 ```sh
@@ -164,7 +168,6 @@ $ git commit --amend --reset-author --no-edit
 
 Если Вам нужно изменить всю историю, то смотрите документацию для `git filter-branch`.
 
-<a href="#i-want-to-remove-a-file-from-the-previous-commit"></a>
 ### Я хочу удалить файл из предыдущего коммита
 
 Чтобы удалить изменения файла из предыдущего коммита, сделайте следующее:
@@ -363,7 +366,6 @@ $ git clean -fd
 
 `-x` удалит также и игнорируемые файлы.
 
-<a href="i-want-to-discard-specific-unstaged-changes"></a>
 ### Я хочу отменить некоторые неподготовленные изменения
 
 Когда Вы хотите избавиться от некоторых, но не всех изменений в Вашей рабочей копии.
@@ -392,7 +394,6 @@ $ git stash -p
 $ git stash drop
 ```
 
-<a href="i-want-to-discard-specific-unstaged-files"></a>
 ### Я хочу отбросить неподготовленные изменения в некоторых файлах
 
 Когда Вы хотите убрать изменения какого-то файла в Вашей рабочей копии.
@@ -407,7 +408,6 @@ $ git checkout myFile
 $ git checkout myFirstFile mySecondFile
 ```
 
-<a href="i-want-to-discard-only-my-unstaged-local-changes"></a>
 ### Я хочу убрать все неподготовленные локальные изменения
 
 Когда Вы хотите убрать все неподготовленные локальные изменения
@@ -415,6 +415,7 @@ $ git checkout myFirstFile mySecondFile
 ```sh
 $ git checkout .
 ```
+
 <a href="i-want-to-discard-all-my-untracked-files"></a>
 ### Я хочу удалить все неотслеживаемые файлы
 
@@ -425,7 +426,7 @@ $ git clean -f
 ```
 
 ## Ветки
-<a name="i-want-to-list-all-branches"></a>
+
 ### Я хочу получить список всех веток
 
 Список локальных веток
@@ -708,7 +709,6 @@ README.md foo.txt
 
 Вуаля! Мы вернули наш удаленный файл обратно. `git reflog` также бывает полезен, когда перебазирование срабатывает не так, как Вы хотели.
 
-<a name="i-want-to-delete-a-branch"></a>
 ### Я хочу удалить ветку
 
 Чтобы удалить ветку на удаленном репозитории:
@@ -735,7 +735,14 @@ README.md foo.txt
 (master)$ git branch -D my-branch
 ```
 
-<a name="i-want-to-rename-a-branch"></a>
+### Я хочу удалить несколько веток
+
+Скажем, Вы хотите удалить все ветки, начинающиеся с `fix/`:
+
+```sh
+(master)$ git branch | grep 'fix/' | xargs git branch -d
+```
+
 ### Я хочу переименовать ветку
 
 Чтобы переименовать текущую (локальную) ветку:
@@ -771,7 +778,6 @@ Switched to a new branch 'daves'
 
 Это создаст Вам локальную копию ветки `daves` и после `push` обновления также появятся в удаленном репозитории.
 
-<a name="i-want-to-create-a-new-remote-branch-from-current-local-one"></a>
 ### Я хочу создать новую удаленную ветку из текущей локальной
 
 ```sh
@@ -792,7 +798,6 @@ $ git push
 
 Поведение других режимов `git push` описано в документации на push.default.
 
-<a name="i-want-to-set-a-remote-branch-as-the-upstream-for-a-local-branch"></a>
 ### Я хочу настроить локальную ветку на отслеживание удаленной (upstream) ветки
 
 Вы можете настроить текущую локальную ветку на отслеживание удаленной (upstream) ветки используя:
@@ -815,7 +820,7 @@ $ git branch -u [remotename]/[branch] [local-branch]
 При просмотре удаленных веток можно увидеть какую удаленную ветку отслеживает HEAD. Может оказаться, что это не та ветка что нужно.
 
 ```sh
-$ git branch -rr
+$ git branch -r
   origin/HEAD -> origin/gh-pages
   origin/master
 ```
@@ -825,6 +830,16 @@ $ git branch -rr
 ```sh
 $ git remote set-head origin --auto
 origin/HEAD set to master
+```
+
+### Я сделал изменения в неправильной ветке
+
+Вы сделали несохраненные изменения, а потом поняли, что находитесь не в той ветке. Отложите эти изменения, а затем примените их к нужной ветке:
+
+```sh
+(wrong_branch)$ git stash
+(wrong_branch)$ git checkout <correct_branch>
+(correct_branch)$ git stash apply
 ```
 
 ## Перебазирование (rebase) и слияние (merge)
@@ -969,7 +984,6 @@ Newer, awesomer features
 
 Это выполнит интерактивное перебазирование со списком еще не опубликованных коммитов и Вы сможете безопасно упорядочить/исправить/объединить коммиты из списка.
 
-<a name="i-need-to-abort-the-merge"></a>
 #### Мне нужно прервать слияние
 
 Иногда слияние может создавать проблемы в некоторых файлах. В таких случаях мы можем воспользоваться опцией `abort` для прерывания текущего процесса разрешения конфликтов и попробовать вернуться к состоянию перед слиянием.
@@ -980,7 +994,6 @@ Newer, awesomer features
 
 Эта команда доступна начиная с версии Git >= 1.7.4
 
-<a name="check-if-all-commits-on-a-branch-are-merged"></a>
 ### Проверить, что все коммиты ветви были слиты
 
 Для проверки того, что все коммиты ветки слиты в другую ветку, Вам нужно сравнить вершины (или любые коммиты) этих ветвей:
@@ -1072,7 +1085,6 @@ Changes not staged for commit:
 <a name="stashing"></a>
 ## Отложенные изменения (stash)
 
-<a name="stash-all-edits"></a>
 ### Отложить все правки
 
 Чтобы отложить все правки в рабочем каталоге
@@ -1087,7 +1099,6 @@ $ git stash
 $ git stash -u
 ```
 
-<a name="stash-specific-files"></a>
 ### Отложить заданные файлы
 
 Отложить только один файл из рабочей папки
@@ -1126,10 +1137,8 @@ $ git stash apply "stash@{n}"
 
 Здесь 'n' показывает позицию stash-а в стеке. Верхний stash имеет позицию 0.
 
-<a name="finding"></a>
 ## Поиск
 
-<a name="i-want-to-find-a-string-in-any-commit"></a>
 ### Я хочу найти строку в коммитах
 
 Чтобы найти коммиты с заданной строкой, используйте следующее:
@@ -1158,6 +1167,34 @@ $ git log --committer=<name or email>
 
 Не забывайте, что автор и сохранивший изменения - это не всегда один и тот же человек. `--author` - это тот, кто написал код, а `--committer` - тот, кто сохранил код, написанный автором.
 
+### Я хочу получить список коммитов, содержащих заданный файл
+
+Чтобы найти все коммиты, содержащие заданный файл, Вы можете использовать:
+
+```sh
+$ git log -- <path to file>
+```
+
+Обычно Вы задаете точный путь, но можете использовать подстановочные знаки:
+
+```sh
+$ git log -- **/*.js
+```
+
+При использовании подстановочных знаков используйте `--name-status` для просмотра списка сохраненных файлов, сохраненных в каждом коммите:
+
+```sh
+$ git log --name-status -- **/*.js
+```
+
+### Найти метки для заданного коммита
+
+Чтобы найти все метки для заданного коммита:
+
+```sh
+$ git tag --contains <commitid>
+```
+
 ## Субмодули
 
 <a name="clone-submodules"></a>
@@ -1185,7 +1222,6 @@ $ git rm --cached submodulename
 $ rm -rf .git/modules/submodulename
 ```
 
-<a name="miscellaneous-objects"></a>
 ## Разное
 
 ### Восстановить удаленный файл
@@ -1202,7 +1238,6 @@ $ git rev-list -n 1 HEAD -- filename
 git checkout deletingcommitid^ -- filename
 ```
 
-<a name="delete-tag"></a>
 ### Удалить метку
 
 ```sh
@@ -1227,7 +1262,6 @@ $ git update-ref refs/tags/<tag_name> <hash>
 
 Ваша метка была восстановлена.
 
-<a name="deleted-patch"></a>
 ### Удаленный патч
 
 Если кто-то прислал Вам пулл-реквест на GitHub, но потом удалил свой форк, то вы не сможете клонировать его репозиторий или использовать `git am`, поскольку [.diff, .patch](https://github.com/blog/967-github-secrets) URL'ы становятся недоступными. Но Вы можете сделать `checkout` самого пулл-реквеста используя [специальные GitHub's refs](https://gist.github.com/piscisaureus/3342247). Для получения содержимого PR#1 в новую ветку с названием pr_1:
@@ -1253,7 +1287,6 @@ $ git archive --format zip --output /full/path/to/zipfile.zip master
 (master)$ git mv --force myfile MyFile
 ```
 
-<a href="i-want-to-overwrite-local-files-when-doing-a-git-pull"></a>
 ### Я хочу переписать локальные файлы при выполнении git pull
 
 ```sh
@@ -1268,7 +1301,6 @@ $ git archive --format zip --output /full/path/to/zipfile.zip master
 (master)$ git rm --cached log.txt
 ```
 
-<a href="i-want-to-revert-a-file-to-a-specific-revision"></a>
 ### Я хочу откатить файл до заданной ревизии
 
 Полагая, что хэш желаемого коммита c5f567:
@@ -1349,7 +1381,6 @@ $ git config --global credential.helper 'cache --timeout=3600'
 # Задает таймаут для кэша 1 час (задается в секундах)
 ```
 
-<a name="i-want-to-make-git-ignore-permissions-and-filemode-changes"></a>
 ### Я хочу, чтобы Git игнорировал изменения разрешений и прав файлов
 
 ```sh
@@ -1362,7 +1393,6 @@ $ git config core.fileMode false
 $ git config --global core.fileMode false
 ```
 
-<a href="#ive-no-idea-what-i-did-wrong"></a>
 ## Я не представляю что я сделал неправильно
 
 Итак, Вы в затруднении - Вы сбросили что-то или Вы слили неправильную ветку, или Вы отправили изменения с принудительной перезаписью и теперь Вы не можете найти свои коммиты. Вы знаете, что в какой-то момент было всё в порядке и Вы хотите вернуться к этому состоянию.
