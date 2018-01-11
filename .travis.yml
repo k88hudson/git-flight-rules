@@ -3,6 +3,10 @@ rvm:
   - 2.2
 before_script:
   - gem install awesome_bot
+  - npm install
 script:
 - awesome_bot README.md --allow-dupe --allow-redirect
 - awesome_bot README_*.md --allow-dupe --allow-redirect
+- node node_modules/doctoc/doctoc.js --github README.md README_*.md
+- test -z "`git diff -- README.md`"
+- test -z "`git diff -- README_*.md`"

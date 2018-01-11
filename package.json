@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "name": "git-flight-rules",
+  "version": "1.0.0",
+  "description": "Flight rules for git",
+  "devDependencies": {
+    "doctoc": "^1.3.0",
+    "anchor-markdown-header": "thlorenz/anchor-markdown-header#master"
+  }
+}
