@@ -1179,7 +1179,7 @@ You would usually specify an exact path, but you may also use wild cards in the 
 $ git log -- **/*.js
 ```
 
-While using wildcards, it's useful to inform `--name-status` to see the list of commited files:
+While using wildcards, it's useful to inform `--name-status` to see the list of committed files:
 
 ```sh
 $ git log --name-status -- **/*.js
