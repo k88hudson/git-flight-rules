@@ -779,13 +779,13 @@ This will give you a local copy of the branch `daves`, and any update that has b
 ### I want to create a new remote branch from current local one
 
 ```sh
-$ git push <remote>
+$ git push <remote> HEAD
 ```
 
 If you would also like to set that remote branch as upstream for the current one, use the following instead:
 
 ```sh
-$ git push -u <remote>
+$ git push -u <remote> HEAD
 ```
 
 With the `upstream` mode and the `simple` (default in Git 2.0) mode of the `push.default` config, the following command will push the current branch with regards to the remote branch that has been registered previously with `-u`:
