@@ -1345,7 +1345,6 @@ If you want to revert to changes made just 1 commit before c5f567, pass the comm
 (master)$ git checkout c5f567~1 -- file1/to/restore file2/to/restore
 ```
 
-<a href="i-want-to-list-changes-of-a-specific-file-between-commits-or-branches"></a>
 ### I want to list changes of a specific file between commits or branches
 
 Assuming you want to compare last commit with file from commit c5f567:
