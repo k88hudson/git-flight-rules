@@ -22,6 +22,9 @@ For clarity's sake all examples in this document use a customized bash prompt in
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
+  - [Repositories](#repositories)
+    - [I want to start a local repository](#i-want-to-start-a-local-repository)
+    - [I want to clone a remote repository](#i-want-to-clone-a-remote-repository)
   - [Editing Commits](#editing-commits)
     - [What did I just commit?](#what-did-i-just-commit)
     - [I wrote the wrong thing in a commit message](#i-wrote-the-wrong-thing-in-a-commit-message)
@@ -103,6 +106,8 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to add an empty directory to my repository](#i-want-to-add-an-empty-directory-to-my-repository)
     - [I want to cache a username and password for a repository](#i-want-to-cache-a-username-and-password-for-a-repository)
     - [I want to make Git ignore permissions and filemode changes](#i-want-to-make-git-ignore-permissions-and-filemode-changes)
+    - [I want to set a global user](#i-want-to-set-a-global-user)
+    - [I want to add command line coloring for Git](#i-want-to-add-command-line-coloring-for-git)
   - [I've no idea what I did wrong](#ive-no-idea-what-i-did-wrong)
 - [Other Resources](#other-resources)
   - [Books](#books)
@@ -111,6 +116,32 @@ For clarity's sake all examples in this document use a customized bash prompt in
   - [GUI Clients](#gui-clients)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Repositories
+
+### I want to start a local repository
+
+To initialize an existing directory as a Git repository:
+
+```sh
+(my-folder) $ git init
+```
+
+### I want to clone a remote repository
+
+To clone (copy) a remote repository, copy the url for the repository, and run:
+
+```sh
+$ git clone [url]
+```
+
+This will save it to a folder named the same as the remote repository's. Make sure you have connection to the remote server you are cloning from (for most purposes this means making sure you are connected to the internet).
+
+To clone it into a folder with a different name than the default repository name:
+
+```sh
+$ git clone [url] name-of-new-folder
+```
 
 ## Editing Commits
 
@@ -1315,7 +1346,6 @@ If you want to revert to changes made just 1 commit before c5f567, pass the comm
 
 ## Configuration
 
-<a name="adding-command-aliases"></a>
 ### I want to add aliases for some Git commands
 
 On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```.  I've added some example aliases I use as shortcuts (and some of my common typos) in the ```[alias]``` section as shown below:
@@ -1343,7 +1373,6 @@ On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```. 
     zap = fetch -p
 ```
 
-<a name="adding-empty-repository"></a>
 ### I want to add an empty directory to my repository
 
 You can’t! Git doesn’t support this, but there’s a hack. You can create a .gitignore file in the directory with the following contents:
@@ -1364,7 +1393,6 @@ $ touch mydir/.gitkeep
 
 You can also name the file as just .keep , in which case the second line above would be ```touch mydir/.keep```
 
-<a name="credential-helper"></a>
 ### I want to cache a username and password for a repository
 
 You might have a repository that requires authentication.  In which case you can cache a username and password so you don't have to enter it on every push / pull. Credential helper can do this for you.
@@ -1389,6 +1417,28 @@ If you want to make this the default behaviour for logged-in users, then use:
 
 ```sh
 $ git config --global core.fileMode false
+```
+
+### I want to set a global user
+
+To configure user information used across all local repositories, and to set a name that is identifiable for credit when review version history:
+
+```sh
+$ git config --global user.name “[firstname lastname]”
+```
+
+To set an email address that will be associated with each history marker:
+
+```sh
+git config --global user.email “[valid-email]”
+```
+
+### I want to add command line coloring for Git
+
+To set automatic command line coloring for Git for easy reviewing:
+
+```sh
+$ git config --global color.ui auto
 ```
 
 ## I've no idea what I did wrong
