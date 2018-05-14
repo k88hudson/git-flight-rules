@@ -22,13 +22,6 @@ For clarity's sake all examples in this document use a customized bash prompt in
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-  - [Configuration](#configuration)
-    - [I want to set a global user](#i-want-to-set-a-global-user)
-    - [I want to add command line coloring for Git](#i-want-to-add-command-line-coloring-for-git)
-    - [I want to add aliases for some Git commands](#i-want-to-add-aliases-for-some-git-commands)
-    - [I want to add an empty directory to my repository](#i-want-to-add-an-empty-directory-to-my-repository)
-    - [I want to cache a username and password for a repository](#i-want-to-cache-a-username-and-password-for-a-repository)
-    - [I want to make Git ignore permissions and filemode changes](#i-want-to-make-git-ignore-permissions-and-filemode-changes)
   - [Repositories](#repositories)
     - [I want to start a local repository](#i-want-to-start-a-local-repository)
     - [I want to clone a remote repository](#i-want-to-clone-a-remote-repository)
@@ -92,13 +85,9 @@ For clarity's sake all examples in this document use a customized bash prompt in
   - [Finding](#finding)
     - [I want to find a string in any commit](#i-want-to-find-a-string-in-any-commit)
     - [I want to find by author/committer](#i-want-to-find-by-authorcommitter)
-<<<<<<< HEAD
     - [I want to list commits containing specific files](#i-want-to-list-commits-containing-specific-files)
     - [Find a tag where a commit is referenced](#find-a-tag-where-a-commit-is-referenced)
   - [Submodules](#submodules)
-=======
-  - [Miscellaneous Objects](#miscellaneous-objects)
->>>>>>> Adding Git Cheatsheet commands
     - [Clone all submodules](#clone-all-submodules)
     - [Remove a submodule](#remove-a-submodule)
   - [Miscellaneous Objects](#miscellaneous-objects)
@@ -112,6 +101,13 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to overwrite local files when doing a git pull](#i-want-to-overwrite-local-files-when-doing-a-git-pull)
     - [I want to remove a file from Git but keep the file](#i-want-to-remove-a-file-from-git-but-keep-the-file)
     - [I want to revert a file to a specific revision](#i-want-to-revert-a-file-to-a-specific-revision)
+  - [Configuration](#configuration)
+    - [I want to add aliases for some Git commands](#i-want-to-add-aliases-for-some-git-commands)
+    - [I want to add an empty directory to my repository](#i-want-to-add-an-empty-directory-to-my-repository)
+    - [I want to cache a username and password for a repository](#i-want-to-cache-a-username-and-password-for-a-repository)
+    - [I want to make Git ignore permissions and filemode changes](#i-want-to-make-git-ignore-permissions-and-filemode-changes)
+    - [I want to set a global user](#i-want-to-set-a-global-user)
+    - [I want to add command line coloring for Git](#i-want-to-add-command-line-coloring-for-git)
   - [I've no idea what I did wrong](#ive-no-idea-what-i-did-wrong)
 - [Other Resources](#other-resources)
   - [Books](#books)
@@ -120,110 +116,6 @@ For clarity's sake all examples in this document use a customized bash prompt in
   - [GUI Clients](#gui-clients)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-<<<<<<< HEAD
-=======
-
-## Configuration
-
-### I want to set a global user
-
-To configure user information used across all local repositories, and to set a name that is identifiable for credit when review version history:
-
-```sh
-$ git config --global user.name “[firstname lastname]”
-```
-
-To set an email address that will be associated with each history marker:
-
-```sh
-git config --global user.email “[valid-email]”
-```
-
-### I want to add command line coloring for Git
-
-To set automatic command line coloring for Git for easy reviewing:
-
-```sh
-$ git config --global color.ui auto
-```
-
-<a name="adding-command-aliases"></a>
-### I want to add aliases for some Git commands
-
-On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```.  I've added some example aliases I use as shortcuts (and some of my common typos) in the ```[alias]``` section as shown below:
-
-```vim
-[alias]
-    a = add
-    amend = commit --amend
-    c = commit
-    ca = commit --amend
-    ci = commit -a
-    co = checkout
-    d = diff
-    dc = diff --changed
-    ds = diff --staged
-    f = fetch
-    loll = log --graph --decorate --pretty=oneline --abbrev-commit
-    m = merge
-    one = log --pretty=oneline
-    outstanding = rebase -i @{u}
-    s = status
-    unpushed = log @{u}
-    wc = whatchanged
-    wip = rebase -i @{u}
-    zap = fetch -p
-```
-
-<a name="adding-empty-repository"></a>
-### I want to add an empty directory to my repository
-
-You can’t! Git doesn’t support this, but there’s a hack. You can create a .gitignore file in the directory with the following contents:
-
-```
- # Ignore everything in this directory
- *
- # Except this file
- !.gitignore
-```
-
-Another common convention is to make an empty file in the folder, titled .gitkeep.
-
-```sh
-$ mkdir mydir
-$ touch mydir/.gitkeep
-```
-
-You can also name the file as just .keep , in which case the second line above would be ```touch mydir/.keep```
-
-<a name="credential-helper"></a>
-### I want to cache a username and password for a repository
-
-You might have a repository that requires authentication.  In which case you can cache a username and password so you don't have to enter it on every push / pull. Credential helper can do this for you.
-
-```sh
-$ git config --global credential.helper cache
-# Set git to use the credential memory cache
-```
-
-```sh
-$ git config --global credential.helper 'cache --timeout=3600'
-# Set the cache to timeout after 1 hour (setting is in seconds)
-```
-
-<a name="i-want-to-make-git-ignore-permissions-and-filemode-changes"></a>
-### I want to make Git ignore permissions and filemode changes
-
-```sh
-$ git config core.fileMode false
-```
-
-If you want to make this the default behaviour for logged-in users, then use:
-
-```sh
-$ git config --global core.fileMode false
-```
 
 ## Repositories
 
@@ -251,7 +143,6 @@ To clone it into a folder with a different name than the default repository name
 $ git clone [url] name-of-new-folder
 ```
 
->>>>>>> Adding Git Cheatsheet commands
 ## Editing Commits
 
 <a name="diff-last"></a>
@@ -1453,10 +1344,8 @@ If you want to revert to changes made just 1 commit before c5f567, pass the comm
 (master)$ git checkout c5f567~1 -- file1/to/restore file2/to/restore
 ```
 
-<<<<<<< HEAD
 ## Configuration
 
-<a name="adding-command-aliases"></a>
 ### I want to add aliases for some Git commands
 
 On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```.  I've added some example aliases I use as shortcuts (and some of my common typos) in the ```[alias]``` section as shown below:
@@ -1484,7 +1373,6 @@ On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```. 
     zap = fetch -p
 ```
 
-<a name="adding-empty-repository"></a>
 ### I want to add an empty directory to my repository
 
 You can’t! Git doesn’t support this, but there’s a hack. You can create a .gitignore file in the directory with the following contents:
@@ -1505,7 +1393,6 @@ $ touch mydir/.gitkeep
 
 You can also name the file as just .keep , in which case the second line above would be ```touch mydir/.keep```
 
-<a name="credential-helper"></a>
 ### I want to cache a username and password for a repository
 
 You might have a repository that requires authentication.  In which case you can cache a username and password so you don't have to enter it on every push / pull. Credential helper can do this for you.
@@ -1532,9 +1419,28 @@ If you want to make this the default behaviour for logged-in users, then use:
 $ git config --global core.fileMode false
 ```
 
-=======
-<a href="#ive-no-idea-what-i-did-wrong"></a>
->>>>>>> Move other configuration commands
+### I want to set a global user
+
+To configure user information used across all local repositories, and to set a name that is identifiable for credit when review version history:
+
+```sh
+$ git config --global user.name “[firstname lastname]”
+```
+
+To set an email address that will be associated with each history marker:
+
+```sh
+git config --global user.email “[valid-email]”
+```
+
+### I want to add command line coloring for Git
+
+To set automatic command line coloring for Git for easy reviewing:
+
+```sh
+$ git config --global color.ui auto
+```
+
 ## I've no idea what I did wrong
 
 So, you're screwed - you `reset` something, or you merged the wrong branch, or you force pushed and now you can't find your commits. You know, at some point, you were doing alright, and you want to go back to some state you were at.
