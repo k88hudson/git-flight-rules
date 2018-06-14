@@ -467,7 +467,7 @@ Restablece la rama master al commit anterior:
 
 `HEAD ^` es la abreviatura de `HEAD ^ 1`. Esto representa el primer padre de `HEAD`, del mismo modo` HEAD ^ 2` representa el segundo padre del commit (las fusiones pueden tener 2 padres).
 
-Ten en cuenta que `HEAD ^ 2` ** no ** es lo mismo que` HEAD ~ 2` (vea [este enlace] (http://www.paulboxley.com/blog/2011/06/git-caret-and- tilde) para más información).
+Ten en cuenta que `HEAD ^ 2` ** no ** es lo mismo que` HEAD ~ 2` (vea [este enlace] (http://www.paulboxley.com/blog/2011/06/git-caret-and-tilde) para más información).
 
 Alternativamente, si no quieres usar `HEAD ^`, averigüe a qué hash de confirmación quieres establecer su rama principal (`git log` debería ser el truco). Luego reinicia a ese hash. `git push` se asegurará de que este cambio se refleje en su control remoto.
 
