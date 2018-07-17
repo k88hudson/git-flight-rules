@@ -34,6 +34,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [Delete/remove arbitrary commit](#deleteremove-arbitrary-commit)
     - [I tried to push my amended commit to a remote, but I got an error message](#i-tried-to-push-my-amended-commit-to-a-remote-but-i-got-an-error-message)
     - [I accidentally did a hard reset, and I want my changes back](#i-accidentally-did-a-hard-reset-and-i-want-my-changes-back)
+    - [I accidentally committed and pushed a merge](#i-accidentally-committed-and-pushed-a-merge)
   - [Staging](#staging)
     - [I need to add staged changes to the previous commit](#i-need-to-add-staged-changes-to-the-previous-commit)
     - [I want to stage part of a new file, but not the whole file](#i-want-to-stage-part-of-a-new-file-but-not-the-whole-file)
@@ -290,6 +291,19 @@ You'll see a list of your past commits, and a commit for the reset. Choose the S
 ```
 
 And you should be good to go.
+
+<a href="undo-a-commit-merge"></a>
+### I accidentally committed and pushed a merge
+
+If you accidentally merged a feature branch to the main development branch before it was ready to be merged, you can still undo the merge. But there's a catch: A merge commit has more than one parent (usually two).
+
+The command to use 
+```sh
+(feature-branch)$ git revert -m 1 <commit>
+```
+where the -m 1 option says to select parent number 1 (the branch into which the merge was made) as the parent to revert to.
+
+Note: the parent number is not a commit identifier. Rather, a merge commit has a line `Merge: 8e2ce2d 86ac2e7`. The parent number is the 1-based index of the desired parent on this line, the first identifier is number 1, the second is number 2, and so on.
 
 ## Staging
 
