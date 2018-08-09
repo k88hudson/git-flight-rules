@@ -1,19 +1,20 @@
-# Flight rules for Git
+# 깃을 위한 flight rules
 
 🌍
-*[English](README.md) ∙ [Español](README_es.md)  ∙  [Русский](README_ru.md) ∙ [简体中文](README_zh-CN.md)*
+*[English](README.md) ∙ [Español](README_es.md)  ∙  [Русский](README_ru.md) ∙ [简体中文](README_zh-CN.md)∙ [한국어](README_kr.md)*
 
-#### What are "flight rules"?
+#### flight rules 이 뭔가요?
 
 A [guide for astronauts](https://www.jsc.nasa.gov/news/columbia/fr_generic.pdf) (now, programmers using Git) about what to do when things go wrong.
+뭔가 잘못 됐을 때 뭘 해야할지에 대한 [우주비행사를 위한 가이드](https://www.jsc.nasa.gov/news/columbia/fr_generic.pdf) (여기선 깃을 쓰는 개발자를 위한) 
 
->  *Flight Rules* are the hard-earned body of knowledge recorded in manuals that list, step-by-step, what to do if X occurs, and why. Essentially, they are extremely detailed, scenario-specific standard operating procedures. [...]
+>  *Flight Rules* 는 X가 발생한 이유와 그 단계의 매뉴얼에서 어렵사리 얻은 지식이다. 기본적으로 각 시나리오의 매우 자세하고 구체적인 운영 절차입니다. [...]
 
-> NASA has been capturing our missteps, disasters and solutions since the early 1960s, when Mercury-era ground teams first started gathering "lessons learned" into a compendium that now lists thousands of problematic situations, from engine failure to busted hatch handles to computer glitches, and their solutions.
+> NASA는 수성(Mecury) 시대 때 지상팀에서 처음으로 "lessons learned" 이란게 모아졌는데 수천개의 문제의 상황들, 부서진 해치 손잡이로 이한 엔진 고장부터 컴퓨터 문제 그리고 그 해답까지, 1960년대 초부터 우리의 실수들, 재앙들, 해결책들을 모아져왔습니다. 
 
-&mdash; Chris Hadfield, *An Astronaut's Guide to Life*.
+— Chris Hadfield, *인생을 위한 우주비행사의 가이드*.
 
-#### Conventions for this document
+#### 이 문서의 규칙
 
 For clarity's sake all examples in this document use a customized bash prompt in order to indicate the current branch and whether or not there are staged changes. The branch is enclosed in parentheses, and a `*` next to the branch name indicates staged changes.
 
@@ -22,187 +23,200 @@ For clarity's sake all examples in this document use a customized bash prompt in
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-  - [Repositories](#repositories)
-    - [I want to start a local repository](#i-want-to-start-a-local-repository)
-    - [I want to clone a remote repository](#i-want-to-clone-a-remote-repository)
-  - [Editing Commits](#editing-commits)
-    - [What did I just commit?](#what-did-i-just-commit)
-    - [I wrote the wrong thing in a commit message](#i-wrote-the-wrong-thing-in-a-commit-message)
-    - [I committed with the wrong name and email configured](#i-committed-with-the-wrong-name-and-email-configured)
-    - [I want to remove a file from the previous commit](#i-want-to-remove-a-file-from-the-previous-commit)
-    - [I want to delete or remove my last commit](#i-want-to-delete-or-remove-my-last-commit)
-    - [Delete/remove arbitrary commit](#deleteremove-arbitrary-commit)
-    - [I tried to push my amended commit to a remote, but I got an error message](#i-tried-to-push-my-amended-commit-to-a-remote-but-i-got-an-error-message)
-    - [I accidentally did a hard reset, and I want my changes back](#i-accidentally-did-a-hard-reset-and-i-want-my-changes-back)
-    - [I accidentally committed and pushed a merge](#i-accidentally-committed-and-pushed-a-merge)
-  - [Staging](#staging)
-    - [I need to add staged changes to the previous commit](#i-need-to-add-staged-changes-to-the-previous-commit)
-    - [I want to stage part of a new file, but not the whole file](#i-want-to-stage-part-of-a-new-file-but-not-the-whole-file)
-    - [I want to add changes in one file to two different commits](#i-want-to-add-changes-in-one-file-to-two-different-commits)
-    - [I want to stage my unstaged edits, and unstage my staged edits](#i-want-to-stage-my-unstaged-edits-and-unstage-my-staged-edits)
-  - [Unstaged Edits](#unstaged-edits)
-    - [I want to move my unstaged edits to a new branch](#i-want-to-move-my-unstaged-edits-to-a-new-branch)
-    - [I want to move my unstaged edits to a different, existing branch](#i-want-to-move-my-unstaged-edits-to-a-different-existing-branch)
-    - [I want to discard my local uncommitted changes (staged and unstaged)](#i-want-to-discard-my-local-uncommitted-changes-staged-and-unstaged)
-    - [I want to discard specific unstaged changes](#i-want-to-discard-specific-unstaged-changes)
-    - [I want to discard specific unstaged files](#i-want-to-discard-specific-unstaged-files)
-    - [I want to discard only my unstaged local changes](#i-want-to-discard-only-my-unstaged-local-changes)
-    - [I want to discard all of my untracked files](#i-want-to-discard-all-of-my-untracked-files)
-  - [Branches](#branches)
-    - [I want to list all branches](#i-want-to-list-all-branches)
-    - [Create a branch from a commit](#create-a-branch-from-a-commit)
-    - [I pulled from/into the wrong branch](#i-pulled-frominto-the-wrong-branch)
-    - [I want to discard local commits so my branch is the same as one on the server](#i-want-to-discard-local-commits-so-my-branch-is-the-same-as-one-on-the-server)
-    - [I committed to master instead of a new branch](#i-committed-to-master-instead-of-a-new-branch)
-    - [I want to keep the whole file from another ref-ish](#i-want-to-keep-the-whole-file-from-another-ref-ish)
-    - [I made several commits on a single branch that should be on different branches](#i-made-several-commits-on-a-single-branch-that-should-be-on-different-branches)
-    - [I want to delete local branches that were deleted upstream](#i-want-to-delete-local-branches-that-were-deleted-upstream)
-    - [I accidentally deleted my branch](#i-accidentally-deleted-my-branch)
-    - [I want to delete a branch](#i-want-to-delete-a-branch)
-    - [I want to delete multiple branches](#i-want-to-delete-multiple-branches)
-    - [I want to rename a branch](#i-want-to-rename-a-branch)
-    - [I want to checkout to a remote branch that someone else is working on](#i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on)
-    - [I want to create a new remote branch from current local one](#i-want-to-create-a-new-remote-branch-from-current-local-one)
-    - [I want to set a remote branch as the upstream for a local branch](#i-want-to-set-a-remote-branch-as-the-upstream-for-a-local-branch)
-    - [I want to set my HEAD to track the default remote branch](#i-want-to-set-my-head-to-track-the-default-remote-branch)
-    - [I made changes on the wrong branch](#i-made-changes-on-the-wrong-branch)
-  - [Rebasing and Merging](#rebasing-and-merging)
-    - [I want to undo rebase/merge](#i-want-to-undo-rebasemerge)
-    - [I rebased, but I don't want to force push](#i-rebased-but-i-dont-want-to-force-push)
-    - [I need to combine commits](#i-need-to-combine-commits)
-      - [Safe merging strategy](#safe-merging-strategy)
-      - [I need to merge a branch into a single commit](#i-need-to-merge-a-branch-into-a-single-commit)
-      - [I want to combine only unpushed commits](#i-want-to-combine-only-unpushed-commits)
-      - [I need to abort the merge](#i-need-to-abort-the-merge)
-    - [Check if all commits on a branch are merged](#check-if-all-commits-on-a-branch-are-merged)
-    - [Possible issues with interactive rebases](#possible-issues-with-interactive-rebases)
-      - [The rebase editing screen says 'noop'](#the-rebase-editing-screen-says-noop)
-      - [There were conflicts](#there-were-conflicts)
-  - [Stash](#stash)
-    - [Stash all edits](#stash-all-edits)
-    - [Stash specific files](#stash-specific-files)
-    - [Stash with message](#stash-with-message)
-    - [Apply a specific stash from list](#apply-a-specific-stash-from-list)
-  - [Finding](#finding)
-    - [I want to find a string in any commit](#i-want-to-find-a-string-in-any-commit)
-    - [I want to find by author/committer](#i-want-to-find-by-authorcommitter)
-    - [I want to list commits containing specific files](#i-want-to-list-commits-containing-specific-files)
-    - [Find a tag where a commit is referenced](#find-a-tag-where-a-commit-is-referenced)
-  - [Submodules](#submodules)
-    - [Clone all submodules](#clone-all-submodules)
-    - [Remove a submodule](#remove-a-submodule)
-  - [Miscellaneous Objects](#miscellaneous-objects)
-    - [Restore a deleted file](#restore-a-deleted-file)
-    - [Delete tag](#delete-tag)
-    - [Recover a deleted tag](#recover-a-deleted-tag)
-    - [Deleted Patch](#deleted-patch)
-    - [Exporting a repository as a Zip file](#exporting-a-repository-as-a-zip-file)
-  - [Tracking Files](#tracking-files)
-    - [I want to change a file name's capitalization, without changing the contents of the file](#i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file)
-    - [I want to overwrite local files when doing a git pull](#i-want-to-overwrite-local-files-when-doing-a-git-pull)
-    - [I want to remove a file from Git but keep the file](#i-want-to-remove-a-file-from-git-but-keep-the-file)
-    - [I want to revert a file to a specific revision](#i-want-to-revert-a-file-to-a-specific-revision)
-    - [I want to list changes of a specific file between commits or branches](#i-want-to-list-changes-of-a-specific-file-between-commits-or-branches)
-  - [Configuration](#configuration)
-    - [I want to add aliases for some Git commands](#i-want-to-add-aliases-for-some-git-commands)
-    - [I want to add an empty directory to my repository](#i-want-to-add-an-empty-directory-to-my-repository)
-    - [I want to cache a username and password for a repository](#i-want-to-cache-a-username-and-password-for-a-repository)
-    - [I want to make Git ignore permissions and filemode changes](#i-want-to-make-git-ignore-permissions-and-filemode-changes)
-    - [I want to set a global user](#i-want-to-set-a-global-user)
-    - [I want to add command line coloring for Git](#i-want-to-add-command-line-coloring-for-git)
-  - [I've no idea what I did wrong](#ive-no-idea-what-i-did-wrong)
-- [Other Resources](#other-resources)
-  - [Books](#books)
-  - [Tutorials](#tutorials)
-  - [Scripts and Tools](#scripts-and-tools)
-  - [GUI Clients](#gui-clients)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+- [Repositories](#repositories)
+  - [I want to start a local repository](#i-want-to-start-a-local-repository)
+  - [I want to clone a remote repository](#i-want-to-clone-a-remote-repository)
+- [Editing Commits](#editing-commits)
+  - [What did I just commit?](#what-did-i-just-commit)
+  - [I wrote the wrong thing in a commit message](#i-wrote-the-wrong-thing-in-a-commit-message)
+  - [I committed with the wrong name and email configured](#i-committed-with-the-wrong-name-and-email-configured)
+  - [I want to remove a file from the previous commit](#i-want-to-remove-a-file-from-the-previous-commit)
+  - [I want to delete or remove my last commit](#i-want-to-delete-or-remove-my-last-commit)
+  - [Delete/remove arbitrary commit](#deleteremove-arbitrary-commit)
+  - [I tried to push my amended commit to a remote, but I got an error message](#i-tried-to-push-my-amended-commit-to-a-remote-but-i-got-an-error-message)
+  - [I accidentally did a hard reset, and I want my changes back](#i-accidentally-did-a-hard-reset-and-i-want-my-changes-back)
+  - [I accidentally committed and pushed a merge](#i-accidentally-committed-and-pushed-a-merge)
+- [Staging](#staging)
+  - [I need to add staged changes to the previous commit](#i-need-to-add-staged-changes-to-the-previous-commit)
+  - [I want to stage part of a new file, but not the whole file](#i-want-to-stage-part-of-a-new-file-but-not-the-whole-file)
+  - [I want to add changes in one file to two different commits](#i-want-to-add-changes-in-one-file-to-two-different-commits)
+  - [I want to stage my unstaged edits, and unstage my staged edits](#i-want-to-stage-my-unstaged-edits-and-unstage-my-staged-edits)
+- [Unstaged Edits](#unstaged-edits)
+  - [I want to move my unstaged edits to a new branch](#i-want-to-move-my-unstaged-edits-to-a-new-branch)
+  - [I want to move my unstaged edits to a different, existing branch](#i-want-to-move-my-unstaged-edits-to-a-different-existing-branch)
+  - [I want to discard my local uncommitted changes (staged and unstaged)](#i-want-to-discard-my-local-uncommitted-changes-staged-and-unstaged)
+  - [I want to discard specific unstaged changes](#i-want-to-discard-specific-unstaged-changes)
+  - [I want to discard specific unstaged files](#i-want-to-discard-specific-unstaged-files)
+  - [I want to discard only my unstaged local changes](#i-want-to-discard-only-my-unstaged-local-changes)
+  - [I want to discard all of my untracked files](#i-want-to-discard-all-of-my-untracked-files)
+- [Branches](#branches)
+  - [I want to list all branches](#i-want-to-list-all-branches)
+  - [Create a branch from a commit](#create-a-branch-from-a-commit)
+  - [I pulled from/into the wrong branch](#i-pulled-frominto-the-wrong-branch)
+  - [I want to discard local commits so my branch is the same as one on the server](#i-want-to-discard-local-commits-so-my-branch-is-the-same-as-one-on-the-server)
+  - [I committed to master instead of a new branch](#i-committed-to-master-instead-of-a-new-branch)
+  - [I want to keep the whole file from another ref-ish](#i-want-to-keep-the-whole-file-from-another-ref-ish)
+  - [I made several commits on a single branch that should be on different branches](#i-made-several-commits-on-a-single-branch-that-should-be-on-different-branches)
+  - [I want to delete local branches that were deleted upstream](#i-want-to-delete-local-branches-that-were-deleted-upstream)
+  - [I accidentally deleted my branch](#i-accidentally-deleted-my-branch)
+  - [I want to delete a branch](#i-want-to-delete-a-branch)
+  - [I want to delete multiple branches](#i-want-to-delete-multiple-branches)
+  - [I want to rename a branch](#i-want-to-rename-a-branch)
+  - [I want to checkout to a remote branch that someone else is working on](#i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on)
+  - [I want to create a new remote branch from current local one](#i-want-to-create-a-new-remote-branch-from-current-local-one)
+  - [I want to set a remote branch as the upstream for a local branch](#i-want-to-set-a-remote-branch-as-the-upstream-for-a-local-branch)
+  - [I want to set my HEAD to track the default remote branch](#i-want-to-set-my-head-to-track-the-default-remote-branch)
+  - [I made changes on the wrong branch](#i-made-changes-on-the-wrong-branch)
+- [Rebasing and Merging](#rebasing-and-merging)
+  - [I want to undo rebase/merge](#i-want-to-undo-rebasemerge)
+  - [I rebased, but I don't want to force push](#i-rebased-but-i-dont-want-to-force-push)
+  - [I need to combine commits](#i-need-to-combine-commits)
+    - [Safe merging strategy](#safe-merging-strategy)
+    - [I need to merge a branch into a single commit](#i-need-to-merge-a-branch-into-a-single-commit)
+    - [I want to combine only unpushed commits](#i-want-to-combine-only-unpushed-commits)
+    - [I need to abort the merge](#i-need-to-abort-the-merge)
+  - [Check if all commits on a branch are merged](#check-if-all-commits-on-a-branch-are-merged)
+  - [Possible issues with interactive rebases](#possible-issues-with-interactive-rebases)
+    - [The rebase editing screen says 'noop'](#the-rebase-editing-screen-says-noop)
+    - [There were conflicts](#there-were-conflicts)
+- [Stash](#stash)
+  - [Stash all edits](#stash-all-edits)
+  - [Stash specific files](#stash-specific-files)
+  - [Stash with message](#stash-with-message)
+  - [Apply a specific stash from list](#apply-a-specific-stash-from-list)
+- [Finding](#finding)
+  - [I want to find a string in any commit](#i-want-to-find-a-string-in-any-commit)
+  - [I want to find by author/committer](#i-want-to-find-by-authorcommitter)
+  - [I want to list commits containing specific files](#i-want-to-list-commits-containing-specific-files)
+  - [Find a tag where a commit is referenced](#find-a-tag-where-a-commit-is-referenced)
+- [Submodules](#submodules)
+  - [Clone all submodules](#clone-all-submodules)
+  - [Remove a submodule](#remove-a-submodule)
+- [Miscellaneous Objects](#miscellaneous-objects)
+  - [Restore a deleted file](#restore-a-deleted-file)
+  - [Delete tag](#delete-tag)
+  - [Recover a deleted tag](#recover-a-deleted-tag)
+  - [Deleted Patch](#deleted-patch)
+  - [Exporting a repository as a Zip file](#exporting-a-repository-as-a-zip-file)
+- [Tracking Files](#tracking-files)
+  - [I want to change a file name's capitalization, without changing the contents of the file](#i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file)
+  - [I want to overwrite local files when doing a git pull](#i-want-to-overwrite-local-files-when-doing-a-git-pull)
+  - [I want to remove a file from Git but keep the file](#i-want-to-remove-a-file-from-git-but-keep-the-file)
+  - [I want to revert a file to a specific revision](#i-want-to-revert-a-file-to-a-specific-revision)
+  - [I want to list changes of a specific file between commits or branches](#i-want-to-list-changes-of-a-specific-file-between-commits-or-branches)
+- [Configuration](#configuration)
+  - [I want to add aliases for some Git commands](#i-want-to-add-aliases-for-some-git-commands)
+  - [I want to add an empty directory to my repository](#i-want-to-add-an-empty-directory-to-my-repository)
+  - [I want to cache a username and password for a repository](#i-want-to-cache-a-username-and-password-for-a-repository)
+  - [I want to make Git ignore permissions and filemode changes](#i-want-to-make-git-ignore-permissions-and-filemode-changes)
+  - [I want to set a global user](#i-want-to-set-a-global-user)
+  - [I want to add command line coloring for Git](#i-want-to-add-command-line-coloring-for-git)
+- [I've no idea what I did wrong](#ive-no-idea-what-i-did-wrong)
+  - [Other Resources](#other-resources)
+- [Books](#books)
+- [Tutorials](#tutorials)
+- [Scripts and Tools](#scripts-and-tools)
+- [GUI Clients](#gui-clients)
 
 ## Repositories
 
-### I want to start a local repository
+### 로컬 저장소에서 시작하고 싶어
 
-To initialize an existing directory as a Git repository:
+이미 있는 디렉토리 내를 깃 레파지토리로 최적화해 쓰려면
 
 ```sh
 (my-folder) $ git init
 ```
 
-### I want to clone a remote repository
+### 난 원격 저장소를 복제해오고 싶어
 
-To clone (copy) a remote repository, copy the url for the repository, and run:
+원격 저장소를 클론하려면, 저장소 url를 복사해와서 실행해요.
 
 ```sh
 $ git clone [url]
 ```
 
-This will save it to a folder named the same as the remote repository's. Make sure you have connection to the remote server you are cloning from (for most purposes this means making sure you are connected to the internet).
+폴더 이름이 원격 저장소 이름과 같이 저장될꺼에요. 
 
-To clone it into a folder with a different name than the default repository name:
+복제할 원격 서버의 연결을 확인하세요.(대부분 인터넷 연결을 확인하란 뜻이에요)
+
+다른 저장소 이름으로 복제를 해오고 싶다면
 
 ```sh
 $ git clone [url] name-of-new-folder
 ```
 
-## Editing Commits
+## 커밋 수정
 
 <a name="diff-last"></a>
-### What did I just commit?
+<!-- ### What did I just commit? -->
 
-Let's say that you just blindly committed changes with `git commit -a` and you're not sure what the actual content of the commit you just made was. You can show the latest commit on your current HEAD with:
+### 내가 방금 어떤 commit을 남겼지?
+
+자 당신이 막 commit을 `git commit -a` 로 남기고 내가 남긴 내용이 뭔지 확신이 안 서요.
+<!-- You can show the latest commit on your current HEAD with: -->
+그럼 최근의 commit을 현재 HEAD에서 볼 수 있어요.
 
 ```sh
 (master)$ git show
 ```
 
-Or
+또는 
 
 ```sh
 $ git log -n1 -p
 ```
 
-If you want to see a file at a specific commit, you can also do this (where `<commitid>` is the commit you're interested in):
+만약 특정 commit의 파일을 보고 싶다면, 이렇게 할 수도 있어요 . (commitID는 바로 당신이 관심있는 그 commit이에요)
 
 ```sh
 $ git show <commitid>:filename
 ```
 
-### I wrote the wrong thing in a commit message
+### 커밋 메세지를 잘못 썻어
 
-If you wrote the wrong thing and the commit has not yet been pushed, you can do the following to change the commit message:
+만약 메시지를 잘못 썻고 아직 push를 안했다면, commit 메시지 바꾸기를 따라해 볼 수 있어요.
 
 ```sh
 $ git commit --amend
 ```
-This will open your default text editor, where you can edit the message. On the other hand, you can do this all in one command:
+
+이 방법은 편집 가능한 기본 텍스트르 에디터가 열릴텐데요, 다른 방법으론 한줄에 쓸 수도 있어요.
 
 ```sh
 $ git commit --amend -m 'xxxxxxx'
 ```
 
 If you have already pushed the message, you can amend the commit and force push, but this is not recommended.
+만약 push를 이미 했다면, commit을 amend(수정)하고 forcepush를 할 수 있어요. 근데 별로 추천 안해요.
 
 <a name="commit-wrong-author"></a>
+
 ### I committed with the wrong name and email configured
+### 커밋을 잘못된 이름과 이메일 설정으로 해버렸어
 
 If it's a single commit, amend it
+단지 commit 하나면, 이렇게 수정해요.
 
 ```sh
 $ git commit --amend --no-edit --author "New Authorname <authoremail@mydomain.com>"
 ```
 
 An alternative is to correctly configure your author settings in `git config --global author.(name|email)` and then use
+대안으로 `git config --global author.(name|email)`에서 설정을 다시 맞춘 다음 써요. 
 
 ```sh
 $ git commit --amend --reset-author --no-edit
 ```
 
 If you need to change all of history, see the man page for `git filter-branch`.
+만약 전체 이력 변경이 필요하다면, `git filter-branch`의 설명 페이지를 봐요.
 
 ### I want to remove a file from the previous commit
+### 지난 커밋에서 파일 하나를 지우고 싶어
 
 In order to remove changes for a file from the previous commit, do the following:
+지난 commit에서 똑바로 파일 변경을 지우려면, 이렇게 해봐요.
 
 ```sh
 $ git checkout HEAD^ myfile
@@ -211,6 +225,7 @@ $ git commit --amend --no-edit
 ```
 
 In case the file was newly added to the commit and you want to remove it (from Git alone), do:
+그 파일이 새 commit으로 추가됐고 그 파일만 지우고 (git 에서만) 싶을땐,
 
 ```sh
 $ git rm --cached myfile
@@ -218,11 +233,16 @@ $ git commit --amend --no-edit
 ```
 
 This is particularly useful when you have an open patch and you have committed an unnecessary file, and need to force push to update the patch on a remote. The `--no-edit` option is used to keep the existing commit message.
+이 방법은 열린 패치가 있고 불필요한 파일을 commit을 했거나 force push로 원격에 패치를 업데이트 해야할때 특히 유용해요. `--no-edit` 옵션은 기존 commit 메세지를 그대로 워요.
 
 <a name="delete-pushed-commit"></a>
+
 ### I want to delete or remove my last commit
+### 마지막 commit을 지우고 싶어
 
 If you need to delete pushed commits, you can use the following. However, it will irreversibly change your history, and mess up the history of anyone else who had already pulled from the repository. In short, if you're not sure, you should never do this, ever.
+
+push된 commit을 지우고 싶다면 이걸 따라하면 되는데, 이력을 돌이킬 수 없게 되고 저장소에서 이미 풀을 받아간 다른 사람의 이력이 엉망이 되요. 간단히 말하자면, 잘 모르겠으면 절대 하지마요.
 
 ```sh
 $ git reset HEAD^ --hard
@@ -230,18 +250,27 @@ $ git push --force-with-lease [remote] [branch]
 ```
 
 If you haven't pushed, to reset Git to the state it was in before you made your last commit (while keeping your staged changes):
+아직 push 안했으면, 리셋으로 마지막 commit 전 상태로 돌아가요. (변경 사항은 스테이지로 유지되요)
 
 ```
 (my-branch*)$ git reset --soft HEAD@{1}
-
 ```
 
-This only works if you haven't pushed. If you have pushed, the only truly safe thing to do is `git revert SHAofBadCommit`. That will create a new commit that undoes all the previous commit's changes. Or, if the branch you pushed to is rebase-safe (ie. other devs aren't expected to pull from it), you can just use `git push --force-with-lease`. For more, see [the above section](#deleteremove-last-pushed-commit).
+This only works if you haven't pushed. If you have pushed, the only truly safe thing to do is `git revert SHAofBadCommit`. 
+That will create a new commit that undoes all the previous commit's changes. Or, if the branch you pushed to is rebase-safe 
+(ie. other devs aren't expected to pull from it), you can just use `git push --force-with-lease`. For more, see [the above section](#deleteremove-last-pushed-commit).
+
+이 방법은 push를 안했을때만 동작해요. push를 했으면, 안전한 방법은 `git revert SHAofBadCommit` 한가지 밖이에요. 
+이 방법은 모든 지난 commit의 이력이 되돌아간 새 commit을 만들꺼에요. 또는, 만약 push한 브랜치가 리베이스에 안전하다면 (만약 다른 사람이 풀 받지 않는다면), `git push --force-with-lease` 명령어를 쓸수 있어요. 
+더 알고 싶다면, 여길 참고해주세요 [the above section](#deleteremove-last-pushed-commit).
 
 <a name="delete-any-commit"></a>
+
 ### Delete/remove arbitrary commit
+### 임의의 commit 지우기
 
 The same warning applies as above. Never do this if possible.
+이전과 동일한 경고에요. 가능한한 이 방법은 쓰지 마세요.
 
 ```sh
 $ git rebase --onto SHA1_OF_BAD_COMMIT^ SHA1_OF_BAD_COMMIT
@@ -249,9 +278,12 @@ $ git push --force-with-lease [remote] [branch]
 ```
 
 Or do an [interactive rebase](#interactive-rebase) and remove the line(s) corresponding to commit(s) you want to see removed.
+아니면 [interactive rebase](#interactive-rebase)를 쓰고 지우고 싶은 commit 라인을 지워도 되요.
 
 <a name="#force-push"></a>
+
 ### I tried to push my amended commit to a remote, but I got an error message
+### 수정된 commit을 push했는데, 에러 메세지가 떠
 
 ```sh
 To https://github.com/yourusername/repo.git
@@ -263,68 +295,104 @@ hint: 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 ```
 
-Note that, as with rebasing (see below), amending **replaces the old commit with a new one**, so you must force push (`--force-with-lease`) your changes if you have already pushed the pre-amended commit to your remote. Be careful when you do this &ndash; *always* make sure you specify a branch!
+알아두세요, rebase(아래를 보세요)나 amend는 **기존 commit을 새걸로 바꿔요**,
+그래서 이미 먼저 수정된 commit이 push 됐다면 force push를 해야 해요.
+이 방법을 쓸땐 조심하세요; *항상* 작업되는 브랜치가 맞나 확인해요!
 
 ```sh
 (my-branch)$ git push origin mybranch --force-with-lease
 ```
 
-In general, **avoid force pushing**. It is best to create and push a new commit rather than force-pushing the amended commit as it will cause conflicts in the source history for any other developer who has interacted with the branch in question or any child branches. `--force-with-lease` will still fail, if someone else was also working on the same branch as you, and your push would overwrite those changes.
+In general, **avoid force pushing**. 
+It is best to create and push a new commit rather than force-pushing the amended commit as it will cause conflicts in the source history for any other developer who has interacted with the branch in question or any child branches. 
+`--force-with-lease` will still fail, if someone else was also working on the same branch as you, and your push would overwrite those changes.
 
-If you are *absolutely* sure that nobody is working on the same branch or you want to update the tip of the branch *unconditionally*, you can use `--force` (`-f`), but this should be avoided in general.
+일반적으로 force push를 쓰지 마세요.
+새 커밋을 만들어서 푸시하는게 수정된 커밋을 강제로 푸시하는것보다 훨씬 나아요 그런 수정된 커밋은 그 브랜치나 다른 자식 브랜치를 쓰는 다른 개발자의 소스 이력과 충돌의 원인이 될꺼에요. 
+`--force-with-lease` 는 여전히 실패할텐데, 누군가가 같은 브랜치를 쓴다면 작업 이력을 덮어쓰는 push를 할 수도 있어요.
+
+If you are *absolutely* sure that nobody is working on the same branch or you want to update the tip of the branch *unconditionally*, 
+you can use `--force` (`-f`), but this should be avoided in general.
+절대로 아무도 같은 브랜치를 안 쓰거나, 절대로 브랜치에 업데이트를 해야할때 `--force` (`-f`) 옵션을 쓸 수 있지만 일반적으론 피하는게 좋아요.
 
 <a href="undo-git-reset-hard"></a>
+
 ### I accidentally did a hard reset, and I want my changes back
+### 하드 리셋을 해버렸는데 되돌리고 싶어
 
 If you accidentally do `git reset --hard`, you can normally still get your commit back, as git keeps a log of everything for a few days.
+만약 하드 리셋을 했다고 해도 커밋을 돌릴 순 있어요. 깃은 며칠간은 로그를 가지고 있거든요. 
 
 Note: This is only valid if your work is backed up, i.e., either committed or stashed. `git reset --hard` _will remove_ uncommitted modifications, so use it with caution. (A safer option is `git reset --keep`.)
+알아두기 : 이건 커밋을 남겼더나 스테이시같이 백업을 했을 때만 유효해요. `git reset --hard` 은 커밋되지 않은 수정사항을 다 지울 꺼에요, 그러니 조심해서 써야해요. (안전한 방법으론 `git reset --keep` 이 있어요)
 
 ```sh
 (master)$ git reflog
 ```
 
 You'll see a list of your past commits, and a commit for the reset. Choose the SHA of the commit you want to return to, and reset again:
+지난 커밋과 리셋을 위한 커밋을 볼 수 있을 꺼에요. 돌아가고 싶은 커밋의 SHA 코드를 골라서,   
 
 ```sh
 (master)$ git reset --hard SHA1234
 ```
 
 And you should be good to go.
+계속 할 수 있을꺼에요.
 
 <a href="undo-a-commit-merge"></a>
-### I accidentally committed and pushed a merge
 
-If you accidentally merged a feature branch to the main development branch before it was ready to be merged, you can still undo the merge. But there's a catch: A merge commit has more than one parent (usually two).
+### I accidentally committed and pushed a merge
+### 실수로 머지한 커밋을 푸시해버렸어
+
+If you accidentally merged a feature branch to the main development branch before it was ready to be merged, you can still undo the merge. 
+But there's a catch: A merge commit has more than one parent (usually two).
+
+만약 실수로 작업중인 브랜치를 메인 브랜치에 머지했어도 되돌릴 순 있어요.
+하지만 문제는 있어요. 머지 커밋은 한개 이상의 부모(보통은 두 개)를 가지게 돼요.
 
 The command to use 
+사용하려면
+
 ```sh
 (feature-branch)$ git revert -m 1 <commit>
 ```
-where the -m 1 option says to select parent number 1 (the branch into which the merge was made) as the parent to revert to.
 
-Note: the parent number is not a commit identifier. Rather, a merge commit has a line `Merge: 8e2ce2d 86ac2e7`. The parent number is the 1-based index of the desired parent on this line, the first identifier is number 1, the second is number 2, and so on.
+where the -m 1 option says to select parent number 1 (the branch into which the merge was made) as the parent to revert to.
+-m 1 옵션은 머지된 브랜치인 부모 번호 1로 되돌릴 것을 말해줘요. ??? 
+
+Note: the parent number is not a commit identifier. Rather, a merge commit has a line `Merge: 8e2ce2d 86ac2e7`. 
+The parent number is the 1-based index of the desired parent on this line, the first identifier is number 1, the second is number 2, and so on.
+
+알아두기 : 부모 번호는 커밋 식별자가 아니고, 오히려 머지된 커밋이 `Merge: 8e2ce2d 86ac2e7` 라인을 가지고 있어요. ???
+부모 번호는 이 행에서 원하는 부모의 1 기준이고, 첫번째 식별자는 1, 다음은 2 이렇게 이어져요.  ????
 
 ## Staging
+## 스테이지
 
 <a href="#i-need-to-add-staged-changes-to-the-previous-commit"></a>
+
 ### I need to add staged changes to the previous commit
+### 지난 커밋에 변경된 사항을 추가하고 싶어
 
 ```sh
 (my-branch*)$ git commit --amend
-
 ```
 
 <a name="commit-partial-new-file"></a>
+
 ### I want to stage part of a new file, but not the whole file
+### 전체말고 새 파일만 스테이지에 올리고 싶어
 
 Normally, if you want to stage part of a file, you run this:
+보통은, 부분적으로 파일을 스테이지하려면, 이렇게 해요. 
 
 ```sh
 $ git add --patch filename.x
 ```
 
 `-p` will work for short. This will open interactive mode. You would be able to use the `s` option to split the commit - however, if the file is new, you will not have this option. To add a new file, do this:
+`-p`는 축약된 옵션이에요. 이 방식은 대화형 모드를 열텐데요. `s` 옵션을 쓰면 커밋을 나눌 수 있어요. 그치만, 새 파일이라면 그런 옵션이 없을꺼에요. 새 파일을 추가하려면,
 
 ```sh
 $ git add -N filename.x
@@ -332,16 +400,23 @@ $ git add -N filename.x
 
 Then, you will need to use the `e` option to manually choose which lines to add. Running `git diff --cached` or
 `git diff --staged` will show you which lines you have staged compared to which are still saved locally.
+그 다음 임의적으로 라인들을 골라 추가해주려면 `e`옵션이 필요할꺼에요. `git diff --cached`나 `git diff --staged`는 로컬에 저장된 부분과 스테이지에 있는 라인들을 비교해서 보여줄 꺼에요.
 
 <a href="stage-in-two-commits"></a>
+
 ### I want to add changes in one file to two different commits
+### 하나의 파일 변경이력을 두개의 다른 커밋에 남기고 싶어
 
 `git add` will add the entire file to a commit. `git add -p` will allow to interactively select which changes you want to add.
+`git add`는 전체 파일들을 커밋에 추가해요. `git add -p`는 대화형으로 추가하고픈 이력들을 고를 수 있어요.
 
 <a href="unstaging-edits-and-staging-the-unstaged"></a>
+
 ### I want to stage my unstaged edits, and unstage my staged edits
+### 아직 스테이지에 안 올라간 이력을 스테이지에 추가하고, 스테이지에 있는 이력을 다시 뺴고 싶어
 
 This is tricky. The best I figure is that you should stash your unstaged edits. Then, reset. After that, pop your stashed edits back, and add them.
+이건 좀 꼼수인데요, 스테이지 전인 파일들을 스테이시해서 빼두고선 리셋을 해요. 그 다음 스테이시를 다시 불러와 추가를 해요. 
 
 ```sh
 $ git stash -k
@@ -351,16 +426,22 @@ $ git add -A
 ```
 
 ## Unstaged Edits
+## 스테이지 전의 변경이력
+
 
 <a href="move-unstaged-edits-to-new-branch"></a>
+
 ### I want to move my unstaged edits to a new branch
+### 스테이지전 변경이력을 새 브랜치로 옮기고 싶어
 
 ```sh
 $ git checkout -b my-branch
 ```
 
 <a href="move-unstaged-edits-to-old-branch"></a>
+
 ### I want to move my unstaged edits to a different, existing branch
+### 스테이지전 변경이력들을 만들어준 다른 브랜치로 옮기고 싶어
 
 ```sh
 $ git stash
@@ -369,9 +450,12 @@ $ git stash pop
 ```
 
 <a href="i-want-to-discard-my-local-uncommitted-changes"></a>
+
 ### I want to discard my local uncommitted changes (staged and unstaged)
+### 내 로컬에 있는 커밋 안된 이력들을 다 버리고 싶어 (스테이징 됐던 안됐던)
 
 If you want to discard all your local staged and unstaged changes, you can do this:
+만약 모든 스테이지 된, 스테이지 전인 이력들을 버리고 싶다면 이렇게 해요:
 
 ```sh
 (my-branch)$ git reset --hard
@@ -380,127 +464,160 @@ If you want to discard all your local staged and unstaged changes, you can do th
 ```
 
 This will unstage all files you might have staged with `git add`:
+이 방법은 `git add`로 스테이징된 모든 파일이 빠지게 돼요. 
 
 ```sh
 $ git reset
 ```
 
 This will revert all local uncommitted changes (should be executed in repo root):
+이 방법은 커밋되지 않은 모든 로컬 이력들이 되돌려 져요. (저장소 최상단 루트에서 실행해야 할꺼에요)
 
 ```sh
 $ git checkout .
 ```
 
 You can also revert uncommitted changes to a particular file or directory:
+또 커밋되지 않은 이력들 중 몇가지 파일이나 디렉토리만 되돌릴 수 있어요.
 
 ```sh
 $ git checkout [some_dir|file.txt]
 ```
 
 Yet another way to revert all uncommitted changes (longer to type, but works from any subdirectory):
+거기에 또 다른 되돌리는 방법으로 (타이핑 칠게 많지만 어떤 하위 디렉토리에서도 돼요):
 
 ```sh
 $ git reset --hard HEAD
 ```
 
 This will remove all local untracked files, so only files tracked by Git remain:
+이 방법은 모든 트래킹 되지 않은 파일들을 지워요, 그래서 깃에서 트래킹되는 파일들만 남아요:
 
 ```sh
 $ git clean -fd
 ```
 
 `-x` will also remove all ignored files.
+`-x` 옵 또한 무시된 파일들을 다 지워요.
 
 ### I want to discard specific unstaged changes
+### 스테이지 안된 특정 이력을 지우고 싶어
 
 When you want to get rid of some, but not all changes in your working copy.
-
 Checkout undesired changes, keep good changes.
+작업중인 영역에서 전체가 아닌 특정 부분을 지우고 싶을때
+원치않는 이력들을 확인하고, 이력들을 잘 보관하세요.
 
 ```sh
 $ git checkout -p
 # Answer y to all of the snippets you want to drop
+# 날리고 싶은 사항에 y를 적으세요 
 ```
 
 Another strategy involves using `stash`. Stash all the good changes, reset working copy, and reapply good changes.
+또다른 전략은 `stash`을 같이 쓰는거에요. 챙겨야 하는 이력들을 스테이시 하고, 작업 중인 영역을 리셋하고, 다시 스테이시 팝으로 재적용해요.   
 
 ```sh
 $ git stash -p
 # Select all of the snippets you want to save
+# 저장하고 싶은 사항들을 다 선택하세요
 $ git reset --hard
 $ git stash pop
 ```
 
 Alternatively, stash your undesired changes, and then drop stash.
+대안으로, 원치않는 이력들을 스테이시해서 그걸 날리는 방법도 있어요.
 
 ```sh
 $ git stash -p
 # Select all of the snippets you don't want to save
+# 저장하고 싶지 앟은 사항들을 다 선택하세요
 $ git stash drop
 ```
 
 ### I want to discard specific unstaged files
+### 스테이지 안된 특정 파일을 지우고 싶어
 
 When you want to get rid of one specific file in your working copy.
+작업 영역에서 특정 파일을 지우고 싶을때.
 
 ```sh
 $ git checkout myFile
 ```
 
 Alternatively, to discard multiple files in your working copy, list them all.
+대안으로, 작업영역 내 여러 파일들을 지우고 싶을때 모두 나열해서 적어요.
 
 ```sh
 $ git checkout myFirstFile mySecondFile
 ```
 
 ### I want to discard only my unstaged local changes
+### 로컬에 있는 스테이지 안된 인력들만 지우고 싶어
 
 When you want to get rid of all of your unstaged local uncommitted changes
+모든 스테이지 전이고 커밋 전인 이력들을 지우고 싶을 때
 
 ```sh
 $ git checkout .
 ```
+
 <a href="i-want-to-discard-all-my-untracked-files"></a>
+
 ### I want to discard all of my untracked files
+### 트래킹 안된 파일들 다 지우고 싶어
 
 When you want to get rid of all of your untracked files
+트래킹 안된 파일들 다 지우고 싶을 땐 
 
 ```sh
 $ git clean -f
 ```
 
 ## Branches
+## 브랜치
 
 ### I want to list all branches
+### 모든 브랜치 리스트를 보고 싶어 
 
 List local branches
+로컬 브랜치 다 보기
 
 ```sh
 $ git branch
 ```
 
 List remote branches
+(원격 저장소) 리모트 브랜치 다 보기  
 
 ```sh
 $ git branch -r
 ```
 
 List all branches (both local and remote)
+로컬과 리모트 브랜치 모두 보기
 
 ```sh
 $ git branch -a
 ```
 
 <a name="create-branch-from-commit"></a>
+
 ### Create a branch from a commit
+### 커밋에서 브랜치 만들기
+
 ```sh
 $ git checkout -b <branch> <SHA1_OF_COMMIT>
 ```
 
 <a name="pull-wrong-branch"></a>
+
 ### I pulled from/into the wrong branch
+### 다른 브랜치에서 풀을 받아야 버렸어
 
 This is another chance to use `git reflog` to see where your HEAD pointed before the bad pull.
+이건 잘못된 풀을 받기전 HEAD가 어딜 가르키고 있었는지 볼 수 있는 `git reflog`를 써볼 수 있는 기회에요.
 
 ```sh
 (master)$ git reflog
@@ -509,19 +626,25 @@ c5bc55a HEAD@{1}: checkout: checkout message goes here
 ```
 
 Simply reset your branch back to the desired commit:
+간단히 원하는 커밋으로 브랜치를 되돌릴 수 있어: 
 
 ```sh
 $ git reset --hard c5bc55a
 ```
 
 Done.
+끝.
 
 <a href="discard-local-commits"></a>
+
 ### I want to discard local commits so my branch is the same as one on the server
+### 로컬의 커밋을 지워서 서버에 있는 내 브랜치와 맞추고 싶어
 
 Confirm that you haven't pushed your changes to the server.
+서버에 변경 이력을 푸시 안했는지부터 확인해요.
 
 `git status` should show how many commits you are ahead of origin:
+`git status` 가 오리진보다 몇개의 커밋들이 앞서 있는지 보여줄꺼에요: 
 
 ```sh
 (my-branch)$ git status
@@ -532,33 +655,46 @@ Confirm that you haven't pushed your changes to the server.
 ```
 
 One way of resetting to match origin (to have the same as what is on the remote) is to do this:
+오리진(원격과 같은 상태의)로 맞추는 리셋을 하는 방법 중 하나는:
+
 
 ```sh
 (master)$ git reset --hard origin/my-branch
 ```
 
 <a name="commit-wrong-branch"></a>
+
 ### I committed to master instead of a new branch
+### 새 브랜치 대신에 마스터에 커밋을 해버렸어
 
 Create the new branch while remaining on master:
+마스터에 있으면서 새 브랜치를 만들어요:
 
 ```sh
 (master)$ git branch my-branch
 ```
 
 Reset the branch master to the previous commit:
+마스터 브랜치를 기존 커밋으로 리셋해요:
+
 
 ```sh
 (master)$ git reset --hard HEAD^
 ```
 
 `HEAD^` is short for `HEAD^1`. This stands for the first parent of `HEAD`, similarly `HEAD^2` stands for the second parent of the commit (merges can have 2 parents).
+`HEAD^`는 `HEAD^1`의 축약인데요. `HEAD^`의 첫번째 부모를 의미하고, 비슷한 `HEAD^2`는 두번째 부모를 의미해요. (머지는 두 부모를 가질 수 있죠) 
 
 Note that `HEAD^2` is **not** the same as `HEAD~2` (see [this link](http://www.paulboxley.com/blog/2011/06/git-caret-and-tilde) for more information).
+알아두세요 `HEAD^2`는 `HEAD~2`과 같은게 아니에요. (더 자세한 정보는 [이 링크](http://www.paulboxley.com/blog/2011/06/git-caret-and-tilde)를 참고해요 )
 
-Alternatively, if you don't want to use `HEAD^`, find out what the commit hash you want to set your master branch to (`git log` should do the trick). Then reset to that hash. `git push` will make sure that this change is reflected on your remote.
+Alternatively, if you don't want to use `HEAD^`, find out what the commit hash you want to set your master branch to (`git log` should do the trick). 
+Then reset to that hash. `git push` will make sure that this change is reflected on your remote.
+대안으로, `HEAD^`를 쓰고 싶지 않다면, 마스터 브랜치로 옮길 커밋 해시를 알아둬요 (`git log`가 트릭을 부릴 꺼에요)
+그리고 그 해쉬로 리셋을 해요. `git push`가 리모트랑 변경이력이 똑같은걸 확인해줄꺼에요.
 
 For example, if the hash of the commit that your master branch is supposed to be at is `a13b85e`:
+예를 들자면, 그 마스터의 커밋의 해쉬가 `a13b85e`라면:
 
 ```sh
 (master)$ git reset --hard a13b85e
@@ -566,34 +702,44 @@ HEAD is now at a13b85e
 ```
 
 Checkout the new branch to continue working:
+새 브랜치로 체크아웃 해서 계속 작업을 해요:
 
 ```sh
 (master)$ git checkout my-branch
 ```
 
 <a name="keep-whole-file"></a>
+
 ### I want to keep the whole file from another ref-ish
+### 다른 레퍼런스 같은 곳에서 모든 파일을 유지하고 싶어 
 
 Say you have a working spike (see note), with hundreds of changes. Everything is working. Now, you commit into another branch to save that work:
+수백번의 변경 이력을 가진 스파이크(아래 알아두기 참고) 작업을 한다고 가정해보죠. 모든 건 동작하고 있고,그 작업을 저장해두기 위해  다른 브랜치로 커밋을 해요:
 
 ```sh
 (solution)$ git add -A && git commit -m "Adding all changes from this spike into one big commit."
 ```
 
 When you want to put it into a branch (maybe feature, maybe `develop`), you're interested in keeping whole files. You want to split your big commit into smaller ones.
+그 커밋을 브랜치(아마 feature일수도 있고, `develop` 일수도 있겠죠)에 넣고 싶을 때, 모든 파일을 지키는데 관심이 있을꺼에요. 큰 커밋을 작게 나누고 싶을꺼에요.
 
 Say you have:
+가정해보면:
 
-  * branch `solution`, with the solution to your spike. One ahead of `develop`.
-  * branch `develop`, where you want to add your changes.
+* branch `solution`, with the solution to your spike. One ahead of `develop`.
+* branch `develop`, where you want to add your changes.
+* 스파이크를 위한 솔루션과 함께인 `solution` 브랜치. `develop` 브랜치의 1단계 앞선 상태. ???
+* 변경 이력을 추가하고 싶은 `develop` 브랜치
 
 You can solve it bringing the contents to your branch:
+브랜치로 내용들을 불러오는 것으로 해결할 수 있어요:
 
 ```sh
 (develop)$ git checkout solution -- file1.txt
 ```
 
 This will get the contents of that file in branch `solution` to your branch `develop`:
+`develop`브랜치에서 `solution` 브랜치의 저 파일의 내용들을 얻을 수 있어요.
 
 ```sh
 # On branch develop
@@ -605,11 +751,16 @@ This will get the contents of that file in branch `solution` to your branch `dev
 ```
 
 Then, commit as usual.
+그 다음, 평소처럼 커밋해요.
 
 Note: Spike solutions are made to analyze or solve the problem. These solutions are used for estimation and discarded once everyone gets clear visualization of the problem. ~ [Wikipedia](https://en.wikipedia.org/wiki/Extreme_programming_practices).
+알아두기 : 스파이크 솔루션은 문제를 분석하거나 풀기위해 만들어졌어요. 이 솔루션들은 모두가 문제의 확실한 시각화를 얻고선 평가되고 무시돼요.~ [위키피디아](https://en.wikipedia.org/wiki/Extreme_programming_practices).   
+
 
 <a name="cherry-pick"></a>
+
 ### I made several commits on a single branch that should be on different branches
+### 
 
 Say you are on your master branch. Running `git log`, you see you have made two commits:
 
@@ -674,7 +825,9 @@ And finally, let's cherry-pick the commit for bug #14:
 ```
 
 <a name="delete-stale-local-branches"></a>
+
 ### I want to delete local branches that were deleted upstream
+
 Once you merge a pull request on GitHub, it gives you the option to delete the merged branch in your fork. If you aren't planning to keep working on the branch, it's cleaner to delete the local copies of the branch so you don't end up cluttering up your working checkout with a lot of stale branches.
 
 ```sh
@@ -684,6 +837,7 @@ $ git fetch -p upstream
 where, `upstream` is the remote you want to fetch from.
 
 <a name='restore-a-deleted-branch'></a>
+
 ### I accidentally deleted my branch
 
 If you're regularly pushing to remote, you should be safe most of the time. But still sometimes you may end up deleting your branches. Let's say we create a branch and create a new file:
@@ -802,6 +956,7 @@ To rename a different (local) branch:
 ```
 
 <a name="i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on"></a>
+
 ### I want to checkout to a remote branch that someone else is working on
 
 First, fetch all branches from remote:
@@ -859,6 +1014,7 @@ $ git branch -u [remotename]/[branch] [local-branch]
 ```
 
 <a name="i-want-to-set-my-HEAD-to-track-the-default-remote-branch"></a>
+
 ### I want to set my HEAD to track the default remote branch
 
 By checking your remote branches, you can see which remote branch your HEAD is tracking. In some cases, this is not the desired branch.
@@ -889,6 +1045,7 @@ You've made uncommitted changes and realise you're on the wrong branch. Stash ch
 ## Rebasing and Merging
 
 <a name="undo-rebase"></a>
+
 ### I want to undo rebase/merge
 
 You may have merged or rebased your current branch with a wrong branch, or you can't figure it out or finish the rebase/merge process. Git saves the original HEAD pointer in a variable called ORIG_HEAD before doing dangerous operations, so it is simple to recover your branch at the state before the rebase/merge.
@@ -898,6 +1055,7 @@ You may have merged or rebased your current branch with a wrong branch, or you c
 ```
 
 <a name="force-push-rebase"></a>
+
 ### I rebased, but I don't want to force push
 
 Unfortunately, you have to force push, if you want those changes to be reflected on the remote branch. This is because you have changed the history. The remote branch won't accept changes unless you force push. This is one of the main reasons many people use a merge workflow, instead of a rebasing workflow - large teams can get into trouble with developers force pushing. Use this with caution. A safer way to use rebase is not to reflect your changes on the remote branch at all, and instead to do the following:
@@ -912,6 +1070,7 @@ Unfortunately, you have to force push, if you want those changes to be reflected
 For more, see [this SO thread](https://stackoverflow.com/questions/11058312/how-can-i-use-git-rebase-without-requiring-a-forced-push).
 
 <a name="interactive-rebase"></a>
+
 ### I need to combine commits
 
 Let's suppose you are working in a branch that is/will become a pull-request against `master`. In the simplest case when all you want to do is to combine *all* commits into a single one and you don't care about commit timestamps, you can reset and recommit. Make sure the master branch is up to date and all your changes committed, then:
@@ -995,7 +1154,6 @@ Newer, awesomer features
 # Changes to be committed:
 #   modified:   README.md
 #
-
 ```
 
 If everything is successful, you should see something like this:
@@ -1005,6 +1163,7 @@ If everything is successful, you should see something like this:
 ```
 
 #### Safe merging strategy
+
 `--no-commit` performs the merge but pretends the merge failed and does not autocommit, giving the user a chance to inspect and further tweak the merge result before committing. `no-ff` maintains evidence that a feature branch once existed, keeping project history consistent.
 
 ```sh
@@ -1018,6 +1177,7 @@ If everything is successful, you should see something like this:
 ```
 
 <a name="rebase-unpushed-commits"></a>
+
 #### I want to combine only unpushed commits
 
 Sometimes you have several work in progress commits that you want to combine before you push them upstream. You don't want to accidentally combine any commits that have already been pushed upstream because someone else may have already made commits that reference them.
@@ -1055,9 +1215,11 @@ This will tell you if any commits are in one but not the other, and will give yo
 ### Possible issues with interactive rebases
 
 <a name="noop"></a>
+
 #### The rebase editing screen says 'noop'
 
 If you're seeing this:
+
 ```
 noop
 ```
@@ -1068,6 +1230,7 @@ That means you are trying to rebase against a branch that is at an identical com
 * rebase against `HEAD~2` or earlier instead
 
 <a name="merge-conflict"></a>
+
 #### There were conflicts
 
 If you are unable to successfully complete the rebase, you may have to resolve conflicts.
@@ -1127,6 +1290,7 @@ If at any time you want to stop the entire rebase and go back to the original st
 ```
 
 <a name="stashing"></a>
+
 ## Stash
 
 ### Stash all edits
@@ -1158,6 +1322,7 @@ $ git stash push working-directory-path/filename1.ext working-directory-path/fil
 ```
 
 <a name="stash-msg"></a>
+
 ### Stash with message
 
 ```sh
@@ -1165,6 +1330,7 @@ $ git stash save <message>
 ```
 
 <a name="stash-apply-specific"></a>
+
 ### Apply a specific stash from list
 
 First check your list of stashes with message using
@@ -1200,6 +1366,7 @@ Commons parameters:
 * `--reverse` prints in reverse order, it means that will show the first commit that made the change.
 
 <a name="i-want-to-find-by-author-committer"></a>
+
 ### I want to find by author/committer
 
 To find all commits by author/committer you can use:
@@ -1242,6 +1409,7 @@ $ git tag --contains <commitid>
 ## Submodules
 
 <a name="clone-submodules"></a>
+
 ### Clone all submodules
 
 ```sh
@@ -1255,6 +1423,7 @@ $ git submodule update --init --recursive
 ```
 
 <a name="delete-submodule"></a>
+
 ### Remove a submodule
 
 Creating a submodule is pretty straight-forward, but deleting them less so. The commands you need are:
@@ -1290,6 +1459,7 @@ $ git push <remote> :refs/tags/<tag_name>
 ```
 
 <a name="recover-tag"></a>
+
 ### Recover a deleted tag
 
 If you want to recover a tag that was already deleted, you can do so by following these steps: First, you need to find the unreachable tag:
@@ -1325,6 +1495,7 @@ $ git archive --format zip --output /full/path/to/zipfile.zip master
 ## Tracking Files
 
 <a href="i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file"></a>
+
 ### I want to change a file name's capitalization, without changing the contents of the file
 
 ```sh
@@ -1339,6 +1510,7 @@ $ git archive --format zip --output /full/path/to/zipfile.zip master
 ```
 
 <a href="remove-from-git"></a>
+
 ### I want to remove a file from Git but keep the file
 
 ```sh
@@ -1521,6 +1693,7 @@ Using `git reset` it is then possible to change master back to the commit it was
 * [git-town](https://github.com/Originate/git-town) - Generic, high-level Git workflow support! http://www.git-town.com
 
 ## GUI Clients
+
 * [GitKraken](https://www.gitkraken.com/) - The downright luxurious Git client,for Windows, Mac & Linux
 * [git-cola](https://git-cola.github.io/) - another Git client for Windows and OS X
 * [GitUp](https://github.com/git-up/GitUp) - A newish GUI that has some very opinionated ways of dealing with Git's complications
