@@ -261,7 +261,7 @@ That will create a new commit that undoes all the previous commit's changes. Or,
 (ie. other devs aren't expected to pull from it), you can just use `git push --force-with-lease`. For more, see [the above section](#deleteremove-last-pushed-commit).
 
 이 방법은 push를 안했을때만 동작해요. push를 했으면, 안전한 방법은 `git revert SHAofBadCommit` 한가지 밖이에요. 
-이 방법은 모든 지난 commit의 이력이 되돌아간 새 commit을 만들꺼에요. 또는, 만약 push한 브랜치가 리베이스에 안전하다면 (만약 다른 사람이 풀 받지 않는다면), `git push --force-with-lease` 명령어를 쓸수 있어요. 
+이 방법은 모든 지난 커밋 변경점이 되돌아간 새 commit을 만들꺼에요. 또는, 만약 push한 브랜치가 리베이스에 안전하다면 (만약 다른 사람이 풀 받지 않는다면), `git push --force-with-lease` 명령어를 쓸수 있어요. 
 더 알고 싶다면, 여길 참고해주세요 [the above section](#deleteremove-last-pushed-commit).
 
 <a name="delete-any-commit"></a>
@@ -309,7 +309,7 @@ It is best to create and push a new commit rather than force-pushing the amended
 
 일반적으로 force push를 쓰지 마세요.
 새 커밋을 만들어서 푸시하는게 수정된 커밋을 강제로 푸시하는것보다 훨씬 나아요 그런 수정된 커밋은 그 브랜치나 다른 자식 브랜치를 쓰는 다른 개발자의 소스 이력과 충돌의 원인이 될꺼에요. 
-`--force-with-lease` 는 여전히 실패할텐데, 누군가가 같은 브랜치를 쓴다면 작업 이력을 덮어쓰는 push를 할 수도 있어요.
+`--force-with-lease` 는 여전히 실패할텐데, 누군가가 같은 브랜치를 쓴다면 변경점을 덮어쓰는 push를 할 수도 있어요.
 
 If you are *absolutely* sure that nobody is working on the same branch or you want to update the tip of the branch *unconditionally*, 
 you can use `--force` (`-f`), but this should be avoided in general.
@@ -405,15 +405,15 @@ Then, you will need to use the `e` option to manually choose which lines to add.
 <a href="stage-in-two-commits"></a>
 
 ### I want to add changes in one file to two different commits
-### 하나의 파일 변경이력을 두개의 다른 커밋에 남기고 싶어
+### 하나의 파일 변경점을 두개의 다른 커밋에 남기고 싶어
 
 `git add` will add the entire file to a commit. `git add -p` will allow to interactively select which changes you want to add.
-`git add`는 전체 파일들을 커밋에 추가해요. `git add -p`는 대화형으로 추가하고픈 이력들을 고를 수 있어요.
+`git add`는 전체 파일들을 커밋에 추가해요. `git add -p`는 대화형으로 추가하고픈 변경점들을 고를 수 있어요.
 
 <a href="unstaging-edits-and-staging-the-unstaged"></a>
 
 ### I want to stage my unstaged edits, and unstage my staged edits
-### 아직 스테이지에 안 올라간 이력을 스테이지에 추가하고, 스테이지에 있는 이력을 다시 뺴고 싶어
+### 아직 스테이지에 안 올라간 변경점을 스테이지에 추가하고, 스테이지에 있는 변경점을 다시 뺴고 싶어
 
 This is tricky. The best I figure is that you should stash your unstaged edits. Then, reset. After that, pop your stashed edits back, and add them.
 이건 좀 꼼수인데요, 스테이지 전인 파일들을 스테이시해서 빼두고선 리셋을 해요. 그 다음 스테이시를 다시 불러와 추가를 해요. 
@@ -426,13 +426,13 @@ $ git add -A
 ```
 
 ## Unstaged Edits
-## 스테이지 전의 변경이력
+## 스테이지 전의 변경점
 
 
 <a href="move-unstaged-edits-to-new-branch"></a>
 
 ### I want to move my unstaged edits to a new branch
-### 스테이지전 변경이력을 새 브랜치로 옮기고 싶어
+### 스테이지전 변경점을 새 브랜치로 옮기고 싶어
 
 ```sh
 $ git checkout -b my-branch
@@ -441,7 +441,7 @@ $ git checkout -b my-branch
 <a href="move-unstaged-edits-to-old-branch"></a>
 
 ### I want to move my unstaged edits to a different, existing branch
-### 스테이지전 변경이력들을 만들어준 다른 브랜치로 옮기고 싶어
+### 스테이지전 변경점을 만들어준 다른 브랜치로 옮기고 싶어
 
 ```sh
 $ git stash
@@ -452,10 +452,10 @@ $ git stash pop
 <a href="i-want-to-discard-my-local-uncommitted-changes"></a>
 
 ### I want to discard my local uncommitted changes (staged and unstaged)
-### 내 로컬에 있는 커밋 안된 이력들을 다 버리고 싶어 (스테이징 됐던 안됐던)
+### 내 로컬에 있는 커밋 안된 변경점을 다 버리고 싶어 (스테이징 됐던 안됐던)
 
 If you want to discard all your local staged and unstaged changes, you can do this:
-만약 모든 스테이지 된, 스테이지 전인 이력들을 버리고 싶다면 이렇게 해요:
+만약 모든 스테이지 된, 스테이지 전인 변경점을 버리고 싶다면 이렇게 해요:
 
 ```sh
 (my-branch)$ git reset --hard
@@ -471,14 +471,14 @@ $ git reset
 ```
 
 This will revert all local uncommitted changes (should be executed in repo root):
-이 방법은 커밋되지 않은 모든 로컬 이력들이 되돌려 져요. (저장소 최상단 루트에서 실행해야 할꺼에요)
+이 방법은 커밋되지 않은 모든 로컬 변경점이 되돌려 져요. (저장소 최상단 루트에서 실행해야 할꺼에요)
 
 ```sh
 $ git checkout .
 ```
 
 You can also revert uncommitted changes to a particular file or directory:
-또 커밋되지 않은 이력들 중 몇가지 파일이나 디렉토리만 되돌릴 수 있어요.
+또 커밋되지 않은 변경점들 중 몇가지 파일이나 디렉토리만 되돌릴 수 있어요.
 
 ```sh
 $ git checkout [some_dir|file.txt]
@@ -502,12 +502,12 @@ $ git clean -fd
 `-x` 옵 또한 무시된 파일들을 다 지워요.
 
 ### I want to discard specific unstaged changes
-### 스테이지 안된 특정 이력을 지우고 싶어
+### 스테이지 안된 특정 변경점을 지우고 싶어
 
 When you want to get rid of some, but not all changes in your working copy.
 Checkout undesired changes, keep good changes.
 작업중인 영역에서 전체가 아닌 특정 부분을 지우고 싶을때
-원치않는 이력들을 확인하고, 이력들을 잘 보관하세요.
+원치않는 변경점을 확인하고, 변경점을 잘 보관하세요.
 
 ```sh
 $ git checkout -p
@@ -516,7 +516,7 @@ $ git checkout -p
 ```
 
 Another strategy involves using `stash`. Stash all the good changes, reset working copy, and reapply good changes.
-또다른 전략은 `stash`을 같이 쓰는거에요. 챙겨야 하는 이력들을 스테이시 하고, 작업 중인 영역을 리셋하고, 다시 스테이시 팝으로 재적용해요.   
+또다른 전략은 `stash`을 같이 쓰는거에요. 챙겨야 하는 변경점을 스테이시 하고, 작업 중인 영역을 리셋하고, 다시 스테이시 팝으로 재적용해요.   
 
 ```sh
 $ git stash -p
@@ -527,7 +527,7 @@ $ git stash pop
 ```
 
 Alternatively, stash your undesired changes, and then drop stash.
-대안으로, 원치않는 이력들을 스테이시해서 그걸 날리는 방법도 있어요.
+대안으로, 원치않는 변경점을 스테이시해서 그걸 날리는 방법도 있어요.
 
 ```sh
 $ git stash -p
@@ -554,10 +554,10 @@ $ git checkout myFirstFile mySecondFile
 ```
 
 ### I want to discard only my unstaged local changes
-### 로컬에 있는 스테이지 안된 인력들만 지우고 싶어
+### 로컬에 있는 스테이지 안된 변경점만 지우고 싶어
 
 When you want to get rid of all of your unstaged local uncommitted changes
-모든 스테이지 전이고 커밋 전인 이력들을 지우고 싶을 때
+모든 스테이지 전이고 커밋 전인 변경점을 지우고 싶을 때
 
 ```sh
 $ git checkout .
@@ -641,7 +641,7 @@ Done.
 ### 로컬의 커밋을 지워서 서버에 있는 내 브랜치와 맞추고 싶어
 
 Confirm that you haven't pushed your changes to the server.
-서버에 변경 이력을 푸시 안했는지부터 확인해요.
+서버에 변경점을 푸시 안했는지부터 확인해요.
 
 `git status` should show how many commits you are ahead of origin:
 `git status` 가 오리진보다 몇개의 커밋들이 앞서 있는지 보여줄꺼에요: 
@@ -691,7 +691,7 @@ Note that `HEAD^2` is **not** the same as `HEAD~2` (see [this link](http://www.p
 Alternatively, if you don't want to use `HEAD^`, find out what the commit hash you want to set your master branch to (`git log` should do the trick). 
 Then reset to that hash. `git push` will make sure that this change is reflected on your remote.
 대안으로, `HEAD^`를 쓰고 싶지 않다면, 마스터 브랜치로 옮길 커밋 해시를 알아둬요 (`git log`가 트릭을 부릴 꺼에요)
-그리고 그 해쉬로 리셋을 해요. `git push`가 리모트랑 변경이력이 똑같은걸 확인해줄꺼에요.
+그리고 그 해쉬로 리셋을 해요. `git push`가 리모트랑 변경점이 똑같은걸 확인해줄꺼에요.
 
 For example, if the hash of the commit that your master branch is supposed to be at is `a13b85e`:
 예를 들자면, 그 마스터의 커밋의 해쉬가 `a13b85e`라면:
@@ -714,7 +714,7 @@ Checkout the new branch to continue working:
 ### 다른 레퍼런스 같은 곳에서 모든 파일을 유지하고 싶어 
 
 Say you have a working spike (see note), with hundreds of changes. Everything is working. Now, you commit into another branch to save that work:
-수백번의 변경 이력을 가진 스파이크(아래 알아두기 참고) 작업을 한다고 가정해보죠. 모든 건 동작하고 있고,그 작업을 저장해두기 위해  다른 브랜치로 커밋을 해요:
+수백번의 변경점을 가진 스파이크(아래 알아두기 참고) 작업을 한다고 가정해보죠. 모든 건 동작하고 있고,그 작업을 저장해두기 위해  다른 브랜치로 커밋을 해요:
 
 ```sh
 (solution)$ git add -A && git commit -m "Adding all changes from this spike into one big commit."
@@ -729,7 +729,7 @@ Say you have:
 * branch `solution`, with the solution to your spike. One ahead of `develop`.
 * branch `develop`, where you want to add your changes.
 * 스파이크를 위한 솔루션과 함께인 `solution` 브랜치. `develop` 브랜치의 1단계 앞선 상태. ???
-* 변경 이력을 추가하고 싶은 `develop` 브랜치
+* 변경점을 추가하고 싶은 `develop` 브랜치
 
 You can solve it bringing the contents to your branch:
 브랜치로 내용들을 불러오는 것으로 해결할 수 있어요:
@@ -760,9 +760,10 @@ Note: Spike solutions are made to analyze or solve the problem. These solutions 
 <a name="cherry-pick"></a>
 
 ### I made several commits on a single branch that should be on different branches
-### 
+### 한 브랜치에 다른 브랜치에 남겼어야 하는 여러 커밋을 남겼어
 
 Say you are on your master branch. Running `git log`, you see you have made two commits:
+마스터 브랜치에 있다고 가정하고 `git log` 해보면 커밋 두개 볼 수 있을꺼에요:
 
 ```sh
 (master)$ git log
@@ -787,8 +788,10 @@ Date:   Tue Jul 21 01:12:48 2014 -0400
 ```
 
 Let's take note of our commit hashes for each bug (`e3851e8` for #21, `5ea5173` for #14).
+각 버그 커밋의 해쉬를 가져와요. (21번은 `e3851e8`, 14번은 `5ea5173`)
 
 First, let's reset our master branch to the correct commit (`a13b85e`):
+우선, 마스터 브랜치의 정확한 커밋 (`a13b85e`)으로 리셋해요:
 
 ```sh
 (master)$ git reset --hard a13b85e
@@ -796,6 +799,7 @@ HEAD is now at a13b85e
 ```
 
 Now, we can create a fresh branch for our bug #21:
+그리고, 21번 작업을 위한 새 브랜치를 만들수 있어요:
 
 ```sh
 (master)$ git checkout -b 21
@@ -803,14 +807,19 @@ Now, we can create a fresh branch for our bug #21:
 ```
 
 Now, let's *cherry-pick* the commit for bug #21 on top of our branch. That means we will be applying that commit, and only that commit, directly on top of whatever our head is at.
+그리고 브랜치 최상단의 커밋을 *체리픽* 해봐요. 그 커밋을 적용할건데, 오직 그 커밋만 헤드의 최상단에 적용할거란 의미에요.
 
 ```sh
 (21)$ git cherry-pick e3851e8
 ```
 
-At this point, there is a possibility there might be conflicts. See the [**There were conflicts**](#merge-conflict) section in the [interactive rebasing section above](#interactive-rebase) for how to resolve conflicts.
+At this point, there is a possibility there might be conflicts. 
+See the [**There were conflicts**](#merge-conflict) section in the [interactive rebasing section above](#interactive-rebase) for how to resolve conflicts.
+이 지점에서 충돌이 있을 수도 있어요.
+어떻게 충돌을 해결할지 [대화형 리베이스 섹션](#interactive-rebase) 안에 있는 [**충돌이 났었다**](#merge-conflict) 부분을 참고하세요.  
 
 Now let's create a new branch for bug #14, also based on master
+자 이제 14번 버그작업을 위해 마스터 기반의 새 브랜치를 만들어요.
 
 ```sh
 (21)$ git checkout master
@@ -819,6 +828,7 @@ Now let's create a new branch for bug #14, also based on master
 ```
 
 And finally, let's cherry-pick the commit for bug #14:
+그리고 마지막으로, 14번 버그작업을 위한 커밋을 체리픽해요. 
 
 ```sh
 (14)$ git cherry-pick 5ea5173
@@ -827,20 +837,28 @@ And finally, let's cherry-pick the commit for bug #14:
 <a name="delete-stale-local-branches"></a>
 
 ### I want to delete local branches that were deleted upstream
+### 업스트림에선 지워진 로컬 브랜치를 지우고 싶어
 
-Once you merge a pull request on GitHub, it gives you the option to delete the merged branch in your fork. If you aren't planning to keep working on the branch, it's cleaner to delete the local copies of the branch so you don't end up cluttering up your working checkout with a lot of stale branches.
+Once you merge a pull request on GitHub, it gives you the option to delete the merged branch in your fork. 
+If you aren't planning to keep working on the branch, it's cleaner to delete the local copies of the branch so you don't end up cluttering up your working checkout with a lot of stale branches.
+깃헙에 풀리퀘스트로 머지를 하면, 포크 뜬 머지 브랜치를 지울껀지 선택할 수 있는 옵션을 줘요.
+해당 브랜치에 계속 작업할 예정이 없다면, 다량의 오래된 브랜치들로 뒤덮이지 않게 로컬 작업을 지워주는게 더 깔끔해요.
 
 ```sh
 $ git fetch -p upstream
 ```
 
 where, `upstream` is the remote you want to fetch from.
+여기서, `upstream`은 가져오려는 원격저장소에요.
 
 <a name='restore-a-deleted-branch'></a>
 
 ### I accidentally deleted my branch
+### 브랜치를 지워버렸어
 
 If you're regularly pushing to remote, you should be safe most of the time. But still sometimes you may end up deleting your branches. Let's say we create a branch and create a new file:
+주기적으로 원격으로 푸시한다면, 대부분은 안전해야 해요. 그치만 가끔은 브랜치를 지울 수 있어요. 새 브랜치를 만들고 파일을 하나 만들었다고 해보죠:
+
 
 ```sh
 (master)$ git checkout -b my-branch
@@ -851,6 +869,7 @@ README.md foo.txt
 ```
 
 Let's add it and commit.
+추가하고 커밋해요.
 
 ```sh
 (my-branch)$ git add .
@@ -874,6 +893,7 @@ Date:   Tue Jul 29 13:14:46 2014 -0400
 ```
 
 Now we're switching back to master and 'accidentally' removing our branch.
+이제 다시 마스터로 돌아가 '실수로' 브랜치를 지워보죠.
 
 ```sh
 (my-branch)$ git checkout master
@@ -886,6 +906,7 @@ oh noes, deleted my branch!
 ```
 
 At this point you should get familiar with 'reflog', an upgraded logger. It stores the history of all the action in the repo.
+여기에서 업그레이드된 로그 도구인 '리플로그'에 익숙해져야 해요. 리플로그는 저장소의 모든 행동의 이력을 다 보관해요.
 
 ```
 (master)$ git reflog
@@ -895,6 +916,8 @@ At this point you should get familiar with 'reflog', an upgraded logger. It stor
 ```
 
 As you can see we have commit hash from our deleted branch. Let's see if we can restore our deleted branch.
+보시다시피 지워진 브랜치의 커밋 해쉬도 볼 수 있어요. 지웠던 브랜치를 살릴 수 있는 지 한번 해보죠.
+
 
 ```sh
 (master)$ git checkout -b my-branch-help
@@ -906,50 +929,62 @@ README.md foo.txt
 ```
 
 Voila! We got our removed file back. `git reflog` is also useful when rebasing goes terribly wrong.
+짜잔! 지워진 파일들을 되돌려 놨어요. `git reflog`는 리베이스가 끔찍하게 잘못 됐을때 아주 유용해요.
+
 
 ### I want to delete a branch
+### 브랜치를 지우고 싶어
 
 To delete a remote branch:
+리모트 브랜치를 삭제하려면:
 
 ```sh
 (master)$ git push origin --delete my-branch
 ```
 
 You can also do:
+이렇게도:
 
 ```sh
 (master)$ git push origin :my-branch
 ```
 
 To delete a local branch:
+로컬 브랜치를 삭제하려면:
 
 ```sh
 (master)$ git branch -d my-branch
 ```
 
 To delete a local branch that *has not* been merged to the current branch or an upstream:
+현재 브랜치나 업스트림에 머지되지 않은 로컬 브랜치를 지우려면:
 
 ```sh
 (master)$ git branch -D my-branch
 ```
 
 ### I want to delete multiple branches
+### 여러개의 브랜치를 지우고 싶어
 
 Say you want to delete all branches that start with `fix/`:
+`fix/`로 시작하는 모든 브랜치들을 지우고 싶다고 할 때:
 
 ```sh
 (master)$ git branch | grep 'fix/' | xargs git branch -d
 ```
 
 ### I want to rename a branch
+### 브랜치 이름을 바꾸고 싶어
 
 To rename the current (local) branch:
+현재 (로컬) 브랜치 이름을 바꾸려면:
 
 ```sh
 (master)$ git branch -m new-name
 ```
 
 To rename a different (local) branch:
+다른 (로컬) 브랜치 이름을 바꾸려면
 
 ```sh
 (master)$ git branch -m old-name new-name
@@ -958,14 +993,17 @@ To rename a different (local) branch:
 <a name="i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on"></a>
 
 ### I want to checkout to a remote branch that someone else is working on
+### 다른 사람이 작업중인 리모트 브랜치로 체크아웃 하고 싶어
 
 First, fetch all branches from remote:
+우선, 원격 저장소에서 모든 브랜치를 패치 받아요: 
 
 ```sh
 (master)$ git fetch --all
 ```
 
 Say you want to checkout to `daves` from the remote.
+원격의 `daves`로 체크아웃 하고 싶다고 하면.
 
 ```sh
 (master)$ git checkout --track origin/daves
@@ -974,32 +1012,42 @@ Switched to a new branch 'daves'
 ```
 
 (`--track` is shorthand for `git checkout -b [branch] [remotename]/[branch]`)
+(`--track` 은 `git checkout -b [branch] [remotename]/[branch]` 의 축약이에요)
 
 This will give you a local copy of the branch `daves`, and any update that has been pushed will also show up remotely.
+`daves` 브랜치의 로컬 카피를 줄꺼에요. 그리고 푸시된 업데이트들도 원격으로 표시되요.
 
 ### I want to create a new remote branch from current local one
+### 현재 로컬에서 새로운 리모트 브랜치를 만들고 싶어
 
 ```sh
 $ git push <remote> HEAD
 ```
 
 If you would also like to set that remote branch as upstream for the current one, use the following instead:
+또한 리모트 브랜치를 현재 브랜치를 위한 업스트림으로 설정하고 싶다면, 대신 아래 방법을 써봐요:
 
 ```sh
 $ git push -u <remote> HEAD
 ```
 
-With the `upstream` mode and the `simple` (default in Git 2.0) mode of the `push.default` config, the following command will push the current branch with regards to the remote branch that has been registered previously with `-u`:
+With the `upstream` mode and the `simple` (default in Git 2.0) mode of the `push.default` config, 
+the following command will push the current branch with regards to the remote branch that has been registered previously with `-u`:
+`push.default` 설정의 `upstream` 모드와 `simple`모드 (2.0 버전의 깃의 기본)와 함께,
+아래 커맨드는 이전에 `-u` 옵션으로 등록된 리모트 브랜치와 관련된 현재 브랜치를 푸시할꺼에요:
 
 ```sh
 $ git push
 ```
 
 The behavior of the other modes of `git push` is described in the [doc of `push.default`](https://git-scm.com/docs/git-config#git-config-pushdefault).
+`git push`의 다른 모드의 동작은 [`push.default` 문서](https://git-scm.com/docs/git-config#git-config-pushdefault)에 설명돼 있어요.
 
 ### I want to set a remote branch as the upstream for a local branch
+### 리모트 브랜치를 로컬 브랜치를 위한 업스트림으로 설정하고 싶어
 
 You can set a remote branch as the upstream for the current local branch using:
+리모트 브랜치를 현재 쓰고 있는 로컬 브랜치를 위한 업스트림으로 설정할 수 있어요:
 
 ```sh
 $ git branch --set-upstream-to [remotename]/[branch]
@@ -1008,6 +1056,7 @@ $ git branch -u [remotename]/[branch]
 ```
 
 To set the upstream remote branch for another local branch:
+다른 로컬 브랜치를 위한 업스트림 리모트 브랜치를 설정하려면:
 
 ```sh
 $ git branch -u [remotename]/[branch] [local-branch]
@@ -1016,8 +1065,10 @@ $ git branch -u [remotename]/[branch] [local-branch]
 <a name="i-want-to-set-my-HEAD-to-track-the-default-remote-branch"></a>
 
 ### I want to set my HEAD to track the default remote branch
+### HEAD를 기본 리모트 브랜치로 트래킹하도록 설정하고 싶어
 
 By checking your remote branches, you can see which remote branch your HEAD is tracking. In some cases, this is not the desired branch.
+리모트 브랜치를 확인해보는 것으로, HEAD가 트래킹 중인 리모트 브랜치를 볼 수 있어요. 몇몇 경우에는, 원하던 브랜치가 아닐꺼에요.
 
 ```sh
 $ git branch -r
@@ -1026,6 +1077,7 @@ $ git branch -r
 ```
 
 To change `origin/HEAD` to track `origin/master`, you can run this command:
+`origin/HEAD`를 `origin/master`를 트래킹하는 것으로 변경하려면, 이 커맨드로 실행할 수 있어요:
 
 ```sh
 $ git remote set-head origin --auto
@@ -1033,8 +1085,10 @@ origin/HEAD set to master
 ```
 
 ### I made changes on the wrong branch
+### 다른 브랜치에 변경점을 남기고 있었어
 
 You've made uncommitted changes and realise you're on the wrong branch. Stash changes and apply them to the branch you want:
+커밋 되지 않은 변경점, 거기다 잘못된 브랜치에 하고 있었다면 변경점을 스테이시 하고 원하는 브랜치로 가 스테이시 어플라이 해요.
 
 ```sh
 (wrong_branch)$ git stash
@@ -1043,12 +1097,17 @@ You've made uncommitted changes and realise you're on the wrong branch. Stash ch
 ```
 
 ## Rebasing and Merging
+## 리베이스와 머지
 
 <a name="undo-rebase"></a>
 
 ### I want to undo rebase/merge
+### 리베이스/머지 한 걸 되돌리고 싶어
 
-You may have merged or rebased your current branch with a wrong branch, or you can't figure it out or finish the rebase/merge process. Git saves the original HEAD pointer in a variable called ORIG_HEAD before doing dangerous operations, so it is simple to recover your branch at the state before the rebase/merge.
+You may have merged or rebased your current branch with a wrong branch, or you can't figure it out or finish the rebase/merge process. 
+Git saves the original HEAD pointer in a variable called ORIG_HEAD before doing dangerous operations, so it is simple to recover your branch at the state before the rebase/merge.
+현재 브랜치를 의도하지 않던 브랜치로 머지 또는 리베이스 했거나, 리베이스/머지 도중에 완료하거나 끝내지 못했을꺼에요.
+깃은 위험한 과정 전에 원래의 HEAD 포인트를 ORIG_HEAD라 불리는 변수에 보관해요, 그러니 리베이스/머지 전 상태로 브랜치를 복구하기 쉬워요.
 
 ```sh
 (my-branch)$ git reset --hard ORIG_HEAD
@@ -1057,8 +1116,19 @@ You may have merged or rebased your current branch with a wrong branch, or you c
 <a name="force-push-rebase"></a>
 
 ### I rebased, but I don't want to force push
+### 리베이스를 했는데, 강제 푸시하고 싶진 않아
 
-Unfortunately, you have to force push, if you want those changes to be reflected on the remote branch. This is because you have changed the history. The remote branch won't accept changes unless you force push. This is one of the main reasons many people use a merge workflow, instead of a rebasing workflow - large teams can get into trouble with developers force pushing. Use this with caution. A safer way to use rebase is not to reflect your changes on the remote branch at all, and instead to do the following:
+Unfortunately, you have to force push, if you want those changes to be reflected on the remote branch. This is because you have changed the history. 
+The remote branch won't accept changes unless you force push. 
+This is one of the main reasons many people use a merge workflow, instead of a rebasing workflow - large teams can get into trouble with developers force pushing. 
+Use this with caution. 
+A safer way to use rebase is not to reflect your changes on the remote branch at all, and instead to do the following:
+아쉽게도 그런 변경점을 리모트 브랜치에 반영하려면 강제 푸시밖에 방법이 없어요. 이력을 변경해왔기 떄문이죠.
+리모트 브랜치는 강제 푸시 외엔 적용 해주지 않을꺼에요.
+많은 분들이 머지 워크플로우를 리에비스 워크플로우보다 선호하는 많이 이유 중 하나죠 - 큰 팀에선 개발자의 강제 푸시로 곤란해질 수 있어요.
+주의해서 쓰세요.
+리베이스를 그나마 안전하게 쓰는 방법은 리모트 브랜치의 모든 변경점과 똑같이 반영하는게 아니라 대신에 이렇게 해봐요:  
+
 
 ```sh
 (master)$ git checkout my-branch
@@ -1068,12 +1138,20 @@ Unfortunately, you have to force push, if you want those changes to be reflected
 ```
 
 For more, see [this SO thread](https://stackoverflow.com/questions/11058312/how-can-i-use-git-rebase-without-requiring-a-forced-push).
+더 확인이 필요하다면, [이 스택오버플로우의 쓰레드](https://stackoverflow.com/questions/11058312/how-can-i-use-git-rebase-without-requiring-a-forced-push)를 참고해요.
+
 
 <a name="interactive-rebase"></a>
 
 ### I need to combine commits
+### 커밋끼리 합치고 싶어
 
-Let's suppose you are working in a branch that is/will become a pull-request against `master`. In the simplest case when all you want to do is to combine *all* commits into a single one and you don't care about commit timestamps, you can reset and recommit. Make sure the master branch is up to date and all your changes committed, then:
+Let's suppose you are working in a branch that is/will become a pull-request against `master`. 
+In the simplest case when all you want to do is to combine *all* commits into a single one and you don't care about commit timestamps, you can reset and recommit. 
+Make sure the master branch is up to date and all your changes committed, then:
+`master`에 풀리퀘스트가 될 브랜치에서 작업하고 있다고 가정해봐요.
+가장 간단한 경우는 원하는게 *모든* 커밋을 하나의 커밋으로 합치고 변경점의 시간을 신경쓰지 않아도 되는 것일 때, 리셋하고 커밋 다시하면 돼요.
+마스터 브랜치가 최신이고 모든 변경점이 커밋된 것만 확인한 다음:
 
 ```sh
 (my-branch)$ git reset --soft master
@@ -1081,18 +1159,23 @@ Let's suppose you are working in a branch that is/will become a pull-request aga
 ```
 
 If you want more control, and also to preserve timestamps, you need to do something called an interactive rebase:
+좀더 조정하고, 시간기록까지 보관하고 싶다면, 대화형 리베이스가 필요할꺼에요.
 
 ```sh
 (my-branch)$ git rebase -i master
 ```
 
-If you aren't working against another branch you'll have to rebase relative to your `HEAD`. If you want to squash the last 2 commits, for example, you'll have to rebase against `HEAD~2`. For the last 3, `HEAD~3`, etc.
+If you aren't working against another branch you'll have to rebase relative to your `HEAD`.
+If you want to squash the last 2 commits, for example, you'll have to rebase against `HEAD~2`. For the last 3, `HEAD~3`, etc.
+만약 다른 브랜치에 작업하는게 아니라면, `HEAD`을 기준으로 리베이스 해야해요.
+예로 마지막 2개의 커밋을 스쿼시(기존 커밋에 반영해넣는)하고 싶다면 `HEAD~2`로 리베이스 해요. 3개라면 `HEAD~3`으로 하구요.
 
 ```sh
 (master)$ git rebase -i HEAD~2
 ```
 
 After you run the interactive rebase command, you will see something like this in your  text editor:
+대화형 리베이스를 실행하면 텍스트 에디터로 이런 것들을 볼 수 있을꺼에요.
 
 ```vim
 pick a9c8a1d Some refactoring
@@ -1120,10 +1203,13 @@ pick e3851e8 another fix
 ```
 
 All the lines beginning with a `#` are comments, they won't affect your rebase.
+모든 `#`으로 시작하는 주석줄은 리베이스에 영향을 주진 않아요. 
 
 Then you replace `pick` commands with any in the list above, and you can also remove commits by removing corresponding lines.
+다음으로 `pick` 부분을 다른 명령어로 바꾸거나, 해당하는 라인을 지워서 커밋을 지울 수도 있어요.
 
 For example, if you want to **leave the oldest (first) commit alone and combine all the following commits with the second oldest**, you should edit the letter next to each commit except the first and the second to say `f`:
+예를 들자면 **오래된 (첫번째) 커밋만 두고 두번째 오래된 커밋과 나머지를 다 합치고 싶을때**, 첫번째와 두번째 커밋 제외한 나머지 커맨드들을 `f`로 바꿔야 할꺼에요:  
 
 ```vim
 pick a9c8a1d Some refactoring
@@ -1133,6 +1219,7 @@ f e3851e8 another fix
 ```
 
 If you want to combine these commits **and rename the commit**, you should additionally add an `r` next to the second commit or simply use `s` instead of `f`:
+이 커밋들을 합치고 **커밋 이름을 바꾸고 싶다면**, 추가로 적어줘야 해요 두번째 커밋 다음에 `r`를 추가하거나 간단히 `f` 대신 `s`를 추가해주면 될꺼에요:
 
 ```vim
 pick a9c8a1d Some refactoring
@@ -1142,6 +1229,7 @@ s e3851e8 another fix
 ```
 
 You can then rename the commit in the next text prompt that pops up.
+그런 다음에 한번 더 뜨는 텍스트 에디터로 커밋 이름을 바꿀 수 있어요.
 
 ```vim
 Newer, awesomer features
@@ -1157,14 +1245,20 @@ Newer, awesomer features
 ```
 
 If everything is successful, you should see something like this:
+전부 다 성공하면, 이런 메세지를 볼꺼에요:
 
 ```sh
 (master)$ Successfully rebased and updated refs/heads/master.
 ```
 
 #### Safe merging strategy
+#### 안전한 머지 전략
 
-`--no-commit` performs the merge but pretends the merge failed and does not autocommit, giving the user a chance to inspect and further tweak the merge result before committing. `no-ff` maintains evidence that a feature branch once existed, keeping project history consistent.
+`--no-commit` performs the merge but pretends the merge failed and does not autocommit, giving the user a chance to inspect and further tweak the merge result before committing. 
+`no-ff` maintains evidence that a feature branch once existed, keeping project history consistent.
+`--no-commit`는 머지는 하지만 실패하고 자동 커밋이 안된것처럼 보이는데, 커밋하기전에 머지 결과를 보고 추가로 조정할 수 있게 해줘요.
+`no-ff`는 피쳐 브랜치가 있었다는 증거를 남기고, 이력을 일관되게 가지게 해요. 
+
 
 ```sh
 (master)$ git merge --no-ff --no-commit my-branch
