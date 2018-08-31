@@ -1,5 +1,8 @@
 # Reglas de vuelo para git
 
+🌍
+*[English](README.md) ∙ [Español](README_es.md)  ∙  [Русский](README_ru.md) ∙ [简体中文](README_zh-CN.md)∙ [한국어](README_kr.md)*
+
 #### ¿Qué son "reglas de vuelo"?
 
 Una [guía para astronautas](http://www.jsc.nasa.gov/news/columbia/fr_generic.pdf) (ahora, programadores usando git) acerca de qué hacer cuando las cosas van mal.
