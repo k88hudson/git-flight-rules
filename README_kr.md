@@ -10,13 +10,14 @@
 
 >  *Flight Rules* 는 X가 발생한 이유와 그 단계의 매뉴얼에서 어렵사리 얻은 지식이에요. 기본적으로 각 시나리오의 매우 자세하고 구체적인 운영 절차랍니다. [...]
 
-> NASA는 수성(Mecury) 시대 때 지상팀에서 처음으로 "lessons learned" 이란 것을 모았는데 수천개의 문제의 상황들, 부서진 해치 손잡이로 인한 엔진 고장부터 컴퓨터 문제 그리고 그 해답까지, 1960년대 초부터 우리의 실수들, 재앙들, 해결책들을 목록화 돼있어요. 
+> NASA는 수성(Mecury) 시대 때 지상팀에서 처음으로 "lessons learned" 이란 것을 모았는데 수천개의 문제의 상황들, 부서진 해치 손잡이로 인한 엔진 고장부터 컴퓨터 문제 그리고 그 해답까지, 1960년대 초부터 우리의 실수들, 재앙들, 해결책등이  목록화 돼있어요. 
 
 — Chris Hadfield, *인생을 위한 우주비행사의 가이드*.
 
 #### 이 문서의 규칙
 
-명확성을 위해 이 문서의 모든 예제는 현재 브랜치를 표시하고 스테이지에 변경이 있는지를 나타내기 위해 커스텀 된 배시 프롬프트를 써요. 
+명확하게 하기 위해 이 문서의 모든 예제는 현재 브랜치를 표시하고 스테이지에 변경이 있는지를 나타내기 위해 커스텀 된 배시 프롬프트를 써요.
+ 
 브랜치는 괄호 안에 있고, 브랜치 다음의 *는 스테이지의 변경된 것을 나타내요.  
 
 [![Join the chat at https://gitter.im/k88hudson/git-flight-rules](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/k88hudson/git-flight-rules?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -36,12 +37,12 @@
     - [임의적인 커밋 지우기](#%EC%9E%84%EC%9D%98%EC%A0%81%EC%9D%B8-%EC%BB%A4%EB%B0%8B-%EC%A7%80%EC%9A%B0%EA%B8%B0)
     - [수정된 커밋을 푸시했는데, 에러 메세지가 떠](#%EC%88%98%EC%A0%95%EB%90%9C-%EC%BB%A4%EB%B0%8B%EC%9D%84-%ED%91%B8%EC%8B%9C%ED%96%88%EB%8A%94%EB%8D%B0-%EC%97%90%EB%9F%AC-%EB%A9%94%EC%84%B8%EC%A7%80%EA%B0%80-%EB%96%A0)
     - [하드 리셋을 해버렸는데 되돌리고 싶어](#%ED%95%98%EB%93%9C-%EB%A6%AC%EC%85%8B%EC%9D%84-%ED%95%B4%EB%B2%84%EB%A0%B8%EB%8A%94%EB%8D%B0-%EB%90%98%EB%8F%8C%EB%A6%AC%EA%B3%A0-%EC%8B%B6%EC%96%B4)
-    - [실수로 머지를 커밋,푸시해버렸어](#%EC%8B%A4%EC%88%98%EB%A1%9C-%EB%A8%B8%EC%A7%80%EB%A5%BC-%EC%BB%A4%EB%B0%8B%ED%91%B8%EC%8B%9C%ED%95%B4%EB%B2%84%EB%A0%B8%EC%96%B4)
+    - [머지를 실수로 커밋, 푸시해버렸어](#%EB%A8%B8%EC%A7%80%EB%A5%BC-%EC%8B%A4%EC%88%98%EB%A1%9C-%EC%BB%A4%EB%B0%8B-%ED%91%B8%EC%8B%9C%ED%95%B4%EB%B2%84%EB%A0%B8%EC%96%B4)
   - [스테이지](#%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%A7%80)
     - [지난 커밋에 스테이지 변경점을 추가하고 싶어](#%EC%A7%80%EB%82%9C-%EC%BB%A4%EB%B0%8B%EC%97%90-%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%A7%80-%EB%B3%80%EA%B2%BD%EC%A0%90%EC%9D%84-%EC%B6%94%EA%B0%80%ED%95%98%EA%B3%A0-%EC%8B%B6%EC%96%B4)
     - [전체가 아닌 새 파일만 스테이지에 올리고 싶어](#%EC%A0%84%EC%B2%B4%EA%B0%80-%EC%95%84%EB%8B%8C-%EC%83%88-%ED%8C%8C%EC%9D%BC%EB%A7%8C-%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%A7%80%EC%97%90-%EC%98%AC%EB%A6%AC%EA%B3%A0-%EC%8B%B6%EC%96%B4)
     - [하나의 파일 변경점을 두개의 다른 커밋에 남기고 싶어](#%ED%95%98%EB%82%98%EC%9D%98-%ED%8C%8C%EC%9D%BC-%EB%B3%80%EA%B2%BD%EC%A0%90%EC%9D%84-%EB%91%90%EA%B0%9C%EC%9D%98-%EB%8B%A4%EB%A5%B8-%EC%BB%A4%EB%B0%8B%EC%97%90-%EB%82%A8%EA%B8%B0%EA%B3%A0-%EC%8B%B6%EC%96%B4)
-    - [아직 스테이지에 안 올라간 변경점을 스테이지에 추가하고, 스테이지에 있는 변경점을 다시 뺴고 싶어](#%EC%95%84%EC%A7%81-%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%A7%80%EC%97%90-%EC%95%88-%EC%98%AC%EB%9D%BC%EA%B0%84-%EB%B3%80%EA%B2%BD%EC%A0%90%EC%9D%84-%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%A7%80%EC%97%90-%EC%B6%94%EA%B0%80%ED%95%98%EA%B3%A0-%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%A7%80%EC%97%90-%EC%9E%88%EB%8A%94-%EB%B3%80%EA%B2%BD%EC%A0%90%EC%9D%84-%EB%8B%A4%EC%8B%9C-%EB%BA%B4%EA%B3%A0-%EC%8B%B6%EC%96%B4)
+    - [아직 스테이지에 안 올라간 변경점을 스테이지에 추가하고, 스테이지에 있는 변경점을 다시 빼고 싶어](#%EC%95%84%EC%A7%81-%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%A7%80%EC%97%90-%EC%95%88-%EC%98%AC%EB%9D%BC%EA%B0%84-%EB%B3%80%EA%B2%BD%EC%A0%90%EC%9D%84-%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%A7%80%EC%97%90-%EC%B6%94%EA%B0%80%ED%95%98%EA%B3%A0-%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%A7%80%EC%97%90-%EC%9E%88%EB%8A%94-%EB%B3%80%EA%B2%BD%EC%A0%90%EC%9D%84-%EB%8B%A4%EC%8B%9C-%EB%B9%BC%EA%B3%A0-%EC%8B%B6%EC%96%B4)
   - [스테이지 전의 변경점](#%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%A7%80-%EC%A0%84%EC%9D%98-%EB%B3%80%EA%B2%BD%EC%A0%90)
     - [스테이지 전의 변경점을 새 브랜치로 옮기고 싶어](#%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%A7%80-%EC%A0%84%EC%9D%98-%EB%B3%80%EA%B2%BD%EC%A0%90%EC%9D%84-%EC%83%88-%EB%B8%8C%EB%9E%9C%EC%B9%98%EB%A1%9C-%EC%98%AE%EA%B8%B0%EA%B3%A0-%EC%8B%B6%EC%96%B4)
     - [스테이지전 변경점을 만들어둔 다른 브랜치로 옮기고 싶어](#%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%A7%80%EC%A0%84-%EB%B3%80%EA%B2%BD%EC%A0%90%EC%9D%84-%EB%A7%8C%EB%93%A4%EC%96%B4%EB%91%94-%EB%8B%A4%EB%A5%B8-%EB%B8%8C%EB%9E%9C%EC%B9%98%EB%A1%9C-%EC%98%AE%EA%B8%B0%EA%B3%A0-%EC%8B%B6%EC%96%B4)
@@ -53,22 +54,21 @@
   - [브랜치](#%EB%B8%8C%EB%9E%9C%EC%B9%98)
     - [모든 브랜치 리스트를 보고 싶어](#%EB%AA%A8%EB%93%A0-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%A6%AC%EC%8A%A4%ED%8A%B8%EB%A5%BC-%EB%B3%B4%EA%B3%A0-%EC%8B%B6%EC%96%B4)
     - [커밋에서 브랜치 만들기](#%EC%BB%A4%EB%B0%8B%EC%97%90%EC%84%9C-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%A7%8C%EB%93%A4%EA%B8%B0)
-    - [다른 브랜치에서 풀을 받아야 버렸어](#%EB%8B%A4%EB%A5%B8-%EB%B8%8C%EB%9E%9C%EC%B9%98%EC%97%90%EC%84%9C-%ED%92%80%EC%9D%84-%EB%B0%9B%EC%95%84%EC%95%BC-%EB%B2%84%EB%A0%B8%EC%96%B4)
+    - [다른 브랜치에서 풀을 받아와버렸어](#%EB%8B%A4%EB%A5%B8-%EB%B8%8C%EB%9E%9C%EC%B9%98%EC%97%90%EC%84%9C-%ED%92%80%EC%9D%84-%EB%B0%9B%EC%95%84%EC%99%80%EB%B2%84%EB%A0%B8%EC%96%B4)
     - [로컬의 커밋을 지워서 서버에 있는 내 브랜치와 맞추고 싶어](#%EB%A1%9C%EC%BB%AC%EC%9D%98-%EC%BB%A4%EB%B0%8B%EC%9D%84-%EC%A7%80%EC%9B%8C%EC%84%9C-%EC%84%9C%EB%B2%84%EC%97%90-%EC%9E%88%EB%8A%94-%EB%82%B4-%EB%B8%8C%EB%9E%9C%EC%B9%98%EC%99%80-%EB%A7%9E%EC%B6%94%EA%B3%A0-%EC%8B%B6%EC%96%B4)
     - [새 브랜치 대신에 마스터에 커밋을 해버렸어](#%EC%83%88-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%8C%80%EC%8B%A0%EC%97%90-%EB%A7%88%EC%8A%A4%ED%84%B0%EC%97%90-%EC%BB%A4%EB%B0%8B%EC%9D%84-%ED%95%B4%EB%B2%84%EB%A0%B8%EC%96%B4)
     - [다른 레퍼런스 같은 곳에서 모든 파일을 유지하고 싶어](#%EB%8B%A4%EB%A5%B8-%EB%A0%88%ED%8D%BC%EB%9F%B0%EC%8A%A4-%EA%B0%99%EC%9D%80-%EA%B3%B3%EC%97%90%EC%84%9C-%EB%AA%A8%EB%93%A0-%ED%8C%8C%EC%9D%BC%EC%9D%84-%EC%9C%A0%EC%A7%80%ED%95%98%EA%B3%A0-%EC%8B%B6%EC%96%B4)
-    - [한 브랜치에 다른 브랜치에 남겼어야 하는 여러 커밋을 남겼어](#%ED%95%9C-%EB%B8%8C%EB%9E%9C%EC%B9%98%EC%97%90-%EB%8B%A4%EB%A5%B8-%EB%B8%8C%EB%9E%9C%EC%B9%98%EC%97%90-%EB%82%A8%EA%B2%BC%EC%96%B4%EC%95%BC-%ED%95%98%EB%8A%94-%EC%97%AC%EB%9F%AC-%EC%BB%A4%EB%B0%8B%EC%9D%84-%EB%82%A8%EA%B2%BC%EC%96%B4)
+    - [한 브랜치에 다른 브랜치에 남겼어야 하는 커밋을 여러개 남겼어](#%ED%95%9C-%EB%B8%8C%EB%9E%9C%EC%B9%98%EC%97%90-%EB%8B%A4%EB%A5%B8-%EB%B8%8C%EB%9E%9C%EC%B9%98%EC%97%90-%EB%82%A8%EA%B2%BC%EC%96%B4%EC%95%BC-%ED%95%98%EB%8A%94-%EC%BB%A4%EB%B0%8B%EC%9D%84-%EC%97%AC%EB%9F%AC%EA%B0%9C-%EB%82%A8%EA%B2%BC%EC%96%B4)
     - [업스트림에선 지워진 로컬 브랜치를 지우고 싶어](#%EC%97%85%EC%8A%A4%ED%8A%B8%EB%A6%BC%EC%97%90%EC%84%A0-%EC%A7%80%EC%9B%8C%EC%A7%84-%EB%A1%9C%EC%BB%AC-%EB%B8%8C%EB%9E%9C%EC%B9%98%EB%A5%BC-%EC%A7%80%EC%9A%B0%EA%B3%A0-%EC%8B%B6%EC%96%B4)
     - [브랜치를 지워버렸어](#%EB%B8%8C%EB%9E%9C%EC%B9%98%EB%A5%BC-%EC%A7%80%EC%9B%8C%EB%B2%84%EB%A0%B8%EC%96%B4)
     - [브랜치를 지우고 싶어](#%EB%B8%8C%EB%9E%9C%EC%B9%98%EB%A5%BC-%EC%A7%80%EC%9A%B0%EA%B3%A0-%EC%8B%B6%EC%96%B4)
     - [여러개의 브랜치를 지우고 싶어](#%EC%97%AC%EB%9F%AC%EA%B0%9C%EC%9D%98-%EB%B8%8C%EB%9E%9C%EC%B9%98%EB%A5%BC-%EC%A7%80%EC%9A%B0%EA%B3%A0-%EC%8B%B6%EC%96%B4)
     - [브랜치 이름을 바꾸고 싶어](#%EB%B8%8C%EB%9E%9C%EC%B9%98-%EC%9D%B4%EB%A6%84%EC%9D%84-%EB%B0%94%EA%BE%B8%EA%B3%A0-%EC%8B%B6%EC%96%B4)
     - [다른 사람이 작업중인 리모트 브랜치로 체크아웃 하고 싶어](#%EB%8B%A4%EB%A5%B8-%EC%82%AC%EB%9E%8C%EC%9D%B4-%EC%9E%91%EC%97%85%EC%A4%91%EC%9D%B8-%EB%A6%AC%EB%AA%A8%ED%8A%B8-%EB%B8%8C%EB%9E%9C%EC%B9%98%EB%A1%9C-%EC%B2%B4%ED%81%AC%EC%95%84%EC%9B%83-%ED%95%98%EA%B3%A0-%EC%8B%B6%EC%96%B4)
-    - [I want to create a new remote branch from current local one](#i-want-to-create-a-new-remote-branch-from-current-local-one)
     - [현재 로컬 브랜치로 새로운 리모트 브랜치를 만들고 싶어](#%ED%98%84%EC%9E%AC-%EB%A1%9C%EC%BB%AC-%EB%B8%8C%EB%9E%9C%EC%B9%98%EB%A1%9C-%EC%83%88%EB%A1%9C%EC%9A%B4-%EB%A6%AC%EB%AA%A8%ED%8A%B8-%EB%B8%8C%EB%9E%9C%EC%B9%98%EB%A5%BC-%EB%A7%8C%EB%93%A4%EA%B3%A0-%EC%8B%B6%EC%96%B4)
     - [리모트 브랜치를 로컬 브랜치를 위한 업스트림으로 설정하고 싶어](#%EB%A6%AC%EB%AA%A8%ED%8A%B8-%EB%B8%8C%EB%9E%9C%EC%B9%98%EB%A5%BC-%EB%A1%9C%EC%BB%AC-%EB%B8%8C%EB%9E%9C%EC%B9%98%EB%A5%BC-%EC%9C%84%ED%95%9C-%EC%97%85%EC%8A%A4%ED%8A%B8%EB%A6%BC%EC%9C%BC%EB%A1%9C-%EC%84%A4%EC%A0%95%ED%95%98%EA%B3%A0-%EC%8B%B6%EC%96%B4)
     - [HEAD를 기본 리모트 브랜치로 트래킹하도록 설정하고 싶어](#head%EB%A5%BC-%EA%B8%B0%EB%B3%B8-%EB%A6%AC%EB%AA%A8%ED%8A%B8-%EB%B8%8C%EB%9E%9C%EC%B9%98%EB%A1%9C-%ED%8A%B8%EB%9E%98%ED%82%B9%ED%95%98%EB%8F%84%EB%A1%9D-%EC%84%A4%EC%A0%95%ED%95%98%EA%B3%A0-%EC%8B%B6%EC%96%B4)
-    - [다른 브랜치에 변경점을 남기고 있었어](#%EB%8B%A4%EB%A5%B8-%EB%B8%8C%EB%9E%9C%EC%B9%98%EC%97%90-%EB%B3%80%EA%B2%BD%EC%A0%90%EC%9D%84-%EB%82%A8%EA%B8%B0%EA%B3%A0-%EC%9E%88%EC%97%88%EC%96%B4)
+    - [다른 브랜치에 변경점을 잘못 남겼어](#%EB%8B%A4%EB%A5%B8-%EB%B8%8C%EB%9E%9C%EC%B9%98%EC%97%90-%EB%B3%80%EA%B2%BD%EC%A0%90%EC%9D%84-%EC%9E%98%EB%AA%BB-%EB%82%A8%EA%B2%BC%EC%96%B4)
   - [리베이스와 머지](#%EB%A6%AC%EB%B2%A0%EC%9D%B4%EC%8A%A4%EC%99%80-%EB%A8%B8%EC%A7%80)
     - [리베이스/머지 한 걸 되돌리고 싶어](#%EB%A6%AC%EB%B2%A0%EC%9D%B4%EC%8A%A4%EB%A8%B8%EC%A7%80-%ED%95%9C-%EA%B1%B8-%EB%90%98%EB%8F%8C%EB%A6%AC%EA%B3%A0-%EC%8B%B6%EC%96%B4)
     - [리베이스를 했는데, 강제 푸시하고 싶진 않아](#%EB%A6%AC%EB%B2%A0%EC%9D%B4%EC%8A%A4%EB%A5%BC-%ED%96%88%EB%8A%94%EB%8D%B0-%EA%B0%95%EC%A0%9C-%ED%91%B8%EC%8B%9C%ED%95%98%EA%B3%A0-%EC%8B%B6%EC%A7%84-%EC%95%8A%EC%95%84)
@@ -80,7 +80,7 @@
     - [브랜치내 모든 커밋이 머지됐는지 확인해](#%EB%B8%8C%EB%9E%9C%EC%B9%98%EB%82%B4-%EB%AA%A8%EB%93%A0-%EC%BB%A4%EB%B0%8B%EC%9D%B4-%EB%A8%B8%EC%A7%80%EB%90%90%EB%8A%94%EC%A7%80-%ED%99%95%EC%9D%B8%ED%95%B4)
     - [대화형 리베이스로 발생가능한 이슈](#%EB%8C%80%ED%99%94%ED%98%95-%EB%A6%AC%EB%B2%A0%EC%9D%B4%EC%8A%A4%EB%A1%9C-%EB%B0%9C%EC%83%9D%EA%B0%80%EB%8A%A5%ED%95%9C-%EC%9D%B4%EC%8A%88)
       - [리베이스 편집 화면에서 'noop'](#%EB%A6%AC%EB%B2%A0%EC%9D%B4%EC%8A%A4-%ED%8E%B8%EC%A7%91-%ED%99%94%EB%A9%B4%EC%97%90%EC%84%9C-noop)
-      - [충돌이 있었어](#%EC%B6%A9%EB%8F%8C%EC%9D%B4-%EC%9E%88%EC%97%88%EC%96%B4)
+      - [충돌이 있어](#%EC%B6%A9%EB%8F%8C%EC%9D%B4-%EC%9E%88%EC%96%B4)
   - [스테이시](#%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%8B%9C)
     - [모든 변경점 스테이시 하기](#%EB%AA%A8%EB%93%A0-%EB%B3%80%EA%B2%BD%EC%A0%90-%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%8B%9C-%ED%95%98%EA%B8%B0)
     - [특정 파일들만 스테이시 하기](#%ED%8A%B9%EC%A0%95-%ED%8C%8C%EC%9D%BC%EB%93%A4%EB%A7%8C-%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%8B%9C-%ED%95%98%EA%B8%B0)
@@ -113,7 +113,7 @@
     - [깃이 권한과 파일모드 변경을 무시하게 만들고 싶어](#%EA%B9%83%EC%9D%B4-%EA%B6%8C%ED%95%9C%EA%B3%BC-%ED%8C%8C%EC%9D%BC%EB%AA%A8%EB%93%9C-%EB%B3%80%EA%B2%BD%EC%9D%84-%EB%AC%B4%EC%8B%9C%ED%95%98%EA%B2%8C-%EB%A7%8C%EB%93%A4%EA%B3%A0-%EC%8B%B6%EC%96%B4)
     - [글로버 유저로 설정해두고 싶어](#%EA%B8%80%EB%A1%9C%EB%B2%84-%EC%9C%A0%EC%A0%80%EB%A1%9C-%EC%84%A4%EC%A0%95%ED%95%B4%EB%91%90%EA%B3%A0-%EC%8B%B6%EC%96%B4)
     - [깃에 명령어 색상을을 넣고 싶어](#%EA%B9%83%EC%97%90-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%83%89%EC%83%81%EC%9D%84%EC%9D%84-%EB%84%A3%EA%B3%A0-%EC%8B%B6%EC%96%B4)
-  - [내가 뭘 잘못했는지 모르겠어](#%EB%82%B4%EA%B0%80-%EB%AD%98-%EC%9E%98%EB%AA%BB%ED%96%88%EB%8A%94%EC%A7%80-%EB%AA%A8%EB%A5%B4%EA%B2%A0%EC%96%B4)
+  - [뭘 잘못했는지 모르겠어](#%EB%AD%98-%EC%9E%98%EB%AA%BB%ED%96%88%EB%8A%94%EC%A7%80-%EB%AA%A8%EB%A5%B4%EA%B2%A0%EC%96%B4)
 - [다른 리소스](#%EB%8B%A4%EB%A5%B8-%EB%A6%AC%EC%86%8C%EC%8A%A4)
   - [도서](#%EB%8F%84%EC%84%9C)
   - [튜토리얼](#%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC)
@@ -303,11 +303,10 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 (master)$ git reset --hard SHA1234
 ```
 
-And you should be good to go.
 계속 할 수 있을꺼에요.
 
 <a href="undo-a-commit-merge"></a>
-### 실수로 머지를 커밋,푸시해버렸어
+### 머지를 실수로 커밋, 푸시해버렸어
 
 만약 실수로 머지할 준비가 안된 피쳐 브랜치를 메인 브랜치에 머지했어도 되돌릴 순 있어요.
 하지만 문제는 있어요: 머지 커밋은 한개 이상의 부모(보통은 두 개)를 가지게 돼요.
@@ -355,7 +354,7 @@ $ git add -N filename.x
 `git add`는 전체 파일들을 커밋에 추가해요. `git add -p`는 대화형으로 추가하고픈 변경점들을 고를 수 있어요.
 
 <a href="unstaging-edits-and-staging-the-unstaged"></a>
-### 아직 스테이지에 안 올라간 변경점을 스테이지에 추가하고, 스테이지에 있는 변경점을 다시 뺴고 싶어
+### 아직 스테이지에 안 올라간 변경점을 스테이지에 추가하고, 스테이지에 있는 변경점을 다시 빼고 싶어
 
 이건 좀 꼼수인데요, 스테이지 전인 파일들을 스테이시해서 빼두고선 리셋 할 수 있을꺼에요. 그 다음 스테이시를 다시 불러와 추가를 해요. 
 
@@ -437,7 +436,6 @@ $ git checkout -p
 # 날리고 싶은 사항에 y를 적으세요 
 ```
 
-Another strategy involves using `stash`. Stash all the good changes, reset working copy, and reapply good changes.
 또다른 전략은 `stash`을 같이 쓰는거에요. 챙겨야 하는 변경점을 스테이시 하고, 작업 중인 영역을 리셋하고, 다시 올바른 변경점으로 재적용해요.   
 
 ```sh
@@ -516,7 +514,7 @@ $ git checkout -b <branch> <SHA1_OF_COMMIT>
 ```
 
 <a name="pull-wrong-branch"></a>
-### 다른 브랜치에서 풀을 받아야 버렸어
+### 다른 브랜치에서 풀을 받아와버렸어
 
 이건 잘못된 풀을 받기전 HEAD가 어딜 가르키고 있었는지 볼 수 있는 `git reflog`를 써볼 수 있는 기회에요.
 
@@ -628,7 +626,7 @@ HEAD is now at a13b85e
 알아두기 : 스파이크 솔루션은 문제를 분석하거나 풀기위해 만들어졌어요. 이 솔루션들은 모두가 문제의 확실한 시각화를 얻고선 평가되고 제거돼요.~ [위키피디아](https://en.wikipedia.org/wiki/Extreme_programming_practices).   
 
 <a name="cherry-pick"></a>
-### 한 브랜치에 다른 브랜치에 남겼어야 하는 여러 커밋을 남겼어
+### 한 브랜치에 다른 브랜치에 남겼어야 하는 커밋을 여러개 남겼어
 
 마스터 브랜치에 있다고 가정하고 `git log` 해보면 커밋 두개 볼 수 있을꺼에요:
 
@@ -844,7 +842,6 @@ Switched to a new branch 'daves'
 
 `daves` 브랜치의 로컬 카피를 줄꺼에요. 그리고 푸시된 업데이트들도 리모트로 표시돼요.
 
-### I want to create a new remote branch from current local one
 ### 현재 로컬 브랜치로 새로운 리모트 브랜치를 만들고 싶어
 
 ```sh
@@ -901,7 +898,7 @@ $ git remote set-head origin --auto
 origin/HEAD set to master
 ```
 
-### 다른 브랜치에 변경점을 남기고 있었어
+### 다른 브랜치에 변경점을 잘못 남겼어
 
 커밋 되지 않은 변경점, 거기다 잘못된 브랜치에 하고 있었다면 변경점을 스테이시 하고 원하는 브랜치로 가 스테이시 어플라이 해요:
 
@@ -1108,7 +1105,7 @@ noop
 
 <a name="merge-conflict"></a>
 
-#### 충돌이 있었어
+#### 충돌이 있어
 
 리베이스를 똑바로 끝내지 못했다면, 충돌을 해결해야 할꺼에요.
 
@@ -1522,7 +1519,7 @@ git config --global user.email “[valid-email]”
 $ git config --global color.ui auto
 ```
 
-## 내가 뭘 잘못했는지 모르겠어
+## 뭘 잘못했는지 모르겠어
 
 음, 망했군요. 뭔가를 `reset` 했거나, 다른 브랜치로 머지했거나, 지금은 찾질 못하는 커밋으로 강제 푸시를 해버렸군요.
 알다시피, 어떤 시점에선, 잘 하고 있었고 거기로 돌아가고 싶겠죠.
@@ -1580,7 +1577,7 @@ $ git reset --hard 0254ea7
 ## GUI 클라이언트
 
 * [GitKraken](https://www.gitkraken.com/) - 완전 고급의 깃 클라이언트 Windows, Mac & Linux
-* [git-cola](https://git-cola.github.io/) - 또 다른 깃 클라이언트 Windows,OS X
+* [git-cola](https://git-cola.github.io/) - 또 다른 깃 클라이언트 Windows, OS X
 * [GitUp](https://github.com/git-up/GitUp) - 아주 독단적으로 방식으로 깃의 복잡함을 다루는 새로운 GUI
 * [gitx-dev](https://rowanj.github.io/gitx/) - 또다른 그래픽적인 깃 클라이언트 OS X
 * [Sourcetree](https://www.sourcetreeapp.com/) - 아름답고 무료인 깃 GUI 안에서 단순함과 강력함이 만났어 Windows and Mac
