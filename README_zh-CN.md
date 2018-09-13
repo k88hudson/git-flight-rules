@@ -1,7 +1,7 @@
 # Git飞行规则(Flight Rules)
 
 🌍
-*[English](README.md) ∙ [Русский](README_ru.md) ∙ [简体中文](README_zh-cn.md)*
+*[English](README.md) ∙ [Español](README_es.md)  ∙  [Русский](README_ru.md) ∙ [简体中文](README_zh-CN.md)∙ [한국어](README_kr.md)*
 
 #### 前言
 
