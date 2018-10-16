@@ -103,6 +103,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to remove a file from Git but keep the file](#i-want-to-remove-a-file-from-git-but-keep-the-file)
     - [I want to revert a file to a specific revision](#i-want-to-revert-a-file-to-a-specific-revision)
     - [I want to list changes of a specific file between commits or branches](#i-want-to-list-changes-of-a-specific-file-between-commits-or-branches)
+    - [I want Git to ignore changes to a file without deleting it](#i-want-git-to-ignore-changes-to-a-specific-file)
   - [Configuration](#configuration)
     - [I want to add aliases for some Git commands](#i-want-to-add-aliases-for-some-git-commands)
     - [I want to add an empty directory to my repository](#i-want-to-add-an-empty-directory-to-my-repository)
@@ -1371,6 +1372,20 @@ Same goes for branches:
 
 ```sh
 $ git diff master:path_to_file/file staging:path_to_file/file
+```
+
+### I want git to ignore changes to a specific file
+
+This works great for config templates or other files that require locally adding credentials that shouldn't be committed.
+
+```sh
+$ git update-index --assume-unchanged file-to-ignore
+```
+
+Note that this does *not* remove the file from source control - it is only ignored locally. To undo this and tell Git to notice changes again, this clears the ignore flag:
+
+```sh
+$ git update-index --no-assume-unchanged file-to-stop-ignoring
 ```
 
 ## Configuration
