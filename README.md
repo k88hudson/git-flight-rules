@@ -170,15 +170,15 @@ $ git show <commitid>:filename
 
 ### I wrote the wrong thing in a commit message
 
-If you wrote the wrong thing and the commit has not yet been pushed, you can do the following to change the commit message:
+If you wrote the wrong thing and the commit has not yet been pushed, you can do the following to change the commit message without changing the changes in the commit:
 
 ```sh
-$ git commit --amend
+$ git commit --amend --only
 ```
 This will open your default text editor, where you can edit the message. On the other hand, you can do this all in one command:
 
 ```sh
-$ git commit --amend -m 'xxxxxxx'
+$ git commit --amend --only -m 'xxxxxxx'
 ```
 
 If you have already pushed the message, you can amend the commit and force push, but this is not recommended.
@@ -312,8 +312,14 @@ Note: the parent number is not a commit identifier. Rather, a merge commit has a
 
 ```sh
 (my-branch*)$ git commit --amend
-
 ```
+
+If you already know you don't want to change the commit message, you can tell git to reuse the commit message:
+
+```sh
+(my-branch*)$ git commit --amend -C HEAD
+```
+
 
 <a name="commit-partial-new-file"></a>
 ### I want to stage part of a new file, but not the whole file
@@ -1390,11 +1396,13 @@ On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```. 
     d = diff
     dc = diff --changed
     ds = diff --staged
+    extend = commit --amend -C HEAD
     f = fetch
     loll = log --graph --decorate --pretty=oneline --abbrev-commit
     m = merge
     one = log --pretty=oneline
     outstanding = rebase -i @{u}
+    reword = commit --amend --only
     s = status
     unpushed = log @{u}
     wc = whatchanged
