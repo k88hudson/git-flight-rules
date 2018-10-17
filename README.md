@@ -1435,6 +1435,31 @@ $ git config --global credential.helper cache
 $ git config --global credential.helper 'cache --timeout=3600'
 # Set the cache to timeout after 1 hour (setting is in seconds)
 ```
+Find a credential helper.
+
+```sh
+$ git help -a | grep credential
+# Shows you possible credential helpers
+```
+
+For OS specific credential caching.
+
+```sh
+$ git config --global credential.helper osxkeychain
+# For OSX
+```
+
+```sh
+$ git config --global credential.helper manager
+# Git for Windows 2.7.3+
+```
+
+```sh
+$ git config --global credential.helper gnome-keyring
+# Ubuntu and other GNOME-based distros
+```
+
+More credential helpers can be found for different distributions/OS's
 
 ### I want to make Git ignore permissions and filemode changes
 
