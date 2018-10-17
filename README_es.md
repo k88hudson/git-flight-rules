@@ -1353,37 +1353,37 @@ Usando `git reset` es posible cambiar el master al commit que era antes. Esto pr
 
 ## Libros
 
-* [Pro Git] (https://git-scm.com/book/en/v2) - Excelente libro de Scott Chacon y Ben Straub sobre Git
-* [Git Internals] (https://github.com/pluralsight/git-internals-pdf) - Otro excelente libro de Scott Chacon sobre Git
+* [Pro Git](https://git-scm.com/book/en/v2) - Excelente libro de Scott Chacon y Ben Straub sobre Git
+* [Git Internals](https://github.com/pluralsight/git-internals-pdf) - Otro excelente libro de Scott Chacon sobre Git
 
 ## Tutoriales
 
-* [Tutorial de Git de Atlassian] (https://www.atlassian.com/git/tutorials) Obtenga Git a la derecha con tutoriales de principiante a avanzado.
-* [Aprende la ramificación de Git] (https://learngitbranching.js.org/) Tutorial interactivo de ramificación / fusión / rebase basado en la web
-* [Obteniendo solidez en Git rebase vs. merge] (https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa)
-* [git-workflow] (https://github.com/asmeurer/git-workflow) - [Aaron Meurer] (https://github.com/asmeurer) 'Howto sobre el uso de Git para contribuir a repositorios de código abierto
-* [GitHub como flujo de trabajo] (https://hugogiraudel.com/2015/08/13/github-as-a-workflow/) - Una interesante idea sobre el uso de GitHub como flujo de trabajo, particularmente con los PR vacíos
-* [Githug] (https://github.com/Gazler/githug) - Un juego para aprender más flujos de trabajo de Git
+* [Tutorial de Git de Atlassian](https://www.atlassian.com/git/tutorials) Obtenga Git a la derecha con tutoriales de principiante a avanzado.
+* [Aprende la ramificación de Git](https://learngitbranching.js.org/) Tutorial interactivo de ramificación / fusión / rebase basado en la web
+* [Obteniendo solidez en Git rebase vs. merge](https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa)
+* [git-workflow](https://github.com/asmeurer/git-workflow) - [Aaron Meurer](https://github.com/asmeurer) 'Howto sobre el uso de Git para contribuir a repositorios de código abierto
+* [GitHub como flujo de trabajo](https://hugogiraudel.com/2015/08/13/github-as-a-workflow/) - Una interesante idea sobre el uso de GitHub como flujo de trabajo, particularmente con los PR vacíos
+* [Githug](https://github.com/Gazler/githug) - Un juego para aprender más flujos de trabajo de Git
 
 ## Scripts y herramientas
 
-* [firstaidgit.io] (http://firstaidgit.io/) Una selección de búsqueda de las preguntas más frecuentes de Git
-* [git-extra-commands] (https://github.com/unixorn/git-extra-commands) - una colección de scripts extra útiles de Git
-* [git-extras] (https://github.com/tj/git-extras) - Utilidades de GIT - resumen de repo, repl, población de registro de cambios, porcentajes de confirmación de autor y más
-* [git-fire] (https://github.com/qw3rtman/git-fire) - git-fire es un plugin de Git que ayuda en caso de una emergencia al agregar todos los archivos actuales, comprometerse y empujar a un nuevo rama (para evitar conflictos de combinación).
-* [git-tips] (https://github.com/git-tips/tips) - Consejos pequeños de Git
-* [git-town] (https://github.com/Originate/git-town) - Soporte genérico de alto nivel de flujo de trabajo de Git! http://www.git-town.com
+* [firstaidgit.io](http://firstaidgit.io/) Una selección de búsqueda de las preguntas más frecuentes de Git
+* [git-extra-commands](https://github.com/unixorn/git-extra-commands) - una colección de scripts extra útiles de Git
+* [git-extras](https://github.com/tj/git-extras) - Utilidades de GIT - resumen de repo, repl, población de registro de cambios, porcentajes de confirmación de autor y más
+* [git-fire](https://github.com/qw3rtman/git-fire) - git-fire es un plugin de Git que ayuda en caso de una emergencia al agregar todos los archivos actuales, comprometerse y empujar a un nuevo rama (para evitar conflictos de combinación).
+* [git-tips](https://github.com/git-tips/tips) - Consejos pequeños de Git
+* [git-town](https://github.com/Originate/git-town) - Soporte genérico de alto nivel de flujo de trabajo de Git! http://www.git-town.com
 
 ## Clientes GUI
-* [GitKraken] (https://www.gitkraken.com/) - El cliente francamente lujoso de Git, para Windows, Mac y Linux
-* [git-cola] (https://git-cola.github.io/) - otro cliente de Git para Windows y OS X
-* [GitUp] (https://github.com/git-up/GitUp) - Una interfaz gráfica de usuario nueva que tiene algunas formas muy dogmáticas de lidiar con las complicaciones de Git
-* [gitx-dev] (https://rowanj.github.io/gitx/) - otro cliente gráfico de Git para OS X
-* [Sourcetree] (https://www.sourcetreeapp.com/) - Simplicity se une a la potencia en una hermosa y gratuita GUI de Git. Para Windows y Mac.
-* [Tower] (https://www.git-tower.com/) - cliente gráfico de Git para OS X (pago)
-* [tig] (https://jonas.github.io/tig/) - interfaz de texto en modo terminal para Git
-* [Magit] (https://magit.vc/) - Interfaz para Git implementada como un paquete de Emacs.
-* [GitExtensions] (https://github.com/gitextensions/gitextensions): una extensión de shell, un plugin de Visual Studio 2010-2015 y una herramienta de repositorio de Git independiente.
-* [Fork] (https://git-fork.com/) - un cliente de Git rápido y amigable para Mac (beta)
-* [gmaster] (https://gmaster.io/) - un cliente de Git para Windows que tiene combinación de 3 vías, analizan refactores, diferencias semánticas y fusión (beta)
-* [gitk] (https://git-scm.com/docs/gitk) - un cliente de Git para Linux para permitir una vista simple del estado de repos.
+* [GitKraken](https://www.gitkraken.com/) - El cliente francamente lujoso de Git, para Windows, Mac y Linux
+* [git-cola](https://git-cola.github.io/) - otro cliente de Git para Windows y OS X
+* [GitUp](https://github.com/git-up/GitUp) - Una interfaz gráfica de usuario nueva que tiene algunas formas muy dogmáticas de lidiar con las complicaciones de Git
+* [gitx-dev](https://rowanj.github.io/gitx/) - otro cliente gráfico de Git para OS X
+* [Sourcetree](https://www.sourcetreeapp.com/) - Simplicity se une a la potencia en una hermosa y gratuita GUI de Git. Para Windows y Mac.
+* [Tower](https://www.git-tower.com/) - cliente gráfico de Git para OS X (pago)
+* [tig](https://jonas.github.io/tig/) - interfaz de texto en modo terminal para Git
+* [Magit](https://magit.vc/) - Interfaz para Git implementada como un paquete de Emacs.
+* [GitExtensions](https://github.com/gitextensions/gitextensions): una extensión de shell, un plugin de Visual Studio 2010-2015 y una herramienta de repositorio de Git independiente.
+* [Fork](https://git-fork.com/) - un cliente de Git rápido y amigable para Mac (beta)
+* [gmaster](https://gmaster.io/) - un cliente de Git para Windows que tiene combinación de 3 vías, analizan refactores, diferencias semánticas y fusión (beta)
+* [gitk](https://git-scm.com/docs/gitk) - un cliente de Git para Linux para permitir una vista simple del estado de repos.
