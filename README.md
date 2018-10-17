@@ -25,6 +25,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
   - [Repositories](#repositories)
     - [I want to start a local repository](#i-want-to-start-a-local-repository)
     - [I want to clone a remote repository](#i-want-to-clone-a-remote-repository)
+    - [I set the wrong remote repository.](#i-set-the-wrong-remote-repository)
   - [Editing Commits](#editing-commits)
     - [What did I just commit?](#what-did-i-just-commit)
     - [I wrote the wrong thing in a commit message](#i-wrote-the-wrong-thing-in-a-commit-message)
@@ -144,6 +145,21 @@ To clone it into a folder with a different name than the default repository name
 ```sh
 $ git clone [url] name-of-new-folder
 ```
+
+### I set the wrong remote repository.
+
+There are a few possible problems here:
+
+
+If you cloned the wrong respistory simply delete the directory created after running git clone and clone the correct repository
+
+
+If you set the wrong repository as the origin of an existing local repository, change the url of your origin by running 
+
+```sh
+$ git remote set-url origin [url of the actual repo]
+```
+For more see [this SO top](https://stackoverflow.com/questions/2432764/how-to-change-the-uri-url-for-a-remote-git-repository#2432799)
 
 ## Editing Commits
 
