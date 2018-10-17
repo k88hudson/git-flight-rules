@@ -97,6 +97,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [Recover a deleted tag](#recover-a-deleted-tag)
     - [Deleted Patch](#deleted-patch)
     - [Exporting a repository as a Zip file](#exporting-a-repository-as-a-zip-file)
+    - [Push a branch and tag that have the same name](#push-a-branch-and-a-tag-that-have-the-same-name)
   - [Tracking Files](#tracking-files)
     - [I want to change a file name's capitalization, without changing the contents of the file](#i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file)
     - [I want to overwrite local files when doing a git pull](#i-want-to-overwrite-local-files-when-doing-a-git-pull)
@@ -297,7 +298,7 @@ And you should be good to go.
 
 If you accidentally merged a feature branch to the main development branch before it was ready to be merged, you can still undo the merge. But there's a catch: A merge commit has more than one parent (usually two).
 
-The command to use 
+The command to use
 ```sh
 (feature-branch)$ git revert -m 1 <commit>
 ```
@@ -1320,6 +1321,27 @@ From github.com:foo/bar
 
 ```sh
 $ git archive --format zip --output /full/path/to/zipfile.zip master
+```
+### Push a branch and a tag that have the same name
+
+If there is a tag on a remote repository that has the same name as a branch you will get the following error when trying to push that branch with a standard `$ git push <remote> <branch>` command.
+
+```sh
+$ git push origin <branch>
+error: dst refspec same matches more than one.
+error: failed to push some refs to 'git server'
+```
+
+Fix this by specifying you want to push the head reference.
+
+```sh
+$ git push origin refs/heads/<branch-name>
+```
+
+If you want to push a tag to a remote repository that has the same name as a branch, you can use a similar command.
+
+```sh
+$ git push origin refs/tags/<tag-name>
 ```
 
 ## Tracking Files
