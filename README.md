@@ -1329,7 +1329,7 @@ If there is a tag on a remote repository that has the same name as a branch you 
 ```sh
 $ git push origin <branch>
 error: dst refspec same matches more than one.
-error: failed to push some refs to 'git server'
+error: failed to push some refs to '<git server>'
 ```
 
 Fix this by specifying you want to push the head reference.
