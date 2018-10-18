@@ -87,6 +87,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to find a string in any commit](#i-want-to-find-a-string-in-any-commit)
     - [I want to find by author/committer](#i-want-to-find-by-authorcommitter)
     - [I want to list commits containing specific files](#i-want-to-list-commits-containing-specific-files)
+    - [I want to view the commit history for a specific function](#i-want-to-view-the-commit-history-for-a-specific-function)
     - [Find a tag where a commit is referenced](#find-a-tag-where-a-commit-is-referenced)
   - [Submodules](#submodules)
     - [Clone all submodules](#clone-all-submodules)
@@ -1230,6 +1231,17 @@ While using wildcards, it's useful to inform `--name-status` to see the list of 
 ```sh
 $ git log --name-status -- **/*.js
 ```
+
+<a name="#i-want-to-view-the-commit-history-for-a-specific-function"></a>
+### I want to view the commit history for a specific function
+
+To trace the evolution of a single function you can use:
+
+```sh
+$ git log -L :FunctionName:FilePath
+```
+
+Note that you can combine this with further `git log` options, like [revision ranges](https://git-scm.com/docs/gitrevisions) and [commit limits](https://git-scm.com/docs/git-log/#_commit_limiting)
 
 ### Find a tag where a commit is referenced
 
