@@ -25,7 +25,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-  - [مخازن](#repositories)
+  - [مخازن](#مخازن)
     - [I want to start a local repository](#i-want-to-start-a-local-repository)
     - [I want to clone a remote repository](#i-want-to-clone-a-remote-repository)
   - [Editing Commits](#editing-commits)
