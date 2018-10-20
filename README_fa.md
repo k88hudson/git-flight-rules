@@ -8,9 +8,9 @@
 
 #### قوانین پرواز چیست؟
 
-یک [راهنما برای فضانوردان](https://www.jsc.nasa.gov/news/columbia/fr_generic.pdf) (حالا, برنامه نویس‌ها از Git استفاده می‌کنند) درباره کارهایی که باید در زمان وقوع مشکلات باید انجام دهیم!.
+یک [راهنما برای فضانوردان](https://www.jsc.nasa.gov/news/columbia/fr_generic.pdf) (حالا, برنامه نویس‌ها از Git استفاده می‌کنند) درباره کارهایی که باید در زمان وقوع مشکلات انجام دهیم!.
 
->  *Flight Rules* are the hard-earned body of knowledge recorded in manuals that list, step-by-step, what to do if X occurs, and why. Essentially, they are extremely detailed, scenario-specific standard operating procedures. [...]
+>  *قوانین پرواز* are the hard-earned body of knowledge recorded in manuals that list, step-by-step, what to do if X occurs, and why. Essentially, they are extremely detailed, scenario-specific standard operating procedures. [...]
 
 > NASA has been capturing our missteps, disasters and solutions since the early 1960s, when Mercury-era ground teams first started gathering "lessons learned" into a compendium that now lists thousands of problematic situations, from engine failure to busted hatch handles to computer glitches, and their solutions.
 
@@ -25,7 +25,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-  - [Repositories](#repositories)
+  - [مخازن](#repositories)
     - [I want to start a local repository](#i-want-to-start-a-local-repository)
     - [I want to clone a remote repository](#i-want-to-clone-a-remote-repository)
   - [Editing Commits](#editing-commits)
@@ -122,7 +122,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## Repositories
+## مخازن
 
 ### I want to start a local repository
 
