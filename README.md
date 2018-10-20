@@ -701,7 +701,7 @@ Let's add it and commit.
 ```sh
 (my-branch)$ git add .
 (my-branch)$ git commit -m 'foo.txt added'
-(my-branch)$ foo.txt added
+[my-branch 4e3cd85] foo.txt added
  1 files changed, 1 insertions(+)
  create mode 100644 foo.txt
 (my-branch)$ git log
