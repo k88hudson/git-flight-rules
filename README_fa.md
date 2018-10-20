@@ -1,4 +1,6 @@
 
+<div dir="rtl">
+
 # قوانین پرواز برای Git
 
 🌍
@@ -1534,3 +1536,6 @@ Using `git reset` it is then possible to change master back to the commit it was
 * [Fork](https://git-fork.com/) - a fast and friendly Git client for Mac (beta)
 * [gmaster](https://gmaster.io/) - a Git client for Windows that has 3-way merge, analyze refactors, semantic diff and merge (beta)
 * [gitk](https://git-scm.com/docs/gitk) - a Git client for linux to allow simple view of repo state.
+
+</div>
+
