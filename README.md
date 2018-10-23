@@ -299,7 +299,7 @@ And you should be good to go.
 
 If you accidentally merged a feature branch to the main development branch before it was ready to be merged, you can still undo the merge. But there's a catch: A merge commit has more than one parent (usually two).
 
-The command to use 
+The command to use
 ```sh
 (feature-branch)$ git revert -m 1 <commit>
 ```
@@ -1547,3 +1547,4 @@ Using `git reset` it is then possible to change master back to the commit it was
 * [Fork](https://git-fork.com/) - a fast and friendly Git client for Mac (beta)
 * [gmaster](https://gmaster.io/) - a Git client for Windows that has 3-way merge, analyze refactors, semantic diff and merge (beta)
 * [gitk](https://git-scm.com/docs/gitk) - a Git client for linux to allow simple view of repo state.
+* [SublimeMerge](https://www.sublimemerge.com/) - Blazing fast, extensible client that provides 3-way merges, powerful search and syntax highlighting, in active development.
