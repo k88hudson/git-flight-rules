@@ -1374,7 +1374,7 @@ Same goes for branches:
 $ git diff master:path_to_file/file staging:path_to_file/file
 ```
 
-### I want git to ignore changes to a specific file
+### I want Git to ignore changes to a specific file
 
 This works great for config templates or other files that require locally adding credentials that shouldn't be committed.
 
