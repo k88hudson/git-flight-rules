@@ -17,6 +17,8 @@ A [guide for astronauts](https://www.jsc.nasa.gov/news/columbia/fr_generic.pdf) 
 
 For clarity's sake all examples in this document use a customized bash prompt in order to indicate the current branch and whether or not there are staged changes. The branch is enclosed in parentheses, and a `*` next to the branch name indicates staged changes.
 
+All commands should work for at least git version 2.13.0. See the [git website](https://www.git-scm.com/) to update your local git version.
+
 [![Join the chat at https://gitter.im/k88hudson/git-flight-rules](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/k88hudson/git-flight-rules?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -74,6 +76,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
       - [I need to merge a branch into a single commit](#i-need-to-merge-a-branch-into-a-single-commit)
       - [I want to combine only unpushed commits](#i-want-to-combine-only-unpushed-commits)
       - [I need to abort the merge](#i-need-to-abort-the-merge)
+    - [I need to update the parent commit of my branch](#i-need-to-update-the-parent-commit-of-my-branch)
     - [Check if all commits on a branch are merged](#check-if-all-commits-on-a-branch-are-merged)
     - [Possible issues with interactive rebases](#possible-issues-with-interactive-rebases)
       - [The rebase editing screen says 'noop'](#the-rebase-editing-screen-says-noop)
@@ -97,6 +100,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [Recover a deleted tag](#recover-a-deleted-tag)
     - [Deleted Patch](#deleted-patch)
     - [Exporting a repository as a Zip file](#exporting-a-repository-as-a-zip-file)
+    - [Push a branch and tag that have the same name](#push-a-branch-and-a-tag-that-have-the-same-name)
   - [Tracking Files](#tracking-files)
     - [I want to change a file name's capitalization, without changing the contents of the file](#i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file)
     - [I want to overwrite local files when doing a git pull](#i-want-to-overwrite-local-files-when-doing-a-git-pull)
@@ -170,15 +174,15 @@ $ git show <commitid>:filename
 
 ### I wrote the wrong thing in a commit message
 
-If you wrote the wrong thing and the commit has not yet been pushed, you can do the following to change the commit message:
+If you wrote the wrong thing and the commit has not yet been pushed, you can do the following to change the commit message without changing the changes in the commit:
 
 ```sh
-$ git commit --amend
+$ git commit --amend --only
 ```
 This will open your default text editor, where you can edit the message. On the other hand, you can do this all in one command:
 
 ```sh
-$ git commit --amend -m 'xxxxxxx'
+$ git commit --amend --only -m 'xxxxxxx'
 ```
 
 If you have already pushed the message, you can amend the commit and force push, but this is not recommended.
@@ -312,8 +316,14 @@ Note: the parent number is not a commit identifier. Rather, a merge commit has a
 
 ```sh
 (my-branch*)$ git commit --amend
-
 ```
+
+If you already know you don't want to change the commit message, you can tell git to reuse the commit message:
+
+```sh
+(my-branch*)$ git commit --amend -C HEAD
+```
+
 
 <a name="commit-partial-new-file"></a>
 ### I want to stage part of a new file, but not the whole file
@@ -1038,6 +1048,16 @@ Sometimes the merge can produce problems in certain files, in those cases we can
 
 This command is available since Git version >= 1.7.4
 
+### I need to update the parent commit of my branch
+
+Say I have a master branch, a feature-1 branch branched from master, and a feature-2 branch branched off of feature-1. If I make a commit to feature-1, then the parent commit of feature-2 is no longer accurate (it should be the head of feature-1, since we branched off of it). We can fix this with `git rebase --onto`.
+
+```sh
+(feature-2)$ git rebase --onto feature-1 <the first commit in your feature-2 branch that you don't want to bring along> feature-2
+```
+
+This helps in sticky scenarios where you might have a feature built on another feature that hasn't been merged yet, and a bugfix on the feature-1 branch needs to be reflected in your feature-2 branch.
+
 ### Check if all commits on a branch are merged
 
 To check if all commits on a branch are merged into another branch, you should diff between the heads (or any commits) of those branches:
@@ -1321,6 +1341,27 @@ From github.com:foo/bar
 ```sh
 $ git archive --format zip --output /full/path/to/zipfile.zip master
 ```
+### Push a branch and a tag that have the same name
+
+If there is a tag on a remote repository that has the same name as a branch you will get the following error when trying to push that branch with a standard `$ git push <remote> <branch>` command.
+
+```sh
+$ git push origin <branch>
+error: dst refspec same matches more than one.
+error: failed to push some refs to '<git server>'
+```
+
+Fix this by specifying you want to push the head reference.
+
+```sh
+$ git push origin refs/heads/<branch-name>
+```
+
+If you want to push a tag to a remote repository that has the same name as a branch, you can use a similar command.
+
+```sh
+$ git push origin refs/tags/<tag-name>
+```
 
 ## Tracking Files
 
@@ -1390,11 +1431,13 @@ On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```. 
     d = diff
     dc = diff --changed
     ds = diff --staged
+    extend = commit --amend -C HEAD
     f = fetch
     loll = log --graph --decorate --pretty=oneline --abbrev-commit
     m = merge
     one = log --pretty=oneline
     outstanding = rebase -i @{u}
+    reword = commit --amend --only
     s = status
     unpushed = log @{u}
     wc = whatchanged
@@ -1499,14 +1542,18 @@ Using `git reset` it is then possible to change master back to the commit it was
 
 ## Books
 
+* [Learn Enough Git to Be Dangerous](https://www.learnenough.com/git-tutorial) - A book by Michael Hartl covering Git from basics
 * [Pro Git](https://git-scm.com/book/en/v2) - Scott Chacon and Ben Straub's excellent book about Git
 * [Git Internals](https://github.com/pluralsight/git-internals-pdf) - Scott Chacon's other excellent book about Git
 
 ## Tutorials
 
+* [19 Git Tips For Everyday Use](https://www.alexkras.com/19-git-tips-for-everyday-use) - A list of useful Git one liners
 * [Atlassian's Git tutorial](https://www.atlassian.com/git/tutorials) Get Git right with tutorials from beginner to advanced.
 * [Learn Git branching](https://learngitbranching.js.org/) An interactive web based branching/merging/rebasing tutorial
 * [Getting solid at Git rebase vs. merge](https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa)
+* [Git Commands and Best Practices Cheat Sheet](https://zeroturnaround.com/rebellabs/git-commands-and-best-practices-cheat-sheet) - A Git cheat sheet in a blog post with more explanations
+* [Git from the inside out](https://codewords.recurse.com/issues/two/git-from-the-inside-out) - A tutorial that dives into Git's internals
 * [git-workflow](https://github.com/asmeurer/git-workflow) - [Aaron Meurer](https://github.com/asmeurer)'s howto on using Git to contribute to open source repositories
 * [GitHub as a workflow](https://hugogiraudel.com/2015/08/13/github-as-a-workflow/) - An interesting take on using GitHub as a workflow, particularly with empty PRs
 * [Githug](https://github.com/Gazler/githug) - A game to learn more common Git workflows
