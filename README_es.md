@@ -7,7 +7,7 @@
 
 Una [guía para astronautas](http://www.jsc.nasa.gov/news/columbia/fr_generic.pdf) (ahora, programadores usando git) acerca de qué hacer cuando las cosas van mal.
 
->  *Las reglas de vuelo* son los conocimientos adquiridos con tanto esfuerzo en manuales que enumeran, paso a paso, qué hacer si ocurre X y por qué. Básicamente, son procedimientos operativos extremadamente detallados y específicos de cada escenario. [...]
+>  *Las reglas de vuelo* son los conocimientos adquiridos con tanto esfuerzo en manuales que enumeran, paso a paso, qué hacer si ocurre X y por qué. Básiacamente, son procedimientos operativos extremadamente detallados y específicos de cada escenario. [...]
 
 > La NASA ha estado capturando nuestros errores, desastres y soluciones desde principios de la década de 1960, cuando los equipos de tierra de la era Mercurio comenzaron a recopilar "lecciones aprendidas" en un compendio que ahora enumera miles de situaciones problemáticas, desde fallas en el motor hasta fallas reventadas en computadoras, y sus soluciones.
 
