@@ -99,6 +99,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [Recover a deleted tag](#recover-a-deleted-tag)
     - [Deleted Patch](#deleted-patch)
     - [Exporting a repository as a Zip file](#exporting-a-repository-as-a-zip-file)
+    - [Push a branch and tag that have the same name](#push-a-branch-and-a-tag-that-have-the-same-name)
   - [Tracking Files](#tracking-files)
     - [I want to change a file name's capitalization, without changing the contents of the file](#i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file)
     - [I want to overwrite local files when doing a git pull](#i-want-to-overwrite-local-files-when-doing-a-git-pull)
@@ -1328,6 +1329,27 @@ From github.com:foo/bar
 
 ```sh
 $ git archive --format zip --output /full/path/to/zipfile.zip master
+```
+### Push a branch and a tag that have the same name
+
+If there is a tag on a remote repository that has the same name as a branch you will get the following error when trying to push that branch with a standard `$ git push <remote> <branch>` command.
+
+```sh
+$ git push origin <branch>
+error: dst refspec same matches more than one.
+error: failed to push some refs to '<git server>'
+```
+
+Fix this by specifying you want to push the head reference.
+
+```sh
+$ git push origin refs/heads/<branch-name>
+```
+
+If you want to push a tag to a remote repository that has the same name as a branch, you can use a similar command.
+
+```sh
+$ git push origin refs/tags/<tag-name>
 ```
 
 ## Tracking Files
