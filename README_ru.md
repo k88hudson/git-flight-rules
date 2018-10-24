@@ -17,6 +17,8 @@
 
 Для наглядности во всех примерах в этом документе используется измененное приглашение командной строки, чтобы показать текущую ветку и есть ли подготовленные изменения. Ветка заключена в кавычки, а символ `*` после ветки означает подготовленные изменения.
 
+Приведенные команды работают на Git версии 2.13.0 и выше. Для обновления Вашей версии Git посетите [вебсайт Git](https://www.git-scm.com/).
+
 [![Заходите в чат https://gitter.im/k88hudson/git-flight-rules](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/k88hudson/git-flight-rules?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -35,6 +37,7 @@
     - [Удалить произвольный коммит](#%D0%A3%D0%B4%D0%B0%D0%BB%D0%B8%D1%82%D1%8C-%D0%BF%D1%80%D0%BE%D0%B8%D0%B7%D0%B2%D0%BE%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82)
     - [Я пытаюсь опубликовать исправленный коммит, но получаю сообщение об ошибке](#%D0%AF-%D0%BF%D1%8B%D1%82%D0%B0%D1%8E%D1%81%D1%8C-%D0%BE%D0%BF%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%BE%D0%B2%D0%B0%D1%82%D1%8C-%D0%B8%D1%81%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82-%D0%BD%D0%BE-%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B0%D1%8E-%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BE%D0%B1-%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D0%B5)
     - [Я случайно сделал жесткий сброс (--hard) и теперь хочу вернуть свои изменения](#%D0%AF-%D1%81%D0%BB%D1%83%D1%87%D0%B0%D0%B9%D0%BD%D0%BE-%D1%81%D0%B4%D0%B5%D0%BB%D0%B0%D0%BB-%D0%B6%D0%B5%D1%81%D1%82%D0%BA%D0%B8%D0%B9-%D1%81%D0%B1%D1%80%D0%BE%D1%81---hard-%D0%B8-%D1%82%D0%B5%D0%BF%D0%B5%D1%80%D1%8C-%D1%85%D0%BE%D1%87%D1%83-%D0%B2%D0%B5%D1%80%D0%BD%D1%83%D1%82%D1%8C-%D1%81%D0%B2%D0%BE%D0%B8-%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F)
+    - [Я случайно опубликовал ненужное слияние](#%D0%AF-%D1%81%D0%BB%D1%83%D1%87%D0%B0%D0%B9%D0%BD%D0%BE-%D0%BE%D0%BF%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%BE%D0%B2%D0%B0%D0%BB-%D0%BD%D0%B5%D0%BD%D1%83%D0%B6%D0%BD%D0%BE%D0%B5-%D1%81%D0%BB%D0%B8%D1%8F%D0%BD%D0%B8%D0%B5)
   - [Подготовка изменений (staging)](#%D0%9F%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B9-staging)
     - [Мне нужно добавить подготовленные изменения в предыдущий коммит](#%D0%9C%D0%BD%D0%B5-%D0%BD%D1%83%D0%B6%D0%BD%D0%BE-%D0%B4%D0%BE%D0%B1%D0%B0%D0%B2%D0%B8%D1%82%D1%8C-%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5-%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F-%D0%B2-%D0%BF%D1%80%D0%B5%D0%B4%D1%8B%D0%B4%D1%83%D1%89%D0%B8%D0%B9-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82)
     - [Я хочу подготовить только часть файла, а не весь файл целиком](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%B8%D1%82%D1%8C-%D1%82%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE-%D1%87%D0%B0%D1%81%D1%82%D1%8C-%D1%84%D0%B0%D0%B9%D0%BB%D0%B0-%D0%B0-%D0%BD%D0%B5-%D0%B2%D0%B5%D1%81%D1%8C-%D1%84%D0%B0%D0%B9%D0%BB-%D1%86%D0%B5%D0%BB%D0%B8%D0%BA%D0%BE%D0%BC)
@@ -74,6 +77,7 @@
       - [Мне нужно слить ветку в единственный коммит](#%D0%9C%D0%BD%D0%B5-%D0%BD%D1%83%D0%B6%D0%BD%D0%BE-%D1%81%D0%BB%D0%B8%D1%82%D1%8C-%D0%B2%D0%B5%D1%82%D0%BA%D1%83-%D0%B2-%D0%B5%D0%B4%D0%B8%D0%BD%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82)
       - [Я хочу объединить только неопубликованные коммиты](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D0%BE%D0%B1%D1%8A%D0%B5%D0%B4%D0%B8%D0%BD%D0%B8%D1%82%D1%8C-%D1%82%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE-%D0%BD%D0%B5%D0%BE%D0%BF%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82%D1%8B)
       - [Мне нужно прервать слияние](#%D0%9C%D0%BD%D0%B5-%D0%BD%D1%83%D0%B6%D0%BD%D0%BE-%D0%BF%D1%80%D0%B5%D1%80%D0%B2%D0%B0%D1%82%D1%8C-%D1%81%D0%BB%D0%B8%D1%8F%D0%BD%D0%B8%D0%B5)
+    - [Мне нужно обновить родительский коммит моей ветки](#%D0%9C%D0%BD%D0%B5-%D0%BD%D1%83%D0%B6%D0%BD%D0%BE-%D0%BE%D0%B1%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C-%D1%80%D0%BE%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B9-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82-%D0%BC%D0%BE%D0%B5%D0%B9-%D0%B2%D0%B5%D1%82%D0%BA%D0%B8)
     - [Проверить, что все коммиты ветви были слиты](#%D0%9F%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%B8%D1%82%D1%8C-%D1%87%D1%82%D0%BE-%D0%B2%D1%81%D0%B5-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82%D1%8B-%D0%B2%D0%B5%D1%82%D0%B2%D0%B8-%D0%B1%D1%8B%D0%BB%D0%B8-%D1%81%D0%BB%D0%B8%D1%82%D1%8B)
     - [Возможные проблемы интерактивного перебазирования](#%D0%92%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D1%8B%D0%B5-%D0%BF%D1%80%D0%BE%D0%B1%D0%BB%D0%B5%D0%BC%D1%8B-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D0%BE%D0%B3%D0%BE-%D0%BF%D0%B5%D1%80%D0%B5%D0%B1%D0%B0%D0%B7%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F)
       - [Экран перебазирования говорит 'noop'](#%D0%AD%D0%BA%D1%80%D0%B0%D0%BD-%D0%BF%D0%B5%D1%80%D0%B5%D0%B1%D0%B0%D0%B7%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82-noop)
@@ -97,12 +101,14 @@
     - [Восстановить удаленную метку](#%D0%92%D0%BE%D1%81%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C-%D1%83%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%BD%D1%83%D1%8E-%D0%BC%D0%B5%D1%82%D0%BA%D1%83)
     - [Удаленный патч](#%D0%A3%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9-%D0%BF%D0%B0%D1%82%D1%87)
     - [Экспорт репозитория в Zip-файл](#%D0%AD%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82-%D1%80%D0%B5%D0%BF%D0%BE%D0%B7%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D1%8F-%D0%B2-zip-%D1%84%D0%B0%D0%B9%D0%BB)
+    - [Как опубликовать ветку и метку, если они имеют одинаковые имена](#%D0%9A%D0%B0%D0%BA-%D0%BE%D0%BF%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%BE%D0%B2%D0%B0%D1%82%D1%8C-%D0%B2%D0%B5%D1%82%D0%BA%D1%83-%D0%B8-%D0%BC%D0%B5%D1%82%D0%BA%D1%83-%D0%B5%D1%81%D0%BB%D0%B8-%D0%BE%D0%BD%D0%B8-%D0%B8%D0%BC%D0%B5%D1%8E%D1%82-%D0%BE%D0%B4%D0%B8%D0%BD%D0%B0%D0%BA%D0%BE%D0%B2%D1%8B%D0%B5-%D0%B8%D0%BC%D0%B5%D0%BD%D0%B0)
   - [Отслеживание файлов](#%D0%9E%D1%82%D1%81%D0%BB%D0%B5%D0%B6%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2)
     - [Я хочу изменить регистр в имени файла, не меняя содержимое файла](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B8%D1%82%D1%8C-%D1%80%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80-%D0%B2-%D0%B8%D0%BC%D0%B5%D0%BD%D0%B8-%D1%84%D0%B0%D0%B9%D0%BB%D0%B0-%D0%BD%D0%B5-%D0%BC%D0%B5%D0%BD%D1%8F%D1%8F-%D1%81%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B8%D0%BC%D0%BE%D0%B5-%D1%84%D0%B0%D0%B9%D0%BB%D0%B0)
     - [Я хочу переписать локальные файлы при выполнении git pull](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D0%BF%D0%B5%D1%80%D0%B5%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C-%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D1%84%D0%B0%D0%B9%D0%BB%D1%8B-%D0%BF%D1%80%D0%B8-%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B8-git-pull)
     - [Я хочу удалить файл из git, но оставить сам файл](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D1%83%D0%B4%D0%B0%D0%BB%D0%B8%D1%82%D1%8C-%D1%84%D0%B0%D0%B9%D0%BB-%D0%B8%D0%B7-git-%D0%BD%D0%BE-%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D1%82%D1%8C-%D1%81%D0%B0%D0%BC-%D1%84%D0%B0%D0%B9%D0%BB)
     - [Я хочу откатить файл до заданной ревизии](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D0%BE%D1%82%D0%BA%D0%B0%D1%82%D0%B8%D1%82%D1%8C-%D1%84%D0%B0%D0%B9%D0%BB-%D0%B4%D0%BE-%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%BD%D0%BE%D0%B9-%D1%80%D0%B5%D0%B2%D0%B8%D0%B7%D0%B8%D0%B8)
     - [Я хочу получить список изменений в заданном файле из разных коммитов или веток](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C-%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA-%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B9-%D0%B2-%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%BD%D0%BE%D0%BC-%D1%84%D0%B0%D0%B9%D0%BB%D0%B5-%D0%B8%D0%B7-%D1%80%D0%B0%D0%B7%D0%BD%D1%8B%D1%85-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82%D0%BE%D0%B2-%D0%B8%D0%BB%D0%B8-%D0%B2%D0%B5%D1%82%D0%BE%D0%BA)
+    - [Я хочу, чтобы Git игнорировал изменения в определенном файле](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D1%87%D1%82%D0%BE%D0%B1%D1%8B-git-%D0%B8%D0%B3%D0%BD%D0%BE%D1%80%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BB-%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F-%D0%B2-%D0%BE%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%BD%D0%BE%D0%BC-%D1%84%D0%B0%D0%B9%D0%BB%D0%B5)
   - [Конфигурация](#%D0%9A%D0%BE%D0%BD%D1%84%D0%B8%D0%B3%D1%83%D1%80%D0%B0%D1%86%D0%B8%D1%8F)
     - [Я хочу добавить псевдонимы для некоторых команд Git](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D0%B4%D0%BE%D0%B1%D0%B0%D0%B2%D0%B8%D1%82%D1%8C-%D0%BF%D1%81%D0%B5%D0%B2%D0%B4%D0%BE%D0%BD%D0%B8%D0%BC%D1%8B-%D0%B4%D0%BB%D1%8F-%D0%BD%D0%B5%D0%BA%D0%BE%D1%82%D0%BE%D1%80%D1%8B%D1%85-%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4-git)
     - [Я хочу добавить в свой репозиторий пустую папку](#%D0%AF-%D1%85%D0%BE%D1%87%D1%83-%D0%B4%D0%BE%D0%B1%D0%B0%D0%B2%D0%B8%D1%82%D1%8C-%D0%B2-%D1%81%D0%B2%D0%BE%D0%B9-%D1%80%D0%B5%D0%BF%D0%BE%D0%B7%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%B9-%D0%BF%D1%83%D1%81%D1%82%D1%83%D1%8E-%D0%BF%D0%B0%D0%BF%D0%BA%D1%83)
@@ -174,13 +180,13 @@ $ git show <commitid>:filename
 Если Вы неправильно сохранили коммит, но еще не сделали `push`, то для исправления сообщения коммита сделайте следующее:
 
 ```sh
-$ git commit --amend
+$ git commit --amend --only
 ```
 
 Это откроет текстовый редактор по-умолчанию, в котором Вы сможете исправить сообщение. С другой стороны Вы можете сделать это одной командой:
 
 ```sh
-$ git commit --amend -m 'xxxxxxx'
+$ git commit --amend --only -m 'xxxxxxx'
 ```
 
 Если Вы уже сделали `push`, то Вы по-прежнему можете исправить коммит, но после этого придется делать `push` с принудительной перезаписью, что не рекомендуется.
@@ -299,6 +305,19 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 
 И Вы сможете продолжить работу.
 
+<a href="undo-a-commit-merge"></a>
+### Я случайно опубликовал ненужное слияние
+
+Если Вы случайно сделали слияние в основную ветку разработки до того, как были сделаны все необходимые изменения, Вы по-прежнему можете отменить слияние. Но есть одна загвоздка: Коммит слияния имеет более одного родителя (обычно два). 
+
+Команда для решения этой проблемы
+```sh
+(feature-branch)$ git revert -m 1 <commit>
+```
+где опция -m 1 говорит выбрать родителя номер 1 (ветка, в которую было сделано слияние) в качестве родителя для отката.
+
+Заметка: номер родителя - это не идентификатор коммита. Допустим, коммит слияния имеет строчку `Merge: 8e2ce2d 86ac2e7`. Номер родителя - это порядковый номер (отсчет с 1) нужного родителя в этой строчке, первый идентификатор - номер 1, второй - номер 2 и т.д.
+
 ## Подготовка изменений (staging)
 
 <a href="#i-need-to-add-staged-changes-to-the-previous-commit"></a>
@@ -307,8 +326,14 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 
 ```sh
 (my-branch*)$ git commit --amend
-
 ```
+
+Если Вы не хотите менять сообщение коммита, скажите git использовать прежнее сообщение:
+
+```sh
+(my-branch*)$ git commit --amend -C HEAD
+```
+
 
 <a name="commit-partial-new-file"></a>
 
@@ -1058,6 +1083,16 @@ Newer, awesomer features
 
 Эта команда доступна начиная с версии Git >= 1.7.4
 
+### Мне нужно обновить родительский коммит моей ветки
+
+Скажем, у меня есть ветка master, ветка feature-1, выросшая из master, и ветка feature-2, выросшая из feature-1. Если я сделаю коммит в feature-1, тогда родительский коммит ветки feature-2 будет не тем, что нужно (это должна быть верхушка feature-1, поскольку мы ответвились от неё). Мы можем исправить это с помощью `git rebase --onto`.
+
+```sh
+(feature-2)$ git rebase --onto feature-1 <первый коммит из feature-2, который Вы не хотите переносить> feature-2
+```
+
+Это помогает в тех случаях, когда у Вас одна функция основывается на другой функции, которая еще не слита, и все исправления feature-1 должны быть отражены в feature-2.
+
 ### Проверить, что все коммиты ветви были слиты
 
 Для проверки того, что все коммиты ветки слиты в другую ветку, Вам нужно сравнить вершины (или любые коммиты) этих ветвей:
@@ -1352,6 +1387,28 @@ From github.com:foo/bar
 $ git archive --format zip --output /full/path/to/zipfile.zip master
 ```
 
+### Как опубликовать ветку и метку, если они имеют одинаковые имена
+
+Если в удаленном репозитории есть метка с таким же именем, как и ветка <branch>, то после выполнения команды `$ git push <remote> <branch>` Вы получите следующую ошибку:
+
+```sh
+$ git push origin <branch>
+error: dst refspec same matches more than one.
+error: failed to push some refs to '<git server>'
+```
+
+Исправить это можно, указав Вы хотите опубликовать именно ветку.
+
+```sh
+$ git push origin refs/heads/<branch-name>
+```
+
+Если Вы хотите опубликовать метку с таким же названием, как у ветки, используйте сходную команду.
+
+```sh
+$ git push origin refs/tags/<tag-name>
+```
+
 ## Отслеживание файлов
 
 <a href="i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file"></a>
@@ -1405,6 +1462,20 @@ $ git diff HEAD:path_to_file/file c5f567:path_to_file/file
 $ git diff master:path_to_file/file staging:path_to_file/file
 ```
 
+### Я хочу, чтобы Git игнорировал изменения в определенном файле
+
+Это бывает нужно для шаблонов конфигураций или других файлов, предназначенных для добавления учетных записей, которые не нужно коммитить.
+
+```sh
+$ git update-index --assume-unchanged file-to-ignore
+```
+
+Обратите внимание, что это *не* удаляет файл из контроля версий - он всего лишь игнорируется локально. Чтобы отменить это и сказать Git снова отслеживать изменения, выполните обратную команду:
+
+```sh
+$ git update-index --no-assume-unchanged file-to-stop-ignoring
+```
+
 ## Конфигурация
 
 ### Я хочу добавить псевдонимы для некоторых команд Git
@@ -1422,11 +1493,13 @@ $ git diff master:path_to_file/file staging:path_to_file/file
     d = diff
     dc = diff --changed
     ds = diff --staged
+    extend = commit --amend -C HEAD
     f = fetch
     loll = log --graph --decorate --pretty=oneline --abbrev-commit
     m = merge
     one = log --pretty=oneline
     outstanding = rebase -i @{u}
+    reword = commit --amend --only
     s = status
     unpushed = log @{u}
     wc = whatchanged
@@ -1531,14 +1604,18 @@ $ git reset --hard 0254ea7
 
 ## Книги
 
-- [Pro Git](https://git-scm.com/book/en/v2) - великолепная книга Скотта Чакона и Бена Страуба про Git
+* [Learn Enough Git to Be Dangerous](https://www.learnenough.com/git-tutorial) - Книга Майкла Хартла, посвященная Git с самых основ
+- [Pro Git](https://git-scm.com/book/ru/v2) - великолепная книга Скотта Чакона и Бена Страуба про Git
 - [Git Internals](https://github.com/pluralsight/git-internals-pdf) - еще одна великолепная книга Скотта Чакона, посвященная Git
 
 ## Учебники
 
+* [19 Git Tips For Everyday Use](https://www.alexkras.com/19-git-tips-for-everyday-use) - Список полезных однострочников Git
 - [Atlassian's Git tutorial](https://www.atlassian.com/git/tutorials) Получите Git сразу с учебниками от начального до продвинутого уровня.
 - [Изучаем ветвление в Git](https://learngitbranching.js.org/) Интерактивный веб-учебник по ветвлению/слиянию/перебазированию
-- [Getting solid at Git rebase vs. merge](https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa)
+- [Конструктивно о слиянии и перебазировании в Git](https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa)
+* [Git Commands and Best Practices Cheat Sheet](https://zeroturnaround.com/rebellabs/git-commands-and-best-practices-cheat-sheet) - Шпаргалка Git с подробными пояснениями
+* [Git изнутри](https://codewords.recurse.com/issues/two/git-from-the-inside-out) - Учебник, погружающий во внутренности Git
 - [git-workflow](https://github.com/asmeurer/git-workflow) - Руководство от [Aaron Meurer](https://github.com/asmeurer) по использованию Git в совместной разработке проектов с открытым исходным кодом
 - [GitHub как рабочий процесс](https://hugogiraudel.com/2015/08/13/github-as-a-workflow/) - Интересный подход к использованию GitHub в качестве рабочего процесса, в частности с пустыми пулл-реквестами
 - [Githug](https://github.com/Gazler/githug) - Игра для изучения более общих рабочих процессов Git
@@ -1566,3 +1643,4 @@ $ git reset --hard 0254ea7
 - [Fork](https://git-fork.com/) - быстрый и дружелюбный Git-клиент для Mac (бета)
 - [gmaster](https://gmaster.io/) - Git-клиент для Windows с трехсторонним слиянием, обнаружением рефакторинга, семантическим сравнением и слиянием (бета)
 - [gitk](https://git-scm.com/docs/gitk) - Git-клиент под Linux для просмотра состояния репозитория.
+* [SublimeMerge](https://www.sublimemerge.com/) - Шустрый, расширяемый клиент для трехстороннего слияния, мощного поиска и подсветки синтаксиса. В активной разработке.
