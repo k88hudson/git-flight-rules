@@ -76,6 +76,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
       - [I need to merge a branch into a single commit](#i-need-to-merge-a-branch-into-a-single-commit)
       - [I want to combine only unpushed commits](#i-want-to-combine-only-unpushed-commits)
       - [I need to abort the merge](#i-need-to-abort-the-merge)
+    - [I need to update the parent commit of my branch](#i-need-to-update-the-parent-commit-of-my-branch)
     - [Check if all commits on a branch are merged](#check-if-all-commits-on-a-branch-are-merged)
     - [Possible issues with interactive rebases](#possible-issues-with-interactive-rebases)
       - [The rebase editing screen says 'noop'](#the-rebase-editing-screen-says-noop)
@@ -1046,6 +1047,16 @@ Sometimes the merge can produce problems in certain files, in those cases we can
 ```
 
 This command is available since Git version >= 1.7.4
+
+### I need to update the parent commit of my branch
+
+Say I have a master branch, a feature-1 branch branched from master, and a feature-2 branch branched off of feature-1. If I make a commit to feature-1, then the parent commit of feature-2 is no longer accurate (it should be the head of feature-1, since we branched off of it). We can fix this with `git rebase --onto`.
+
+```sh
+(feature-2)$ git rebase --onto feature-1 <the first commit in your feature-2 branch that you don't want to bring along> feature-2
+```
+
+This helps in sticky scenarios where you might have a feature built on another feature that hasn't been merged yet, and a bugfix on the feature-1 branch needs to be reflected in your feature-2 branch.
 
 ### Check if all commits on a branch are merged
 
