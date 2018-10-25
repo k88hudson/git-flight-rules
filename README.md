@@ -37,6 +37,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I tried to push my amended commit to a remote, but I got an error message](#i-tried-to-push-my-amended-commit-to-a-remote-but-i-got-an-error-message)
     - [I accidentally did a hard reset, and I want my changes back](#i-accidentally-did-a-hard-reset-and-i-want-my-changes-back)
     - [I accidentally committed and pushed a merge](#i-accidentally-committed-and-pushed-a-merge)
+    - [I accidentally committed and pushed files containing sensitive data](#i-accidentally-committed-and-pushed-files-containing-sensitive-data)
   - [Staging](#staging)
     - [I need to add staged changes to the previous commit](#i-need-to-add-staged-changes-to-the-previous-commit)
     - [I want to stage part of a new file, but not the whole file](#i-want-to-stage-part-of-a-new-file-but-not-the-whole-file)
@@ -100,14 +101,14 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [Recover a deleted tag](#recover-a-deleted-tag)
     - [Deleted Patch](#deleted-patch)
     - [Exporting a repository as a Zip file](#exporting-a-repository-as-a-zip-file)
-    - [Push a branch and tag that have the same name](#push-a-branch-and-a-tag-that-have-the-same-name)
+    - [Push a branch and a tag that have the same name](#push-a-branch-and-a-tag-that-have-the-same-name)
   - [Tracking Files](#tracking-files)
     - [I want to change a file name's capitalization, without changing the contents of the file](#i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file)
     - [I want to overwrite local files when doing a git pull](#i-want-to-overwrite-local-files-when-doing-a-git-pull)
     - [I want to remove a file from Git but keep the file](#i-want-to-remove-a-file-from-git-but-keep-the-file)
     - [I want to revert a file to a specific revision](#i-want-to-revert-a-file-to-a-specific-revision)
     - [I want to list changes of a specific file between commits or branches](#i-want-to-list-changes-of-a-specific-file-between-commits-or-branches)
-    - [I want Git to ignore changes to a file without deleting it](#i-want-git-to-ignore-changes-to-a-specific-file)
+    - [I want Git to ignore changes to a specific file](#i-want-git-to-ignore-changes-to-a-specific-file)
   - [Configuration](#configuration)
     - [I want to add aliases for some Git commands](#i-want-to-add-aliases-for-some-git-commands)
     - [I want to add an empty directory to my repository](#i-want-to-add-an-empty-directory-to-my-repository)
@@ -309,6 +310,22 @@ The command to use
 where the -m 1 option says to select parent number 1 (the branch into which the merge was made) as the parent to revert to.
 
 Note: the parent number is not a commit identifier. Rather, a merge commit has a line `Merge: 8e2ce2d 86ac2e7`. The parent number is the 1-based index of the desired parent on this line, the first identifier is number 1, the second is number 2, and so on.
+
+<a href="undo-sensitive-commit-push"></a>
+### I accidentally committed and pushed files containing sensitive data
+
+If you accidentally pushed files containing sensitive data (passwords, keys, etc.), you can amend the previous commit. Keep in mind that once you have pushed a commit, you should consider any data it contains to be compromised. If you committed a password, change it immediately. If you committed a key, re-generate it immediately. Amending the pushed commit is not enough.
+
+First edit the file and remove the sensitive data, then run
+```sh
+(feature-branch)$ git add edited_file
+(feature-branch)$ git commit --amend
+(feature-branch)$ git push -f origin [branch]
+```
+
+If you have made other commits in the meantime (i.e. the sensitive data is in a commit before the previous commit), you will have to rebase.
+
+It is recommended to store sensitive data in local environment variables. Alternatively keep sensitive data in a file and add the file to ```.gitignore``` to ensure it never gets accidentally committed.
 
 ## Staging
 
