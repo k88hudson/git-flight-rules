@@ -314,18 +314,33 @@ Note: the parent number is not a commit identifier. Rather, a merge commit has a
 <a href="undo-sensitive-commit-push"></a>
 ### I accidentally committed and pushed files containing sensitive data
 
-If you accidentally pushed files containing sensitive data (passwords, keys, etc.), you can amend the previous commit. Keep in mind that once you have pushed a commit, you should consider any data it contains to be compromised. If you committed a password, change it immediately. If you committed a key, re-generate it immediately. Amending the pushed commit is not enough.
+If you accidentally pushed files containing sensitive data (passwords, keys, etc.), you can amend the previous commit. Keep in mind that once you have pushed a commit, you should consider any data it contains to be compromised. If you committed a password, **change it immediately**. If you committed a key, **re-generate it immediately**. Amending the pushed commit is not enough.
 
-First edit the file and remove the sensitive data, then run
+If you edit the file and remove the sensitive data, then run
 ```sh
 (feature-branch)$ git add edited_file
-(feature-branch)$ git commit --amend
-(feature-branch)$ git push -f origin [branch]
+(feature-branch)$ git commit --amend --no-edit
+(feature-branch)$ git push --force-with-lease origin [branch]
+```
+
+If you want to remove an entire file (but keep it locally), then run
+```sh
+(feature-branch)$ git rm --cached sensitive_file
+echo sensitive_file >> .gitignore
+(feature-branch)$ git add .gitignore
+(feature-branch)$ git commit --amend --no-edit
+(feature-branch)$ git push --force-with-lease origin [branch]
+```
+Alternatively store your sensitive data in local environment variables.
+
+If you want to completely remove an entire file (and not keep it locally), then run
+```sh
+(feature-branch)$ git rm sensitive_file
+(feature-branch)$ git commit --amend --no-edit
+(feature-branch)$ git push --force-with-lease origin [branch]
 ```
 
 If you have made other commits in the meantime (i.e. the sensitive data is in a commit before the previous commit), you will have to rebase.
-
-It is recommended to store sensitive data in local environment variables. Alternatively keep sensitive data in a file and add the file to ```.gitignore``` to ensure it never gets accidentally committed.
 
 ## Staging
 
