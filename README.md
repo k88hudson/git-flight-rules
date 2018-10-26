@@ -42,7 +42,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I want to stage part of a new file, but not the whole file](#i-want-to-stage-part-of-a-new-file-but-not-the-whole-file)
     - [I want to add changes in one file to two different commits](#i-want-to-add-changes-in-one-file-to-two-different-commits)
     - [I want to stage my unstaged edits, and unstage my staged edits](#i-want-to-stage-my-unstaged-edits-and-unstage-my-staged-edits)
-    - [I want to stage my unstaged edits, and unstage my staged edits](#i-want-to-stage-my-unstaged-edits-and-unstage-my-staged-edits-1)
+    - [I want to unstage specific staged file](#i-want-to-unstage-specific-staged-file)
   - [Unstaged Edits](#unstaged-edits)
     - [I want to move my unstaged edits to a new branch](#i-want-to-move-my-unstaged-edits-to-a-new-branch)
     - [I want to move my unstaged edits to a different, existing branch](#i-want-to-move-my-unstaged-edits-to-a-different-existing-branch)
@@ -363,7 +363,7 @@ $ git add -A
 ```
 
 <a href="I-want-to-unstage-specific-staged-file"></a>
-### I want to stage my unstaged edits, and unstage my staged edits
+### I want to unstage specific staged file
 
 Sometimes we have one or more files that accidentally ended up being staged, and these files have not been committed before, to unstage them
 
