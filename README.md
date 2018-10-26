@@ -42,7 +42,6 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I want to stage part of a new file, but not the whole file](#i-want-to-stage-part-of-a-new-file-but-not-the-whole-file)
     - [I want to add changes in one file to two different commits](#i-want-to-add-changes-in-one-file-to-two-different-commits)
     - [I want to stage my unstaged edits, and unstage my staged edits](#i-want-to-stage-my-unstaged-edits-and-unstage-my-staged-edits)
-    - [I want to unstage specific staged file](#i-want-to-unstage-specific-staged-file)
   - [Unstaged Edits](#unstaged-edits)
     - [I want to move my unstaged edits to a new branch](#i-want-to-move-my-unstaged-edits-to-a-new-branch)
     - [I want to move my unstaged edits to a different, existing branch](#i-want-to-move-my-unstaged-edits-to-a-different-existing-branch)
@@ -51,6 +50,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I want to discard specific unstaged files](#i-want-to-discard-specific-unstaged-files)
     - [I want to discard only my unstaged local changes](#i-want-to-discard-only-my-unstaged-local-changes)
     - [I want to discard all of my untracked files](#i-want-to-discard-all-of-my-untracked-files)
+    - [I want to unstage specific staged file](#i-want-to-unstage-specific-staged-file)
   - [Branches](#branches)
     - [I want to list all branches](#i-want-to-list-all-branches)
     - [Create a branch from a commit](#create-a-branch-from-a-commit)
@@ -362,17 +362,6 @@ $ git stash pop
 $ git add -A
 ```
 
-<a href="I-want-to-unstage-specific-staged-file"></a>
-### I want to unstage specific staged file
-
-Sometimes we have one or more files that accidentally ended up being staged, and these files have not been committed before, to unstage them
-
-```sh
-$ git reset -- filename
-```
-
-this result in unstaging the file and make it look like it's untracked, then you can decide what to do with it, either delete or add a .gitignore entry.
-
 ## Unstaged Edits
 
 <a href="move-unstaged-edits-to-new-branch"></a>
@@ -491,6 +480,18 @@ When you want to get rid of all of your untracked files
 ```sh
 $ git clean -f
 ```
+
+<a href="I-want-to-unstage-specific-staged-file"></a>
+### I want to unstage specific staged file
+
+Sometimes we have one or more files that accidentally ended up being staged, and these files have not been committed before, to unstage them
+
+```sh
+$ git reset -- filename
+```
+
+this result in unstaging the file and make it look like it's untracked, then you can decide what to do with it, either delete or add a .gitignore entry.
+
 
 ## Branches
 
