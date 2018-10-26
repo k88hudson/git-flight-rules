@@ -42,6 +42,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I want to stage part of a new file, but not the whole file](#i-want-to-stage-part-of-a-new-file-but-not-the-whole-file)
     - [I want to add changes in one file to two different commits](#i-want-to-add-changes-in-one-file-to-two-different-commits)
     - [I want to stage my unstaged edits, and unstage my staged edits](#i-want-to-stage-my-unstaged-edits-and-unstage-my-staged-edits)
+    - [I want to stage my unstaged edits, and unstage my staged edits](#i-want-to-stage-my-unstaged-edits-and-unstage-my-staged-edits-1)
   - [Unstaged Edits](#unstaged-edits)
     - [I want to move my unstaged edits to a new branch](#i-want-to-move-my-unstaged-edits-to-a-new-branch)
     - [I want to move my unstaged edits to a different, existing branch](#i-want-to-move-my-unstaged-edits-to-a-different-existing-branch)
@@ -100,14 +101,14 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [Recover a deleted tag](#recover-a-deleted-tag)
     - [Deleted Patch](#deleted-patch)
     - [Exporting a repository as a Zip file](#exporting-a-repository-as-a-zip-file)
-    - [Push a branch and tag that have the same name](#push-a-branch-and-a-tag-that-have-the-same-name)
+    - [Push a branch and a tag that have the same name](#push-a-branch-and-a-tag-that-have-the-same-name)
   - [Tracking Files](#tracking-files)
     - [I want to change a file name's capitalization, without changing the contents of the file](#i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file)
     - [I want to overwrite local files when doing a git pull](#i-want-to-overwrite-local-files-when-doing-a-git-pull)
     - [I want to remove a file from Git but keep the file](#i-want-to-remove-a-file-from-git-but-keep-the-file)
     - [I want to revert a file to a specific revision](#i-want-to-revert-a-file-to-a-specific-revision)
     - [I want to list changes of a specific file between commits or branches](#i-want-to-list-changes-of-a-specific-file-between-commits-or-branches)
-    - [I want Git to ignore changes to a file without deleting it](#i-want-git-to-ignore-changes-to-a-specific-file)
+    - [I want Git to ignore changes to a specific file](#i-want-git-to-ignore-changes-to-a-specific-file)
   - [Configuration](#configuration)
     - [I want to add aliases for some Git commands](#i-want-to-add-aliases-for-some-git-commands)
     - [I want to add an empty directory to my repository](#i-want-to-add-an-empty-directory-to-my-repository)
@@ -360,6 +361,17 @@ $ git reset --hard
 $ git stash pop
 $ git add -A
 ```
+
+<a href="I-want-to-unstage-specific-staged-file"></a>
+### I want to stage my unstaged edits, and unstage my staged edits
+
+Sometimes we have one or more files that accidentally ended up being staged, and these files have not been committed before, to unstage them
+
+```sh
+$ git reset -- filename
+```
+
+this result in unstaging the file and make it look like it's untracked, then you can decide what to do with it, either delete or add a .gitignore entry.
 
 ## Unstaged Edits
 
