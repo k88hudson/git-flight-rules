@@ -10,3 +10,10 @@ script:
 - node node_modules/doctoc/doctoc.js --github README.md README_*.md
 - test -z "`git diff -- README.md`"
 - test -z "`git diff -- README_*.md`"
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep-history: true
+  on:
+    branch: master
