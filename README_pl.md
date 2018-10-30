@@ -3,23 +3,23 @@
 🌍
 *[English](README.md) ∙ [Español](README_es.md)  ∙  [Русский](README_ru.md) ∙ [简体中文](README_zh-CN.md)∙ [한국어](README_kr.md) ∙  [po polsku](README_pl.md)*
 
-#### What are "flight rules"?
+#### Co to są "reguły lotu"?
 
-A [guide for astronauts](https://www.jsc.nasa.gov/news/columbia/fr_generic.pdf) (now, programmers using Git) about what to do when things go wrong.
+To [przewodnik dla astronautów (ang.)] (https://www.jsc.nasa.gov/news/columbia/fr_generic.pdf) (teraz, programistów używających Git) o ​​tym, co robić, gdy coś pójdzie nie tak.
 
->  *Flight Rules* are the hard-earned body of knowledge recorded in manuals that list, step-by-step, what to do if X occurs, and why. Essentially, they are extremely detailed, scenario-specific standard operating procedures. [...]
+> * Zasady lotu * to ciężko wypracowana wiedza zapisana w podręcznikach, która krok po kroku pokazuje, co (i dlaczego) zrobić, gdy dany problem się pojawi. Przede wszystkim są to wyjątkowo szczegółowe, specyficzne dla scenariusza standardowe procedury postępowania. [...]
 
-> NASA has been capturing our missteps, disasters and solutions since the early 1960s, when Mercury-era ground teams first started gathering "lessons learned" into a compendium that now lists thousands of problematic situations, from engine failure to busted hatch handles to computer glitches, and their solutions.
+> NASA wyłapywała nasze błędy, katastrofy i rozwiązania od wczesnych lat sześćdziesiątych XX wieku, kiedy zespoły terenowe z czasów Projektu Merkury najpierw zaczęły gromadzić doświadczenia w kompendium, które teraz zawiera rozwiązania dla tysiący problematycznych sytuacji, od awarii silnika, poprzez urwanie klapy, po błedy w komputerze.
 
-&mdash; Chris Hadfield, *An Astronaut's Guide to Life*.
+& mdash; Chris Hadfield, * Kosmiczny poradnik życia na Ziemi *.
 
-#### Conventions for this document
+#### Konwencje dla tego dokumentu
 
-For clarity's sake all examples in this document use a customized bash prompt in order to indicate the current branch and whether or not there are staged changes. The branch is enclosed in parentheses, and a `*` next to the branch name indicates staged changes.
+Dla większej przejżystości, wszystkie przykłady w tym dokumencie wykorzystują spersonalizowany znak zachęty w bashu, który wypisuje bieżącą gałąź (w nawiasach) oraz wskazuje (używając *), czy istnieją lokalne zmiany niedodane do indexu.
 
-All commands should work for at least git version 2.13.0. See the [git website](https://www.git-scm.com/) to update your local git version.
+Wszystkie uzyte polecenia powinny działać z gitem w wersji 2.13.0 lub nowszej. Jak zaktualizować wersję git dowiesz się na [stronie projektu] (https://www.git-scm.com/).
 
-[![Join the chat at https://gitter.im/k88hudson/git-flight-rules](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/k88hudson/git-flight-rules?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Dołącz do chatu https://gitter.im/k88hudson/git-flight-rules](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/k88hudson/git-flight-rules?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
@@ -125,33 +125,33 @@ All commands should work for at least git version 2.13.0. See the [git website](
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## Repositories
+## Repozytoria
 
-### I want to start a local repository
+### Chcę rozpocząć pracę z lokalnym repozytorium
 
-To initialize an existing directory as a Git repository:
+Aby rozpocząć pracę w istniejącym folderze jako repozytorium Git:
 
 ```sh
 (my-folder) $ git init
 ```
 
-### I want to clone a remote repository
+### Chcę sklonować zdalne repozytorium
 
-To clone (copy) a remote repository, copy the url for the repository, and run:
+Aby sklonować (wykonać kopię) zdalnego repozytorium, Skopiuj jego adres i wykonaj polecenie:
 
 ```sh
 $ git clone [url]
 ```
 
-This will save it to a folder named the same as the remote repository's. Make sure you have connection to the remote server you are cloning from (for most purposes this means making sure you are connected to the internet).
+To polecenie stworzy u ciebie folder o nazwie zdalnego repozytorium. Musisz upewnić się, że istnieje połączenie sieciowe do serwera, z którego klonujesz repozytorium (w większości przypadków jest to równoznaczne z działającym połączeniem internetowym).
 
-To clone it into a folder with a different name than the default repository name:
+Aby sklonować używając innej nazwy folderu:
 
 ```sh
-$ git clone [url] name-of-new-folder
+$ git clone [url] nazwa-nowego-folderu
 ```
 
-## Editing Commits
+## Edytowanie komitów
 
 <a name="diff-last"></a>
 ### What did I just commit?
