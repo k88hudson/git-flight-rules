@@ -1,7 +1,15 @@
 # Flight rules for Git
 
-🌍
-*[English](README.md) ∙ [Español](README_es.md)  ∙  [Русский](README_ru.md) ∙ [简体中文](README_zh-CN.md)∙ [한국어](README_kr.md)*
+<table>
+  <tr>
+    <td> Read these rules in </td>
+    <td><a href="/README.md"> English </a></td>
+    <td><a href="/README_es.md"> Español </a></td>
+    <td><a href="/README_ru.md"> Русский </a></td>
+    <td><a href="/README_zh-CN.md"> 简体中文 </a></td>
+    <td><a href="/README_kr.md"> 한국어 </a></td>
+  </tr>
+</table>
 
 #### What are "flight rules"?
 
@@ -314,7 +322,7 @@ Note: the parent number is not a commit identifier. Rather, a merge commit has a
 <a href="undo-sensitive-commit-push"></a>
 ### I accidentally committed and pushed files containing sensitive data
 
-If you accidentally pushed files containing sensitive data (passwords, keys, etc.), you can amend the previous commit. Keep in mind that once you have pushed a commit, you should consider any data it contains to be compromised. These steps can remove the sensitive data from your public repo or your local copy, but you **cannot** remove the sensitive data from other people's pulled copies. If you committed a password, **change it immediately**. If you committed a key, **re-generate it immediately**. Amending the pushed commit is not enough, since anyone could have pulled the original commit containing your sensitive data in the meantime. 
+If you accidentally pushed files containing sensitive data (passwords, keys, etc.), you can amend the previous commit. Keep in mind that once you have pushed a commit, you should consider any data it contains to be compromised. These steps can remove the sensitive data from your public repo or your local copy, but you **cannot** remove the sensitive data from other people's pulled copies. If you committed a password, **change it immediately**. If you committed a key, **re-generate it immediately**. Amending the pushed commit is not enough, since anyone could have pulled the original commit containing your sensitive data in the meantime.
 
 If you edit the file and remove the sensitive data, then run
 ```sh
@@ -340,7 +348,7 @@ If you want to completely remove an entire file (and not keep it locally), then 
 (feature-branch)$ git push --force-with-lease origin [branch]
 ```
 
-If you have made other commits in the meantime (i.e. the sensitive data is in a commit before the previous commit), you will have to rebase. 
+If you have made other commits in the meantime (i.e. the sensitive data is in a commit before the previous commit), you will have to rebase.
 
 ## Staging
 

@@ -1,7 +1,15 @@
 # Git飞行规则(Flight Rules)
 
-🌍
-*[English](README.md) ∙ [Español](README_es.md)  ∙  [Русский](README_ru.md) ∙ [简体中文](README_zh-CN.md)∙ [한국어](README_kr.md)*
+<table>
+  <tr>
+    <td> Read these rules in </td>
+    <td><a href="/README.md"> English </a></td>
+    <td><a href="/README_es.md"> Español </a></td>
+    <td><a href="/README_ru.md"> Русский </a></td>
+    <td><a href="/README_zh-CN.md"> 简体中文 </a></td>
+    <td><a href="/README_kr.md"> 한국어 </a></td>
+  </tr>
+</table>
 
 #### 前言
 
