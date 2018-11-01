@@ -23,6 +23,9 @@ En aras de la claridad, todos los ejemplos de este documento usan un indicador d
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
+  - [Repositorios](#repositorios)
+    - [Quiero empezar un repositorio local](#quiero-empezar-un-repositorio-local)
+    - [Quiero clonar un repositorio remoto](#quiero-clonar-un-repositorio-remoto)
   - [Editando commits](#editando-commits)
     - [¿Qué acabo de hacer en el commit?](#%C2%BFqu%C3%A9-acabo-de-hacer-en-el-commit)
     - [Escribí algo mal en el mensaje del commit](#escrib%C3%AD-algo-mal-en-el-mensaje-del-commit)
@@ -32,6 +35,8 @@ En aras de la claridad, todos los ejemplos de este documento usan un indicador d
     - [Eliminar/remover commit arbitrario](#eliminarremover-commit-arbitrario)
     - [Intenté subir mi commit enmendado al repositorio remoto, pero obtuve un mensaje de error](#intent%C3%A9-subir-mi-commit-enmendado-al-repositorio-remoto-pero-obtuve-un-mensaje-de-error)
     - [Accidentalmente hice un hard reset y quiero mis cambios de vuelta](#accidentalmente-hice-un-hard-reset-y-quiero-mis-cambios-de-vuelta)
+    - [Accidentalment hice un commit y empujé una fusión](#accidentalment-hice-un-commit-y-empuj%C3%A9-una-fusi%C3%B3n)
+    - [Accidentalmente hice un commit y empujé archivos que contienen data sensible](#accidentalmente-hice-un-commit-y-empuj%C3%A9-archivos-que-contienen-data-sensible)
   - [Staging](#staging)
     - [Necesito agregar otros cambios al commit anterior](#necesito-agregar-otros-cambios-al-commit-anterior)
     - [Quiero agregar parte de un nuevo archivo, pero no todo el archivo](#quiero-agregar-parte-de-un-nuevo-archivo-pero-no-todo-el-archivo)
@@ -112,6 +117,23 @@ En aras de la claridad, todos los ejemplos de este documento usan un indicador d
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+## Repositorios
+
+### Quiero empezar un repositorio local
+
+Para inicializar un directorio existente como un repositorio de Git:
+
+```sh
+(my-folder) $ git init
+```
+
+### Quiero clonar un repositorio remoto
+
+Para clonar (copiar) un repositorio remoto, copia la url del repositorio y ejecuta:
+
+```sh
+$ git clone [url]
+```
 
 ## Editando commits
 
@@ -233,6 +255,48 @@ Verás una lista de tus antiguos commits, y un commit para el reset. Escoge el S
 ```
 
 Y deberías estar ubicado en ese commit.
+
+### Accidentalment hice un commit y empujé una fusión
+
+Si accidentalmente fusionaste una rama a la principal de desarrollo antes de que esté lista para fusionar, todavía puedes deshacer esa fusión. Pero hay un problema: Un commit de fusión tiene más de un padre (usualmente 2).
+
+El comando a usar
+```sh
+(feature-branch)$ git revert -m 1 <commit>
+```
+donde la opción -m 1 option menciona seleccionar el padre número 1 (la rama en la cual se hizo la fusión) como el padre a revertirlo.
+
+Nota: el número padre no es un identificador de commit. Más bien, un commit de fusión tiene una línea `Merge: 8e2ce2d 86ac2e7`. El número padre empieza con el número 1 como índice, el primer identificador es número 1, el segundo es el número 2, y así
+
+### Accidentalmente hice un commit y empujé archivos que contienen data sensible
+
+Si accidentalment empujaste archivos que contienen data sensible (contraseñas, llaves, etc.), puedes modificar el commit previo. Ten en mente que una vez que hayas hecho un commit, debes considerar cualquier información que éste contiene para ser empujado. Estos pasos pueden remover la data sensible de tu repo público o tu copia local, pero **no puedes** remover la data sensible de copias jaladas de otras personas. Si quieres hacer un commit de una contraseña, **cámbialo de inmediato**. Si hiciste commit de una llave, **regenérala de inmediato**. Modificar el commit enviado no es suficiente, ya que cualquiera podría haber retirado el commit original que contiene sus datos confidenciales en ese tiempo.
+
+Si editas un archivo y remueves la data sensible, entonces ejecuta
+```sh
+(feature-branch)$ git add edited_file
+(feature-branch)$ git commit --amend --no-edit
+(feature-branch)$ git push --force-with-lease origin [branch]
+```
+
+Si quieres remover un archivo entero (pero mantenerlo localmente), entonces ejecuta
+```sh
+(feature-branch)$ git rm --cached sensitive_file
+echo sensitive_file >> .gitignore
+(feature-branch)$ git add .gitignore
+(feature-branch)$ git commit --amend --no-edit
+(feature-branch)$ git push --force-with-lease origin [branch]
+```
+Alternativamente guarda tu data sensible en variables de entorno locales.
+
+Si quieres remover completamente un archivo completo (y no mantenerlo localmente), entonces ejecuta
+```sh
+(feature-branch)$ git rm sensitive_file
+(feature-branch)$ git commit --amend --no-edit
+(feature-branch)$ git push --force-with-lease origin [branch]
+```
+
+Si haz hecho otros commits durante ese tiempo (ej. la data sensible está en un commit antes de ese commit), necesitarás hacer un rebase.
 
 ## Staging
 
