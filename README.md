@@ -42,6 +42,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I need to add staged changes to the previous commit](#i-need-to-add-staged-changes-to-the-previous-commit)
     - [I want to stage part of a new file, but not the whole file](#i-want-to-stage-part-of-a-new-file-but-not-the-whole-file)
     - [I want to add changes in one file to two different commits](#i-want-to-add-changes-in-one-file-to-two-different-commits)
+    - [I staged too many edits, and I want to break them out into a separate commit](#i-staged-too-many-edits-and-i-want-to-break-them-out-into-a-separate-commit)
     - [I want to stage my unstaged edits, and unstage my staged edits](#i-want-to-stage-my-unstaged-edits-and-unstage-my-staged-edits)
   - [Unstaged Edits](#unstaged-edits)
     - [I want to move my unstaged edits to a new branch](#i-want-to-move-my-unstaged-edits-to-a-new-branch)
@@ -380,6 +381,11 @@ Then, you will need to use the `e` option to manually choose which lines to add.
 ### I want to add changes in one file to two different commits
 
 `git add` will add the entire file to a commit. `git add -p` will allow to interactively select which changes you want to add.
+
+<a href="selective-unstage-edits"></a>
+### I staged too many edits, and I want to break them out into a separate commit
+
+`git reset -p` will open a patch mode reset dialog.  Much like `git add -p` but yes will reset the change, unstaging it.
 
 <a href="unstaging-edits-and-staging-the-unstaged"></a>
 ### I want to stage my unstaged edits, and unstage my staged edits
