@@ -50,7 +50,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I want to discard specific unstaged files](#i-want-to-discard-specific-unstaged-files)
     - [I want to discard only my unstaged local changes](#i-want-to-discard-only-my-unstaged-local-changes)
     - [I want to discard all of my untracked files](#i-want-to-discard-all-of-my-untracked-files)
-    - [I want to unstage specific staged file](#i-want-to-unstage-specific-staged-file)
+    - [I want to unstage a specific staged file](#i-want-to-unstage-a-specific-staged-file)
   - [Branches](#branches)
     - [I want to list all branches](#i-want-to-list-all-branches)
     - [Create a branch from a commit](#create-a-branch-from-a-commit)
@@ -482,15 +482,15 @@ $ git clean -f
 ```
 
 <a href="I-want-to-unstage-specific-staged-file"></a>
-### I want to unstage specific staged file
+### I want to unstage a specific staged file
 
-Sometimes we have one or more files that accidentally ended up being staged, and these files have not been committed before, to unstage them
+Sometimes we have one or more files that accidentally ended up being staged, and these files have not been committed before. To unstage them:
 
 ```sh
-$ git reset -- filename
+$ git reset -- <filename>
 ```
 
-this result in unstaging the file and make it look like it's untracked, then you can decide what to do with it, either delete or add a .gitignore entry.
+this result in unstaging the file and make it look like it's untracked.
 
 
 ## Branches
