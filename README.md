@@ -492,7 +492,6 @@ $ git reset -- <filename>
 
 this results in unstaging the file and make it look like it's untracked.
 
-
 ## Branches
 
 ### I want to list all branches
