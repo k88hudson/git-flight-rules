@@ -490,7 +490,7 @@ Sometimes we have one or more files that accidentally ended up being staged, and
 $ git reset -- <filename>
 ```
 
-this results in unstaging the file and make it look like it's untracked.
+This results in unstaging the file and make it look like it's untracked.
 
 ## Branches
 
