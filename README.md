@@ -402,7 +402,7 @@ With bfg the files that exist on your latest commit will not be affected. For ex
 
 Note, if you renamed your file as part of a commit, e.g. if it started as `LargeFileFirstName.mp4` and a commit changed it to `LargeFileSecondName.mp4`, running `java -jar ~/Downloads/bfg.jar --delete-files LargeFileSecondName.mp4` will not remove it from git history. Either run the `--delete-files` command with both filenames, or with a matching pattern. As explained above, any files present in the repo on your latest commit will be safe.
 
-Once you have removed your desired files, test carefully that you haven't broken anything in your repo - if you have, you can re-clone the origin from the server to start over.
+Once you have removed your desired files, test carefully that you haven't broken anything in your repo - if you have, it is easiest to re-clone your repo to start over.
 To finish, optionally use git garbage collection to minimize your local .git folder size, and then force push.
 ```sh
 (master)$ git reflog expire --expire=now --all && git gc --prune=now --aggressive
@@ -415,7 +415,7 @@ Since you just rewrote the entire git repo history, the `git push` operation may
 (master)$ git push --force
 ```
 
-If this does not work, you will need to manually push the repo history in chunks of commits. In the command below, try increasing the `<number>` until the push operation succeeds.
+If this does not work, you will need to manually push the repo history in chunks of commits. In the command below, try increasing `<number>` until the push operation succeeds.
 ```sh
 (master)$ git push -u origin HEAD~<number>:refs/head/master --force
 ```
