@@ -39,7 +39,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I accidentally did a hard reset, and I want my changes back](#i-accidentally-did-a-hard-reset-and-i-want-my-changes-back)
     - [I accidentally committed and pushed a merge](#i-accidentally-committed-and-pushed-a-merge)
     - [I accidentally committed and pushed files containing sensitive data](#i-accidentally-committed-and-pushed-files-containing-sensitive-data)
-    - [I want to remove a large file from ever existing in repo history](#remove-big-files)
+    - [I want to remove a large file from ever existing in repo history](#i-want-to-remove-a-large-file-from-ever-existing-in-repo-history)
     - [I need to change the content of a commit which is not my last](#i-need-to-change-the-content-of-a-commit-which-is-not-my-last)
   - [Staging](#staging)
     - [I need to add staged changes to the previous commit](#i-need-to-add-staged-changes-to-the-previous-commit)
@@ -367,7 +367,7 @@ If you want to completely remove an entire file (and not keep it locally), then 
 
 If you have made other commits in the meantime (i.e. the sensitive data is in a commit before the previous commit), you will have to rebase. 
 
-<a href="#remove-big-files"></a>
+<a href="#i-want-to-remove-a-large-file-from-ever-existing-in-repo-history"></a>
 ### I want to remove a large file from ever existing in repo history
 
 If the file you want to delete is secret or sensitive, instead see [how to remove sensitive files](#i-accidentally-committed-and-pushed-files-containing-sensitive-data).
