@@ -39,6 +39,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I accidentally did a hard reset, and I want my changes back](#i-accidentally-did-a-hard-reset-and-i-want-my-changes-back)
     - [I accidentally committed and pushed a merge](#i-accidentally-committed-and-pushed-a-merge)
     - [I accidentally committed and pushed files containing sensitive data](#i-accidentally-committed-and-pushed-files-containing-sensitive-data)
+    - [I want to remove a large file from ever existing in repo history](#remove-big-files)
     - [I need to change the content of a commit which is not my last](#i-need-to-change-the-content-of-a-commit-which-is-not-my-last)
   - [Staging](#staging)
     - [I need to add staged changes to the previous commit](#i-need-to-add-staged-changes-to-the-previous-commit)
@@ -366,6 +367,60 @@ If you want to completely remove an entire file (and not keep it locally), then 
 
 If you have made other commits in the meantime (i.e. the sensitive data is in a commit before the previous commit), you will have to rebase. 
 
+<a href="#remove-big-files"></a>
+### I want to remove a large file from ever existing in repo history
+
+If the file you want to delete is secret or sensitive, instead see [how to remove sensitive files](#i-accidentally-committed-and-pushed-files-containing-sensitive-data).
+
+Even if you delete a large or unwanted file in a recent commit, it still exists in git history, in your repo's `.git` folder, and will make `git clone` download unneeded files. 
+
+The actions in this part of the guide will require a force push, and rewrite large sections of repo history, so if you are working with remote collaborators, check first that any local work of theirs is pushed.
+
+There are two options for rewriting history, the built-in `git-filter-branch` and [`bfg-repo-cleaner`](https://rtyley.github.io/bfg-repo-cleaner/). This guide will explain `bfg` since it is significantly cleaner and more performant.
+
+Download the bfg jar from the link [here](https://rtyley.github.io/bfg-repo-cleaner/). Our examples will use `bfg.jar`, but your download may have a version number, e.g. `bfg-1.13.0.jar`.
+
+To delete a specific file. 
+```sh
+(master)$ git rm path/to/filetoremove
+(master)$ git commit -m "Commit removing filetoremove"
+(master)$ java -jar ~/Downloads/bfg.jar --delete-files filetoremove
+```
+Note that in bfg you must use the plain file name even if it is in a subdirectory.
+
+You can also delete a file by pattern, e.g.:
+```sh
+(master)$ git rm *.jpg
+(master)$ git commit -m "Commit removing *.jpg"
+(master)$ java -jar ~/Downloads/bfg.jar --delete-files *.jpg
+```
+
+With bfg the files that exist on your latest commit will not be affected. For example, if you had several large .tga files in your repo, and then in an earlier commit, you deleted a subset of them, this call does not touch files present in the latest commit:
+```sh
+(master)$ java -jar ~/Downloads/bfg.jar --delete-files *.tga
+```
+
+Note, if you renamed your file as part of a commit, e.g. if it started as `LargeFileFirstName.mp4` and a commit changed it to `LargeFileSecondName.mp4`, running `java -jar ~/Downloads/bfg.jar --delete-files LargeFileSecondName.mp4` will not remove it from git history. Either run the `--delete-files` command with both filenames, or with a matching pattern. As explained above, any files present in the repo on your latest commit will be safe.
+
+Once you have removed your desired files, test carefully that you haven't broken anything in your repo - if you have, you can re-clone the origin from the server to start over.
+To finish, optionally use git garbage collection to minimize your local .git folder size, and then force push.
+```sh
+(master)$ git reflog expire --expire=now --all && git gc --prune=now --aggressive
+(master)$ git push --force
+```
+
+Since you just rewrote the entire git repo history, the `git push` operation may be too large, and return the error `“The remote end hung up unexpectedly”`. If this happens, you can try increasing the git post buffer:
+```sh
+(master)$ git config http.postBuffer 524288000
+(master)$ git push --force
+```
+
+If this does not work, you will need to manually push the repo history in chunks of commits. In the command below, try increasing the `<number>` until the push operation succeeds.
+```sh
+(master)$ git push -u origin HEAD~<number>:refs/head/master --force
+```
+Once the push operation succeeds the first time, decrease `<number>` gradually until a conventional `git push` succeeeds.
+
 <a href="i-need-to-change-the-content-of-a-commit-which-is-not-my-last"></a>
 ### I need to change the content of a commit which is not my last
 
@@ -406,7 +461,6 @@ which tells Git to recreate the commit, but to leave the commit message unedited
 ```
 
 will do the rest of the work for you.
-
 
 ## Staging
 
