@@ -376,9 +376,9 @@ Even if you delete a large or unwanted file in a recent commit, it still exists 
 
 The actions in this part of the guide will require a force push, and rewrite large sections of repo history, so if you are working with remote collaborators, check first that any local work of theirs is pushed.
 
-There are two options for rewriting history, the built-in `git-filter-branch` and [`bfg-repo-cleaner`](https://rtyley.github.io/bfg-repo-cleaner/). This guide will explain `bfg` since it is significantly cleaner and more performant.
+There are two options for rewriting history, the built-in `git-filter-branch` or [`bfg-repo-cleaner`](https://rtyley.github.io/bfg-repo-cleaner/). `bfg` is significantly cleaner and more performant, but it is a third-party download and requires java. We will describe both alternatives.
 
-#### Changing history using bfg
+#### Recommended Technique: Use third-party bfg
 
 Using bfg-repo-cleaner requires java. Download the bfg jar from the link [here](https://rtyley.github.io/bfg-repo-cleaner/). Our examples will use `bfg.jar`, but your download may have a version number, e.g. `bfg-1.13.0.jar`.
 
@@ -404,7 +404,15 @@ With bfg the files that exist on your latest commit will not be affected. For ex
 
 Note, if you renamed your file as part of a commit, e.g. if it started as `LargeFileFirstName.mp4` and a commit changed it to `LargeFileSecondName.mp4`, running `java -jar ~/Downloads/bfg.jar --delete-files LargeFileSecondName.mp4` will not remove it from git history. Either run the `--delete-files` command with both filenames, or with a matching pattern. As explained above, any files present in the repo on your latest commit will be safe.
 
-#### Pushing your chnaged repo history
+#### Alternate Technique: Use git-filter-branch
+
+TODO:
+* delete single file
+* delete by pattern while protecting existing files
+* handling renames
+
+
+#### Final Step: Pushing your changed repo history
 
 Once you have removed your desired files, test carefully that you haven't broken anything in your repo - if you have, it is easiest to re-clone your repo to start over.
 To finish, optionally use git garbage collection to minimize your local .git folder size, and then force push.
