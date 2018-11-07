@@ -385,13 +385,25 @@ Then, you will need to use the `e` option to manually choose which lines to add.
 <a href="unstaging-edits-and-staging-the-unstaged"></a>
 ### I want to stage my unstaged edits, and unstage my staged edits
 
-This is tricky. The best I figure is that you should stash your unstaged edits. Then, reset. After that, pop your stashed edits back, and add them.
+This is tricky. You need to "stash" staged changes to a temporary commit, and put the unstaged changes in a stash. Then, remove the commit and reapply stashed changes to the index:
 
 ```sh
-$ git stash -k
-$ git reset --hard
-$ git stash pop
+$ git commit -m "temp commit with staged changes"
 $ git add -A
+$ git stash
+$ git reset HEAD~1
+$ git stash apply --index
+```
+
+Alternative (and perhaps easier to understand) solution is to create two temporary commits, swap them with interactive rebase and "uncommit" the changes:
+
+```sh
+$ git commit -m "temp commit with staged changes"
+$ git commit -am "temp commit with unstaged changes"
+$ git rebase -i HEAD~2
+# swap the two commits in rebase menu
+$ git reset HEAD~1
+$ git reset --soft HEAD~1
 ```
 
 ## Unstaged Edits
