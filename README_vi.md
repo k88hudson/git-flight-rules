@@ -169,7 +169,7 @@ Hoặc
 $ git log -n1 -p
 ```
 
-If you want to see a file at a specific commit, you can also do this (where `<commitid>` is the commit you're interested in):
+Nếu bạn muốn xem một file tại một commit cụ thể, bạn có thể cũng có thể làm được điều này ( `<commitid>`  là commit mà bạn quan tâm):
 
 ```sh
 $ git show <commitid>:filename
