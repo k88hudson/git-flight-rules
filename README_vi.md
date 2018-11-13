@@ -1,7 +1,7 @@
 # Flight rules cho Git
 
 🌍
-*[English](README.md) ∙ [Español](README_es.md)  ∙  [Русский](README_ru.md) ∙ [简体中文](README_zh-CN.md)∙ [한국어](README_kr.md)*
+*[English](README.md) ∙ [Español](README_es.md)  ∙  [Русский](README_ru.md) ∙ [简体中文](README_zh-CN.md)∙ [한국어](README_kr.md)  ∙  [Tiếng Việt](README_vi.md)* 
 
 #### "flight rules" là gì?
 
@@ -13,7 +13,7 @@ Một [hướng dẫn cho các phi hành gia astronauts](https://www.jsc.nasa.go
 
 &mdash; Chris Hadfield, *An Astronaut's Guide to Life*.
 
-#### Conventions for this document
+#### Chuyển sang tài liệu này
 
 Vì để rõ ràng nên tất cả các ví dụ trong tài liệu này sử dụng thêm dấu bash prompt được tuỳ chỉnh để chỉ ra nhánh hiện tại và có hoặc không sự thay đổi giai đoạn. Nhánh được đặt trong dấu ngoặc đơn và  The branch is enclosed in parentheses, and một ký tự `*` bên cạnh tên nhánh cho biết các thay đổi của giai đoạn.
 
@@ -25,103 +25,103 @@ Tất cả các command nên làm việc với phiên bản nhỏ nhất 2.13.0.
 **Danh mục nội dung**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
   - [Repositories](#repositories)
-    - [I want to start a local repository](#i-want-to-start-a-local-repository)
-    - [I want to clone a remote repository](#i-want-to-clone-a-remote-repository)
-  - [Editing Commits](#editing-commits)
-    - [What did I just commit?](#what-did-i-just-commit)
-    - [I wrote the wrong thing in a commit message](#i-wrote-the-wrong-thing-in-a-commit-message)
-    - [I committed with the wrong name and email configured](#i-committed-with-the-wrong-name-and-email-configured)
-    - [I want to remove a file from the previous commit](#i-want-to-remove-a-file-from-the-previous-commit)
-    - [I want to delete or remove my last commit](#i-want-to-delete-or-remove-my-last-commit)
-    - [Delete/remove arbitrary commit](#deleteremove-arbitrary-commit)
-    - [I tried to push my amended commit to a remote, but I got an error message](#i-tried-to-push-my-amended-commit-to-a-remote-but-i-got-an-error-message)
-    - [I accidentally did a hard reset, and I want my changes back](#i-accidentally-did-a-hard-reset-and-i-want-my-changes-back)
-    - [I accidentally committed and pushed a merge](#i-accidentally-committed-and-pushed-a-merge)
-    - [I accidentally committed and pushed files containing sensitive data](#i-accidentally-committed-and-pushed-files-containing-sensitive-data)
+    - [Tôi muốn bắt đầu một repository trên local](#t%C3%B4i-mu%E1%BB%91n-b%E1%BA%AFt-%C4%91%E1%BA%A7u-m%E1%BB%99t-repository-tr%C3%AAn-local)
+    - [Tôi muốn clone một remote repository](#t%C3%B4i-mu%E1%BB%91n-clone-m%E1%BB%99t-remote-repository)
+  - [Chỉnh sửa Commit](#ch%E1%BB%89nh-s%E1%BB%ADa-commit)
+    - [Bạn vừa commit điều gì ?](#b%E1%BA%A1n-v%E1%BB%ABa-commit-%C4%91i%E1%BB%81u-g%C3%AC-)
+    - [Tôi đã viết sai vài thứ trong message của commit](#t%C3%B4i-%C4%91%C3%A3-vi%E1%BA%BFt-sai-v%C3%A0i-th%E1%BB%A9-trong-message-c%E1%BB%A7a-commit)
+    - [Tôi đã commit với tên và email cấu hình sai](#t%C3%B4i-%C4%91%C3%A3-commit-v%E1%BB%9Bi-t%C3%AAn-v%C3%A0-email-c%E1%BA%A5u-h%C3%ACnh-sai)
+    - [Tôi muốn xoá một file từ commit trước](#t%C3%B4i-mu%E1%BB%91n-xo%C3%A1-m%E1%BB%99t-file-t%E1%BB%AB-commit-tr%C6%B0%E1%BB%9Bc)
+    - [Tôi muốn xoá hoặc loại bỏ commit cuối cùng nhất của tôi](#t%C3%B4i-mu%E1%BB%91n-xo%C3%A1-ho%E1%BA%B7c-lo%E1%BA%A1i-b%E1%BB%8F-commit-cu%E1%BB%91i-c%C3%B9ng-nh%E1%BA%A5t-c%E1%BB%A7a-t%C3%B4i)
+    - [Xoá/loại bỏ commit tuỳ ý](#xo%C3%A1lo%E1%BA%A1i-b%E1%BB%8F-commit-tu%E1%BB%B3-%C3%BD)
+    - [Tôi đã cố gắng push commit đã sửa đổi lên remote, nhưng tôi gặp một thông báo lỗi](#t%C3%B4i-%C4%91%C3%A3-c%E1%BB%91-g%E1%BA%AFng-push-commit-%C4%91%C3%A3-s%E1%BB%ADa-%C4%91%E1%BB%95i-l%C3%AAn-remote-nh%C6%B0ng-t%C3%B4i-g%E1%BA%B7p-m%E1%BB%99t-th%C3%B4ng-b%C3%A1o-l%E1%BB%97i)
+    - [Tôi đã vô tình thực hiện hard reset, và tôii muốn các thay đổi của tôi trở lại trước đó.](#t%C3%B4i-%C4%91%C3%A3-v%C3%B4-t%C3%ACnh-th%E1%BB%B1c-hi%E1%BB%87n-hard-reset-v%C3%A0-t%C3%B4ii-mu%E1%BB%91n-c%C3%A1c-thay-%C4%91%E1%BB%95i-c%E1%BB%A7a-t%C3%B4i-tr%E1%BB%9F-l%E1%BA%A1i-tr%C6%B0%E1%BB%9Bc-%C4%91%C3%B3)
+    - [Tôi vô tình commit và đẩy lên một merge](#t%C3%B4i-v%C3%B4-t%C3%ACnh-commit-v%C3%A0-%C4%91%E1%BA%A9y-l%C3%AAn-m%E1%BB%99t-merge)
+    - [Tôi vô tình commit và đẩy các file chứa các dữ liệu nhảy cảm](#t%C3%B4i-v%C3%B4-t%C3%ACnh-commit-v%C3%A0-%C4%91%E1%BA%A9y-c%C3%A1c-file-ch%E1%BB%A9a-c%C3%A1c-d%E1%BB%AF-li%E1%BB%87u-nh%E1%BA%A3y-c%E1%BA%A3m)
   - [Staging](#staging)
-    - [I need to add staged changes to the previous commit](#i-need-to-add-staged-changes-to-the-previous-commit)
-    - [I want to stage part of a new file, but not the whole file](#i-want-to-stage-part-of-a-new-file-but-not-the-whole-file)
-    - [I want to add changes in one file to two different commits](#i-want-to-add-changes-in-one-file-to-two-different-commits)
-    - [I want to stage my unstaged edits, and unstage my staged edits](#i-want-to-stage-my-unstaged-edits-and-unstage-my-staged-edits)
+    - [Tôi cần thêm các thay đổi đã stage cho commit trước đó](#t%C3%B4i-c%E1%BA%A7n-th%C3%AAm-c%C3%A1c-thay-%C4%91%E1%BB%95i-%C4%91%C3%A3-stage-cho-commit-tr%C6%B0%E1%BB%9Bc-%C4%91%C3%B3)
+    - [Tôi muốn stage một phần của một file mới, nhưng không phải toàn bộ file](#t%C3%B4i-mu%E1%BB%91n-stage-m%E1%BB%99t-ph%E1%BA%A7n-c%E1%BB%A7a-m%E1%BB%99t-file-m%E1%BB%9Bi-nh%C6%B0ng-kh%C3%B4ng-ph%E1%BA%A3i-to%C3%A0n-b%E1%BB%99-file)
+    - [Tôi muốn thêm các thay đổi trong một file vào 2 commit khác nhau](#t%C3%B4i-mu%E1%BB%91n-th%C3%AAm-c%C3%A1c-thay-%C4%91%E1%BB%95i-trong-m%E1%BB%99t-file-v%C3%A0o-2-commit-kh%C3%A1c-nhau)
+    - [Tôi muốn stage các chỉnh sửa chưa được stage, và unstage các chỉnh sửa đã stage](#t%C3%B4i-mu%E1%BB%91n-stage-c%C3%A1c-ch%E1%BB%89nh-s%E1%BB%ADa-ch%C6%B0a-%C4%91%C6%B0%E1%BB%A3c-stage-v%C3%A0-unstage-c%C3%A1c-ch%E1%BB%89nh-s%E1%BB%ADa-%C4%91%C3%A3-stage)
   - [Unstaged Edits](#unstaged-edits)
-    - [I want to move my unstaged edits to a new branch](#i-want-to-move-my-unstaged-edits-to-a-new-branch)
-    - [I want to move my unstaged edits to a different, existing branch](#i-want-to-move-my-unstaged-edits-to-a-different-existing-branch)
-    - [I want to discard my local uncommitted changes (staged and unstaged)](#i-want-to-discard-my-local-uncommitted-changes-staged-and-unstaged)
-    - [I want to discard specific unstaged changes](#i-want-to-discard-specific-unstaged-changes)
-    - [I want to discard specific unstaged files](#i-want-to-discard-specific-unstaged-files)
-    - [I want to discard only my unstaged local changes](#i-want-to-discard-only-my-unstaged-local-changes)
-    - [I want to discard all of my untracked files](#i-want-to-discard-all-of-my-untracked-files)
-    - [I want to unstage a specific staged file](#i-want-to-unstage-a-specific-staged-file)
-  - [Branches](#branches)
-    - [I want to list all branches](#i-want-to-list-all-branches)
-    - [Create a branch from a commit](#create-a-branch-from-a-commit)
-    - [I pulled from/into the wrong branch](#i-pulled-frominto-the-wrong-branch)
-    - [I want to discard local commits so my branch is the same as one on the server](#i-want-to-discard-local-commits-so-my-branch-is-the-same-as-one-on-the-server)
-    - [I committed to master instead of a new branch](#i-committed-to-master-instead-of-a-new-branch)
-    - [I want to keep the whole file from another ref-ish](#i-want-to-keep-the-whole-file-from-another-ref-ish)
-    - [I made several commits on a single branch that should be on different branches](#i-made-several-commits-on-a-single-branch-that-should-be-on-different-branches)
-    - [I want to delete local branches that were deleted upstream](#i-want-to-delete-local-branches-that-were-deleted-upstream)
-    - [I accidentally deleted my branch](#i-accidentally-deleted-my-branch)
-    - [I want to delete a branch](#i-want-to-delete-a-branch)
-    - [I want to delete multiple branches](#i-want-to-delete-multiple-branches)
-    - [I want to rename a branch](#i-want-to-rename-a-branch)
-    - [I want to checkout to a remote branch that someone else is working on](#i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on)
-    - [I want to create a new remote branch from current local one](#i-want-to-create-a-new-remote-branch-from-current-local-one)
-    - [I want to set a remote branch as the upstream for a local branch](#i-want-to-set-a-remote-branch-as-the-upstream-for-a-local-branch)
-    - [I want to set my HEAD to track the default remote branch](#i-want-to-set-my-head-to-track-the-default-remote-branch)
-    - [I made changes on the wrong branch](#i-made-changes-on-the-wrong-branch)
-  - [Rebasing and Merging](#rebasing-and-merging)
-    - [I want to undo rebase/merge](#i-want-to-undo-rebasemerge)
-    - [I rebased, but I don't want to force push](#i-rebased-but-i-dont-want-to-force-push)
-    - [I need to combine commits](#i-need-to-combine-commits)
-      - [Safe merging strategy](#safe-merging-strategy)
-      - [I need to merge a branch into a single commit](#i-need-to-merge-a-branch-into-a-single-commit)
-      - [I want to combine only unpushed commits](#i-want-to-combine-only-unpushed-commits)
-      - [I need to abort the merge](#i-need-to-abort-the-merge)
-    - [I need to update the parent commit of my branch](#i-need-to-update-the-parent-commit-of-my-branch)
-    - [Check if all commits on a branch are merged](#check-if-all-commits-on-a-branch-are-merged)
-    - [Possible issues with interactive rebases](#possible-issues-with-interactive-rebases)
-      - [The rebase editing screen says 'noop'](#the-rebase-editing-screen-says-noop)
-      - [There were conflicts](#there-were-conflicts)
+    - [Tôi muốn di chuyển các chỉnh sửa chưa được staged đến một nhánh mới](#t%C3%B4i-mu%E1%BB%91n-di-chuy%E1%BB%83n-c%C3%A1c-ch%E1%BB%89nh-s%E1%BB%ADa-ch%C6%B0a-%C4%91%C6%B0%E1%BB%A3c-staged-%C4%91%E1%BA%BFn-m%E1%BB%99t-nh%C3%A1nh-m%E1%BB%9Bi)
+    - [Tôi muốn di chuyển các chỉnh sửa chưa stage của tôi đến một nhánh khác đã tồn tại](#t%C3%B4i-mu%E1%BB%91n-di-chuy%E1%BB%83n-c%C3%A1c-ch%E1%BB%89nh-s%E1%BB%ADa-ch%C6%B0a-stage-c%E1%BB%A7a-t%C3%B4i-%C4%91%E1%BA%BFn-m%E1%BB%99t-nh%C3%A1nh-kh%C3%A1c-%C4%91%C3%A3-t%E1%BB%93n-t%E1%BA%A1i)
+    - [Tôi muốn bỏ các thay đôi chưa commit trên local (đã stage và chưa stage)](#t%C3%B4i-mu%E1%BB%91n-b%E1%BB%8F-c%C3%A1c-thay-%C4%91%C3%B4i-ch%C6%B0a-commit-tr%C3%AAn-local-%C4%91%C3%A3-stage-v%C3%A0-ch%C6%B0a-stage)
+    - [Tôi muốn loại bỏ các thay đổi chưa stage cụ thể](#t%C3%B4i-mu%E1%BB%91n-lo%E1%BA%A1i-b%E1%BB%8F-c%C3%A1c-thay-%C4%91%E1%BB%95i-ch%C6%B0a-stage-c%E1%BB%A5-th%E1%BB%83)
+    - [Tôi muốn loại bỏ các file chưa stage cụ thể](#t%C3%B4i-mu%E1%BB%91n-lo%E1%BA%A1i-b%E1%BB%8F-c%C3%A1c-file-ch%C6%B0a-stage-c%E1%BB%A5-th%E1%BB%83)
+    - [Tôi chỉ loại bỏ các thay đổi chưa stage trên local](#t%C3%B4i-ch%E1%BB%89-lo%E1%BA%A1i-b%E1%BB%8F-c%C3%A1c-thay-%C4%91%E1%BB%95i-ch%C6%B0a-stage-tr%C3%AAn-local)
+    - [Tôi muốn loại bỏ tất cả các file chưa được theo dõi (track)](#t%C3%B4i-mu%E1%BB%91n-lo%E1%BA%A1i-b%E1%BB%8F-t%E1%BA%A5t-c%E1%BA%A3-c%C3%A1c-file-ch%C6%B0a-%C4%91%C6%B0%E1%BB%A3c-theo-d%C3%B5i-track)
+    - [Tôi muốn untage một file cụ thể đã stage](#t%C3%B4i-mu%E1%BB%91n-untage-m%E1%BB%99t-file-c%E1%BB%A5-th%E1%BB%83-%C4%91%C3%A3-stage)
+  - [Nhánh](#nh%C3%A1nh)
+    - [Tôi muốn liệt kê tất cả các nhánh](#t%C3%B4i-mu%E1%BB%91n-li%E1%BB%87t-k%C3%AA-t%E1%BA%A5t-c%E1%BA%A3-c%C3%A1c-nh%C3%A1nh)
+    - [Tạo một nhánh từ một commit](#t%E1%BA%A1o-m%E1%BB%99t-nh%C3%A1nh-t%E1%BB%AB-m%E1%BB%99t-commit)
+    - [Tôi đã pull từ / vào sai nhánh](#t%C3%B4i-%C4%91%C3%A3-pull-t%E1%BB%AB--v%C3%A0o-sai-nh%C3%A1nh)
+    - [Tôi muốn loại bỏ các commit trên local đển nhánh của tôi giống như một nhánh trên server](#t%C3%B4i-mu%E1%BB%91n-lo%E1%BA%A1i-b%E1%BB%8F-c%C3%A1c-commit-tr%C3%AAn-local-%C4%91%E1%BB%83n-nh%C3%A1nh-c%E1%BB%A7a-t%C3%B4i-gi%E1%BB%91ng-nh%C6%B0-m%E1%BB%99t-nh%C3%A1nh-tr%C3%AAn-server)
+    - [Tôi đã commit đến master thay vì một nhánh mới](#t%C3%B4i-%C4%91%C3%A3-commit-%C4%91%E1%BA%BFn-master-thay-v%C3%AC-m%E1%BB%99t-nh%C3%A1nh-m%E1%BB%9Bi)
+    - [Tôi muốn giữ toàn bộ file từ một ref-ish khác](#t%C3%B4i-mu%E1%BB%91n-gi%E1%BB%AF-to%C3%A0n-b%E1%BB%99-file-t%E1%BB%AB-m%E1%BB%99t-ref-ish-kh%C3%A1c)
+    - [Tôi đã thực hiện một số commit trên một nhánh duy nhất nó nên ở trên các nhánh khác nhau](#t%C3%B4i-%C4%91%C3%A3-th%E1%BB%B1c-hi%E1%BB%87n-m%E1%BB%99t-s%E1%BB%91-commit-tr%C3%AAn-m%E1%BB%99t-nh%C3%A1nh-duy-nh%E1%BA%A5t-n%C3%B3-n%C3%AAn-%E1%BB%9F-tr%C3%AAn-c%C3%A1c-nh%C3%A1nh-kh%C3%A1c-nhau)
+    - [Tôi muốn xóa các nhánh local đã bị xóa luồng phía trước](#t%C3%B4i-mu%E1%BB%91n-x%C3%B3a-c%C3%A1c-nh%C3%A1nh-local-%C4%91%C3%A3-b%E1%BB%8B-x%C3%B3a-lu%E1%BB%93ng-ph%C3%ADa-tr%C6%B0%E1%BB%9Bc)
+    - [Tôi vô tình xóa nhánh của tôi](#t%C3%B4i-v%C3%B4-t%C3%ACnh-x%C3%B3a-nh%C3%A1nh-c%E1%BB%A7a-t%C3%B4i)
+    - [Tôi muốn xoá một nhánh](#t%C3%B4i-mu%E1%BB%91n-xo%C3%A1-m%E1%BB%99t-nh%C3%A1nh)
+    - [Tôi muốn xoá nhiều nhánh](#t%C3%B4i-mu%E1%BB%91n-xo%C3%A1-nhi%E1%BB%81u-nh%C3%A1nh)
+    - [Tôi muốn đổi tên một nhánh](#t%C3%B4i-mu%E1%BB%91n-%C4%91%E1%BB%95i-t%C3%AAn-m%E1%BB%99t-nh%C3%A1nh)
+    - [TÔi muốn checkout đến một nhánh remote mà người khác đang làm việc trên đó](#t%C3%94i-mu%E1%BB%91n-checkout-%C4%91%E1%BA%BFn-m%E1%BB%99t-nh%C3%A1nh-remote-m%C3%A0-ng%C6%B0%E1%BB%9Di-kh%C3%A1c-%C4%91ang-l%C3%A0m-vi%E1%BB%87c-tr%C3%AAn-%C4%91%C3%B3)
+    - [Tôi muốn tạo một nhánh remote mới từ một nhánh local hiện tại](#t%C3%B4i-mu%E1%BB%91n-t%E1%BA%A1o-m%E1%BB%99t-nh%C3%A1nh-remote-m%E1%BB%9Bi-t%E1%BB%AB-m%E1%BB%99t-nh%C3%A1nh-local-hi%E1%BB%87n-t%E1%BA%A1i)
+    - [Tôi muốn thiết lập một nhánh remote giống như upstream cho một nhánh local](#t%C3%B4i-mu%E1%BB%91n-thi%E1%BA%BFt-l%E1%BA%ADp-m%E1%BB%99t-nh%C3%A1nh-remote-gi%E1%BB%91ng-nh%C6%B0-upstream-cho-m%E1%BB%99t-nh%C3%A1nh-local)
+    - [Tôi muốn thiết lập HEAD của tôi để theo dõi nhánh remote mặc định](#t%C3%B4i-mu%E1%BB%91n-thi%E1%BA%BFt-l%E1%BA%ADp-head-c%E1%BB%A7a-t%C3%B4i-%C4%91%E1%BB%83-theo-d%C3%B5i-nh%C3%A1nh-remote-m%E1%BA%B7c-%C4%91%E1%BB%8Bnh)
+    - [Tôi đã thực hiện thay đổi trên nhánh sai](#t%C3%B4i-%C4%91%C3%A3-th%E1%BB%B1c-hi%E1%BB%87n-thay-%C4%91%E1%BB%95i-tr%C3%AAn-nh%C3%A1nh-sai)
+  - [Rebasing và Merging](#rebasing-v%C3%A0-merging)
+    - [Tôi muốn huỷ bỏ rebase/merge](#t%C3%B4i-mu%E1%BB%91n-hu%E1%BB%B7-b%E1%BB%8F-rebasemerge)
+    - [Tôi đã rebase, nhưng tôi không muốn force push](#t%C3%B4i-%C4%91%C3%A3-rebase-nh%C6%B0ng-t%C3%B4i-kh%C3%B4ng-mu%E1%BB%91n-force-push)
+    - [Tôi cần kết hợp các commit](#t%C3%B4i-c%E1%BA%A7n-k%E1%BA%BFt-h%E1%BB%A3p-c%C3%A1c-commit)
+      - [Chiến lược merge an toàn](#chi%E1%BA%BFn-l%C6%B0%E1%BB%A3c-merge-an-to%C3%A0n)
+      - [Tôi cần merge một nhánh vào một commit duy nhất](#t%C3%B4i-c%E1%BA%A7n-merge-m%E1%BB%99t-nh%C3%A1nh-v%C3%A0o-m%E1%BB%99t-commit-duy-nh%E1%BA%A5t)
+      - [Tôi chỉ muốn kết hợp các commit chưa push](#t%C3%B4i-ch%E1%BB%89-mu%E1%BB%91n-k%E1%BA%BFt-h%E1%BB%A3p-c%C3%A1c-commit-ch%C6%B0a-push)
+      - [Tôi cần huỷ việc merge](#t%C3%B4i-c%E1%BA%A7n-hu%E1%BB%B7-vi%E1%BB%87c-merge)
+    - [Tôi cần cập nhật commit cha của nhánh của tôi](#t%C3%B4i-c%E1%BA%A7n-c%E1%BA%ADp-nh%E1%BA%ADt-commit-cha-c%E1%BB%A7a-nh%C3%A1nh-c%E1%BB%A7a-t%C3%B4i)
+    - [Kiểm tra xem tất cả commit trên một nhánh đã được merge](#ki%E1%BB%83m-tra-xem-t%E1%BA%A5t-c%E1%BA%A3-commit-tr%C3%AAn-m%E1%BB%99t-nh%C3%A1nh-%C4%91%C3%A3-%C4%91%C6%B0%E1%BB%A3c-merge)
+    - [Các vấn đề có thể xảy ra với interactive rebases](#c%C3%A1c-v%E1%BA%A5n-%C4%91%E1%BB%81-c%C3%B3-th%E1%BB%83-x%E1%BA%A3y-ra-v%E1%BB%9Bi-interactive-rebases)
+      - [Màn hình chỉnh sửa rebase cho biết 'noop'](#m%C3%A0n-h%C3%ACnh-ch%E1%BB%89nh-s%E1%BB%ADa-rebase-cho-bi%E1%BA%BFt-noop)
+      - [Có một vài xung đột](#c%C3%B3-m%E1%BB%99t-v%C3%A0i-xung-%C4%91%E1%BB%99t)
   - [Stash](#stash)
-    - [Stash all edits](#stash-all-edits)
-    - [Stash specific files](#stash-specific-files)
-    - [Stash with message](#stash-with-message)
-    - [Apply a specific stash from list](#apply-a-specific-stash-from-list)
+    - [Stash tất cả chỉnh sửa](#stash-t%E1%BA%A5t-c%E1%BA%A3-ch%E1%BB%89nh-s%E1%BB%ADa)
+    - [Stash các file cụ thể](#stash-c%C3%A1c-file-c%E1%BB%A5-th%E1%BB%83)
+    - [Stash với message](#stash-v%E1%BB%9Bi-message)
+    - [Apply một stash cụ thể từ danh sách](#apply-m%E1%BB%99t-stash-c%E1%BB%A5-th%E1%BB%83-t%E1%BB%AB-danh-s%C3%A1ch)
   - [Finding](#finding)
-    - [I want to find a string in any commit](#i-want-to-find-a-string-in-any-commit)
-    - [I want to find by author/committer](#i-want-to-find-by-authorcommitter)
-    - [I want to list commits containing specific files](#i-want-to-list-commits-containing-specific-files)
-    - [Find a tag where a commit is referenced](#find-a-tag-where-a-commit-is-referenced)
+    - [Tôi muốn tìm một chuỗi trong bất kỳ commit nào](#t%C3%B4i-mu%E1%BB%91n-t%C3%ACm-m%E1%BB%99t-chu%E1%BB%97i-trong-b%E1%BA%A5t-k%E1%BB%B3-commit-n%C3%A0o)
+    - [Tôi muốn tìm tác giác hoặc người commit](#t%C3%B4i-mu%E1%BB%91n-t%C3%ACm-t%C3%A1c-gi%C3%A1c-ho%E1%BA%B7c-ng%C6%B0%E1%BB%9Di-commit)
+    - [Tôi muốn liệt kê các commit chứa các file cụ thể](#t%C3%B4i-mu%E1%BB%91n-li%E1%BB%87t-k%C3%AA-c%C3%A1c-commit-ch%E1%BB%A9a-c%C3%A1c-file-c%E1%BB%A5-th%E1%BB%83)
+    - [Tìm một tag nơi một commit đã tham chiếu](#t%C3%ACm-m%E1%BB%99t-tag-n%C6%A1i-m%E1%BB%99t-commit-%C4%91%C3%A3-tham-chi%E1%BA%BFu)
   - [Submodules](#submodules)
-    - [Clone all submodules](#clone-all-submodules)
-    - [Remove a submodule](#remove-a-submodule)
+    - [Clone tất cả submodules](#clone-t%E1%BA%A5t-c%E1%BA%A3-submodules)
+    - [Xoá một submodule](#xo%C3%A1-m%E1%BB%99t-submodule)
   - [Miscellaneous Objects](#miscellaneous-objects)
-    - [Restore a deleted file](#restore-a-deleted-file)
-    - [Delete tag](#delete-tag)
-    - [Recover a deleted tag](#recover-a-deleted-tag)
+    - [Khôi phục một file đã xoá](#kh%C3%B4i-ph%E1%BB%A5c-m%E1%BB%99t-file-%C4%91%C3%A3-xo%C3%A1)
+    - [Xoá tag](#xo%C3%A1-tag)
+    - [Khôi phục một tag đã xoá](#kh%C3%B4i-ph%E1%BB%A5c-m%E1%BB%99t-tag-%C4%91%C3%A3-xo%C3%A1)
     - [Deleted Patch](#deleted-patch)
-    - [Exporting a repository as a Zip file](#exporting-a-repository-as-a-zip-file)
-    - [Push a branch and a tag that have the same name](#push-a-branch-and-a-tag-that-have-the-same-name)
-  - [Tracking Files](#tracking-files)
-    - [I want to change a file name's capitalization, without changing the contents of the file](#i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file)
-    - [I want to overwrite local files when doing a git pull](#i-want-to-overwrite-local-files-when-doing-a-git-pull)
-    - [I want to remove a file from Git but keep the file](#i-want-to-remove-a-file-from-git-but-keep-the-file)
-    - [I want to revert a file to a specific revision](#i-want-to-revert-a-file-to-a-specific-revision)
-    - [I want to list changes of a specific file between commits or branches](#i-want-to-list-changes-of-a-specific-file-between-commits-or-branches)
-    - [I want Git to ignore changes to a specific file](#i-want-git-to-ignore-changes-to-a-specific-file)
-  - [Configuration](#configuration)
-    - [I want to add aliases for some Git commands](#i-want-to-add-aliases-for-some-git-commands)
-    - [I want to add an empty directory to my repository](#i-want-to-add-an-empty-directory-to-my-repository)
-    - [I want to cache a username and password for a repository](#i-want-to-cache-a-username-and-password-for-a-repository)
-    - [I want to make Git ignore permissions and filemode changes](#i-want-to-make-git-ignore-permissions-and-filemode-changes)
-    - [I want to set a global user](#i-want-to-set-a-global-user)
-    - [I want to add command line coloring for Git](#i-want-to-add-command-line-coloring-for-git)
-  - [I've no idea what I did wrong](#ive-no-idea-what-i-did-wrong)
-- [Other Resources](#other-resources)
-  - [Books](#books)
-  - [Tutorials](#tutorials)
-  - [Scripts and Tools](#scripts-and-tools)
+    - [Xuất một repository ra một file Zip](#xu%E1%BA%A5t-m%E1%BB%99t-repository-ra-m%E1%BB%99t-file-zip)
+    - [Push một nhánh và một tag có tên giống nhau](#push-m%E1%BB%99t-nh%C3%A1nh-v%C3%A0-m%E1%BB%99t-tag-c%C3%B3-t%C3%AAn-gi%E1%BB%91ng-nhau)
+  - [Tracking các file](#tracking-c%C3%A1c-file)
+    - [Tôi muốn thay đổi cách viết hoa của tên tệp mà không thay đổi nội dung của tệp](#t%C3%B4i-mu%E1%BB%91n-thay-%C4%91%E1%BB%95i-c%C3%A1ch-vi%E1%BA%BFt-hoa-c%E1%BB%A7a-t%C3%AAn-t%E1%BB%87p-m%C3%A0-kh%C3%B4ng-thay-%C4%91%E1%BB%95i-n%E1%BB%99i-dung-c%E1%BB%A7a-t%E1%BB%87p)
+    - [Tôi muốn ghi đè lên các tệp local khi thực hiện lệnh git pull](#t%C3%B4i-mu%E1%BB%91n-ghi-%C4%91%C3%A8-l%C3%AAn-c%C3%A1c-t%E1%BB%87p-local-khi-th%E1%BB%B1c-hi%E1%BB%87n-l%E1%BB%87nh-git-pull)
+    - [Tôi muốn xóa một tệp khỏi Git nhưng vẫn giữ tệp](#t%C3%B4i-mu%E1%BB%91n-x%C3%B3a-m%E1%BB%99t-t%E1%BB%87p-kh%E1%BB%8Fi-git-nh%C6%B0ng-v%E1%BA%ABn-gi%E1%BB%AF-t%E1%BB%87p)
+    - [Tôi muốn revert tệp về bản sửa đổi cụ thể](#t%C3%B4i-mu%E1%BB%91n-revert-t%E1%BB%87p-v%E1%BB%81-b%E1%BA%A3n-s%E1%BB%ADa-%C4%91%E1%BB%95i-c%E1%BB%A5-th%E1%BB%83)
+    - [Tôi muốn liệt kê các thay đổi của một tệp cụ thể giữa các commit hoặc các nhánh](#t%C3%B4i-mu%E1%BB%91n-li%E1%BB%87t-k%C3%AA-c%C3%A1c-thay-%C4%91%E1%BB%95i-c%E1%BB%A7a-m%E1%BB%99t-t%E1%BB%87p-c%E1%BB%A5-th%E1%BB%83-gi%E1%BB%AFa-c%C3%A1c-commit-ho%E1%BA%B7c-c%C3%A1c-nh%C3%A1nh)
+    - [Tôi muốn Git bỏ qua những thay đổi đối với một tệp cụ thể](#t%C3%B4i-mu%E1%BB%91n-git-b%E1%BB%8F-qua-nh%E1%BB%AFng-thay-%C4%91%E1%BB%95i-%C4%91%E1%BB%91i-v%E1%BB%9Bi-m%E1%BB%99t-t%E1%BB%87p-c%E1%BB%A5-th%E1%BB%83)
+  - [Cấu hình](#c%E1%BA%A5u-h%C3%ACnh)
+    - [Tôi muốn thêm bí danh cho một số lệnh Git](#t%C3%B4i-mu%E1%BB%91n-th%C3%AAm-b%C3%AD-danh-cho-m%E1%BB%99t-s%E1%BB%91-l%E1%BB%87nh-git)
+    - [Tôi muốn thêm một thư mục trống vào repository của tôi](#t%C3%B4i-mu%E1%BB%91n-th%C3%AAm-m%E1%BB%99t-th%C6%B0-m%E1%BB%A5c-tr%E1%BB%91ng-v%C3%A0o-repository-c%E1%BB%A7a-t%C3%B4i)
+    - [Tôi muốn cache một username và password cho một repository](#t%C3%B4i-mu%E1%BB%91n-cache-m%E1%BB%99t-username-v%C3%A0-password-cho-m%E1%BB%99t-repository)
+    - [Tôi muốn làm cho Git bỏ qua các quyền và thay đổi về filemode](#t%C3%B4i-mu%E1%BB%91n-l%C3%A0m-cho-git-b%E1%BB%8F-qua-c%C3%A1c-quy%E1%BB%81n-v%C3%A0-thay-%C4%91%E1%BB%95i-v%E1%BB%81-filemode)
+    - [Tôi muốn đặt user toàn cục](#t%C3%B4i-mu%E1%BB%91n-%C4%91%E1%BA%B7t-user-to%C3%A0n-c%E1%BB%A5c)
+    - [Tôi muốn thêm màu cho command Git](#t%C3%B4i-mu%E1%BB%91n-th%C3%AAm-m%C3%A0u-cho-command-git)
+  - [Tôi không nghĩ mình đã làm gì sai](#t%C3%B4i-kh%C3%B4ng-ngh%C4%A9-m%C3%ACnh-%C4%91%C3%A3-l%C3%A0m-g%C3%AC-sai)
+- [Tài nguyên khác](#t%C3%A0i-nguy%C3%AAn-kh%C3%A1c)
+  - [Sách](#s%C3%A1ch)
+  - [Hướng dẫn](#h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn)
+  - [Scripts và các công cụ](#scripts-v%C3%A0-c%C3%A1c-c%C3%B4ng-c%E1%BB%A5)
   - [GUI Clients](#gui-clients)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -258,7 +258,7 @@ $ git push --force-with-lease [remote] [branch]
 Hoặc thực hiện một [interactive rebase](#interactive-rebase) và loại bỏ các dòng tương ứng cho các commit bạn muốn loại bỏ.
 
 <a name="#force-push"></a>
-### Tôi đã cố gắng push commit đã sử đổi lên remote, nhưng t gặp một thông báo lỗi
+### Tôi đã cố gắng push commit đã sửa đổi lên remote, nhưng tôi gặp một thông báo lỗi
 
 ```sh
 To https://github.com/yourusername/repo.git
@@ -281,7 +281,7 @@ Nói chung, **tránh force push**. Tốt nhất là tạo và push một commit 
 Nếu bạn hoàn toàn chắc chắn rằng không ai đang làm việc trên cùng một nhánh hoặc bạn muốn cập nhật phần đầu của một nhánh *vô điều kiện*, bạn có thể sử dụng `--force` (`-f`), nhưng điều này nói chung nên tránh.
 
 <a href="undo-git-reset-hard"></a>
-### Tôi đã vô tình khôi phục cài đặt gốc, và tối muốn thay đổi của tôi trở lại trước đó.
+### Tôi đã vô tình thực hiện hard reset, và tôii muốn các thay đổi của tôi trở lại trước đó.
 
 Nếu vô tình bạn thực hiện `git reset --hard`, bạn có thể vẫn nhận được commit trước của bạn, vì git giữ một bản log cho tất cả mọi thứ trong 1 vài ngày.
 
@@ -384,7 +384,7 @@ Sau đó, bạn sẽ cần sử dụng tuỳ chọn `e` để dùng cách thủ 
 `git add` sẽ thêm toàn bộ file vào một commit. `git add -p` sẽ cho phép tương tác chọn những thay đổi bạn muốn thêm.
 
 <a href="unstaging-edits-and-staging-the-unstaged"></a>
-### Tôi muốn stage các chỉnh sử chưa được stage, và unstage my staged edits
+### Tôi muốn stage các chỉnh sửa chưa được stage, và unstage các chỉnh sửa đã stage
 
 Điều này là khó khăn. Cách tốt nhất là bạn nên stash các chỉnh sửa chưa stage. Sau đó, reset. Sau đóm hãy pop lại các chỉnh sửa đã stash và thêm chúng.
 
@@ -515,7 +515,7 @@ $ git clean -f
 ```
 
 <a href="I-want-to-unstage-specific-staged-file"></a>
-### Tôi muốn úntage một file cụ thể đã stage
+### Tôi muốn untage một file cụ thể đã stage
 
 Đôi khi, chúng ta có một hoặc nhiều file đã vô tình bị kết thúc và các file này chưa được commit trước đó. Để unstage chúng:
 
@@ -573,7 +573,7 @@ $ git reset --hard c5bc55a
 Xong.
 
 <a href="discard-local-commits"></a>
-### Tôi muốn loại bỏ các commit trên local đển nhánh của thôi giống như một nhánh trên server
+### Tôi muốn loại bỏ các commit trên local đển nhánh của tôi giống như một nhánh trên server
 
 Xác nhận rằng bạn chưa push các thay đổi của mình đến server.
 
@@ -879,7 +879,7 @@ Switched to a new branch 'daves'
 
 Điều này sẽ cung cấp cho bạn một bản sao cục bộ của nhánh `daves`, và mọi cập nhật đã được push cũng sẽ được hiển thị từ remote.
 
-### Tôi muốn tạo một nhánh remte mới từ một nhánh local hiện tại
+### Tôi muốn tạo một nhánh remote mới từ một nhánh local hiện tại
 
 ```sh
 $ git push <remote> HEAD
@@ -955,7 +955,7 @@ Bạn có thể đã merge hoặc rebase nhánh hiện tại của bạn với m
 ```
 
 <a name="force-push-rebase"></a>
-### I đã rebase, nhưng tôi không muốn force push
+### Tôi đã rebase, nhưng tôi không muốn force push
 
 Thật không may, bạn phải bắt buộc push, nếu bạn muốn những thay đổi đó được ánh xạ trên nhánh remote. Điều này là do bạn đã thay đổi lịch sử. Nhánh remote sẽ không chấp nhận thay đổi trừ khi bạn ép buộc. Đây là một trong những lý do chính khiến nhiều người sử dụng một luồng merge, thay vì một luồng rebasing - các nhóm lớn có thể gặp rắc rối với các developer bắt buộc push. Sử dụng điều này một cách thận trọng. Một cách an toàn hơn để sử dụng rebase không phải là để ánh xạ các thay đổi của bạn trên nhánh remte, và thay vào đó thực hiện các thao tác sau:
 
@@ -1061,7 +1061,7 @@ Nếu mọi thứ thành công, bạn sẽ thấy một cái gì đó như thế
 (master)$ Successfully rebased and updated refs/heads/master.
 ```
 
-#### Chiến lực merge an toàn
+#### Chiến lược merge an toàn
 `--no-commit` thực hiện merge nhưng giả vờ hợp nhất không thành công và không tự động, cho phép người dùng có cơ hội kiểm tra và tinh chỉnh thêm kết quả merge trước khi commit. `no-ff` duy trì bằng chứng rằng một nhánh tính năng đã từng tồn tại, giữ cho lịch sử dự án nhất quán.
 
 ```sh
@@ -1279,7 +1279,7 @@ $ git log --committer=<name or email>
 
 Hãy nhớ rằng tác giả và người commit không giống. `--author` là người ban đầu đã viết code; mặt khác,  `--committer`, là người đã commit code thay mặc tác giả gốc.
 
-### Tôi muốn liệt kê các commit chứa cá file cụ thể
+### Tôi muốn liệt kê các commit chứa các file cụ thể
 
 Để tìm tất cả các commit chưa một file cụ thể bạn có thể sử dụng:
 
@@ -1476,7 +1476,7 @@ Lưu ý rằng điều này không xóa tệp khỏi kiểm soát source - nó c
 $ git update-index --no-assume-unchanged file-to-stop-ignoring
 ```
 
-## Cáu hình
+## Cấu hình
 
 ### Tôi muốn thêm bí danh cho một số lệnh Git
 
@@ -1592,8 +1592,6 @@ Các reflog ở trên cho thấy một checkout từ master đến nhánh 2.2 v�
 
 Nếu nó chỉ ra rằng bạn vô tình di chuyển trở lại, các reflog sẽ chứa commit master chỉ đến (0254ea7) trước khi bạn vô tình giảm 2 commit
 
-If it turns out that you accidentally moved back, the reflog will contain the commit master pointed to (0254ea7) before you accidentally dropped 2 commits.
-
 ```sh
 $ git reset --hard 0254ea7
 ```
@@ -1604,44 +1602,44 @@ Sử dụng `git reset` sau đó nó có thể thay đổi master trở về com
 
 # Tài nguyên khác
 
-## Books
+## Sách
 
 * [Learn Enough Git to Be Dangerous](https://www.learnenough.com/git-tutorial) - A book by Michael Hartl covering Git from basics
 * [Pro Git](https://git-scm.com/book/en/v2) - Scott Chacon and Ben Straub's excellent book about Git
 * [Git Internals](https://github.com/pluralsight/git-internals-pdf) - Scott Chacon's other excellent book about Git
 
-## Tutorials
+## Hướng dẫn
 
-* [19 Git Tips For Everyday Use](https://www.alexkras.com/19-git-tips-for-everyday-use) - A list of useful Git one liners
-* [Atlassian's Git tutorial](https://www.atlassian.com/git/tutorials) Get Git right with tutorials from beginner to advanced.
-* [Learn Git branching](https://learngitbranching.js.org/) An interactive web based branching/merging/rebasing tutorial
+* [19 mẹo sử dụng GIT hàng ngày](https://www.alexkras.com/19-git-tips-for-everyday-use) - Một danh sách các mẹo dùng GIT hữu ích
+* [Atlassian's Git tutorial](https://www.atlassian.com/git/tutorials) Sử dụng Git đúng với các hướng dẫn từ cơ bản đến nâng cao.
+* [Learn Git branching](https://learngitbranching.js.org/) Hướng dẫn phân nhánh / merging / rebasing dựa trên web interactive
 * [Getting solid at Git rebase vs. merge](https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa)
-* [Git Commands and Best Practices Cheat Sheet](https://zeroturnaround.com/rebellabs/git-commands-and-best-practices-cheat-sheet) - A Git cheat sheet in a blog post with more explanations
-* [Git from the inside out](https://codewords.recurse.com/issues/two/git-from-the-inside-out) - A tutorial that dives into Git's internals
-* [git-workflow](https://github.com/asmeurer/git-workflow) - [Aaron Meurer](https://github.com/asmeurer)'s howto on using Git to contribute to open source repositories
-* [GitHub as a workflow](https://hugogiraudel.com/2015/08/13/github-as-a-workflow/) - An interesting take on using GitHub as a workflow, particularly with empty PRs
-* [Githug](https://github.com/Gazler/githug) - A game to learn more common Git workflows
+* [Git Commands and Best Practices Cheat Sheet](https://zeroturnaround.com/rebellabs/git-commands-and-best-practices-cheat-sheet) - Một Git cheat sheet trong một bài đăng trên blog với nhiều giải thích hơn
+* [Git from the inside out](https://codewords.recurse.com/issues/two/git-from-the-inside-out) - Hướng dẫn đi sâu vào vào Git
+* [git-workflow](https://github.com/asmeurer/git-workflow) - [Aaron Meurer](https://github.com/asmeurer) của cách sử dụng Git để đóng góp vào repository mã nguồn mở
+* [GitHub as a workflow](https://hugogiraudel.com/2015/08/13/github-as-a-workflow/) - Một điều thú vị khi sử dụng GitHub như một quy trình làm việc, đặc biệt với các PR trống
+* [Githug](https://github.com/Gazler/githug) - Một trò chơi để học thêm về luồng làm việc chung của Git
 
-## Scripts and Tools
+## Scripts và các công cụ
 
-* [firstaidgit.io](http://firstaidgit.io/) A searchable selection of the most frequently asked Git questions
-* [git-extra-commands](https://github.com/unixorn/git-extra-commands) - a collection of useful extra Git scripts
-* [git-extras](https://github.com/tj/git-extras) - GIT utilities -- repo summary, repl, changelog population, author commit percentages and more
-* [git-fire](https://github.com/qw3rtman/git-fire) - git-fire is a Git plugin that helps in the event of an emergency by adding all current files, committing, and pushing to a new branch (to prevent merge conflicts).
-* [git-tips](https://github.com/git-tips/tips) - Small Git tips
-* [git-town](https://github.com/Originate/git-town) - Generic, high-level Git workflow support! http://www.git-town.com
+* [firstaidgit.io](http://firstaidgit.io/) Một lựa chọn có thể tìm kiếm các câu hỏi thường gặp nhất về Git
+* [git-extra-commands](https://github.com/unixorn/git-extra-commands) - tập hợp các script Git mở rộng hữu ích
+* [git-extras](https://github.com/tj/git-extras) - Các tiện ích GIT -- repo tóm tắt, thay thế, số lượng thay đổi, tỷ lệ phần trăm của tác giả và nhiều nữa
+* [git-fire](https://github.com/qw3rtman/git-fire) - git-fire là một plugin Git để giúp trong trường hợp khẩn cấp bằng cách thêm tất cả các tệp hiện tại, commit và push vào một nhánh mới (để ngăn xung đột khi merge).
+* [git-tips](https://github.com/git-tips/tips) - Các mẹo Git nhỏ
+* [git-town](https://github.com/Originate/git-town) - Hỗ trợ luồng làm việc Git chung, mức cao! http://www.git-town.com
 
 ## GUI Clients
-* [GitKraken](https://www.gitkraken.com/) - The downright luxurious Git client,for Windows, Mac & Linux
-* [git-cola](https://git-cola.github.io/) - another Git client for Windows and OS X
-* [GitUp](https://github.com/git-up/GitUp) - A newish GUI that has some very opinionated ways of dealing with Git's complications
-* [gitx-dev](https://rowanj.github.io/gitx/) - another graphical Git client for OS X
-* [Sourcetree](https://www.sourcetreeapp.com/) - Simplicity meets power in a beautiful and free Git GUI. For Windows and Mac.
-* [Tower](https://www.git-tower.com/) - graphical Git client for OS X (paid)
-* [tig](https://jonas.github.io/tig/) - terminal text-mode interface for Git
-* [Magit](https://magit.vc/) - Interface to Git implemented as an Emacs package.
-* [GitExtensions](https://github.com/gitextensions/gitextensions) - a shell extension, a Visual Studio 2010-2015 plugin and a standalone Git repository tool.
-* [Fork](https://git-fork.com/) - a fast and friendly Git client for Mac (beta)
-* [gmaster](https://gmaster.io/) - a Git client for Windows that has 3-way merge, analyze refactors, semantic diff and merge (beta)
-* [gitk](https://git-scm.com/docs/gitk) - a Git client for linux to allow simple view of repo state.
-* [SublimeMerge](https://www.sublimemerge.com/) - Blazing fast, extensible client that provides 3-way merges, powerful search and syntax highlighting, in active development.
+* [GitKraken](https://www.gitkraken.com/) - Client sang trọng cho Windows, Mac & Linux
+* [git-cola](https://git-cola.github.io/) - Git client khác cho Windows và OS X
+* [GitUp](https://github.com/git-up/GitUp) - Một GUI mới mẻ mà có một số cách rất quan tâm để giải quyết các việc khó chịu của Git
+* [gitx-dev](https://rowanj.github.io/gitx/) - Một Git client đồ hoạ khác cho OS X
+* [Sourcetree](https://www.sourcetreeapp.com/) - Sự đơn giản nhưng mạnh mẽ cho giao diện Git đẹp và miễn. Cho Windows and Mac.
+* [Tower](https://www.git-tower.com/) - Git client đồ hoạ cho OS X (trả phí)
+* [tig](https://jonas.github.io/tig/) - terminal text-mode interface cho Git
+* [Magit](https://magit.vc/) - Interface cho Git thực hiện như một gói Emacs .
+* [GitExtensions](https://github.com/gitextensions/gitextensions) - Một shell extension, một Visual Studio 2010-2015 plugin và một công cụ Git repository độc lập.
+* [Fork](https://git-fork.com/) - Một Git client nhanh và thân thiện cho Mac (beta)
+* [gmaster](https://gmaster.io/) - Một Git client cho Windows với 3 cách merge, analyze refactors, semantic diff và merge (beta)
+* [gitk](https://git-scm.com/docs/gitk) - Một Git client cho linux để cho phép xem đơn giản cho trạng thái repo.
+* [SublimeMerge](https://www.sublimemerge.com/) - Client nhanh, mở rộng, cung cấp 3 cách merge, tìm kiếm mạnh mẽ và làm nổi bật cú pháp, đang phát triển tích cực.

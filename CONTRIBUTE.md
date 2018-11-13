@@ -1,3 +1,14 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Contributing](#contributing)
+    - [Issues](#issues)
+    - [Pull Requests](#pull-requests)
+  - [Translation](#translation)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Contributing
 
 This is a community built document. Dive in and help out!
