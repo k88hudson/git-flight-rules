@@ -175,41 +175,41 @@ Nếu bạn muốn xem một file tại một commit cụ thể, bạn có thể
 $ git show <commitid>:filename
 ```
 
-### I wrote the wrong thing in a commit message
+### Tôi đã viết sai vài thứ trong message của commit
 
-If you wrote the wrong thing and the commit has not yet been pushed, you can do the following to change the commit message without changing the changes in the commit:
+Nếu bạn đã viết sai thứ gì đó và commit chưa được push lên, bạn có thể làm theo cách sau để thay đổi message của commit mà không làm thay đổi commit:
 
 ```sh
 $ git commit --amend --only
 ```
-This will open your default text editor, where you can edit the message. On the other hand, you can do this all in one command:
+Câu lệnh đó sẽ mở trình soạn thảo mặc định của bạn, nơi bạn có thể chỉnh sửa message. This will open your default text editor, where you can edit the message. Ngoài ra, bạn có thể làm tất cả điều này với một câu lệnh sau:
 
 ```sh
 $ git commit --amend --only -m 'xxxxxxx'
 ```
 
-If you have already pushed the message, you can amend the commit and force push, but this is not recommended.
+Nếu bạn đã đẩy message lên, bạn có thể chỉnh sửa commit và force push, nhưng điều đó không được khuyến khích.
 
 <a name="commit-wrong-author"></a>
-### I committed with the wrong name and email configured
+### Tôi đã commit với tên và email cấu hình sai
 
-If it's a single commit, amend it
+Nếu đó là một commit độc lập, chỉnh sửa nó:
 
 ```sh
-$ git commit --amend --no-edit --author "New Authorname <authoremail@mydomain.com>"
+$ git commit --amend --no-edit --author "Tên tác giả mới <authoremail@mydomain.com>"
 ```
 
-An alternative is to correctly configure your author settings in `git config --global author.(name|email)` and then use
+Một cách khác để cấu hình đúng tác giả là cài đặt trong `git config --global author.(name|email)` và sau đó sử dụng
 
 ```sh
 $ git commit --amend --reset-author --no-edit
 ```
 
-If you need to change all of history, see the man page for `git filter-branch`.
+Nếu bạn cần thay đổi tất cả lịch sử, hãy xem trang đó với `git filter-branch`.
 
-### I want to remove a file from the previous commit
+### Tôi muốn xoá một file từ commit trước
 
-In order to remove changes for a file from the previous commit, do the following:
+Để xoá các thay đổi đối với một file khỏi commit trước đó, hãy làm như sau:
 
 ```sh
 $ git checkout HEAD^ myfile
@@ -217,48 +217,48 @@ $ git add myfile
 $ git commit --amend --no-edit
 ```
 
-In case the file was newly added to the commit and you want to remove it (from Git alone), do:
+Trong trường hợp file mới được thêm vào commit và bạn muốn xoá nó (từ Git), hãy thực hiện:
 
 ```sh
 $ git rm --cached myfile
 $ git commit --amend --no-edit
 ```
 
-This is particularly useful when you have an open patch and you have committed an unnecessary file, and need to force push to update the patch on a remote. The `--no-edit` option is used to keep the existing commit message.
+Điều này đăc biệt hữu ích khi bạn có một bản patch mở và bạn đã commit một file không cần thiết và force push để cập nhật bản patch trên remote. Tuỳ chọn `--no-edit` được sử dụng để giữ message cho commit hiện tại.
 
 <a name="delete-pushed-commit"></a>
-### I want to delete or remove my last commit
+### Tôi muốn xoá hoặc loại bỏ commit cuối cùng nhất của tôi
 
-If you need to delete pushed commits, you can use the following. However, it will irreversibly change your history, and mess up the history of anyone else who had already pulled from the repository. In short, if you're not sure, you should never do this, ever.
+Nếu bạn muốn xoá các commit đã push, bạn có thể dụng cách sau. Tuy nhiên, nó sẽ không thể phục hồi thay đổi của lịch sử, và làm hỏng lịch sử của bất kỳ ai khác đã pull từ repository. Tóm lại, nếu bạn không chắc chắn, bạn không nên làm điều này.
 
 ```sh
 $ git reset HEAD^ --hard
 $ git push --force-with-lease [remote] [branch]
 ```
 
-If you haven't pushed, to reset Git to the state it was in before you made your last commit (while keeping your staged changes):
+Nếu bạn chưa push, để reset Git về trạng thái trước khi bạn thực hiện commit cuối (trong khi vãn giữ các thay đổi của giai đoạn) sử dụng:
 
 ```
 (my-branch*)$ git reset --soft HEAD@{1}
 
 ```
 
-This only works if you haven't pushed. If you have pushed, the only truly safe thing to do is `git revert SHAofBadCommit`. That will create a new commit that undoes all the previous commit's changes. Or, if the branch you pushed to is rebase-safe (ie. other devs aren't expected to pull from it), you can just use `git push --force-with-lease`. For more, see [the above section](#deleteremove-last-pushed-commit).
+Điều này chỉ hoạt động nếu bạn chưa push. Nếu bạn đã push, điều thực sự an toàn nhất cần làm là `git revert SHAofBadCommit`. Điều đó sẽ tạo một commit mới để quay trở lại thay đổi của commit trước đó. Hoặc nếu nhánh bạn đã push là rebase-safe (các dev khác không định pull từ nó về), bạn chỉ có thể sử dụng `git push --force-with-lease`. Để biết thêm, hãy xem [phần trên](#deleteremove-last-pushed-commit).
 
 <a name="delete-any-commit"></a>
-### Delete/remove arbitrary commit
+### Xoá/loại bỏ commit tuỳ ý
 
-The same warning applies as above. Never do this if possible.
+Lưu ý như trên. Không bao giờ làm điều này nếu có thể.
 
 ```sh
 $ git rebase --onto SHA1_OF_BAD_COMMIT^ SHA1_OF_BAD_COMMIT
 $ git push --force-with-lease [remote] [branch]
 ```
 
-Or do an [interactive rebase](#interactive-rebase) and remove the line(s) corresponding to commit(s) you want to see removed.
+Hoặc thực hiện một [interactive rebase](#interactive-rebase) và loại bỏ các dòng tương ứng cho các commit bạn muốn loại bỏ.
 
 <a name="#force-push"></a>
-### I tried to push my amended commit to a remote, but I got an error message
+### Tôi đã cố gắng push commit đã sử đổi lên remote, nhưng t gặp một thông báo lỗi
 
 ```sh
 To https://github.com/yourusername/repo.git
@@ -270,61 +270,61 @@ hint: 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 ```
 
-Note that, as with rebasing (see below), amending **replaces the old commit with a new one**, so you must force push (`--force-with-lease`) your changes if you have already pushed the pre-amended commit to your remote. Be careful when you do this &ndash; *always* make sure you specify a branch!
+Lưu ý rằng, như với rebase (xem bên dưới), sử đổi thay thể commit cũ với một commit mới, nên bạn phải force push (`--force-with-lease`) thay đổi của bạn nếu bạn đã push commit đã sửa đổi trược lên remote của bạn. Hãy cẩn thận khi bạn làm điều này &ndash; *luôn luôn* đảm bảo rằng bạn đã chỉ định một nhánh!
 
 ```sh
 (my-branch)$ git push origin mybranch --force-with-lease
 ```
 
-In general, **avoid force pushing**. It is best to create and push a new commit rather than force-pushing the amended commit as it will cause conflicts in the source history for any other developer who has interacted with the branch in question or any child branches. `--force-with-lease` will still fail, if someone else was also working on the same branch as you, and your push would overwrite those changes.
+Nói chung, **tránh force push**. Tốt nhất là tạo và push một commit mới thay vì force-push commit đã sửa đổi vì nó sẽ gây xung đột trong lịch sử của resource cho bất kỳ developer nào người mà đã tương tác với nhánh được đề cập hoặc bất kỳ nhánh con nào. `--force-with-lease` sẽ vẫn thất bại, nếu ai đó cũng đang làm việc trên cùng một nhánh với bạn, và việc push lên sẽ ghi đè lên những thay đổi đó.
 
-If you are *absolutely* sure that nobody is working on the same branch or you want to update the tip of the branch *unconditionally*, you can use `--force` (`-f`), but this should be avoided in general.
+Nếu bạn hoàn toàn chắc chắn rằng không ai đang làm việc trên cùng một nhánh hoặc bạn muốn cập nhật phần đầu của một nhánh *vô điều kiện*, bạn có thể sử dụng `--force` (`-f`), nhưng điều này nói chung nên tránh.
 
 <a href="undo-git-reset-hard"></a>
-### I accidentally did a hard reset, and I want my changes back
+### Tôi đã vô tình khôi phục cài đặt gốc, và tối muốn thay đổi của tôi trở lại trước đó.
 
-If you accidentally do `git reset --hard`, you can normally still get your commit back, as git keeps a log of everything for a few days.
+Nếu vô tình bạn thực hiện `git reset --hard`, bạn có thể vẫn nhận được commit trước của bạn, vì git giữ một bản log cho tất cả mọi thứ trong 1 vài ngày.
 
-Note: This is only valid if your work is backed up, i.e., either committed or stashed. `git reset --hard` _will remove_ uncommitted modifications, so use it with caution. (A safer option is `git reset --keep`.)
+Chú ý: Điều này chỉ hợp lệ nếu luồng làm việc của bạn đã được sao lưu, tức là được commit hoặc được stash. `git reset --hard` _sẽ loại bỏ_ các thay đổi không được commit, vì vậy hãy sử dụng nó một cách thận trọng. (Một tuỳ chọn an toàn là `git reset --keep`.)
 
 ```sh
 (master)$ git reflog
 ```
 
-You'll see a list of your past commits, and a commit for the reset. Choose the SHA of the commit you want to return to, and reset again:
+Bạn sẽ thấy danh sách các commit gần đây, và một commit cho reset. Chọn SHA của commit và muốn quay trở lại và reset lại:
 
 ```sh
 (master)$ git reset --hard SHA1234
 ```
 
-And you should be good to go.
+Và bạn nên tốt hơn để đi tiếp.
 
 <a href="undo-a-commit-merge"></a>
-### I accidentally committed and pushed a merge
+### Tôi vô tình commit và đẩy lên một merge
 
-If you accidentally merged a feature branch to the main development branch before it was ready to be merged, you can still undo the merge. But there's a catch: A merge commit has more than one parent (usually two).
+Nếu bạn vô tình merge một nhánh tính năng vào nhánh phát triển chính trước khi nó sẵn sàng để merge, bạn vẫn có thể undo merge. Nhưng có một điểm phải nắm được: Một commit merge có một hoặc nhiều hơn một parent (thường là 2).
 
-The command to use
+Câu lệnh để sử dụng:
 ```sh
 (feature-branch)$ git revert -m 1 <commit>
 ```
-where the -m 1 option says to select parent number 1 (the branch into which the merge was made) as the parent to revert to.
+Chỗ tuỳ chọn -m 1 cho biết số parent là 1 (nhánh mà merge được thực hiện) làm parent để revert.
 
-Note: the parent number is not a commit identifier. Rather, a merge commit has a line `Merge: 8e2ce2d 86ac2e7`. The parent number is the 1-based index of the desired parent on this line, the first identifier is number 1, the second is number 2, and so on.
+Chú ý: Số parent không phải là số để xác định commit. Thay vào đó, một commit merge có một dòng `Merge: 8e2ce2d 86ac2e7`. Số parent là một index trên 1 của một parent trên dòng này, số nhận dạng đầu tiên là 1, thứ 2 là số 2 và tiếp tục.
 
 <a href="undo-sensitive-commit-push"></a>
-### I accidentally committed and pushed files containing sensitive data
+### Tôi vô tình commit và đẩy các file chứa các dữ liệu nhảy cảm
 
-If you accidentally pushed files containing sensitive data (passwords, keys, etc.), you can amend the previous commit. Keep in mind that once you have pushed a commit, you should consider any data it contains to be compromised. These steps can remove the sensitive data from your public repo or your local copy, but you **cannot** remove the sensitive data from other people's pulled copies. If you committed a password, **change it immediately**. If you committed a key, **re-generate it immediately**. Amending the pushed commit is not enough, since anyone could have pulled the original commit containing your sensitive data in the meantime. 
+Nếu bạn vô tình push lên các file chứa dữ liệu nhạy cảm (passwords, keys, etc.), bạn có thể sửa đổi commit trước.. Lưu ý rằng khi bạn đã đẩy một commit, bạn nên xem xét bất kỳ dữ liệu nào nó chứa dữ liệu để bị xâm nhập. Các bước này có thể xoá dữ liệu nhạy cảm từ repo public hoặc bản sao cục bộ của repository, nhưng bạn không thể xóa dữ liệu nhạy cảm khỏi các bản sao được kéo về của người khác. Nếu bạn đã commit mật khẩu, hãy thay đổi mật khẩu ngay lập tức. Nếu bạn đã commit một key, hãy tạo lại key đó ngay lập tức. Việc sửa đổi commit đã đẩy là không đủ, vì bất kỳ ai cũng có thể đã pull commit ban đầu chứa dữ liệu nhạy cảm của bạn trong thời gian chờ đợi. Việc sửa đổi commit đã đẩy là không đủ, vì bất kỳ ai cũng có thể đã kéo cam kết ban đầu chứa dữ liệu nhạy cảm của bạn trong thời gian chờ đợi.
 
-If you edit the file and remove the sensitive data, then run
+Nếu bạn chỉnh sửa tệp và xóa dữ liệu nhạy cảm, hãy chạy
 ```sh
 (feature-branch)$ git add edited_file
 (feature-branch)$ git commit --amend --no-edit
 (feature-branch)$ git push --force-with-lease origin [branch]
 ```
 
-If you want to remove an entire file (but keep it locally), then run
+Nếu bạn muốn xóa toàn bộ tệp (nhưng giữ nguyên tệp cục bộ), hãy chạy
 ```sh
 (feature-branch)$ git rm --cached sensitive_file
 echo sensitive_file >> .gitignore
@@ -332,27 +332,28 @@ echo sensitive_file >> .gitignore
 (feature-branch)$ git commit --amend --no-edit
 (feature-branch)$ git push --force-with-lease origin [branch]
 ```
-Alternatively store your sensitive data in local environment variables.
+Ngoài ra, lưu trữ dữ liệu nhạy cảm của bạn trong các biến môi trường cục bộ.
 
-If you want to completely remove an entire file (and not keep it locally), then run
+Nếu bạn muốn xóa hoàn toàn toàn bộ tệp (và không giữ nguyên tệp cục bộ), sau đó chạy
+
 ```sh
 (feature-branch)$ git rm sensitive_file
 (feature-branch)$ git commit --amend --no-edit
 (feature-branch)$ git push --force-with-lease origin [branch]
 ```
 
-If you have made other commits in the meantime (i.e. the sensitive data is in a commit before the previous commit), you will have to rebase. 
+Nếu bạn đã thực hiện các commit khác trong thời gian chờ đợi (tức là dữ liệu nhạy cảm nằm trong commit trước commit trước đó), bạn sẽ phải rebase.
 
 ## Staging
 
 <a href="#i-need-to-add-staged-changes-to-the-previous-commit"></a>
-### I need to add staged changes to the previous commit
+### Tôi cần thêm các thay đổi đã stage cho commit trước đó
 
 ```sh
 (my-branch*)$ git commit --amend
 ```
 
-If you already know you don't want to change the commit message, you can tell git to reuse the commit message:
+Nếu bạn đã biết bạn không muốn thay đổi message commit, bạn có thể yêu cầu git sử dụng lại commit message:
 
 ```sh
 (my-branch*)$ git commit --amend -C HEAD
@@ -360,32 +361,32 @@ If you already know you don't want to change the commit message, you can tell gi
 
 
 <a name="commit-partial-new-file"></a>
-### I want to stage part of a new file, but not the whole file
+### Tôi muốn stage một phần của một file mới, nhưng không phải toàn bộ file
 
-Normally, if you want to stage part of a file, you run this:
+Thông thường, nếu bạn muốn stage một phần của một file, bạn chạy điều này:
 
 ```sh
 $ git add --patch filename.x
 ```
 
-`-p` will work for short. This will open interactive mode. You would be able to use the `s` option to split the commit - however, if the file is new, you will not have this option. To add a new file, do this:
+`-p` sẽ hoạt động trong ngắn hạn. Việc này sẽ mở chế độ interactive. Bạn sẽ có thể sử dụng tuỳ chọn `s` để cắt commit - tuy nhiên, nếu là file mới, bạn sẽ không có tuỳ chọn này. Để thêm một file mới, làm như sau:
 
 ```sh
 $ git add -N filename.x
 ```
 
-Then, you will need to use the `e` option to manually choose which lines to add. Running `git diff --cached` or
-`git diff --staged` will show you which lines you have staged compared to which are still saved locally.
+Sau đó, bạn sẽ cần sử dụng tuỳ chọn `e` để dùng cách thủ công thêm dòng. Đang chạy `git diff --cached` hoặc
+`git diff --staged` sẽ cho bạn thấy những dòng bạn đã stage so với những dòng vẫn lưu ở cục bộ.
 
 <a href="stage-in-two-commits"></a>
-### I want to add changes in one file to two different commits
+### Tôi muốn thêm các thay đổi trong một file vào 2 commit khác nhau
 
-`git add` will add the entire file to a commit. `git add -p` will allow to interactively select which changes you want to add.
+`git add` sẽ thêm toàn bộ file vào một commit. `git add -p` sẽ cho phép tương tác chọn những thay đổi bạn muốn thêm.
 
 <a href="unstaging-edits-and-staging-the-unstaged"></a>
-### I want to stage my unstaged edits, and unstage my staged edits
+### Tôi muốn stage các chỉnh sử chưa được stage, và unstage my staged edits
 
-This is tricky. The best I figure is that you should stash your unstaged edits. Then, reset. After that, pop your stashed edits back, and add them.
+Điều này là khó khăn. Cách tốt nhất là bạn nên stash các chỉnh sửa chưa stage. Sau đó, reset. Sau đóm hãy pop lại các chỉnh sửa đã stash và thêm chúng.
 
 ```sh
 $ git stash -k
@@ -397,14 +398,14 @@ $ git add -A
 ## Unstaged Edits
 
 <a href="move-unstaged-edits-to-new-branch"></a>
-### I want to move my unstaged edits to a new branch
+### Tôi muốn di chuyển các chỉnh sửa chưa được staged đến một nhánh mới
 
 ```sh
 $ git checkout -b my-branch
 ```
 
 <a href="move-unstaged-edits-to-old-branch"></a>
-### I want to move my unstaged edits to a different, existing branch
+### Tôi muốn di chuyển các chỉnh sửa chưa stage của tôi đến một nhánh khác đã tồn tại
 
 ```sh
 $ git stash
@@ -413,9 +414,9 @@ $ git stash pop
 ```
 
 <a href="i-want-to-discard-my-local-uncommitted-changes"></a>
-### I want to discard my local uncommitted changes (staged and unstaged)
+### Tôi muốn bỏ các thay đôi chưa commit trên local (đã stage và chưa stage)
 
-If you want to discard all your local staged and unstaged changes, you can do this:
+Nếu bạn muốn bỏ tất cả các thay đổi đã stage và chưa stage trên local của bạn, bạn có thể làm như thế này:
 
 ```sh
 (my-branch)$ git reset --hard
@@ -423,50 +424,50 @@ If you want to discard all your local staged and unstaged changes, you can do th
 (master)$ git checkout -f
 ```
 
-This will unstage all files you might have staged with `git add`:
+Nó sẽ unstage tất cả các file bạn đã stage với `git add`:
 
 ```sh
 $ git reset
 ```
 
-This will revert all local uncommitted changes (should be executed in repo root):
+Nó sẽ revert tất cả các thay đổi chưa commit trên local (nên thực hiện trong thư mục gốc repo):
 
 ```sh
 $ git checkout .
 ```
 
-You can also revert uncommitted changes to a particular file or directory:
+Bạn cũng có thể revert các thay đổi chưa commit đối với một file hoặc một thư mục cụ thể:
 
 ```sh
 $ git checkout [some_dir|file.txt]
 ```
 
-Yet another way to revert all uncommitted changes (longer to type, but works from any subdirectory):
+Tuy nhiên, một cách khác để revert tất cả các thay đổi chưa commit (dài hơn để nhập, nhưng hoạt động từ bất kỳ thư mục con nào):
 
 ```sh
 $ git reset --hard HEAD
 ```
 
-This will remove all local untracked files, so only files tracked by Git remain:
+Thao tác này sẽ xoá tất cả các file chưa theo dõi(untrack) trên local, do đó, chỉ các file đã theo dõi (tracked) được git giữ:
 
 ```sh
 $ git clean -fd
 ```
 
-`-x` will also remove all ignored files.
+`-x` cũng sẽ xoá tất cả các file đã ignore.
 
-### I want to discard specific unstaged changes
+### Tôi muốn loại bỏ các thay đổi chưa stage cụ thể
 
-When you want to get rid of some, but not all changes in your working copy.
+Khi bạn muốn loại bỏ một số, nhưng không phải tất cả các thay đổi trong bản sao làm việc của bạn.
 
-Checkout undesired changes, keep good changes.
+Checkout các thay đổi không mong muốn, giữa các thay đổi tốt.
 
 ```sh
 $ git checkout -p
 # Answer y to all of the snippets you want to drop
 ```
 
-Another strategy involves using `stash`. Stash all the good changes, reset working copy, and reapply good changes.
+Một cách khác liên quan đến việc sử dụng `stash`. Stash tất cả các thay đổi tốt, reset bản sao làm việc và apply lại các thay đổi tốt.
 
 ```sh
 $ git stash -p
@@ -475,7 +476,7 @@ $ git reset --hard
 $ git stash pop
 ```
 
-Alternatively, stash your undesired changes, and then drop stash.
+Ngoài ra, stash những thay đổi không mong muốn của bạn và sau đó drop stash.
 
 ```sh
 $ git stash -p
@@ -483,79 +484,79 @@ $ git stash -p
 $ git stash drop
 ```
 
-### I want to discard specific unstaged files
+### Tôi muốn loại bỏ các file chưa stage cụ thể
 
-When you want to get rid of one specific file in your working copy.
+Khi bạn muốn loại bỏ một file cụ thể trong bản sao đang làm việc của bạn.
 
 ```sh
 $ git checkout myFile
 ```
 
-Alternatively, to discard multiple files in your working copy, list them all.
+Ngoài ra, dể loại bỏ nhiều file trong bản sao làm việc của bạn, hãy liệt kê tất cả chúng.
 
 ```sh
 $ git checkout myFirstFile mySecondFile
 ```
 
-### I want to discard only my unstaged local changes
+### Tôi chỉ loại bỏ các thay đổi chưa stage trên local
 
-When you want to get rid of all of your unstaged local uncommitted changes
+Khi bạn muốn loại bỏ tất cả các thay đổi chưa commit mà chưa stage trên local
 
 ```sh
 $ git checkout .
 ```
 <a href="i-want-to-discard-all-my-untracked-files"></a>
-### I want to discard all of my untracked files
+### Tôi muốn loại bỏ tất cả các file chưa được theo dõi (track)
 
-When you want to get rid of all of your untracked files
+Khi bạn muốn loại bỏ tất cả các file chưa được theo dõi
 
 ```sh
 $ git clean -f
 ```
 
 <a href="I-want-to-unstage-specific-staged-file"></a>
-### I want to unstage a specific staged file
+### Tôi muốn úntage một file cụ thể đã stage
 
-Sometimes we have one or more files that accidentally ended up being staged, and these files have not been committed before. To unstage them:
+Đôi khi, chúng ta có một hoặc nhiều file đã vô tình bị kết thúc và các file này chưa được commit trước đó. Để unstage chúng:
 
 ```sh
 $ git reset -- <filename>
 ```
 
-This results in unstaging the file and make it look like it's untracked.
+Điều này dẫn đến việc các file đang chưa stage và làm cho nó giống như chưa được theo dõi.
 
-## Branches
+## Nhánh
 
-### I want to list all branches
+### Tôi muốn liệt kê tất cả các nhánh
 
-List local branches
+Liệt kê các nhanh trên local
 
 ```sh
 $ git branch
 ```
 
-List remote branches
+Liệt kê cách nhánh trên remote
 
 ```sh
 $ git branch -r
 ```
 
-List all branches (both local and remote)
+Liệt kê tất cả các nhánh (cả local và remote)
 
 ```sh
 $ git branch -a
 ```
 
 <a name="create-branch-from-commit"></a>
-### Create a branch from a commit
+### Tạo một nhánh từ một commit
 ```sh
 $ git checkout -b <branch> <SHA1_OF_COMMIT>
 ```
 
 <a name="pull-wrong-branch"></a>
-### I pulled from/into the wrong branch
+### Tôi đã pull từ / vào sai nhánh
 
-This is another chance to use `git reflog` to see where your HEAD pointed before the bad pull.
+Đây là một cơ hội khác để sử dụng `git reflog` để xem nơi con trỏ HEAD đã trỏ trước khi pull sai.
 
 ```sh
 (master)$ git reflog
@@ -563,20 +564,20 @@ ab7555f HEAD@{0}: pull origin wrong-branch: Fast-forward
 c5bc55a HEAD@{1}: checkout: checkout message goes here
 ```
 
-Simply reset your branch back to the desired commit:
+Chỉ cần đặt lại nhánh trước đó của bạn để commit theo mong muốn:
 
 ```sh
 $ git reset --hard c5bc55a
 ```
 
-Done.
+Xong.
 
 <a href="discard-local-commits"></a>
-### I want to discard local commits so my branch is the same as one on the server
+### Tôi muốn loại bỏ các commit trên local đển nhánh của thôi giống như một nhánh trên server
 
-Confirm that you haven't pushed your changes to the server.
+Xác nhận rằng bạn chưa push các thay đổi của mình đến server.
 
-`git status` should show how many commits you are ahead of origin:
+`git status` sẽ hiển thị số lượng các commit bạn đang ở phía trước của origin:
 
 ```sh
 (my-branch)$ git status
@@ -586,69 +587,69 @@ Confirm that you haven't pushed your changes to the server.
 #
 ```
 
-One way of resetting to match origin (to have the same as what is on the remote) is to do this:
+Một cách khác để reset lại phù hợp với origin (để có các nhánh giống như trên remote) là thực hiện điều này:
 
 ```sh
 (master)$ git reset --hard origin/my-branch
 ```
 
 <a name="commit-wrong-branch"></a>
-### I committed to master instead of a new branch
+### Tôi đã commit đến master thay vì một nhánh mới
 
-Create the new branch while remaining on master:
+Tạo nhánh mới trong khi giữ master:
 
 ```sh
 (master)$ git branch my-branch
 ```
 
-Reset the branch master to the previous commit:
+Reset nhánh master đến commit trước đó:
 
 ```sh
 (master)$ git reset --hard HEAD^
 ```
 
-`HEAD^` is short for `HEAD^1`. This stands for the first parent of `HEAD`, similarly `HEAD^2` stands for the second parent of the commit (merges can have 2 parents).
+`HEAD^` là viết tắt của `HEAD^1`. Điều này là viết tắt của parent  `HEAD`, tương tự `HEAD^2` là viết tắt của parent thứ hai của commit (merge có thể có 2 parent).
 
-Note that `HEAD^2` is **not** the same as `HEAD~2` (see [this link](http://www.paulboxley.com/blog/2011/06/git-caret-and-tilde) for more information).
+Chú ý rằng `HEAD^2`  **không** giống như `HEAD~2` (xem [link này](http://www.paulboxley.com/blog/2011/06/git-caret-and-tilde) để có thêm thông tin).
 
-Alternatively, if you don't want to use `HEAD^`, find out what the commit hash you want to set your master branch to (`git log` should do the trick). Then reset to that hash. `git push` will make sure that this change is reflected on your remote.
+Ngoài ra, nếu bạn không muốn sử dụng `HEAD^`, tìm mã hash của commit để thiết lập nhánh master của bạn (`git log` là một thủ thuật). Sau đó đặt lại mã hash. `git push` sẽ đảm bảo rằng thay đổi này được thể hiển trên remote của bạn.
 
-For example, if the hash of the commit that your master branch is supposed to be at is `a13b85e`:
+Ví dụ, nếu hash của commit mà nhánh master của bạn được cho là  `a13b85e`:
 
 ```sh
 (master)$ git reset --hard a13b85e
 HEAD is now at a13b85e
 ```
 
-Checkout the new branch to continue working:
+Checkout một nhánh mới để tiếp tục làm việc:
 
 ```sh
 (master)$ git checkout my-branch
 ```
 
 <a name="keep-whole-file"></a>
-### I want to keep the whole file from another ref-ish
+### Tôi muốn giữ toàn bộ file từ một ref-ish khác
 
-Say you have a working spike (see note), with hundreds of changes. Everything is working. Now, you commit into another branch to save that work:
+Giả sử bạn có tăng đột biến mức độ làm việc (xem lưu ý), với hàng trăm thay đổi. Mọi thứ đang hoạt động. Bây giờ, bạn commit vào một nhánh khác để lưu công việc đó:
 
 ```sh
 (solution)$ git add -A && git commit -m "Adding all changes from this spike into one big commit."
 ```
 
-When you want to put it into a branch (maybe feature, maybe `develop`), you're interested in keeping whole files. You want to split your big commit into smaller ones.
+Khi bạn muốn đặt nó vào một nhánh (có thể feature, có thể `develop`), bạn quan tâm đến việc giữ toàn bộ file. Bạn muốn chia commit lớn của bạn thành những cái nhỏ hơn.
 
-Say you have:
+Giả sử bạn có:
 
-  * branch `solution`, with the solution to your spike. One ahead of `develop`.
-  * branch `develop`, where you want to add your changes.
+  * nhánh `solution`, với solution để tăng đột biến của bạn. Phía trước `develop`.
+  * nhánh `develop`, nơi bạn muốn thêm các thay đổi của bạn.
 
-You can solve it bringing the contents to your branch:
+Bạn có thể giải quyết nó mang nội dung đến nhánh của bạn:
 
 ```sh
 (develop)$ git checkout solution -- file1.txt
 ```
 
-This will get the contents of that file in branch `solution` to your branch `develop`:
+Điều này sẽ lấy nội dung của tập tin đó trong nhánh `solution` đến nhánh `develop` của bạn:
 
 ```sh
 # On branch develop
@@ -659,14 +660,14 @@ This will get the contents of that file in branch `solution` to your branch `dev
 #        modified:   file1.txt
 ```
 
-Then, commit as usual.
+Sau đó, commit như bình thường.
 
-Note: Spike solutions are made to analyze or solve the problem. These solutions are used for estimation and discarded once everyone gets clear visualization of the problem. ~ [Wikipedia](https://en.wikipedia.org/wiki/Extreme_programming_practices).
+Lưu ý: Các giải pháp tăng đột biến được thực hiện để phân tích hoặc giải quyết vấn đề. Các giải pháp này được sử dụng để ước tính và loại bỏ sau khi mọi người hiểu rõ vấn đề. ~ [Wikipedia](https://en.wikipedia.org/wiki/Extreme_programming_practices).
 
 <a name="cherry-pick"></a>
-### I made several commits on a single branch that should be on different branches
+### Tôi đã thực hiện một số commit trên một nhánh duy nhất nó nên ở trên các nhánh khác nhau
 
-Say you are on your master branch. Running `git log`, you see you have made two commits:
+Giả sử bạn đang ở trên nhánh master của bạn. Chạy `git log`, bạn thấy bạn đã thực hiện 2 commit:
 
 ```sh
 (master)$ git log
@@ -690,31 +691,31 @@ Date:   Tue Jul 21 01:12:48 2014 -0400
     First commit
 ```
 
-Let's take note of our commit hashes for each bug (`e3851e8` for #21, `5ea5173` for #14).
+Hãy lưu ý các hash commit của chúng ta cho mỗi lỗi (`e3851e8` cho #21, `5ea5173` cho #14).
 
-First, let's reset our master branch to the correct commit (`a13b85e`):
+Trước tiên, hãy đặt lại nhánh master của chúng ta về commit chính xác (`a13b85e`):
 
 ```sh
 (master)$ git reset --hard a13b85e
 HEAD is now at a13b85e
 ```
 
-Now, we can create a fresh branch for our bug #21:
+Bây giờ, chúng ta có thể tạo ra một nhánh mới cho lỗi của chúng ta #21:
 
 ```sh
 (master)$ git checkout -b 21
 (21)$
 ```
 
-Now, let's *cherry-pick* the commit for bug #21 on top of our branch. That means we will be applying that commit, and only that commit, directly on top of whatever our head is at.
+Bây giờ, hãy *cherry-pick* commit cho bug #21 trên dầu của nhánh. Điều này có ý nghĩa là chúng ta sẽ áp dụng commit đó, và chỉ commit đó, trực tiếp trên đầu của bất cứ head nào của chúng ta.
 
 ```sh
 (21)$ git cherry-pick e3851e8
 ```
 
-At this point, there is a possibility there might be conflicts. See the [**There were conflicts**](#merge-conflict) section in the [interactive rebasing section above](#interactive-rebase) for how to resolve conflicts.
+Tại thời điểm này, có khả năng có thể có xung đột. Hãy xem phần [**There were conflicts**](#merge-conflict) trong [phầnn interactive rebasing trên](#interactive-rebase) để làm thế nào giải quyết xung đột.
 
-Now let's create a new branch for bug #14, also based on master
+Bây giờ chúng ta hãy tạo một nhánh mới cho bug # 14, cũng dựa trên master
 
 ```sh
 (21)$ git checkout master
@@ -722,26 +723,27 @@ Now let's create a new branch for bug #14, also based on master
 (14)$
 ```
 
-And finally, let's cherry-pick the commit for bug #14:
+Và cuối cùng, hãy cherry-pick commit cho bug #14:
 
 ```sh
 (14)$ git cherry-pick 5ea5173
 ```
 
 <a name="delete-stale-local-branches"></a>
-### I want to delete local branches that were deleted upstream
-Once you merge a pull request on GitHub, it gives you the option to delete the merged branch in your fork. If you aren't planning to keep working on the branch, it's cleaner to delete the local copies of the branch so you don't end up cluttering up your working checkout with a lot of stale branches.
+### Tôi muốn xóa các nhánh local đã bị xóa luồng phía trước
+
+Khi bạn kết hợp một request pull trên GitHub, nó sẽ cho bạn tùy chọn để xóa nhánh đã merge trong fork của bạn. Nếu bạn không có kế hoạch tiếp tục làm việc trên nhánh, nó sạch hơn nếu xóa các bản sao local của nhánh, do đó bạn không kết thúc lộn xộn lên checkout luồng làm việc của bạn với rất nhiều nhánh cũ.
 
 ```sh
 $ git fetch -p upstream
 ```
 
-where, `upstream` is the remote you want to fetch from.
+nơi, `upstream` là remote bạn muốn fetch từ đó.
 
 <a name='restore-a-deleted-branch'></a>
-### I accidentally deleted my branch
+### Tôi vô tình xóa nhánh của tôi
 
-If you're regularly pushing to remote, you should be safe most of the time. But still sometimes you may end up deleting your branches. Let's say we create a branch and create a new file:
+Nếu bạn thường xuyên push lên remote, bạn sẽ an toàn phần lớn thời gian. Nhưng đôi khi bạn có thể sẽ xóa các nhánh của bạn. Giả sử chúng ta tạo một nhánh và tạo một tệp mới:
 
 ```sh
 (master)$ git checkout -b my-branch
@@ -751,7 +753,7 @@ If you're regularly pushing to remote, you should be safe most of the time. But 
 README.md foo.txt
 ```
 
-Let's add it and commit.
+Hãy thêm nó và commit.
 
 ```sh
 (my-branch)$ git add .
@@ -774,7 +776,7 @@ Date:   Tue Jul 29 13:14:46 2014 -0400
     Fixes #6: Force pushing after amending commits
 ```
 
-Now we're switching back to master and 'accidentally' removing our branch.
+Bây giờ chúng ta đang chuyển về master và 'vô tình' xóa nhánh của chúng ta
 
 ```sh
 (my-branch)$ git checkout master
@@ -786,7 +788,7 @@ Deleted branch my-branch (was 4e3cd85).
 oh noes, deleted my branch!
 ```
 
-At this point you should get familiar with 'reflog', an upgraded logger. It stores the history of all the action in the repo.
+Tại thời điểm này, bạn nên làm quen với 'reflog', một logger được nâng cấp. Nó lưu trữ lịch sử của tất cả các hành động trong repo.
 
 ```
 (master)$ git reflog
@@ -795,7 +797,7 @@ At this point you should get familiar with 'reflog', an upgraded logger. It stor
 69204cd HEAD@{2}: checkout: moving from master to my-branch
 ```
 
-As you can see we have commit hash from our deleted branch. Let's see if we can restore our deleted branch.
+Như bạn có thể thấy chúng ta đã có commit hash từ nhánh đã xóa của chúng tôi. Hãy xem liệu chúng ta có thể khôi phục nhánh đã xóa của chúng ta hay không.
 
 ```sh
 (master)$ git checkout -b my-branch-help
@@ -806,66 +808,66 @@ HEAD is now at 4e3cd85 foo.txt added
 README.md foo.txt
 ```
 
-Voila! We got our removed file back. `git reflog` is also useful when rebasing goes terribly wrong.
+Và đấy! Chúng ta đã xoá file trước của chúng ta. `git reflog` cũng hữu ích khi rebase đi sai lầm lớn.
 
-### I want to delete a branch
+### Tôi muốn xoá một nhánh
 
-To delete a remote branch:
+Để xoá một nhánh remote:
 
 ```sh
 (master)$ git push origin --delete my-branch
 ```
 
-You can also do:
+Bạn cũng có thể làm :
 
 ```sh
 (master)$ git push origin :my-branch
 ```
 
-To delete a local branch:
+Để xoá nhánh local:
 
 ```sh
 (master)$ git branch -d my-branch
 ```
 
-To delete a local branch that *has not* been merged to the current branch or an upstream:
+Để xoá một nhánh local *không được* merge đến nhánh hiện tại hoặc một upstream:
 
 ```sh
 (master)$ git branch -D my-branch
 ```
 
-### I want to delete multiple branches
+### Tôi muốn xoá nhiều nhánh
 
-Say you want to delete all branches that start with `fix/`:
+Giả sử bạn muốn xoá tất cả nhánh bắt đầu với `fix/`:
 
 ```sh
 (master)$ git branch | grep 'fix/' | xargs git branch -d
 ```
 
-### I want to rename a branch
+### Tôi muốn đổi tên một nhánh
 
-To rename the current (local) branch:
+Để đổi tên nhánh local hiện tại:
 
 ```sh
 (master)$ git branch -m new-name
 ```
 
-To rename a different (local) branch:
+Để đổi tên nhánh local khác:
 
 ```sh
 (master)$ git branch -m old-name new-name
 ```
 
 <a name="i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on"></a>
-### I want to checkout to a remote branch that someone else is working on
+### TÔi muốn checkout đến một nhánh remote mà người khác đang làm việc trên đó
 
-First, fetch all branches from remote:
+Đầu tiên, fetch tất cả nhánh từ remote:
 
 ```sh
 (master)$ git fetch --all
 ```
 
-Say you want to checkout to `daves` from the remote.
+Giả sử bạn muốn checkout sang `daves` từ remote.
 
 ```sh
 (master)$ git checkout --track origin/daves
@@ -873,33 +875,33 @@ Branch daves set up to track remote branch daves from origin.
 Switched to a new branch 'daves'
 ```
 
-(`--track` is shorthand for `git checkout -b [branch] [remotename]/[branch]`)
+(`--track` là viết tắt của `git checkout -b [branch] [remotename]/[branch]`)
 
-This will give you a local copy of the branch `daves`, and any update that has been pushed will also show up remotely.
+Điều này sẽ cung cấp cho bạn một bản sao cục bộ của nhánh `daves`, và mọi cập nhật đã được push cũng sẽ được hiển thị từ remote.
 
-### I want to create a new remote branch from current local one
+### Tôi muốn tạo một nhánh remte mới từ một nhánh local hiện tại
 
 ```sh
 $ git push <remote> HEAD
 ```
 
-If you would also like to set that remote branch as upstream for the current one, use the following instead:
+Nếu bạn cũng muốn đặt nhánh từ remote như upstream cho nhánh hiện tại, sử dụng:
 
 ```sh
 $ git push -u <remote> HEAD
 ```
 
-With the `upstream` mode and the `simple` (default in Git 2.0) mode of the `push.default` config, the following command will push the current branch with regards to the remote branch that has been registered previously with `-u`:
+Với chế độ `upstream` và `simple` (mặc định trong Git 2.0) của cấu hình `push.default`, command sau sẽ push nhánh hiện tại liên quan đến nhánh remote được đăng ký trước đó với `-u`:
 
 ```sh
 $ git push
 ```
 
-The behavior of the other modes of `git push` is described in the [doc of `push.default`](https://git-scm.com/docs/git-config#git-config-pushdefault).
+Các hành động khác của chế độ `git push` được mô tả trong [doc of `push.default`](https://git-scm.com/docs/git-config#git-config-pushdefault).
 
-### I want to set a remote branch as the upstream for a local branch
+### Tôi muốn thiết lập một nhánh remote giống như upstream cho một nhánh local
 
-You can set a remote branch as the upstream for the current local branch using:
+Bạn có thể thiết lập một nhánh remote như upstream cho nhánh local hiện tại bằng cách sử dụng:
 
 ```sh
 $ git branch --set-upstream-to [remotename]/[branch]
@@ -907,16 +909,16 @@ $ git branch --set-upstream-to [remotename]/[branch]
 $ git branch -u [remotename]/[branch]
 ```
 
-To set the upstream remote branch for another local branch:
+Để thiết lập nhánh upstream remote cho nhánh local khác:
 
 ```sh
 $ git branch -u [remotename]/[branch] [local-branch]
 ```
 
 <a name="i-want-to-set-my-HEAD-to-track-the-default-remote-branch"></a>
-### I want to set my HEAD to track the default remote branch
+### Tôi muốn thiết lập HEAD của tôi để theo dõi nhánh remote mặc định
 
-By checking your remote branches, you can see which remote branch your HEAD is tracking. In some cases, this is not the desired branch.
+Bằng cách kiểm tra các nhánh remote của bạn, bạn có thể thấy rằng các nhánh remote mà HEAD của bạn đang theo dõi. Trong một số trường hợp, đây không phải là nhánh mong muốn.
 
 ```sh
 $ git branch -r
@@ -924,16 +926,16 @@ $ git branch -r
   origin/master
 ```
 
-To change `origin/HEAD` to track `origin/master`, you can run this command:
+Để thay đổi  `origin/HEAD` để theo dõi `origin/master`, bạn có thể chạy command này:
 
 ```sh
 $ git remote set-head origin --auto
 origin/HEAD set to master
 ```
 
-### I made changes on the wrong branch
+### Tôi đã thực hiện thay đổi trên nhánh sai
 
-You've made uncommitted changes and realise you're on the wrong branch. Stash changes and apply them to the branch you want:
+Bạn đã thực hiện các thay đổi chưa được commit và nhận ra bạn đang ở nhánh sai. Stash các thay đổi và apply chúng vào nhánh bạn muốn:
 
 ```sh
 (wrong_branch)$ git stash
@@ -941,21 +943,21 @@ You've made uncommitted changes and realise you're on the wrong branch. Stash ch
 (correct_branch)$ git stash apply
 ```
 
-## Rebasing and Merging
+## Rebasing và Merging
 
 <a name="undo-rebase"></a>
-### I want to undo rebase/merge
+### Tôi muốn huỷ bỏ rebase/merge
 
-You may have merged or rebased your current branch with a wrong branch, or you can't figure it out or finish the rebase/merge process. Git saves the original HEAD pointer in a variable called ORIG_HEAD before doing dangerous operations, so it is simple to recover your branch at the state before the rebase/merge.
+Bạn có thể đã merge hoặc rebase nhánh hiện tại của bạn với một nhánh sai hoặc bạn không thể tìm ra cách hoàn thành quá trình rebase/merge. Git lưu con trỏ original HEAD trong một biến được gọi là ORIG_HEAD trước khi làm các hành động nguy hiểm, vì vậy nó giống như một nhánh khôi phục ở một trạng thái trước khi rebase/merge.
 
 ```sh
 (my-branch)$ git reset --hard ORIG_HEAD
 ```
 
 <a name="force-push-rebase"></a>
-### I rebased, but I don't want to force push
+### I đã rebase, nhưng tôi không muốn force push
 
-Unfortunately, you have to force push, if you want those changes to be reflected on the remote branch. This is because you have changed the history. The remote branch won't accept changes unless you force push. This is one of the main reasons many people use a merge workflow, instead of a rebasing workflow - large teams can get into trouble with developers force pushing. Use this with caution. A safer way to use rebase is not to reflect your changes on the remote branch at all, and instead to do the following:
+Thật không may, bạn phải bắt buộc push, nếu bạn muốn những thay đổi đó được ánh xạ trên nhánh remote. Điều này là do bạn đã thay đổi lịch sử. Nhánh remote sẽ không chấp nhận thay đổi trừ khi bạn ép buộc. Đây là một trong những lý do chính khiến nhiều người sử dụng một luồng merge, thay vì một luồng rebasing - các nhóm lớn có thể gặp rắc rối với các developer bắt buộc push. Sử dụng điều này một cách thận trọng. Một cách an toàn hơn để sử dụng rebase không phải là để ánh xạ các thay đổi của bạn trên nhánh remte, và thay vào đó thực hiện các thao tác sau:
 
 ```sh
 (master)$ git checkout my-branch
@@ -964,31 +966,31 @@ Unfortunately, you have to force push, if you want those changes to be reflected
 (master)$ git merge --ff-only my-branch
 ```
 
-For more, see [this SO thread](https://stackoverflow.com/questions/11058312/how-can-i-use-git-rebase-without-requiring-a-forced-push).
+Để biết thêm hãy xem [this SO thread](https://stackoverflow.com/questions/11058312/how-can-i-use-git-rebase-without-requiring-a-forced-push).
 
 <a name="interactive-rebase"></a>
-### I need to combine commits
+### Tôi cần kết hợp các commit
 
-Let's suppose you are working in a branch that is/will become a pull-request against `master`. In the simplest case when all you want to do is to combine *all* commits into a single one and you don't care about commit timestamps, you can reset and recommit. Make sure the master branch is up to date and all your changes committed, then:
+Giả sử bạn đang làm việc trong một nhánh có / sẽ trở thành một pull-request  trái với `master`. Trong trường hợp đơn giản nhất khi tất cả những gì bạn muốn làm là kết hợp tất cả các commit thành một commit và bạn không quan tâm đến timestamo commit, bạn có thể đặt lại và commit lại. Đảm bảo rằng nhánh master được cập nhật và tất cả các thay đổi của bạn được commit, sau đó:
 
 ```sh
 (my-branch)$ git reset --soft master
 (my-branch)$ git commit -am "New awesome feature"
 ```
 
-If you want more control, and also to preserve timestamps, you need to do something called an interactive rebase:
+Nếu bạn muốn kiểm soát nhiều hơn, và cũng để bảo vệ timestamp, bạn cần phải làm  một vài thứ được gọi là một interactive rebase:
 
 ```sh
 (my-branch)$ git rebase -i master
 ```
 
-If you aren't working against another branch you'll have to rebase relative to your `HEAD`. If you want to squash the last 2 commits, for example, you'll have to rebase against `HEAD~2`. For the last 3, `HEAD~3`, etc.
+Nếu bạn không làm việc với một nhánh khác, bạn phải rebase liên quan tới `HEAD` của bạn. Nếu bạn muốn squash 2 commit cuối, bạn sẽ phải rebase lại `HEAD~2`. Cho commit cuối 3, `HEAD~3`,...
 
 ```sh
 (master)$ git rebase -i HEAD~2
 ```
 
-After you run the interactive rebase command, you will see something like this in your  text editor:
+Sau khi bạn chạy lệnh rebase interactive, bạn sẽ thấy một cái gì đó như thế này trong trình soạn thảo của bạn:
 
 ```vim
 pick a9c8a1d Some refactoring
@@ -1015,11 +1017,11 @@ pick e3851e8 another fix
 # Note that empty commits are commented out
 ```
 
-All the lines beginning with a `#` are comments, they won't affect your rebase.
+Tất cả các dòng bắt đầu bằng một `#` là các comment, chúng sẽ không ảnh hưởng đến rebase của bạn.
 
-Then you replace `pick` commands with any in the list above, and you can also remove commits by removing corresponding lines.
+Sau đó bạn thay thể câu lệnh `pick` với những thư trong danh sách trên, và bạn cũng có thể loại bỏ các commit bằng cách xoá các dòng tương ứng.
 
-For example, if you want to **leave the oldest (first) commit alone and combine all the following commits with the second oldest**, you should edit the letter next to each commit except the first and the second to say `f`:
+Ví dụ, nếu bạn muốnn **di chuyển một mình commit cũ nhất(đầu tiên) và kết với với tất cả commit sau với commit cũ thứ 2**, bạn nên chỉnh sửa chữ cái bên cạnh mỗi commit ngoại trừ chữ cái đầu tiên và chữ cái thứ hai `f`:
 
 ```vim
 pick a9c8a1d Some refactoring
@@ -1028,7 +1030,7 @@ f b729ad5 fixup
 f e3851e8 another fix
 ```
 
-If you want to combine these commits **and rename the commit**, you should additionally add an `r` next to the second commit or simply use `s` instead of `f`:
+Nếu bạn muốn kết hợp các commit và **đổi tên commit**, bạn nên thêm một chữ cái `r` bên cạnh commit thứ 2 hoặc đơn giản sử dụng `s` thay vì `f`:
 
 ```vim
 pick a9c8a1d Some refactoring
@@ -1037,7 +1039,7 @@ s b729ad5 fixup
 s e3851e8 another fix
 ```
 
-You can then rename the commit in the next text prompt that pops up.
+Bạn có thể đổi tên commit sau trong đoạn text bật lên.
 
 ```vim
 Newer, awesomer features
@@ -1053,91 +1055,91 @@ Newer, awesomer features
 
 ```
 
-If everything is successful, you should see something like this:
+Nếu mọi thứ thành công, bạn sẽ thấy một cái gì đó như thế này:
 
 ```sh
 (master)$ Successfully rebased and updated refs/heads/master.
 ```
 
-#### Safe merging strategy
-`--no-commit` performs the merge but pretends the merge failed and does not autocommit, giving the user a chance to inspect and further tweak the merge result before committing. `no-ff` maintains evidence that a feature branch once existed, keeping project history consistent.
+#### Chiến lực merge an toàn
+`--no-commit` thực hiện merge nhưng giả vờ hợp nhất không thành công và không tự động, cho phép người dùng có cơ hội kiểm tra và tinh chỉnh thêm kết quả merge trước khi commit. `no-ff` duy trì bằng chứng rằng một nhánh tính năng đã từng tồn tại, giữ cho lịch sử dự án nhất quán.
 
 ```sh
 (master)$ git merge --no-ff --no-commit my-branch
 ```
 
-#### I need to merge a branch into a single commit
+#### Tôi cần merge một nhánh vào một commit duy nhất
 
 ```sh
 (master)$ git merge --squash my-branch
 ```
 
 <a name="rebase-unpushed-commits"></a>
-#### I want to combine only unpushed commits
+#### Tôi chỉ muốn kết hợp các commit chưa push
 
-Sometimes you have several work in progress commits that you want to combine before you push them upstream. You don't want to accidentally combine any commits that have already been pushed upstream because someone else may have already made commits that reference them.
+Đôi khi bạn có một số công việc đang tiến hành commit bạn muốn kết hợp trước khi bạn đẩy chúng lên upstream. Bạn không muốn vô tình kết hợp bất kỳ commit nào đã được push lên upstream vì một người khác có thể đã thực hiện các commit tham chiếu đến chúng.
 
 ```sh
 (master)$ git rebase -i @{u}
 ```
 
-This will do an interactive rebase that lists only the commits that you haven't already pushed, so it will be safe to reorder/fix/squash anything in the list.
+Điều này sẽ làm một interactive rebase mà chỉ liệt kê các commit mà bạn chưa push, vì vậy nó sẽ được an toàn để sắp xếp lại / sửa chữa / squash bất cứ điều gì trong danh sách
 
-#### I need to abort the merge
+#### Tôi cần huỷ việc merge
 
-Sometimes the merge can produce problems in certain files, in those cases we can use the option `abort` to abort the current conflict resolution process, and try to reconstruct the pre-merge state.
+Đôi khi việc merge có thể gây ra sự cố trong một số file nhất định, trong những trường hợp đó, chúng ta có thể sử dụng tùy  `abort` để hủy bỏ quá trình giải quyết xung đột hiện tại và cố gắng xây dựng lại trạng thái merge trước.
 
 ```sh
 (my-branch)$ git merge --abort
 ```
 
-This command is available since Git version >= 1.7.4
+Lệnh này có sẵn kể từ phiên bản Git >= 1.7.4
 
-### I need to update the parent commit of my branch
+### Tôi cần cập nhật commit cha của nhánh của tôi
 
-Say I have a master branch, a feature-1 branch branched from master, and a feature-2 branch branched off of feature-1. If I make a commit to feature-1, then the parent commit of feature-2 is no longer accurate (it should be the head of feature-1, since we branched off of it). We can fix this with `git rebase --onto`.
+Giả sử tôi có một nhánh master, một nhánh feature-1 tách nhánh từ master và một nhánh feature-2 tách nhánh từ feature-1. Nếu tôi thực hiện commit đối với feature-1, thì commit của feature-2 không còn chính xác nữa (nó phải là phần đầu của feature-1, vì chúng ta đã phân nhánh nó). Chúng ta có thể sửa điều này với `git rebase --onto`.
 
 ```sh
 (feature-2)$ git rebase --onto feature-1 <the first commit in your feature-2 branch that you don't want to bring along> feature-2
 ```
 
-This helps in sticky scenarios where you might have a feature built on another feature that hasn't been merged yet, and a bugfix on the feature-1 branch needs to be reflected in your feature-2 branch.
+Điều này giúp trong các trường hợp khó nơi bạn có thể có một feature được xây dựng trên một feature khác chưa được merge và một bugfix trên nhánh feature-1 cần được phản ánh trong nhánh feature-2 của bạn.
 
-### Check if all commits on a branch are merged
+### Kiểm tra xem tất cả commit trên một nhánh đã được merge
 
-To check if all commits on a branch are merged into another branch, you should diff between the heads (or any commits) of those branches:
+Để kiểm cháu tất cả commit trên một nhánh được merge vào nhánh khác, bạn nên diff giữa các head (hoặc mọi commit) của những nhánh đó:
 
 ```sh
 (master)$ git log --graph --left-right --cherry-pick --oneline HEAD...feature/120-on-scroll
 ```
 
-This will tell you if any commits are in one but not the other, and will give you a list of any nonshared between the branches. Another option is to do this:
+Điều này sẽ cho bạn biết nếu bất kỳ commit trong một nhưng không phải là nhánh khác, và sẽ cung cấp cho bạn một danh sách của bất kỳ nonshared giữa các nhánh. Một lựa chọn khác là làm điều này:
 
 ```sh
 (master)$ git log master ^feature/120-on-scroll --no-merges
 ```
 
-### Possible issues with interactive rebases
+### Các vấn đề có thể xảy ra với interactive rebases
 
 <a name="noop"></a>
-#### The rebase editing screen says 'noop'
+#### Màn hình chỉnh sửa rebase cho biết 'noop'
 
-If you're seeing this:
+Nếu bạn thấy điều này:
 ```
 noop
 ```
 
-That means you are trying to rebase against a branch that is at an identical commit, or is *ahead* of your current branch. You can try:
+Điều này có nghĩa bạn đang cố rebase lại một nhánh mà là một commit giống hệt nhau hoặc là *ahead* của nhánh hiện tại. Bạn có thể thử:
 
-* making sure your master branch is where it should be
-* rebase against `HEAD~2` or earlier instead
+* đảm bảo nhánh master của bạn là nơi nó cần
+* rebase lại `HEAD~2` hoặc sớm hơn
 
 <a name="merge-conflict"></a>
-#### There were conflicts
+#### Có một vài xung đột
 
-If you are unable to successfully complete the rebase, you may have to resolve conflicts.
+Nếu bạn không thể hoàn tất thành việc rebase, bạn có thể phải giải quyết xung đột.
 
-First run `git status` to see which files have conflicts in them:
+Đầu tiên chạy `git status` để xem tệp nào có xung đột trong chúng:
 
 ```sh
 (my-branch)$ git status
@@ -1149,7 +1151,7 @@ Changes not staged for commit:
   both modified:   README.md
 ```
 
-In this example, `README.md` has conflicts. Open that file and look for the following:
+Trong ví dụ đó,, `README.md` có xung đột. Mở tệp đó và tìm kiếm những điều sau:
 
 ```vim
    <<<<<<< HEAD
@@ -1159,33 +1161,34 @@ In this example, `README.md` has conflicts. Open that file and look for the foll
    >>>>>>> new-commit
 ```
 
-You will need to resolve the differences between the code that was added in your new commit (in the example, everything from the middle line to `new-commit`) and your `HEAD`.
+Bạn sẽ cần phải giải quyết sự khác biệt giữa code đã được thêm vào trong commit mới của bạn (trong ví dụ, mọi thứ từ dòng ở giữa  `new-commit`) và `HEAD` của bạn.
 
-If you want to keep one branch's version of the code, you can use `--ours` or `--theirs`:
+Nếu bạn muốn giữ phiên bản code của một nhánh, bạn có thể sử dụng `--ours` hoặc `--theirs`:
 
 ```sh
 (master*)$ git checkout --ours README.md
 ```
 
-- When *merging*, use `--ours` to keep changes from the local branch, or `--theirs` to keep changes from the other branch.
-- When *rebasing*, use `--theirs` to keep changes from the local branch, or `--ours` to keep changes from the other branch. For an explanation of this swap, see [this note in the Git documentation](https://git-scm.com/docs/git-rebase#git-rebase---merge).
+- Khi *đang merge*, sử dụng `--ours` để giữa các thay đổi từ nhánh local, hoặc `--theirs` để giữ các thay đổi từ nhánh khác.
+- Khi *đang rebase*, sử dụng `--theirs` để giữ các thay đổi từ nhánh local, hoặc `--ours` để giữ các thay đổi từ nhánh khác. Để giải thích về sự hoán đổi này, hãy xem [chú ý này trong tài liệu Git](https://git-scm.com/docs/git-rebase#git-rebase---merge).
 
-If the merges are more complicated, you can use a visual diff editor:
+Nếu việc merge phức tạp hơn, bạn có thể sử dụng trình chỉnh sửa khác biệt trực quan:
 
 ```sh
 (master*)$ git mergetool -t opendiff
 ```
 
-After you have resolved all conflicts and tested your code, `git add` the files you have changed, and then continue the rebase with `git rebase --continue`
+Sau khi bạn đã giải quyết tất cả xung đột và đã kiểm tra code của mình, `git add` các file đã thay đổi và sau đó tiếp tục rebase với `git rebase --continue`
 
 ```sh
 (my-branch)$ git add README.md
 (my-branch)$ git rebase --continue
 ```
 
-If after resolving all the conflicts you end up with an identical tree to what it was before the commit, you need to `git rebase --skip` instead.
+Nếu sau khi giải quyết tất cả các xung đột bạn kết thúc bằng một cây giống hệt với cái trước khi thực hiện, bạn cần `git rebase --skip` thay thế.
 
-If at any time you want to stop the entire rebase and go back to the original state of your branch, you can do so:
+Nếu bất kỳ lúc nào bạn muốn dừng toàn bộ quá trình rebase và quay trở lại trạng thái ban đầu nhánh của bạn, bạn có thể làm như thế này:
+
 
 ```sh
 (my-branch)$ git rebase --abort
@@ -1194,111 +1197,111 @@ If at any time you want to stop the entire rebase and go back to the original st
 <a name="stashing"></a>
 ## Stash
 
-### Stash all edits
+### Stash tất cả chỉnh sửa
 
-To stash all the edits in your working directory
+Để stash tất cả các chỉnh sửa trong thư mục làm việc
 
 ```sh
 $ git stash
 ```
 
-If you also want to stash untracked files, use `-u` option.
+Nếu bạn cũng muốn stash các file chưa được theo dõi, sử dụng tuỳ chọn `-u`.
 
 ```sh
 $ git stash -u
 ```
 
-### Stash specific files
+### Stash các file cụ thể
 
-To stash only one file from your working directory
+Để stash chỉ một file từ thư mục làm việc
 
 ```sh
 $ git stash push working-directory-path/filename.ext
 ```
 
-To stash multiple files from your working directory
+Để stash nhiều file từ thư mục làm việc
 
 ```sh
 $ git stash push working-directory-path/filename1.ext working-directory-path/filename2.ext
 ```
 
 <a name="stash-msg"></a>
-### Stash with message
+### Stash với message
 
 ```sh
 $ git stash save <message>
 ```
 
 <a name="stash-apply-specific"></a>
-### Apply a specific stash from list
+### Apply một stash cụ thể từ danh sách
 
-First check your list of stashes with message using
+Đầu tiên kiểm tra danh sách các stash với message sử dụng
 
 ```sh
 $ git stash list
 ```
 
-Then apply a specific stash from the list using
+Sau đó apply một stash cụ thể từ danh sách sử dụng
 
 ```sh
 $ git stash apply "stash@{n}"
 ```
 
-Here, 'n' indicates the position of the stash in the stack. The topmost stash will be position 0.
+Ở đây, 'n' cho biết vị trí của stash trong stack. Stash trên cùng sẽ là vị trí 0.
 
 ## Finding
 
-### I want to find a string in any commit
+### Tôi muốn tìm một chuỗi trong bất kỳ commit nào
 
-To find a certain string which was introduced in any commit, you can use the following structure:
+Để tìm một chuỗi nhất định được cho vào trong bất kỳ commit nào, bạn có thể sử dụng cấu trúc sau:
 
 ```sh
 $ git log -S "string to find"
 ```
 
-Commons parameters:
+Các thông số chung:
 
-* `--source` means to show the ref name given on the command line by which each commit was reached.
+* `--source` có nghĩa là hiển thị tên ref được đưa ra trên dòng lệnh mà mỗi lần commit đã đạt được.
 
-* `--all` means to start from every branch.
+* `--all` nghĩa là bắt đầu từ mọi nhánhmeans to start from every branch.
 
-* `--reverse` prints in reverse order, it means that will show the first commit that made the change.
+* `--reverse` in theo thứ tự ngược lại, nó có nghĩa là sẽ hiển thị commit đầu tiên đã thực hiện thay đổi.
 
 <a name="i-want-to-find-by-author-committer"></a>
-### I want to find by author/committer
+### Tôi muốn tìm tác giác hoặc người commit
 
-To find all commits by author/committer you can use:
+Tìm tất cả commit từ tác giả hoặc người commit bạn có thể sử dụng:
 
 ```sh
 $ git log --author=<name or email>
 $ git log --committer=<name or email>
 ```
 
-Keep in mind that author and committer are not the same. The `--author` is the person who originally wrote the code; on the other hand, the `--committer`, is the person who committed the code on behalf of the original author.
+Hãy nhớ rằng tác giả và người commit không giống. `--author` là người ban đầu đã viết code; mặt khác,  `--committer`, là người đã commit code thay mặc tác giả gốc.
 
-### I want to list commits containing specific files
+### Tôi muốn liệt kê các commit chứa cá file cụ thể
 
-To find all commits containing a specific file you can use:
+Để tìm tất cả các commit chưa một file cụ thể bạn có thể sử dụng:
 
 ```sh
 $ git log -- <path to file>
 ```
 
-You would usually specify an exact path, but you may also use wild cards in the path and file name:
+Bạn thường sẽ chỉ định một đường dẫn chính xác, nhưng bạn cũng có thể sử dụng các ký tự đại diện trong đường dẫn và tên tệp:
 
 ```sh
 $ git log -- **/*.js
 ```
 
-While using wildcards, it's useful to inform `--name-status` to see the list of committed files:
+Trong khi sử dụng ký tự đại diện, nó hữu ích để thông báo `--name-status` để xem danh sách các tệp đã commit:
 
 ```sh
 $ git log --name-status -- **/*.js
 ```
 
-### Find a tag where a commit is referenced
+### Tìm một tag nơi một commit đã tham chiếu
 
-To find all tags containing a specific commit:
+Để tìm tất cả các tag có chứa một commit cụ thể
 
 ```sh
 $ git tag --contains <commitid>
@@ -1307,22 +1310,22 @@ $ git tag --contains <commitid>
 ## Submodules
 
 <a name="clone-submodules"></a>
-### Clone all submodules
+### Clone tất cả submodules
 
 ```sh
 $ git clone --recursive git://github.com/foo/bar.git
 ```
 
-If already cloned:
+Nếu đã clone:
 
 ```sh
 $ git submodule update --init --recursive
 ```
 
 <a name="delete-submodule"></a>
-### Remove a submodule
+### Xoá một submodule
 
-Creating a submodule is pretty straight-forward, but deleting them less so. The commands you need are:
+Tạo một submodule là khá nhanh, nhưng xóa chúng ít hơn như vậy. Các lệnh bạn cần là:
 
 ```sh
 $ git submodule deinit submodulename
@@ -1333,21 +1336,21 @@ $ rm -rf .git/modules/submodulename
 
 ## Miscellaneous Objects
 
-### Restore a deleted file
+### Khôi phục một file đã xoá
 
-First find the commit when the file last existed:
+Đầu tiên tìm commit nơi mà lần cuối file đã tồn tại:
 
 ```sh
 $ git rev-list -n 1 HEAD -- filename
 ```
 
-Then checkout that file:
+Sau đó checkout file:
 
 ```
 git checkout deletingcommitid^ -- filename
 ```
 
-### Delete tag
+### Xoá tag
 
 ```sh
 $ git tag -d <tag_name>
@@ -1355,25 +1358,25 @@ $ git push <remote> :refs/tags/<tag_name>
 ```
 
 <a name="recover-tag"></a>
-### Recover a deleted tag
+### Khôi phục một tag đã xoá
 
-If you want to recover a tag that was already deleted, you can do so by following these steps: First, you need to find the unreachable tag:
+Nếu bạn muốn khôi phục tag đã bị xóa, bạn có thể làm được vậy bằng cách làm theo các bước sau: Trước tiên, bạn cần phải tìm tag không thể truy cập
 
 ```sh
 $ git fsck --unreachable | grep tag
 ```
 
-Make a note of the tag's hash. Then, restore the deleted tag with following, making use of [`git update-ref`](https://git-scm.com/docs/git-update-ref):
+Ghi lại mã hash của tag. Sau đó, khôi phục tag đã xóa theo cách sau, sử  [`git update-ref`](https://git-scm.com/docs/git-update-ref):
 
 ```sh
 $ git update-ref refs/tags/<tag_name> <hash>
 ```
 
-Your tag should now have been restored.
+Tag của bạn bây giờ đã được khôi phục.
 
 ### Deleted Patch
 
-If someone has sent you a pull request on GitHub, but then deleted their original fork, you will be unable to clone their repository or to use `git am` as the [.diff, .patch](https://github.com/blog/967-github-secrets) urls become unavailable. But you can checkout the PR itself using [GitHub's special refs](https://gist.github.com/piscisaureus/3342247). To fetch the content of PR#1 into a new branch called pr_1:
+Nếu ai đó đã gửi cho bạn một pull request trên GitHub, nhưng sau đó đã xoá chúng trên fork gốc, bạn sẽ không thể clone repository của họ hoặc sử dụng `git am` như [.diff, .patch](https://github.com/blog/967-github-secrets) url không khả dụng. Nhưng bạn có thể checkout chính PR bằng cách sử dụng [GitHub's special refs](https://gist.github.com/piscisaureus/3342247). Để fetch nội dung của PR#1 vào một nhánh được gọi là pr_1:
 
 ```sh
 $ git fetch origin refs/pull/1/head:pr_1
@@ -1381,14 +1384,14 @@ From github.com:foo/bar
  * [new ref]         refs/pull/1/head -> pr_1
 ```
 
-### Exporting a repository as a Zip file
+### Xuất một repository ra một file Zip
 
 ```sh
 $ git archive --format zip --output /full/path/to/zipfile.zip master
 ```
-### Push a branch and a tag that have the same name
+### Push một nhánh và một tag có tên giống nhau
 
-If there is a tag on a remote repository that has the same name as a branch you will get the following error when trying to push that branch with a standard `$ git push <remote> <branch>` command.
+Nếu có một tag trên một remote repository mà có tên giống với một nhánh bạn sẽ gặp phải lỗi khi cố push nhanh với một commad chuẩn `$ git push <remote> <branch>`.
 
 ```sh
 $ git push origin <branch>
@@ -1396,28 +1399,28 @@ error: dst refspec same matches more than one.
 error: failed to push some refs to '<git server>'
 ```
 
-Fix this by specifying you want to push the head reference.
+Sửa lỗi này bằng cách chỉ định bạn muốn đẩy tham chiếu head.
 
 ```sh
 $ git push origin refs/heads/<branch-name>
 ```
 
-If you want to push a tag to a remote repository that has the same name as a branch, you can use a similar command.
+Nếu bạn muốn đẩy một tag vào một repository từ remote có cùng tên với một nhánh, bạn có thể sử dụng một lệnh tương tự.
 
 ```sh
 $ git push origin refs/tags/<tag-name>
 ```
 
-## Tracking Files
+## Tracking các file
 
 <a href="i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file"></a>
-### I want to change a file name's capitalization, without changing the contents of the file
+### Tôi muốn thay đổi cách viết hoa của tên tệp mà không thay đổi nội dung của tệp
 
 ```sh
 (master)$ git mv --force myfile MyFile
 ```
 
-### I want to overwrite local files when doing a git pull
+### Tôi muốn ghi đè lên các tệp local khi thực hiện lệnh git pull
 
 ```sh
 (master)$ git fetch --all
@@ -1425,59 +1428,59 @@ $ git push origin refs/tags/<tag-name>
 ```
 
 <a href="remove-from-git"></a>
-### I want to remove a file from Git but keep the file
+### Tôi muốn xóa một tệp khỏi Git nhưng vẫn giữ tệp
 
 ```sh
 (master)$ git rm --cached log.txt
 ```
 
-### I want to revert a file to a specific revision
+### Tôi muốn revert tệp về bản sửa đổi cụ thể
 
-Assuming the hash of the commit you want is c5f567:
+Giả sử mã hash của commit bạn muốn c5f567:
 
 ```sh
 (master)$ git checkout c5f567 -- file1/to/restore file2/to/restore
 ```
 
-If you want to revert to changes made just 1 commit before c5f567, pass the commit hash as c5f567~1:
+Nếu bạn muốn revert các thay đổi được thực hiện chỉ 1 commit trước c5f567, vượt qua commit hash như c5f567~1:
 
 ```sh
 (master)$ git checkout c5f567~1 -- file1/to/restore file2/to/restore
 ```
 
-### I want to list changes of a specific file between commits or branches
+### Tôi muốn liệt kê các thay đổi của một tệp cụ thể giữa các commit hoặc các nhánh
 
-Assuming you want to compare last commit with file from commit c5f567:
+Giả sử bạn muốn so sánh commit cuối cùng với tệp từ commit c5f567:
 
 ```sh
 $ git diff HEAD:path_to_file/file c5f567:path_to_file/file
 ```
 
-Same goes for branches:
+Cùng đi cho các nhánh:
 
 ```sh
 $ git diff master:path_to_file/file staging:path_to_file/file
 ```
 
-### I want Git to ignore changes to a specific file
+### Tôi muốn Git bỏ qua những thay đổi đối với một tệp cụ thể
 
-This works great for config templates or other files that require locally adding credentials that shouldn't be committed.
+Điều này hoạt động tốt cho các mẫu cấu hình hoặc các tệp khác yêu cầu thêm thông tin đăng nhập cục bộ mà không được commit
 
 ```sh
 $ git update-index --assume-unchanged file-to-ignore
 ```
 
-Note that this does *not* remove the file from source control - it is only ignored locally. To undo this and tell Git to notice changes again, this clears the ignore flag:
+Lưu ý rằng điều này không xóa tệp khỏi kiểm soát source - nó chỉ bị bỏ qua cục bộ. Để hoàn tác thao tác này và yêu cầu Git lưu ý các thay đổi một lần nữa, điều này sẽ xóa ignore flag:
 
 ```sh
 $ git update-index --no-assume-unchanged file-to-stop-ignoring
 ```
 
-## Configuration
+## Cáu hình
 
-### I want to add aliases for some Git commands
+### Tôi muốn thêm bí danh cho một số lệnh Git
 
-On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```.  I've added some example aliases I use as shortcuts (and some of my common typos) in the ```[alias]``` section as shown below:
+Trên OS X và Linux, file cấu hình git được lưu trong ```~/.gitconfig```.  Tôi đã thêm một số bí danh mẫu mà tôi sử dụng làm shortcut (và một số lỗi chính tả phổ biến của tôi) trong phần ```[alias]``` được hiển thị như dưới đây:
 
 ```vim
 [alias]
@@ -1504,9 +1507,9 @@ On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```. 
     zap = fetch -p
 ```
 
-### I want to add an empty directory to my repository
+### Tôi muốn thêm một thư mục trống vào repository của tôi
 
-You can’t! Git doesn’t support this, but there’s a hack. You can create a .gitignore file in the directory with the following contents:
+Bạn không thể! Git không hỗ trợ điều này, nhưng có một cách hack. Bạn có thể tạo tệp .gitignore trong thư mục với các nội dung sau:
 
 ```
  # Ignore everything in this directory
@@ -1515,18 +1518,19 @@ You can’t! Git doesn’t support this, but there’s a hack. You can create a 
  !.gitignore
 ```
 
-Another common convention is to make an empty file in the folder, titled .gitkeep.
+Một quy ước chung khác là tạo một tệp trống trong thư mục có tiêu đề .gitkeep.
+
 
 ```sh
 $ mkdir mydir
 $ touch mydir/.gitkeep
 ```
 
-You can also name the file as just .keep , in which case the second line above would be ```touch mydir/.keep```
+Bạn cũng có thể đặt tên tệp là .keep, trong trường hợp dòng thứ hai ở trên sẽ ```touch mydir/.keep```
 
-### I want to cache a username and password for a repository
+### Tôi muốn cache một username và password cho một repository
 
-You might have a repository that requires authentication.  In which case you can cache a username and password so you don't have to enter it on every push / pull. Credential helper can do this for you.
+Bạn có thể có một repository yêu cầu xác thực.  Trong trường hợp này bạn có thể cache một username và password vì vậy bạn không phải nhập nó vào mỗi lần push / pull. Việc xác thực có thể làm điều này cho bạn. 
 
 ```sh
 $ git config --global credential.helper cache
@@ -1538,45 +1542,44 @@ $ git config --global credential.helper 'cache --timeout=3600'
 # Set the cache to timeout after 1 hour (setting is in seconds)
 ```
 
-### I want to make Git ignore permissions and filemode changes
+### Tôi muốn làm cho Git bỏ qua các quyền và thay đổi về filemode
 
 ```sh
 $ git config core.fileMode false
 ```
 
-If you want to make this the default behaviour for logged-in users, then use:
+Nếu bạn muốn đặt hành vi này là hành vi mặc định cho người dùng đã đăng nhập, thì hãy sử dụng:
 
 ```sh
 $ git config --global core.fileMode false
 ```
 
-### I want to set a global user
+### Tôi muốn đặt user toàn cục
 
-To configure user information used across all local repositories, and to set a name that is identifiable for credit when review version history:
+Để cấu hình thông tin người dùng được sử dụng trên tất cả các repository cục bộ và để đặt tên có thể nhận dạng khi xem lại phiên bản lịch sử:
 
 ```sh
 $ git config --global user.name “[firstname lastname]”
 ```
-
-To set an email address that will be associated with each history marker:
+Để đặt địa chỉ email sẽ được liên kết với mỗi điểm đánh dấu lịch sử:
 
 ```sh
 git config --global user.email “[valid-email]”
 ```
 
-### I want to add command line coloring for Git
+### Tôi muốn thêm màu cho command Git
 
-To set automatic command line coloring for Git for easy reviewing:
+Để thiết lập màu command tự động cho Git để dễ dàng xem lại:
 
 ```sh
 $ git config --global color.ui auto
 ```
 
-## I've no idea what I did wrong
+## Tôi không nghĩ mình đã làm gì sai
 
-So, you're screwed - you `reset` something, or you merged the wrong branch, or you force pushed and now you can't find your commits. You know, at some point, you were doing alright, and you want to go back to some state you were at.
+Vì vậy, bạn đang say - bạn `reset` vài thứ, hoặc bạn merge sai nhánh, hoặc bạn force push và bây giờ bạn không thể tìm thấy các commit của bạn. Bạn biết, tại một số thời điểm, bạn đã làm tốt, và bạn muốn quay trở lại trạng thái bạn đang ở đó.
 
-This is what `git reflog` is for. `reflog` keeps track of any changes to the tip of a branch, even if that tip isn't referenced by a branch or a tag. Basically, every time HEAD changes, a new entry is added to the reflog. This only works for local repositories, sadly, and it only tracks movements (not changes to a file that weren't recorded anywhere, for instance).
+Đây là những gì `git reflog` cho. `reflog` theo dõi bất kỳ thay đổi nào đối với mẹo của nhánh, ngay cả khi mẹo đó không được tham chiếu bởi nhánh hoặc tag. Về cơ bản, mỗi lần HEAD thay đổi, một mục mới được thêm vào reflog. Điều này chỉ hoạt động đối với các repository cục bộ, thật đáng buồn, và nó chỉ theo dõi các chuyển động (ví dụ: không thay đổi một tệp không được ghi ở bất kỳ đâu).
 
 ```sh
 (master)$ git reflog
@@ -1585,7 +1588,9 @@ This is what `git reflog` is for. `reflog` keeps track of any changes to the tip
 c10f740 HEAD@{2}: checkout: moving from master to 2.2
 ```
 
-The reflog above shows a checkout from master to the 2.2 branch and back. From there, there's a hard reset to an older commit. The latest activity is represented at the top labeled `HEAD@{0}`.
+Các reflog ở trên cho thấy một checkout từ master đến nhánh 2.2 và trở lại. Từ đó, có một thiết lập cứng để một commit cũ hơn. Hoạt động mới nhất được thể hiện ở đầu được gắn nhãn `HEAD@{0}`.
+
+Nếu nó chỉ ra rằng bạn vô tình di chuyển trở lại, các reflog sẽ chứa commit master chỉ đến (0254ea7) trước khi bạn vô tình giảm 2 commit
 
 If it turns out that you accidentally moved back, the reflog will contain the commit master pointed to (0254ea7) before you accidentally dropped 2 commits.
 
@@ -1593,11 +1598,11 @@ If it turns out that you accidentally moved back, the reflog will contain the co
 $ git reset --hard 0254ea7
 ```
 
-Using `git reset` it is then possible to change master back to the commit it was before. This provides a safety net in case history was accidentally changed.
+Sử dụng `git reset` sau đó nó có thể thay đổi master trở về commit trước đó. Điều này cung cấp sự an toàn trong trường hợp lịch sử đã vô tình thay đổi.
 
-(copied and edited from [Source](https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog)).
+(đã sao chép và chỉnh sửa từ [Source](https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog)).
 
-# Other Resources
+# Tài nguyên khác
 
 ## Books
 
