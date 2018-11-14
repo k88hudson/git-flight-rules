@@ -156,12 +156,12 @@ $ git log -n1 -p
 Si escribiste algo mal y todavía no has subido tu commit, puedes hacer lo siguiente para cambiar el mensaje del commit:
 
 ```sh
-$ git commit --amend
+$ git commit --amend --only
 ```
 Esto abrirá tu editor de texto por defecto, donde puedes editar el mensaje. Por otro lado, tú puedes hacer todo esto con un solo comando:
 
 ```sh
-$ git commit --amend -m 'xxxxxxx'
+$ git commit --amend --only -m 'xxxxxxx'
 ```
 
 Si ya has subido tu commit, puedes corregirlo usando amend y luego forzar el push, pero esto no es recomendado.

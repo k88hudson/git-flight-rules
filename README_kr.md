@@ -178,13 +178,13 @@ $ git show <commitid>:filename
 만약 메시지를 잘못 썼고 아직 푸시를 안했다면, 커밋 메시지 바꾸기를 따라해 볼 수 있어요.
 
 ```sh
-$ git commit --amend
+$ git commit --amend --only
 ```
 
 이 방법은 편집 가능한 기본 텍스트 에디터가 열릴텐데요, 다른 방법으론 한줄에 쓸 수도 있어요.
 
 ```sh
-$ git commit --amend -m 'xxxxxxx'
+$ git commit --amend --only -m 'xxxxxxx'
 ```
 
 만약 푸시를 이미 했다면, 커밋을 수정해서 강제 푸시를 할 수 있긴한대 별로 추천하진 않아요.
