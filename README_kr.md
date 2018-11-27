@@ -1509,7 +1509,7 @@ $ git config --global user.name “[firstname lastname]”
 git config --global user.email “[valid-email]”
 ```
 
-### 깃에 명령어 색상을을 넣고 싶어
+### 깃에 명령어 색상을 넣고 싶어
 
 손 쉬운 리뷰를 위한 깃 명령줄 자동 색상을 설정 하려면:
 
