@@ -25,7 +25,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
   - [Repositories](#repositories)
     - [I want to start a local repository](#i-want-to-start-a-local-repository)
     - [I want to clone a remote repository](#i-want-to-clone-a-remote-repository)
-    - [I set the wrong remote repository.](#i-set-the-wrong-remote-repository)
+    - [I set the wrong remote repository](#i-set-the-wrong-remote-repository)
   - [Editing Commits](#editing-commits)
     - [What did I just commit?](#what-did-i-just-commit)
     - [I wrote the wrong thing in a commit message](#i-wrote-the-wrong-thing-in-a-commit-message)
@@ -146,7 +146,7 @@ To clone it into a folder with a different name than the default repository name
 $ git clone [url] name-of-new-folder
 ```
 
-### I set the wrong remote repository.
+### I set the wrong remote repository
 
 There are a few possible problems here:
 
