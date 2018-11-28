@@ -27,7 +27,7 @@ Toutes les commandes devraient fonctionner pour les versions de Git au moins sup
   - [Dépôts](#d%C3%A9p%C3%B4ts)
     - [Je veux initialiser un dépôt local](#je-veux-initialiser-un-d%C3%A9p%C3%B4t-local)
     - [Je veux cloner un dépôt distant](#je-veux-cloner-un-d%C3%A9p%C3%B4t-distant)
-  - [Éditer des Commits](#%C3%A9diter-des-commits)
+  - [Éditer des Commits](#%C3%89diter-des-commits)
     - [Qu'est-ce que je viens de commiter ?](#quest-ce-que-je-viens-de-commiter-)
     - [J'ai commis une erreur dans un message de commit](#jai-commis-une-erreur-dans-un-message-de-commit)
     - [J'ai commit avec le mauvais nom et email dans les configurations](#jai-commit-avec-le-mauvais-nom-et-email-dans-les-configurations)
