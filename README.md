@@ -1424,7 +1424,7 @@ You can also name the file as just .keep , in which case the second line above w
 
 ### I want to cache a username and password for a repository
 
-You might have a repository that requires authentication.  In which case you can cache a username and password so you don't have to enter it on every push / pull. Credential helper can do this for you.
+You might have a repository that requires authentication.  In which case you can cache a username and password so you don't have to enter it on every push and pull. Credential helper can do this for you.
 
 ```sh
 $ git config --global credential.helper cache
@@ -1435,14 +1435,14 @@ $ git config --global credential.helper cache
 $ git config --global credential.helper 'cache --timeout=3600'
 # Set the cache to timeout after 1 hour (setting is in seconds)
 ```
-Find a credential helper.
+To find a credential helper:
 
 ```sh
 $ git help -a | grep credential
 # Shows you possible credential helpers
 ```
 
-For OS specific credential caching.
+For OS specific credential caching:
 
 ```sh
 $ git config --global credential.helper osxkeychain
@@ -1459,7 +1459,7 @@ $ git config --global credential.helper gnome-keyring
 # Ubuntu and other GNOME-based distros
 ```
 
-More credential helpers can be found for different distributions/OS's
+More credential helpers can likely be found for different distributions and operating systems.
 
 ### I want to make Git ignore permissions and filemode changes
 
