@@ -152,7 +152,7 @@ There are a few possible problems here:
 
 If you cloned the wrong respistory simply delete the directory created after running `git clone` and clone the correct repository.
 
-If you set the wrong repository as the origin of an existing local repository, change the url of your origin by running 
+If you set the wrong repository as the origin of an existing local repository, change the url of your origin by running: 
 
 ```sh
 $ git remote set-url origin [url of the actual repo]
