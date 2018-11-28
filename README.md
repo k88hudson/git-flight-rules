@@ -150,7 +150,6 @@ $ git clone [url] name-of-new-folder
 
 There are a few possible problems here:
 
-
 If you cloned the wrong respistory simply delete the directory created after running git clone and clone the correct repository
 
 
