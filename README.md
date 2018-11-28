@@ -150,14 +150,15 @@ $ git clone [url] name-of-new-folder
 
 There are a few possible problems here:
 
-If you cloned the wrong respistory simply delete the directory created after running `git clone` and clone the correct repository.
+If you cloned the wrong repository, simply delete the directory created after running `git clone` and clone the correct repository.
 
-If you set the wrong repository as the origin of an existing local repository, change the url of your origin by running: 
+If you set the wrong repository as the origin of an existing local repository, change the url of your origin by running:
 
 ```sh
 $ git remote set-url origin [url of the actual repo]
 ```
-For more see [this SO top](https://stackoverflow.com/questions/2432764/how-to-change-the-uri-url-for-a-remote-git-repository#2432799)
+
+For more, see [this StackOverflow topic](https://stackoverflow.com/questions/2432764/how-to-change-the-uri-url-for-a-remote-git-repository#2432799).
 
 ## Editing Commits
 
