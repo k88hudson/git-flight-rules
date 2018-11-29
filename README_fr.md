@@ -328,8 +328,8 @@ Si vous souhaitez modifier le fichier et supprimer les données sensibles, lance
 Si vous souhaitez supprimer tout un fichier (mais le garder en local), lancez :
 ```sh
 (feature-branch)$ git rm --cached fichier_sensible
-echo fichier_sensible &gt;&gt; .gitignore
-(feature-branch)$ git add .gitignore
+echo fichier_sensible >> .gitignore
+  (feature-branch)$ git add .gitignore
 (feature-branch)$ git commit --amend --no-edit
 (feature-branch)$ git push --force-with-lease origin [branche]
 ```
@@ -671,19 +671,19 @@ Admettons que vous êtes sur votre branche master. En lançant `git log`, vous r
 (master)$ git log
 
 commit e3851e817c451cc36f2e6f3049db528415e3c114
-Author: Alex Lee &lt;alexlee@example.com&gt;
+Author: Alex Lee <alexlee@example.com>
 Date:   Tue Jul 22 15:39:27 2014 -0400
 
     Bug #21 - Ajout de la protection CSRF
 
 commit 5ea51731d150f7ddc4a365437931cd8be3bf3131
-Author: Alex Lee &lt;alexlee@example.com&gt;
+Author: Alex Lee <alexlee@example.com>
 Date:   Tue Jul 22 15:39:12 2014 -0400
 
     Bug #14 - Correction de l'espacement du titre
 
 commit a13b85e984171c6e2a1729bb061994525f626d14
-Author: Aki Rose &lt;akirose@example.com&gt;
+Author: Aki Rose <akirose@example.com>
 Date:   Tue Jul 21 01:12:48 2014 -0400
 
     Premier commit
@@ -761,13 +761,13 @@ Ajoutons cela et commitons :
 (ma-branche)$ git log
 
 commit 4e3cd85a670ced7cc17a2b5d8d3d809ac88d5012
-Author: siemiatj &lt;siemiatj@example.com&gt;
+Author: siemiatj <siemiatj@example.com>
 Date:   Wed Jul 30 00:34:10 2014 +0200
 
     ajout de foo.txt
 
 commit 69204cdf0acbab201619d95ad8295928e7f411d5
-Author: Kate Hudson &lt;katehudson@example.com&gt;
+Author: Kate Hudson <katehudson@example.com>
 Date:   Tue Jul 29 13:14:46 2014 -0400
 
     Correction #6: Push de force après avoir édité les commits
@@ -936,7 +936,7 @@ Si vous avez fait des modifications non commitées et réalisez par la suite que
 
 ```sh
 (mauvaise_branche)$ git stash
-(mauvaise_branche)$ git checkout &lt;bonne_branche&gt;
+(mauvaise_branche)$ git checkout <bonne_branche>
 (bonne_branche)$ git stash apply
 ```
 
