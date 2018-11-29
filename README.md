@@ -39,6 +39,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I accidentally did a hard reset, and I want my changes back](#i-accidentally-did-a-hard-reset-and-i-want-my-changes-back)
     - [I accidentally committed and pushed a merge](#i-accidentally-committed-and-pushed-a-merge)
     - [I accidentally committed and pushed files containing sensitive data](#i-accidentally-committed-and-pushed-files-containing-sensitive-data)
+    - [I need to change the content of a commit which is not my last](#i-need-to-change-the-content-of-a-commit-which-is-not-my-last)
   - [Staging](#staging)
     - [I need to add staged changes to the previous commit](#i-need-to-add-staged-changes-to-the-previous-commit)
     - [I want to stage part of a new file, but not the whole file](#i-want-to-stage-part-of-a-new-file-but-not-the-whole-file)
@@ -358,6 +359,48 @@ If you want to completely remove an entire file (and not keep it locally), then 
 ```
 
 If you have made other commits in the meantime (i.e. the sensitive data is in a commit before the previous commit), you will have to rebase. 
+
+<a href="i-need-to-change-the-content-of-a-commit-which-is-not-my-last"></a>
+### I need to change the content of a commit which is not my last
+
+Consider you created some (e.g. three) commits and later realize you missed doing something that belongs contextually into the first of those commits. This bothers you, because if you'd create a new commit containing those changes, you'd have a clean code base, but your commits weren't atomic (i.e. changes that belonged to each other weren't in the same commit). In such a situation you may want to change the commit where these changes belong to, include them and have the following commits unaltered. In such a case, `git rebase` might save you.
+
+Consider a situation where you want to change the third last commit you made.
+
+```sh
+(your-branch)$ git rebase -i HEAD~4
+```
+
+gets you into interactive rebase mode, which allows you to edit any of your last three commits. A text editor pops up, showing you something like
+
+```sh
+pick 9e1d264 The third last commit
+pick 4b6e19a The second to last commit
+pick f4037ec The last commit
+```
+
+which you change into
+
+```sh
+edit 9e1d264 The third last commit
+pick 4b6e19a The second to last commit
+pick f4037ec The last commit
+```
+
+This tells rebase that you want to edit your third last commit and keep the other two unaltered. Then you'll save (and close) the editor. Git will then start to rebase. It stops on the commit you want to alter, giving you the chance to edit that commit. Now you can apply the changes which you missed applying when you initially commited that commit. You do so by editing and staging them. Afterwards you'll run
+
+```sh
+(your-branch)$ git commit --amend
+```
+
+which tells Git to recreate the commit, but to leave the commit message unedited. Having done that, the hard part is solved.
+
+```sh
+(your-branch)$ git rebase --continue
+```
+
+will do the rest of the work for you.
+
 
 ## Staging
 
