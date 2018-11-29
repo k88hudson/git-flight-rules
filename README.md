@@ -1241,7 +1241,7 @@ To trace the evolution of a single function you can use:
 $ git log -L :FunctionName:FilePath
 ```
 
-Note that you can combine this with further `git log` options, like [revision ranges](https://git-scm.com/docs/gitrevisions) and [commit limits](https://git-scm.com/docs/git-log/#_commit_limiting)
+Note that you can combine this with further `git log` options, like [revision ranges](https://git-scm.com/docs/gitrevisions) and [commit limits](https://git-scm.com/docs/git-log/#_commit_limiting).
 
 ### Find a tag where a commit is referenced
 
