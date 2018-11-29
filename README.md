@@ -348,7 +348,7 @@ If you have made other commits in the meantime (i.e. the sensitive data is in a 
 <a href="i-need-to-change-the-content-of-a-commit-which-is-not-my-last"></a>
 ### I need to change the content of a commit which is not my last
 
-Consider you created some (e.g. three) commits and later realise you missed doing something that belongs contextually into the first of those commits. This bothers you because if you'd create a new commit containing those changes, you'd have a clean code base, but your commits weren't atomic (and this matters much to you, because you're a good developer). In such a situation you may want to change the commit where these changes belong to contain them and have the rest of your following commits unaltered (because they are atomic and that is because - you might guess it- you are a very good developer). In such a case, `git rebase` might safe you.
+Consider you created some (e.g. three) commits and later realise you missed doing something that belongs contextually into the first of those commits. This bothers you, because if you'd create a new commit containing those changes, you'd have a clean code base, but your commits weren't atomic (i.e. changes that belonged to each other weren't in the same commit). In such a situation you may want to change the commit where these changes belong to, include them and have the following commits unaltered. In such a case, git rebase might save you.
 
 Consider a situation where you want to change the third last commit you made.
 ```sh
@@ -360,15 +360,14 @@ pick 9e1d264 The third last commit
 pick 4b6e19a The second to last commit
 pick f4037ec The last commit
 ```
-which you elegantly change into
+which you change into
 ```sh
 edit 9e1d264 The third last commit
 pick 4b6e19a The second to last commit
 pick f4037ec The last commit
 ```
-This tells rebase that you want to edit your third last commit and keep the other two unaltered. Then you'll save (and close) the editor. `git` will then start to rebase. It stops on the commit you want to alter. This is your chance to alter that commit. Now you have to fix the files you missed to alter when you initially commited that commit. You do so by editing and staging them. Afterwars you'll run
-```sh
-(your-branch)$ git commit --amend --no-edit
+This tells rebase that you want to edit your third last commit and keep the other two unaltered. Then you'll save (and close) the editor. git will then start to rebase. It stops on the commit you want to alter giving you the chance to edit that commit. Now you can apply the changes you missed applying when you initially commited that commit. You do so by editing and staging them. Afterwards you'll run```sh
+(your-branch)$ git commit --amend
 ```
 which tells `git` to recreate the commit, but to no edit the commit message. Having done that, the hard part is solved
 ```sh
