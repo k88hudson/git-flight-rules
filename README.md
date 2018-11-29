@@ -1518,6 +1518,8 @@ On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```. 
     wc = whatchanged
     wip = rebase -i @{u}
     zap = fetch -p
+    day = log --reverse --no-merges --branches=* --date=local --since=midnight --author=\"$(git config --get user.name)\"
+    delete-merged-branches = "!f() { git checkout --quiet master && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
 ```
 
 ### I want to add an empty directory to my repository
