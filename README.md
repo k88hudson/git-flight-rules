@@ -1,7 +1,7 @@
 # Flight rules for Git
 
 🌍
-*[English](README.md) ∙ [Español](README_es.md)  ∙  [Русский](README_ru.md) ∙ [简体中文](README_zh-CN.md)*
+*[English](README.md) ∙ [Español](README_es.md)  ∙  [Русский](README_ru.md) ∙ [简体中文](README_zh-CN.md)∙ [한국어](README_kr.md)  ∙  [Tiếng Việt](README_vi.md) ∙ [Français](README_fr.md)*
 
 #### What are "flight rules"?
 
@@ -17,6 +17,8 @@ A [guide for astronauts](https://www.jsc.nasa.gov/news/columbia/fr_generic.pdf) 
 
 For clarity's sake all examples in this document use a customized bash prompt in order to indicate the current branch and whether or not there are staged changes. The branch is enclosed in parentheses, and a `*` next to the branch name indicates staged changes.
 
+All commands should work for at least git version 2.13.0. See the [git website](https://www.git-scm.com/) to update your local git version.
+
 [![Join the chat at https://gitter.im/k88hudson/git-flight-rules](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/k88hudson/git-flight-rules?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -25,6 +27,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
   - [Repositories](#repositories)
     - [I want to start a local repository](#i-want-to-start-a-local-repository)
     - [I want to clone a remote repository](#i-want-to-clone-a-remote-repository)
+    - [I set the wrong remote repository](#i-set-the-wrong-remote-repository)
   - [Editing Commits](#editing-commits)
     - [What did I just commit?](#what-did-i-just-commit)
     - [I wrote the wrong thing in a commit message](#i-wrote-the-wrong-thing-in-a-commit-message)
@@ -35,6 +38,8 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I tried to push my amended commit to a remote, but I got an error message](#i-tried-to-push-my-amended-commit-to-a-remote-but-i-got-an-error-message)
     - [I accidentally did a hard reset, and I want my changes back](#i-accidentally-did-a-hard-reset-and-i-want-my-changes-back)
     - [I accidentally committed and pushed a merge](#i-accidentally-committed-and-pushed-a-merge)
+    - [I accidentally committed and pushed files containing sensitive data](#i-accidentally-committed-and-pushed-files-containing-sensitive-data)
+    - [I need to change the content of a commit which is not my last](#i-need-to-change-the-content-of-a-commit-which-is-not-my-last)
   - [Staging](#staging)
     - [I need to add staged changes to the previous commit](#i-need-to-add-staged-changes-to-the-previous-commit)
     - [I want to stage part of a new file, but not the whole file](#i-want-to-stage-part-of-a-new-file-but-not-the-whole-file)
@@ -48,6 +53,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to discard specific unstaged files](#i-want-to-discard-specific-unstaged-files)
     - [I want to discard only my unstaged local changes](#i-want-to-discard-only-my-unstaged-local-changes)
     - [I want to discard all of my untracked files](#i-want-to-discard-all-of-my-untracked-files)
+    - [I want to unstage a specific staged file](#i-want-to-unstage-a-specific-staged-file)
   - [Branches](#branches)
     - [I want to list all branches](#i-want-to-list-all-branches)
     - [Create a branch from a commit](#create-a-branch-from-a-commit)
@@ -74,6 +80,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
       - [I need to merge a branch into a single commit](#i-need-to-merge-a-branch-into-a-single-commit)
       - [I want to combine only unpushed commits](#i-want-to-combine-only-unpushed-commits)
       - [I need to abort the merge](#i-need-to-abort-the-merge)
+    - [I need to update the parent commit of my branch](#i-need-to-update-the-parent-commit-of-my-branch)
     - [Check if all commits on a branch are merged](#check-if-all-commits-on-a-branch-are-merged)
     - [Possible issues with interactive rebases](#possible-issues-with-interactive-rebases)
       - [The rebase editing screen says 'noop'](#the-rebase-editing-screen-says-noop)
@@ -87,6 +94,7 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [I want to find a string in any commit](#i-want-to-find-a-string-in-any-commit)
     - [I want to find by author/committer](#i-want-to-find-by-authorcommitter)
     - [I want to list commits containing specific files](#i-want-to-list-commits-containing-specific-files)
+    - [I want to view the commit history for a specific function](#i-want-to-view-the-commit-history-for-a-specific-function)
     - [Find a tag where a commit is referenced](#find-a-tag-where-a-commit-is-referenced)
   - [Submodules](#submodules)
     - [Clone all submodules](#clone-all-submodules)
@@ -97,12 +105,14 @@ For clarity's sake all examples in this document use a customized bash prompt in
     - [Recover a deleted tag](#recover-a-deleted-tag)
     - [Deleted Patch](#deleted-patch)
     - [Exporting a repository as a Zip file](#exporting-a-repository-as-a-zip-file)
+    - [Push a branch and a tag that have the same name](#push-a-branch-and-a-tag-that-have-the-same-name)
   - [Tracking Files](#tracking-files)
     - [I want to change a file name's capitalization, without changing the contents of the file](#i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file)
     - [I want to overwrite local files when doing a git pull](#i-want-to-overwrite-local-files-when-doing-a-git-pull)
     - [I want to remove a file from Git but keep the file](#i-want-to-remove-a-file-from-git-but-keep-the-file)
     - [I want to revert a file to a specific revision](#i-want-to-revert-a-file-to-a-specific-revision)
     - [I want to list changes of a specific file between commits or branches](#i-want-to-list-changes-of-a-specific-file-between-commits-or-branches)
+    - [I want Git to ignore changes to a specific file](#i-want-git-to-ignore-changes-to-a-specific-file)
   - [Configuration](#configuration)
     - [I want to add aliases for some Git commands](#i-want-to-add-aliases-for-some-git-commands)
     - [I want to add an empty directory to my repository](#i-want-to-add-an-empty-directory-to-my-repository)
@@ -145,6 +155,20 @@ To clone it into a folder with a different name than the default repository name
 $ git clone [url] name-of-new-folder
 ```
 
+### I set the wrong remote repository
+
+There are a few possible problems here:
+
+If you cloned the wrong repository, simply delete the directory created after running `git clone` and clone the correct repository.
+
+If you set the wrong repository as the origin of an existing local repository, change the url of your origin by running:
+
+```sh
+$ git remote set-url origin [url of the actual repo]
+```
+
+For more, see [this StackOverflow topic](https://stackoverflow.com/questions/2432764/how-to-change-the-uri-url-for-a-remote-git-repository#2432799).
+
 ## Editing Commits
 
 <a name="diff-last"></a>
@@ -170,15 +194,16 @@ $ git show <commitid>:filename
 
 ### I wrote the wrong thing in a commit message
 
-If you wrote the wrong thing and the commit has not yet been pushed, you can do the following to change the commit message:
+If you wrote the wrong thing and the commit has not yet been pushed, you can do the following to change the commit message without changing the changes in the commit:
 
 ```sh
-$ git commit --amend
+$ git commit --amend --only
 ```
+
 This will open your default text editor, where you can edit the message. On the other hand, you can do this all in one command:
 
 ```sh
-$ git commit --amend -m 'xxxxxxx'
+$ git commit --amend --only -m 'xxxxxxx'
 ```
 
 If you have already pushed the message, you can amend the commit and force push, but this is not recommended.
@@ -297,13 +322,86 @@ And you should be good to go.
 
 If you accidentally merged a feature branch to the main development branch before it was ready to be merged, you can still undo the merge. But there's a catch: A merge commit has more than one parent (usually two).
 
-The command to use 
+The command to use
 ```sh
 (feature-branch)$ git revert -m 1 <commit>
 ```
 where the -m 1 option says to select parent number 1 (the branch into which the merge was made) as the parent to revert to.
 
 Note: the parent number is not a commit identifier. Rather, a merge commit has a line `Merge: 8e2ce2d 86ac2e7`. The parent number is the 1-based index of the desired parent on this line, the first identifier is number 1, the second is number 2, and so on.
+
+<a href="undo-sensitive-commit-push"></a>
+### I accidentally committed and pushed files containing sensitive data
+
+If you accidentally pushed files containing sensitive data (passwords, keys, etc.), you can amend the previous commit. Keep in mind that once you have pushed a commit, you should consider any data it contains to be compromised. These steps can remove the sensitive data from your public repo or your local copy, but you **cannot** remove the sensitive data from other people's pulled copies. If you committed a password, **change it immediately**. If you committed a key, **re-generate it immediately**. Amending the pushed commit is not enough, since anyone could have pulled the original commit containing your sensitive data in the meantime. 
+
+If you edit the file and remove the sensitive data, then run
+```sh
+(feature-branch)$ git add edited_file
+(feature-branch)$ git commit --amend --no-edit
+(feature-branch)$ git push --force-with-lease origin [branch]
+```
+
+If you want to remove an entire file (but keep it locally), then run
+```sh
+(feature-branch)$ git rm --cached sensitive_file
+echo sensitive_file >> .gitignore
+(feature-branch)$ git add .gitignore
+(feature-branch)$ git commit --amend --no-edit
+(feature-branch)$ git push --force-with-lease origin [branch]
+```
+Alternatively store your sensitive data in local environment variables.
+
+If you want to completely remove an entire file (and not keep it locally), then run
+```sh
+(feature-branch)$ git rm sensitive_file
+(feature-branch)$ git commit --amend --no-edit
+(feature-branch)$ git push --force-with-lease origin [branch]
+```
+
+If you have made other commits in the meantime (i.e. the sensitive data is in a commit before the previous commit), you will have to rebase. 
+
+<a href="i-need-to-change-the-content-of-a-commit-which-is-not-my-last"></a>
+### I need to change the content of a commit which is not my last
+
+Consider you created some (e.g. three) commits and later realize you missed doing something that belongs contextually into the first of those commits. This bothers you, because if you'd create a new commit containing those changes, you'd have a clean code base, but your commits weren't atomic (i.e. changes that belonged to each other weren't in the same commit). In such a situation you may want to change the commit where these changes belong to, include them and have the following commits unaltered. In such a case, `git rebase` might save you.
+
+Consider a situation where you want to change the third last commit you made.
+
+```sh
+(your-branch)$ git rebase -i HEAD~4
+```
+
+gets you into interactive rebase mode, which allows you to edit any of your last three commits. A text editor pops up, showing you something like
+
+```sh
+pick 9e1d264 The third last commit
+pick 4b6e19a The second to last commit
+pick f4037ec The last commit
+```
+
+which you change into
+
+```sh
+edit 9e1d264 The third last commit
+pick 4b6e19a The second to last commit
+pick f4037ec The last commit
+```
+
+This tells rebase that you want to edit your third last commit and keep the other two unaltered. Then you'll save (and close) the editor. Git will then start to rebase. It stops on the commit you want to alter, giving you the chance to edit that commit. Now you can apply the changes which you missed applying when you initially commited that commit. You do so by editing and staging them. Afterwards you'll run
+
+```sh
+(your-branch)$ git commit --amend
+```
+
+which tells Git to recreate the commit, but to leave the commit message unedited. Having done that, the hard part is solved.
+
+```sh
+(your-branch)$ git rebase --continue
+```
+
+will do the rest of the work for you.
+
 
 ## Staging
 
@@ -312,8 +410,14 @@ Note: the parent number is not a commit identifier. Rather, a merge commit has a
 
 ```sh
 (my-branch*)$ git commit --amend
-
 ```
+
+If you already know you don't want to change the commit message, you can tell git to reuse the commit message:
+
+```sh
+(my-branch*)$ git commit --amend -C HEAD
+```
+
 
 <a name="commit-partial-new-file"></a>
 ### I want to stage part of a new file, but not the whole file
@@ -468,6 +572,17 @@ When you want to get rid of all of your untracked files
 ```sh
 $ git clean -f
 ```
+
+<a href="I-want-to-unstage-specific-staged-file"></a>
+### I want to unstage a specific staged file
+
+Sometimes we have one or more files that accidentally ended up being staged, and these files have not been committed before. To unstage them:
+
+```sh
+$ git reset -- <filename>
+```
+
+This results in unstaging the file and make it look like it's untracked.
 
 ## Branches
 
@@ -1038,6 +1153,16 @@ Sometimes the merge can produce problems in certain files, in those cases we can
 
 This command is available since Git version >= 1.7.4
 
+### I need to update the parent commit of my branch
+
+Say I have a master branch, a feature-1 branch branched from master, and a feature-2 branch branched off of feature-1. If I make a commit to feature-1, then the parent commit of feature-2 is no longer accurate (it should be the head of feature-1, since we branched off of it). We can fix this with `git rebase --onto`.
+
+```sh
+(feature-2)$ git rebase --onto feature-1 <the first commit in your feature-2 branch that you don't want to bring along> feature-2
+```
+
+This helps in sticky scenarios where you might have a feature built on another feature that hasn't been merged yet, and a bugfix on the feature-1 branch needs to be reflected in your feature-2 branch.
+
 ### Check if all commits on a branch are merged
 
 To check if all commits on a branch are merged into another branch, you should diff between the heads (or any commits) of those branches:
@@ -1231,6 +1356,17 @@ While using wildcards, it's useful to inform `--name-status` to see the list of 
 $ git log --name-status -- **/*.js
 ```
 
+<a name="#i-want-to-view-the-commit-history-for-a-specific-function"></a>
+### I want to view the commit history for a specific function
+
+To trace the evolution of a single function you can use:
+
+```sh
+$ git log -L :FunctionName:FilePath
+```
+
+Note that you can combine this with further `git log` options, like [revision ranges](https://git-scm.com/docs/gitrevisions) and [commit limits](https://git-scm.com/docs/git-log/#_commit_limiting).
+
 ### Find a tag where a commit is referenced
 
 To find all tags containing a specific commit:
@@ -1321,6 +1457,27 @@ From github.com:foo/bar
 ```sh
 $ git archive --format zip --output /full/path/to/zipfile.zip master
 ```
+### Push a branch and a tag that have the same name
+
+If there is a tag on a remote repository that has the same name as a branch you will get the following error when trying to push that branch with a standard `$ git push <remote> <branch>` command.
+
+```sh
+$ git push origin <branch>
+error: dst refspec same matches more than one.
+error: failed to push some refs to '<git server>'
+```
+
+Fix this by specifying you want to push the head reference.
+
+```sh
+$ git push origin refs/heads/<branch-name>
+```
+
+If you want to push a tag to a remote repository that has the same name as a branch, you can use a similar command.
+
+```sh
+$ git push origin refs/tags/<tag-name>
+```
 
 ## Tracking Files
 
@@ -1373,6 +1530,20 @@ Same goes for branches:
 $ git diff master:path_to_file/file staging:path_to_file/file
 ```
 
+### I want Git to ignore changes to a specific file
+
+This works great for config templates or other files that require locally adding credentials that shouldn't be committed.
+
+```sh
+$ git update-index --assume-unchanged file-to-ignore
+```
+
+Note that this does *not* remove the file from source control - it is only ignored locally. To undo this and tell Git to notice changes again, this clears the ignore flag:
+
+```sh
+$ git update-index --no-assume-unchanged file-to-stop-ignoring
+```
+
 ## Configuration
 
 ### I want to add aliases for some Git commands
@@ -1390,16 +1561,20 @@ On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```. 
     d = diff
     dc = diff --changed
     ds = diff --staged
+    extend = commit --amend -C HEAD
     f = fetch
     loll = log --graph --decorate --pretty=oneline --abbrev-commit
     m = merge
     one = log --pretty=oneline
     outstanding = rebase -i @{u}
+    reword = commit --amend --only
     s = status
     unpushed = log @{u}
     wc = whatchanged
     wip = rebase -i @{u}
     zap = fetch -p
+    day = log --reverse --no-merges --branches=* --date=local --since=midnight --author=\"$(git config --get user.name)\"
+    delete-merged-branches = "!f() { git checkout --quiet master && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
 ```
 
 ### I want to add an empty directory to my repository
@@ -1424,7 +1599,7 @@ You can also name the file as just .keep , in which case the second line above w
 
 ### I want to cache a username and password for a repository
 
-You might have a repository that requires authentication.  In which case you can cache a username and password so you don't have to enter it on every push / pull. Credential helper can do this for you.
+You might have a repository that requires authentication.  In which case you can cache a username and password so you don't have to enter it on every push and pull. Credential helper can do this for you.
 
 ```sh
 $ git config --global credential.helper cache
@@ -1435,6 +1610,31 @@ $ git config --global credential.helper cache
 $ git config --global credential.helper 'cache --timeout=3600'
 # Set the cache to timeout after 1 hour (setting is in seconds)
 ```
+To find a credential helper:
+
+```sh
+$ git help -a | grep credential
+# Shows you possible credential helpers
+```
+
+For OS specific credential caching:
+
+```sh
+$ git config --global credential.helper osxkeychain
+# For OSX
+```
+
+```sh
+$ git config --global credential.helper manager
+# Git for Windows 2.7.3+
+```
+
+```sh
+$ git config --global credential.helper gnome-keyring
+# Ubuntu and other GNOME-based distros
+```
+
+More credential helpers can likely be found for different distributions and operating systems.
 
 ### I want to make Git ignore permissions and filemode changes
 
@@ -1499,14 +1699,18 @@ Using `git reset` it is then possible to change master back to the commit it was
 
 ## Books
 
+* [Learn Enough Git to Be Dangerous](https://www.learnenough.com/git-tutorial) - A book by Michael Hartl covering Git from basics
 * [Pro Git](https://git-scm.com/book/en/v2) - Scott Chacon and Ben Straub's excellent book about Git
 * [Git Internals](https://github.com/pluralsight/git-internals-pdf) - Scott Chacon's other excellent book about Git
 
 ## Tutorials
 
+* [19 Git Tips For Everyday Use](https://www.alexkras.com/19-git-tips-for-everyday-use) - A list of useful Git one liners
 * [Atlassian's Git tutorial](https://www.atlassian.com/git/tutorials) Get Git right with tutorials from beginner to advanced.
 * [Learn Git branching](https://learngitbranching.js.org/) An interactive web based branching/merging/rebasing tutorial
 * [Getting solid at Git rebase vs. merge](https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa)
+* [Git Commands and Best Practices Cheat Sheet](https://zeroturnaround.com/rebellabs/git-commands-and-best-practices-cheat-sheet) - A Git cheat sheet in a blog post with more explanations
+* [Git from the inside out](https://codewords.recurse.com/issues/two/git-from-the-inside-out) - A tutorial that dives into Git's internals
 * [git-workflow](https://github.com/asmeurer/git-workflow) - [Aaron Meurer](https://github.com/asmeurer)'s howto on using Git to contribute to open source repositories
 * [GitHub as a workflow](https://hugogiraudel.com/2015/08/13/github-as-a-workflow/) - An interesting take on using GitHub as a workflow, particularly with empty PRs
 * [Githug](https://github.com/Gazler/githug) - A game to learn more common Git workflows
@@ -1533,3 +1737,4 @@ Using `git reset` it is then possible to change master back to the commit it was
 * [Fork](https://git-fork.com/) - a fast and friendly Git client for Mac (beta)
 * [gmaster](https://gmaster.io/) - a Git client for Windows that has 3-way merge, analyze refactors, semantic diff and merge (beta)
 * [gitk](https://git-scm.com/docs/gitk) - a Git client for linux to allow simple view of repo state.
+* [SublimeMerge](https://www.sublimemerge.com/) - Blazing fast, extensible client that provides 3-way merges, powerful search and syntax highlighting, in active development.
