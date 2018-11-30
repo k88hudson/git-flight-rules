@@ -121,6 +121,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I want to set a global user](#i-want-to-set-a-global-user)
     - [I want to add command line coloring for Git](#i-want-to-add-command-line-coloring-for-git)
   - [I've no idea what I did wrong](#ive-no-idea-what-i-did-wrong)
+  - [Git Shortcuts](#git-shortcuts)
 - [Other Resources](#other-resources)
   - [Books](#books)
   - [Tutorials](#tutorials)
@@ -1694,6 +1695,40 @@ $ git reset --hard 0254ea7
 Using `git reset` it is then possible to change master back to the commit it was before. This provides a safety net in case history was accidentally changed.
 
 (copied and edited from [Source](https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog)).
+
+<a name="git-shortcuts"></a>
+## Git Shortcuts
+
+Once you're comfortable with what the above commands are doing, you might want to create some shortcuts for Git Bash. This allows you to work a lot faster by doing complex tasks in really short commands.
+
+```sh
+alias ga='git add'
+alias gb='git branch'
+alias gt='git tag'
+alias mt='git mergetool'
+alias co='git checkout'
+alias pull='git pull'
+alias push='git push'
+alias sq=squash
+alias cb=current_branch
+
+function squash() {
+    git rebase -i HEAD~$1
+}
+
+function current_branch() {
+    gb 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+}
+
+function blam() {
+    push origin $(cb) $@
+}
+
+git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+````
+copy those commands to your .bashrc or .bash_profile
 
 # Other Resources
 
