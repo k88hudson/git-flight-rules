@@ -1702,33 +1702,13 @@ Using `git reset` it is then possible to change master back to the commit it was
 Once you're comfortable with what the above commands are doing, you might want to create some shortcuts for Git Bash. This allows you to work a lot faster by doing complex tasks in really short commands.
 
 ```sh
-alias ga='git add'
-alias gb='git branch'
-alias gt='git tag'
-alias mt='git mergetool'
-alias co='git checkout'
-alias pull='git pull'
-alias push='git push'
 alias sq=squash
-alias cb=current_branch
 
 function squash() {
     git rebase -i HEAD~$1
 }
-
-function current_branch() {
-    gb 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
-}
-
-function blam() {
-    push origin $(cb) $@
-}
-
-git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-}
 ````
-copy those commands to your .bashrc or .bash_profile
+copy those commands to your .bashrc or .bash_profile. 
 
 # Other Resources
 
