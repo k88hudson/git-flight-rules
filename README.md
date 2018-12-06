@@ -1735,6 +1735,7 @@ copy those commands to your .bashrc or .bash_profile.
 * [git-workflow](https://github.com/asmeurer/git-workflow) - [Aaron Meurer](https://github.com/asmeurer)'s howto on using Git to contribute to open source repositories
 * [GitHub as a workflow](https://hugogiraudel.com/2015/08/13/github-as-a-workflow/) - An interesting take on using GitHub as a workflow, particularly with empty PRs
 * [Githug](https://github.com/Gazler/githug) - A game to learn more common Git workflows
+* [learnGitBranching](https://github.com/pcottle/learnGitBranching) - An interactive git visualization to challenge and educate!
 
 ## Scripts and Tools
 
