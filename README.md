@@ -385,7 +385,7 @@ Then, you will need to use the `e` option to manually choose which lines to add.
 <a href="selective-unstage-edits"></a>
 ### I staged too many edits, and I want to break them out into a separate commit
 
-`git reset -p` will open a patch mode reset dialog.  Much like `git add -p` but yes will reset the change, unstaging it.
+`git reset -p` will open a patch mode reset dialog.  Much like `git add -p` but selecting yes will unstage the change, removing it from the upcoming commit.
 
 <a href="unstaging-edits-and-staging-the-unstaged"></a>
 ### I want to stage my unstaged edits, and unstage my staged edits
