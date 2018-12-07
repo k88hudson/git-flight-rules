@@ -123,11 +123,13 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I want to add command line coloring for Git](#i-want-to-add-command-line-coloring-for-git)
   - [I've no idea what I did wrong](#ive-no-idea-what-i-did-wrong)
   - [Git Shortcuts](#git-shortcuts)
-- [Other Resources](#other-resources)
-  - [Books](#books)
-  - [Tutorials](#tutorials)
-  - [Scripts and Tools](#scripts-and-tools)
-  - [GUI Clients](#gui-clients)
+    - [Git Bash](#git-bash)
+    - [PowerShell on Windows](#powershell-on-windows)
+  - [Other Resources](#other-resources)
+    - [Books](#books)
+    - [Tutorials](#tutorials)
+    - [Scripts and Tools](#scripts-and-tools)
+    - [GUI Clients](#gui-clients)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -1705,6 +1707,8 @@ Using `git reset` it is then possible to change master back to the commit it was
 <a name="git-shortcuts"></a>
 ## Git Shortcuts
 
+### Git Bash
+
 Once you're comfortable with what the above commands are doing, you might want to create some shortcuts for Git Bash. This allows you to work a lot faster by doing complex tasks in really short commands.
 
 ```sh
@@ -1713,8 +1717,21 @@ alias sq=squash
 function squash() {
     git rebase -i HEAD~$1
 }
-````
-copy those commands to your .bashrc or .bash_profile. 
+```
+
+Copy those commands to your .bashrc or .bash_profile.
+
+### PowerShell on Windows
+
+If you are using PowerShell on Windows, you can also set up aliases and functions. Add these commands to your profile, whose path is defined in the `$profile` variable. Learn more at the [About Profiles](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles) page on the Microsoft documentation site.
+
+```powershell
+Set-Alias sq Squash-Commits
+
+function Squash-Commits {
+  git rebase -i HEAD~$1
+}
+```
 
 # Other Resources
 
