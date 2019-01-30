@@ -5,7 +5,7 @@ before_script:
   - gem install awesome_bot
   - npm install
 script:
-- awesome_bot README.md --allow-dupe --allow-redirect
-- awesome_bot README_*.md --allow-dupe --allow-redirect
+- awesome_bot README.md --allow-dupe --allow-redirect --allow-ssl
+- awesome_bot README_*.md --allow-dupe --allow-redirect --allow-ssl
 - npm run toc
 - npm run diff
