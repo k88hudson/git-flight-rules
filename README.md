@@ -404,13 +404,19 @@ With bfg the files that exist on your latest commit will not be affected. For ex
 
 Note, if you renamed your file as part of a commit, e.g. if it started as `LargeFileFirstName.mp4` and a commit changed it to `LargeFileSecondName.mp4`, running `java -jar ~/Downloads/bfg.jar --delete-files LargeFileSecondName.mp4` will not remove it from git history. Either run the `--delete-files` command with both filenames, or with a matching pattern. As explained above, any files present in the repo on your latest commit will be safe.
 
-#### Alternate Technique: Use git-filter-branch
+#### Built-in Technique: Use git-filter-branch
 
-TODO:
-* delete single file
-* delete by pattern while protecting existing files
-* handling renames
+`git-filter-branch` is more cumbersome and has less features, but you can use it if you cannot install or run `bfg`. 
 
+In the below, replace `filepattern` may be a specific file name, or a file pattern, e.g. `*.jpg`. This will remove files matching the pattern from all history and branches.
+
+```sh
+(master)$ git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch filepattern' --prune-empty --tag-name-filter cat -- --all
+```
+
+Behind-the-scenes explanation:
+`--tag-name-filter cat` is a cumbersome, but simplest, way to apply the original tags to the new commits, using the command cat.
+`--prune-empty` removes any now-empty commits.
 
 #### Final Step: Pushing your changed repo history
 
@@ -418,7 +424,7 @@ Once you have removed your desired files, test carefully that you haven't broken
 To finish, optionally use git garbage collection to minimize your local .git folder size, and then force push.
 ```sh
 (master)$ git reflog expire --expire=now --all && git gc --prune=now --aggressive
-(master)$ git push --force
+(master)$ git push origin --force --tags
 ```
 
 Since you just rewrote the entire git repo history, the `git push` operation may be too large, and return the error `“The remote end hung up unexpectedly”`. If this happens, you can try increasing the git post buffer:
