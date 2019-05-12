@@ -376,7 +376,7 @@ Even if you delete a large or unwanted file in a recent commit, it still exists 
 
 The actions in this part of the guide will require a force push, and rewrite large sections of repo history, so if you are working with remote collaborators, check first that any local work of theirs is pushed.
 
-There are two options for rewriting history, the built-in `git-filter-branch` or [`bfg-repo-cleaner`](https://rtyley.github.io/bfg-repo-cleaner/). `bfg` is significantly cleaner and more performant, but it is a third-party download and requires java. We will describe both alternatives. The final step is to force push your changes, which requires special consideration on top of a regular force push given that a great deal of repo history will have been permanently changed.
+There are two options for rewriting history, the built-in `git-filter-branch` or [`bfg-repo-cleaner`](https://rtyley.github.io/bfg-repo-cleaner/). `bfg` is significantly cleaner and more performant, but it is a third-party download and requires java. We will describe both alternatives. The final step is to force push your changes, which requires special consideration on top of a regular force push, given that a great deal of repo history will have been permanently changed.
 
 #### Recommended Technique: Use third-party bfg
 
@@ -397,25 +397,24 @@ You can also delete a file by pattern, e.g.:
 (master)$ java -jar ~/Downloads/bfg.jar --delete-files *.jpg
 ```
 
-With bfg the files that exist on your latest commit will not be affected. For example, if you had several large .tga files in your repo, and then in an earlier commit, you deleted a subset of them, this call does not touch files present in the latest commit:
-```sh
-(master)$ java -jar ~/Downloads/bfg.jar --delete-files *.tga
-```
+With bfg, the files that exist on your latest commit will not be affected. For example, if you had several large .tga files in your repo, and then in an earlier commit, you deleted a subset of them, this call does not touch files present in the latest commit
 
-Note, if you renamed your file as part of a commit, e.g. if it started as `LargeFileFirstName.mp4` and a commit changed it to `LargeFileSecondName.mp4`, running `java -jar ~/Downloads/bfg.jar --delete-files LargeFileSecondName.mp4` will not remove it from git history. Either run the `--delete-files` command with both filenames, or with a matching pattern. As explained above, any files present in the repo on your latest commit will be safe.
+Note, if you renamed a file as part of a commit, e.g. if it started as `LargeFileFirstName.mp4` and a commit changed it to `LargeFileSecondName.mp4`, running `java -jar ~/Downloads/bfg.jar --delete-files LargeFileSecondName.mp4` will not remove it from git history. Either run the `--delete-files` command with both filenames, or with a matching pattern. 
 
 #### Built-in Technique: Use git-filter-branch
 
-`git-filter-branch` is more cumbersome and has less features, but you can use it if you cannot install or run `bfg`. 
+`git-filter-branch` is more cumbersome and has less features, but you may use it if you cannot install or run `bfg`. 
 
-In the below, replace `filepattern` may be a specific file name, or a file pattern, e.g. `*.jpg`. This will remove files matching the pattern from all history and branches.
+In the below, replace `filepattern` may be a specific name or pattern, e.g. `*.jpg`. This will remove files matching the pattern from all history and branches.
 
 ```sh
 (master)$ git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch filepattern' --prune-empty --tag-name-filter cat -- --all
 ```
 
 Behind-the-scenes explanation:
+
 `--tag-name-filter cat` is a cumbersome, but simplest, way to apply the original tags to the new commits, using the command cat.
+
 `--prune-empty` removes any now-empty commits.
 
 #### Final Step: Pushing your changed repo history
