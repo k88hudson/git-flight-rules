@@ -1556,7 +1556,7 @@ $ git update-index --no-assume-unchanged file-to-stop-ignoring
 
 ## Debugging with Git
 
-The [git-bisect](https://git-scm.com/docs/git-bisect) command users a binary search to find which commit in your Git history introduced a bug.
+The [git-bisect](https://git-scm.com/docs/git-bisect) command uses a binary search to find which commit in your Git history introduced a bug.
 
 Suppose you're on the `master` branch, and you want to find the commit that broke some feature. You start bisect:
 
