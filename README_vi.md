@@ -5,7 +5,7 @@
 
 #### "flight rules" là gì?
 
-Một [hướng dẫn cho các phi hành gia astronauts](https://www.jsc.nasa.gov/news/columbia/fr_generic.pdf) (các lập trình viên sử dụng Git) về những việc cần làm khi một thứ gì đó xảy ra sai.
+Một hướng dẫn cho các phi hành gia astronauts (các lập trình viên sử dụng Git) về những việc cần làm khi một thứ gì đó xảy ra sai.
 
 >  *Flight Rules* là kiến thức khó thấy được trong các hướng dẫn sử dụng, từng bước, phải làm gì đếu điều X xảy ra và tại sao. Về cơ bản, chúng là các quy trình thực hiện theo tiêu chuẩn cụ thể cho từng kịch bản cụ thể. [...]
 

@@ -5,7 +5,7 @@
 
 #### ¿Qué son "reglas de vuelo"?
 
-Una [guía para astronautas](http://www.jsc.nasa.gov/news/columbia/fr_generic.pdf) (ahora, programadores usando git) acerca de qué hacer cuando las cosas van mal.
+Una guía para astronautas (ahora, programadores usando git) acerca de qué hacer cuando las cosas van mal.
 
 >  *Las reglas de vuelo* son los conocimientos adquiridos con tanto esfuerzo en manuales que enumeran, paso a paso, qué hacer si ocurre X y por qué. Básicamente, son procedimientos operativos extremadamente detallados y específicos de cada escenario. [...]
 

@@ -5,7 +5,7 @@
 
 #### C'est quoi des "règles de vol" ?
 
-Un [guide pour les astronautes](https://www.jsc.nasa.gov/news/columbia/fr_generic.pdf) (pour les développeur·euse·s utilisant Git, dans le cas présent) sur quoi faire quand les choses se passent mal.
+Un guide pour les astronautes (pour les développeur·euse·s utilisant Git, dans le cas présent) sur quoi faire quand les choses se passent mal.
 
 >  *Les règles de vol* représentent l'ensemble des connaissances durement acquises consignées dans des manuels répertoriant, étape par étape, la procédure à suivre si telle chose se produit et pourquoi. Il s'agit essentiellement de procédures d'exploitation standard extrêmement détaillées et spécifiques à chaque scénario. [...]
 
