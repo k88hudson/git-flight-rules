@@ -114,7 +114,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I want to revert a file to a specific revision](#i-want-to-revert-a-file-to-a-specific-revision)
     - [I want to list changes of a specific file between commits or branches](#i-want-to-list-changes-of-a-specific-file-between-commits-or-branches)
     - [I want Git to ignore changes to a specific file](#i-want-git-to-ignore-changes-to-a-specific-file)
-  - [Debugging with Git](#debugging-with-Git)
+  - [Debugging with Git](#debugging-with-git)
   - [Configuration](#configuration)
     - [I want to add aliases for some Git commands](#i-want-to-add-aliases-for-some-git-commands)
     - [I want to add an empty directory to my repository](#i-want-to-add-an-empty-directory-to-my-repository)
@@ -126,11 +126,11 @@ All commands should work for at least git version 2.13.0. See the [git website](
   - [Git Shortcuts](#git-shortcuts)
     - [Git Bash](#git-bash)
     - [PowerShell on Windows](#powershell-on-windows)
-  - [Other Resources](#other-resources)
-    - [Books](#books)
-    - [Tutorials](#tutorials)
-    - [Scripts and Tools](#scripts-and-tools)
-    - [GUI Clients](#gui-clients)
+- [Other Resources](#other-resources)
+  - [Books](#books)
+  - [Tutorials](#tutorials)
+  - [Scripts and Tools](#scripts-and-tools)
+  - [GUI Clients](#gui-clients)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
