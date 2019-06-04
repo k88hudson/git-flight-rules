@@ -1838,6 +1838,76 @@ function Squash-Commits {
 }
 ```
 
+# Adding code to other people's repositories.
+
+Unless you are a contributor, you can't do it directly. But you can suggest code using forks and pull requests.
+
+## Forking
+A fork is a copy of repository. It is not a git operation, but is a common action on GitHub, Bitbucket, GitLab — or anywhere people host Git repositories.
+
+## Suggesting code via pull requests
+
+After forked, you need to clone repository to your machine.
+
+```sh
+# if you are using ssh
+$ git clone git@github.com:k88hudson/git-flight-rules.git
+
+# if you are using https
+$ git clone https://github.com/k88hudson/git-flight-rules.git
+```
+
+Set up a new remote that points to the original project. Generally we use `upstream` as a remote name.
+```sh
+$ (master) git remote add upstream git@github.com:k88hudson/git-flight-rules.git
+```
+
+Note that now you have two remotes.
+
+- `origin` are referencing your own repository.
+- `upstream` are referencing the original one.
+
+From origin, you can read and write. From upstream, you can only read.
+
+Make your changes (generally you will use a branch to do this). So create a new branch.
+
+```sh
+$ git checkout -b feature/my-feature
+```
+
+When finished, push your changes to remote named `origin`.
+Adittionaly you could use `--set-upstream` to avoid specifying remote track branch on every future push using this branch.
+
+```sh
+$ (feature/my-feature) git push --set-upstream origin feature/my-feature
+```
+
+Go to your host and create a new pull request. Note that your host automatically links the original and forked repositories.
+
+After all, do not forget to respond to any code review feedback.
+
+## I need to update my fork with latest updates from original repository
+
+After while, original repository can take some updates. Remember that like you, other people are contributing too. Suppose that you are in your own feature branch and needs to update it with the original repository updates.
+
+You probably have set up a remote that points to the original project. If not, do this now. Generally we use `upstream` as a remote name:
+
+```sh
+$ (master) git remote add upstream <link-to-original-repository>
+# $ (master) git remote add upstream git@github.com:k88hudson/git-flight-rules.git
+```
+
+Now you can fetch from upstream and get the lastest updates.
+
+```sh
+$ (master) git fetch upstream
+$ (master) git merge upstream/master
+
+# or using a single command
+$ (master) git pull upstream master
+```
+
+
 # Other Resources
 
 ## Books
