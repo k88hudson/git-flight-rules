@@ -5,7 +5,7 @@
 
 #### What are "flight rules"?
 
-A [guide for astronauts](https://www.jsc.nasa.gov/news/columbia/fr_generic.pdf) (now, programmers using Git) about what to do when things go wrong.
+A guide for astronauts (now, programmers using Git) about what to do when things go wrong.
 
 >  *Flight Rules* are the hard-earned body of knowledge recorded in manuals that list, step-by-step, what to do if X occurs, and why. Essentially, they are extremely detailed, scenario-specific standard operating procedures. [...]
 
@@ -114,6 +114,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I want to revert a file to a specific revision](#i-want-to-revert-a-file-to-a-specific-revision)
     - [I want to list changes of a specific file between commits or branches](#i-want-to-list-changes-of-a-specific-file-between-commits-or-branches)
     - [I want Git to ignore changes to a specific file](#i-want-git-to-ignore-changes-to-a-specific-file)
+  - [Debugging with Git](#debugging-with-git)
   - [Configuration](#configuration)
     - [I want to add aliases for some Git commands](#i-want-to-add-aliases-for-some-git-commands)
     - [I want to add an empty directory to my repository](#i-want-to-add-an-empty-directory-to-my-repository)
@@ -125,11 +126,11 @@ All commands should work for at least git version 2.13.0. See the [git website](
   - [Git Shortcuts](#git-shortcuts)
     - [Git Bash](#git-bash)
     - [PowerShell on Windows](#powershell-on-windows)
-  - [Other Resources](#other-resources)
-    - [Books](#books)
-    - [Tutorials](#tutorials)
-    - [Scripts and Tools](#scripts-and-tools)
-    - [GUI Clients](#gui-clients)
+- [Other Resources](#other-resources)
+  - [Books](#books)
+  - [Tutorials](#tutorials)
+  - [Scripts and Tools](#scripts-and-tools)
+  - [GUI Clients](#gui-clients)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -1552,6 +1553,39 @@ Note that this does *not* remove the file from source control - it is only ignor
 ```sh
 $ git update-index --no-assume-unchanged file-to-stop-ignoring
 ```
+
+## Debugging with Git
+
+The [git-bisect](https://git-scm.com/docs/git-bisect) command uses a binary search to find which commit in your Git history introduced a bug.
+
+Suppose you're on the `master` branch, and you want to find the commit that broke some feature. You start bisect:
+
+```sh
+$ git bisect start
+```
+
+Then you should specify which commit is bad, and which one is known to be good. Assuming that your *current* version is bad, and `v1.1.1` is good:
+
+```sh
+$ git bisect bad
+$ git bisect good v1.1.1
+```
+
+Now `git-bisect` selects a commit in the middle of the range that you specified, checks it out, and asks you whether it's good or bad. You should see something like:
+
+```sh
+$ Bisecting: 5 revision left to test after this (roughly 5 step)
+$ [c44abbbee29cb93d8499283101fe7c8d9d97f0fe] Commit message
+$ (c44abbb)$
+```
+
+You will now check if this commit is good or bad. If it's good:
+
+```sh
+$ (c44abbb)$ git bisect good
+```
+
+and `git-bisect` will select another commit from the range for you. This process (selecting `good` or `bad`) will repeat until there are no more revisions left to inspect, and the command will finally print a description of the **first** bad commit.
 
 ## Configuration
 
