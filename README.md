@@ -184,7 +184,7 @@ For more, see [this StackOverflow topic](https://stackoverflow.com/questions/243
 
 ### I want to add code to someone else's repository
 
-Git doesn't allow you to add code to someone else's repository without access rights. Niether does GitHub, which is not the same as Git, but rather a hosted service for Git repositories. However, you can suggest code using patches, or, on GitHub, forks and pull requests.
+Git doesn't allow you to add code to someone else's repository without access rights. Neither does GitHub, which is not the same as Git, but rather a hosted service for Git repositories. However, you can suggest code using patches, or, on GitHub, forks and pull requests.
 
 First, a bit about forking. A fork is a copy of repository. It is not a git operation, but is a common action on GitHub, Bitbucket, GitLab — or anywhere people host Git repositories. You can fork a repository through the hosted UI.
 
