@@ -235,7 +235,7 @@ After all of this, do not forget to respond to any code review feedback.
 
 #### I need to update my fork with latest updates from original repository
 
-After a while, the `upstream` repository may have been updated, and these updates need to be pulled into your `origin` repo. Remember that like you, other people are contributing too. Suppose that you are in your own feature branch and you nees to update it with the original repository updates.
+After a while, the `upstream` repository may have been updated, and these updates need to be pulled into your `origin` repo. Remember that like you, other people are contributing too. Suppose that you are in your own feature branch and you need to update it with the original repository updates.
 
 You probably have set up a remote that points to the original project. If not, do this now. Generally we use `upstream` as a remote name:
 
