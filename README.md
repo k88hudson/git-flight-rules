@@ -28,6 +28,9 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I want to start a local repository](#i-want-to-start-a-local-repository)
     - [I want to clone a remote repository](#i-want-to-clone-a-remote-repository)
     - [I set the wrong remote repository](#i-set-the-wrong-remote-repository)
+    - [I want to add code to someone else's repository](#i-want-to-add-code-to-someone-elses-repository)
+      - [Suggesting code via pull requests](#suggesting-code-via-pull-requests)
+      - [I need to update my fork with latest updates from original repository](#i-need-to-update-my-fork-with-latest-updates-from-original-repository)
   - [Editing Commits](#editing-commits)
     - [What did I just commit?](#what-did-i-just-commit)
     - [I wrote the wrong thing in a commit message](#i-wrote-the-wrong-thing-in-a-commit-message)
@@ -40,6 +43,9 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I accidentally committed and pushed a merge](#i-accidentally-committed-and-pushed-a-merge)
     - [I accidentally committed and pushed files containing sensitive data](#i-accidentally-committed-and-pushed-files-containing-sensitive-data)
     - [I want to remove a large file from ever existing in repo history](#i-want-to-remove-a-large-file-from-ever-existing-in-repo-history)
+      - [Recommended Technique: Use third-party bfg](#recommended-technique-use-third-party-bfg)
+      - [Built-in Technique: Use git-filter-branch](#built-in-technique-use-git-filter-branch)
+      - [Final Step: Pushing your changed repo history](#final-step-pushing-your-changed-repo-history)
     - [I need to change the content of a commit which is not my last](#i-need-to-change-the-content-of-a-commit-which-is-not-my-last)
   - [Staging](#staging)
     - [I need to add staged changes to the previous commit](#i-need-to-add-staged-changes-to-the-previous-commit)
@@ -174,6 +180,79 @@ $ git remote set-url origin [url of the actual repo]
 ```
 
 For more, see [this StackOverflow topic](https://stackoverflow.com/questions/2432764/how-to-change-the-uri-url-for-a-remote-git-repository#2432799).
+
+
+### I want to add code to someone else's repository
+
+Git doesn't allow you to add code to someone else's repository without access rights. Neither does GitHub, which is not the same as Git, but rather a hosted service for Git repositories. However, you can suggest code using patches, or, on GitHub, forks and pull requests.
+
+First, a bit about forking. A fork is a copy of repository. It is not a git operation, but is a common action on GitHub, Bitbucket, GitLab — or anywhere people host Git repositories. You can fork a repository through the hosted UI.
+
+#### Suggesting code via pull requests
+
+After you've forked a repository, you normally need to clone the repository to your machine. You can do some small edits on GitHub, for instance, without cloning, but this isn't a github-flight-rules list, so let's go with how to do this locally.
+
+```sh
+# if you are using ssh
+$ git clone git@github.com:k88hudson/git-flight-rules.git
+
+# if you are using https
+$ git clone https://github.com/k88hudson/git-flight-rules.git
+```
+
+If you `cd` into the resulting directory, and type `git remote`, you'll see a list of the remotes. Normally there will be one remote - `origin` - which will point to `k88hudson/git-flight-rules`. In this case, we also want a remote that will point to your fork.
+
+First, to follow a Git convention, we normally use the remote name `origin` for your own repository, and `upstream` for whatever you've forked. So, rename the `origin` remote to `upstream`
+
+```sh
+$ git remote rename origin upstream
+```
+
+You can also do this using `git remote set-url`, but it takes longer and is more steps.
+
+Then, set up a new remote that points to your project.
+
+```sh
+$ git remote add origin git@github.com:YourName/git-flight-rules.git
+```
+
+Note that now you have two remotes.
+
+- `origin` references your own repository.
+- `upstream` references the original one.
+
+From origin, you can read and write. From upstream, you can only read.
+
+When you've finished making whatever changes you like, push your changes (normally in a branch) to the remote named `origin`. If you're on a branch, you could use `--set-upstream` to avoid specifying the remote tracking branch on every future push using this branch. For instance:
+
+```sh
+$ (feature/my-feature) git push --set-upstream origin feature/my-feature
+```
+
+There is no way to suggest a pull request using the CLI using Git (although there are tools, like [hub](http://github.com/github/hub), which will do this for you). So, if you're ready to make a pull request, go to your GitHub (or other Git host) and create a new pull request. Note that your host automatically links the original and forked repositories.
+
+After all of this, do not forget to respond to any code review feedback.
+
+#### I need to update my fork with latest updates from original repository
+
+After a while, the `upstream` repository may have been updated, and these updates need to be pulled into your `origin` repo. Remember that like you, other people are contributing too. Suppose that you are in your own feature branch and you need to update it with the original repository updates.
+
+You probably have set up a remote that points to the original project. If not, do this now. Generally we use `upstream` as a remote name:
+
+```sh
+$ (master) git remote add upstream <link-to-original-repository>
+# $ (master) git remote add upstream git@github.com:k88hudson/git-flight-rules.git
+```
+
+Now you can fetch from upstream and get the lastet updates.
+
+```sh
+$ (master) git fetch upstream
+$ (master) git merge upstream/master
+
+# or using a single command
+$ (master) git pull upstream master
+```
 
 ## Editing Commits
 
@@ -339,7 +418,7 @@ Note: the parent number is not a commit identifier. Rather, a merge commit has a
 <a href="undo-sensitive-commit-push"></a>
 ### I accidentally committed and pushed files containing sensitive data
 
-If you accidentally pushed files containing sensitive, or private data (passwords, keys, etc.), you can amend the previous commit. Keep in mind that once you have pushed a commit, you should consider any data it contains to be compromised. These steps can remove the sensitive data from your public repo or your local copy, but you **cannot** remove the sensitive data from other people's pulled copies. If you committed a password, **change it immediately**. If you committed a key, **re-generate it immediately**. Amending the pushed commit is not enough, since anyone could have pulled the original commit containing your sensitive data in the meantime. 
+If you accidentally pushed files containing sensitive, or private data (passwords, keys, etc.), you can amend the previous commit. Keep in mind that once you have pushed a commit, you should consider any data it contains to be compromised. These steps can remove the sensitive data from your public repo or your local copy, but you **cannot** remove the sensitive data from other people's pulled copies. If you committed a password, **change it immediately**. If you committed a key, **re-generate it immediately**. Amending the pushed commit is not enough, since anyone could have pulled the original commit containing your sensitive data in the meantime.
 
 If you edit the file and remove the sensitive data, then run
 ```sh
@@ -365,14 +444,14 @@ If you want to completely remove an entire file (and not keep it locally), then 
 (feature-branch)$ git push --force-with-lease origin [branch]
 ```
 
-If you have made other commits in the meantime (i.e. the sensitive data is in a commit before the previous commit), you will have to rebase. 
+If you have made other commits in the meantime (i.e. the sensitive data is in a commit before the previous commit), you will have to rebase.
 
 <a href="#i-want-to-remove-a-large-file-from-ever-existing-in-repo-history"></a>
 ### I want to remove a large file from ever existing in repo history
 
 If the file you want to delete is secret or sensitive, instead see [how to remove sensitive files](#i-accidentally-committed-and-pushed-files-containing-sensitive-data).
 
-Even if you delete a large or unwanted file in a recent commit, it still exists in git history, in your repo's `.git` folder, and will make `git clone` download unneeded files. 
+Even if you delete a large or unwanted file in a recent commit, it still exists in git history, in your repo's `.git` folder, and will make `git clone` download unneeded files.
 
 The actions in this part of the guide will require a force push, and rewrite large sections of repo history, so if you are working with remote collaborators, check first that any local work of theirs is pushed.
 
@@ -382,7 +461,7 @@ There are two options for rewriting history, the built-in `git-filter-branch` or
 
 Using bfg-repo-cleaner requires java. Download the bfg jar from the link [here](https://rtyley.github.io/bfg-repo-cleaner/). Our examples will use `bfg.jar`, but your download may have a version number, e.g. `bfg-1.13.0.jar`.
 
-To delete a specific file. 
+To delete a specific file.
 ```sh
 (master)$ git rm path/to/filetoremove
 (master)$ git commit -m "Commit removing filetoremove"
@@ -399,11 +478,11 @@ You can also delete a file by pattern, e.g.:
 
 With bfg, the files that exist on your latest commit will not be affected. For example, if you had several large .tga files in your repo, and then in an earlier commit, you deleted a subset of them, this call does not touch files present in the latest commit
 
-Note, if you renamed a file as part of a commit, e.g. if it started as `LargeFileFirstName.mp4` and a commit changed it to `LargeFileSecondName.mp4`, running `java -jar ~/Downloads/bfg.jar --delete-files LargeFileSecondName.mp4` will not remove it from git history. Either run the `--delete-files` command with both filenames, or with a matching pattern. 
+Note, if you renamed a file as part of a commit, e.g. if it started as `LargeFileFirstName.mp4` and a commit changed it to `LargeFileSecondName.mp4`, running `java -jar ~/Downloads/bfg.jar --delete-files LargeFileSecondName.mp4` will not remove it from git history. Either run the `--delete-files` command with both filenames, or with a matching pattern.
 
 #### Built-in Technique: Use git-filter-branch
 
-`git-filter-branch` is more cumbersome and has less features, but you may use it if you cannot install or run `bfg`. 
+`git-filter-branch` is more cumbersome and has less features, but you may use it if you cannot install or run `bfg`.
 
 In the below, replace `filepattern` may be a specific name or pattern, e.g. `*.jpg`. This will remove files matching the pattern from all history and branches.
 
