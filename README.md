@@ -208,7 +208,7 @@ First, to follow a Git convention, we normally use the remote name `origin` for 
 $ git remote rename origin upstream
 ```
 
-You can also do this using `git remote set-url`, but it takes longer and is more strps.
+You can also do this using `git remote set-url`, but it takes longer and is more steps.
 
 Then, set up a new remote that points to your project.
 
