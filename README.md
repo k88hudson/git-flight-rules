@@ -1918,7 +1918,7 @@ function Squash-Commits {
 ```
 
 # Other Resources
-https://help.github.com/en/articles/github-glossary Useful information.
+
 
 ## Books
 
