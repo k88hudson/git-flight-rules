@@ -159,7 +159,7 @@ To clone (copy) a remote repository, copy the URL for the repository, and run:
 $ git clone [url]
 ```
 
-This will save it to a folder named the same as the remote repository's. Make sure you have connection to the remote server you are cloning from (for most purposes this means making sure you are connected to the internet).
+This will save it to a folder named the same as the remote repository's. Make sure you have a connection to the remote server you are cloning from (for most purposes this means making sure you are connected to the internet).
 
 To clone it into a folder with a different name than the default repository name:
 
