@@ -244,7 +244,7 @@ $ (master) git remote add upstream <link-to-original-repository>
 # $ (master) git remote add upstream git@github.com:k88hudson/git-flight-rules.git
 ```
 
-Now you can fetch from upstream and get the lastet updates.
+Now you can fetch from upstream and get the latest updates.
 
 ```sh
 $ (master) git fetch upstream
