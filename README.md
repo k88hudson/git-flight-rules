@@ -515,7 +515,7 @@ If this does not work, you will need to manually push the repo history in chunks
 ```sh
 (master)$ git push -u origin HEAD~<number>:refs/head/master --force
 ```
-Once the push operation succeeds the first time, decrease `<number>` gradually until a conventional `git push` succeeeds.
+Once the push operation succeeds the first time, decrease `<number>` gradually until a conventional `git push` succeeds.
 
 <a href="i-need-to-change-the-content-of-a-commit-which-is-not-my-last"></a>
 ### I need to change the content of a commit which is not my last
