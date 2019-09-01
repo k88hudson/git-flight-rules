@@ -202,7 +202,7 @@ $ git clone https://github.com/k88hudson/git-flight-rules.git
 
 If you `cd` into the resulting directory, and type `git remote`, you'll see a list of the remotes. Normally there will be one remote - `origin` - which will point to `k88hudson/git-flight-rules`. In this case, we also want a remote that will point to your fork.
 
-First, to follow a Git convention, we normally use the remote name `origin` for your own repository, and `upstream` for whatever you've forked. So, rename the `origin` remote to `upstream`
+First, to follow a Git convention, we normally use the remote name `origin` for your own repository and `upstream` for whatever you've forked. So, rename the `origin` remote to `upstream`
 
 ```sh
 $ git remote rename origin upstream
