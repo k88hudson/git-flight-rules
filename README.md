@@ -153,7 +153,7 @@ To initialize an existing directory as a Git repository:
 
 ### I want to clone a remote repository
 
-To clone (copy) a remote repository, copy the url for the repository, and run:
+To clone (copy) a remote repository, copy the URL for the repository, and run:
 
 ```sh
 $ git clone [url]
@@ -173,7 +173,7 @@ There are a few possible problems here:
 
 If you cloned the wrong repository, simply delete the directory created after running `git clone` and clone the correct repository.
 
-If you set the wrong repository as the origin of an existing local repository, change the url of your origin by running:
+If you set the wrong repository as the origin of an existing local repository, change the URL of your origin by running:
 
 ```sh
 $ git remote set-url origin [url of the actual repo]
@@ -1604,7 +1604,7 @@ Your tag should now have been restored.
 
 ### Deleted Patch
 
-If someone has sent you a pull request on GitHub, but then deleted their original fork, you will be unable to clone their repository or to use `git am` as the [.diff, .patch](https://github.com/blog/967-github-secrets) urls become unavailable. But you can checkout the PR itself using [GitHub's special refs](https://gist.github.com/piscisaureus/3342247). To fetch the content of PR#1 into a new branch called pr_1:
+If someone has sent you a pull request on GitHub, but then deleted their original fork, you will be unable to clone their repository or to use `git am` as the [.diff, .patch](https://github.com/blog/967-github-secrets) URLs become unavailable. But you can checkout the PR itself using [GitHub's special refs](https://gist.github.com/piscisaureus/3342247). To fetch the content of PR#1 into a new branch called pr_1:
 
 ```sh
 $ git fetch origin refs/pull/1/head:pr_1
