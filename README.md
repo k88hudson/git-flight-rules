@@ -229,7 +229,7 @@ When you've finished making whatever changes you like, push your changes (normal
 $ (feature/my-feature) git push --set-upstream origin feature/my-feature
 ```
 
-There is no way to suggest a pull request using the CLI using Git (although there are tools, like [hub](http://github.com/github/hub), which will do this for you). So, if you're ready to make a pull request, go to your GitHub (or other Git host) and create a new pull request. Note that your host automatically links the original and forked repositories.
+There is no way to suggest a pull request using the CLI using Git (although there are tools, like [hub](http://github.com/github/hub), which will do this for you). So, if you're ready to make a pull request, go to your GitHub (or another Git host) and create a new pull request. Note that your host automatically links the original and forked repositories.
 
 After all of this, do not forget to respond to any code review feedback.
 
