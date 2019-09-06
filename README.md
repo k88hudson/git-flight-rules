@@ -30,7 +30,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I set the wrong remote repository](#i-set-the-wrong-remote-repository)
     - [I want to add code to someone else's repository](#i-want-to-add-code-to-someone-elses-repository)
       - [Suggesting code via pull requests](#suggesting-code-via-pull-requests)
-      - [I need to update my fork with latest updates from original repository](#i-need-to-update-my-fork-with-latest-updates-from-original-repository)
+      - [I need to update my fork with latest updates from the original repository](#i-need-to-update-my-fork-with-latest-updates-from-the-original-repository)
   - [Editing Commits](#editing-commits)
     - [What did I just commit?](#what-did-i-just-commit)
     - [I wrote the wrong thing in a commit message](#i-wrote-the-wrong-thing-in-a-commit-message)
@@ -153,13 +153,13 @@ To initialize an existing directory as a Git repository:
 
 ### I want to clone a remote repository
 
-To clone (copy) a remote repository, copy the url for the repository, and run:
+To clone (copy) a remote repository, copy the URL for the repository, and run:
 
 ```sh
 $ git clone [url]
 ```
 
-This will save it to a folder named the same as the remote repository's. Make sure you have connection to the remote server you are cloning from (for most purposes this means making sure you are connected to the internet).
+This will save it to a folder named the same as the remote repository's. Make sure you have a connection to the remote server you are cloning from (for most purposes this means making sure you are connected to the internet).
 
 To clone it into a folder with a different name than the default repository name:
 
@@ -173,7 +173,7 @@ There are a few possible problems here:
 
 If you cloned the wrong repository, simply delete the directory created after running `git clone` and clone the correct repository.
 
-If you set the wrong repository as the origin of an existing local repository, change the url of your origin by running:
+If you set the wrong repository as the origin of an existing local repository, change the URL of your origin by running:
 
 ```sh
 $ git remote set-url origin [url of the actual repo]
@@ -186,7 +186,7 @@ For more, see [this StackOverflow topic](https://stackoverflow.com/questions/243
 
 Git doesn't allow you to add code to someone else's repository without access rights. Neither does GitHub, which is not the same as Git, but rather a hosted service for Git repositories. However, you can suggest code using patches, or, on GitHub, forks and pull requests.
 
-First, a bit about forking. A fork is a copy of repository. It is not a git operation, but is a common action on GitHub, Bitbucket, GitLab — or anywhere people host Git repositories. You can fork a repository through the hosted UI.
+First, a bit about forking. A fork is a copy of a repository. It is not a git operation, but is a common action on GitHub, Bitbucket, GitLab — or anywhere people host Git repositories. You can fork a repository through the hosted UI.
 
 #### Suggesting code via pull requests
 
@@ -202,7 +202,7 @@ $ git clone https://github.com/k88hudson/git-flight-rules.git
 
 If you `cd` into the resulting directory, and type `git remote`, you'll see a list of the remotes. Normally there will be one remote - `origin` - which will point to `k88hudson/git-flight-rules`. In this case, we also want a remote that will point to your fork.
 
-First, to follow a Git convention, we normally use the remote name `origin` for your own repository, and `upstream` for whatever you've forked. So, rename the `origin` remote to `upstream`
+First, to follow a Git convention, we normally use the remote name `origin` for your own repository and `upstream` for whatever you've forked. So, rename the `origin` remote to `upstream`
 
 ```sh
 $ git remote rename origin upstream
@@ -229,11 +229,11 @@ When you've finished making whatever changes you like, push your changes (normal
 $ (feature/my-feature) git push --set-upstream origin feature/my-feature
 ```
 
-There is no way to suggest a pull request using the CLI using Git (although there are tools, like [hub](http://github.com/github/hub), which will do this for you). So, if you're ready to make a pull request, go to your GitHub (or other Git host) and create a new pull request. Note that your host automatically links the original and forked repositories.
+There is no way to suggest a pull request using the CLI using Git (although there are tools, like [hub](http://github.com/github/hub), which will do this for you). So, if you're ready to make a pull request, go to your GitHub (or another Git host) and create a new pull request. Note that your host automatically links the original and forked repositories.
 
 After all of this, do not forget to respond to any code review feedback.
 
-#### I need to update my fork with latest updates from original repository
+#### I need to update my fork with latest updates from the original repository
 
 After a while, the `upstream` repository may have been updated, and these updates need to be pulled into your `origin` repo. Remember that like you, other people are contributing too. Suppose that you are in your own feature branch and you need to update it with the original repository updates.
 
@@ -244,7 +244,7 @@ $ (master) git remote add upstream <link-to-original-repository>
 # $ (master) git remote add upstream git@github.com:k88hudson/git-flight-rules.git
 ```
 
-Now you can fetch from upstream and get the lastet updates.
+Now you can fetch from upstream and get the latest updates.
 
 ```sh
 $ (master) git fetch upstream
@@ -515,7 +515,7 @@ If this does not work, you will need to manually push the repo history in chunks
 ```sh
 (master)$ git push -u origin HEAD~<number>:refs/head/master --force
 ```
-Once the push operation succeeds the first time, decrease `<number>` gradually until a conventional `git push` succeeeds.
+Once the push operation succeeds the first time, decrease `<number>` gradually until a conventional `git push` succeeds.
 
 <a href="i-need-to-change-the-content-of-a-commit-which-is-not-my-last"></a>
 ### I need to change the content of a commit which is not my last
@@ -544,7 +544,7 @@ pick 4b6e19a The second to last commit
 pick f4037ec The last commit
 ```
 
-This tells rebase that you want to edit your third last commit and keep the other two unaltered. Then you'll save (and close) the editor. Git will then start to rebase. It stops on the commit you want to alter, giving you the chance to edit that commit. Now you can apply the changes which you missed applying when you initially commited that commit. You do so by editing and staging them. Afterwards you'll run
+This tells rebase that you want to edit your third last commit and keep the other two unaltered. Then you'll save (and close) the editor. Git will then start to rebase. It stops on the commit you want to alter, giving you the chance to edit that commit. Now you can apply the changes which you missed applying when you initially committed that commit. You do so by editing and staging them. Afterwards you'll run
 
 ```sh
 (your-branch)$ git commit --amend
@@ -1604,7 +1604,7 @@ Your tag should now have been restored.
 
 ### Deleted Patch
 
-If someone has sent you a pull request on GitHub, but then deleted their original fork, you will be unable to clone their repository or to use `git am` as the [.diff, .patch](https://github.com/blog/967-github-secrets) urls become unavailable. But you can checkout the PR itself using [GitHub's special refs](https://gist.github.com/piscisaureus/3342247). To fetch the content of PR#1 into a new branch called pr_1:
+If someone has sent you a pull request on GitHub, but then deleted their original fork, you will be unable to clone their repository or to use `git am` as the [.diff, .patch](https://github.com/blog/967-github-secrets) URLs become unavailable. But you can checkout the PR itself using [GitHub's special refs](https://gist.github.com/piscisaureus/3342247). To fetch the content of PR#1 into a new branch called pr_1:
 
 ```sh
 $ git fetch origin refs/pull/1/head:pr_1
