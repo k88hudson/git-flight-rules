@@ -67,6 +67,12 @@
     - [交互式rebase(interactive rebase)可能出现的问题](#%E4%BA%A4%E4%BA%92%E5%BC%8Frebaseinteractive-rebase%E5%8F%AF%E8%83%BD%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98)
       - [这个rebase 编辑屏幕出现'noop'](#%E8%BF%99%E4%B8%AArebase-%E7%BC%96%E8%BE%91%E5%B1%8F%E5%B9%95%E5%87%BA%E7%8E%B0noop)
       - [有冲突的情况](#%E6%9C%89%E5%86%B2%E7%AA%81%E7%9A%84%E6%83%85%E5%86%B5)
+  - [Stash](#stash)
+    - [暂存所有改动](#%E6%9A%82%E5%AD%98%E6%89%80%E6%9C%89%E6%94%B9%E5%8A%A8)
+    - [暂存指定文件](#%E6%9A%82%E5%AD%98%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6)
+    - [暂存时记录消息](#%E6%9A%82%E5%AD%98%E6%97%B6%E8%AE%B0%E5%BD%95%E6%B6%88%E6%81%AF)
+    - [使用某个指定暂存](#%E4%BD%BF%E7%94%A8%E6%9F%90%E4%B8%AA%E6%8C%87%E5%AE%9A%E6%9A%82%E5%AD%98)
+    - [暂存时保留未暂存的内容](#%E6%9A%82%E5%AD%98%E6%97%B6%E4%BF%9D%E7%95%99%E6%9C%AA%E6%9A%82%E5%AD%98%E7%9A%84%E5%86%85%E5%AE%B9)
   - [杂项(Miscellaneous Objects)](#%E6%9D%82%E9%A1%B9miscellaneous-objects)
     - [克隆所有子模块](#%E5%85%8B%E9%9A%86%E6%89%80%E6%9C%89%E5%AD%90%E6%A8%A1%E5%9D%97)
     - [删除标签(tag)](#%E5%88%A0%E9%99%A4%E6%A0%87%E7%AD%BEtag)
@@ -248,13 +254,11 @@ $ git add -N filename.x
 <a href="unstaging-edits-and-staging-the-unstaged"></a>
 ### 我想把暂存的内容变成未暂存，把未暂存的内容暂存起来
 
-这个有点困难， 我能想到的最好的方法是先stash未暂存的内容， 然后重置(reset)，再pop第一步stashed的内容, 最后再add它们。
+`stash`是个栈，我们只需要`stash`起来，然后`pop`/`apply --index x`即可（`apply`会保留在栈中）。
 
 ```sh
-$ git stash -k
-$ git reset --hard
-$ git stash pop
-$ git add -A
+$ git stash
+$ git stash pop --index 1
 ```
 
 ## 未暂存(Unstaged)的内容
@@ -842,6 +846,82 @@ Changes not staged for commit:
 
 ```sh
 (my-branch)$ git rebase --abort
+```
+
+<a name="stashing"></a>
+## Stash
+
+### 暂存所有改动
+
+暂存你工作目录下的所有改动
+
+```sh
+$ git stash
+```
+
+你可以使用`-u`来排除一些文件
+
+```sh
+$ git stash -u
+```
+
+### 暂存指定文件
+
+假设你只想暂存某一个文件
+
+```sh
+$ git stash push working-directory-path/filename.ext
+```
+
+假设你想暂存多个文件
+
+```sh
+$ git stash push working-directory-path/filename1.ext working-directory-path/filename2.ext
+```
+
+<a name="stash-msg"></a>
+### 暂存时记录消息
+
+这样你可以在`list`时看到它
+
+```sh
+$ git stash save <message>
+```
+或
+```sh
+$ git push -m <message>
+```
+<a name="stash-apply-specific"></a>
+### 使用某个指定暂存
+
+首先你可以查看你的`stash`记录
+
+```sh
+$ git stash list
+```
+
+然后你可以`apply`某个`stash`
+
+```sh
+$ git stash apply "stash@{n}"
+```
+
+此处， 'n'是`stash`在栈中的位置，最上层的`stash`会是0
+
+除此之外，也可以使用时间标记(假如你能记得的话)。
+
+```sh
+$ git stash apply "stash@{2.hours.ago}"
+```
+
+<a href="stage-and-keep-unstaged"></a>
+### 暂存时保留未暂存的内容
+
+你需要手动create一个`stash commit`， 然后使用`git stash store`。
+
+```sh
+$ git stash create
+$ git stash store -m "commit-message" CREATED_SHA1
 ```
 
 <a name="miscellaneous-objects"></a>

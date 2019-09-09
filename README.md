@@ -98,6 +98,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [Stash specific files](#stash-specific-files)
     - [Stash with message](#stash-with-message)
     - [Apply a specific stash from list](#apply-a-specific-stash-from-list)
+    - [Stash with keeping unstaged edit](#stash-with-keeping-unstaged-edit)
   - [Finding](#finding)
     - [I want to find a string in any commit](#i-want-to-find-a-string-in-any-commit)
     - [I want to find by author/committer](#i-want-to-find-by-authorcommitter)
@@ -605,13 +606,11 @@ Then, you will need to use the `e` option to manually choose which lines to add.
 <a href="unstaging-edits-and-staging-the-unstaged"></a>
 ### I want to stage my unstaged edits, and unstage my staged edits
 
-This is tricky. The best I figure is that you should stash your unstaged edits. Then, reset. After that, pop your stashed edits back, and add them.
+`stash` is a stack. So you can `stash` and `pop/apply --index n`(`apply` will keep it in stack).
 
 ```sh
-$ git stash -k
-$ git reset --hard
-$ git stash pop
-$ git add -A
+$ git stash
+$ git stash pop --index 1
 ```
 
 ## Unstaged Edits
@@ -1448,6 +1447,10 @@ $ git stash push working-directory-path/filename1.ext working-directory-path/fil
 ```sh
 $ git stash save <message>
 ```
+or
+```sh
+$ git push -m <message>
+```
 
 <a name="stash-apply-specific"></a>
 ### Apply a specific stash from list
@@ -1465,6 +1468,22 @@ $ git stash apply "stash@{n}"
 ```
 
 Here, 'n' indicates the position of the stash in the stack. The topmost stash will be position 0.
+
+Furthermore, time based aslo possible(If you can remeber).
+
+```sh
+$ git stash apply "stash@{2.hours.ago}"
+```
+
+<a name="stage-and-keep-unstaged"></a>
+### Stash with keeping unstaged edit
+
+You can manually create a `stash commit`, and then use `git stash store`.
+
+```sh
+$ git stash create
+$ git stash store -m <message> CREATED_SHA1
+```
 
 ## Finding
 
