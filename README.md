@@ -1469,7 +1469,7 @@ $ git stash apply "stash@{n}"
 
 Here, 'n' indicates the position of the stash in the stack. The topmost stash will be position 0.
 
-Furthermore, time based aslo possible(If you can remeber).
+Furthermore, time based also possible(If you can remember).
 
 ```sh
 $ git stash apply "stash@{2.hours.ago}"
