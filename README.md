@@ -606,11 +606,15 @@ Then, you will need to use the `e` option to manually choose which lines to add.
 <a href="unstaging-edits-and-staging-the-unstaged"></a>
 ### I want to stage my unstaged edits, and unstage my staged edits
 
-`stash` is a stack. So you can `stash` and `pop/apply --index n`(`apply` will keep it in stack).
+In many cases, You should unstage all files and then pick file you want and commit it.
+But assume that's what you want,You can create a temp commit to store your stage files, stage your unstaged files and stash them, Then, reset the temp commit and stash pop.
 
 ```sh
+$ git commit -m "WIP"
+$ git add . # also have untracked files
 $ git stash
-$ git stash pop --index 1
+$ git reset HEAD^
+$ git stash pop --index 0
 ```
 
 ## Unstaged Edits

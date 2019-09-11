@@ -254,11 +254,15 @@ $ git add -N filename.x
 <a href="unstaging-edits-and-staging-the-unstaged"></a>
 ### 我想把暂存的内容变成未暂存，把未暂存的内容暂存起来
 
-`stash`是个栈，我们只需要`stash`起来，然后`pop`/`apply --index x`即可（`apply`会保留在栈中）。
+多数情况下，你应该将所有的内容变为未暂存，然后再选择你想要的内容进行commit。
+但假定你就是想要这么做，这里你可以创建一个临时的commit来保存你已暂存的内容，然后暂存你的未暂存的内容并进行stash。然后reset最后一个commit将原本暂存的内容变为未暂存，最后stash pop回来。
 
 ```sh
+$ git commit -m "WIP"
+$ git add .
 $ git stash
-$ git stash pop --index 1
+$ git reset HEAD^
+$ git stash pop --index 0
 ```
 
 ## 未暂存(Unstaged)的内容
