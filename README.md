@@ -1453,7 +1453,7 @@ $ git stash save <message>
 ```
 or
 ```sh
-$ git push -m <message>
+$ git stash push -m <message>
 ```
 
 <a name="stash-apply-specific"></a>

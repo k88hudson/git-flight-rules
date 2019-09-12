@@ -893,7 +893,7 @@ $ git stash save <message>
 ```
 或
 ```sh
-$ git push -m <message>
+$ git stash push -m <message>
 ```
 <a name="stash-apply-specific"></a>
 ### 使用某个指定暂存
