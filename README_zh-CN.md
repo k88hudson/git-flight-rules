@@ -265,6 +265,9 @@ $ git reset HEAD^
 $ git stash pop --index 0
 ```
 
+注意1: 这里使用`pop`仅仅是因为想尽可能保持幂等。
+注意2: 假如你不加上`--index`你会把暂存的文件标记为为存储.这个[链接](https://stackoverflow.com/questions/31595873/git-stash-with-staged-files-does-stash-convert-staged-files-to-unstaged?answertab=active#tab-top) 解释得比较清楚。（不过是英文的，其大意是说，这是一个较为底层的问题，stash时会做2个commit，其中一个会记录index状态，staged的文件等东西，另一个记录worktree和其他的一些东西，如果你不在apply时加index，git会把两个一起销毁，所以staged里就空了）。
+
 ## 未暂存(Unstaged)的内容
 
 <a href="move-unstaged-edits-to-new-branch"></a>

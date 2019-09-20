@@ -617,6 +617,9 @@ $ git reset HEAD^
 $ git stash pop --index 0
 ```
 
+NOTE 1: The reason to use `pop` here is want to keep idempotent as more as possible.
+NOTE 2: Your staged files will be marked as unstaged if you miss `--index` flag.[this link](https://stackoverflow.com/questions/31595873/git-stash-with-staged-files-does-stash-convert-staged-files-to-unstaged?answertab=active#tab-top) will explain it to you.
+
 ## Unstaged Edits
 
 <a href="move-unstaged-edits-to-new-branch"></a>
