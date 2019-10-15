@@ -48,6 +48,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
       - [Final Step: Pushing your changed repo history](#final-step-pushing-your-changed-repo-history)
     - [I need to change the content of a commit which is not my last](#i-need-to-change-the-content-of-a-commit-which-is-not-my-last)
   - [Staging](#staging)
+    - [I want to stage all tracked file and leave untracked files](#i-want-to-stage-all-tracked-file-and-leave-untracked-files)
     - [I need to add staged changes to the previous commit](#i-need-to-add-staged-changes-to-the-previous-commit)
     - [I want to stage part of a new file, but not the whole file](#i-want-to-stage-part-of-a-new-file-but-not-the-whole-file)
     - [I want to add changes in one file to two different commits](#i-want-to-add-changes-in-one-file-to-two-different-commits)

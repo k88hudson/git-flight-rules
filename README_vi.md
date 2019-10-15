@@ -65,7 +65,7 @@ Tất cả các command nên làm việc với phiên bản nhỏ nhất 2.13.0.
     - [Tôi muốn xoá một nhánh](#t%C3%B4i-mu%E1%BB%91n-xo%C3%A1-m%E1%BB%99t-nh%C3%A1nh)
     - [Tôi muốn xoá nhiều nhánh](#t%C3%B4i-mu%E1%BB%91n-xo%C3%A1-nhi%E1%BB%81u-nh%C3%A1nh)
     - [Tôi muốn đổi tên một nhánh](#t%C3%B4i-mu%E1%BB%91n-%C4%91%E1%BB%95i-t%C3%AAn-m%E1%BB%99t-nh%C3%A1nh)
-    - [TÔi muốn checkout đến một nhánh remote mà người khác đang làm việc trên đó](#t%C3%94i-mu%E1%BB%91n-checkout-%C4%91%E1%BA%BFn-m%E1%BB%99t-nh%C3%A1nh-remote-m%C3%A0-ng%C6%B0%E1%BB%9Di-kh%C3%A1c-%C4%91ang-l%C3%A0m-vi%E1%BB%87c-tr%C3%AAn-%C4%91%C3%B3)
+    - [TÔi muốn checkout đến một nhánh remote mà người khác đang làm việc trên đó](#t%C3%B4i-mu%E1%BB%91n-checkout-%C4%91%E1%BA%BFn-m%E1%BB%99t-nh%C3%A1nh-remote-m%C3%A0-ng%C6%B0%E1%BB%9Di-kh%C3%A1c-%C4%91ang-l%C3%A0m-vi%E1%BB%87c-tr%C3%AAn-%C4%91%C3%B3)
     - [Tôi muốn tạo một nhánh remote mới từ một nhánh local hiện tại](#t%C3%B4i-mu%E1%BB%91n-t%E1%BA%A1o-m%E1%BB%99t-nh%C3%A1nh-remote-m%E1%BB%9Bi-t%E1%BB%AB-m%E1%BB%99t-nh%C3%A1nh-local-hi%E1%BB%87n-t%E1%BA%A1i)
     - [Tôi muốn thiết lập một nhánh remote giống như upstream cho một nhánh local](#t%C3%B4i-mu%E1%BB%91n-thi%E1%BA%BFt-l%E1%BA%ADp-m%E1%BB%99t-nh%C3%A1nh-remote-gi%E1%BB%91ng-nh%C6%B0-upstream-cho-m%E1%BB%99t-nh%C3%A1nh-local)
     - [Tôi muốn thiết lập HEAD của tôi để theo dõi nhánh remote mặc định](#t%C3%B4i-mu%E1%BB%91n-thi%E1%BA%BFt-l%E1%BA%ADp-head-c%E1%BB%A7a-t%C3%B4i-%C4%91%E1%BB%83-theo-d%C3%B5i-nh%C3%A1nh-remote-m%E1%BA%B7c-%C4%91%E1%BB%8Bnh)
