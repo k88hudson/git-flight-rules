@@ -561,6 +561,14 @@ will do the rest of the work for you.
 
 ## Staging
 
+<a href="#i-want-to-stage-all-tracked-file-and-leave-untracked-files"></a>
+
+### I want to stage all tracked file and leave untracked files
+
+```sh
+(my-branch*)$ git add -u
+```
+
 <a href="#i-need-to-add-staged-changes-to-the-previous-commit"></a>
 ### I need to add staged changes to the previous commit
 
