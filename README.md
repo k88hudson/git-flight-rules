@@ -109,6 +109,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [Clone all submodules](#clone-all-submodules)
     - [Remove a submodule](#remove-a-submodule)
   - [Miscellaneous Objects](#miscellaneous-objects)
+    - [Copy a folder or file from one branch to another](#copy-a-folder-or-file-from-one-branch-to-another)
     - [Restore a deleted file](#restore-a-deleted-file)
     - [Delete tag](#delete-tag)
     - [Recover a deleted tag](#recover-a-deleted-tag)
@@ -1590,6 +1591,12 @@ $ rm -rf .git/modules/submodulename
 ```
 
 ## Miscellaneous Objects
+
+### Copy a folder or file from one branch to another
+
+```sh
+$ (my-branch)$ git checkout <branch-you-want-the-directory-from> -- <folder-name or file-name>
+```
 
 ### Restore a deleted file
 
