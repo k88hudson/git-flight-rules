@@ -571,6 +571,16 @@ will do the rest of the work for you.
 (my-branch*)$ git add -u
 ```
 
+#### To stage part of tracked files
+
+```sh
+to stage files with ext .txt
+(my-branch*)$ git add -u *.txt
+
+to stage all files inside directory src
+(my-branch*)$ git add -u src/
+```
+
 <a href="#i-need-to-add-staged-changes-to-the-previous-commit"></a>
 ### I need to add staged changes to the previous commit
 
