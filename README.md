@@ -1615,7 +1615,7 @@ $ rm -rf .git/modules/submodulename
 ### Copy a folder or file from one branch to another
 
 ```sh
-$ (my-branch)$ git checkout <branch-you-want-the-directory-from> -- <folder-name or file-name>
+$ git checkout <branch-you-want-the-directory-from> -- <folder-name or file-name>
 ```
 
 ### Restore a deleted file
