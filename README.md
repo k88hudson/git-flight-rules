@@ -1101,6 +1101,11 @@ To rename a different (local) branch:
 ```sh
 (master)$ git branch -m old-name new-name
 ```
+ To delete the `old-name` remote branch and push the `new-name` local branch:
+ 
+ ```sh
+ (master)$ git push origin :old_name new_name
+ ```
 
 <a name="i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on"></a>
 ### I want to checkout to a remote branch that someone else is working on
