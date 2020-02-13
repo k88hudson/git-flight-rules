@@ -149,7 +149,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
 
 ### ローカルリポジトリを初期化したい
 
-既存のリポジトリを Git リポジトリとして初期化するには、次を実行します：
+既存のディレクトリを Git リポジトリとして初期化するには、次を実行します：
 
 ```sh
 (my-folder) $ git init
@@ -164,7 +164,7 @@ $ git clone [url]
 ```
 
 すると、リモートリポジトリと同名のフォルダにリポジトリの内容が保存されます。
-クローンできるのはリモートリポジトリのあるサーバに接続できる場合に限ります。大抵の場合インターネット接続があれば大丈夫です。
+リモートリポジトリのあるサーバに接続できる必要があります。大抵の場合インターネット接続があれば大丈夫です。
 
 リモートリポジトリと異なる名前のフォルダにクローンしたいときは、次のようにします：
 
@@ -176,7 +176,7 @@ $ git clone [url] name-of-new-folder
 
 問題はいくつかの場合に分けられます。
 
-間違ったリポジトリをクローンしてしまったときは、`git clone` してできたディレクトリを削除して、正しいリポジトリをクローンしなおせばよいです。
+間違ったリポジトリをクローンしてしまったときは、`git clone` で作ったディレクトリを削除して、正しいリポジトリをクローンし直せばよいです。
 
 間違ったリポジトリを既存のローカルリポジトリの origin に設定してしまったときは、次のように origin の URL を変更しましょう：
 
@@ -190,11 +190,11 @@ $ git remote set-url origin [url of the actual repo]
 
 Git では、アクセス権がないと他の人のリポジトリに書き込むことはできません。GitHub は Git リポジトリのホスティングサービスであって Git 自体とは異なるものですが、GitHub でもやはり同様です。しかし、パッチによってコードを提案することができます。GitHub ならフォークとプルリクエストの機能がこれにあたります。
 
-まずはフォークについて説明しましょう。フォークはリポジトリのコピーです。Git 自体の機能でありませんが、GitHub, BitBucket, GitLab やその他のホスティングサービスにはこの機能があり、各サービス上の UI を通して実行できます。
+まずはフォークについて説明しましょう。フォークはリポジトリのコピーです。Git 自体の機能ではないものの、GitHub, BitBucket, GitLab やその他のホスティングサービスにはこの機能があり、各サービスの UI を通して実行できます。
 
 #### プルリクエストでコードを提案するには
 
-リポジトリをフォークしたら、ローカルマシンにクローンして編集しましょう。ちょっとした編集なら GitHub 上でもできますが、この文書は GitHub フライトルールではないので、ローカルで編集する方法を説明します。
+リポジトリをフォークしたら、ローカルマシンにクローンして編集しましょう。ちょっとした編集なら GitHub 上でもできるでしょうが、この文書は GitHub フライトルールではないので、ローカルで編集する方法を説明します。
 
 ```sh
 # ssh を使う場合
@@ -204,7 +204,8 @@ $ git clone git@github.com:k88hudson/git-flight-rules.git
 $ git clone https://github.com/k88hudson/git-flight-rules.git
 ```
 
-できたディレクトリに `cd` で移動し、`git remote` を実行してください。リモートのリストが表示されるはずです。おそらく表示されるのは `k88hudson/git-flight-rules` を参照する `origin` だけなので、自分がフォークして作った方のリモートも用意する必要があります。
+できたディレクトリに `cd` で移動し、`git remote` を実行してください。リモートのリストが表示されるはずです。
+ただ、おそらく表示されるのは `k88hudson/git-flight-rules` を参照する `origin` だけなので、自分がフォークして作った方のリモートも用意する必要があります。
 
 Git では、自分自身のリポジトリのリモートには `origin`、フォークした元のリポジトリは `upstream` と名付けるのが一般的です。これにならって、まず、リモート `origin` の名前を `upstream` に変更しましょう：
 
@@ -212,7 +213,7 @@ Git では、自分自身のリポジトリのリモートには `origin`、フ�
 $ git remote rename origin upstream
 ```
 
-実は `git remote set-url` でも同じことができますが、時間も手間もかかります。
+実は `git remote set-url` でも同じことができますが、時間と手間が余計にかかります。
 
 次に、自分のプロジェクトを参照する新しいリモートを作成します。
 
@@ -220,22 +221,21 @@ $ git remote rename origin upstream
 $ git remote add origin git@github.com:YourName/git-flight-rules.git
 ```
 
-この時点でリモートは二つあります：
+この時点でリモートは二つです：
 
-- `origin` はあなたのリポジトリを参照しています。
+- `origin` は自分のリポジトリを参照しています。
 - `upstream` は元のリポジトリを参照しています。
 
 `origin` は読み取り・書き込みの両方ができ、`upstream` は読み取り専用です。
 
-編集が済んだら、編集内容を（通常はブランチ内から）リモート `origin` にプッシュしましょう。ブランチ内にいる場合、`--set-upstream` を使えば次回から同じブランチからプッシュする際にはリモートを指定せずに済みます。
-
-<!--When you've finished making whatever changes you like, push your changes (normally in a branch) to the remote named `origin`. If you're on a branch, you could use `--set-upstream` to avoid specifying the remote tracking branch on every future push using this branch. For instance:-->
+編集が済んだら、編集内容を（通常はブランチ内から）リモート `origin` にプッシュしましょう。
+ブランチ内にいる場合、次のように `--set-upstream` を使うと、次回から同じブランチからプッシュする際にリモートを指定せずに済みます：
 
 ```sh
 $ (feature/my-feature) git push --set-upstream origin feature/my-feature
 ```
 
-Git で CLI からプルリクエストを送る方法はありません（[hub](http://github.com/github/hub)のようなツールを使えば別ですが）。
+Git で CLI からプルリクエストを送る方法はありません（[hub](http://github.com/github/hub) のようなツールを使えば別ですが）。
 プルリクエストを送りたいときは、GitHub（あるいは他のホスティングサービス）上でプルリクエストを作成してください。元のリポジトリとフォークしたリポジトリを関連付けるのはホスティングサービスが自動的にしてくれます。
 
 プルリクエストの後、コードレビューのフィードバックに対応するのを忘れないようにしましょう。
@@ -243,13 +243,10 @@ Git で CLI からプルリクエストを送る方法はありません（[hub]
 #### フォークしたリポジトリを、元のリポジトリの最新版に合わせて更新したい
 
 そのうち `upstream` リポジトリが更新され、自分の `origin` にプルしたくなるかもしれません。
-自分だけでなく他の人も貢献していることを忘れないようにしてください。
-自分のフィーチャーブランチにいて、それを元のリポジトリに合わせて更新したい場合を想定します。
-
-<!--After a while, the `upstream` repository may have been updated, and these updates need to be pulled into your `origin` repo. Remember that like you, other people are contributing too. Suppose that you are in your own feature branch and you need to update it with the original repository updates.-->
+自分だけでなく他の人も共同作業していることを忘れないようにしてください。
+自分のフィーチャーブランチにいて、これを元のリポジトリに合わせて更新したい場合を想定します。
 
 元のプロジェクトを参照するリモートは設定してありますか？　まだなら今やってしまいましょう。通常はリモートの名前に `upstream` を使います：
-<!--You probably have set up a remote that points to the original project. If not, do this now. Generally we use `upstream` as a remote name:-->
 
 ```sh
 $ (master) git remote add upstream <link-to-original-repository>
@@ -257,13 +254,12 @@ $ (master) git remote add upstream <link-to-original-repository>
 ```
 
 これで `upstream` から最新版をフェッチできるようになりました。
-<!--Now you can fetch from upstream and get the latest updates.-->
 
 ```sh
 $ (master) git fetch upstream
 $ (master) git merge upstream/master
 
-# or using a single command
+# コマンド一つでもできる
 $ (master) git pull upstream master
 ```
 
