@@ -145,110 +145,119 @@ All commands should work for at least git version 2.13.0. See the [git website](
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## Repositories
+## リポジトリ
 
-### I want to start a local repository
+### ローカルリポジトリを初期化したい
 
-To initialize an existing directory as a Git repository:
+既存のリポジトリを Git リポジトリとして初期化するには、次を実行します：
 
 ```sh
 (my-folder) $ git init
 ```
 
-### I want to clone a remote repository
+### リモートリポジトリをクローンしたい
 
-To clone (copy) a remote repository, copy the URL for the repository, and run:
+リモートリポジトリをクローン（コピー）したいときは、リポジトリの URL をコピーし、次を実行します：
 
 ```sh
 $ git clone [url]
 ```
 
-This will save it to a folder named the same as the remote repository's. Make sure you have a connection to the remote server you are cloning from (for most purposes this means making sure you are connected to the internet).
+すると、リモートリポジトリと同名のフォルダにリポジトリの内容が保存されます。
+クローンできるのはリモートリポジトリのあるサーバに接続できる場合に限ります。大抵の場合インターネット接続があれば大丈夫です。
 
-To clone it into a folder with a different name than the default repository name:
+リモートリポジトリと異なる名前のフォルダにクローンしたいときは、次のようにします：
 
 ```sh
 $ git clone [url] name-of-new-folder
 ```
 
-### I set the wrong remote repository
+### 間違ったリモートリポジトリを設定してしまった
 
-There are a few possible problems here:
+問題はいくつかの場合に分けられます。
 
-If you cloned the wrong repository, simply delete the directory created after running `git clone` and clone the correct repository.
+間違ったリポジトリをクローンしてしまったときは、`git clone` してできたディレクトリを削除して、正しいリポジトリをクローンしなおせばよいです。
 
-If you set the wrong repository as the origin of an existing local repository, change the URL of your origin by running:
+間違ったリポジトリを既存のローカルリポジトリの origin に設定してしまったときは、次のように origin の URL を変更しましょう：
 
 ```sh
 $ git remote set-url origin [url of the actual repo]
 ```
 
-For more, see [this StackOverflow topic](https://stackoverflow.com/questions/2432764/how-to-change-the-uri-url-for-a-remote-git-repository#2432799).
+ほかの問題の場合は、[この StackOverflow トピック](https://stackoverflow.com/questions/2432764/how-to-change-the-uri-url-for-a-remote-git-repository#2432799)を参照してみてください。
 
+### 他の人のリポジトリにコードを書き加えたい
 
-### I want to add code to someone else's repository
+Git では、アクセス権がないと他の人のリポジトリに書き込むことはできません。GitHub は Git リポジトリのホスティングサービスであって Git 自体とは異なるものですが、GitHub でもやはり同様です。しかし、パッチによってコードを提案することができます。GitHub ならフォークとプルリクエストの機能がこれにあたります。
 
-Git doesn't allow you to add code to someone else's repository without access rights. Neither does GitHub, which is not the same as Git, but rather a hosted service for Git repositories. However, you can suggest code using patches, or, on GitHub, forks and pull requests.
+まずはフォークについて説明しましょう。フォークはリポジトリのコピーです。Git 自体の機能でありませんが、GitHub, BitBucket, GitLab やその他のホスティングサービスにはこの機能があり、各サービス上の UI を通して実行できます。
 
-First, a bit about forking. A fork is a copy of a repository. It is not a git operation, but is a common action on GitHub, Bitbucket, GitLab — or anywhere people host Git repositories. You can fork a repository through the hosted UI.
+#### プルリクエストでコードを提案するには
 
-#### Suggesting code via pull requests
-
-After you've forked a repository, you normally need to clone the repository to your machine. You can do some small edits on GitHub, for instance, without cloning, but this isn't a github-flight-rules list, so let's go with how to do this locally.
+リポジトリをフォークしたら、ローカルマシンにクローンして編集しましょう。ちょっとした編集なら GitHub 上でもできますが、この文書は GitHub フライトルールではないので、ローカルで編集する方法を説明します。
 
 ```sh
-# if you are using ssh
+# ssh を使う場合
 $ git clone git@github.com:k88hudson/git-flight-rules.git
 
-# if you are using https
+# https を使う場合
 $ git clone https://github.com/k88hudson/git-flight-rules.git
 ```
 
-If you `cd` into the resulting directory, and type `git remote`, you'll see a list of the remotes. Normally there will be one remote - `origin` - which will point to `k88hudson/git-flight-rules`. In this case, we also want a remote that will point to your fork.
+できたディレクトリに `cd` で移動し、`git remote` を実行してください。リモートのリストが表示されるはずです。おそらく表示されるのは `k88hudson/git-flight-rules` を参照する `origin` だけなので、自分がフォークして作った方のリモートも用意する必要があります。
 
-First, to follow a Git convention, we normally use the remote name `origin` for your own repository and `upstream` for whatever you've forked. So, rename the `origin` remote to `upstream`
+Git では、自分自身のリポジトリのリモートには `origin`、フォークした元のリポジトリは `upstream` と名付けるのが一般的です。これにならって、まず、リモート `origin` の名前を `upstream` に変更しましょう：
 
 ```sh
 $ git remote rename origin upstream
 ```
 
-You can also do this using `git remote set-url`, but it takes longer and is more steps.
+実は `git remote set-url` でも同じことができますが、時間も手間もかかります。
 
-Then, set up a new remote that points to your project.
+次に、自分のプロジェクトを参照する新しいリモートを作成します。
 
 ```sh
 $ git remote add origin git@github.com:YourName/git-flight-rules.git
 ```
 
-Note that now you have two remotes.
+この時点でリモートは二つあります：
 
-- `origin` references your own repository.
-- `upstream` references the original one.
+- `origin` はあなたのリポジトリを参照しています。
+- `upstream` は元のリポジトリを参照しています。
 
-From origin, you can read and write. From upstream, you can only read.
+`origin` は読み取り・書き込みの両方ができ、`upstream` は読み取り専用です。
 
-When you've finished making whatever changes you like, push your changes (normally in a branch) to the remote named `origin`. If you're on a branch, you could use `--set-upstream` to avoid specifying the remote tracking branch on every future push using this branch. For instance:
+編集が済んだら、編集内容を（通常はブランチ内から）リモート `origin` にプッシュしましょう。ブランチ内にいる場合、`--set-upstream` を使えば次回から同じブランチからプッシュする際にはリモートを指定せずに済みます。
+
+<!--When you've finished making whatever changes you like, push your changes (normally in a branch) to the remote named `origin`. If you're on a branch, you could use `--set-upstream` to avoid specifying the remote tracking branch on every future push using this branch. For instance:-->
 
 ```sh
 $ (feature/my-feature) git push --set-upstream origin feature/my-feature
 ```
 
-There is no way to suggest a pull request using the CLI using Git (although there are tools, like [hub](http://github.com/github/hub), which will do this for you). So, if you're ready to make a pull request, go to your GitHub (or another Git host) and create a new pull request. Note that your host automatically links the original and forked repositories.
+Git で CLI からプルリクエストを送る方法はありません（[hub](http://github.com/github/hub)のようなツールを使えば別ですが）。
+プルリクエストを送りたいときは、GitHub（あるいは他のホスティングサービス）上でプルリクエストを作成してください。元のリポジトリとフォークしたリポジトリを関連付けるのはホスティングサービスが自動的にしてくれます。
 
-After all of this, do not forget to respond to any code review feedback.
+プルリクエストの後、コードレビューのフィードバックに対応するのを忘れないようにしましょう。
 
-#### I need to update my fork with latest updates from the original repository
+#### フォークしたリポジトリを、元のリポジトリの最新版に合わせて更新したい
 
-After a while, the `upstream` repository may have been updated, and these updates need to be pulled into your `origin` repo. Remember that like you, other people are contributing too. Suppose that you are in your own feature branch and you need to update it with the original repository updates.
+そのうち `upstream` リポジトリが更新され、自分の `origin` にプルしたくなるかもしれません。
+自分だけでなく他の人も貢献していることを忘れないようにしてください。
+自分のフィーチャーブランチにいて、それを元のリポジトリに合わせて更新したい場合を想定します。
 
-You probably have set up a remote that points to the original project. If not, do this now. Generally we use `upstream` as a remote name:
+<!--After a while, the `upstream` repository may have been updated, and these updates need to be pulled into your `origin` repo. Remember that like you, other people are contributing too. Suppose that you are in your own feature branch and you need to update it with the original repository updates.-->
+
+元のプロジェクトを参照するリモートは設定してありますか？　まだなら今やってしまいましょう。通常はリモートの名前に `upstream` を使います：
+<!--You probably have set up a remote that points to the original project. If not, do this now. Generally we use `upstream` as a remote name:-->
 
 ```sh
 $ (master) git remote add upstream <link-to-original-repository>
 # $ (master) git remote add upstream git@github.com:k88hudson/git-flight-rules.git
 ```
 
-Now you can fetch from upstream and get the latest updates.
+これで `upstream` から最新版をフェッチできるようになりました。
+<!--Now you can fetch from upstream and get the latest updates.-->
 
 ```sh
 $ (master) git fetch upstream
