@@ -700,17 +700,17 @@ $ git stash pop --index 0
 注意 1：ここで `pop` を使うのは、操作を複数回行っても結果がなるべく変わらないようにするためです。
 注意 2：ここで `--index` を指定しないと、ステージされたファイルはステージされていない扱いになります（理由は[このリンク](https://stackoverflow.com/questions/31595873/git-stash-with-staged-files-does-stash-convert-staged-files-to-unstaged?answertab=active#tab-top)を参照してください）。
 
-## Unstaged Edits
+## ステージされていない編集
 
 <a href="move-unstaged-edits-to-new-branch"></a>
-### I want to move my unstaged edits to a new branch
+### ステージされていない編集内容を新しいブランチに移したい
 
 ```sh
 $ git checkout -b my-branch
 ```
 
 <a href="move-unstaged-edits-to-old-branch"></a>
-### I want to move my unstaged edits to a different, existing branch
+### ステージされていない編集内容を別の既存のブランチに移したい
 
 ```sh
 $ git stash
@@ -719,116 +719,118 @@ $ git stash pop
 ```
 
 <a href="i-want-to-discard-my-local-uncommitted-changes"></a>
-### I want to discard my local uncommitted changes (staged and unstaged)
+### コミットされていないローカルの編集内容を破棄したい（ステージされている場合・されていない場合）
 
-If you want to discard all your local staged and unstaged changes, you can do this:
+ステージされている編集内容とステージされていない編集内容の両方を全て破棄したいときは、次のようにします：
 
 ```sh
 (my-branch)$ git reset --hard
-# or
+# または
 (master)$ git checkout -f
 ```
 
-This will unstage all files you might have staged with `git add`:
+これは `git add` でステージした全ファイルのステージングを取り消します：
 
 ```sh
 $ git reset
 ```
 
-This will revert all local uncommitted changes (should be executed in repo root):
+これはコミットされていないローカルの編集内容を全て差し戻します（リポジトリのルートで実行する必要があります）：
 
 ```sh
 $ git checkout .
 ```
 
-You can also revert uncommitted changes to a particular file or directory:
+特定のファイルやディレクトリについてコミットされていない編集を差し戻すこともできます：
 
 ```sh
 $ git checkout [some_dir|file.txt]
 ```
 
-Yet another way to revert all uncommitted changes (longer to type, but works from any subdirectory):
+コミットされていない全編集内容を差し戻すのには次の方法もあります（コマンドが長いですが、任意のサブディレクトリから実行できます）：
 
 ```sh
 $ git reset --hard HEAD
 ```
 
-This will remove all local untracked files, so only files tracked by Git remain:
+次を実行するとローカルのバージョン管理されていないファイルが全て削除されます。つまり Git によって管理されているファイルだけ残ります：
 
 ```sh
 $ git clean -fd
 ```
 
-`-x` will also remove all ignored files.
+Git に無視されるファイルも全て取り除くには `-x` を指定します。
 
-### I want to discard specific unstaged changes
+### ステージされていない特定の編集内容を破棄したい
 
-When you want to get rid of some, but not all changes in your working copy.
+ワークツリー上の編集内容の全部ではなく一部だけを破棄したい場合です。
 
-Checkout undesired changes, keep good changes.
+残したい編集内容だけを残し、残したくない編集をチェックアウトします。
 
 ```sh
 $ git checkout -p
-# Answer y to all of the snippets you want to drop
+# 破棄したいコードすべてについて y と答える
 ```
 
-Another strategy involves using `stash`. Stash all the good changes, reset working copy, and reapply good changes.
+もう一つの方法は `stash` を使います。残したい編集内容をスタッシュし、ワークツリーをリセットして、残したい編集内容を適用します。
 
 ```sh
 $ git stash -p
-# Select all of the snippets you want to save
+# 残したいコードを全て選ぶ
 $ git reset --hard
 $ git stash pop
 ```
 
-Alternatively, stash your undesired changes, and then drop stash.
+あるいは、残したくない編集内容をスタッシュして、スタッシュ内容を破棄してもよいです。
 
 ```sh
 $ git stash -p
-# Select all of the snippets you don't want to save
+# 残したくないコードを全て選ぶ
 $ git stash drop
 ```
 
-### I want to discard specific unstaged files
+### ステージされていない特定のファイルを破棄したい
 
-When you want to get rid of one specific file in your working copy.
+ワークツリーの特定のファイル一つを取り除きたいときです。
 
 ```sh
 $ git checkout myFile
 ```
 
-Alternatively, to discard multiple files in your working copy, list them all.
+ワークツリー上の複数のファイルを破棄したいときは、それらを列挙します。
 
 ```sh
 $ git checkout myFirstFile mySecondFile
 ```
 
-### I want to discard only my unstaged local changes
+### ステージされていないローカルな編集内容だけを破棄したい
 
-When you want to get rid of all of your unstaged local uncommitted changes
+コミットもステージもされていないローカルの編集内容を全て破棄したい場合は、次を実行します。
 
 ```sh
 $ git checkout .
 ```
-<a href="i-want-to-discard-all-my-untracked-files"></a>
-### I want to discard all of my untracked files
 
-When you want to get rid of all of your untracked files
+<a href="i-want-to-discard-all-my-untracked-files"></a>
+### バージョン管理されていないファイルを全て破棄したい
+
+バージョン管理されていないファイルを全て破棄したいときは、次を実行します。
 
 ```sh
 $ git clean -f
 ```
 
 <a href="I-want-to-unstage-specific-staged-file"></a>
-### I want to unstage a specific staged file
+### 特定のステージされたファイルのステージングを取り消したい
 
-Sometimes we have one or more files that accidentally ended up being staged, and these files have not been committed before. To unstage them:
+間違えてステージされてしまったファイルが一つまたは複数あって、まだコミットされていない場合です。
+そのステージングを取り消すには次のようにします：
 
 ```sh
 $ git reset -- <filename>
 ```
 
-This results in unstaging the file and make it look like it's untracked.
+ファイルのステージングが取り消され、バージョン管理されていないものとみなされます。
 
 ## Branches
 
