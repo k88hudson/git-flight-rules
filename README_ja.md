@@ -618,83 +618,87 @@ pick f4037ec The last commit
 
 <!--will do the rest of the work for you.-->
 
-## Staging
+## ステージング
 
 <a href="#i-want-to-stage-all-tracked-files-and-leave-untracked-files"></a>
 
-### I want to stage all tracked files and leave untracked files
+### バージョン管理されているファイルを全部ステージしたい
 
 ```sh
 $ git add -u
 ```
 
-#### To stage part of tracked files
+#### バージョン管理されているファイルの一部をステージするには
 
 ```sh
-# to stage files with ext .txt
+# 拡張子が .txt のファイルをステージする
 $ git add -u *.txt
 
-# to stage all files inside directory src
+# src ディレクトリ内の全ファイルをステージする
 $ git add -u src/
 ```
 
 <a href="#i-need-to-add-staged-changes-to-the-previous-commit"></a>
-### I need to add staged changes to the previous commit
+### ステージされた編集内容を直前のコミットに追加したい
 
 ```sh
 (my-branch*)$ git commit --amend
 ```
 
-If you already know you don't want to change the commit message, you can tell git to reuse the commit message:
+コミットメッセージを変更したくないときは、コミットメッセージを再利用するよう Git に指示します：
 
 ```sh
 (my-branch*)$ git commit --amend -C HEAD
 ```
 
-
 <a name="commit-partial-new-file"></a>
-### I want to stage part of a new file, but not the whole file
+### 新しいファイルの全部ではなく一部をステージしたい
 
-Normally, if you want to stage part of a file, you run this:
+通常、ファイルの一部をステージするには次を実行します：
 
 ```sh
 $ git add --patch filename.x
 ```
 
-`-p` will work for short. This will open interactive mode. You would be able to use the `s` option to split the commit - however, if the file is new, you will not have this option. To add a new file, do this:
+短縮形は `-p` です。これにより対話モードが開きます。
+オプション `s` をつけるとコミットを分割 (split) できます。ただし、新しく作ったファイルの場合このオプションは使えません。
+ファイルを新たに追加するには、次を実行します：
 
 ```sh
 $ git add -N filename.x
 ```
 
-Then, you will need to use the `e` option to manually choose which lines to add. Running `git diff --cached` or
-`git diff --staged` will show you which lines you have staged compared to which are still saved locally.
+オプション `e` を使うと、どの行を追加するか手動で選択することができます。
+`git diff --cached` あるいは `git diff --staged` を実行すると、ステージした行がローカルに保存されたものと比較して表示されます。
 
 <a href="stage-in-two-commits"></a>
-### I want to add changes in one file to two different commits
+### 一つのファイルに加えた編集を二つの異なるコミットに追加したい
 
-`git add` will add the entire file to a commit. `git add -p` will allow to interactively select which changes you want to add.
+`git add` はファイル全体をコミットに追加します。
+`git add -p` を使うと、どの編集内容を追加するか対話的に選択できます。
 
 <a href="selective-unstage-edits"></a>
-### I staged too many edits, and I want to break them out into a separate commit
+### ステージした編集内容が多すぎるので、いくつかのコミットに分割したい
 
-`git reset -p` will open a patch mode reset dialog.  This is similar to `git add -p`, except that selecting "yes" will unstage the change, removing it from the upcoming commit.
+`git reset -p` を実行すると、パッチモードのリセットダイアログが開きます。
+`git add -p` と似ていますが、"yes" がステージを取り消して次のコミットから除去することを意味する点で異なります。
 
 <a href="unstaging-edits-and-staging-the-unstaged"></a>
-### I want to stage my unstaged edits, and unstage my staged edits
+### ステージされていない編集内容をステージし、ステージされた編集内容のステージを取り消したい
 
-In many cases, you should unstage all of your staged files and then pick the file you want and commit it. However, if you want to switch the staged and unstaged edits, you can create a temporary commit to store your staged files, stage your unstaged files and then stash them. Then, reset the temporary commit and pop your stash.
+通常は、ステージされたファイルのステージングを一旦全部取り消したあと、コミットしたいものをピックするべきです。
+ステージされている編集とされていない編集を切り替えたいときは、ステージされた編集を記録しておく仮のコミットを作成し、ステージされていないファイルをステージしてスタッシュします。それから仮のコミットをリセットして、スタッシュを pop します。
 
 ```sh
 $ git commit -m "WIP"
-$ git add . # This will also add untracked files.
+$ git add . # バージョン管理されていないファイルも追加される
 $ git stash
 $ git reset HEAD^
 $ git stash pop --index 0
 ```
 
-NOTE 1: The reason to use `pop` here is want to keep idempotent as much as possible.
-NOTE 2: Your staged files will be marked as unstaged if you don't use the `--index` flag. ([This link](https://stackoverflow.com/questions/31595873/git-stash-with-staged-files-does-stash-convert-staged-files-to-unstaged?answertab=active#tab-top) explains why.)
+注意 1：ここで `pop` を使うのは、操作を複数回行っても結果がなるべく変わらないようにするためです。
+注意 2：ここで `--index` を指定しないと、ステージされたファイルはステージされていない扱いになります（理由は[このリンク](https://stackoverflow.com/questions/31595873/git-stash-with-staged-files-does-stash-convert-staged-files-to-unstaged?answertab=active#tab-top)を参照してください）。
 
 ## Unstaged Edits
 
