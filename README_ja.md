@@ -832,38 +832,39 @@ $ git reset -- <filename>
 
 ファイルのステージングが取り消され、バージョン管理されていないものとみなされます。
 
-## Branches
+## ブランチ
 
-### I want to list all branches
+### 全ブランチの一覧を表示したい
 
-List local branches
+ローカルブランチの一覧を表示する
 
 ```sh
 $ git branch
 ```
 
-List remote branches
+リモートブランチの一覧を表示する
 
 ```sh
 $ git branch -r
 ```
 
-List all branches (both local and remote)
+ローカルとリモート両方のブランチの一覧を表示する
 
 ```sh
 $ git branch -a
 ```
 
 <a name="create-branch-from-commit"></a>
-### Create a branch from a commit
+### コミットからブランチを作成する
+
 ```sh
 $ git checkout -b <branch> <SHA1_OF_COMMIT>
 ```
 
 <a name="pull-wrong-branch"></a>
-### I pulled from/into the wrong branch
+### 間違ったブランチから、あるいは間違ったブランチにプルしてしまった
 
-This is another chance to use `git reflog` to see where your HEAD pointed before the bad pull.
+再び `git reflog` を使う場面です。間違ったプルの以前に HEAD が参照していたものを表示します。
 
 ```sh
 (master)$ git reflog
@@ -871,20 +872,20 @@ ab7555f HEAD@{0}: pull origin wrong-branch: Fast-forward
 c5bc55a HEAD@{1}: checkout: checkout message goes here
 ```
 
-Simply reset your branch back to the desired commit:
+単にブランチを適切なコミットにリセットするだけです：
 
 ```sh
 $ git reset --hard c5bc55a
 ```
 
-Done.
+これで完了です。
 
 <a href="discard-local-commits"></a>
-### I want to discard local commits so my branch is the same as one on the server
+### ローカルのコミットを破棄して、ブランチをサーバ上の状態と同じにしたい
 
-Confirm that you haven't pushed your changes to the server.
+サーバに編集内容をプッシュしていないことを確認してください。
 
-`git status` should show how many commits you are ahead of origin:
+`git status` を実行すると、自分が origin に対して何コミット分作業を進めたのか表示されます。
 
 ```sh
 (my-branch)$ git status
@@ -894,69 +895,72 @@ Confirm that you haven't pushed your changes to the server.
 #
 ```
 
-One way of resetting to match origin (to have the same as what is on the remote) is to do this:
+origin と同じ状態にリセットする（リモートと同じ状態にする）方法の一つは次の通りです：
 
 ```sh
 (master)$ git reset --hard origin/my-branch
 ```
 
 <a name="commit-wrong-branch"></a>
-### I committed to master instead of a new branch
+### 新しいブランチではなくマスターブランチにコミットしてしまった
 
-Create the new branch while remaining on master:
+マスターブランチにいたまま、新しいブランチを作成してください：
 
 ```sh
 (master)$ git branch my-branch
 ```
 
-Reset the branch master to the previous commit:
+マスターブランチを直前のコミットにリセットします：
 
 ```sh
 (master)$ git reset --hard HEAD^
 ```
 
-`HEAD^` is short for `HEAD^1`. This stands for the first parent of `HEAD`, similarly `HEAD^2` stands for the second parent of the commit (merges can have 2 parents).
+`HEAD^` は `HEAD^1` の短縮形で、`HEAD` の一番目の親を表します。同様に `HEAD^2` は二番目の親を表します（マージには親が二つあります）。
 
-Note that `HEAD^2` is **not** the same as `HEAD~2` (see [this link](http://www.paulboxley.com/blog/2011/06/git-caret-and-tilde) for more information).
+`HEAD^2` は `HEAD~2` と**異なる**ことに注意してください（詳しくは[このリンク](http://www.paulboxley.com/blog/2011/06/git-caret-and-tilde)を参照してください）。
 
-Alternatively, if you don't want to use `HEAD^`, find out what the commit hash you want to set your master branch to (`git log` should do the trick). Then reset to that hash. `git push` will make sure that this change is reflected on your remote.
+あるいは `HEAD^` を使いたくなければ、マスターブランチを差し戻したい先のコミットハッシュを探します（`git log` が役立ちます）。
+見つけたら、そのハッシュにリセットします。あとは `git push` すればこの結果がリモートに反映されるはずです。
 
-For example, if the hash of the commit that your master branch is supposed to be at is `a13b85e`:
+例えば、マスターブランチを差し戻すべきコミットのハッシュが `a13b85e` だとして、次のようにします：
 
 ```sh
 (master)$ git reset --hard a13b85e
 HEAD is now at a13b85e
 ```
 
-Checkout the new branch to continue working:
+作業に戻るため、新しいブランチにチェックアウトしましょう：
 
 ```sh
 (master)$ git checkout my-branch
 ```
 
 <a name="keep-whole-file"></a>
-### I want to keep the whole file from another ref-ish
+### ファイル全てをリファレンス的な場所に保存しておきたい
 
-Say you have a working spike (see note), with hundreds of changes. Everything is working. Now, you commit into another branch to save that work:
+ワーキングスパイク（メモを参照）にたくさん編集内容があって、すべてうまく機能しているものとします。
+この作業内容を保存しておくため、別のブランチにコミットします。
 
 ```sh
 (solution)$ git add -A && git commit -m "Adding all changes from this spike into one big commit."
 ```
 
-When you want to put it into a branch (maybe feature, maybe `develop`), you're interested in keeping whole files. You want to split your big commit into smaller ones.
+この内容をブランチ（フィーチャーブランチでも `develop` でも）に適用したいときは、ファイル全部を保存しておきたいはずです。
+大きなコミットを小さなコミットに分割します。
 
-Say you have:
+いま、次のブランチがあるものとします。
 
-  * branch `solution`, with the solution to your spike. One ahead of `develop`.
-  * branch `develop`, where you want to add your changes.
+* `solution` ブランチ。スパイクを解消するためのブランチで、`develop` ブランチに対して一コミット先です。
+* `develop` ブランチ。ここに編集内容を適用したいとします。
 
-You can solve it bringing the contents to your branch:
+これは編集内容をブランチに適用することで可能です。
 
 ```sh
 (develop)$ git checkout solution -- file1.txt
 ```
 
-This will get the contents of that file in branch `solution` to your branch `develop`:
+これで `solution` ブランチの内容が `develop` ブランチに適用されます：
 
 ```sh
 # On branch develop
@@ -967,14 +971,14 @@ This will get the contents of that file in branch `solution` to your branch `dev
 #        modified:   file1.txt
 ```
 
-Then, commit as usual.
+あとは通常通りコミットしてください。
 
-Note: Spike solutions are made to analyze or solve the problem. These solutions are used for estimation and discarded once everyone gets clear visualization of the problem. ~ [Wikipedia](https://en.wikipedia.org/wiki/Extreme_programming_practices).
+メモ：スパイクは問題を解析したり解決するためのものです。解決法は判断にかけられたあと、共同編集者が問題を理解した時点で破棄されます。~ [Wikipedia](https://en.wikipedia.org/wiki/Extreme_programming_practices)
 
 <a name="cherry-pick"></a>
-### I made several commits on a single branch that should be on different branches
+### 別々のブランチにするべき複数のコミットを一つのブランチにしてしまった
 
-Say you are on your master branch. Running `git log`, you see you have made two commits:
+マスターブランチにいるとして、`git log` でコミットが二つ表示されるとします。
 
 ```sh
 (master)$ git log
@@ -998,31 +1002,32 @@ Date:   Tue Jul 21 01:12:48 2014 -0400
     First commit
 ```
 
-Let's take note of our commit hashes for each bug (`e3851e8` for #21, `5ea5173` for #14).
+それぞれのバグに対応するコミットハッシュをメモしておきます（#21 は`e3851e8`、#14 は`5ea5173` です）。
 
-First, let's reset our master branch to the correct commit (`a13b85e`):
+まず、マスターブランチをあるべきコミット `a13b85e` までリセットします：
 
 ```sh
 (master)$ git reset --hard a13b85e
 HEAD is now at a13b85e
 ```
 
-Now, we can create a fresh branch for our bug #21:
+これで、バグ #21 に対応する新しいブランチを作成できます：
 
 ```sh
 (master)$ git checkout -b 21
 (21)$
 ```
 
-Now, let's *cherry-pick* the commit for bug #21 on top of our branch. That means we will be applying that commit, and only that commit, directly on top of whatever our head is at.
+さて、このブランチにコミットを**チェリーピック**しましょう。
+つまり、head が何であろうとそこに当該コミットだけを適用します。
 
 ```sh
 (21)$ git cherry-pick e3851e8
 ```
 
-At this point, there is a possibility there might be conflicts. See the [**There were conflicts**](#merge-conflict) section in the [interactive rebasing section above](#interactive-rebase) for how to resolve conflicts.
+この時点でコミットのコンフリクトが発生しているかもしれません。コンフリクトを解消する方法は[interactive rebasing section above](#interactive-rebase)セクションの[**There were conflicts**](#merge-conflict)を参照してください。
 
-Now let's create a new branch for bug #14, also based on master
+次に、#14 に対応するマスターに紐づいたブランチを作成しましょう。
 
 ```sh
 (21)$ git checkout master
@@ -1030,26 +1035,30 @@ Now let's create a new branch for bug #14, also based on master
 (14)$
 ```
 
-And finally, let's cherry-pick the commit for bug #14:
+最後に、バグ #14 に対応するコミットをチェリーピックします。
 
 ```sh
 (14)$ git cherry-pick 5ea5173
 ```
 
 <a name="delete-stale-local-branches"></a>
-### I want to delete local branches that were deleted upstream
-Once you merge a pull request on GitHub, it gives you the option to delete the merged branch in your fork. If you aren't planning to keep working on the branch, it's cleaner to delete the local copies of the branch so you don't end up cluttering up your working checkout with a lot of stale branches.
+### upstream で削除されたローカルブランチを削除したい
+
+GitHub でプルリクエストをマージすると、マージされたブランチを自分のフォーク上から削除する選択肢が出てきます。
+そのブランチで今後作業するつもりがなければ、もはや使わないブランチで作業環境が散らからないように削除しておくほうが綺麗です。
 
 ```sh
 $ git fetch -p upstream
 ```
 
-where, `upstream` is the remote you want to fetch from.
+ここで `upstream` は取得したい元のリモートを指します。
 
 <a name='restore-a-deleted-branch'></a>
-### I accidentally deleted my branch
+### 間違ってブランチを削除してしまった
 
-If you're regularly pushing to remote, you should be safe most of the time. But still sometimes you may end up deleting your branches. Let's say we create a branch and create a new file:
+いつもリモートにプッシュしているならたいてい大丈夫です。ただ、ブランチを間違って削除してしまうのはよくあることです。
+
+新しくブランチを作り、ファイルを新規作成したとします：
 
 ```sh
 (master)$ git checkout -b my-branch
@@ -1059,7 +1068,7 @@ If you're regularly pushing to remote, you should be safe most of the time. But 
 README.md foo.txt
 ```
 
-Let's add it and commit.
+これを追加してコミットします。
 
 ```sh
 (my-branch)$ git add .
@@ -1082,7 +1091,7 @@ Date:   Tue Jul 29 13:14:46 2014 -0400
     Fixes #6: Force pushing after amending commits
 ```
 
-Now we're switching back to master and 'accidentally' removing our branch.
+マスターに戻って、「間違って」ブランチを削除してみます。
 
 ```sh
 (my-branch)$ git checkout master
@@ -1094,7 +1103,7 @@ Deleted branch my-branch (was 4e3cd85).
 oh noes, deleted my branch!
 ```
 
-At this point you should get familiar with 'reflog', an upgraded logger. It stores the history of all the action in the repo.
+さて、ここで改良されたロガー `reflog` について学びましょう。これはリポジトリの全ての操作履歴を保存しています。
 
 ```
 (master)$ git reflog
@@ -1103,7 +1112,7 @@ At this point you should get familiar with 'reflog', an upgraded logger. It stor
 69204cd HEAD@{2}: checkout: moving from master to my-branch
 ```
 
-As you can see we have commit hash from our deleted branch. Let's see if we can restore our deleted branch.
+このように、削除してしまったブランチのコミットが表示されています。削除したブランチを復元してみましょう。
 
 ```sh
 (master)$ git checkout -b my-branch-help
@@ -1114,71 +1123,72 @@ HEAD is now at 4e3cd85 foo.txt added
 README.md foo.txt
 ```
 
-Voila! We got our removed file back. `git reflog` is also useful when rebasing goes terribly wrong.
+やった！　消えたファイルを取り戻しました。`git reflog` はリベースが滅茶苦茶になってしまったときにも便利です。
 
-### I want to delete a branch
+### ブランチを削除したい
 
-To delete a remote branch:
+リモートブランチを削除するには：
 
 ```sh
 (master)$ git push origin --delete my-branch
 ```
 
-You can also do:
+次のようにもできます：
 
 ```sh
 (master)$ git push origin :my-branch
 ```
 
-To delete a local branch:
+ローカルブランチを削除するには：
 
 ```sh
 (master)$ git branch -d my-branch
 ```
 
-To delete a local branch that *has not* been merged to the current branch or an upstream:
+現在のブランチか upstream にマージ**されていない**ブランチを削除するには：
 
 ```sh
 (master)$ git branch -D my-branch
 ```
 
-### I want to delete multiple branches
+### 複数のブランチを削除したい
 
-Say you want to delete all branches that start with `fix/`:
+`fix/` で始まるブランチを全て削除したいときは：
 
 ```sh
 (master)$ git branch | grep 'fix/' | xargs git branch -d
 ```
 
-### I want to rename a branch
+### ブランチの名前を変更したい
 
-To rename the current (local) branch:
+現在の（ローカル）ブランチの名前を変更するには：
 
 ```sh
 (master)$ git branch -m new-name
 ```
 
-To rename a different (local) branch:
+現在いるブランチと異なる（ローカル）ブランチの名前を変更するには：
 
 ```sh
 (master)$ git branch -m old-name new-name
 ```
- To delete the `old-name` remote branch and push the `new-name` local branch:
+
+古い名前（`old-name`）のリモートブランチを削除し、新しい名前（`new-name`）のブランチをプッシュするには：
  
- ```sh
- (master)$ git push origin :old_name new_name
- ```
+```sh
+(master)$ git push origin :old_name new_name
+```
 
 <a name="i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on"></a>
-### I want to checkout to a remote branch that someone else is working on
+### 他の人が作業しているリモートブランチにチェックアウトしたい
 
-First, fetch all branches from remote:
+まず、リモートから全ブランチを取得します：
 
 ```sh
 (master)$ git fetch --all
 ```
 
-Say you want to checkout to `daves` from the remote.
+リモートブランチ `daves` にチェックアウトしたいとします。
 
 ```sh
 (master)$ git checkout --track origin/daves
@@ -1186,33 +1196,32 @@ Branch daves set up to track remote branch daves from origin.
 Switched to a new branch 'daves'
 ```
 
-(`--track` is shorthand for `git checkout -b [branch] [remotename]/[branch]`)
+（ここで `--track` は `git checkout -b [branch] [remotename]/[branch]` の短縮形です。）
 
-This will give you a local copy of the branch `daves`, and any update that has been pushed will also show up remotely.
+こうするとブランチ `daves` のコピーがローカルに作成され、プッシュされた編集内容がリモートに反映されます。
 
-### I want to create a new remote branch from current local one
+### 現在のローカルブランチをもとに新しいリモートブランチを作成したい
 
 ```sh
 $ git push <remote> HEAD
 ```
 
-If you would also like to set that remote branch as upstream for the current one, use the following instead:
+同時にこのリモートブランチを現在のブランチの upstream に設定したい場合は代わりに次を実行します。
 
 ```sh
 $ git push -u <remote> HEAD
 ```
-
-With the `upstream` mode and the `simple` (default in Git 2.0) mode of the `push.default` config, the following command will push the current branch with regards to the remote branch that has been registered previously with `-u`:
+`push.default` 設定が `upstream` モードか `simple` モード（Git 2.0 のデフォルト）になっている場合、次のコマンドを実行すると、以前に `-u` で登録したリモートブランチに現在のブランチをプッシュします。
 
 ```sh
 $ git push
 ```
 
-The behavior of the other modes of `git push` is described in the [doc of `push.default`](https://git-scm.com/docs/git-config#git-config-pushdefault).
+他のモードが `git push` でどう振る舞うかは[`push.default` のドキュメント](https://git-scm.com/docs/git-config#git-config-pushdefault)で説明されています。
 
-### I want to set a remote branch as the upstream for a local branch
+### リモートブランチをローカルブランチの upstream に設定したい
 
-You can set a remote branch as the upstream for the current local branch using:
+次のようにして、リモートブランチを現在いるローカルブランチの upstream に設定できます。
 
 ```sh
 $ git branch --set-upstream-to [remotename]/[branch]
@@ -1220,16 +1229,17 @@ $ git branch --set-upstream-to [remotename]/[branch]
 $ git branch -u [remotename]/[branch]
 ```
 
-To set the upstream remote branch for another local branch:
+別のローカルブランチの upstream に設定するには次のようにします：
 
 ```sh
 $ git branch -u [remotename]/[branch] [local-branch]
 ```
 
 <a name="i-want-to-set-my-HEAD-to-track-the-default-remote-branch"></a>
-### I want to set my HEAD to track the default remote branch
+### 自分の HEAD をデフォルトのリモートブランチを追跡するよう設定したい
 
-By checking your remote branches, you can see which remote branch your HEAD is tracking. In some cases, this is not the desired branch.
+リモートブランチを調べると、自分の HEAD がどのリモートブランチを追跡しているかがわかります。
+ときどきこれが追跡したいブランチと異なることがあります。
 
 ```sh
 $ git branch -r
@@ -1237,16 +1247,17 @@ $ git branch -r
   origin/master
 ```
 
-To change `origin/HEAD` to track `origin/master`, you can run this command:
+`origin/HEAD` が `origin/master` を追跡するよう設定し直すには、次のコマンドを実行します：
 
 ```sh
 $ git remote set-head origin --auto
 origin/HEAD set to master
 ```
 
-### I made changes on the wrong branch
+### 間違ったブランチを編集してしまった
 
-You've made uncommitted changes and realise you're on the wrong branch. Stash changes and apply them to the branch you want:
+まだコミットしていない編集を加えたあと、間違ったブランチにいることに気づいたとします。
+編集内容をスタッシュして、適切なブランチに適用すれば大丈夫です：
 
 ```sh
 (wrong_branch)$ git stash
