@@ -1564,76 +1564,76 @@ Changes not staged for commit:
 ```
 
 <a name="stashing"></a>
-## Stash
+## スタッシュ
 
-### Stash all edits
+### 全ての編集内容をスタッシュしたい
 
-To stash all the edits in your working directory
+ワーキングディレクトリの全ての編集をスタッシュするには、次を実行します：
 
 ```sh
 $ git stash
 ```
 
-If you also want to stash untracked files, use `-u` option.
+バージョン管理されていないファイルもスタッシュしたい場合は、オプション `-u` を指定します。
 
 ```sh
 $ git stash -u
 ```
 
-### Stash specific files
+### 特定のファイルをスタッシュしたい
 
-To stash only one file from your working directory
+ワーキングディレクトリのファイル一つをスタッシュするには、次を実行します：
 
 ```sh
 $ git stash push working-directory-path/filename.ext
 ```
 
-To stash multiple files from your working directory
+ワーキングディレクトリの複数のファイルをスタッシュする場合は次の通りです。
 
 ```sh
 $ git stash push working-directory-path/filename1.ext working-directory-path/filename2.ext
 ```
 
 <a name="stash-msg"></a>
-### Stash with message
+### メッセージをつけてスタッシュしたい
 
 ```sh
 $ git stash save <message>
 ```
 
-or
+あるいは、
 
 ```sh
 $ git stash push -m <message>
 ```
 
 <a name="stash-apply-specific"></a>
-### Apply a specific stash from list
+### 一覧から特定のスタッシュを選んで適用したい
 
-First check your list of stashes with message using
+まず、次のようにしてスタッシュの一覧をメッセージとともに表示します。
 
 ```sh
 $ git stash list
 ```
 
-Then apply a specific stash from the list using
+そして、次のように特定のスタッシュを選んで適用します。
 
 ```sh
 $ git stash apply "stash@{n}"
 ```
 
-Here, 'n' indicates the position of the stash in the stack. The topmost stash will be position 0.
+ここで、'n' は一覧の中のスタッシュの位置を指します。一番上のスタッシュなら 0 番です。
 
-Furthermore, using a time-based stash reference is also possible.
+また、時刻からスタッシュを参照することもできます。
 
 ```sh
 $ git stash apply "stash@{2.hours.ago}"
 ```
 
 <a name="stage-and-keep-unstaged"></a>
-### Stash while keeping unstaged edits
+### ステージされていない編集をそのままにしつつ、スタッシュしたい
 
-You can manually create a `stash commit`, and then use `git stash store`.
+手動で `stash commit` を作成し、`git stash store` を実行すればよいです。
 
 ```sh
 $ git stash create
