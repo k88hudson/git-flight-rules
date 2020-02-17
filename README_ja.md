@@ -1640,70 +1640,69 @@ $ git stash create
 $ git stash store -m <message> CREATED_SHA1
 ```
 
-## Finding
+## 検索
 
-### I want to find a string in any commit
+### 任意のコミットから文字列を検索したい
 
-To find a certain string which was introduced in any commit, you can use the following structure:
+あるコミットで導入されたある文字列を検索したいときは、次のコマンドを使います：
 
 ```sh
 $ git log -S "string to find"
 ```
 
-Commons parameters:
+よく使われるパラメータは次の通り：
 
-* `--source` means to show the ref name given on the command line by which each commit was reached.
-
-* `--all` means to start from every branch.
-
-* `--reverse` prints in reverse order, it means that will show the first commit that made the change.
+* `--source` を指定すると、コマンドラインでつけられた各コミットの参照名を表示します。
+* `--all` は全てのブランチから検索します。
+* `--reverse` を指定すると逆順に表示します。すなわち、最初のコミットから表示します。
 
 <a name="i-want-to-find-by-author-committer"></a>
-### I want to find by author/committer
+### author または committer から検索する
 
-To find all commits by author/committer you can use:
+全てのコミットを author または committer の名前から検索するには次の通りです：
 
 ```sh
 $ git log --author=<name or email>
 $ git log --committer=<name or email>
 ```
 
-Keep in mind that author and committer are not the same. The `--author` is the person who originally wrote the code; on the other hand, the `--committer`, is the person who committed the code on behalf of the original author.
+author と committer は異なることに注意してください。
+`--author` ははじめにコードを書いた人、`--committer` は author の代わりにコミットした人を指します。
 
-### I want to list commits containing specific files
+### 特定のファイルを含むコミットの一覧を表示したい
 
-To find all commits containing a specific file you can use:
+特定のファイルを含むコミットの一覧を表示するには、次を実行します。
 
 ```sh
 $ git log -- <path to file>
 ```
 
-You would usually specify an exact path, but you may also use wild cards in the path and file name:
+通常は正確なパスを指定しますが、パスやファイル名にワイルドカードを使うこともできます：
 
 ```sh
 $ git log -- **/*.js
 ```
 
-While using wildcards, it's useful to inform `--name-status` to see the list of committed files:
+ワイルドカードを使う際は、`--name-status` を指定するとコミットされたファイルの一覧が表示されるので便利です。
 
 ```sh
 $ git log --name-status -- **/*.js
 ```
 
 <a name="#i-want-to-view-the-commit-history-for-a-specific-function"></a>
-### I want to view the commit history for a specific function
+### 特定の関数についてコミット履歴を見たい
 
-To trace the evolution of a single function you can use:
+ある関数の履歴を追跡するには次を実行します：
 
 ```sh
 $ git log -L :FunctionName:FilePath
 ```
 
-Note that you can combine this with further `git log` options, like [revision ranges](https://git-scm.com/docs/gitrevisions) and [commit limits](https://git-scm.com/docs/git-log/#_commit_limiting).
+このコマンドは `git log` の他のオプション、例えば [revision ranges](https://git-scm.com/docs/gitrevisions) や [commit limits](https://git-scm.com/docs/git-log/#_commit_limiting) と一緒に使うことができます。
 
-### Find a tag where a commit is referenced
+### コミットが参照されているタグを検索したい
 
-To find all tags containing a specific commit:
+特定のコミットを含むタグを検索するには次のようにします：
 
 ```sh
 $ git tag --contains <commitid>
