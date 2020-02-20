@@ -1824,16 +1824,16 @@ $ git push origin refs/heads/<branch-name>
 $ git push origin refs/tags/<tag-name>
 ```
 
-## Tracking Files
+## ファイルの追跡
 
 <a href="i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file"></a>
-### I want to change a file name's capitalization, without changing the contents of the file
+### ファイルの内容は変えずに、ファイル名の大文字・小文字を変更したい
 
 ```sh
 (master)$ git mv --force myfile MyFile
 ```
 
-### I want to overwrite local files when doing a git pull
+### git pull してローカルのファイルを上書きしたい
 
 ```sh
 (master)$ git fetch --all
@@ -1841,49 +1841,50 @@ $ git push origin refs/tags/<tag-name>
 ```
 
 <a href="remove-from-git"></a>
-### I want to remove a file from Git but keep the file
+### ファイルを残しつつ Git から削除したい
 
 ```sh
 (master)$ git rm --cached log.txt
 ```
 
-### I want to revert a file to a specific revision
+### ファイルを特定の版まで差し戻したい
 
-Assuming the hash of the commit you want is c5f567:
+差し戻したいコミットのハッシュが c5f567 の場合、次を実行します：
 
 ```sh
 (master)$ git checkout c5f567 -- file1/to/restore file2/to/restore
 ```
 
-If you want to revert to changes made just 1 commit before c5f567, pass the commit hash as c5f567~1:
+差し戻したいコミットが c5f567 の一つ前なら、コミットハッシュに c5f567~1 を指定します：
 
 ```sh
 (master)$ git checkout c5f567~1 -- file1/to/restore file2/to/restore
 ```
 
-### I want to list changes of a specific file between commits or branches
+### 特定のファイルのコミット間・ブランチ間の差分を表示したい
 
-Assuming you want to compare last commit with file from commit c5f567:
+コミット c5f567 とその一つ前の差分を表示したい場合、次を実行します：
 
 ```sh
 $ git diff HEAD:path_to_file/file c5f567:path_to_file/file
 ```
 
-Same goes for branches:
+ブランチでも同様です：
 
 ```sh
 $ git diff master:path_to_file/file staging:path_to_file/file
 ```
 
-### I want Git to ignore changes to a specific file
+### 特定のファイルの変更を無視したい
 
-This works great for config templates or other files that require locally adding credentials that shouldn't be committed.
+これはコミットできない認証情報をローカル環境で追加する必要のある設定テンプレートなどがあるときに役立ちます。
 
 ```sh
 $ git update-index --assume-unchanged file-to-ignore
 ```
 
-Note that this does *not* remove the file from source control - it is only ignored locally. To undo this and tell Git to notice changes again, this clears the ignore flag:
+ファイルがバージョン管理されなくなるわけでは*ない*ことに注意してください。ローカルで無視されるだけです。
+設定を取り消して変更を再び追跡するには、次のようにして ignore フラッグを削除します：
 
 ```sh
 $ git update-index --no-assume-unchanged file-to-stop-ignoring
