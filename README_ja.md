@@ -1736,29 +1736,29 @@ $ git rm --cached submodulename
 $ rm -rf .git/modules/submodulename
 ```
 
-## Miscellaneous Objects
+## その他色々
 
-### Copy a folder or file from one branch to another
+### あるブランチから別のブランチにフォルダをコピーしたい
 
 ```sh
 $ git checkout <branch-you-want-the-directory-from> -- <folder-name or file-name>
 ```
 
-### Restore a deleted file
+### 削除されたファイルを復元したい
 
-First find the commit when the file last existed:
+まず、ファイルが最後にあったコミットを探します：
 
 ```sh
 $ git rev-list -n 1 HEAD -- filename
 ```
 
-Then checkout that file:
+見つかったら、ファイルをチェックアウトします：
 
 ```
 git checkout deletingcommitid^ -- filename
 ```
 
-### Delete tag
+### タグを削除したい
 
 ```sh
 $ git tag -d <tag_name>
@@ -1766,25 +1766,29 @@ $ git push <remote> :refs/tags/<tag_name>
 ```
 
 <a name="recover-tag"></a>
-### Recover a deleted tag
+### 削除されたタグを復元したい
 
-If you want to recover a tag that was already deleted, you can do so by following these steps: First, you need to find the unreachable tag:
+削除されたタグを復元する手順は次の通りです。
+まず、unreachable になったタグを探します：
 
 ```sh
 $ git fsck --unreachable | grep tag
 ```
 
-Make a note of the tag's hash. Then, restore the deleted tag with following, making use of [`git update-ref`](https://git-scm.com/docs/git-update-ref):
+タグのハッシュをメモしておきます。
+続いて、次のように [`git update-ref`](https://git-scm.com/docs/git-update-ref) を使って削除されたタグを復元します：
 
 ```sh
 $ git update-ref refs/tags/<tag_name> <hash>
 ```
 
-Your tag should now have been restored.
+これでタグが復元されたはずです。
 
-### Deleted Patch
+### 削除されたパッチを取得したい
 
-If someone has sent you a pull request on GitHub, but then deleted their original fork, you will be unable to clone their repository or to use `git am` as the [.diff, .patch](https://github.com/blog/967-github-secrets) URLs become unavailable. But you can checkout the PR itself using [GitHub's special refs](https://gist.github.com/piscisaureus/3342247). To fetch the content of PR#1 into a new branch called pr_1:
+誰かが GitHub でプルリクを送ったあとにフォークを削除してしまった場合、そのリポジトリをクローンしたり、`git am` でパッチを適用することができなくなります。[.diff や .patch](https://github.com/blog/967-github-secrets) の URL が使えなくなってしまうためです。
+しかし、[GitHub 独自の参照](https://gist.github.com/piscisaureus/3342247)を使って、プルリクエスト自体をチェックアウトすることができます。
+プルリクエスト #1 の内容を新しいブランチ pr_1 に取得するには、次を実行します：
 
 ```sh
 $ git fetch origin refs/pull/1/head:pr_1
@@ -1792,14 +1796,15 @@ From github.com:foo/bar
  * [new ref]         refs/pull/1/head -> pr_1
 ```
 
-### Exporting a repository as a Zip file
+### リポジトリを zip ファイルとしてエクスポートする
 
 ```sh
 $ git archive --format zip --output /full/path/to/zipfile.zip master
 ```
-### Push a branch and a tag that have the same name
 
-If there is a tag on a remote repository that has the same name as a branch you will get the following error when trying to push that branch with a standard `$ git push <remote> <branch>` command.
+### 同じ名前のブランチとタグをプッシュしたい
+
+ブランチと同じ名前のタグがリモートリポジトリに存在する場合、通常通り `$ git push <remote> <branch>` でプッシュしようとすると、次のようにエラーが出ます。
 
 ```sh
 $ git push origin <branch>
@@ -1807,13 +1812,13 @@ error: dst refspec same matches more than one.
 error: failed to push some refs to '<git server>'
 ```
 
-Fix this by specifying you want to push the head reference.
+このエラーはブランチのヘッドを指定することによって回避できます。
 
 ```sh
 $ git push origin refs/heads/<branch-name>
 ```
 
-If you want to push a tag to a remote repository that has the same name as a branch, you can use a similar command.
+同名のブランチがリモートリポジトリにあるタグをプッシュしたいときも、似たコマンドを使います。
 
 ```sh
 $ git push origin refs/tags/<tag-name>
