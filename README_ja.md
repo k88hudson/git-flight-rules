@@ -1708,25 +1708,26 @@ $ git log -L :FunctionName:FilePath
 $ git tag --contains <commitid>
 ```
 
-## Submodules
+## サブモジュール
 
 <a name="clone-submodules"></a>
-### Clone all submodules
+### 全てのサブモジュールをクローンする
 
 ```sh
 $ git clone --recursive git://github.com/foo/bar.git
 ```
 
-If already cloned:
+すでにクローンしている場合：
 
 ```sh
 $ git submodule update --init --recursive
 ```
 
 <a name="delete-submodule"></a>
-### Remove a submodule
+### サブモジュールを削除する
 
-Creating a submodule is pretty straight-forward, but deleting them less so. The commands you need are:
+サブモジュールの作成はきわめて簡単ですが、削除はそうでもありません。
+削除に必要なコマンドは次の通りです：
 
 ```sh
 $ git submodule deinit submodulename
