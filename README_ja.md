@@ -1890,38 +1890,38 @@ $ git update-index --assume-unchanged file-to-ignore
 $ git update-index --no-assume-unchanged file-to-stop-ignoring
 ```
 
-## Debugging with Git
+## Git によるデバッグ
 
-The [git-bisect](https://git-scm.com/docs/git-bisect) command uses a binary search to find which commit in your Git history introduced a bug.
+コマンド [git-bisect](https://git-scm.com/docs/git-bisect) は、どのコミットがバグをもたらしたか Git 履歴を二分探索します。
 
-Suppose you're on the `master` branch, and you want to find the commit that broke some feature. You start bisect:
+今 `master` ブランチにいるとして、失敗をやらかしたコミットを探してみましょう。次のようにして二分探索を始めます：
 
 ```sh
 $ git bisect start
 ```
-
-Then you should specify which commit is bad, and which one is known to be good. Assuming that your *current* version is bad, and `v1.1.1` is good:
+問題のあるコミットとないコミットを指定する必要があります。*現在の*バージョンに問題があり、`v1.1.1` は問題ないとします。
 
 ```sh
 $ git bisect bad
 $ git bisect good v1.1.1
 ```
 
-Now `git-bisect` selects a commit in the middle of the range that you specified, checks it out, and asks you whether it's good or bad. You should see something like:
-
+すると `git-bisect` は選んだバージョンの中間のコミットを選んで調べ、問題があるかどうか尋ねてきます。
+次のように表示されるはずです：
 ```sh
 $ Bisecting: 5 revision left to test after this (roughly 5 step)
 $ [c44abbbee29cb93d8499283101fe7c8d9d97f0fe] Commit message
 $ (c44abbb)$
 ```
 
-You will now check if this commit is good or bad. If it's good:
+このコミットに問題があるかどうか調べます。問題がない (good) 場合は次を実行します：
 
 ```sh
 $ (c44abbb)$ git bisect good
 ```
 
-and `git-bisect` will select another commit from the range for you. This process (selecting `good` or `bad`) will repeat until there are no more revisions left to inspect, and the command will finally print a description of the **first** bad commit.
+すると、`git-bisect` は別のコミットを選択します。このように `good` か `bad` を選んでいく作業は、調べるコミットがなくなるまで続きます。
+終了したら、コマンドラインには問題をきたしている**最初の**コミットの詳細が表示されます。
 
 ## Configuration
 
