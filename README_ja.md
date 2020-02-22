@@ -2054,11 +2054,11 @@ git config --global user.email “[valid-email]”
 $ git config --global color.ui auto
 ```
 
-## I've no idea what I did wrong
+## 何を間違ったかわからないとき
 
-So, you're screwed - you `reset` something, or you merged the wrong branch, or you force pushed and now you can't find your commits. You know, at some point, you were doing alright, and you want to go back to some state you were at.
+何かやらかした場合です。つまり、何かを `reset` してしまった、間違ったブランチをマージしてしまった、あるいは強制プッシュしてしまいコミットが見つけられない、といった状況です。ある時点まではうまくいっていたので、その状態に戻したいとします。
 
-This is what `git reflog` is for. `reflog` keeps track of any changes to the tip of a branch, even if that tip isn't referenced by a branch or a tag. Basically, every time HEAD changes, a new entry is added to the reflog. This only works for local repositories, sadly, and it only tracks movements (not changes to a file that weren't recorded anywhere, for instance).
+こうしたときに `git reflog` が役に立ちます。`reflog` は、ブランチが他のブランチやタグに参照されていなくても、ブランチになされた変更を記録しています。HEAD が変更される際は基本的に reflog に記録が追加されます。ただ、残念ながら機能するのはローカルリポジトリのみで、変化だけを記録します（たとえば、どこにも記録されていないファイルへの変更は記録されません）。
 
 ```sh
 (master)$ git reflog
@@ -2067,9 +2067,12 @@ This is what `git reflog` is for. `reflog` keeps track of any changes to the tip
 c10f740 HEAD@{2}: checkout: moving from master to 2.2
 ```
 
-The reflog above shows a checkout from master to the 2.2 branch and back. From there, there's a hard reset to an older commit. The latest activity is represented at the top labeled `HEAD@{0}`.
+上の reflog には、master から 2.2 へのチェックアウトが表示されています。
+それから古いコミットへの hard reset があります。
+最新のアクティビティは一番上に `HEAD@{0}` のラベルで表示されます。
 
-If it turns out that you accidentally moved back, the reflog will contain the commit master pointed to (0254ea7) before you accidentally dropped 2 commits.
+間違えて差し戻ししてしまったとします。
+コミット二つを間違って捨ててしまう前の、0254ea7 を参照するコミットを reflog は保持しています。
 
 ```sh
 $ git reset --hard 0254ea7
@@ -2077,7 +2080,9 @@ $ git reset --hard 0254ea7
 
 Using `git reset` it is then possible to change master back to the commit it was before. This provides a safety net in case history was accidentally changed.
 
-(copied and edited from [Source](https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog)).
+`git reset` を使って、マスターブランチを以前の状態に戻すことができます。履歴を間違えて変更してしまった場合の安全策です。
+
+（[出典](https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog) からコピー・改変しました。）
 
 <a name="git-shortcuts"></a>
 ## Git Shortcuts
