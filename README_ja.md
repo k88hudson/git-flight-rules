@@ -2085,11 +2085,11 @@ Using `git reset` it is then possible to change master back to the commit it was
 （[出典](https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog) からコピー・改変しました。）
 
 <a name="git-shortcuts"></a>
-## Git Shortcuts
+## Git ショートカット
 
 ### Git Bash
 
-Once you're comfortable with what the above commands are doing, you might want to create some shortcuts for Git Bash. This allows you to work a lot faster by doing complex tasks in really short commands.
+上記のコマンドに慣れてきたら、Git Bash のショートカットを作りたくなるはずです。複雑なタスクを短いコマンドで素早く行うことができるようになります。
 
 ```sh
 alias sq=squash
@@ -2099,11 +2099,11 @@ function squash() {
 }
 ```
 
-Copy those commands to your .bashrc or .bash_profile.
+このコマンドを .bashrc か .bash_profile にコピーしてください。
 
-### PowerShell on Windows
+### Windows の PowerShell
 
-If you are using PowerShell on Windows, you can also set up aliases and functions. Add these commands to your profile, whose path is defined in the `$profile` variable. Learn more at the [About Profiles](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles) page on the Microsoft documentation site.
+Windows で PowerShell を使っているなら、エイリアスや関数を作成できます。profile に次のコマンドを追加してください。profile のパスは `$profile` に定義されています。詳しくは Microsoft のドキュメントサイトの [About Profiles](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles) を参照してください。
 
 ```powershell
 Set-Alias sq Squash-Commits
