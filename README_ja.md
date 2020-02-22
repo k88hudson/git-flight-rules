@@ -1923,11 +1923,12 @@ $ (c44abbb)$ git bisect good
 すると、`git-bisect` は別のコミットを選択します。このように `good` か `bad` を選んでいく作業は、調べるコミットがなくなるまで続きます。
 終了したら、コマンドラインには問題をきたしている**最初の**コミットの詳細が表示されます。
 
-## Configuration
+## 設定
 
-### I want to add aliases for some Git commands
+### Git コマンドにエイリアスを設定したい
 
-On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```.  I've added some example aliases I use as shortcuts (and some of my common typos) in the ```[alias]``` section as shown below:
+OS X と Linux では、Git 設定ファイルは ```~/.gitconfig``` に保存されています。
+私は、ショートカット（とよくやるタイポ）のために次のようなものを ```[alias]``` セクションに設定しています：
 
 ```vim
 [alias]
@@ -1956,9 +1957,10 @@ On OS X and Linux, your git configuration file is stored in ```~/.gitconfig```. 
     delete-merged-branches = "!f() { git checkout --quiet master && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
 ```
 
-### I want to add an empty directory to my repository
+### 空のディレクトリをリポジトリに加えたい
 
-You can’t! Git doesn’t support this, but there’s a hack. You can create a .gitignore file in the directory with the following contents:
+できません！　Git ではできませんが、ハックする方法があります。
+次のような内容の .gitignore ファイルを作成してディレクトリに加えればよいです：
 
 ```
  # Ignore everything in this directory
@@ -1967,40 +1969,42 @@ You can’t! Git doesn’t support this, but there’s a hack. You can create a 
  !.gitignore
 ```
 
-Another common convention is to make an empty file in the folder, titled .gitkeep.
+もう一つのよくある方法は、.gitkeep という名前の空のファイルをフォルダーに作成することです。
 
 ```sh
 $ mkdir mydir
 $ touch mydir/.gitkeep
 ```
 
-You can also name the file as just .keep , in which case the second line above would be ```touch mydir/.keep```
+単に .keep という名前でもよいです。この場合、二行目は ```touch mydir/.keep``` とします。
 
-### I want to cache a username and password for a repository
+### リポジトリへのユーザ名とパスワードをキャッシュしたい
 
-You might have a repository that requires authentication.  In which case you can cache a username and password so you don't have to enter it on every push and pull. Credential helper can do this for you.
+認証が必要なリポジトリがあるとします。ユーザ名とパスワードをキャッシュしておけば、プッシュやプルのたびに入力せずに済みます。
+認証情報ヘルパーが役に立ちます。
 
 ```sh
 $ git config --global credential.helper cache
-# Set git to use the credential memory cache
+# Git が認証情報キャッシュを使うよう設定する
 ```
 
 ```sh
 $ git config --global credential.helper 'cache --timeout=3600'
-# Set the cache to timeout after 1 hour (setting is in seconds)
+# キャッシュが一時間でタイムアウトするよう設定する（設定は秒単位）
 ```
-To find a credential helper:
+
+認証情報ヘルパーを見つけるには：
 
 ```sh
 $ git help -a | grep credential
-# Shows you possible credential helpers
+# 認証情報ヘルパーの候補が表示される
 ```
 
-For OS specific credential caching:
+OS 固有の認証情報キャッシュは次の通り：
 
 ```sh
 $ git config --global credential.helper osxkeychain
-# For OSX
+# OSX
 ```
 
 ```sh
@@ -2010,40 +2014,41 @@ $ git config --global credential.helper manager
 
 ```sh
 $ git config --global credential.helper gnome-keyring
-# Ubuntu and other GNOME-based distros
+# Ubuntu やその他の GNOME ベースディストリビューション
 ```
 
-More credential helpers can likely be found for different distributions and operating systems.
+その他のディストリビューションや OS 向けの認証情報キャッシュもあります。
 
-### I want to make Git ignore permissions and filemode changes
+### パーミッションとファイルモードの変更を Git が無視するようにしたい
 
 ```sh
 $ git config core.fileMode false
 ```
 
-If you want to make this the default behaviour for logged-in users, then use:
+
+これをログインユーザ向けのデフォルト設定にしたい場合、次を実行します。
 
 ```sh
 $ git config --global core.fileMode false
 ```
 
-### I want to set a global user
+### グローバルユーザを設定したい
 
-To configure user information used across all local repositories, and to set a name that is identifiable for credit when review version history:
+全てのローカルリポジトリにわたるユーザ情報を設定し、バージョン履歴のレビューの際にわかりやすい名前を設定するには、次のようにします：
 
 ```sh
 $ git config --global user.name “[firstname lastname]”
 ```
 
-To set an email address that will be associated with each history marker:
+各履歴のマーカーに紐づけられるメールアドレスを設定したい場合は次の通りです：
 
 ```sh
 git config --global user.email “[valid-email]”
 ```
 
-### I want to add command line coloring for Git
+### Git のコマンドラインに色をつけたい
 
-To set automatic command line coloring for Git for easy reviewing:
+レビューの際に見やすいようコマンドラインに自動的に色を付けるには、次のようにします：
 
 ```sh
 $ git config --global color.ui auto
