@@ -1,25 +1,27 @@
-# Flight rules for Git
+# Git フライトルール
 
 🌍
-*[English](README.md) ∙ [Español](README_es.md)  ∙  [Русский](README_ru.md) ∙ [简体中文](README_zh-CN.md)∙ [한국어](README_kr.md)  ∙  [Tiếng Việt](README_vi.md) ∙ [Français](README_fr.md)*
+*[English](README.md) ∙ [Español](README_es.md)  ∙  [Русский](README_ru.md) ∙ [简体中文](README_zh-CN.md)∙ [한국어](README_kr.md)  ∙  [Tiếng Việt](README_vi.md) ∙ [Français](README_fr.md) ∙ [日本語](README_ja.md)*
 
-#### What are "flight rules"?
+#### フライトルールとは？
 
-A guide for astronauts (now, programmers using Git) about what to do when things go wrong.
+宇宙飛行士（ここでは、Git を使う開発者）が問題に対処するためのガイドです。
 
->  *Flight Rules* are the hard-earned body of knowledge recorded in manuals that list, step-by-step, what to do if X occurs, and why. Essentially, they are extremely detailed, scenario-specific standard operating procedures. [...]
+> *フライトルール*は、何か起きたときの手順の一つ一つとその理由を記したマニュアルです。基本的に、シナリオごとに標準的な対処法が事細かに説明されています。[...]
 
-> NASA has been capturing our missteps, disasters and solutions since the early 1960s, when Mercury-era ground teams first started gathering "lessons learned" into a compendium that now lists thousands of problematic situations, from engine failure to busted hatch handles to computer glitches, and their solutions.
+> マーキュリー計画のチームが知見を集め始めた 1960 年代から、NASA は私たちが遭った失敗や災難とその解決策を収集してきました。知見の大全は今や、エンジンの不調からハッチハンドルの故障やコンピュータの不具合に至る問題とその対処法に関する、数千ものリストになりました。
 
 &mdash; Chris Hadfield, *An Astronaut's Guide to Life*.
 
-#### Conventions for this document
+#### この文書で使う記法について
 
-For clarity's sake all examples in this document use a customized bash prompt in order to indicate the current branch and whether or not there are staged changes. The branch is enclosed in parentheses, and a `*` next to the branch name indicates staged changes.
+文書の全ての例で、明確さのため、現在のブランチとステージされた編集内容の有無を表示するようカスタマイズされた Bash プロンプトを使います。
+ブランチは括弧書きされ、ブランチ名の横の `*` はステージされた編集があることを示します。
 
-All commands should work for at least git version 2.13.0. See the [git website](https://www.git-scm.com/) to update your local git version.
+全てのコマンドは Git バージョン 2.13.0 から動くはずです。Git のバージョンアップについては [Git のウェブサイト](https://www.git-scm.com/) を参照してください。
 
 [![Join the chat at https://gitter.im/k88hudson/git-flight-rules](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/k88hudson/git-flight-rules?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
