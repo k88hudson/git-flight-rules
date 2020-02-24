@@ -281,19 +281,19 @@ $ (master) git pull upstream master
 ### 何をコミットしたかわからなくなった
 
 何も考えず `git commit -a` で編集をコミットしてしまい、その内容がわからないとします。
-現在の HEAD の最新のコミット内容は次のように表示できます：
+現在の HEAD の最新のコミット内容は次のように表示できます。
 
 ```sh
 (master)$ git show
 ```
 
-あるいは：
+もしくは次の通りです。
 
 ```sh
 $ git log -n1 -p
 ```
 
-特定のコミットにおけるファイルの中身を見たいときは次のようにします（`<commitid>` は見たいコミット）：
+特定のコミットの時点のファイルの中身を見たいときは次のようにします（`<commitid>` は見たいコミット）。
 
 ```sh
 $ git show <commitid>:filename
@@ -302,13 +302,14 @@ $ git show <commitid>:filename
 ### コミットメッセージに間違った内容を書いてしまった
 
 コミットメッセージに間違った内容を書いてしまったとします。
-コミットがまだプッシュされていない場合は、次のようにして編集内容は変えずにコミットメッセージを編集できます：
+コミットがまだプッシュされていない場合は、次のようにして編集内容は変えずにコミットメッセージを編集できます。
 
 ```sh
 $ git commit --amend --only
 ```
 
-デフォルトのテキストエディタが開き、コミットメッセージを編集できます。これらを一つのコマンドでいっぺんにやることもできます：
+デフォルトのテキストエディタが開き、コミットメッセージを編集できます。
+次のようにして、一つのコマンドでいっぺんにやることもできます。
 
 ```sh
 $ git commit --amend --only -m 'xxxxxxx'
@@ -317,7 +318,7 @@ $ git commit --amend --only -m 'xxxxxxx'
 既にコミットをプッシュしてしまった場合、コミットを修正して強制プッシュすることはできますが、おすすめしません。
 
 <a name="commit-wrong-author"></a>
-### 間違った名前・メールアドレスの設定でコミットしてしまった
+### 間違った名前・メールアドレスでコミットしてしまった
 
 コミットが一つだけなら、次のように修正します。
 
@@ -325,7 +326,7 @@ $ git commit --amend --only -m 'xxxxxxx'
 $ git commit --amend --no-edit --author "New Authorname <authoremail@mydomain.com>"
 ```
 
-あるいは、名前とメールアドレスを `git config --global author.(name|email)` で正しく設定してから、次のようにします：
+あるいは、名前とメールアドレスを `git config --global author.(name|email)` で正しく設定してから、次を実行します。
 
 ```sh
 $ git commit --amend --reset-author --no-edit
@@ -335,7 +336,7 @@ $ git commit --amend --reset-author --no-edit
 
 ### 直前のコミットからファイルを削除したい
 
-直前のコミットから特定のファイルの編集内容を削除するには次のようにします。
+直前のコミットから特定のファイルに関する編集内容を削除するには次のようにします。
 
 ```sh
 $ git checkout HEAD^ myfile
@@ -350,8 +351,8 @@ $ git rm --cached myfile
 $ git commit --amend --no-edit
 ```
 
-このコマンドは、パッチに不要なファイルをコミットしてしまい、強制プッシュでリモートのパッチを更新したいときに特に便利です。
-オプション `--no-edit` は既にあるコミットメッセージを変更しないようにするためのものです。
+このコマンドは、不要なファイルをパッチにコミットしてしまい、強制プッシュでリモートのパッチを更新したいときに特に便利です。
+オプション `--no-edit` は既存のコミットメッセージを変更しないようにするためのものです。
 
 <a name="delete-pushed-commit"></a>
 ### 直前のコミットを削除したい
@@ -373,20 +374,21 @@ $ git push --force-with-lease [remote] [branch]
 
 これはプッシュしていない場合にのみ有効な方法です。
 プッシュしてしまった場合、本当に安全な方法は `git revert SHAofBadCommit` だけです。
-このコマンドは、直前のコミットを取り消すようなコミットを新たに作成します。
-プッシュしたブランチがリベースについて安全である場合（つまり、他の開発者がプルすることを想定していない場合）は、`git push --force-with-lease` を使っても大丈夫です。<!--For more, see [the above section](#deleteremove-last-pushed-commit).-->
+このコマンドは、直前のコミットを相殺するようなコミットを新たに作成します。
+プッシュしたブランチがリベースについて安全である場合（つまり、他の開発者がプルすることを想定していない場合）は、`git push --force-with-lease` を使っても大丈夫です。
+<!--For more, see [the above section](#deleteremove-last-pushed-commit).-->
 
 <a name="delete-any-commit"></a>
 ### 任意のコミットを削除したい
 
-上で述べたのと同様に、やむを得ない場合以外絶対に行わないでください。
+上と同様に、やむを得ない場合以外絶対に行わないでください。
 
 ```sh
 $ git rebase --onto SHA1_OF_BAD_COMMIT^ SHA1_OF_BAD_COMMIT
 $ git push --force-with-lease [remote] [branch]
 ```
 
-あるいは [対話的 rebase](#interactive-rebase) で削除したいコミットに対応する行を選択して削除します。
+あるいは、[対話的 rebase](#interactive-rebase) で削除したいコミットに対応する行を選択して削除します。
 
 <a name="#force-push"></a>
 ### 修正したコミットをリモートにプッシュしようとしたら、エラーメッセージが出た
@@ -401,31 +403,37 @@ hint: 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 ```
 
-amend による修正は、rebase と同様に（後述）、**古いコミットを新たなコミットで置き換えます**。それゆえ、修正前のコミットを既にリモートにプッシュしてしまっている場合は、強制プッシュ (`--force-with-lease`) しなければいけません。
-強制プッシュには細心の注意が必要です。*必ず*ブランチを指定するように！
+amend による修正は、rebase と同様に（後述）、**古いコミットを新たなコミットで置き換えます**。
+それゆえ、修正前のコミットを既にリモートにプッシュしてしまった場合は、強制プッシュ (`--force-with-lease`) しなければいけません。
+強制プッシュには細心の注意が必要です。
+*必ず*ブランチを指定するように！
 
 ```sh
 (my-branch)$ git push origin mybranch --force-with-lease
 ```
 
-一般論として、**強制プッシュは避けましょう**。修正したコミットを強制プッシュするよりは、新たなコミットを作ってプッシュするのがベストです。
-強制プッシュは、対象のブランチやその子ブランチで作業した他の開発者のソース履歴に齟齬をきたしてしまいます。
-誰かが同じブランチで作業していて、強制プッシュがその人の編集を上書きしてしまう場合には、`--force-with-lease` も失敗します。
+一般論として、**強制プッシュは避けましょう**。
+修正したコミットを強制プッシュするよりは、新たなコミットを作ってプッシュするのがベストです。
+強制プッシュは、対象のブランチやその子ブランチで作業した他の開発者のソース履歴にコンフリクトをきたします。
+誰かが同じブランチで作業していて、強制プッシュがその人の編集を上書きしてしまう場合は、`--force-with-lease` も失敗します。
 
-他の誰も同じブランチで作業していないことが*絶対に*確実な場合、あるいはブランチの一部を*無条件で*更新したい場合は `--force` (`-f`) で行うことができますが、これは原則的に避けるべきです。
+他の誰も同じブランチで作業していないことが*絶対に*確実な場合、あるいはブランチの一部を*無条件で*更新したい場合は `--force` (`-f`) で行うことができますが、これは原則として避けるべきです。
 
 <a href="undo-git-reset-hard"></a>
 ### 間違えて hard reset してしまい、元に戻したい
 
-間違えて `git reset --hard` をしてしまった場合でも、大抵はコミットを復元できます。Git は数日間のログを全て残してくれているからです。
+間違えて `git reset --hard` をしてしまっても、大抵はコミットを復元できます。
+Git は数日間のログを全て残してくれているからです。
 
-注意：これは作業がバックアップされている場合、つまりコミットかスタッシュされている場合のみです。`git reset --hard` はコミットされていない変更を_削除_してしまうので、注意して使ってください。（安全なのは `git reset --keep` を使うことです。）
+注意：これは作業がバックアップされている場合、つまりコミットないしスタッシュされている場合に限ります。
+`git reset --hard` はコミットされていない変更を*削除*してしまうので、注意して使ってください。
+（安全なのは `git reset --keep` を使うことです。）
 
 ```sh
 (master)$ git reflog
 ```
 
-過去のコミットとリセットのコミットが表示されるので、復元したいコミットの SHA を選んでリセットします：
+過去のコミットとリセットに対応するコミットが表示されるので、復元したいコミットの SHA を選んでリセットします。
 
 ```sh
 (master)$ git reset --hard SHA1234
@@ -436,8 +444,8 @@ amend による修正は、rebase と同様に（後述）、**古いコミッ�
 <a href="undo-a-commit-merge"></a>
 ### 間違えてマージをコミットしてプッシュしてしまった
 
-フィーチャーブランチをマージの準備が整う前に間違えてメインのブランチにマージしてしまった場合、マージを取り消すことができます。
-ただし落とし穴があります：マージコミットには複数（通常は二つ）の親があります。
+マージの準備ができていないフィーチャーブランチをメインのブランチにマージしてしまったときは、マージを取り消すことができます。
+ただし注意すべき点は、マージコミットには複数（通常は二つ）の親があることです。
 
 次のコマンドを実行します。
 
@@ -445,20 +453,24 @@ amend による修正は、rebase と同様に（後述）、**古いコミッ�
 (feature-branch)$ git revert -m 1 <commit>
 ```
 
-ここでオプション `-m 1` は親 1（マージした先のブランチ）を差し戻す先の親に指定するものです。
+ここでオプション `-m 1` は差し戻す先の親として親 1（マージした先のブランチ）を指定します。
 
-注意：親の番号はコミット ID ではありません。マージコミットの行には `Merge: 8e2ce2d 86ac2e7` のように書かれています。親番号はこのコミットにおいて親を指定するための 1 から始まる番号で、最初の番号は 1 番、次は 2 番、のように振られます。
+注意：親の番号はコミット ID とは異なります。
+マージコミットの行は `Merge: 8e2ce2d 86ac2e7` のようになっています。
+親番号はこのコミットの親を指定する 1 から始まる番号で、最初の番号は 1 番、次は 2 番、のように振られます。
 
 <a href="undo-sensitive-commit-push"></a>
 ### 間違えて機密情報を含むファイルをコミットしプッシュしてしまった
 
-機密情報やプライベートな情報（パスワードやキー等）を含むデータを誤ってプッシュしてしまった場合、コミットを修正することができます。
-ただし、ひとたびデータをコミットしてプッシュしてしまったら、その内容は盗み取られる恐れがあることに留意してください。
-以下の手順でパブリックリポジトリやローカルからデータを削除することはできますが、他の誰かが既にプルしてしまったデータを削除することは**不可能です**。
-パスワードをコミットしてしまった場合は**直ちに変更してください**。キーをコミットしてしまった場合は**直ちに再生成しましょう**。
+機密情報やプライベートな情報（パスワードやキー等）を含むデータを誤ってプッシュしてしまった場合、コミットを修正できます。
+ただし、ひとたびデータをコミットしてプッシュしてしまったら、その内容は盗み取られるおそれがあることに留意してください。
+下の手順で公開リポジトリやローカルからデータを削除できますが、他の誰かが既にプルしたデータを削除することは**不可能です**。
+パスワードをコミットしてしまった場合は**直ちに変更してください**。
+キーをコミットしてしまった場合は**直ちに再生成しましょう**。
 誰かが既に機密情報をプルしてしまった可能性がある限り、プッシュしたコミットを修正するだけでは不十分です。
 
 ファイルを編集して機密情報を削除したあと、次を実行します。
+
 ```sh
 (feature-branch)$ git add edited_file
 (feature-branch)$ git commit --amend --no-edit
@@ -466,6 +478,7 @@ amend による修正は、rebase と同様に（後述）、**古いコミッ�
 ```
 
 ファイルごと削除したいがローカルには残しておきたい場合、次を実行します。
+
 ```sh
 (feature-branch)$ git rm --cached sensitive_file
 echo sensitive_file >> .gitignore
@@ -473,82 +486,82 @@ echo sensitive_file >> .gitignore
 (feature-branch)$ git commit --amend --no-edit
 (feature-branch)$ git push --force-with-lease origin [branch]
 ```
+
 あるいは、機密情報をローカルの環境変数に保存しておきましょう。
 
 ファイルごと削除した上でローカルからも削除したい場合は、次を実行します。
+
 ```sh
 (feature-branch)$ git rm sensitive_file
 (feature-branch)$ git commit --amend --no-edit
 (feature-branch)$ git push --force-with-lease origin [branch]
 ```
 
-他のコミットを既にしてしまっている場合（つまり、機密情報のコミットが直前のコミットよりも以前である場合）は、リベースする必要があります。
+既に他のコミットをしてしまった場合（つまり、機密情報のコミットが直前のコミットよりも前である場合）は、リベースする必要があります。
 
 <a href="#i-want-to-remove-a-large-file-from-ever-existing-in-repo-history"></a>
 ### 大容量のファイルに関する履歴を完全に削除したい
 
 削除したいファイルが機密情報である場合は[機密情報を削除する方法](#i-accidentally-committed-and-pushed-files-containing-sensitive-data)を参照してください。
 
-最近のコミットで大容量のファイルや不要なファイルを削除しても、`.git` フォルダにある Git の履歴には残ので、`git clone` したときに余計なファイルまでダウンロードしてしまうことになります。
+コミットで大容量のファイルや不要なファイルを削除しても、`.git` フォルダの Git 履歴には残るので、`git clone` したときに余計なファイルまでダウンロードしてしまうことになります。
 
-Even if you delete a large or unwanted file in a recent commit, it still exists in git history, in your repo's `.git` folder, and will make `git clone` download unneeded files.
+ここで説明する手順には強制プッシュを必要とし、リポジトリ履歴を大きく変更してしまいます。
+誰かがリモートで共同作業している場合は、全員のローカルの編集履歴がプッシュされていることを確認しておいてください。
 
-ここで説明する手順には強制プッシュを必要とし、リポジトリ履歴を大きく変更してしまいます。リモートで共同作業している人がいる場合は、全員のローカルな編集履歴がプッシュされていることをまず確認しておいてください。
-
-The actions in this part of the guide will require a force push, and rewrite large sections of repo history, so if you are working with remote collaborators, check first that any local work of theirs is pushed.
-
-履歴を書き換えるのには二つの方法があります。ビルトインの `git-filter-branch` と [`bfg-repo-cleaner`](https://rtyley.github.io/bfg-repo-cleaner/) です。
+履歴を書き換えるには二つの方法があります。
+ビルトインの `git-filter-branch` と [`bfg-repo-cleaner`](https://rtyley.github.io/bfg-repo-cleaner/) です。
 `bfg` はエレガントで性能がよい一方、サードパーティ製のソフトをダウンロードしなければならず、Java も必要です。
-ここでは両方の方法を説明します。
-最後のステップでは強制プッシュをしますが、リポジトリの履歴の大部分を永久に変更してしまうため、通常の強制プッシュよりもなお特殊な配慮が必要になります。
-
-<!--There are two options for rewriting history, the built-in `git-filter-branch` or [`bfg-repo-cleaner`](https://rtyley.github.io/bfg-repo-cleaner/). `bfg` is significantly cleaner and more performant, but it is a third-party download and requires java. We will describe both alternatives. The final step is to force push your changes, which requires special consideration on top of a regular force push, given that a great deal of repo history will have been permanently changed.-->
+ここでは両方を説明します。
+最後のステップでは強制プッシュをしますが、リポジトリの履歴の大部分を永久に変更するため、通常の強制プッシュよりもなお特別な配慮が必要になります。
 
 #### おすすめの方法：サードパーティ製の bfg を使う
 
-bfg-repo-cleaner を使うには Java が必要です。[ここ](https://rtyley.github.io/bfg-repo-cleaner/)から bfg の jar ファイルをダウンロードしてください。
-以下の例では `bfg.jar` を使いますが、ダウンロードしたものには `bfg-1.13.0.jar` のようにバージョン番号がついているかもしれません。
-
-<!--Using bfg-repo-cleaner requires java. Download the bfg jar from the link [here](https://rtyley.github.io/bfg-repo-cleaner/). Our examples will use `bfg.jar`, but your download may have a version number, e.g. `bfg-1.13.0.jar`.-->
+bfg-repo-cleaner を使うには Java が必要です。
+[ここ](https://rtyley.github.io/bfg-repo-cleaner/)から bfg の jar ファイルをダウンロードしてください。
+下の例では `bfg.jar` を使いますが、ダウンロードしたものには `bfg-1.13.0.jar` のようにバージョン番号がついているかもしれません。
 
 特定のファイルを削除する場合は次のようにします。
+
 ```sh
 (master)$ git rm path/to/filetoremove
 (master)$ git commit -m "Commit removing filetoremove"
 (master)$ java -jar ~/Downloads/bfg.jar --delete-files filetoremove
 ```
-bfg を使うときは、ファイルがサブディレクトリにあるときもそのままのファイル名を入力することに注意してください。
 
-パターンからファイルを削除することもできます。例えば：
+なお、bfg を使うときは、ファイルがサブディレクトリにあってもそのままのファイル名を入力することに注意してください。
+
+パターンからファイルを削除することもできます。例えば次の通りです。
+
 ```sh
 (master)$ git rm *.jpg
 (master)$ git commit -m "Commit removing *.jpg"
 (master)$ java -jar ~/Downloads/bfg.jar --delete-files *.jpg
 ```
 
-bfg は最新のコミットにあるファイルには影響しません。例えば、リポジトリに複数あった大容量の .tga ファイルのうち一部を以前のコミットで削除したとして、bfg を実行しても最新のコミットにあるファイルはそのままです。
+bfg は最新のコミットにあるファイルには影響しません。
+例えば、リポジトリに複数あった大容量の .tga ファイルのうち一部を以前のコミットで削除したとして、bfg を実行しても最新のコミットにあるファイルはそのままです。
 
-なお、コミットでファイル名を変更した場合、例えばもともと `LargeFileFirstName.mp4` だったファイルが後のコミットで `LargeFileSecondName.mp4` に変更されている場合は、`java -jar ~/Downloads/bfg.jar --delete-files LargeFileSecondName.mp4` を実行しても Git の履歴からは削除されません。両方のファイル名それぞれについて `--delete-files` を実行するか、パターンマッチで両方削除してください。
+なお、コミットでファイル名を変更した場合、例えばもともと `LargeFileFirstName.mp4` だったファイルが後のコミットで `LargeFileSecondName.mp4` に変更されている場合は、`java -jar ~/Downloads/bfg.jar --delete-files LargeFileSecondName.mp4` を実行しても Git の履歴からは削除されません。
+両方のファイル名それぞれについて `--delete-files` を実行するか、パターンマッチで両方削除してください。
 
 #### ビルトインの方法：git-filter-branch を使う
 
 `git-filter-branch` はややこしくて機能も貧弱ですが、`bfg` のインストールや実行ができなくても使えます。
 
-以下では、`filepattern` を名前やパターン（`*.jpg` など）に置き換えてください。パターンにマッチしたファイルの履歴が全ての履歴とブランチから削除されます。
+以下では、`filepattern` を名前やパターン（`*.jpg` など）に置き換えてください。
+パターンにマッチしたファイルの履歴が全ての履歴とブランチから削除されます。
 
 ```sh
 (master)$ git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch filepattern' --prune-empty --tag-name-filter cat -- --all
 ```
 
-何をしているのか：
-
-`--tag-name-filter cat` は煩雑ですが、これが最も簡単に元のタグを新しいコミットにつける `cat` を使った方法です。
-
-`--prune-empty` は現在空のコミットを全て削除します。
+ここで使っている `--tag-name-filter cat` は煩雑ですが、このように `cat` を使うのが元のタグを新しいコミットにつける最も簡単な方法です。
+また、`--prune-empty` は現在空のコミットを全て削除します。
 
 #### 最後のステップ: 変更した履歴をプッシュする
 
-ファイルを削除したら、リポジトリのものを壊してしまっていないか慎重に確認してください。
+ファイルを削除したら、リポジトリのものを壊していないか慎重に確認してください。
 何か壊してしまった場合は、リポジトリを再度クローンしてやり直すのが最も簡単です。
 最後のステップとして、必要に応じて Git ガベージコレクションで .git フォルダの容量を最小化してから、強制プッシュします。
 
@@ -557,7 +570,8 @@ bfg は最新のコミットにあるファイルには影響しません。例�
 (master)$ git push origin --force --tags
 ```
 
-リポジトリの履歴をすべて書き換えているので、`git push` の量が膨大すぎて `“The remote end hung up unexpectedly”` というエラーが返るかもしれません。この場合は Git の post buffer を増やしてみます。
+リポジトリの履歴を全て書き換えているので、`git push` の量が膨大すぎて `“The remote end hung up unexpectedly”` というエラーが返るかもしれません。
+その場合は Git の post buffer を増やしてみます。
 
 ```sh
 (master)$ git config http.postBuffer 524288000
@@ -570,20 +584,17 @@ bfg は最新のコミットにあるファイルには影響しません。例�
 ```sh
 (master)$ git push -u origin HEAD~<number>:refs/head/master --force
 ```
-プッシュが最初に成功したら、通常の`git push` が 成功するまで `<number>` を徐々に減らしてください。
+
+プッシュが成功したら、通常の`git push` が 成功するまで `<number>` を徐々に減らしてください。
 
 <a href="i-need-to-change-the-content-of-a-commit-which-is-not-my-last"></a>
 ### 直近でないコミットの内容を編集したい
 
 複数（たとえば三件）のコミットを行ったあと、文脈的に最初のコミットに属する作業をし忘れたことに気づいたとします。
 この作業を新たなコミットとして行えばコードベースは綺麗に保てるものの、コミットがアトミックでなくなってしまう（同じ文脈の作業が同じコミットに属さない）ので、この状況は厄介です。
-し忘れた作業が属するべきコミットを編集し、作業を取り入れつつ、その後のコミットには手をつけないようにしたいとき、`git rebase` が役に立ちます。
-
-<!--Consider you created some (e.g. three) commits and later realize you missed doing something that belongs contextually into the first of those commits. 
-This bothers you, because if you'd create a new commit containing those changes, you'd have a clean code base, but your commits weren't atomic (i.e. changes that belonged to each other weren't in the same commit). In such a situation you may want to change the commit where these changes belong to, include them and have the following commits unaltered. In such a case, `git rebase` might save you.-->
+し忘れた作業が属するべきコミットを編集して作業を取り入れつつ、その後のコミットには手をつけないようにしたいとき、`git rebase` が役に立ちます。
 
 最後から三件目のコミットを編集したいとします。
-<!--Consider a situation where you want to change the third last commit you made.-->
 
 ```sh
 (your-branch)$ git rebase -i HEAD~4
@@ -606,29 +617,23 @@ pick 4b6e19a The second to last commit
 pick f4037ec The last commit
 ```
 
-これは最後から三件目のコミットを編集しつつ、他の二件はそのままにするよう `rebase` に指示しています。
+これは最後から三件目のコミットを編集しつつ、他の二件はそのままにするよう `rebase` に指示するコマンドです。
 テキストエディタを保存して終了したら、Git がリベースを始めます。指定したコミットで止まり、そのコミットを編集できるようになります。
 これで最初にコミットしたときにし忘れた作業を適用できます。編集とステージによって適用しましょう。
 その後、次を実行します。
-
-<!--This tells rebase that you want to edit your third last commit and keep the other two unaltered. Then you'll save (and close) the editor. Git will then start to rebase. It stops on the commit you want to alter, giving you the chance to edit that commit. Now you can apply the changes which you missed applying when you initially committed that commit. You do so by editing and staging them. Afterwards you'll run-->
 
 ```sh
 (your-branch)$ git commit --amend
 ```
 
-これはコミットメッセージはそのままでコミットを作り直すよう Git に指示しています。
+これはコミットメッセージはそのままでコミットを作り直すよう Git に指示するコマンドです。
 これで面倒な作業は終わりです。
-
-<!--which tells Git to recreate the commit, but to leave the commit message unedited. Having done that, the hard part is solved.-->>
 
 ```sh
 (your-branch)$ git rebase --continue
 ```
 
 あとは上を実行すれば完了です。
-
-<!--will do the rest of the work for you.-->
 
 ## ステージング
 
