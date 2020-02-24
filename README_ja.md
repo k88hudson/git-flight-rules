@@ -856,19 +856,19 @@ $ git reset -- <filename>
 
 ### 全ブランチの一覧を表示したい
 
-ローカルブランチの一覧を表示する
+ローカルブランチの一覧を表示
 
 ```sh
 $ git branch
 ```
 
-リモートブランチの一覧を表示する
+リモートブランチの一覧を表示
 
 ```sh
 $ git branch -r
 ```
 
-ローカルとリモート両方のブランチの一覧を表示する
+ローカルとリモート両方のブランチの一覧を表示
 
 ```sh
 $ git branch -a
@@ -884,7 +884,8 @@ $ git checkout -b <branch> <SHA1_OF_COMMIT>
 <a name="pull-wrong-branch"></a>
 ### 間違ったブランチから、あるいは間違ったブランチにプルしてしまった
 
-再び `git reflog` を使う場面です。間違ったプルの以前に HEAD が参照していたものを表示します。
+これも `git reflog` を使う場面です。
+間違ったプルの前に HEAD が参照していたものを表示します。
 
 ```sh
 (master)$ git reflog
@@ -892,7 +893,7 @@ ab7555f HEAD@{0}: pull origin wrong-branch: Fast-forward
 c5bc55a HEAD@{1}: checkout: checkout message goes here
 ```
 
-単にブランチを適切なコミットにリセットするだけです：
+ブランチを適切なコミットにリセットするだけです。
 
 ```sh
 $ git reset --hard c5bc55a
@@ -901,11 +902,11 @@ $ git reset --hard c5bc55a
 これで完了です。
 
 <a href="discard-local-commits"></a>
-### ローカルのコミットを破棄して、ブランチをサーバ上の状態と同じにしたい
+### ローカルのコミットを破棄して、ブランチをサーバ上と同じ状態にしたい
 
-サーバに編集内容をプッシュしていないことを確認してください。
+サーバに編集をプッシュしていないことを確認してください。
 
-`git status` を実行すると、自分が origin に対して何コミット分作業を進めたのか表示されます。
+コマンド `git status` を実行すると、自分が origin に対して何コミット分作業を進めたのか表示されます。
 
 ```sh
 (my-branch)$ git status
@@ -915,7 +916,7 @@ $ git reset --hard c5bc55a
 #
 ```
 
-origin と同じ状態にリセットする（リモートと同じ状態にする）方法の一つは次の通りです：
+origin と同じ状態にリセットする（リモートと同じ状態にする）方法の一つは次の通りです。
 
 ```sh
 (master)$ git reset --hard origin/my-branch
@@ -924,33 +925,34 @@ origin と同じ状態にリセットする（リモートと同じ状態にす�
 <a name="commit-wrong-branch"></a>
 ### 新しいブランチではなくマスターブランチにコミットしてしまった
 
-マスターブランチにいたまま、新しいブランチを作成してください：
+マスターブランチにいたまま、新しいブランチを作成してください。
 
 ```sh
 (master)$ git branch my-branch
 ```
 
-マスターブランチを直前のコミットにリセットします：
+マスターブランチを直前のコミットにリセットします。
 
 ```sh
 (master)$ git reset --hard HEAD^
 ```
 
-`HEAD^` は `HEAD^1` の短縮形で、`HEAD` の一番目の親を表します。同様に `HEAD^2` は二番目の親を表します（マージには親が二つあります）。
+ここで `HEAD^` は `HEAD^1` の短縮形で、`HEAD` の第一の親を表します。
+同様に `HEAD^2` は第二の親です（マージには親が二つあります）。
 
-`HEAD^2` は `HEAD~2` と**異なる**ことに注意してください（詳しくは[このリンク](http://www.paulboxley.com/blog/2011/06/git-caret-and-tilde)を参照してください）。
+なお、`HEAD^2` は `HEAD~2` と**異なる**ことに注意してください（詳しくは[このリンク](http://www.paulboxley.com/blog/2011/06/git-caret-and-tilde)を参照してください）。
 
-あるいは `HEAD^` を使いたくなければ、マスターブランチを差し戻したい先のコミットハッシュを探します（`git log` が役立ちます）。
-見つけたら、そのハッシュにリセットします。あとは `git push` すればこの結果がリモートに反映されるはずです。
+あるいは `HEAD^` を使いたくなければ、マスターブランチを差し戻したい先のコミットハッシュを探し（`git log` を使うとよいです）、そのハッシュにリセットします。
+あとは `git push` すればリモートに反映されるはずです。
 
-例えば、マスターブランチを差し戻すべきコミットのハッシュが `a13b85e` だとして、次のようにします：
+例えば、マスターブランチを差し戻したいコミットのハッシュが `a13b85e` なら、次のようにします。
 
 ```sh
 (master)$ git reset --hard a13b85e
 HEAD is now at a13b85e
 ```
 
-作業に戻るため、新しいブランチにチェックアウトしましょう：
+作業に戻るため、新しいブランチにチェックアウトしましょう。
 
 ```sh
 (master)$ git checkout my-branch
@@ -959,19 +961,19 @@ HEAD is now at a13b85e
 <a name="keep-whole-file"></a>
 ### ファイル全てをリファレンス的な場所に保存しておきたい
 
-ワーキングスパイク（メモを参照）にたくさん編集内容があって、すべてうまく機能しているものとします。
+ワーキングスパイク（メモを参照）にたくさん編集があって、すべてうまく機能しているものとします。
 この作業内容を保存しておくため、別のブランチにコミットします。
 
 ```sh
 (solution)$ git add -A && git commit -m "Adding all changes from this spike into one big commit."
 ```
 
-この内容をブランチ（フィーチャーブランチでも `develop` でも）に適用したいときは、ファイル全部を保存しておきたいはずです。
+この内容をブランチ（フィーチャーブランチでも `develop` でも）に適用する際は、ファイル全部を保存しておきたいはずです。
 大きなコミットを小さなコミットに分割します。
 
 いま、次のブランチがあるものとします。
 
-* `solution` ブランチ。スパイクを解消するためのブランチで、`develop` ブランチに対して一コミット先です。
+* `solution` ブランチ。スパイクを解消するためのブランチで、`develop` ブランチに対して一コミット分進んでいます。
 * `develop` ブランチ。ここに編集内容を適用したいとします。
 
 これは編集内容をブランチに適用することで可能です。
@@ -980,7 +982,7 @@ HEAD is now at a13b85e
 (develop)$ git checkout solution -- file1.txt
 ```
 
-これで `solution` ブランチの内容が `develop` ブランチに適用されます：
+これで `solution` ブランチの内容が `develop` ブランチに適用されます。
 
 ```sh
 # On branch develop
@@ -993,7 +995,8 @@ HEAD is now at a13b85e
 
 あとは通常通りコミットしてください。
 
-メモ：スパイクは問題を解析したり解決するためのものです。解決法は判断にかけられたあと、共同編集者が問題を理解した時点で破棄されます。~ [Wikipedia](https://en.wikipedia.org/wiki/Extreme_programming_practices)
+メモ：スパイクは問題を解析したり解決するためのものです。
+解決法は判断にかけられたあと、共同開発者が問題を理解した時点で破棄されます。~ [Wikipedia](https://en.wikipedia.org/wiki/Extreme_programming_practices)
 
 <a name="cherry-pick"></a>
 ### 別々のブランチにするべき複数のコミットを一つのブランチにしてしまった
@@ -1024,14 +1027,14 @@ Date:   Tue Jul 21 01:12:48 2014 -0400
 
 それぞれのバグに対応するコミットハッシュをメモしておきます（#21 は`e3851e8`、#14 は`5ea5173` です）。
 
-まず、マスターブランチをあるべきコミット `a13b85e` までリセットします：
+まず、次のようにしてマスターブランチをあるべきコミット `a13b85e` までリセットします。
 
 ```sh
 (master)$ git reset --hard a13b85e
 HEAD is now at a13b85e
 ```
 
-これで、バグ #21 に対応する新しいブランチを作成できます：
+これで、バグ #21 に対応する新しいブランチを作成できます。
 
 ```sh
 (master)$ git checkout -b 21
@@ -1045,9 +1048,10 @@ HEAD is now at a13b85e
 (21)$ git cherry-pick e3851e8
 ```
 
-この時点でコミットのコンフリクトが発生しているかもしれません。コンフリクトを解消する方法は[interactive rebasing section above](#interactive-rebase)セクションの[**There were conflicts**](#merge-conflict)を参照してください。
+この時点で、コミットのコンフリクトが発生しているかもしれません。
+コンフリクトを解消する方法は、[interactive rebasing section above](#interactive-rebase) セクションの [**There were conflicts**](#merge-conflict) を参照してください。
 
-次に、#14 に対応するマスターに紐づいたブランチを作成しましょう。
+次に、#14 に対応する、マスターに紐づいたブランチを作成しましょう。
 
 ```sh
 (21)$ git checkout master
@@ -1064,7 +1068,7 @@ HEAD is now at a13b85e
 <a name="delete-stale-local-branches"></a>
 ### upstream で削除されたローカルブランチを削除したい
 
-GitHub でプルリクエストをマージすると、マージされたブランチを自分のフォーク上から削除する選択肢が出てきます。
+GitHub でプルリクエストをマージすると、マージされたブランチを自分のフォークから削除する選択肢が出てきます。
 そのブランチで今後作業するつもりがなければ、もはや使わないブランチで作業環境が散らからないように削除しておくほうが綺麗です。
 
 ```sh
@@ -1076,9 +1080,10 @@ $ git fetch -p upstream
 <a name='restore-a-deleted-branch'></a>
 ### 間違ってブランチを削除してしまった
 
-いつもリモートにプッシュしているならたいてい大丈夫です。ただ、ブランチを間違って削除してしまうのはよくあることです。
+いつもリモートにプッシュしているなら大抵大丈夫です。
+ブランチを間違って削除してしまうのはよくあることです。
 
-新しくブランチを作り、ファイルを新規作成したとします：
+新しくブランチを作り、ファイルを新規作成したとします。
 
 ```sh
 (master)$ git checkout -b my-branch
@@ -1123,7 +1128,8 @@ Deleted branch my-branch (was 4e3cd85).
 oh noes, deleted my branch!
 ```
 
-さて、ここで改良されたロガー `reflog` について学びましょう。これはリポジトリの全ての操作履歴を保存しています。
+さて、ここで改良されたロガー `reflog` について学びましょう。
+これはリポジトリの全ての操作履歴を保存しています。
 
 ```
 (master)$ git reflog
@@ -1132,7 +1138,8 @@ oh noes, deleted my branch!
 69204cd HEAD@{2}: checkout: moving from master to my-branch
 ```
 
-このように、削除してしまったブランチのコミットが表示されています。削除したブランチを復元してみましょう。
+このように、削除してしまったブランチのコミットが表示されています。
+削除したブランチを復元してみましょう。
 
 ```sh
 (master)$ git checkout -b my-branch-help
@@ -1143,29 +1150,30 @@ HEAD is now at 4e3cd85 foo.txt added
 README.md foo.txt
 ```
 
-やった！　消えたファイルを取り戻しました。`git reflog` はリベースが滅茶苦茶になってしまったときにも便利です。
+やった！　消えたファイルを取り戻しました。
+コマンド `git reflog` は、リベースが滅茶苦茶になってしまったときにも便利です。
 
 ### ブランチを削除したい
 
-リモートブランチを削除するには：
+リモートブランチを削除するには次を実行します。
 
 ```sh
 (master)$ git push origin --delete my-branch
 ```
 
-次のようにもできます：
+次のようにもできます。
 
 ```sh
 (master)$ git push origin :my-branch
 ```
 
-ローカルブランチを削除するには：
+ローカルブランチを削除するには次の通りです。
 
 ```sh
 (master)$ git branch -d my-branch
 ```
 
-現在のブランチか upstream にマージ**されていない**ブランチを削除するには：
+現在のブランチか upstream にマージ**されていない**ブランチを削除するには次のようにします。
 
 ```sh
 (master)$ git branch -D my-branch
@@ -1173,7 +1181,7 @@ README.md foo.txt
 
 ### 複数のブランチを削除したい
 
-`fix/` で始まるブランチを全て削除したいときは：
+名前が `fix/` で始まるブランチを全て削除したいときは次の通りです。
 
 ```sh
 (master)$ git branch | grep 'fix/' | xargs git branch -d
@@ -1181,19 +1189,19 @@ README.md foo.txt
 
 ### ブランチの名前を変更したい
 
-現在の（ローカル）ブランチの名前を変更するには：
+現在の（ローカル）ブランチの名前を変更するには次を実行します。
 
 ```sh
 (master)$ git branch -m new-name
 ```
 
-現在いるブランチと異なる（ローカル）ブランチの名前を変更するには：
+現在いるブランチと異なる（ローカル）ブランチの名前を変更するには次のようにします。
 
 ```sh
 (master)$ git branch -m old-name new-name
 ```
 
-古い名前（`old-name`）のリモートブランチを削除し、新しい名前（`new-name`）のブランチをプッシュするには：
+古い名前（`old-name`）のリモートブランチを削除し、新しい名前（`new-name`）のブランチをプッシュするには次の通りです。
  
 ```sh
 (master)$ git push origin :old_name new_name
@@ -1202,7 +1210,7 @@ README.md foo.txt
 <a name="i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on"></a>
 ### 他の人が作業しているリモートブランチにチェックアウトしたい
 
-まず、リモートから全ブランチを取得します：
+まず、リモートから全ブランチを取得します。
 
 ```sh
 (master)$ git fetch --all
@@ -1218,7 +1226,7 @@ Switched to a new branch 'daves'
 
 （ここで `--track` は `git checkout -b [branch] [remotename]/[branch]` の短縮形です。）
 
-こうするとブランチ `daves` のコピーがローカルに作成され、プッシュされた編集内容がリモートに反映されます。
+これでローカルにブランチ `daves` のコピーが作成され、プッシュした編集内容がリモートに反映されるようになります。
 
 ### 現在のローカルブランチをもとに新しいリモートブランチを作成したい
 
@@ -1226,18 +1234,19 @@ Switched to a new branch 'daves'
 $ git push <remote> HEAD
 ```
 
-同時にこのリモートブランチを現在のブランチの upstream に設定したい場合は代わりに次を実行します。
+同時にこのリモートブランチを現在のブランチの upstream に設定したい場合は、代わりに次を実行します。
 
 ```sh
 $ git push -u <remote> HEAD
 ```
-`push.default` 設定が `upstream` モードか `simple` モード（Git 2.0 のデフォルト）になっている場合、次のコマンドを実行すると、以前に `-u` で登録したリモートブランチに現在のブランチをプッシュします。
+
+`push.default` の設定が `upstream` モードか `simple` モード（Git 2.0 のデフォルト）になっている場合、次のコマンドを実行すると、以前に `-u` で登録したリモートブランチに現在のブランチをプッシュします。
 
 ```sh
 $ git push
 ```
 
-他のモードが `git push` でどう振る舞うかは[`push.default` のドキュメント](https://git-scm.com/docs/git-config#git-config-pushdefault)で説明されています。
+他のモードが `git push` でどう振る舞うかは、[`push.default` のドキュメント](https://git-scm.com/docs/git-config#git-config-pushdefault)で説明されています。
 
 ### リモートブランチをローカルブランチの upstream に設定したい
 
@@ -1249,7 +1258,7 @@ $ git branch --set-upstream-to [remotename]/[branch]
 $ git branch -u [remotename]/[branch]
 ```
 
-別のローカルブランチの upstream に設定するには次のようにします：
+別のローカルブランチの upstream に設定するには次のようにします。
 
 ```sh
 $ git branch -u [remotename]/[branch] [local-branch]
@@ -1267,7 +1276,7 @@ $ git branch -r
   origin/master
 ```
 
-`origin/HEAD` が `origin/master` を追跡するよう設定し直すには、次のコマンドを実行します：
+`origin/HEAD` が `origin/master` を追跡するよう設定し直すには、次を実行します：
 
 ```sh
 $ git remote set-head origin --auto
