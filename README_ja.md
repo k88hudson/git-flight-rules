@@ -1299,9 +1299,8 @@ origin/HEAD set to master
 <a name="undo-rebase"></a>
 ### リベースやマージを取り消したい
 
-現在のブランチを間違ったブランチにリベースないしマージしてしまった、あるいはリベースないしマージが出来なさそうと気づいたとしましょう。
+現在のブランチを間違ったブランチにリベースないしマージしてしまった、あるいはリベースないしマージができなさそうだと気づいたとしましょう。
 Git は危険な操作の前に HEAD が指すものを変数 `ORIG_HEAD` に保存しているので、ブランチをリベースないしマージの前の状態に差し戻すのは簡単です。
-<!--You may have merged or rebased your current branch with a wrong branch, or you can't figure it out or finish the rebase/merge process. Git saves the original HEAD pointer in a variable called ORIG_HEAD before doing dangerous operations, so it is simple to recover your branch at the state before the rebase/merge.-->
 
 ```sh
 (my-branch)$ git reset --hard ORIG_HEAD
@@ -1310,14 +1309,13 @@ Git は危険な操作の前に HEAD が指すものを変数 `ORIG_HEAD` に保
 <a name="force-push-rebase"></a>
 ### リベースしたが、強制プッシュはしたくない
 
-残念ながら、編集内容をリモートブランチに反映させるには強制プッシュをする必要があります。編集履歴を変えてしまったからです。
-強制プッシュしない限りリモートブランチは編集内容を受け付けません。
+残念ながら、編集をリモートブランチに反映させるには強制プッシュをする必要があります。
+編集履歴を変えてしまったからです。
+強制プッシュしない限り、リモートブランチは編集内容を受け付けません。
 これが多くの人がリベースワークフローではなくマージワークフローを使う主な理由です。
-特に大規模な開発チームは誰かの強制プッシュでハマりやすいです。
+特に大規模な開発チームは強制プッシュでハマりやすいです。
 リベースの強制プッシュは注意して使いましょう。
-リベースを使う安全な方法は、リモートには編集内容を反映させず、代わりに次を実行することです：
-
-<!--Unfortunately, you have to force push, if you want those changes to be reflected on the remote branch. This is because you have changed the history. The remote branch won't accept changes unless you force push. This is one of the main reasons many people use a merge workflow, instead of a rebasing workflow - large teams can get into trouble with developers force pushing. Use this with caution. A safer way to use rebase is not to reflect your changes on the remote branch at all, and instead to do the following:-->
+リベースの安全な使い方は、リモートには編集内容を反映させずに、代わりに次を実行することです。
 
 ```sh
 (master)$ git checkout my-branch
@@ -1331,33 +1329,30 @@ Git は危険な操作の前に HEAD が指すものを変数 `ORIG_HEAD` に保
 <a name="interactive-rebase"></a>
 ### コミットを統合したい
 
-`master` ブランチにプルリクエストを送る、またはこれから送るつもりのブランチで作業しているとしましょう。
-最も単純なケースとして、タイムスタンプを気にせず**全部の**コミットを一つにまとめてしまいたいとします。この場合はリセットと再コミットを行います。
-マスターブランチが最新版で、編集内容がすべてコミットされていることを確認した上で、次を実行します：
-
-<!--Let's suppose you are working in a branch that is/will become a pull-request against `master`. In the simplest case when all you want to do is to combine *all* commits into a single one and you don't care about commit timestamps, you can reset and recommit. Make sure the master branch is up to date and all your changes committed, then:-->
+`master` ブランチにプルリクエストを送る、あるいはこれから送るつもりのブランチで作業しているとします。
+最も単純なケースとして、タイムスタンプを気にせずコミット**全部**を一つにまとめたいとします。
+この場合はリセットと再コミットを行います。
+マスターブランチが最新版で、編集内容がすべてコミットされていることを確認した上で、次を実行してください。
 
 ```sh
 (my-branch)$ git reset --soft master
 (my-branch)$ git commit -am "New awesome feature"
 ```
 
-もっと細かく設定し、タイムスタンプも残したい場合は、対話的リベースと呼ばれるものを使うます：
-<!--If you want more control, and also to preserve timestamps, you need to do something called an interactive rebase:-->
+もっと細かく設定し、タイムスタンプも残したい場合は、対話的リベースを使います。
 
 ```sh
 (my-branch)$ git rebase -i master
 ```
 
-別のブランチで作業しているわけではない場合は、`HEAD` に対してリベースする必要があります。たとえば直近二件のコミットを圧縮 (squash) したい場合は `HEAD~2`、直近三件なら `HEAD~3` です。
-<!--If you aren't working against another branch you'll have to rebase relative to your `HEAD`. If you want to squash the last 2 commits, for example, you'll have to rebase against `HEAD~2`. For the last 3, `HEAD~3`, etc.-->
+別のブランチで作業しているわけではない場合、`HEAD` に対してリベースする必要があります。
+たとえば直近二件のコミットを圧縮 (squash) したい場合は `HEAD~2`、直近三件なら `HEAD~3` です。
 
 ```sh
 (master)$ git rebase -i HEAD~2
 ```
 
-対話的リベースのコマンドを実行したら、テキストエディタに次のように表示されます：
-<!--After you run the interactive rebase command, you will see something like this in your  text editor:-->
+対話的リベースのコマンドを実行したら、テキストエディタに次のように表示されます。
 
 ```vim
 pick a9c8a1d Some refactoring
@@ -1386,11 +1381,10 @@ pick e3851e8 another fix
 
 ここで `#` から始まる行はコメントなので、リベースに影響しません。
 
-`pick` コマンドをリストにある好きなコマンドで置き換えればよいです。行を削除すればコミットを削除できます。
-<!--Then you replace `pick` commands with any in the list above, and you can also remove commits by removing corresponding lines.-->
+コマンド `pick` をリストの好きなコマンドで書きかえればよいです。
+行を削除すればコミットを削除できます。
 
-例えば、**一番古い（一番目の）コミットはそのまま残し、他のコミット全てを二番目のコミットに統合したい**場合は、最初と二番目のコミット以外のコミットの横に表示された文字を例えば `f` に修正します：
-<!--For example, if you want to **leave the oldest (first) commit alone and combine all the following commits with the second oldest**, you should edit the letter next to each commit except the first and the second to say `f`:-->
+例えば、**一番古い（一番目の）コミットはそのまま残し、他のコミット全てを二番目のコミットに統合したい**場合は、最初と二番目以外のコミットの横の文字を `f` に書きかえます。
 
 ```vim
 pick a9c8a1d Some refactoring
@@ -1399,8 +1393,7 @@ f b729ad5 fixup
 f e3851e8 another fix
 ```
 
-コミットを統合し、**さらに名前も変更したい**場合は、二番目のコミットの横にさらに `r` の文字を追加するか、あるいは単に `f` の代わりに `s` を使います：
-<!--If you want to combine these commits **and rename the commit**, you should additionally add an `r` next to the second commit or simply use `s` instead of `f`:-->
+コミットを統合し、**さらに名前も変更したい**場合は、二番目のコミットの横にさらに `r` の文字を追加するか、あるいは単に `f` の代わりに `s` を使います。
 
 ```vim
 pick a9c8a1d Some refactoring
@@ -1410,7 +1403,6 @@ s e3851e8 another fix
 ```
 
 するとテキストエディタが起動し、コミットの名前を変更できます。
-<!--You can then rename the commit in the next text prompt that pops up.-->
 
 ```vim
 Newer, awesomer features
@@ -1426,8 +1418,7 @@ Newer, awesomer features
 
 ```
 
-うまくいくと次のように表示されるはずです：
-<!--If everything is successful, you should see something like this:-->
+うまくいくと次のように表示されるはずです。
 
 ```sh
 (master)$ Successfully rebased and updated refs/heads/master.
@@ -1435,13 +1426,13 @@ Newer, awesomer features
 
 #### 安全なマージの方法
 
-`--no-commit` performs the merge but pretends the merge failed and does not autocommit, giving the user a chance to inspect and further tweak the merge result before committing. `no-ff` maintains evidence that a feature branch once existed, keeping project history consistent.
+オプション `--no-commit` を指定すると、マージを実行しつつ、あたかもマージが失敗したかのように扱って自動コミットはしません。
+これにより、コミットの前にマージの結果を精査したり調整できます。
+オプション `--no-ff` はフィーチャーブランチが存在したことを記録に残しておき、プロジェクト履歴の一貫性を保ちます。
 
 ```sh
 (master)$ git merge --no-ff --no-commit my-branch
 ```
-
-オプション `--no-commit` を指定すると、マージを実行しつつ、あたかもマージが失敗したかのように扱って自動コミットはしません。これにより、コミットの前にマージの結果を精査したり調整できます。オプション `no-ff` はフィーチャーブランチが存在したことを記録しておき、プロジェクト履歴の一貫性を保ちます。
 
 #### ブランチを一つのコミットにまとめたい場合
 
@@ -1452,56 +1443,49 @@ Newer, awesomer features
 <a name="rebase-unpushed-commits"></a>
 #### プッシュされていないコミットのみを統合したい場合
 
-進行中の作業に関するコミットがいくつかあって、upstream にコミットする前に統合しておきたいことがあるでしょう。
+進行中の作業に関するコミットがいくつかあって、upstream にコミットする前に統合しておきたいとします。
 すでに upstream にプッシュされたコミットは、誰かがそれを参照するコミットをしている可能性があるので、それは統合しないでおきたいとします。
-<!--Sometimes you have several work in progress commits that you want to combine before you push them upstream. You don't want to accidentally combine any commits that have already been pushed upstream because someone else may have already made commits that reference them.-->
 
 ```sh
 (master)$ git rebase -i @{u}
 ```
 
-上を実行すると対話的リベースが始まりますが、一覧にはまだプッシュされていないコミットだけが表示されます。これで順番を入れ替えたり、修正したり、圧縮 (squash) したりしても安全です。
-<!--This will do an interactive rebase that lists only the commits that you haven't already pushed, so it will be safe to reorder/fix/squash anything in the list.-->
+上を実行すると対話的リベースが始まりますが、一覧にはまだプッシュされていないコミットだけが表示されます。
+これで順番を入れ替えたり、修正したり、圧縮 (squash) したりしても安全です。
 
 #### マージを中止したい
 
 マージがファイルに問題をきたすことがあります。
 こういうときはオプション `abort` を使うとコンフリクト解消の作業を中止し、マージの前の状態の復元を試みることができます。
-<!--Sometimes the merge can produce problems in certain files, in those cases we can use the option `abort` to abort the current conflict resolution process, and try to reconstruct the pre-merge state.-->
 
 ```sh
 (my-branch)$ git merge --abort
 ```
 
-ただし、このコマンドが使えるのはバージョン 1.7.4 以上の Git です。
-<!--This command is available since Git version >= 1.7.4-->
+ただし、このコマンドが使えるのはバージョン 1.7.4 以上の Git に限ります。
 
 ### ブランチの親コミットを更新したい
 
 マスターブランチとそこから分岐した feature-1 ブランチがあり、feature-1 からさらに分岐した feature-2 ブランチがあるとします。
-今 feature-1 ブランチにコミットしたとすると、feature-2 ブランチの親コミットはもはや正確ではありません（feature-1 から分岐したので、親コミットは feature-1 ブランチの head であるべきです。）
+いま feature-1 ブランチにコミットしたとすると、feature-2 ブランチの親コミットはもはや正確ではありません（feature-1 から分岐したので、親コミットは feature-1 ブランチの head であるべきです。）
 こういうときは `git rebase --onto` で修正できます。
-<!--Say I have a master branch, a feature-1 branch branched from master, and a feature-2 branch branched off of feature-1. If I make a commit to feature-1, then the parent commit of feature-2 is no longer accurate (it should be the head of feature-1, since we branched off of it). We can fix this with `git rebase --onto`.-->
 
 ```sh
 (feature-2)$ git rebase --onto feature-1 <the first commit in your feature-2 branch that you don't want to bring along> feature-2
 ```
 
 まだマージされていないブランチからフィーチャーブランチを分岐させており、feature-1 ブランチのバグ修正を feature-2 に反映させたいときに便利です。
-<!--This helps in sticky scenarios where you might have a feature built on another feature that hasn't been merged yet, and a bugfix on the feature-1 branch needs to be reflected in your feature-2 branch.-->
 
 ### ブランチの全コミットがマージされているか確認する
 
-ブランチの全てのコミットが別のブランチにマージされたか確認するには、それぞれのブランチの head（あるいは任意のコミット）の間の差分を表示します：
-<!--To check if all commits on a branch are merged into another branch, you should diff between the heads (or any commits) of those branches:-->
+ブランチの全コミットが別のブランチにマージされているか確認するには、それぞれのブランチの head（あるいは任意のコミット）の間の差分を表示します。
 
 ```sh
 (master)$ git log --graph --left-right --cherry-pick --oneline HEAD...feature/120-on-scroll
 ```
 
-一方のブランチにしかないコミットがあるか表示され、ブランチの間で共有されていないコミットの一覧がわかります。
-もう一つの方法は：
-<!--This will tell you if any commits are in one but not the other, and will give you a list of any nonshared between the branches. Another option is to do this:-->
+一方のブランチにしかないコミットがあるか表示され、ブランチ間で共有されていないコミットの一覧がわかります。
+もう一つの方法は次の通りです。
 
 ```sh
 (master)$ git log master ^feature/120-on-scroll --no-merges
@@ -1512,26 +1496,24 @@ Newer, awesomer features
 <a name="noop"></a>
 #### リベース編集画面に 'noop' と表示される
 
-次のように表示されたとします：
+次のように表示された場合です。
 
 ```
 noop
 ```
 
-これは、同じコミットのブランチ、あるいは現在のブランチよりも*先*にあるブランチに対してリベースしようとしたときに表示されるものです。こういう場合は：
-<!--That means you are trying to rebase against a branch that is at an identical commit, or is *ahead* of your current branch. You can try:-->
+これは、同じコミットのブランチ、あるいは現在のブランチよりも*先*にあるブランチに対してリベースしようとしたときに表示されます。
+この場合は、
 
-* マスターブランチが正しい場所にあることを確認してください。<!--making sure your master branch is where it should be-->
-* `HEAD~2` あるいはより以前にリベースしてください。<!--rebase against `HEAD~2` or earlier instead-->
+* マスターブランチが正しい場所にあることを確認してください。
+* `HEAD~2` あるいはより以前にリベースしてください。
 
 <a name="merge-conflict"></a>
 #### コンフリクトがあった
 
 リベースができないときは、解消すべきコンフリクトがあるかもしれません。
-<!--If you are unable to successfully complete the rebase, you may have to resolve conflicts.-->
 
-まず `git status` で、どのファイルがコンフリクトを起こしているか確認します：
-<!--First run `git status` to see which files have conflicts in them:-->
+まず `git status` で、どのファイルがコンフリクトを起こしているか確認します。
 
 ```sh
 (my-branch)$ git status
@@ -1543,8 +1525,8 @@ Changes not staged for commit:
   both modified:   README.md
 ```
 
-この例では `README.md` がコンフリクトをきたしています。ファイルを開き、次のようになっている部分を見てみましょう：
-<!--In this example, `README.md` has conflicts. Open that file and look for the following:-->
+この例では `README.md` にコンフリクトがあります。
+ファイルを開き、次のようになっている箇所を見てみましょう。
 
 ```vim
    <<<<<<< HEAD
@@ -1554,28 +1536,24 @@ Changes not staged for commit:
    >>>>>>> new-commit
 ```
 
-`HEAD` と新しいコミットで加えられたコードの間の差分（この例では、真ん中の行から `new-commit` までの間にあるコード）を解消する必要があります。
-<!--You will need to resolve the differences between the code that was added in your new commit (in the example, everything from the middle line to `new-commit`) and your `HEAD`.-->
+`HEAD` と新しいコミットで加えられたコードの間の差分（この例では、真ん中の行から `new-commit` の間にあるコード）を解消する必要があります。
 
 一方のブランチの版のコードを残したい場合は、`--ours` あるいは `--theirs` を指定します。
-<!--If you want to keep one branch's version of the code, you can use `--ours` or `--theirs`:-->
 
 ```sh
 (master*)$ git checkout --ours README.md
 ```
 
 - *マージする*場合、ローカルブランチの編集内容を残したいとき `--ours` を指定し、他方の編集内容を残したいとき `--theirs` を指定します。
-- *リベースする*場合、ローカルブランチの編集内容を残したいとき `--theirs` を指定し、他方の編集内容を残したいとき `--ours` を指定します。このように逆転する理由は[Git ドキュメントのこのノート](https://git-scm.com/docs/git-rebase#git-rebase---merge)を参照してください。
+- *リベースする*場合、ローカルブランチの編集内容を残したいとき `--theirs` を指定し、他方の編集内容を残したいとき `--ours` を指定します。このように逆転する理由は[ Git ドキュメントのこのノート](https://git-scm.com/docs/git-rebase#git-rebase---merge)を参照してください。
 
-マージがもっと複雑な場合はヴィジュアル差分エディタを使うことができます：
-<!--If the merges are more complicated, you can use a visual diff editor:-->
+マージがもっと複雑なときは、ビジュアル差分エディタを使うとよいです。
 
 ```sh
 (master*)$ git mergetool -t opendiff
 ```
 
 コンフリクトを全て解消し、コードのテストが済んだら、`git add ` で編集内容をステージし、`git rebase --continue` でリベースを再開します。
-<!--After you have resolved all conflicts and tested your code, `git add` the files you have changed, and then continue the rebase with `git rebase --continue`-->
 
 ```sh
 (my-branch)$ git add README.md
@@ -1583,10 +1561,8 @@ Changes not staged for commit:
 ```
 
 コンフリクトを解消した結果、ワーキングツリーがコミット前と全く同じ状態になった場合は、代わりに `git rebase --skip` を実行します。
-<!--If after resolving all the conflicts you end up with an identical tree to what it was before the commit, you need to `git rebase --skip` instead.-->
 
-リベース作業を全て中止し、ブランチを元の状態に差し戻したい場合は、次のようにします：
-<!--If at any time you want to stop the entire rebase and go back to the original state of your branch, you can do so:-->
+リベース作業を全て中止し、ブランチを元の状態に差し戻したい場合は、次を実行します。
 
 ```sh
 (my-branch)$ git rebase --abort
