@@ -1254,7 +1254,7 @@ $ git push
 
 ```sh
 $ git branch --set-upstream-to [remotename]/[branch]
-# or, using the shorthand:
+# あるいは、短縮形を使う
 $ git branch -u [remotename]/[branch]
 ```
 
