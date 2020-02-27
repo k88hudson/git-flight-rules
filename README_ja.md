@@ -1751,13 +1751,13 @@ $ git checkout <branch-you-want-the-directory-from> -- <folder-name or file-name
 
 ### 削除されたファイルを復元したい
 
-まず、ファイルが最後にあったコミットを探します：
+まず、ファイルが最後に存在していたコミットを探します。
 
 ```sh
 $ git rev-list -n 1 HEAD -- filename
 ```
 
-見つかったら、ファイルをチェックアウトします：
+見つけたら、ファイルをチェックアウトします。
 
 ```
 git checkout deletingcommitid^ -- filename
@@ -1774,14 +1774,14 @@ $ git push <remote> :refs/tags/<tag_name>
 ### 削除されたタグを復元したい
 
 削除されたタグを復元する手順は次の通りです。
-まず、unreachable になったタグを探します：
+まず、unreachable になったタグを探します。
 
 ```sh
 $ git fsck --unreachable | grep tag
 ```
 
 タグのハッシュをメモしておきます。
-続いて、次のように [`git update-ref`](https://git-scm.com/docs/git-update-ref) を使って削除されたタグを復元します：
+続いて、次のように [`git update-ref`](https://git-scm.com/docs/git-update-ref) で削除されたタグを復元します。
 
 ```sh
 $ git update-ref refs/tags/<tag_name> <hash>
@@ -1791,9 +1791,10 @@ $ git update-ref refs/tags/<tag_name> <hash>
 
 ### 削除されたパッチを取得したい
 
-誰かが GitHub でプルリクを送ったあとにフォークを削除してしまった場合、そのリポジトリをクローンしたり、`git am` でパッチを適用することができなくなります。[.diff や .patch](https://github.com/blog/967-github-secrets) の URL が使えなくなってしまうためです。
+誰かが GitHub でプルリクエストを送ったあとにフォークを削除してしまった場合、そのリポジトリをクローンしたり、`git am` でパッチを適用することができなくなります。
+[.diff や .patch](https://github.com/blog/967-github-secrets) の URL が使えなくなってしまうためです。
 しかし、[GitHub 独自の参照](https://gist.github.com/piscisaureus/3342247)を使って、プルリクエスト自体をチェックアウトすることができます。
-プルリクエスト #1 の内容を新しいブランチ pr_1 に取得するには、次を実行します：
+プルリクエスト #1 の内容を新しいブランチ pr_1 に取得するには、次を実行します。
 
 ```sh
 $ git fetch origin refs/pull/1/head:pr_1
@@ -1801,7 +1802,7 @@ From github.com:foo/bar
  * [new ref]         refs/pull/1/head -> pr_1
 ```
 
-### リポジトリを zip ファイルとしてエクスポートする
+### リポジトリを zip ファイルとしてエクスポートしたい
 
 ```sh
 $ git archive --format zip --output /full/path/to/zipfile.zip master
@@ -1809,7 +1810,7 @@ $ git archive --format zip --output /full/path/to/zipfile.zip master
 
 ### 同じ名前のブランチとタグをプッシュしたい
 
-ブランチと同じ名前のタグがリモートリポジトリに存在する場合、通常通り `$ git push <remote> <branch>` でプッシュしようとすると、次のようにエラーが出ます。
+ブランチと同じ名前のタグがリモートリポジトリに存在する場合、通常通り `git push <remote> <branch>` でプッシュしようとすると、次のようなエラーが出ます。
 
 ```sh
 $ git push origin <branch>
@@ -1817,7 +1818,7 @@ error: dst refspec same matches more than one.
 error: failed to push some refs to '<git server>'
 ```
 
-このエラーはブランチのヘッドを指定することによって回避できます。
+このエラーはブランチのヘッドを指定することで回避できます。
 
 ```sh
 $ git push origin refs/heads/<branch-name>
