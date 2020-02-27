@@ -1240,7 +1240,7 @@ $ git push <remote> HEAD
 $ git push -u <remote> HEAD
 ```
 
-`push.default` の設定が `upstream` モードか `simple` モード（Git 2.0 のデフォルト）になっている場合、次のコマンドを実行すると、以前に `-u` で登録したリモートブランチに現在のブランチをプッシュします。
+`push.default` の設定が `upstream` モードか `simple` モード（Git 2.0 のデフォルト）になっている場合、次を実行すると、以前に `-u` で登録したリモートブランチに現在のブランチをプッシュします。
 
 ```sh
 $ git push
@@ -2006,7 +2006,7 @@ $ git config --global credential.helper 'cache --timeout=3600'
 # キャッシュが一時間でタイムアウトするよう設定する（設定は秒単位）
 ```
 
-認証情報ヘルパーを探すには、次のコマンドを実行します。
+認証情報ヘルパーを探すには、次を実行します。
 
 ```sh
 $ git help -a | grep credential
