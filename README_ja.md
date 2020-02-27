@@ -2143,9 +2143,9 @@ function Squash-Commits {
 * [Atlassian's Git tutorial](https://www.atlassian.com/git/tutorials) - 初心者から上級者までチュートリアルで Git を正しく使おう
 * [Learn Git branching](https://learngitbranching.js.org/) - web で動くブランチ・マージ・リベースの対話的なチュートリアル
 * [Getting solid at Git rebase vs. merge](https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa)
-* [Git Commands and Best Practices Cheat Sheet](https://zeroturnaround.com/rebellabs/git-commands-and-best-practices-cheat-sheet) - ブログ投稿にあるもっと説明の多い Git チートシート
+* [Git Commands and Best Practices Cheat Sheet](https://zeroturnaround.com/rebellabs/git-commands-and-best-practices-cheat-sheet) - ブログ投稿にあるもっと説明の豊富な Git チートシート
 * [Git from the inside out](https://codewords.recurse.com/issues/two/git-from-the-inside-out) - Git の内部に踏み込んだチュートリアル
-* [git-workflow](https://github.com/asmeurer/git-workflow) - Git を使ってオープンソースリポジトリに貢献する方法についての [Aaron Meurer](https://github.com/asmeurer) による解説
+* [git-workflow](https://github.com/asmeurer/git-workflow) - [Aaron Meurer](https://github.com/asmeurer) による Git を使ってオープンソースリポジトリに貢献する方法の解説
 * [GitHub as a workflow](https://hugogiraudel.com/2015/08/13/github-as-a-workflow/) - GitHub を、特に空のプルリクエストを用いてワークフローとして使う面白い試み
 * [Githug](https://github.com/Gazler/githug) - よく使う Git ワークフローを学ぶゲーム
 * [learnGitBranching](https://github.com/pcottle/learnGitBranching) - 刺激を得たり教育に使える git の可視化
@@ -2155,21 +2155,21 @@ function Squash-Commits {
 * [firstaidgit.io](http://firstaidgit.io/) - 検索可能な Git のよくある質問集
 * [git-extra-commands](https://github.com/unixorn/git-extra-commands) - 便利な Git スクリプトのコレクション
 * [git-extras](https://github.com/tj/git-extras) - Git の 便利機能 -- リポジトリの要約、REPL、編集履歴の人口、開発者ごとのコミット率など
-* [git-fire](https://github.com/qw3rtman/git-fire) - git-fire は緊急時に（マージのコンフリクトを防ぐため）新しいブランチに全ファイルを追加・コミット・プッシュする Git のプラグインです
+* [git-fire](https://github.com/qw3rtman/git-fire) - 緊急時に（マージのコンフリクトを防ぐため）新しいブランチに全ファイルを追加・コミット・プッシュする Git のプラグイン
 * [git-tips](https://github.com/git-tips/tips) - ちょっとした Git のコツ
 * [git-town](https://github.com/Originate/git-town) - 一般的でハイレベルな Git ワークフローのサポート http://www.git-town.com
 
 ## GUI クライアント
-* [GitKraken](https://www.gitkraken.com/) - Windows, Mac, Linux で動く真正で豪華な Git クライアント
-* [git-cola](https://git-cola.github.io/) - Windows と OS X で動くもう一つの Git クライアント
+* [GitKraken](https://www.gitkraken.com/) - Windows, Mac, Linux 向けの真正で豪華な Git クライアント
+* [git-cola](https://git-cola.github.io/) - Windows と OS X 向けのもう一つの Git クライアント
 * [GitUp](https://github.com/git-up/GitUp) - Git の問題に対処する志向の強い方法をそなえた新しい GUI クライアント
-* [gitx-dev](https://rowanj.github.io/gitx/) - OS X で動くグラフィカル Git クライアント
-* [Sourcetree](https://www.sourcetreeapp.com/) - シンプルさと強力さを兼ね備えた美しい無料の Git GUI です。Windows と Mac で動きます。
+* [gitx-dev](https://rowanj.github.io/gitx/) - OS X 向けのグラフィカル Git クライアント
+* [Sourcetree](https://www.sourcetreeapp.com/) - シンプルさと強力さを兼ね備えた Windows と Mac 向けの美しい Git GUI です。で動きます。
 * [Tower](https://www.git-tower.com/) - OS X で動くグラフィカル Git クライアント（有料）
 * [tig](https://jonas.github.io/tig/) - Git のターミナルテキストモードインターフェース
 * [Magit](https://magit.vc/) - Emacs のパッケージとして実装された Git のインターフェース
 * [GitExtensions](https://github.com/gitextensions/gitextensions) - シェル拡張・Visual Studio 2010-2015 プラグイン・スタンドアローンの Git リポジトリツール
 * [Fork](https://git-fork.com/) - Mac で動く高速で使いやすい Git クライアント（ベータ版）
 * [gmaster](https://gmaster.io/) - Windows で動く、三者間マージ、リファクタリング解析、セマンティック差分とマージのできる Git クライアント（ベータ版）
-* [gitk](https://git-scm.com/docs/gitk) - Linux で動くリポジトリの状態をシンプルに見られる Git クライアント
+* [gitk](https://git-scm.com/docs/gitk) - Linux 向けのリポジトリの状態をシンプルに見られる Git クライアント
 * [SublimeMerge](https://www.sublimemerge.com/) - 三者間マージ・強力な検索機能・シンタックスハイライトをそなえた驚異的に高速で拡張性の高いクライアント。活発に開発されている
