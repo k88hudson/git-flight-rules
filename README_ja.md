@@ -1573,13 +1573,13 @@ Changes not staged for commit:
 
 ### 全ての編集内容をスタッシュしたい
 
-ワーキングディレクトリの全ての編集をスタッシュするには、次を実行します：
+ワーキングディレクトリの編集を全てスタッシュするには、次を実行します。
 
 ```sh
 $ git stash
 ```
 
-バージョン管理されていないファイルもスタッシュしたい場合は、オプション `-u` を指定します。
+バージョン管理されていないファイルもスタッシュしたいときは、オプション `-u` を指定します。
 
 ```sh
 $ git stash -u
@@ -1587,13 +1587,13 @@ $ git stash -u
 
 ### 特定のファイルをスタッシュしたい
 
-ワーキングディレクトリのファイル一つをスタッシュするには、次を実行します：
+ワーキングディレクトリのファイル一つをスタッシュするには、次を実行します。
 
 ```sh
 $ git stash push working-directory-path/filename.ext
 ```
 
-ワーキングディレクトリの複数のファイルをスタッシュする場合は次の通りです。
+ワーキングディレクトリの複数のファイルをスタッシュするときは次の通りです。
 
 ```sh
 $ git stash push working-directory-path/filename1.ext working-directory-path/filename2.ext
@@ -1606,7 +1606,7 @@ $ git stash push working-directory-path/filename1.ext working-directory-path/fil
 $ git stash save <message>
 ```
 
-あるいは、
+あるいは次の通りです。
 
 ```sh
 $ git stash push -m <message>
@@ -1621,15 +1621,15 @@ $ git stash push -m <message>
 $ git stash list
 ```
 
-そして、次のように特定のスタッシュを選んで適用します。
+そして、次のようにして特定のスタッシュを選び適用します。
 
 ```sh
 $ git stash apply "stash@{n}"
 ```
 
-ここで、'n' は一覧の中のスタッシュの位置を指します。一番上のスタッシュなら 0 番です。
+ここで、`n` は一覧の中のスタッシュの位置を指します。一番上のスタッシュなら 0 番です。
 
-また、時刻からスタッシュを参照することもできます。
+また、時刻からスタッシュを指定することもできます。
 
 ```sh
 $ git stash apply "stash@{2.hours.ago}"
