@@ -1722,7 +1722,7 @@ $ git tag --contains <commitid>
 $ git clone --recursive git://github.com/foo/bar.git
 ```
 
-すでにクローンしている場合：
+すでにクローンしている場合は次の通りです。
 
 ```sh
 $ git submodule update --init --recursive
@@ -1732,7 +1732,7 @@ $ git submodule update --init --recursive
 ### サブモジュールを削除する
 
 サブモジュールの作成はきわめて簡単ですが、削除はそうでもありません。
-削除に必要なコマンドは次の通りです：
+削除に必要なコマンドは次の通りです。
 
 ```sh
 $ git submodule deinit submodulename
