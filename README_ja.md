@@ -379,7 +379,7 @@ $ git push --force-with-lease [remote] [branch]
 <!--For more, see [the above section](#deleteremove-last-pushed-commit).-->
 
 <a name="delete-any-commit"></a>
-### 任意のコミットを削除したい
+### 特定のコミットを削除したい
 
 上と同様に、やむを得ない場合以外絶対に行わないでください。
 
@@ -766,7 +766,7 @@ $ git checkout .
 $ git checkout [some_dir|file.txt]
 ```
 
-コミットされていない編集を全て差し戻すのには次の方法もあります（コマンドが長いですが、任意のサブディレクトリから実行できます）。
+コミットされていない編集を全て差し戻すのには次の方法もあります（コマンドが長いですが、全てのサブディレクトリから実行できます）。
 
 ```sh
 $ git reset --hard HEAD
