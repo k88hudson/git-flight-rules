@@ -1276,7 +1276,7 @@ $ git branch -r
   origin/master
 ```
 
-`origin/HEAD` が `origin/master` を追跡するよう設定し直すには、次を実行します：
+`origin/HEAD` が `origin/master` を追跡するよう設定し直すには、次を実行します。
 
 ```sh
 $ git remote set-head origin --auto
