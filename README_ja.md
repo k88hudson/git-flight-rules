@@ -1855,13 +1855,13 @@ $ git push origin refs/tags/<tag-name>
 
 ### ファイルを特定の版まで差し戻したい
 
-差し戻したいコミットのハッシュが c5f567 の場合、次を実行します：
+差し戻したいコミットのハッシュが `c5f567` なら、次を実行します。
 
 ```sh
 (master)$ git checkout c5f567 -- file1/to/restore file2/to/restore
 ```
 
-差し戻したいコミットが c5f567 の一つ前なら、コミットハッシュに c5f567~1 を指定します：
+差し戻したいコミットが c5f567 の一つ前なら、コミットハッシュに `c5f567~1` を指定します。
 
 ```sh
 (master)$ git checkout c5f567~1 -- file1/to/restore file2/to/restore
@@ -1869,13 +1869,13 @@ $ git push origin refs/tags/<tag-name>
 
 ### 特定のファイルのコミット間・ブランチ間の差分を表示したい
 
-コミット c5f567 とその一つ前の差分を表示したい場合、次を実行します：
+コミット c5f567 とその一つ前の間の差分を表示したい場合、次を実行します。
 
 ```sh
 $ git diff HEAD:path_to_file/file c5f567:path_to_file/file
 ```
 
-ブランチでも同様です：
+ブランチでも同様です。
 
 ```sh
 $ git diff master:path_to_file/file staging:path_to_file/file
@@ -1883,14 +1883,14 @@ $ git diff master:path_to_file/file staging:path_to_file/file
 
 ### 特定のファイルの変更を無視したい
 
-これはコミットできない認証情報をローカル環境で追加する必要のある設定テンプレートなどがあるときに役立ちます。
+これはローカル環境で設定テンプレートにコミットできない認証情報を追加する必要があるときなどに役立ちます。
 
 ```sh
 $ git update-index --assume-unchanged file-to-ignore
 ```
 
 ファイルがバージョン管理されなくなるわけでは*ない*ことに注意してください。ローカルで無視されるだけです。
-設定を取り消して変更を再び追跡するには、次のようにして ignore フラッグを削除します：
+設定を取り消して変更を再び追跡するには、次のように ignore フラッグを削除します。
 
 ```sh
 $ git update-index --no-assume-unchanged file-to-stop-ignoring
