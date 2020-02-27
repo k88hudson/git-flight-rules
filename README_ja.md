@@ -1647,31 +1647,31 @@ $ git stash store -m <message> CREATED_SHA1
 
 ## 検索
 
-### 任意のコミットから文字列を検索したい
+### 全コミットから文字列を検索したい
 
-あるコミットで導入されたある文字列を検索したいときは、次のコマンドを使います：
+どこかのコミットで導入された文字列を検索したいときは、次のコマンドを使います。
 
 ```sh
 $ git log -S "string to find"
 ```
 
-よく使われるパラメータは次の通り：
+よく使われるパラメータは次の通りです。
 
-* `--source` を指定すると、コマンドラインでつけられた各コミットの参照名を表示します。
+* `--source` はコマンドラインでつけられた各コミットの参照名を表示します。
 * `--all` は全てのブランチから検索します。
-* `--reverse` を指定すると逆順に表示します。すなわち、最初のコミットから表示します。
+* `--reverse` は逆順に表示します。すなわち最初のコミットから表示します。
 
 <a name="i-want-to-find-by-author-committer"></a>
 ### author または committer から検索する
 
-全てのコミットを author または committer の名前から検索するには次の通りです：
+全てのコミットを author または committer の名前から検索するには次のようにします。
 
 ```sh
 $ git log --author=<name or email>
 $ git log --committer=<name or email>
 ```
 
-author と committer は異なることに注意してください。
+なお、author と committer は異なることに注意してください。
 `--author` ははじめにコードを書いた人、`--committer` は author の代わりにコミットした人を指します。
 
 ### 特定のファイルを含むコミットの一覧を表示したい
@@ -1682,22 +1682,22 @@ author と committer は異なることに注意してください。
 $ git log -- <path to file>
 ```
 
-通常は正確なパスを指定しますが、パスやファイル名にワイルドカードを使うこともできます：
+通常は正確なパスを指定しますが、パスやファイル名にワイルドカードを使うこともできます。
 
 ```sh
 $ git log -- **/*.js
 ```
 
-ワイルドカードを使う際は、`--name-status` を指定するとコミットされたファイルの一覧が表示されるので便利です。
+ワイルドカードを使う際は、`--name-status` を指定すると、コミットされたファイルの一覧が表示されて便利です。
 
 ```sh
 $ git log --name-status -- **/*.js
 ```
 
 <a name="#i-want-to-view-the-commit-history-for-a-specific-function"></a>
-### 特定の関数についてコミット履歴を見たい
+### 特定の関数に関するコミット履歴を見たい
 
-ある関数の履歴を追跡するには次を実行します：
+特定の関数の履歴を追跡するには次を実行します。
 
 ```sh
 $ git log -L :FunctionName:FilePath
@@ -1707,7 +1707,7 @@ $ git log -L :FunctionName:FilePath
 
 ### コミットが参照されているタグを検索したい
 
-特定のコミットを含むタグを検索するには次のようにします：
+特定のコミットを含むタグを検索するには次のようにします。
 
 ```sh
 $ git tag --contains <commitid>
