@@ -1202,7 +1202,7 @@ README.md foo.txt
 ```
 
 古い名前（`old-name`）のリモートブランチを削除し、新しい名前（`new-name`）のブランチをプッシュするには次の通りです。
- 
+
 ```sh
 (master)$ git push origin :old_name new_name
 ```
@@ -2095,7 +2095,8 @@ c10f740 HEAD@{2}: checkout: moving from master to 2.2
 $ git reset --hard 0254ea7
 ```
 
-コマンド `git reset` を使って、マスターブランチを以前の状態に戻すことができます。履歴を間違えて変更してしまった場合の安全策です。
+コマンド `git reset` を使って、マスターブランチを以前の状態に戻すことができます。
+履歴を間違えて変更してしまった場合の安全策です。
 
 （[出典](https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog) からコピー・改変しました。）
 
@@ -2104,7 +2105,8 @@ $ git reset --hard 0254ea7
 
 ### Git Bash
 
-上記のコマンドに慣れてきたら、Git Bash のショートカットを作りたくなるはずです。複雑なタスクを短いコマンドで素早く行うことができるようになります。
+上記のコマンドに慣れてきたら、Git Bash のショートカットを作りたくなるはずです。
+複雑なタスクを短いコマンドで素早く行うことができるようになります。
 
 ```sh
 alias sq=squash
@@ -2118,7 +2120,8 @@ function squash() {
 
 ### Windows の PowerShell
 
-Windows で PowerShell を使っているなら、エイリアスや関数を作成できます。profile に次のコマンドを追加してください。profile のパスは `$profile` に定義されています。詳しくは Microsoft のドキュメントサイトの [About Profiles](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles) を参照してください。
+Windows で PowerShell を使っているなら、エイリアスや関数を作成できます。profile に次のコマンドを追加してください。
+profile のパスは `$profile` に定義されています。詳しくは Microsoft のドキュメントサイトの [About Profiles](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles) を参照してください。
 
 ```powershell
 Set-Alias sq Squash-Commits
