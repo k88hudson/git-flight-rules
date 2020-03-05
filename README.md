@@ -2023,4 +2023,4 @@ function Squash-Commits {
 * [SublimeMerge](https://www.sublimemerge.com/) - Blazing fast, extensible client that provides 3-way merges, powerful search and syntax highlighting, in active development.
 
 ## Useful link 
-* [Sublime Text](https://www.sublimetext.com/) - This minimal editor is good for coding without distractions
+* [Sublime Text](https://www.sublimetext.com/) - This minimal editor is good for coding without distractions and such nonsense it is an alternative to atom but it is not that useful for git and other things too 
