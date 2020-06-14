@@ -312,7 +312,7 @@ An alternative is to correctly configure your author settings in `git config --g
 $ git commit --amend --reset-author --no-edit
 ```
 
-If you need to change all of history, see the man page for `git filter-branch`.
+If you need to change all of history, see the [main page](#built-in-technique-use-git-filter-branch) for `git filter-branch`.
 
 ### I want to remove a file from the previous commit
 
