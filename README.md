@@ -1978,6 +1978,8 @@ function Squash-Commits {
 
 # Other Resources
 
+Buy cool stuff https://thisiswhyimbroke.com
+
 ## Books
 
 * [Learn Enough Git to Be Dangerous](https://www.learnenough.com/git-tutorial) - A book by Michael Hartl covering Git from basics
