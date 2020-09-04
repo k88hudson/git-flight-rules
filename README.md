@@ -1977,7 +1977,8 @@ function Squash-Commits {
 ```
 
 # Other Resources
-
+## Video
+* [Learn github with a video](https://www.youtube.com/watch?v=HkdAHXoRtos) - Short tutorial for beginners.
 ## Books
 
 * [Learn Enough Git to Be Dangerous](https://www.learnenough.com/git-tutorial) - A book by Michael Hartl covering Git from basics
