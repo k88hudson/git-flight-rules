@@ -1,3 +1,6 @@
+# Other Resources
+https://www.youtube.com/watch?v=j2C9DYYVEBk&t=5s
+
 # Flight rules for Git
 
 🌍
