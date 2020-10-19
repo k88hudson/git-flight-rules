@@ -37,12 +37,12 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I committed with the wrong name and email configured](#i-committed-with-the-wrong-name-and-email-configured)
     - [I want to remove a file from the previous commit](#i-want-to-remove-a-file-from-the-previous-commit)
     - [I want to delete or remove my last commit](#i-want-to-delete-or-remove-my-last-commit)
-    - [Delete/remove arbitrary commit](#deleteremove-arbitrary-commit)
+    - [Delete/remove an arbitrary commit](#deleteremove-arbitrary-commit)
     - [I tried to push my amended commit to a remote, but I got an error message](#i-tried-to-push-my-amended-commit-to-a-remote-but-i-got-an-error-message)
     - [I accidentally did a hard reset, and I want my changes back](#i-accidentally-did-a-hard-reset-and-i-want-my-changes-back)
     - [I accidentally committed and pushed a merge](#i-accidentally-committed-and-pushed-a-merge)
     - [I accidentally committed and pushed files containing sensitive data](#i-accidentally-committed-and-pushed-files-containing-sensitive-data)
-    - [I want to remove a large file from ever existing in repo history](#i-want-to-remove-a-large-file-from-ever-existing-in-repo-history)
+    - [I want to remove a large file from ever existing in the repo history](#i-want-to-remove-a-large-file-from-ever-existing-in-repo-history)
       - [Recommended Technique: Use third-party bfg](#recommended-technique-use-third-party-bfg)
       - [Built-in Technique: Use git-filter-branch](#built-in-technique-use-git-filter-branch)
       - [Final Step: Pushing your changed repo history](#final-step-pushing-your-changed-repo-history)
@@ -78,7 +78,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I want to delete multiple branches](#i-want-to-delete-multiple-branches)
     - [I want to rename a branch](#i-want-to-rename-a-branch)
     - [I want to checkout to a remote branch that someone else is working on](#i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on)
-    - [I want to create a new remote branch from current local one](#i-want-to-create-a-new-remote-branch-from-current-local-one)
+    - [I want to create a new remote branch from the current local one](#i-want-to-create-a-new-remote-branch-from-current-local-one)
     - [I want to set a remote branch as the upstream for a local branch](#i-want-to-set-a-remote-branch-as-the-upstream-for-a-local-branch)
     - [I want to set my HEAD to track the default remote branch](#i-want-to-set-my-head-to-track-the-default-remote-branch)
     - [I made changes on the wrong branch](#i-made-changes-on-the-wrong-branch)
@@ -92,14 +92,14 @@ All commands should work for at least git version 2.13.0. See the [git website](
       - [I need to abort the merge](#i-need-to-abort-the-merge)
     - [I need to update the parent commit of my branch](#i-need-to-update-the-parent-commit-of-my-branch)
     - [Check if all commits on a branch are merged](#check-if-all-commits-on-a-branch-are-merged)
-    - [Possible issues with interactive rebases](#possible-issues-with-interactive-rebases)
+    - [Possible issues with interactive rebase](#possible-issues-with-interactive-rebases)
       - [The rebase editing screen says 'noop'](#the-rebase-editing-screen-says-noop)
       - [There were conflicts](#there-were-conflicts)
   - [Stash](#stash)
     - [Stash all edits](#stash-all-edits)
     - [Stash specific files](#stash-specific-files)
     - [Stash with message](#stash-with-message)
-    - [Apply a specific stash from list](#apply-a-specific-stash-from-list)
+    - [Apply a specific stash from the list](#apply-a-specific-stash-from-list)
     - [Stash while keeping unstaged edits](#stash-while-keeping-unstaged-edits)
   - [Finding](#finding)
     - [I want to find a string in any commit](#i-want-to-find-a-string-in-any-commit)
@@ -130,9 +130,9 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I want to add aliases for some Git commands](#i-want-to-add-aliases-for-some-git-commands)
     - [I want to add an empty directory to my repository](#i-want-to-add-an-empty-directory-to-my-repository)
     - [I want to cache a username and password for a repository](#i-want-to-cache-a-username-and-password-for-a-repository)
-    - [I want to make Git ignore permissions and filemode changes](#i-want-to-make-git-ignore-permissions-and-filemode-changes)
+    - [I want to make Git ignore permissions and file mode changes](#i-want-to-make-git-ignore-permissions-and-filemode-changes)
     - [I want to set a global user](#i-want-to-set-a-global-user)
-    - [I want to add command line coloring for Git](#i-want-to-add-command-line-coloring-for-git)
+    - [I want to add command-line coloring for Git](#i-want-to-add-command-line-coloring-for-git)
   - [I've no idea what I did wrong](#ive-no-idea-what-i-did-wrong)
   - [Git Shortcuts](#git-shortcuts)
     - [Git Bash](#git-bash)
@@ -163,7 +163,7 @@ To clone (copy) a remote repository, copy the URL for the repository, and run:
 $ git clone [url]
 ```
 
-This will save it to a folder named the same as the remote repository's. Make sure you have a connection to the remote server you are cloning from (for most purposes this means making sure you are connected to the internet).
+This will save it to a folder named the same as the remote repository. Make sure you have a connection to the remote server you are cloning from (for most purposes this means making sure you are connected to the internet).
 
 To clone it into a folder with a different name than the default repository name:
 
@@ -190,11 +190,11 @@ For more, see [this StackOverflow topic](https://stackoverflow.com/questions/243
 
 Git doesn't allow you to add code to someone else's repository without access rights. Neither does GitHub, which is not the same as Git, but rather a hosted service for Git repositories. However, you can suggest code using patches, or, on GitHub, forks and pull requests.
 
-First, a bit about forking. A fork is a copy of a repository. It is not a git operation, but is a common action on GitHub, Bitbucket, GitLab — or anywhere people host Git repositories. You can fork a repository through the hosted UI.
+First, a bit about forking. A fork is a copy of a repository. It is not a git operation but is a common action on GitHub, Bitbucket, GitLab — or anywhere people host Git repositories. You can fork a repository through the hosted UI.
 
 #### Suggesting code via pull requests
 
-After you've forked a repository, you normally need to clone the repository to your machine. You can do some small edits on GitHub, for instance, without cloning, but this isn't a github-flight-rules list, so let's go with how to do this locally.
+After you've forked a repository, you normally need to clone the repository to your machine. You can do some small edits on GitHub, for instance, without cloning, but this isn't a GitHub-flight-rules list, so let's go with how to do this locally.
 
 ```sh
 # if you are using ssh
@@ -227,7 +227,7 @@ Note that now you have two remotes.
 
 From origin, you can read and write. From upstream, you can only read.
 
-When you've finished making whatever changes you like, push your changes (normally in a branch) to the remote named `origin`. If you're on a branch, you could use `--set-upstream` to avoid specifying the remote tracking branch on every future push using this branch. For instance:
+When you've finished making whatever changes you like, push your changes (normally in a branch) to the remote named `origin`. If you're on a branch, you could use `--set-upstream` to avoid specifying the remote-tracking branch on every future push using this branch. For instance:
 
 ```sh
 $ (feature/my-feature) git push --set-upstream origin feature/my-feature
@@ -241,7 +241,7 @@ After all of this, do not forget to respond to any code review feedback.
 
 After a while, the `upstream` repository may have been updated, and these updates need to be pulled into your `origin` repo. Remember that like you, other people are contributing too. Suppose that you are in your own feature branch and you need to update it with the original repository updates.
 
-You probably have set up a remote that points to the original project. If not, do this now. Generally we use `upstream` as a remote name:
+You probably have set up a remote that points to the original project. If not, do this now. Generally, we use `upstream` as a remote name:
 
 ```sh
 $ (master) git remote add upstream <link-to-original-repository>
@@ -353,7 +353,7 @@ If you haven't pushed, to reset Git to the state it was in before you made your 
 This only works if you haven't pushed. If you have pushed, the only truly safe thing to do is `git revert SHAofBadCommit`. That will create a new commit that undoes all the previous commit's changes. Or, if the branch you pushed to is rebase-safe (ie. other devs aren't expected to pull from it), you can just use `git push --force-with-lease`. For more, see [the above section](#deleteremove-last-pushed-commit).
 
 <a name="delete-any-commit"></a>
-### Delete/remove arbitrary commit
+### Delete/remove an arbitrary commit
 
 The same warning applies as above. Never do this if possible.
 
@@ -451,7 +451,7 @@ If you want to completely remove an entire file (and not keep it locally), then 
 If you have made other commits in the meantime (i.e. the sensitive data is in a commit before the previous commit), you will have to rebase.
 
 <a href="#i-want-to-remove-a-large-file-from-ever-existing-in-repo-history"></a>
-### I want to remove a large file from ever existing in repo history
+### I want to remove a large file from ever existing in the repo history
 
 If the file you want to delete is secret or sensitive, instead see [how to remove sensitive files](#i-accidentally-committed-and-pushed-files-containing-sensitive-data).
 
@@ -524,7 +524,7 @@ Once the push operation succeeds the first time, decrease `<number>` gradually u
 <a href="i-need-to-change-the-content-of-a-commit-which-is-not-my-last"></a>
 ### I need to change the content of a commit which is not my last
 
-Consider you created some (e.g. three) commits and later realize you missed doing something that belongs contextually into the first of those commits. This bothers you, because if you'd create a new commit containing those changes, you'd have a clean code base, but your commits weren't atomic (i.e. changes that belonged to each other weren't in the same commit). In such a situation you may want to change the commit where these changes belong to, include them and have the following commits unaltered. In such a case, `git rebase` might save you.
+Consider you created some (e.g. three) commits and later realize you missed doing something that belongs contextually into the first of those commits. This bothers you because if you'd create a new commit containing those changes, you'd have a clean code base, but your commits weren't atomic (i.e. changes that belonged to each other weren't in the same commit). In such a situation you may want to change the commit where these changes belong to, include them and, have the following commits unaltered. In such a case, `git rebase` might save you.
 
 Consider a situation where you want to change the third last commit you made.
 
@@ -548,7 +548,7 @@ pick 4b6e19a The second to last commit
 pick f4037ec The last commit
 ```
 
-This tells rebase that you want to edit your third last commit and keep the other two unaltered. Then you'll save (and close) the editor. Git will then start to rebase. It stops on the commit you want to alter, giving you the chance to edit that commit. Now you can apply the changes which you missed applying when you initially committed that commit. You do so by editing and staging them. Afterwards you'll run
+This tells rebase that you want to edit your third last commit and keep the other two unaltered. Then you'll save (and close) the editor. Git will then start to rebase. It stops on the commit you want to alter, giving you the chance to edit that commit. Now you can apply the changes which you missed applying when you initially committed that commit. You do so by editing and staging them. Afterward you'll run
 
 ```sh
 (your-branch)$ git commit --amend
@@ -1128,7 +1128,7 @@ Switched to a new branch 'daves'
 
 This will give you a local copy of the branch `daves`, and any update that has been pushed will also show up remotely.
 
-### I want to create a new remote branch from current local one
+### I want to create a new remote branch from the current local one
 
 ```sh
 $ git push <remote> HEAD
@@ -1184,7 +1184,7 @@ origin/HEAD set to master
 
 ### I made changes on the wrong branch
 
-You've made uncommitted changes and realise you're on the wrong branch. Stash changes and apply them to the branch you want:
+You've made uncommitted changes and realize you're on the wrong branch. Stash changes and apply them to the branch you want:
 
 ```sh
 (wrong_branch)$ git stash
@@ -1336,7 +1336,7 @@ This will do an interactive rebase that lists only the commits that you haven't 
 
 #### I need to abort the merge
 
-Sometimes the merge can produce problems in certain files, in those cases we can use the option `abort` to abort the current conflict resolution process, and try to reconstruct the pre-merge state.
+Sometimes the merge can produce problems in certain files, in those cases, we can use the option `abort` to abort the current conflict resolution process, and try to reconstruct the pre-merge state.
 
 ```sh
 (my-branch)$ git merge --abort
@@ -1368,7 +1368,7 @@ This will tell you if any commits are in one but not the other, and will give yo
 (master)$ git log master ^feature/120-on-scroll --no-merges
 ```
 
-### Possible issues with interactive rebases
+### Possible issues with interactive rebase
 
 <a name="noop"></a>
 #### The rebase editing screen says 'noop'
@@ -1378,7 +1378,7 @@ If you're seeing this:
 noop
 ```
 
-That means you are trying to rebase against a branch that is at an identical commit, or is *ahead* of your current branch. You can try:
+That means you are trying to rebase against a branch that is at an identical commit or is *ahead* of your current branch. You can try:
 
 * making sure your master branch is where it should be
 * rebase against `HEAD~2` or earlier instead
@@ -1487,7 +1487,7 @@ $ git stash push -m <message>
 ```
 
 <a name="stash-apply-specific"></a>
-### Apply a specific stash from list
+### Apply a specific stash from the list
 
 First check your list of stashes with message using
 
@@ -1547,7 +1547,7 @@ $ git log --author=<name or email>
 $ git log --committer=<name or email>
 ```
 
-Keep in mind that author and committer are not the same. The `--author` is the person who originally wrote the code; on the other hand, the `--committer`, is the person who committed the code on behalf of the original author.
+Keep in mind that the author and committer are not the same. The `--author` is the person who originally wrote the code; on the other hand, the `--committer`, is the person who committed the code on behalf of the original author.
 
 ### I want to list commits containing specific files
 
@@ -1888,7 +1888,7 @@ $ git config --global credential.helper gnome-keyring
 
 More credential helpers can likely be found for different distributions and operating systems.
 
-### I want to make Git ignore permissions and filemode changes
+### I want to make Git ignore permissions and file mode changes
 
 ```sh
 $ git config core.fileMode false
@@ -1914,7 +1914,7 @@ To set an email address that will be associated with each history marker:
 git config --global user.email “[valid-email]”
 ```
 
-### I want to add command line coloring for Git
+### I want to add command-line coloring for Git
 
 To set automatic command line coloring for Git for easy reviewing:
 
