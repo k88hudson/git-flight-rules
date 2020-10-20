@@ -37,12 +37,12 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I committed with the wrong name and email configured](#i-committed-with-the-wrong-name-and-email-configured)
     - [I want to remove a file from the previous commit](#i-want-to-remove-a-file-from-the-previous-commit)
     - [I want to delete or remove my last commit](#i-want-to-delete-or-remove-my-last-commit)
-    - [Delete/remove an arbitrary commit](#deleteremove-arbitrary-commit)
+    - [Delete/remove an arbitrary commit](#deleteremove-an-arbitrary-commit)
     - [I tried to push my amended commit to a remote, but I got an error message](#i-tried-to-push-my-amended-commit-to-a-remote-but-i-got-an-error-message)
     - [I accidentally did a hard reset, and I want my changes back](#i-accidentally-did-a-hard-reset-and-i-want-my-changes-back)
     - [I accidentally committed and pushed a merge](#i-accidentally-committed-and-pushed-a-merge)
     - [I accidentally committed and pushed files containing sensitive data](#i-accidentally-committed-and-pushed-files-containing-sensitive-data)
-    - [I want to remove a large file from ever existing in the repo history](#i-want-to-remove-a-large-file-from-ever-existing-in-repo-history)
+    - [I want to remove a large file from ever existing in the repo history](#i-want-to-remove-a-large-file-from-ever-existing-in-the-repo-history)
       - [Recommended Technique: Use third-party bfg](#recommended-technique-use-third-party-bfg)
       - [Built-in Technique: Use git-filter-branch](#built-in-technique-use-git-filter-branch)
       - [Final Step: Pushing your changed repo history](#final-step-pushing-your-changed-repo-history)
@@ -78,7 +78,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I want to delete multiple branches](#i-want-to-delete-multiple-branches)
     - [I want to rename a branch](#i-want-to-rename-a-branch)
     - [I want to checkout to a remote branch that someone else is working on](#i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on)
-    - [I want to create a new remote branch from the current local one](#i-want-to-create-a-new-remote-branch-from-current-local-one)
+    - [I want to create a new remote branch from the current local one](#i-want-to-create-a-new-remote-branch-from-the-current-local-one)
     - [I want to set a remote branch as the upstream for a local branch](#i-want-to-set-a-remote-branch-as-the-upstream-for-a-local-branch)
     - [I want to set my HEAD to track the default remote branch](#i-want-to-set-my-head-to-track-the-default-remote-branch)
     - [I made changes on the wrong branch](#i-made-changes-on-the-wrong-branch)
@@ -92,14 +92,14 @@ All commands should work for at least git version 2.13.0. See the [git website](
       - [I need to abort the merge](#i-need-to-abort-the-merge)
     - [I need to update the parent commit of my branch](#i-need-to-update-the-parent-commit-of-my-branch)
     - [Check if all commits on a branch are merged](#check-if-all-commits-on-a-branch-are-merged)
-    - [Possible issues with interactive rebase](#possible-issues-with-interactive-rebases)
+    - [Possible issues with interactive rebase](#possible-issues-with-interactive-rebase)
       - [The rebase editing screen says 'noop'](#the-rebase-editing-screen-says-noop)
       - [There were conflicts](#there-were-conflicts)
   - [Stash](#stash)
     - [Stash all edits](#stash-all-edits)
     - [Stash specific files](#stash-specific-files)
     - [Stash with message](#stash-with-message)
-    - [Apply a specific stash from the list](#apply-a-specific-stash-from-list)
+    - [Apply a specific stash from the list](#apply-a-specific-stash-from-the-list)
     - [Stash while keeping unstaged edits](#stash-while-keeping-unstaged-edits)
   - [Finding](#finding)
     - [I want to find a string in any commit](#i-want-to-find-a-string-in-any-commit)
@@ -130,7 +130,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I want to add aliases for some Git commands](#i-want-to-add-aliases-for-some-git-commands)
     - [I want to add an empty directory to my repository](#i-want-to-add-an-empty-directory-to-my-repository)
     - [I want to cache a username and password for a repository](#i-want-to-cache-a-username-and-password-for-a-repository)
-    - [I want to make Git ignore permissions and file mode changes](#i-want-to-make-git-ignore-permissions-and-filemode-changes)
+    - [I want to make Git ignore permissions and file mode changes](#i-want-to-make-git-ignore-permissions-and-file-mode-changes)
     - [I want to set a global user](#i-want-to-set-a-global-user)
     - [I want to add command-line coloring for Git](#i-want-to-add-command-line-coloring-for-git)
   - [I've no idea what I did wrong](#ive-no-idea-what-i-did-wrong)
@@ -524,7 +524,7 @@ Once the push operation succeeds the first time, decrease `<number>` gradually u
 <a href="i-need-to-change-the-content-of-a-commit-which-is-not-my-last"></a>
 ### I need to change the content of a commit which is not my last
 
-Consider you created some (e.g. three) commits and later realize you missed doing something that belongs contextually into the first of those commits. This bothers you because if you'd create a new commit containing those changes, you'd have a clean code base, but your commits weren't atomic (i.e. changes that belonged to each other weren't in the same commit). In such a situation you may want to change the commit where these changes belong to, include them and, have the following commits unaltered. In such a case, `git rebase` might save you.
+Consider you created some (e.g. three) commits and later realise you missed doing something that belongs contextually into the first of those commits. This bothers you because if you'd create a new commit containing those changes, you'd have a clean code base, but your commits weren't atomic (i.e. changes that belonged to each other weren't in the same commit). In such a situation you may want to change the commit where these changes belong to, include them and, have the following commits unaltered. In such a case, `git rebase` might save you.
 
 Consider a situation where you want to change the third last commit you made.
 
@@ -548,7 +548,7 @@ pick 4b6e19a The second to last commit
 pick f4037ec The last commit
 ```
 
-This tells rebase that you want to edit your third last commit and keep the other two unaltered. Then you'll save (and close) the editor. Git will then start to rebase. It stops on the commit you want to alter, giving you the chance to edit that commit. Now you can apply the changes which you missed applying when you initially committed that commit. You do so by editing and staging them. Afterward you'll run
+This tells rebase that you want to edit your third last commit and keep the other two unaltered. Then you'll save (and close) the editor. Git will then start to rebase. It stops on the commit you want to alter, giving you the chance to edit that commit. Now you can apply the changes which you missed applying when you initially committed that commit. You do so by editing and staging them. Afterward, you'll run
 
 ```sh
 (your-branch)$ git commit --amend
