@@ -237,6 +237,20 @@ There is no way to suggest a pull request using the CLI using Git (although ther
 
 After all of this, do not forget to respond to any code review feedback.
 
+#### Suggesting code via patches
+
+Another approach to suggesting code changes that doesn't rely on third party sites such as Github is to use `git format-patch`. 
+
+`format-patch` creates a .patch file for one or more commits. This file is essentially a list of changes that looks similar to the commit diffs you can view on Github. 
+
+A patch can be viewed and even edited by the recipient and applied using `git am`.
+
+For example, to create a patch based on the previous commit you would run `git format-patch HEAD^` which would create a .patch file called something like 0001-My-Commit-Message.patch.
+
+To apply this patch file to your repository you would run `gim am ./0001-My-Commit-Message.patch`. 
+
+Patches can also be sent via email using the `git send-email` command. For information on usage and configuration see: https://git-send-email.io
+
 #### I need to update my fork with latest updates from the original repository
 
 After a while, the `upstream` repository may have been updated, and these updates need to be pulled into your `origin` repo. Remember that like you, other people are contributing too. Suppose that you are in your own feature branch and you need to update it with the original repository updates.
