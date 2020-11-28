@@ -30,6 +30,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I set the wrong remote repository](#i-set-the-wrong-remote-repository)
     - [I want to add code to someone else's repository](#i-want-to-add-code-to-someone-elses-repository)
       - [Suggesting code via pull requests](#suggesting-code-via-pull-requests)
+      - [Suggesting code via patches](#suggesting-code-via-patches)
       - [I need to update my fork with latest updates from the original repository](#i-need-to-update-my-fork-with-latest-updates-from-the-original-repository)
   - [Editing Commits](#editing-commits)
     - [What did I just commit?](#what-did-i-just-commit)
@@ -236,6 +237,20 @@ $ (feature/my-feature) git push --set-upstream origin feature/my-feature
 There is no way to suggest a pull request using the CLI using Git (although there are tools, like [hub](http://github.com/github/hub), which will do this for you). So, if you're ready to make a pull request, go to your GitHub (or another Git host) and create a new pull request. Note that your host automatically links the original and forked repositories.
 
 After all of this, do not forget to respond to any code review feedback.
+
+#### Suggesting code via patches
+
+Another approach to suggesting code changes that doesn't rely on third party sites such as Github is to use `git format-patch`. 
+
+`format-patch` creates a .patch file for one or more commits. This file is essentially a list of changes that looks similar to the commit diffs you can view on Github. 
+
+A patch can be viewed and even edited by the recipient and applied using `git am`.
+
+For example, to create a patch based on the previous commit you would run `git format-patch HEAD^` which would create a .patch file called something like 0001-My-Commit-Message.patch.
+
+To apply this patch file to your repository you would run `gim am ./0001-My-Commit-Message.patch`. 
+
+Patches can also be sent via email using the `git send-email` command. For information on usage and configuration see: https://git-send-email.io
 
 #### I need to update my fork with latest updates from the original repository
 
