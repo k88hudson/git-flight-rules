@@ -30,6 +30,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I set the wrong remote repository](#i-set-the-wrong-remote-repository)
     - [I want to add code to someone else's repository](#i-want-to-add-code-to-someone-elses-repository)
       - [Suggesting code via pull requests](#suggesting-code-via-pull-requests)
+      - [Suggesting code via patches](#suggesting-code-via-patches)
       - [I need to update my fork with latest updates from the original repository](#i-need-to-update-my-fork-with-latest-updates-from-the-original-repository)
   - [Editing Commits](#editing-commits)
     - [What did I just commit?](#what-did-i-just-commit)
