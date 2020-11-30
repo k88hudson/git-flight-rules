@@ -5,7 +5,7 @@
 
 #### 前言
 
-- 英文原版[README](https://github.com/k88hudson/git-flight-rules/blob/main/README.md)
+- 英文原版[README](https://github.com/k88hudson/git-flight-rules/blob/master/README.md)
 - 翻译可能存在错误或不标准的地方，欢迎大家指正和修改，谢谢！
 
 #### 什么是"飞行规则"?
