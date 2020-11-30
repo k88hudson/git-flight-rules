@@ -262,18 +262,18 @@ Git で CLI からプルリクエストを送る方法はありません（[hub]
 通常はリモートの名前に `upstream` を使います。
 
 ```sh
-$ (master) git remote add upstream <link-to-original-repository>
-# $ (master) git remote add upstream git@github.com:k88hudson/git-flight-rules.git
+$ (main) git remote add upstream <link-to-original-repository>
+# $ (main) git remote add upstream git@github.com:k88hudson/git-flight-rules.git
 ```
 
 これで `upstream` から最新版を取得できるようになりました。
 
 ```sh
-$ (master) git fetch upstream
-$ (master) git merge upstream/master
+$ (main) git fetch upstream
+$ (main) git merge upstream/main
 
 # コマンド一つでもできる
-$ (master) git pull upstream master
+$ (main) git pull upstream main
 ```
 
 ## コミットの編集
@@ -285,7 +285,7 @@ $ (master) git pull upstream master
 現在の HEAD の最新のコミット内容は次のように表示できます。
 
 ```sh
-(master)$ git show
+(main)$ git show
 ```
 
 もしくは次の通りです。
@@ -431,13 +431,13 @@ Git は数日間のログを全て残してくれているからです。
 （安全なのは `git reset --keep` を使うことです。）
 
 ```sh
-(master)$ git reflog
+(main)$ git reflog
 ```
 
 過去のコミットとリセットに対応するコミットが表示されるので、復元したいコミットの SHA を選んでリセットします。
 
 ```sh
-(master)$ git reset --hard SHA1234
+(main)$ git reset --hard SHA1234
 ```
 
 これで大丈夫です。
@@ -525,9 +525,9 @@ bfg-repo-cleaner を使うには Java が必要です。
 特定のファイルを削除する場合は次のようにします。
 
 ```sh
-(master)$ git rm path/to/filetoremove
-(master)$ git commit -m "Commit removing filetoremove"
-(master)$ java -jar ~/Downloads/bfg.jar --delete-files filetoremove
+(main)$ git rm path/to/filetoremove
+(main)$ git commit -m "Commit removing filetoremove"
+(main)$ java -jar ~/Downloads/bfg.jar --delete-files filetoremove
 ```
 
 なお、bfg を使うときは、ファイルがサブディレクトリにあってもそのままのファイル名を入力することに注意してください。
@@ -535,9 +535,9 @@ bfg-repo-cleaner を使うには Java が必要です。
 パターンからファイルを削除することもできます。例えば次の通りです。
 
 ```sh
-(master)$ git rm *.jpg
-(master)$ git commit -m "Commit removing *.jpg"
-(master)$ java -jar ~/Downloads/bfg.jar --delete-files *.jpg
+(main)$ git rm *.jpg
+(main)$ git commit -m "Commit removing *.jpg"
+(main)$ java -jar ~/Downloads/bfg.jar --delete-files *.jpg
 ```
 
 bfg は最新のコミットにあるファイルには影響しません。
@@ -554,7 +554,7 @@ bfg は最新のコミットにあるファイルには影響しません。
 パターンにマッチしたファイルの履歴が全ての履歴とブランチから削除されます。
 
 ```sh
-(master)$ git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch filepattern' --prune-empty --tag-name-filter cat -- --all
+(main)$ git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch filepattern' --prune-empty --tag-name-filter cat -- --all
 ```
 
 ここで使っている `--tag-name-filter cat` は煩雑ですが、このように `cat` を使うのが元のタグを新しいコミットにつける最も簡単な方法です。
@@ -567,23 +567,23 @@ bfg は最新のコミットにあるファイルには影響しません。
 最後のステップとして、必要に応じて Git ガベージコレクションで .git フォルダの容量を最小化してから、強制プッシュします。
 
 ```sh
-(master)$ git reflog expire --expire=now --all && git gc --prune=now --aggressive
-(master)$ git push origin --force --tags
+(main)$ git reflog expire --expire=now --all && git gc --prune=now --aggressive
+(main)$ git push origin --force --tags
 ```
 
 リポジトリの履歴を全て書き換えているので、`git push` の量が膨大すぎて `“The remote end hung up unexpectedly”` というエラーが返るかもしれません。
 その場合は Git の post buffer を増やしてみます。
 
 ```sh
-(master)$ git config http.postBuffer 524288000
-(master)$ git push --force
+(main)$ git config http.postBuffer 524288000
+(main)$ git push --force
 ```
 
 うまくいかない場合は、コミットを手作業で小分けにしてプッシュします。
 プッシュが成功するまで、`<number>` を増やしながら次のコマンドを試してください。
 
 ```sh
-(master)$ git push -u origin HEAD~<number>:refs/head/master --force
+(main)$ git push -u origin HEAD~<number>:refs/head/main --force
 ```
 
 プッシュが成功したら、通常の`git push` が 成功するまで `<number>` を徐々に減らしてください。
@@ -746,7 +746,7 @@ $ git stash pop
 ```sh
 (my-branch)$ git reset --hard
 # または
-(master)$ git checkout -f
+(main)$ git checkout -f
 ```
 
 次のコマンドは `git add` でステージした全ファイルのステージを取り消します。
@@ -889,7 +889,7 @@ $ git checkout -b <branch> <SHA1_OF_COMMIT>
 間違ったプルの前に HEAD が参照していたものを表示します。
 
 ```sh
-(master)$ git reflog
+(main)$ git reflog
 ab7555f HEAD@{0}: pull origin wrong-branch: Fast-forward
 c5bc55a HEAD@{1}: checkout: checkout message goes here
 ```
@@ -920,7 +920,7 @@ $ git reset --hard c5bc55a
 origin と同じ状態にリセットする（リモートと同じ状態にする）方法の一つは次の通りです。
 
 ```sh
-(master)$ git reset --hard origin/my-branch
+(main)$ git reset --hard origin/my-branch
 ```
 
 <a name="commit-wrong-branch"></a>
@@ -929,13 +929,13 @@ origin と同じ状態にリセットする（リモートと同じ状態にす�
 マスターブランチにいたまま、新しいブランチを作成してください。
 
 ```sh
-(master)$ git branch my-branch
+(main)$ git branch my-branch
 ```
 
 マスターブランチを直前のコミットにリセットします。
 
 ```sh
-(master)$ git reset --hard HEAD^
+(main)$ git reset --hard HEAD^
 ```
 
 ここで `HEAD^` は `HEAD^1` の短縮形で、`HEAD` の第一の親を表します。
@@ -949,14 +949,14 @@ origin と同じ状態にリセットする（リモートと同じ状態にす�
 例えば、マスターブランチを差し戻したいコミットのハッシュが `a13b85e` なら、次のようにします。
 
 ```sh
-(master)$ git reset --hard a13b85e
+(main)$ git reset --hard a13b85e
 HEAD is now at a13b85e
 ```
 
 作業に戻るため、新しいブランチにチェックアウトしましょう。
 
 ```sh
-(master)$ git checkout my-branch
+(main)$ git checkout my-branch
 ```
 
 <a name="keep-whole-file"></a>
@@ -1005,7 +1005,7 @@ HEAD is now at a13b85e
 マスターブランチにいるとして、`git log` でコミットが二つ表示されるとします。
 
 ```sh
-(master)$ git log
+(main)$ git log
 
 commit e3851e817c451cc36f2e6f3049db528415e3c114
 Author: Alex Lee <alexlee@example.com>
@@ -1031,14 +1031,14 @@ Date:   Tue Jul 21 01:12:48 2014 -0400
 まず、次のようにしてマスターブランチをあるべきコミット `a13b85e` までリセットします。
 
 ```sh
-(master)$ git reset --hard a13b85e
+(main)$ git reset --hard a13b85e
 HEAD is now at a13b85e
 ```
 
 これで、バグ #21 に対応する新しいブランチを作成できます。
 
 ```sh
-(master)$ git checkout -b 21
+(main)$ git checkout -b 21
 (21)$
 ```
 
@@ -1055,8 +1055,8 @@ HEAD is now at a13b85e
 次に、#14 に対応する、マスターに紐づいたブランチを作成しましょう。
 
 ```sh
-(21)$ git checkout master
-(master)$ git checkout -b 14
+(21)$ git checkout main
+(main)$ git checkout -b 14
 (14)$
 ```
 
@@ -1087,7 +1087,7 @@ $ git fetch -p upstream
 新しくブランチを作り、ファイルを新規作成したとします。
 
 ```sh
-(master)$ git checkout -b my-branch
+(main)$ git checkout -b my-branch
 (my-branch)$ git branch
 (my-branch)$ touch foo.txt
 (my-branch)$ ls
@@ -1120,12 +1120,12 @@ Date:   Tue Jul 29 13:14:46 2014 -0400
 マスターに戻って、「間違って」ブランチを削除してみます。
 
 ```sh
-(my-branch)$ git checkout master
-Switched to branch 'master'
-Your branch is up-to-date with 'origin/master'.
-(master)$ git branch -D my-branch
+(my-branch)$ git checkout main
+Switched to branch 'main'
+Your branch is up-to-date with 'origin/main'.
+(main)$ git branch -D my-branch
 Deleted branch my-branch (was 4e3cd85).
-(master)$ echo oh noes, deleted my branch!
+(main)$ echo oh noes, deleted my branch!
 oh noes, deleted my branch!
 ```
 
@@ -1133,17 +1133,17 @@ oh noes, deleted my branch!
 これはリポジトリの全ての操作履歴を保存しています。
 
 ```
-(master)$ git reflog
-69204cd HEAD@{0}: checkout: moving from my-branch to master
+(main)$ git reflog
+69204cd HEAD@{0}: checkout: moving from my-branch to main
 4e3cd85 HEAD@{1}: commit: foo.txt added
-69204cd HEAD@{2}: checkout: moving from master to my-branch
+69204cd HEAD@{2}: checkout: moving from main to my-branch
 ```
 
 このように、削除してしまったブランチのコミットが表示されています。
 削除したブランチを復元してみましょう。
 
 ```sh
-(master)$ git checkout -b my-branch-help
+(main)$ git checkout -b my-branch-help
 Switched to a new branch 'my-branch-help'
 (my-branch-help)$ git reset --hard 4e3cd85
 HEAD is now at 4e3cd85 foo.txt added
@@ -1159,25 +1159,25 @@ README.md foo.txt
 リモートブランチを削除するには次を実行します。
 
 ```sh
-(master)$ git push origin --delete my-branch
+(main)$ git push origin --delete my-branch
 ```
 
 次のようにもできます。
 
 ```sh
-(master)$ git push origin :my-branch
+(main)$ git push origin :my-branch
 ```
 
 ローカルブランチを削除するには次の通りです。
 
 ```sh
-(master)$ git branch -d my-branch
+(main)$ git branch -d my-branch
 ```
 
 現在のブランチか upstream にマージ**されていない**ブランチを削除するには次のようにします。
 
 ```sh
-(master)$ git branch -D my-branch
+(main)$ git branch -D my-branch
 ```
 
 ### 複数のブランチを削除したい
@@ -1185,7 +1185,7 @@ README.md foo.txt
 名前が `fix/` で始まるブランチを全て削除したいときは次の通りです。
 
 ```sh
-(master)$ git branch | grep 'fix/' | xargs git branch -d
+(main)$ git branch | grep 'fix/' | xargs git branch -d
 ```
 
 ### ブランチの名前を変更したい
@@ -1193,19 +1193,19 @@ README.md foo.txt
 現在の（ローカル）ブランチの名前を変更するには次を実行します。
 
 ```sh
-(master)$ git branch -m new-name
+(main)$ git branch -m new-name
 ```
 
 現在いるブランチと異なる（ローカル）ブランチの名前を変更するには次のようにします。
 
 ```sh
-(master)$ git branch -m old-name new-name
+(main)$ git branch -m old-name new-name
 ```
 
 古い名前（`old-name`）のリモートブランチを削除し、新しい名前（`new-name`）のブランチをプッシュするには次の通りです。
 
 ```sh
-(master)$ git push origin :old_name new_name
+(main)$ git push origin :old_name new_name
 ```
 
 <a name="i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on"></a>
@@ -1214,13 +1214,13 @@ README.md foo.txt
 まず、リモートから全ブランチを取得します。
 
 ```sh
-(master)$ git fetch --all
+(main)$ git fetch --all
 ```
 
 リモートブランチ `daves` にチェックアウトしたいとします。
 
 ```sh
-(master)$ git checkout --track origin/daves
+(main)$ git checkout --track origin/daves
 Branch daves set up to track remote branch daves from origin.
 Switched to a new branch 'daves'
 ```
@@ -1274,14 +1274,14 @@ $ git branch -u [remotename]/[branch] [local-branch]
 ```sh
 $ git branch -r
   origin/HEAD -> origin/gh-pages
-  origin/master
+  origin/main
 ```
 
-`origin/HEAD` が `origin/master` を追跡するよう設定し直すには、次を実行します。
+`origin/HEAD` が `origin/main` を追跡するよう設定し直すには、次を実行します。
 
 ```sh
 $ git remote set-head origin --auto
-origin/HEAD set to master
+origin/HEAD set to main
 ```
 
 ### 間違ったブランチを編集してしまった
@@ -1319,10 +1319,10 @@ Git は危険な操作の前に HEAD が指すものを変数 `ORIG_HEAD` に保
 リベースの安全な使い方は、リモートには編集を反映させずに、代わりに次を実行することです。
 
 ```sh
-(master)$ git checkout my-branch
-(my-branch)$ git rebase -i master
-(my-branch)$ git checkout master
-(master)$ git merge --ff-only my-branch
+(main)$ git checkout my-branch
+(my-branch)$ git rebase -i main
+(my-branch)$ git checkout main
+(main)$ git merge --ff-only my-branch
 ```
 
 詳しくは[この StackOverflow スレッド](https://stackoverflow.com/questions/11058312/how-can-i-use-git-rebase-without-requiring-a-forced-push)を参照してください。
@@ -1330,27 +1330,27 @@ Git は危険な操作の前に HEAD が指すものを変数 `ORIG_HEAD` に保
 <a name="interactive-rebase"></a>
 ### コミットを統合したい
 
-`master` ブランチにプルリクエストを送る、あるいはこれから送るつもりのブランチで作業しているとします。
+`main` ブランチにプルリクエストを送る、あるいはこれから送るつもりのブランチで作業しているとします。
 最も単純なケースとして、タイムスタンプを気にせずコミット**全部**を一つにまとめたいとします。
 この場合はリセットと再コミットを行います。
 マスターブランチが最新版で、編集がすべてコミットされていることを確認した上で、次を実行してください。
 
 ```sh
-(my-branch)$ git reset --soft master
+(my-branch)$ git reset --soft main
 (my-branch)$ git commit -am "New awesome feature"
 ```
 
 もっと細かく設定し、タイムスタンプも残したい場合は、対話的リベースを使います。
 
 ```sh
-(my-branch)$ git rebase -i master
+(my-branch)$ git rebase -i main
 ```
 
 別のブランチで作業しているわけではない場合、`HEAD` に対してリベースする必要があります。
 たとえば直近二件のコミットを圧縮 (squash) したい場合は `HEAD~2`、直近三件なら `HEAD~3` です。
 
 ```sh
-(master)$ git rebase -i HEAD~2
+(main)$ git rebase -i HEAD~2
 ```
 
 対話的リベースのコマンドを実行したら、テキストエディタに次のように表示されます。
@@ -1411,7 +1411,7 @@ Newer, awesomer features
 # Please enter the commit message for your changes. Lines starting
 # with '#' will be ignored, and an empty message aborts the commit.
 # rebase in progress; onto 8074d12
-# You are currently editing a commit while rebasing branch 'master' on '8074d12'.
+# You are currently editing a commit while rebasing branch 'main' on '8074d12'.
 #
 # Changes to be committed:
 #   modified:   README.md
@@ -1422,7 +1422,7 @@ Newer, awesomer features
 うまくいくと次のように表示されるはずです。
 
 ```sh
-(master)$ Successfully rebased and updated refs/heads/master.
+(main)$ Successfully rebased and updated refs/heads/main.
 ```
 
 #### 安全なマージの方法
@@ -1432,13 +1432,13 @@ Newer, awesomer features
 オプション `--no-ff` はフィーチャーブランチが存在したことを記録に残しておき、プロジェクト履歴の一貫性を保ちます。
 
 ```sh
-(master)$ git merge --no-ff --no-commit my-branch
+(main)$ git merge --no-ff --no-commit my-branch
 ```
 
 #### ブランチを一つのコミットにまとめたい場合
 
 ```sh
-(master)$ git merge --squash my-branch
+(main)$ git merge --squash my-branch
 ```
 
 <a name="rebase-unpushed-commits"></a>
@@ -1448,7 +1448,7 @@ Newer, awesomer features
 すでに upstream にプッシュされたコミットは、誰かがそれを参照するコミットをしている可能性があるので、それは統合しないでおきたいとします。
 
 ```sh
-(master)$ git rebase -i @{u}
+(main)$ git rebase -i @{u}
 ```
 
 上を実行すると対話的リベースが始まりますが、一覧にはまだプッシュされていないコミットだけが表示されます。
@@ -1482,14 +1482,14 @@ Newer, awesomer features
 ブランチの全コミットが別のブランチにマージされているか確認するには、それぞれのブランチの head（あるいは任意のコミット）の間の差分を表示します。
 
 ```sh
-(master)$ git log --graph --left-right --cherry-pick --oneline HEAD...feature/120-on-scroll
+(main)$ git log --graph --left-right --cherry-pick --oneline HEAD...feature/120-on-scroll
 ```
 
 一方のブランチにしかないコミットがあるか表示され、ブランチ間で共有されていないコミットの一覧がわかります。
 もう一つの方法は次の通りです。
 
 ```sh
-(master)$ git log master ^feature/120-on-scroll --no-merges
+(main)$ git log main ^feature/120-on-scroll --no-merges
 ```
 
 ### 対話的リベースで起こりうる問題
@@ -1542,7 +1542,7 @@ Changes not staged for commit:
 一方のブランチの版のコードを残したい場合は、`--ours` あるいは `--theirs` を指定します。
 
 ```sh
-(master*)$ git checkout --ours README.md
+(main*)$ git checkout --ours README.md
 ```
 
 - *マージする*場合、ローカルブランチの編集を残したいとき `--ours` を指定し、他方の編集を残したいとき `--theirs` を指定します。
@@ -1551,7 +1551,7 @@ Changes not staged for commit:
 マージがもっと複雑なときは、ビジュアル差分エディタを使うとよいです。
 
 ```sh
-(master*)$ git mergetool -t opendiff
+(main*)$ git mergetool -t opendiff
 ```
 
 コンフリクトを全て解消し、コードのテストが済んだら、`git add ` で編集をステージし、`git rebase --continue` でリベースを再開します。
@@ -1806,7 +1806,7 @@ From github.com:foo/bar
 ### リポジトリを zip ファイルとしてエクスポートしたい
 
 ```sh
-$ git archive --format zip --output /full/path/to/zipfile.zip master
+$ git archive --format zip --output /full/path/to/zipfile.zip main
 ```
 
 ### 同じ名前のブランチとタグをプッシュしたい
@@ -1837,21 +1837,21 @@ $ git push origin refs/tags/<tag-name>
 ### ファイルの内容は変えずに、ファイル名の大文字・小文字を変更したい
 
 ```sh
-(master)$ git mv --force myfile MyFile
+(main)$ git mv --force myfile MyFile
 ```
 
 ### git pull してローカルのファイルを上書きしたい
 
 ```sh
-(master)$ git fetch --all
-(master)$ git reset --hard origin/master
+(main)$ git fetch --all
+(main)$ git reset --hard origin/main
 ```
 
 <a href="remove-from-git"></a>
 ### ファイルを残しつつ Git から削除したい
 
 ```sh
-(master)$ git rm --cached log.txt
+(main)$ git rm --cached log.txt
 ```
 
 ### ファイルを特定の版まで差し戻したい
@@ -1859,13 +1859,13 @@ $ git push origin refs/tags/<tag-name>
 差し戻したいコミットのハッシュが `c5f567` なら、次を実行します。
 
 ```sh
-(master)$ git checkout c5f567 -- file1/to/restore file2/to/restore
+(main)$ git checkout c5f567 -- file1/to/restore file2/to/restore
 ```
 
 差し戻したいコミットが c5f567 の一つ前なら、コミットハッシュに `c5f567~1` を指定します。
 
 ```sh
-(master)$ git checkout c5f567~1 -- file1/to/restore file2/to/restore
+(main)$ git checkout c5f567~1 -- file1/to/restore file2/to/restore
 ```
 
 ### 特定のファイルのコミット間・ブランチ間の差分を表示したい
@@ -1879,7 +1879,7 @@ $ git diff HEAD:path_to_file/file c5f567:path_to_file/file
 ブランチでも同様です。
 
 ```sh
-$ git diff master:path_to_file/file staging:path_to_file/file
+$ git diff main:path_to_file/file staging:path_to_file/file
 ```
 
 ### 特定のファイルの変更を無視したい
@@ -1901,7 +1901,7 @@ $ git update-index --no-assume-unchanged file-to-stop-ignoring
 
 コマンド [git-bisect](https://git-scm.com/docs/git-bisect) は、Git 履歴を二分探索してバグをもたらしたコミットを探します。
 
-いま `master` ブランチにいるとして、失敗をやらかしたコミットを探してみましょう。
+いま `main` ブランチにいるとして、失敗をやらかしたコミットを探してみましょう。
 次のコマンドで二分探索を始めます。
 
 ```sh
@@ -1967,7 +1967,7 @@ OS X と Linux では、Git 設定ファイルは ```~/.gitconfig``` に保存�
     wip = rebase -i @{u}
     zap = fetch -p
     day = log --reverse --no-merges --branches=* --date=local --since=midnight --author=\"$(git config --get user.name)\"
-    delete-merged-branches = "!f() { git checkout --quiet master && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
+    delete-merged-branches = "!f() { git checkout --quiet main && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
 ```
 
 ### 空のディレクトリをリポジトリに加えたい
@@ -2079,13 +2079,13 @@ HEAD が変更される際は基本的に reflog に記録が追加されます�
 ただ、残念ながら機能するのはローカルリポジトリのみで、記録するのは変化だけです（たとえば、どこにも記録されていないファイルへの変更は記録されません）。
 
 ```sh
-(master)$ git reflog
+(main)$ git reflog
 0a2e358 HEAD@{0}: reset: moving to HEAD~2
-0254ea7 HEAD@{1}: checkout: moving from 2.2 to master
-c10f740 HEAD@{2}: checkout: moving from master to 2.2
+0254ea7 HEAD@{1}: checkout: moving from 2.2 to main
+c10f740 HEAD@{2}: checkout: moving from main to 2.2
 ```
 
-上の reflog には、master から 2.2 へのチェックアウトが表示されています。
+上の reflog には、main から 2.2 へのチェックアウトが表示されています。
 それから古いコミットへの hard reset があります。
 最新のアクティビティは一番上に `HEAD@{0}` のラベルで表示されます。
 

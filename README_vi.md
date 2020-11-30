@@ -57,7 +57,7 @@ Tất cả các command nên làm việc với phiên bản nhỏ nhất 2.13.0.
     - [Tạo một nhánh từ một commit](#t%E1%BA%A1o-m%E1%BB%99t-nh%C3%A1nh-t%E1%BB%AB-m%E1%BB%99t-commit)
     - [Tôi đã pull từ / vào sai nhánh](#t%C3%B4i-%C4%91%C3%A3-pull-t%E1%BB%AB--v%C3%A0o-sai-nh%C3%A1nh)
     - [Tôi muốn loại bỏ các commit trên local đển nhánh của tôi giống như một nhánh trên server](#t%C3%B4i-mu%E1%BB%91n-lo%E1%BA%A1i-b%E1%BB%8F-c%C3%A1c-commit-tr%C3%AAn-local-%C4%91%E1%BB%83n-nh%C3%A1nh-c%E1%BB%A7a-t%C3%B4i-gi%E1%BB%91ng-nh%C6%B0-m%E1%BB%99t-nh%C3%A1nh-tr%C3%AAn-server)
-    - [Tôi đã commit đến master thay vì một nhánh mới](#t%C3%B4i-%C4%91%C3%A3-commit-%C4%91%E1%BA%BFn-master-thay-v%C3%AC-m%E1%BB%99t-nh%C3%A1nh-m%E1%BB%9Bi)
+    - [Tôi đã commit đến main thay vì một nhánh mới](#t%C3%B4i-%C4%91%C3%A3-commit-%C4%91%E1%BA%BFn-main-thay-v%C3%AC-m%E1%BB%99t-nh%C3%A1nh-m%E1%BB%9Bi)
     - [Tôi muốn giữ toàn bộ file từ một ref-ish khác](#t%C3%B4i-mu%E1%BB%91n-gi%E1%BB%AF-to%C3%A0n-b%E1%BB%99-file-t%E1%BB%AB-m%E1%BB%99t-ref-ish-kh%C3%A1c)
     - [Tôi đã thực hiện một số commit trên một nhánh duy nhất nó nên ở trên các nhánh khác nhau](#t%C3%B4i-%C4%91%C3%A3-th%E1%BB%B1c-hi%E1%BB%87n-m%E1%BB%99t-s%E1%BB%91-commit-tr%C3%AAn-m%E1%BB%99t-nh%C3%A1nh-duy-nh%E1%BA%A5t-n%C3%B3-n%C3%AAn-%E1%BB%9F-tr%C3%AAn-c%C3%A1c-nh%C3%A1nh-kh%C3%A1c-nhau)
     - [Tôi muốn xóa các nhánh local đã bị xóa luồng phía trước](#t%C3%B4i-mu%E1%BB%91n-x%C3%B3a-c%C3%A1c-nh%C3%A1nh-local-%C4%91%C3%A3-b%E1%BB%8B-x%C3%B3a-lu%E1%BB%93ng-ph%C3%ADa-tr%C6%B0%E1%BB%9Bc)
@@ -160,7 +160,7 @@ $ git clone [url] name-of-new-folder
 Giả sử bạn vừa commit thay đổi một cách mù quáng với lệnh `git commit -a` và bạn không chắc chắn nội dunng thực sự là của commit vừa thực hiện. Bạn có thể hiển thị ra commit gần nhất trên con trỏ HEAD hiện tại của bạn với lệnh:
 
 ```sh
-(master)$ git show
+(main)$ git show
 ```
 
 Hoặc
@@ -288,13 +288,13 @@ Nếu vô tình bạn thực hiện `git reset --hard`, bạn có thể vẫn nh
 Chú ý: Điều này chỉ hợp lệ nếu luồng làm việc của bạn đã được sao lưu, tức là được commit hoặc được stash. `git reset --hard` _sẽ loại bỏ_ các thay đổi không được commit, vì vậy hãy sử dụng nó một cách thận trọng. (Một tuỳ chọn an toàn là `git reset --keep`.)
 
 ```sh
-(master)$ git reflog
+(main)$ git reflog
 ```
 
 Bạn sẽ thấy danh sách các commit gần đây, và một commit cho reset. Chọn SHA của commit và muốn quay trở lại và reset lại:
 
 ```sh
-(master)$ git reset --hard SHA1234
+(main)$ git reset --hard SHA1234
 ```
 
 Và bạn nên tốt hơn để đi tiếp.
@@ -421,7 +421,7 @@ Nếu bạn muốn bỏ tất cả các thay đổi đã stage và chưa stage t
 ```sh
 (my-branch)$ git reset --hard
 # or
-(master)$ git checkout -f
+(main)$ git checkout -f
 ```
 
 Nó sẽ unstage tất cả các file bạn đã stage với `git add`:
@@ -559,7 +559,7 @@ $ git checkout -b <branch> <SHA1_OF_COMMIT>
 Đây là một cơ hội khác để sử dụng `git reflog` để xem nơi con trỏ HEAD đã trỏ trước khi pull sai.
 
 ```sh
-(master)$ git reflog
+(main)$ git reflog
 ab7555f HEAD@{0}: pull origin wrong-branch: Fast-forward
 c5bc55a HEAD@{1}: checkout: checkout message goes here
 ```
@@ -590,41 +590,41 @@ Xác nhận rằng bạn chưa push các thay đổi của mình đến server.
 Một cách khác để reset lại phù hợp với origin (để có các nhánh giống như trên remote) là thực hiện điều này:
 
 ```sh
-(master)$ git reset --hard origin/my-branch
+(main)$ git reset --hard origin/my-branch
 ```
 
 <a name="commit-wrong-branch"></a>
-### Tôi đã commit đến master thay vì một nhánh mới
+### Tôi đã commit đến main thay vì một nhánh mới
 
-Tạo nhánh mới trong khi giữ master:
+Tạo nhánh mới trong khi giữ main:
 
 ```sh
-(master)$ git branch my-branch
+(main)$ git branch my-branch
 ```
 
-Reset nhánh master đến commit trước đó:
+Reset nhánh main đến commit trước đó:
 
 ```sh
-(master)$ git reset --hard HEAD^
+(main)$ git reset --hard HEAD^
 ```
 
 `HEAD^` là viết tắt của `HEAD^1`. Điều này là viết tắt của parent  `HEAD`, tương tự `HEAD^2` là viết tắt của parent thứ hai của commit (merge có thể có 2 parent).
 
 Chú ý rằng `HEAD^2`  **không** giống như `HEAD~2` (xem [link này](http://www.paulboxley.com/blog/2011/06/git-caret-and-tilde) để có thêm thông tin).
 
-Ngoài ra, nếu bạn không muốn sử dụng `HEAD^`, tìm mã hash của commit để thiết lập nhánh master của bạn (`git log` là một thủ thuật). Sau đó đặt lại mã hash. `git push` sẽ đảm bảo rằng thay đổi này được thể hiển trên remote của bạn.
+Ngoài ra, nếu bạn không muốn sử dụng `HEAD^`, tìm mã hash của commit để thiết lập nhánh main của bạn (`git log` là một thủ thuật). Sau đó đặt lại mã hash. `git push` sẽ đảm bảo rằng thay đổi này được thể hiển trên remote của bạn.
 
-Ví dụ, nếu hash của commit mà nhánh master của bạn được cho là  `a13b85e`:
+Ví dụ, nếu hash của commit mà nhánh main của bạn được cho là  `a13b85e`:
 
 ```sh
-(master)$ git reset --hard a13b85e
+(main)$ git reset --hard a13b85e
 HEAD is now at a13b85e
 ```
 
 Checkout một nhánh mới để tiếp tục làm việc:
 
 ```sh
-(master)$ git checkout my-branch
+(main)$ git checkout my-branch
 ```
 
 <a name="keep-whole-file"></a>
@@ -667,10 +667,10 @@ Lưu ý: Các giải pháp tăng đột biến được thực hiện để phâ
 <a name="cherry-pick"></a>
 ### Tôi đã thực hiện một số commit trên một nhánh duy nhất nó nên ở trên các nhánh khác nhau
 
-Giả sử bạn đang ở trên nhánh master của bạn. Chạy `git log`, bạn thấy bạn đã thực hiện 2 commit:
+Giả sử bạn đang ở trên nhánh main của bạn. Chạy `git log`, bạn thấy bạn đã thực hiện 2 commit:
 
 ```sh
-(master)$ git log
+(main)$ git log
 
 commit e3851e817c451cc36f2e6f3049db528415e3c114
 Author: Alex Lee <alexlee@example.com>
@@ -693,17 +693,17 @@ Date:   Tue Jul 21 01:12:48 2014 -0400
 
 Hãy lưu ý các hash commit của chúng ta cho mỗi lỗi (`e3851e8` cho #21, `5ea5173` cho #14).
 
-Trước tiên, hãy đặt lại nhánh master của chúng ta về commit chính xác (`a13b85e`):
+Trước tiên, hãy đặt lại nhánh main của chúng ta về commit chính xác (`a13b85e`):
 
 ```sh
-(master)$ git reset --hard a13b85e
+(main)$ git reset --hard a13b85e
 HEAD is now at a13b85e
 ```
 
 Bây giờ, chúng ta có thể tạo ra một nhánh mới cho lỗi của chúng ta #21:
 
 ```sh
-(master)$ git checkout -b 21
+(main)$ git checkout -b 21
 (21)$
 ```
 
@@ -715,11 +715,11 @@ Bây giờ, hãy *cherry-pick* commit cho bug #21 trên dầu của nhánh. Đi�
 
 Tại thời điểm này, có khả năng có thể có xung đột. Hãy xem phần [**There were conflicts**](#merge-conflict) trong [phầnn interactive rebasing trên](#interactive-rebase) để làm thế nào giải quyết xung đột.
 
-Bây giờ chúng ta hãy tạo một nhánh mới cho bug # 14, cũng dựa trên master
+Bây giờ chúng ta hãy tạo một nhánh mới cho bug # 14, cũng dựa trên main
 
 ```sh
-(21)$ git checkout master
-(master)$ git checkout -b 14
+(21)$ git checkout main
+(main)$ git checkout -b 14
 (14)$
 ```
 
@@ -746,7 +746,7 @@ nơi, `upstream` là remote bạn muốn fetch từ đó.
 Nếu bạn thường xuyên push lên remote, bạn sẽ an toàn phần lớn thời gian. Nhưng đôi khi bạn có thể sẽ xóa các nhánh của bạn. Giả sử chúng ta tạo một nhánh và tạo một tệp mới:
 
 ```sh
-(master)$ git checkout -b my-branch
+(main)$ git checkout -b my-branch
 (my-branch)$ git branch
 (my-branch)$ touch foo.txt
 (my-branch)$ ls
@@ -776,31 +776,31 @@ Date:   Tue Jul 29 13:14:46 2014 -0400
     Fixes #6: Force pushing after amending commits
 ```
 
-Bây giờ chúng ta đang chuyển về master và 'vô tình' xóa nhánh của chúng ta
+Bây giờ chúng ta đang chuyển về main và 'vô tình' xóa nhánh của chúng ta
 
 ```sh
-(my-branch)$ git checkout master
-Switched to branch 'master'
-Your branch is up-to-date with 'origin/master'.
-(master)$ git branch -D my-branch
+(my-branch)$ git checkout main
+Switched to branch 'main'
+Your branch is up-to-date with 'origin/main'.
+(main)$ git branch -D my-branch
 Deleted branch my-branch (was 4e3cd85).
-(master)$ echo oh noes, deleted my branch!
+(main)$ echo oh noes, deleted my branch!
 oh noes, deleted my branch!
 ```
 
 Tại thời điểm này, bạn nên làm quen với 'reflog', một logger được nâng cấp. Nó lưu trữ lịch sử của tất cả các hành động trong repo.
 
 ```
-(master)$ git reflog
-69204cd HEAD@{0}: checkout: moving from my-branch to master
+(main)$ git reflog
+69204cd HEAD@{0}: checkout: moving from my-branch to main
 4e3cd85 HEAD@{1}: commit: foo.txt added
-69204cd HEAD@{2}: checkout: moving from master to my-branch
+69204cd HEAD@{2}: checkout: moving from main to my-branch
 ```
 
 Như bạn có thể thấy chúng ta đã có commit hash từ nhánh đã xóa của chúng tôi. Hãy xem liệu chúng ta có thể khôi phục nhánh đã xóa của chúng ta hay không.
 
 ```sh
-(master)$ git checkout -b my-branch-help
+(main)$ git checkout -b my-branch-help
 Switched to a new branch 'my-branch-help'
 (my-branch-help)$ git reset --hard 4e3cd85
 HEAD is now at 4e3cd85 foo.txt added
@@ -815,25 +815,25 @@ Và đấy! Chúng ta đã xoá file trước của chúng ta. `git reflog` cũn
 Để xoá một nhánh remote:
 
 ```sh
-(master)$ git push origin --delete my-branch
+(main)$ git push origin --delete my-branch
 ```
 
 Bạn cũng có thể làm :
 
 ```sh
-(master)$ git push origin :my-branch
+(main)$ git push origin :my-branch
 ```
 
 Để xoá nhánh local:
 
 ```sh
-(master)$ git branch -d my-branch
+(main)$ git branch -d my-branch
 ```
 
 Để xoá một nhánh local *không được* merge đến nhánh hiện tại hoặc một upstream:
 
 ```sh
-(master)$ git branch -D my-branch
+(main)$ git branch -D my-branch
 ```
 
 ### Tôi muốn xoá nhiều nhánh
@@ -841,7 +841,7 @@ Bạn cũng có thể làm :
 Giả sử bạn muốn xoá tất cả nhánh bắt đầu với `fix/`:
 
 ```sh
-(master)$ git branch | grep 'fix/' | xargs git branch -d
+(main)$ git branch | grep 'fix/' | xargs git branch -d
 ```
 
 ### Tôi muốn đổi tên một nhánh
@@ -849,13 +849,13 @@ Giả sử bạn muốn xoá tất cả nhánh bắt đầu với `fix/`:
 Để đổi tên nhánh local hiện tại:
 
 ```sh
-(master)$ git branch -m new-name
+(main)$ git branch -m new-name
 ```
 
 Để đổi tên nhánh local khác:
 
 ```sh
-(master)$ git branch -m old-name new-name
+(main)$ git branch -m old-name new-name
 ```
 
 <a name="i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on"></a>
@@ -864,13 +864,13 @@ Giả sử bạn muốn xoá tất cả nhánh bắt đầu với `fix/`:
 Đầu tiên, fetch tất cả nhánh từ remote:
 
 ```sh
-(master)$ git fetch --all
+(main)$ git fetch --all
 ```
 
 Giả sử bạn muốn checkout sang `daves` từ remote.
 
 ```sh
-(master)$ git checkout --track origin/daves
+(main)$ git checkout --track origin/daves
 Branch daves set up to track remote branch daves from origin.
 Switched to a new branch 'daves'
 ```
@@ -923,14 +923,14 @@ Bằng cách kiểm tra các nhánh remote của bạn, bạn có thể thấy r
 ```sh
 $ git branch -r
   origin/HEAD -> origin/gh-pages
-  origin/master
+  origin/main
 ```
 
-Để thay đổi  `origin/HEAD` để theo dõi `origin/master`, bạn có thể chạy command này:
+Để thay đổi  `origin/HEAD` để theo dõi `origin/main`, bạn có thể chạy command này:
 
 ```sh
 $ git remote set-head origin --auto
-origin/HEAD set to master
+origin/HEAD set to main
 ```
 
 ### Tôi đã thực hiện thay đổi trên nhánh sai
@@ -960,10 +960,10 @@ Bạn có thể đã merge hoặc rebase nhánh hiện tại của bạn với m
 Thật không may, bạn phải bắt buộc push, nếu bạn muốn những thay đổi đó được ánh xạ trên nhánh remote. Điều này là do bạn đã thay đổi lịch sử. Nhánh remote sẽ không chấp nhận thay đổi trừ khi bạn ép buộc. Đây là một trong những lý do chính khiến nhiều người sử dụng một luồng merge, thay vì một luồng rebasing - các nhóm lớn có thể gặp rắc rối với các developer bắt buộc push. Sử dụng điều này một cách thận trọng. Một cách an toàn hơn để sử dụng rebase không phải là để ánh xạ các thay đổi của bạn trên nhánh remte, và thay vào đó thực hiện các thao tác sau:
 
 ```sh
-(master)$ git checkout my-branch
-(my-branch)$ git rebase -i master
-(my-branch)$ git checkout master
-(master)$ git merge --ff-only my-branch
+(main)$ git checkout my-branch
+(my-branch)$ git rebase -i main
+(my-branch)$ git checkout main
+(main)$ git merge --ff-only my-branch
 ```
 
 Để biết thêm hãy xem [this SO thread](https://stackoverflow.com/questions/11058312/how-can-i-use-git-rebase-without-requiring-a-forced-push).
@@ -971,23 +971,23 @@ Thật không may, bạn phải bắt buộc push, nếu bạn muốn những th
 <a name="interactive-rebase"></a>
 ### Tôi cần kết hợp các commit
 
-Giả sử bạn đang làm việc trong một nhánh có / sẽ trở thành một pull-request  trái với `master`. Trong trường hợp đơn giản nhất khi tất cả những gì bạn muốn làm là kết hợp tất cả các commit thành một commit và bạn không quan tâm đến timestamo commit, bạn có thể đặt lại và commit lại. Đảm bảo rằng nhánh master được cập nhật và tất cả các thay đổi của bạn được commit, sau đó:
+Giả sử bạn đang làm việc trong một nhánh có / sẽ trở thành một pull-request  trái với `main`. Trong trường hợp đơn giản nhất khi tất cả những gì bạn muốn làm là kết hợp tất cả các commit thành một commit và bạn không quan tâm đến timestamo commit, bạn có thể đặt lại và commit lại. Đảm bảo rằng nhánh main được cập nhật và tất cả các thay đổi của bạn được commit, sau đó:
 
 ```sh
-(my-branch)$ git reset --soft master
+(my-branch)$ git reset --soft main
 (my-branch)$ git commit -am "New awesome feature"
 ```
 
 Nếu bạn muốn kiểm soát nhiều hơn, và cũng để bảo vệ timestamp, bạn cần phải làm  một vài thứ được gọi là một interactive rebase:
 
 ```sh
-(my-branch)$ git rebase -i master
+(my-branch)$ git rebase -i main
 ```
 
 Nếu bạn không làm việc với một nhánh khác, bạn phải rebase liên quan tới `HEAD` của bạn. Nếu bạn muốn squash 2 commit cuối, bạn sẽ phải rebase lại `HEAD~2`. Cho commit cuối 3, `HEAD~3`,...
 
 ```sh
-(master)$ git rebase -i HEAD~2
+(main)$ git rebase -i HEAD~2
 ```
 
 Sau khi bạn chạy lệnh rebase interactive, bạn sẽ thấy một cái gì đó như thế này trong trình soạn thảo của bạn:
@@ -1047,7 +1047,7 @@ Newer, awesomer features
 # Please enter the commit message for your changes. Lines starting
 # with '#' will be ignored, and an empty message aborts the commit.
 # rebase in progress; onto 8074d12
-# You are currently editing a commit while rebasing branch 'master' on '8074d12'.
+# You are currently editing a commit while rebasing branch 'main' on '8074d12'.
 #
 # Changes to be committed:
 #   modified:   README.md
@@ -1058,20 +1058,20 @@ Newer, awesomer features
 Nếu mọi thứ thành công, bạn sẽ thấy một cái gì đó như thế này:
 
 ```sh
-(master)$ Successfully rebased and updated refs/heads/master.
+(main)$ Successfully rebased and updated refs/heads/main.
 ```
 
 #### Chiến lược merge an toàn
 `--no-commit` thực hiện merge nhưng giả vờ hợp nhất không thành công và không tự động, cho phép người dùng có cơ hội kiểm tra và tinh chỉnh thêm kết quả merge trước khi commit. `no-ff` duy trì bằng chứng rằng một nhánh tính năng đã từng tồn tại, giữ cho lịch sử dự án nhất quán.
 
 ```sh
-(master)$ git merge --no-ff --no-commit my-branch
+(main)$ git merge --no-ff --no-commit my-branch
 ```
 
 #### Tôi cần merge một nhánh vào một commit duy nhất
 
 ```sh
-(master)$ git merge --squash my-branch
+(main)$ git merge --squash my-branch
 ```
 
 <a name="rebase-unpushed-commits"></a>
@@ -1080,7 +1080,7 @@ Nếu mọi thứ thành công, bạn sẽ thấy một cái gì đó như thế
 Đôi khi bạn có một số công việc đang tiến hành commit bạn muốn kết hợp trước khi bạn đẩy chúng lên upstream. Bạn không muốn vô tình kết hợp bất kỳ commit nào đã được push lên upstream vì một người khác có thể đã thực hiện các commit tham chiếu đến chúng.
 
 ```sh
-(master)$ git rebase -i @{u}
+(main)$ git rebase -i @{u}
 ```
 
 Điều này sẽ làm một interactive rebase mà chỉ liệt kê các commit mà bạn chưa push, vì vậy nó sẽ được an toàn để sắp xếp lại / sửa chữa / squash bất cứ điều gì trong danh sách
@@ -1097,7 +1097,7 @@ Lệnh này có sẵn kể từ phiên bản Git >= 1.7.4
 
 ### Tôi cần cập nhật commit cha của nhánh của tôi
 
-Giả sử tôi có một nhánh master, một nhánh feature-1 tách nhánh từ master và một nhánh feature-2 tách nhánh từ feature-1. Nếu tôi thực hiện commit đối với feature-1, thì commit của feature-2 không còn chính xác nữa (nó phải là phần đầu của feature-1, vì chúng ta đã phân nhánh nó). Chúng ta có thể sửa điều này với `git rebase --onto`.
+Giả sử tôi có một nhánh main, một nhánh feature-1 tách nhánh từ main và một nhánh feature-2 tách nhánh từ feature-1. Nếu tôi thực hiện commit đối với feature-1, thì commit của feature-2 không còn chính xác nữa (nó phải là phần đầu của feature-1, vì chúng ta đã phân nhánh nó). Chúng ta có thể sửa điều này với `git rebase --onto`.
 
 ```sh
 (feature-2)$ git rebase --onto feature-1 <the first commit in your feature-2 branch that you don't want to bring along> feature-2
@@ -1110,13 +1110,13 @@ Giả sử tôi có một nhánh master, một nhánh feature-1 tách nhánh t�
 Để kiểm cháu tất cả commit trên một nhánh được merge vào nhánh khác, bạn nên diff giữa các head (hoặc mọi commit) của những nhánh đó:
 
 ```sh
-(master)$ git log --graph --left-right --cherry-pick --oneline HEAD...feature/120-on-scroll
+(main)$ git log --graph --left-right --cherry-pick --oneline HEAD...feature/120-on-scroll
 ```
 
 Điều này sẽ cho bạn biết nếu bất kỳ commit trong một nhưng không phải là nhánh khác, và sẽ cung cấp cho bạn một danh sách của bất kỳ nonshared giữa các nhánh. Một lựa chọn khác là làm điều này:
 
 ```sh
-(master)$ git log master ^feature/120-on-scroll --no-merges
+(main)$ git log main ^feature/120-on-scroll --no-merges
 ```
 
 ### Các vấn đề có thể xảy ra với interactive rebases
@@ -1131,7 +1131,7 @@ noop
 
 Điều này có nghĩa bạn đang cố rebase lại một nhánh mà là một commit giống hệt nhau hoặc là *ahead* của nhánh hiện tại. Bạn có thể thử:
 
-* đảm bảo nhánh master của bạn là nơi nó cần
+* đảm bảo nhánh main của bạn là nơi nó cần
 * rebase lại `HEAD~2` hoặc sớm hơn
 
 <a name="merge-conflict"></a>
@@ -1166,7 +1166,7 @@ Bạn sẽ cần phải giải quyết sự khác biệt giữa code đã đư�
 Nếu bạn muốn giữ phiên bản code của một nhánh, bạn có thể sử dụng `--ours` hoặc `--theirs`:
 
 ```sh
-(master*)$ git checkout --ours README.md
+(main*)$ git checkout --ours README.md
 ```
 
 - Khi *đang merge*, sử dụng `--ours` để giữa các thay đổi từ nhánh local, hoặc `--theirs` để giữ các thay đổi từ nhánh khác.
@@ -1175,7 +1175,7 @@ Nếu bạn muốn giữ phiên bản code của một nhánh, bạn có thể s
 Nếu việc merge phức tạp hơn, bạn có thể sử dụng trình chỉnh sửa khác biệt trực quan:
 
 ```sh
-(master*)$ git mergetool -t opendiff
+(main*)$ git mergetool -t opendiff
 ```
 
 Sau khi bạn đã giải quyết tất cả xung đột và đã kiểm tra code của mình, `git add` các file đã thay đổi và sau đó tiếp tục rebase với `git rebase --continue`
@@ -1387,7 +1387,7 @@ From github.com:foo/bar
 ### Xuất một repository ra một file Zip
 
 ```sh
-$ git archive --format zip --output /full/path/to/zipfile.zip master
+$ git archive --format zip --output /full/path/to/zipfile.zip main
 ```
 ### Push một nhánh và một tag có tên giống nhau
 
@@ -1417,21 +1417,21 @@ $ git push origin refs/tags/<tag-name>
 ### Tôi muốn thay đổi cách viết hoa của tên tệp mà không thay đổi nội dung của tệp
 
 ```sh
-(master)$ git mv --force myfile MyFile
+(main)$ git mv --force myfile MyFile
 ```
 
 ### Tôi muốn ghi đè lên các tệp local khi thực hiện lệnh git pull
 
 ```sh
-(master)$ git fetch --all
-(master)$ git reset --hard origin/master
+(main)$ git fetch --all
+(main)$ git reset --hard origin/main
 ```
 
 <a href="remove-from-git"></a>
 ### Tôi muốn xóa một tệp khỏi Git nhưng vẫn giữ tệp
 
 ```sh
-(master)$ git rm --cached log.txt
+(main)$ git rm --cached log.txt
 ```
 
 ### Tôi muốn revert tệp về bản sửa đổi cụ thể
@@ -1439,13 +1439,13 @@ $ git push origin refs/tags/<tag-name>
 Giả sử mã hash của commit bạn muốn c5f567:
 
 ```sh
-(master)$ git checkout c5f567 -- file1/to/restore file2/to/restore
+(main)$ git checkout c5f567 -- file1/to/restore file2/to/restore
 ```
 
 Nếu bạn muốn revert các thay đổi được thực hiện chỉ 1 commit trước c5f567, vượt qua commit hash như c5f567~1:
 
 ```sh
-(master)$ git checkout c5f567~1 -- file1/to/restore file2/to/restore
+(main)$ git checkout c5f567~1 -- file1/to/restore file2/to/restore
 ```
 
 ### Tôi muốn liệt kê các thay đổi của một tệp cụ thể giữa các commit hoặc các nhánh
@@ -1459,7 +1459,7 @@ $ git diff HEAD:path_to_file/file c5f567:path_to_file/file
 Cùng đi cho các nhánh:
 
 ```sh
-$ git diff master:path_to_file/file staging:path_to_file/file
+$ git diff main:path_to_file/file staging:path_to_file/file
 ```
 
 ### Tôi muốn Git bỏ qua những thay đổi đối với một tệp cụ thể
@@ -1530,7 +1530,7 @@ Bạn cũng có thể đặt tên tệp là .keep, trong trường hợp dòng t
 
 ### Tôi muốn cache một username và password cho một repository
 
-Bạn có thể có một repository yêu cầu xác thực.  Trong trường hợp này bạn có thể cache một username và password vì vậy bạn không phải nhập nó vào mỗi lần push / pull. Việc xác thực có thể làm điều này cho bạn. 
+Bạn có thể có một repository yêu cầu xác thực.  Trong trường hợp này bạn có thể cache một username và password vì vậy bạn không phải nhập nó vào mỗi lần push / pull. Việc xác thực có thể làm điều này cho bạn.
 
 ```sh
 $ git config --global credential.helper cache
@@ -1582,21 +1582,21 @@ Vì vậy, bạn đang say - bạn `reset` vài thứ, hoặc bạn merge sai nh
 Đây là những gì `git reflog` cho. `reflog` theo dõi bất kỳ thay đổi nào đối với mẹo của nhánh, ngay cả khi mẹo đó không được tham chiếu bởi nhánh hoặc tag. Về cơ bản, mỗi lần HEAD thay đổi, một mục mới được thêm vào reflog. Điều này chỉ hoạt động đối với các repository cục bộ, thật đáng buồn, và nó chỉ theo dõi các chuyển động (ví dụ: không thay đổi một tệp không được ghi ở bất kỳ đâu).
 
 ```sh
-(master)$ git reflog
+(main)$ git reflog
 0a2e358 HEAD@{0}: reset: moving to HEAD~2
-0254ea7 HEAD@{1}: checkout: moving from 2.2 to master
-c10f740 HEAD@{2}: checkout: moving from master to 2.2
+0254ea7 HEAD@{1}: checkout: moving from 2.2 to main
+c10f740 HEAD@{2}: checkout: moving from main to 2.2
 ```
 
-Các reflog ở trên cho thấy một checkout từ master đến nhánh 2.2 và trở lại. Từ đó, có một thiết lập cứng để một commit cũ hơn. Hoạt động mới nhất được thể hiện ở đầu được gắn nhãn `HEAD@{0}`.
+Các reflog ở trên cho thấy một checkout từ main đến nhánh 2.2 và trở lại. Từ đó, có một thiết lập cứng để một commit cũ hơn. Hoạt động mới nhất được thể hiện ở đầu được gắn nhãn `HEAD@{0}`.
 
-Nếu nó chỉ ra rằng bạn vô tình di chuyển trở lại, các reflog sẽ chứa commit master chỉ đến (0254ea7) trước khi bạn vô tình giảm 2 commit
+Nếu nó chỉ ra rằng bạn vô tình di chuyển trở lại, các reflog sẽ chứa commit main chỉ đến (0254ea7) trước khi bạn vô tình giảm 2 commit
 
 ```sh
 $ git reset --hard 0254ea7
 ```
 
-Sử dụng `git reset` sau đó nó có thể thay đổi master trở về commit trước đó. Điều này cung cấp sự an toàn trong trường hợp lịch sử đã vô tình thay đổi.
+Sử dụng `git reset` sau đó nó có thể thay đổi main trở về commit trước đó. Điều này cung cấp sự an toàn trong trường hợp lịch sử đã vô tình thay đổi.
 
 (đã sao chép và chỉnh sửa từ [Source](https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog)).
 

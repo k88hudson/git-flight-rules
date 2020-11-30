@@ -57,7 +57,7 @@ Toutes les commandes devraient fonctionner pour les versions de Git au moins sup
     - [Créer une branche à partir d'un commit](#cr%C3%A9er-une-branche-%C3%A0-partir-dun-commit)
     - [J'ai pull depuis/vers la mauvaise branche](#jai-pull-depuisvers-la-mauvaise-branche)
     - [Je veux supprimer mes commits locaux afin que ma branche soit pareille à celle sur le serveur](#je-veux-supprimer-mes-commits-locaux-afin-que-ma-branche-soit-pareille-%C3%A0-celle-sur-le-serveur)
-    - [J'ai commité sur master au lieu d'une nouvelle branche](#jai-commit%C3%A9-sur-master-au-lieu-dune-nouvelle-branche)
+    - [J'ai commité sur main au lieu d'une nouvelle branche](#jai-commit%C3%A9-sur-main-au-lieu-dune-nouvelle-branche)
     - [Je veux séparer tout un fichier d'un autre ref-ish](#je-veux-s%C3%A9parer-tout-un-fichier-dun-autre-ref-ish)
     - [J'ai fait plusieurs commits sur une même branche qui auraient dû être sur plusieurs branches](#jai-fait-plusieurs-commits-sur-une-m%C3%AAme-branche-qui-auraient-d%C3%BB-%C3%AAtre-sur-plusieurs-branches)
     - [Je veux supprimer mes branches locales qui ont été supprimée sur le dépôt distant](#je-veux-supprimer-mes-branches-locales-qui-ont-%C3%A9t%C3%A9-supprim%C3%A9e-sur-le-d%C3%A9p%C3%B4t-distant)
@@ -160,7 +160,7 @@ $ git clone [url] nom-du-nouveau-dossier
 Imaginons que vous venez tout juste d'enregistrer des changements à l'aveugle avec {code0}git commit -a{/code0} et que vous n'êtes pas sûr·e du contenu réel du commit que vous venez d'effectuer. Vous pouvez visualiser le dernier commit sur votre HEAD actuel avec :
 
 ```sh
-(master)$ git show
+(main)$ git show
 ```
 
 Ou :
@@ -288,13 +288,13 @@ Si vous avez accidentellement fait un `git reset --hard`, vous pouvez normalemen
 À noter : Cela n'est valide que si votre travail est sauvegardé, c'est à dire dans un commit ou un remisage. `git reset --hard` *supprimera* les modifications non commitées, donc utilisez cela avec précaution (une option plus sûre est `git reset --keep`).
 
 ```sh
-(master)$ git reflog
+(main)$ git reflog
 ```
 
 Vous verrez une liste de vos précédents commits, et un commit pour la réinitialisation. Choisissez le SHA du commit vers lequel vous souhaitez retourner, et réinitialisez à nouveau :
 
 ```sh
-(master)$ git reset --hard SHA1234
+(main)$ git reset --hard SHA1234
 ```
 
 Et cela devrait faire l'affaire.
@@ -420,7 +420,7 @@ Si vous voulez vous débarrasser de toutes vos modifications locales indexées e
 ```sh
 (ma-branche)$ git reset --hard
 # ou
-(master)$ git checkout -f
+(main)$ git checkout -f
 ```
 
 Cette commande désindexera tous les fichiers que vous avez pu indexer avec `git add` :
@@ -556,7 +556,7 @@ $ git checkout -b <branche> <SHA1_DU_COMMIT>
 C'est une autre occasion d'utiliser `git reflog` afin de voir où votre HEAD pointait avant le mauvais `pull` :
 
 ```sh
-(master)$ git reflog
+(main)$ git reflog
 ab7555f HEAD@{0}: pull origin wrong-branch: Fast-forward
 c5bc55a HEAD@{1}: checkout: checkout message goes here
 ```
@@ -588,41 +588,41 @@ Assurez-vous que vous n'avez pas poussé vos modifications sur le serveur.
 Une des façons de faire pour réinitialiser votre branche afin qu'elle corresponde à origin (afin d'avoir la même chose que le dépôt distant) est de lancer ceci :
 
 ```sh
-(master)$ git reset --hard origin/ma-branche
+(main)$ git reset --hard origin/ma-branche
 ```
 
 <a name="commit-wrong-branch"></a>
-### J'ai commité sur master au lieu d'une nouvelle branche
+### J'ai commité sur main au lieu d'une nouvelle branche
 
-Créez la nouvelle branche tout en restant sur master :
+Créez la nouvelle branche tout en restant sur main :
 
 ```sh
-(master)$ git branch ma-branche
+(main)$ git branch ma-branche
 ```
 
-Réinitialisez la branche master vers le commit précédent :
+Réinitialisez la branche main vers le commit précédent :
 
 ```sh
-(master)$ git reset --hard HEAD^
+(main)$ git reset --hard HEAD^
 ```
 
 `HEAD^` est un raccourci pour `HEAD^1`. Cela indique le premier parent de `HEAD`, de la même façon que `HEAD^2` indique le second parent du commit (des fusions peuvent avoir deux parents).
 
 Notez que `HEAD^2` ne signifie **pas** la même chose que `HEAD~2` (visitez [ce lien](http://www.paulboxley.com/blog/2011/06/git-caret-and-tilde) pour plus d'informations).
 
-Alternativement, si vous ne souhaitez pas utiliser `HEAD^`, retrouvez le hash du commit vers lequel vous souhaitez remettre votre branche master (`git log` devrait faire l'affaire). Puis réinitialisez vers ce hash. `git push` s'assurera que la modification est reflétée sur le serveur distant.
+Alternativement, si vous ne souhaitez pas utiliser `HEAD^`, retrouvez le hash du commit vers lequel vous souhaitez remettre votre branche main (`git log` devrait faire l'affaire). Puis réinitialisez vers ce hash. `git push` s'assurera que la modification est reflétée sur le serveur distant.
 
-Par exemple, si le hash du commit sur lequel votre branche master est supposée être est `a13b85e` :
+Par exemple, si le hash du commit sur lequel votre branche main est supposée être est `a13b85e` :
 
 ```sh
-(master)$ git reset --hard a13b85e
+(main)$ git reset --hard a13b85e
 HEAD is now at a13b85e
 ```
 
 Déplacez-vous vers la nouvelle branche pour continuer de travailler :
 
 ```sh
-(master)$ git checkout ma-branche
+(main)$ git checkout ma-branche
 ```
 
 <a name="keep-whole-file"></a>
@@ -665,10 +665,10 @@ Note: Les pics de solutions servent à analyser ou résoudre un problème. Ces s
 <a name="cherry-pick"></a>
 ### J'ai fait plusieurs commits sur une même branche qui auraient dû être sur plusieurs branches
 
-Admettons que vous êtes sur votre branche master. En lançant `git log`, vous remarquez que vous avez fait deux commits :
+Admettons que vous êtes sur votre branche main. En lançant `git log`, vous remarquez que vous avez fait deux commits :
 
 ```sh
-(master)$ git log
+(main)$ git log
 
 commit e3851e817c451cc36f2e6f3049db528415e3c114
 Author: Alex Lee <alexlee@example.com>
@@ -691,17 +691,17 @@ Date:   Tue Jul 21 01:12:48 2014 -0400
 
 Notons dans un coin les hashes des commits pour chaque bug (`e3851e8` pour le #21, `5ea5173` pour le #14).
 
-Pour commencer, réinitialisons notre branche master sur le bon commit (`a13b85e`) :
+Pour commencer, réinitialisons notre branche main sur le bon commit (`a13b85e`) :
 
 ```sh
-(master)$ git reset --hard a13b85e
+(main)$ git reset --hard a13b85e
 HEAD is now at a13b85e
 ```
 
 Maintenant, nous pouvons créer une nouvelle branche pour le bug #21 :
 
 ```sh
-(master)$ git checkout -b 21
+(main)$ git checkout -b 21
 (21)$
 ```
 
@@ -713,11 +713,11 @@ Maintenant, faisons un `cherry-pick` du commit pour le bug #21 par-dessus notre 
 
 Lors de cette étape, il est possible qu'il y ait des conflits. Regardez la section [**Il y a eu des conflits**](#merge-conflict) dans la section [faire un rebase interactif](#interactive-rebase) ci-dessus pour savoir comment résoudre ces conflits.
 
-Maintenant, créons une nouvelle branche pour le bug #14, aussi basée sur master :
+Maintenant, créons une nouvelle branche pour le bug #14, aussi basée sur main :
 
 ```sh
-(21)$ git checkout master
-(master)$ git checkout -b 14
+(21)$ git checkout main
+(main)$ git checkout -b 14
 (14)$
 ```
 
@@ -743,7 +743,7 @@ où `upstream` est le dépôt distant depuis lequel vous voulez mettre à jour.
 Si vous poussez régulièrement sur la branche distante, vous devriez ne pas avoir de problème la plupart du temps. Mais il arrive parfois que vous finissez par supprimer vos branches. Admettons que nous créons une nouvelle branche avec un nouveau fichier :
 
 ```sh
-(master)$ git checkout -b ma-branche
+(main)$ git checkout -b ma-branche
 (ma-branceh)$ git branch
 (ma-branche)$ touch foo.txt
 (ma-branche)$ ls
@@ -773,31 +773,31 @@ Date:   Tue Jul 29 13:14:46 2014 -0400
     Correction #6: Push de force après avoir édité les commits
 ```
 
-Maintenant, revenons sur master et supprimons notre branche "par accident" :
+Maintenant, revenons sur main et supprimons notre branche "par accident" :
 
 ```sh
-(ma-branche)$ git checkout master
-Switched to branch 'master'
-Your branch is up-to-date with 'origin/master'.
-(master)$ git branch -D my-branch
+(ma-branche)$ git checkout main
+Switched to branch 'main'
+Your branch is up-to-date with 'origin/main'.
+(main)$ git branch -D my-branch
 Deleted branch ma-branche (was 4e3cd85).
-(master)$ echo oh non, j'ai supprimé ma branche !
+(main)$ echo oh non, j'ai supprimé ma branche !
 oh non, j'ai supprimé ma branche !
 ```
 
 À cette étape, vous devriez devenir familier avec `reflog`, un logueur amélioré. Il stocke l'historique de toutes les actions dans le dépôt :
 
 ```
-(master)$ git reflog
-69204cd HEAD@{0}: checkout: moving from ma-branche to master
+(main)$ git reflog
+69204cd HEAD@{0}: checkout: moving from ma-branche to main
 4e3cd85 HEAD@{1}: commit: ajout de foo.txt
-69204cd HEAD@{2}: checkout: moving from master to ma-branche
+69204cd HEAD@{2}: checkout: moving from main to ma-branche
 ```
 
 Comme vous pouvez le remarquer, nous avons le hash du commit de notre branche supprimée. Voyons voir si nous pouvons restaurer notre branche supprimée.
 
 ```sh
-(master)$ git checkout -b ma-branche-help
+(main)$ git checkout -b ma-branche-help
 Switched to a new branch 'ma-branche-help'
 (ma-branche-help)$ git reset --hard 4e3cd85
 HEAD is now at 4e3cd85 ajout de foo.txt
@@ -812,25 +812,25 @@ Voilà ! Nous avons récupéré notre fichier supprimé. `git reflog` est aussi 
 Pour supprimer une branche distante :
 
 ```sh
-(master)$ git push origin --delete ma-branche
+(main)$ git push origin --delete ma-branche
 ```
 
 Vous pouvez aussi faire :
 
 ```sh
-(master)$ git push origin :ma-branche
+(main)$ git push origin :ma-branche
 ```
 
 Pour supprimer une branche locale :
 
 ```sh
-(master)$ git branch -d ma-branche
+(main)$ git branch -d ma-branche
 ```
 
 Pour supprimer une branche locale qui *n'a pas* été fusionnée vers la branche actuelle ou une branche distante :
 
 ```sh
-(master)$ git branch -D ma-branche
+(main)$ git branch -D ma-branche
 ```
 
 ### Je veux supprimer plusieurs branches
@@ -838,7 +838,7 @@ Pour supprimer une branche locale qui *n'a pas* été fusionnée vers la branche
 Admettons que vous voulez supprimer toutes les branches qui commencent par `fix/` :
 
 ```sh
-(master)$ git branch | grep 'fix/' | xargs git branch -d
+(main)$ git branch | grep 'fix/' | xargs git branch -d
 ```
 
 ### Je veux renommer une branche
@@ -846,13 +846,13 @@ Admettons que vous voulez supprimer toutes les branches qui commencent par `fix/
 Je veux renommer la branche actuelle (locale) :
 
 ```sh
-(master)$ git branch -m nouveau-nom
+(main)$ git branch -m nouveau-nom
 ```
 
 Pour renommer une autre branche (locale) :
 
 ```sh
-(master)$ git branch -m ancien-nom nouveau-nom
+(main)$ git branch -m ancien-nom nouveau-nom
 ```
 
 <a name="i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on"></a>
@@ -861,13 +861,13 @@ Pour renommer une autre branche (locale) :
 Pour commencer, récupérez toutes les branches depuis le dépôt distant :
 
 ```sh
-(master)$ git fetch --all
+(main)$ git fetch --all
 ```
 
 Admettons que vous souhaitez vous déplacer sur `daves` depuis le dépôt distant :
 
 ```sh
-(master)$ git checkout --track origin/daves
+(main)$ git checkout --track origin/daves
 Branch daves set up to track remote branch daves from origin.
 Switched to a new branch 'daves'
 ```
@@ -920,14 +920,14 @@ En vérifiant vos branches distantes, vous pouvez voir lesquelles d'entre-elles 
 ```sh
 $ git branch -r
   origin/HEAD -> origin/gh-pages
-  origin/master
+  origin/main
 ```
 
-Pour changer cela afin que `origin/HEAD` suive `origin/master`, vous pouvez lancer cette commande :
+Pour changer cela afin que `origin/HEAD` suive `origin/main`, vous pouvez lancer cette commande :
 
 ```sh
 $ git remote set-head origin --auto
-origin/HEAD set to master
+origin/HEAD set to main
 ```
 
 ### J'ai fait des modifications sur la mauvaise branche
@@ -957,10 +957,10 @@ Il se peut que vous avez fait une fusion ou un rebase sur votre branche actuelle
 Malheureusement, vous devez pousser de force si vous souhaitez que ces modifications soient répercutées sur la branche distante. C'est parce que vous avez changé l'historique. La branche distante n'acceptera pas les modifications, sauf si vous poussez de force. C'est l'une des principales raisons pour lesquelles de nombreuses personnes utilisent un flux de travail à base de fusions plutôt qu'un flux de travail à base de rebase : les grandes équipes peuvent avoir des problèmes avec les développeurs qui poussent de force. Utilisez ceci avec prudence. Une façon plus sûre d'utiliser rebase est de ne pas du tout refléter vos modifications sur la branche distante, mais plutôt de procéder de la manière suivante :
 
 ```sh
-(master)$ git checkout ma-branche
-(ma-branche)$ git rebase -i master
-(ma-branche)$ git checkout master
-(master)$ git merge --ff-only ma-branche
+(main)$ git checkout ma-branche
+(ma-branche)$ git rebase -i main
+(ma-branche)$ git checkout main
+(main)$ git merge --ff-only ma-branche
 ```
 
 Pour plus d'informations, visitez [ce thread de SO](https://stackoverflow.com/questions/11058312/how-can-i-use-git-rebase-without-requiring-a-forced-push).
@@ -968,23 +968,23 @@ Pour plus d'informations, visitez [ce thread de SO](https://stackoverflow.com/qu
 <a name="interactive-rebase"></a>
 ### J'ai besoin de combiner des commits
 
-Admettons que vous êtes en train de travailler sur une branche qui sera ou est dans une demande de fusion vers `master`. Dans le cas le plus simple, il suffit de combiner *tous* vos commits en un seul et vous vous fichez des timestamps des commits, vous pouvez faire un reset et recommiter. Assurez-vous que la branche master est à jour et que toutes vos modifications sont commitées, puis faites :
+Admettons que vous êtes en train de travailler sur une branche qui sera ou est dans une demande de fusion vers `main`. Dans le cas le plus simple, il suffit de combiner *tous* vos commits en un seul et vous vous fichez des timestamps des commits, vous pouvez faire un reset et recommiter. Assurez-vous que la branche main est à jour et que toutes vos modifications sont commitées, puis faites :
 
 ```sh
-(ma-branche)$ git reset --soft master
+(ma-branche)$ git reset --soft main
 (ma-branche)$ git commit -am "Nouvelle fonctionnalité géniale"
 ```
 
 Si vous voulez plus de contrôle, et également conserver les timestamps, vous devez faire ce qu'on appelle un rebase interactif :
 
 ```sh
-(ma-branche)$ git rebase -i master
+(ma-branche)$ git rebase -i main
 ```
 
 Si vous ne travaillez pas par rapport à une autre branche, vous allez devoir `rebase` relativement à votre `HEAD`. Si vous voulez combiner les 2 derniers commits par exemple, vous allez devoir `rebase` par rapport à `HEAD~2`. Pour les 3 derniers, `HEAD~3`, etc.
 
 ```sh
-(master)$ git rebase -i HEAD~2
+(main)$ git rebase -i HEAD~2
 ```
 
 Après avoir lancé votre commande `rebase`, vous verrez quelque chose dans le genre dans votre éditeur de texte :
@@ -1044,7 +1044,7 @@ Nouvelles fonctionnalités encore plus géniales
 # Please enter the commit message for your changes. Lines starting
 # with '#' will be ignored, and an empty message aborts the commit.
 # rebase in progress; onto 8074d12
-# You are currently editing a commit while rebasing branch 'master' on '8074d12'.
+# You are currently editing a commit while rebasing branch 'main' on '8074d12'.
 #
 # Changes to be committed:
 #   modified:   README.md
@@ -1055,20 +1055,20 @@ Nouvelles fonctionnalités encore plus géniales
 Si tout se passe bien, vous devriez voir quelque chose comme ceci :
 
 ```sh
-(master)$ Successfully rebased and updated refs/heads/master.
+(main)$ Successfully rebased and updated refs/heads/main.
 ```
 
 #### Stratégie de fusion sûre
 `--no-commit` fait une fusion mais prétend que la fusion a échoué et ne commit pas automatiquement, laissant la chance à l'utilisateur d'inspecter plus et de bidouiller plus les résultats de la fusion avant de commiter. `no-ff` garde une preuve qu'une branche de fonctionnalité a auparavant existé, gardant ainsi l'historique du projet consistant :
 
 ```sh
-(master)$ git merge --no-ff --no-commit ma-branche
+(main)$ git merge --no-ff --no-commit ma-branche
 ```
 
 #### J'ai besoin de fusionner deux branches en un seul commit
 
 ```sh
-(master)$ git merge --squash ma-branche
+(main)$ git merge --squash ma-branche
 ```
 
 <a name="rebase-unpushed-commits"></a>
@@ -1077,7 +1077,7 @@ Si tout se passe bien, vous devriez voir quelque chose comme ceci :
 Parfois, vous avez plusieurs commits en cours que vous souhaitez combiner avant de les pousser sur l'upstream. Vous ne voulez pas combiner des commits qui ont déjà été poussés sur l'upstream par accident, car quelqu'un d'autre a peut-être déjà effectué des commits qui y font référence :
 
 ```sh
-(master)$ git rebase -i @{u}
+(main)$ git rebase -i @{u}
 ```
 
 Cela fera un rebase interactif que liste seulement les commits que vous n'avez pas poussé, afin que cela soit plus sûr de réordonner/corriger/combiner n'importe lesquels de la liste.
@@ -1094,26 +1094,26 @@ Cette commande est disponible dans Git depuis les versions >= 1.7.4
 
 ### J'ai besoin de mettre à jour le commit parent de ma branche
 
-Admettons que vous avez une branche master, une branche feature-1 créée à partir de master, et une branche feature-2 créée à partir de feature-1, puis que le commit parent de feature-2 n'est plus le bon (il devrait être celui correspondant au HEAD de feature-1, étant donné que notre branche a été créée à partir de celui-ci). Vous pouvez réparer ça avec `git rebase --onto` :
+Admettons que vous avez une branche main, une branche feature-1 créée à partir de main, et une branche feature-2 créée à partir de feature-1, puis que le commit parent de feature-2 n'est plus le bon (il devrait être celui correspondant au HEAD de feature-1, étant donné que notre branche a été créée à partir de celui-ci). Vous pouvez réparer ça avec `git rebase --onto` :
 
 ```sh
 (feature-2)$ git rebase --onto feature-1 <le premier commit dans votre branche feature-2 que vous ne voulez pas ramene> feature-2
 ```
 
-Cela peut vous venir en aide dans les situations délicates où vous avez une fonctionnalité créée sur la base d'une autre fonctionnalité qui n'a pas encore été fusionnée, et qu'une correction de bug sur la branche feature-1 a besoin d'être reflétée sur votre branche feature-2.  
+Cela peut vous venir en aide dans les situations délicates où vous avez une fonctionnalité créée sur la base d'une autre fonctionnalité qui n'a pas encore été fusionnée, et qu'une correction de bug sur la branche feature-1 a besoin d'être reflétée sur votre branche feature-2.
 
 ### Vérifier si tous les commits d'une branche sont fusionnés
 
 Pour vérifier si tous les commits d'une branche sont fusionnés sur une autre branche, vous devriez comparer les HEAD (ou n'importe quel autre commit) de ces branches :
 
 ```sh
-(master)$ git log --graph --left-right --cherry-pick --oneline HEAD...feature/120-on-scroll
+(main)$ git log --graph --left-right --cherry-pick --oneline HEAD...feature/120-on-scroll
 ```
 
 Cela vous dira si des commits sont dans l'une mais pas dans l'autre, et vous donnera une liste de tout ce qui n'est pas commun aux deux branches. Une alternative est de faire ceci :
 
 ```sh
-(master)$ git log master ^feature/120-on-scroll --no-merges
+(main)$ git log main ^feature/120-on-scroll --no-merges
 ```
 
 ### Problèmes possibles avec les rebase interactifs
@@ -1128,7 +1128,7 @@ noop
 
 Cela signifie que vous êtes en train de rebaser par rapport à une branche qui a un commit identique, ou qui est *en avance* par rapport à votre branche actuelle. Vous pouvez essayer :
 
-* de vous assurez que votre branche master est là où elle devrait être
+* de vous assurez que votre branche main est là où elle devrait être
 * de rebaser par rapport à `HEAD~2` ou plus tôt à la place
 
 <a name="merge-conflict"></a>
@@ -1163,7 +1163,7 @@ Vous aurez besoin de résoudre les différences entre le code qui fut ajouté da
 Si vous voulez garder la version du code d'une des branches, vous pouvez utiliser `--ours` ou `--theirs` :
 
 ```sh
-(master*)$ git checkout --ours README.md
+(main*)$ git checkout --ours README.md
 ```
 
 - Quand vous *fusionnez*, utilisez `--ours` pour garder les modifications de la branche locale, ou `--theirs` pour garder les modifications de l'autre branche.
@@ -1172,7 +1172,7 @@ Si vous voulez garder la version du code d'une des branches, vous pouvez utilise
 Si les fusions sont plus complexes, vous pouvez utiliser un éditeur de diff visuel :
 
 ```sh
-(master*)$ git mergetool -t opendiff
+(main*)$ git mergetool -t opendiff
 ```
 
 Après avoir résolu tous les conflits et testé votre code, faite un `git add` sur les fichiers que vous avez modifiés, puis continuez le rebase avec `git rebase --continue` :
@@ -1356,7 +1356,7 @@ $ git push <remote> :refs/tags/<nom_du_tag>
 <a name="recover-tag"></a>
 ### Récupérer un tag supprimé
 
-Si vous voulez récupérer un tag qui a déjà été supprimé, vous pouvez le faire en suivant ces étapes :  
+Si vous voulez récupérer un tag qui a déjà été supprimé, vous pouvez le faire en suivant ces étapes :
 Tout d'abord, vous devez retrouver le tag inaccessible en question :
 
 ```sh
@@ -1384,7 +1384,7 @@ From github.com:foo/bar
 ### Exporter un dépôt comme fichier Zip
 
 ```sh
-$ git archive --format zip --output /full/path/to/zipfile.zip master
+$ git archive --format zip --output /full/path/to/zipfile.zip main
 ```
 ### Pousser une branche et un tag qui ont le même nom
 
@@ -1414,21 +1414,21 @@ $ git push origin refs/tags/<nom-du-tag>
 ### Je veux changer la capitalisation du nom d'un fichier, sans changer son contenu
 
 ```sh
-(master)$ git mv --force monFichier MonFichier
+(main)$ git mv --force monFichier MonFichier
 ```
 
 ### Je veux écraser des fichiers locaux en faisant un git pull
 
 ```sh
-(master)$ git fetch --all
-(master)$ git reset --hard origin/master
+(main)$ git fetch --all
+(main)$ git reset --hard origin/main
 ```
 
 <a href="remove-from-git"></a>
 ### Je veux retirer un fichier de Git mais garder le fichier
 
 ```sh
-(master)$ git rm --cached log.txt
+(main)$ git rm --cached log.txt
 ```
 
 ### Je veux rétablir un fichier à une version spécifique
@@ -1436,13 +1436,13 @@ $ git push origin refs/tags/<nom-du-tag>
 Supposons que le hash du commit que vous voulez est `c5f567` :
 
 ```sh
-(master)$ git checkout c5f567 -- file1/to/restore file2/to/restore
+(main)$ git checkout c5f567 -- file1/to/restore file2/to/restore
 ```
 
 Si vous voulez rétablir les changements effectués un commit avant `c5f567`, passez le hash du commit comme étant `c5f567~1` :
 
 ```sh
-(master)$ git checkout c5f567~1 -- file1/to/restore file2/to/restore
+(main)$ git checkout c5f567~1 -- file1/to/restore file2/to/restore
 ```
 
 ### Je veux lister les changements d'un fichier spécifique entre deux commits ou branches
@@ -1456,7 +1456,7 @@ $ git diff HEAD:path_to_file/file c5f567:path_to_file/file
 Il en est de même pour les branches :
 
 ```sh
-$ git diff master:path_to_file/file staging:path_to_file/file
+$ git diff main:path_to_file/file staging:path_to_file/file
 ```
 
 ### Je veux que Git ignore les changements d'un fichier spécifique
@@ -1579,21 +1579,21 @@ Donc, vous êtes fichu - vous avez `reset` quelque chose, ou vous avez fusionné
 C'est là qu'intervient `git reflog`. `reflog` garde trace de tous les changements du bout de la branche, même si ce dernier n'est pas référencé par une branche ou un tag. Fondamentalement, chaque fois que le HEAD change, une nouvelle entrée est ajoutée au reflog. Cela marche seulement pour les dépôts locaux, malheureusement, et ne trace que les mouvements (pas les changements d'un fichier qui n'ont été enregistrés nulle part, par exemple).
 
 ```sh
-(master)$ git reflog
+(main)$ git reflog
 0a2e358 HEAD@{0}: reset: moving to HEAD~2
-0254ea7 HEAD@{1}: checkout: moving from 2.2 to master
-c10f740 HEAD@{2}: checkout: moving from master to 2.2
+0254ea7 HEAD@{1}: checkout: moving from 2.2 to main
+c10f740 HEAD@{2}: checkout: moving from main to 2.2
 ```
 
-Le `reflog` ci-dessus indique un déplacement depuis master vers la branche 2.2 et l'inverse. À partir de là, il y a un hard `reset` vers un commit plus vieux. La dernière activité est représentée en haut et intitulée `HEAD@{0}`.
+Le `reflog` ci-dessus indique un déplacement depuis main vers la branche 2.2 et l'inverse. À partir de là, il y a un hard `reset` vers un commit plus vieux. La dernière activité est représentée en haut et intitulée `HEAD@{0}`.
 
-Si il s'avère que vous êtes accidentellement revenu en arrière, le reflog contiendra le commit sur lequel pointait master (0254ea7) avant que vous ne supprimiez 2 commits par accident.
+Si il s'avère que vous êtes accidentellement revenu en arrière, le reflog contiendra le commit sur lequel pointait main (0254ea7) avant que vous ne supprimiez 2 commits par accident.
 
 ```sh
 $ git reset --hard 0254ea7
 ```
 
-En utilisant `git reset`, il est ensuite possible de changer master vers le commit vers lequel il pointait. Cela vous donne de la sûreté dans le cas où l'historique a été changé par accident.
+En utilisant `git reset`, il est ensuite possible de changer main vers le commit vers lequel il pointait. Cela vous donne de la sûreté dans le cas où l'historique a été changé par accident.
 
 (copié et édité depuis [Source](https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog)).
 

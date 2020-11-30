@@ -5,18 +5,18 @@
 
 #### flight rules 가 뭐야?
 
-뭔가 잘못 됐을 때 뭘 해야할지에 대한 우주비행사를 위한 가이드 (여기선 깃을 쓰는 개발자를 위한) 
+뭔가 잘못 됐을 때 뭘 해야할지에 대한 우주비행사를 위한 가이드 (여기선 깃을 쓰는 개발자를 위한)
 
 
 >  *Flight Rules* 는 어떤 문제 X가 발생한 이유와 그 단계의 매뉴얼에서 어렵사리 얻은 지식이에요. 기본적으로 각 시나리오의 매우 자세하고 구체적인 운영 절차랍니다. [...]
 
-> NASA는 수성(Mercury) 시대 때 지상팀에서 처음으로 "lessons learned" 이란 것을 모았는데 수천개의 문제의 상황들, 부서진 해치 손잡이로 인한 엔진 고장부터 컴퓨터 문제 그리고 그 해답까지, 1960년대 초부터 우리의 실수들, 재앙들, 해결책 등이  목록화 돼있어요. 
+> NASA는 수성(Mercury) 시대 때 지상팀에서 처음으로 "lessons learned" 이란 것을 모았는데 수천개의 문제의 상황들, 부서진 해치 손잡이로 인한 엔진 고장부터 컴퓨터 문제 그리고 그 해답까지, 1960년대 초부터 우리의 실수들, 재앙들, 해결책 등이  목록화 돼있어요.
 
 — Chris Hadfield, *인생을 위한 우주비행사의 가이드*.
 
 #### 이 문서의 규칙
 
-명확하게 하기 위해 이 문서의 모든 예제는 현재 브랜치를 표시하고 스테이지에 변경이 있는지를 나타내기 위해 커스텀 된 배시 프롬프트를 써요. 브랜치는 괄호 안에 있고, 브랜치 다음의 *는 스테이지의 변경된 것을 나타내요.  
+명확하게 하기 위해 이 문서의 모든 예제는 현재 브랜치를 표시하고 스테이지에 변경이 있는지를 나타내기 위해 커스텀 된 배시 프롬프트를 써요. 브랜치는 괄호 안에 있고, 브랜치 다음의 *는 스테이지의 변경된 것을 나타내요.
 
 [![Join the chat at https://gitter.im/k88hudson/git-flight-rules](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/k88hudson/git-flight-rules?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -138,7 +138,7 @@
 $ git clone [url]
 ```
 
-폴더 이름이 리모트 레파지토리 이름과 같이 저장될 거에요. 
+폴더 이름이 리모트 레파지토리 이름과 같이 저장될 거에요.
 
 복제할 리모트 서버의 연결을 확인하세요.(대부분 인터넷 연결을 확인하란 뜻이에요)
 
@@ -158,10 +158,10 @@ $ git clone [url] name-of-new-folder
 `git commit -a` 로 막 커밋을 남기고 내가 뭐라고 안에 적었더라? 한다고 하고. 최근의 커밋을 현재 HEAD에서 볼 수 있어요.
 
 ```sh
-(master)$ git show
+(main)$ git show
 ```
 
-또는 
+또는
 
 ```sh
 $ git log -n1 -p
@@ -198,7 +198,7 @@ $ git commit --amend --only -m 'xxxxxxx'
 $ git commit --amend --no-edit --author "New Authorname <authoremail@mydomain.com>"
 ```
 
-대안으로는 `git config --global author.(name|email)`에서 설정을 다시 맞춘 다음  
+대안으로는 `git config --global author.(name|email)`에서 설정을 다시 맞춘 다음
 
 ```sh
 $ git commit --amend --reset-author --no-edit
@@ -241,8 +241,8 @@ $ git push --force-with-lease [remote] [branch]
 (my-branch*)$ git reset --soft HEAD@{1}
 ```
 
-이 방법은 푸시를 안 했을 때만 동작해요. 푸시를 했으면, 안전한 방법은 `git revert SHAofBadCommit` 한가지 밖이에요. 
-이 방법은 모든 지난 커밋 변경점으로 되돌아간 새 커밋을 만들 거에요. 또는, 만약 푸시한 브랜치가 리베이스에 안전하다면 (만약 다른 사람이 풀 받지 않는다면), `git push --force-with-lease` 명령어를 쓸수 있어요. 
+이 방법은 푸시를 안 했을 때만 동작해요. 푸시를 했으면, 안전한 방법은 `git revert SHAofBadCommit` 한가지 밖이에요.
+이 방법은 모든 지난 커밋 변경점으로 되돌아간 새 커밋을 만들 거에요. 또는, 만약 푸시한 브랜치가 리베이스에 안전하다면 (만약 다른 사람이 풀 받지 않는다면), `git push --force-with-lease` 명령어를 쓸수 있어요.
 더 알고 싶다면, [이 섹션](#deleteremove-last-pushed-commit)을 참고해주세요.
 
 <a name="delete-any-commit"></a>
@@ -279,7 +279,7 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 ```
 
 일반적으로 강제 푸시를 쓰지 마세요.
-새 커밋을 만들어서 푸시하는게 수정된 커밋을 강제로 푸시하는 것보다 훨씬 나아요. 그런 수정된 커밋은 그 브랜치나 다른 자식 브랜치를 쓰는 다른 개발자의 소스 이력과 충돌의 원인이 될거에요. 
+새 커밋을 만들어서 푸시하는게 수정된 커밋을 강제로 푸시하는 것보다 훨씬 나아요. 그런 수정된 커밋은 그 브랜치나 다른 자식 브랜치를 쓰는 다른 개발자의 소스 이력과 충돌의 원인이 될거에요.
 `--force-with-lease` 는 여전히 실패할텐데, 누군가가 같은 브랜치를 쓴다면 변경점을 덮어쓰는 푸시를 할 수도 있어요.
 
 절대로 아무도 같은 브랜치를 안 쓰거나, 절대로 브랜치에 업데이트를 해야할때 `--force` (`-f`) 옵션을 쓸 수 있지만 일반적으론 피하는게 좋아요.
@@ -287,18 +287,18 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 <a href="undo-git-reset-hard"></a>
 ### 하드 리셋을 해버렸는데 되돌리고 싶어
 
-만약 하드 리셋을 했다고 해도 커밋을 돌릴 순 있어요. 깃은 며칠간은 로그를 가지고 있거든요. 
+만약 하드 리셋을 했다고 해도 커밋을 돌릴 순 있어요. 깃은 며칠간은 로그를 가지고 있거든요.
 
 알아두기 : 이건 커밋을 남겼거나 스테이시같이 백업을 했을 때만 유효해요. `git reset --hard` 은 커밋되지 않은 수정사항을 _다 지울 거에요_, 그러니 조심해서 써야해요. (안전한 방법으론 `git reset --keep` 이 있어요)
 
 ```sh
-(master)$ git reflog
+(main)$ git reflog
 ```
 
-지난 커밋과 리셋을 위한 커밋을 볼 수 있을 거에요. 돌아가고 싶은 커밋의 SHA 코드를 골라서, 리셋을 해요:   
+지난 커밋과 리셋을 위한 커밋을 볼 수 있을 거에요. 돌아가고 싶은 커밋의 SHA 코드를 골라서, 리셋을 해요:
 
 ```sh
-(master)$ git reset --hard SHA1234
+(main)$ git reset --hard SHA1234
 ```
 
 계속 할 수 있을거에요.
@@ -308,14 +308,14 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 
 만약 실수로 머지할 준비가 안된 피쳐 브랜치를 메인 브랜치에 머지했어도 되돌릴 순 있어요.
 하지만 문제는 있어요: 머지 커밋은 한개 이상의 부모(보통은 두 개)를 가지게 돼요.
- 
+
 사용하려면
 
 ```sh
 (feature-branch)$ git revert -m 1 <commit>
 ```
 
-여기서 -m 1 옵션은 부모 번호 1(머지가 만들어진 브랜치)을 되돌릴 상위 항목으로 선택하라고 해요. 
+여기서 -m 1 옵션은 부모 번호 1(머지가 만들어진 브랜치)을 되돌릴 상위 항목으로 선택하라고 해요.
 
 알아두기 : 부모 번호는 커밋 식별자가 아니고, 오히려 머지된 커밋이 `Merge: 8e2ce2d 86ac2e7` 이라는 라인을 가지고 있어요.
 부모 번호는 이 라인에서 원하는 부모의 1 기반 인덱스이고, 첫번째 식별자는 1, 다음은 2 이렇게 이어져요.
@@ -332,7 +332,7 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 <a name="commit-partial-new-file"></a>
 ### 전체가 아닌 새 파일만 스테이지에 올리고 싶어
 
-보통은 부분적으로 파일을 스테이지하려면 이렇게 해요: 
+보통은 부분적으로 파일을 스테이지하려면 이렇게 해요:
 
 ```sh
 $ git add --patch filename.x
@@ -354,7 +354,7 @@ $ git add -N filename.x
 <a href="unstaging-edits-and-staging-the-unstaged"></a>
 ### 아직 스테이지에 안 올라간 변경점을 스테이지에 추가하고, 스테이지에 있는 변경점을 다시 빼고 싶어
 
-이건 좀 꼼수인데요, 스테이지 전인 파일들을 스테이시해서 빼두고선 리셋 할 수 있을거에요. 그 다음 스테이시를 다시 불러와 추가를 해요. 
+이건 좀 꼼수인데요, 스테이지 전인 파일들을 스테이시해서 빼두고선 리셋 할 수 있을거에요. 그 다음 스테이시를 다시 불러와 추가를 해요.
 
 ```sh
 $ git stash -k
@@ -389,10 +389,10 @@ $ git stash pop
 ```sh
 (my-branch)$ git reset --hard
 # or
-(master)$ git checkout -f
+(main)$ git checkout -f
 ```
 
-이 방법은 `git add`로 스테이징된 모든 파일이 빠지게 돼요. 
+이 방법은 `git add`로 스테이징된 모든 파일이 빠지게 돼요.
 
 ```sh
 $ git reset
@@ -431,10 +431,10 @@ $ git clean -fd
 
 ```sh
 $ git checkout -p
-# 날리고 싶은 사항에 y를 적으세요 
+# 날리고 싶은 사항에 y를 적으세요
 ```
 
-또다른 전략은 `stash`을 같이 쓰는거에요. 챙겨야 하는 변경점을 스테이시 하고, 작업 중인 영역을 리셋하고, 다시 올바른 변경점으로 재적용해요.   
+또다른 전략은 `stash`을 같이 쓰는거에요. 챙겨야 하는 변경점을 스테이시 하고, 작업 중인 영역을 리셋하고, 다시 올바른 변경점으로 재적용해요.
 
 ```sh
 $ git stash -p
@@ -476,7 +476,7 @@ $ git checkout .
 <a href="i-want-to-discard-all-my-untracked-files"></a>
 ### 트래킹 안된 파일들 다 지우고 싶어
 
-트래킹 안된 파일들 다 지우고 싶을 땐 
+트래킹 안된 파일들 다 지우고 싶을 땐
 
 ```sh
 $ git clean -f
@@ -484,7 +484,7 @@ $ git clean -f
 
 ## 브랜치
 
-### 모든 브랜치 리스트를 보고 싶어 
+### 모든 브랜치 리스트를 보고 싶어
 
 로컬 브랜치 다 보기
 
@@ -492,7 +492,7 @@ $ git clean -f
 $ git branch
 ```
 
-리모트 브랜치 다 보기  
+리모트 브랜치 다 보기
 
 ```sh
 $ git branch -r
@@ -517,12 +517,12 @@ $ git checkout -b <branch> <SHA1_OF_COMMIT>
 이건 잘못된 풀을 받기전 HEAD가 어딜 가르키고 있었는지 볼 수 있는 `git reflog`를 써볼 수 있는 기회에요.
 
 ```sh
-(master)$ git reflog
+(main)$ git reflog
 ab7555f HEAD@{0}: pull origin wrong-branch: Fast-forward
 c5bc55a HEAD@{1}: checkout: checkout message goes here
 ```
 
-간단히 원하는 커밋으로 브랜치를 되돌릴 수 있어요: 
+간단히 원하는 커밋으로 브랜치를 되돌릴 수 있어요:
 
 ```sh
 $ git reset --hard c5bc55a
@@ -535,7 +535,7 @@ $ git reset --hard c5bc55a
 
 서버에 변경점을 푸시 안했는지부터 확인해요.
 
-`git status` 가 오리진보다 몇개의 커밋들이 앞서 있는지 보여줄거에요: 
+`git status` 가 오리진보다 몇개의 커밋들이 앞서 있는지 보여줄거에요:
 
 ```sh
 (my-branch)$ git status
@@ -548,7 +548,7 @@ $ git reset --hard c5bc55a
 오리진(리모트과 같은 상태의)로 맞추는 리셋을 하는 방법 중 하나는:
 
 ```sh
-(master)$ git reset --hard origin/my-branch
+(main)$ git reset --hard origin/my-branch
 ```
 
 <a name="commit-wrong-branch"></a>
@@ -557,17 +557,17 @@ $ git reset --hard c5bc55a
 마스터에 있으면서 새 브랜치를 만들어요:
 
 ```sh
-(master)$ git branch my-branch
+(main)$ git branch my-branch
 ```
 
 마스터 브랜치를 기존 커밋으로 리셋해요:
 
 
 ```sh
-(master)$ git reset --hard HEAD^
+(main)$ git reset --hard HEAD^
 ```
 
-`HEAD^`는 `HEAD^1`의 축약인데요. `HEAD^`의 첫번째 부모를 의미하고, 비슷한 `HEAD^2`는 두번째 부모를 의미해요. (머지는 두 부모를 가질 수 있죠) 
+`HEAD^`는 `HEAD^1`의 축약인데요. `HEAD^`의 첫번째 부모를 의미하고, 비슷한 `HEAD^2`는 두번째 부모를 의미해요. (머지는 두 부모를 가질 수 있죠)
 
 알아두세요 `HEAD^2`는 `HEAD~2`과 같은게 아니에요. (더 자세한 정보는 [이 링크](http://www.paulboxley.com/blog/2011/06/git-caret-and-tilde)를 참고해요 )
 
@@ -576,18 +576,18 @@ $ git reset --hard c5bc55a
 예를 들자면, 그 마스터의 커밋의 해쉬가 `a13b85e`라면:
 
 ```sh
-(master)$ git reset --hard a13b85e
+(main)$ git reset --hard a13b85e
 HEAD is now at a13b85e
 ```
 
 새 브랜치로 체크아웃 해서 계속 작업을 해요:
 
 ```sh
-(master)$ git checkout my-branch
+(main)$ git checkout my-branch
 ```
 
 <a name="keep-whole-file"></a>
-### 다른 레퍼런스 같은 곳에서 모든 파일을 유지하고 싶어 
+### 다른 레퍼런스 같은 곳에서 모든 파일을 유지하고 싶어
 
 수백번의 변경점을 가진 스파이크(아래 알아두기 참고) 작업을 한다고 가정해보죠. 모든 건 동작하고 있고,그 작업을 저장해두기 위해  다른 브랜치로 커밋을 해요:
 
@@ -621,7 +621,7 @@ HEAD is now at a13b85e
 
 그 다음, 평소처럼 커밋해요.
 
-알아두기 : 스파이크 솔루션은 문제를 분석하거나 풀기위해 만들어졌어요. 이 솔루션들은 모두가 문제의 확실한 시각화를 얻고선 평가되고 제거돼요.~ [위키피디아](https://en.wikipedia.org/wiki/Extreme_programming_practices).   
+알아두기 : 스파이크 솔루션은 문제를 분석하거나 풀기위해 만들어졌어요. 이 솔루션들은 모두가 문제의 확실한 시각화를 얻고선 평가되고 제거돼요.~ [위키피디아](https://en.wikipedia.org/wiki/Extreme_programming_practices).
 
 <a name="cherry-pick"></a>
 ### 한 브랜치에 다른 브랜치에 남겼어야 하는 커밋을 여러개 남겼어
@@ -629,7 +629,7 @@ HEAD is now at a13b85e
 마스터 브랜치에 있다고 가정하고 `git log` 해보면 커밋 두개 볼 수 있을거에요:
 
 ```sh
-(master)$ git log
+(main)$ git log
 
 commit e3851e817c451cc36f2e6f3049db528415e3c114
 Author: Alex Lee <alexlee@example.com>
@@ -655,14 +655,14 @@ Date:   Tue Jul 21 01:12:48 2014 -0400
 우선, 마스터 브랜치의 정확한 커밋 (`a13b85e`)으로 리셋해요:
 
 ```sh
-(master)$ git reset --hard a13b85e
+(main)$ git reset --hard a13b85e
 HEAD is now at a13b85e
 ```
 
 그리고, 21번 버그 작업을 위한 새로운 브랜치를 만들수 있어요:
 
 ```sh
-(master)$ git checkout -b 21
+(main)$ git checkout -b 21
 (21)$
 ```
 
@@ -673,17 +673,17 @@ HEAD is now at a13b85e
 ```
 
 이 지점에서 충돌이 있을 수도 있어요.
-어떻게 충돌을 해결할지 [대화형 리베이스 섹션](#interactive-rebase) 안에 있는 [**충돌이 있어**](#merge-conflict) 부분을 참고하세요.  
+어떻게 충돌을 해결할지 [대화형 리베이스 섹션](#interactive-rebase) 안에 있는 [**충돌이 있어**](#merge-conflict) 부분을 참고하세요.
 
 자 이제 14번 버그 작업을 위해 마스터로 가서 새 브랜치를 만들어요.
 
 ```sh
-(21)$ git checkout master
-(master)$ git checkout -b 14
+(21)$ git checkout main
+(main)$ git checkout -b 14
 (14)$
 ```
 
-그리고 마지막으로, 14번 버그작업을 위한 커밋을 체리픽해요. 
+그리고 마지막으로, 14번 버그작업을 위한 커밋을 체리픽해요.
 
 ```sh
 (14)$ git cherry-pick 5ea5173
@@ -707,7 +707,7 @@ $ git fetch -p upstream
 주기적으로 리모트으로 푸시한다면, 대부분은 안전해야 해요. 그치만 가끔은 브랜치를 지울 수 있어요. 새 브랜치를 만들고 파일을 하나 만들었다고 해보죠:
 
 ```sh
-(master)$ git checkout -b my-branch
+(main)$ git checkout -b my-branch
 (my-branch)$ git branch
 (my-branch)$ touch foo.txt
 (my-branch)$ ls
@@ -740,28 +740,28 @@ Date:   Tue Jul 29 13:14:46 2014 -0400
 이제 다시 마스터로 돌아가 '실수로' 브랜치를 지워보죠.
 
 ```sh
-(my-branch)$ git checkout master
-Switched to branch 'master'
-Your branch is up-to-date with 'origin/master'.
-(master)$ git branch -D my-branch
+(my-branch)$ git checkout main
+Switched to branch 'main'
+Your branch is up-to-date with 'origin/main'.
+(main)$ git branch -D my-branch
 Deleted branch my-branch (was 4e3cd85).
-(master)$ echo oh noes, deleted my branch!
+(main)$ echo oh noes, deleted my branch!
 oh noes, deleted my branch!
 ```
 
 여기에서 업그레이드된 로그 도구인 '리플로그'에 익숙해져야 해요. 리플로그는 레파지토리의 모든 행동의 이력을 다 보관해요.
 
 ```
-(master)$ git reflog
-69204cd HEAD@{0}: checkout: moving from my-branch to master
+(main)$ git reflog
+69204cd HEAD@{0}: checkout: moving from my-branch to main
 4e3cd85 HEAD@{1}: commit: foo.txt added
-69204cd HEAD@{2}: checkout: moving from master to my-branch
+69204cd HEAD@{2}: checkout: moving from main to my-branch
 ```
 
 보시다시피 지워진 브랜치의 커밋 해쉬도 볼 수 있어요. 지웠던 브랜치를 살릴 수 있는 지 한번 해보죠.
 
 ```sh
-(master)$ git checkout -b my-branch-help
+(main)$ git checkout -b my-branch-help
 Switched to a new branch 'my-branch-help'
 (my-branch-help)$ git reset --hard 4e3cd85
 HEAD is now at 4e3cd85 foo.txt added
@@ -776,25 +776,25 @@ README.md foo.txt
 리모트 브랜치를 삭제하려면:
 
 ```sh
-(master)$ git push origin --delete my-branch
+(main)$ git push origin --delete my-branch
 ```
 
 이렇게도:
 
 ```sh
-(master)$ git push origin :my-branch
+(main)$ git push origin :my-branch
 ```
 
 로컬 브랜치를 삭제하려면:
 
 ```sh
-(master)$ git branch -d my-branch
+(main)$ git branch -d my-branch
 ```
 
 현재 브랜치나 업스트림에 머지되지 않은 로컬 브랜치를 지우려면:
 
 ```sh
-(master)$ git branch -D my-branch
+(main)$ git branch -D my-branch
 ```
 
 ### 여러개의 브랜치를 지우고 싶어
@@ -802,7 +802,7 @@ README.md foo.txt
 `fix/`로 시작하는 모든 브랜치들을 지우고 싶다면:
 
 ```sh
-(master)$ git branch | grep 'fix/' | xargs git branch -d
+(main)$ git branch | grep 'fix/' | xargs git branch -d
 ```
 
 ### 브랜치 이름을 바꾸고 싶어
@@ -810,28 +810,28 @@ README.md foo.txt
 현재 (로컬) 브랜치 이름을 바꾸려면:
 
 ```sh
-(master)$ git branch -m new-name
+(main)$ git branch -m new-name
 ```
 
 다른 (로컬) 브랜치 이름을 바꾸려면
 
 ```sh
-(master)$ git branch -m old-name new-name
+(main)$ git branch -m old-name new-name
 ```
 
 <a name="i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on"></a>
 ### 다른 사람이 작업중인 리모트 브랜치로 체크아웃 하고 싶어
 
-우선, 리모트 레파지토리에서 모든 브랜치를 패치 받아요: 
+우선, 리모트 레파지토리에서 모든 브랜치를 패치 받아요:
 
 ```sh
-(master)$ git fetch --all
+(main)$ git fetch --all
 ```
 
 리모트의 `daves`로 체크아웃 하고 싶다고 하면.
 
 ```sh
-(master)$ git checkout --track origin/daves
+(main)$ git checkout --track origin/daves
 Branch daves set up to track remote branch daves from origin.
 Switched to a new branch 'daves'
 ```
@@ -886,14 +886,14 @@ $ git branch -u [remotename]/[branch] [local-branch]
 ```sh
 $ git branch -r
   origin/HEAD -> origin/gh-pages
-  origin/master
+  origin/main
 ```
 
-`origin/HEAD`를 `origin/master`를 트래킹하는 것으로 변경하려면, 이 커맨드로 실행할 수 있어요:
+`origin/HEAD`를 `origin/main`를 트래킹하는 것으로 변경하려면, 이 커맨드로 실행할 수 있어요:
 
 ```sh
 $ git remote set-head origin --auto
-origin/HEAD set to master
+origin/HEAD set to main
 ```
 
 ### 다른 브랜치에 변경점을 잘못 남겼어
@@ -925,14 +925,14 @@ origin/HEAD set to master
 리모트 브랜치는 강제 푸시 외엔 적용 해주지 않을거에요.
 많은 분들이 머지 워크플로우를 리베이스 워크플로우보다 선호하는 많이 이유 중 하나죠 - 큰 팀에선 개발자의 강제 푸시로 곤란해질 수 있어요.
 주의해서 쓰세요.
-리베이스를 그나마 안전하게 쓰는 방법은 리모트 브랜치의 모든 변경점과 똑같이 반영하는게 아니라 대신에 이렇게 해봐요:  
+리베이스를 그나마 안전하게 쓰는 방법은 리모트 브랜치의 모든 변경점과 똑같이 반영하는게 아니라 대신에 이렇게 해봐요:
 
 
 ```sh
-(master)$ git checkout my-branch
-(my-branch)$ git rebase -i master
-(my-branch)$ git checkout master
-(master)$ git merge --ff-only my-branch
+(main)$ git checkout my-branch
+(my-branch)$ git rebase -i main
+(my-branch)$ git checkout main
+(main)$ git merge --ff-only my-branch
 ```
 
 더 확인이 필요하다면, [이 스택오버플로우의 쓰레드](https://stackoverflow.com/questions/11058312/how-can-i-use-git-rebase-without-requiring-a-forced-push)를 참고해요.
@@ -941,26 +941,26 @@ origin/HEAD set to master
 <a name="interactive-rebase"></a>
 ### 커밋끼리 합치고 싶어
 
-`master`에 풀 리퀘스트가 될 브랜치에서 작업하고 있다고 가정해봐요.
+`main`에 풀 리퀘스트가 될 브랜치에서 작업하고 있다고 가정해봐요.
 가장 간단한 경우는 원하는게 *모든* 커밋을 하나의 커밋으로 합치고 변경점의 시간을 신경쓰지 않아도 되는 것일 때, 리셋하고 커밋 다시하면 돼요.
 마스터 브랜치가 최신이고 모든 변경점이 커밋된 것만 확인한 다음:
 
 ```sh
-(my-branch)$ git reset --soft master
+(my-branch)$ git reset --soft main
 (my-branch)$ git commit -am "New awesome feature"
 ```
 
 좀더 조정하고, 시간기록까지 보관하고 싶다면, 대화형 리베이스가 필요할거에요.
 
 ```sh
-(my-branch)$ git rebase -i master
+(my-branch)$ git rebase -i main
 ```
 
 만약 다른 브랜치로 붙는 작업을 하는게 아니라면, `HEAD`을 기준으로 리베이스 해야해요.
 예로 마지막 2개의 커밋을 스쿼시(기존 커밋에 반영해넣는)하고 싶다면 `HEAD~2`로 리베이스 해요. 3개라면 `HEAD~3`으로 하구요.
 
 ```sh
-(master)$ git rebase -i HEAD~2
+(main)$ git rebase -i HEAD~2
 ```
 
 대화형 리베이스를 실행하면 텍스트 에디터로 이런 것들을 볼 수 있을거에요.
@@ -990,11 +990,11 @@ pick e3851e8 another fix
 # Note that empty commits are commented out
 ```
 
-모든 `#`으로 시작하는 주석줄은 리베이스에 영향을 주진 않아요. 
+모든 `#`으로 시작하는 주석줄은 리베이스에 영향을 주진 않아요.
 
 다음으로 `pick` 부분을 다른 명령어로 바꾸거나, 해당하는 라인을 지워서 커밋을 지울 수도 있어요.
 
-예를 들자면 **오래된 (첫번째) 커밋만 두고 두번째 오래된 커밋과 나머지를 다 합치고 싶을때**, 첫번째와 두번째 커밋 제외한 나머지 커맨드들을 `f`로 바꿔야 할거에요:  
+예를 들자면 **오래된 (첫번째) 커밋만 두고 두번째 오래된 커밋과 나머지를 다 합치고 싶을때**, 첫번째와 두번째 커밋 제외한 나머지 커맨드들을 `f`로 바꿔야 할거에요:
 
 ```vim
 pick a9c8a1d Some refactoring
@@ -1020,7 +1020,7 @@ Newer, awesomer features
 # Please enter the commit message for your changes. Lines starting
 # with '#' will be ignored, and an empty message aborts the commit.
 # rebase in progress; onto 8074d12
-# You are currently editing a commit while rebasing branch 'master' on '8074d12'.
+# You are currently editing a commit while rebasing branch 'main' on '8074d12'.
 #
 # Changes to be committed:
 #   modified:   README.md
@@ -1030,7 +1030,7 @@ Newer, awesomer features
 전부 다 성공하면, 이런 메세지를 볼거에요:
 
 ```sh
-(master)$ Successfully rebased and updated refs/heads/master.
+(main)$ Successfully rebased and updated refs/heads/main.
 ```
 
 #### 안전한 머지 전략
@@ -1040,13 +1040,13 @@ Newer, awesomer features
 
 
 ```sh
-(master)$ git merge --no-ff --no-commit my-branch
+(main)$ git merge --no-ff --no-commit my-branch
 ```
 
-#### 브랜치를 커밋 하나로 머지해야해 
+#### 브랜치를 커밋 하나로 머지해야해
 
 ```sh
-(master)$ git merge --squash my-branch
+(main)$ git merge --squash my-branch
 ```
 
 <a name="rebase-unpushed-commits"></a>
@@ -1056,10 +1056,10 @@ Newer, awesomer features
 다른 누군가가 벌써 참고해서 커밋을 만들고 있을테니 이미 푸시된 커밋을 잘못 합치길 바라진 않을거에요.
 
 ```sh
-(master)$ git rebase -i @{u}
+(main)$ git rebase -i @{u}
 ```
 
-이 명령은 아직 푸시하지 않은 커밋만으로 대화형 리베이스를 실행해요. 그러니 목록 내에 있는 어떤 커밋이든 재정렬/수정/합치기 안전해요. 
+이 명령은 아직 푸시하지 않은 커밋만으로 대화형 리베이스를 실행해요. 그러니 목록 내에 있는 어떤 커밋이든 재정렬/수정/합치기 안전해요.
 
 #### 머지를 중단해야해
 
@@ -1076,13 +1076,13 @@ Newer, awesomer features
 브랜치 내 모든 커밋이 다른 브랜치로 머지됐는지 확인하려면, 그 브랜치들 HEAD (또는 특정 커밋)를 비교해야해요:
 
 ```sh
-(master)$ git log --graph --left-right --cherry-pick --oneline HEAD...feature/120-on-scroll
+(main)$ git log --graph --left-right --cherry-pick --oneline HEAD...feature/120-on-scroll
 ```
 
 이 명령은 어디에는 있고 다른덴 없는 커밋이 있나를 알려줄거에요 그리고 브랜치들 사이에 공유되지 않은게 목록을 보여줄 거구요. 다른 옵션은 이렇게:
 
 ```sh
-(master)$ git log master ^feature/120-on-scroll --no-merges
+(main)$ git log main ^feature/120-on-scroll --no-merges
 ```
 
 ### 대화형 리베이스로 발생가능한 이슈
@@ -1107,7 +1107,7 @@ noop
 
 리베이스를 똑바로 끝내지 못했다면, 충돌을 해결해야 할거에요.
 
-어떤 파일이 충돌났는지 `git status`를 먼저 실행해봐요: 
+어떤 파일이 충돌났는지 `git status`를 먼저 실행해봐요:
 
 ```sh
 (my-branch)$ git status
@@ -1134,16 +1134,16 @@ Changes not staged for commit:
 어느 한쪽 브랜치의 코드를 남기고 싶다면, `--ours` 또는 `--theirs`를 쓰면 돼요:
 
 ```sh
-(master*)$ git checkout --ours README.md
+(main*)$ git checkout --ours README.md
 ```
 
 - *머지*할때, `--ours`를 쓰면 로컬 브랜치의 변경점 유지하고, `--theirs` 는 다른 브랜치의 변경점를 유지해요.
-- *리베이스*할 땐, `--theirs`가 로컬 브랜치의 변경점을 유지하고 `--ours`는 다른 브랜치의 변경점을 유지해요. 이런 차이에 관한 설명은 Git 정식 문서 중 [이 문서](https://git-scm.com/docs/git-rebase#git-rebase---merge)를 보세요. 
+- *리베이스*할 땐, `--theirs`가 로컬 브랜치의 변경점을 유지하고 `--ours`는 다른 브랜치의 변경점을 유지해요. 이런 차이에 관한 설명은 Git 정식 문서 중 [이 문서](https://git-scm.com/docs/git-rebase#git-rebase---merge)를 보세요.
 
 만약 머지가 더 복잡하면, 비주얼 디프 에디터를 쓸 수도 있어요:
 
 ```sh
-(master*)$ git mergetool -t opendiff
+(main*)$ git mergetool -t opendiff
 ```
 
 코드의 충돌을 해결하고 테스트가 해결되고 나면, 바뀐 파일 내용을 `git add` 해주고, `git rebase --continue`로 리베이스를 이어서 해요.
@@ -1155,7 +1155,7 @@ Changes not staged for commit:
 
 만약 모든 충돌을 개선한 내용이 커밋 전과 동일한 트리 구조를 가진다면, 대신에 `git rebase --skip`를 해야 해요.
 
-리베이스 중 멈추고 싶은 어떤 시점이거나 원래 상태의 브랜치로 돌아가고 싶다면, 이렇게 할 수 있어요:  
+리베이스 중 멈추고 싶은 어떤 시점이거나 원래 상태의 브랜치로 돌아가고 싶다면, 이렇게 할 수 있어요:
 
 ```sh
 (my-branch)$ git rebase --abort
@@ -1200,7 +1200,7 @@ $ git stash save <message>
 ```
 
 <a name="stash-apply-specific"></a>
-### 특정 스테이시 목록에서 가져와 적용하기 
+### 특정 스테이시 목록에서 가져와 적용하기
 
 메세지 작성된 스테이시 리스트 먼저 확인하세요
 
@@ -1263,7 +1263,7 @@ $ git log -- <path to file>
 $ git log -- **/*.js
 ```
 
-와일드 카드를 쓸 때, 커밋된 파일의 목록을 볼 수 있는 `--name-status`로 확인하는게 유용할거에요: 
+와일드 카드를 쓸 때, 커밋된 파일의 목록을 볼 수 있는 `--name-status`로 확인하는게 유용할거에요:
 
 ```sh
 $ git log --name-status -- **/*.js
@@ -1315,7 +1315,7 @@ $ rm -rf .git/modules/submodulename
 $ git rev-list -n 1 HEAD -- filename
 ```
 
-그런 다음 그 파일을 체크아웃해요 
+그런 다음 그 파일을 체크아웃해요
 
 ```
 git checkout deletingcommitid^ -- filename
@@ -1362,7 +1362,7 @@ From github.com:foo/bar
 ### Zip파일로 레파지토리 추출하기
 
 ```sh
-$ git archive --format zip --output /full/path/to/zipfile.zip master
+$ git archive --format zip --output /full/path/to/zipfile.zip main
 ```
 
 ## 파일 추적하기
@@ -1372,21 +1372,21 @@ $ git archive --format zip --output /full/path/to/zipfile.zip master
 ### 파일 내용엔 변경이 없이 파일 이름을 앞글자만 대문자로 바꾸고 싶어
 
 ```sh
-(master)$ git mv --force myfile MyFile
+(main)$ git mv --force myfile MyFile
 ```
 
 ### 깃 풀 받을때 로컬 파일을 덮어씌우고 싶어
 
 ```sh
-(master)$ git fetch --all
-(master)$ git reset --hard origin/master
+(main)$ git fetch --all
+(main)$ git reset --hard origin/main
 ```
 
 <a href="remove-from-git"></a>
 ### 파일을 로컬에는 보관하고 깃에서 지우고 싶어
 
 ```sh
-(master)$ git rm --cached log.txt
+(main)$ git rm --cached log.txt
 ```
 
 ### 특정한 버전대로 파일을 복구하고 싶어
@@ -1394,13 +1394,13 @@ $ git archive --format zip --output /full/path/to/zipfile.zip master
 복구하고 싶은 해시가 c5f567 이라고 가정하면:
 
 ```sh
-(master)$ git checkout c5f567 -- file1/to/restore file2/to/restore
+(main)$ git checkout c5f567 -- file1/to/restore file2/to/restore
 ```
 
 c5f567 한 단계전으로 복구하고 싶다면, c5f567~1로 적어줘요:
 
 ```sh
-(master)$ git checkout c5f567~1 -- file1/to/restore file2/to/restore
+(main)$ git checkout c5f567~1 -- file1/to/restore file2/to/restore
 ```
 
 ### 커밋과 브랜치 간의 특정 파일 변경 이력이 필요해
@@ -1415,14 +1415,14 @@ $ git diff HEAD:path_to_file/file c5f567:path_to_file/file
 브랜치도 같은 방법으로:
 
 ```sh
-$ git diff master:path_to_file/file staging:path_to_file/file
+$ git diff main:path_to_file/file staging:path_to_file/file
 ```
 
 ## 설정
 
 ### 깃 명령어 몇 개를 앨리어스 등록하고 싶어
 
-맥OS나 리눅스에는, 깃 설정 파일이 ```~/.gitconfig``` 에 있어요. 단축용으로 (몇개는 평소 쓰는 용도로) 앨리어스 몇개를 아래와 같이 계속 추가해오고 있어요. 
+맥OS나 리눅스에는, 깃 설정 파일이 ```~/.gitconfig``` 에 있어요. 단축용으로 (몇개는 평소 쓰는 용도로) 앨리어스 몇개를 아래와 같이 계속 추가해오고 있어요.
 
 ```vim
 [alias]
@@ -1449,7 +1449,7 @@ $ git diff master:path_to_file/file staging:path_to_file/file
 
 ### 레파지토리에 빈 디렉토리를 추가하고 싶어
 
-못해요! 깃은 지원하지 않거든요, 근데 꼼수가 있어요. 디렉토리에에 .gitignore 파일을 아래 내용으로 만들어요:  
+못해요! 깃은 지원하지 않거든요, 근데 꼼수가 있어요. 디렉토리에에 .gitignore 파일을 아래 내용으로 만들어요:
 
 ```
  # Ignore everything in this directory
@@ -1483,13 +1483,13 @@ $ git config --global credential.helper 'cache --timeout=3600'
 # Set the cache to timeout after 1 hour (setting is in seconds)
 ```
 
-### 깃이 권한과 파일모드 변경을 무시하게 만들고 싶어   
+### 깃이 권한과 파일모드 변경을 무시하게 만들고 싶어
 
 ```sh
 $ git config core.fileMode false
 ```
 
-이 것을 로그인된 유저의 기본 행위로 설정으로 해두려면, 이렇게 써요: 
+이 것을 로그인된 유저의 기본 행위로 설정으로 해두려면, 이렇게 써요:
 
 ```sh
 $ git config --global core.fileMode false
@@ -1497,7 +1497,7 @@ $ git config --global core.fileMode false
 
 ### 글로벌 유저로 설정해두고 싶어
 
-모든 로컬 레파지토리에 사용되는 유저 정보를 설정하려면, 그리고 버전 이력을 리뷰할때 알아보기 쉬운 이름으로 설정하려면: 
+모든 로컬 레파지토리에 사용되는 유저 정보를 설정하려면, 그리고 버전 이력을 리뷰할때 알아보기 쉬운 이름으로 설정하려면:
 
 ```sh
 $ git config --global user.name “[firstname lastname]”
@@ -1521,14 +1521,14 @@ $ git config --global color.ui auto
 
 음, 망했군요. 뭔가를 `reset` 했거나, 다른 브랜치로 머지했거나, 지금은 찾질 못하는 커밋으로 강제 푸시를 해버렸군요.
 알다시피, 어떤 시점에선, 잘 하고 있었고 거기로 돌아가고 싶겠죠.
-이게 바로 `git reflog`의 존재이유에요.  `reflog` 는 브랜치 끝의 어떤 변경점이든 브랜치나 태그에 의해 참조되지 않더라도 다 보관해요.       
+이게 바로 `git reflog`의 존재이유에요.  `reflog` 는 브랜치 끝의 어떤 변경점이든 브랜치나 태그에 의해 참조되지 않더라도 다 보관해요.
 기본적으로, HEAD가 변경되는 모든 경우, 리플로그에 새로운 입력이 추가돼요. 아쉽게도 이 기능은 로컬 레파지토리에서만 동작해고, 오직 움직임만을 트래킹해요 (예를 들자면 어디에도 기록되지 않았던 파일의 변경은 아니에요)
 
 ```sh
-(master)$ git reflog
+(main)$ git reflog
 0a2e358 HEAD@{0}: reset: moving to HEAD~2
-0254ea7 HEAD@{1}: checkout: moving from 2.2 to master
-c10f740 HEAD@{2}: checkout: moving from master to 2.2
+0254ea7 HEAD@{1}: checkout: moving from 2.2 to main
+c10f740 HEAD@{2}: checkout: moving from main to 2.2
 ```
 
 이 리플로그는 마스터에서 2.2 브랜치로 체크아웃하고 되돌린 것을 보여주네요.
@@ -1542,7 +1542,7 @@ $ git reset --hard 0254ea7
 ```
 
 `git reset`을 쓰는 것으로 마스터를 이전 커밋으로 되돌릴 수 있어요.
-이력이 실수로 변경됐을 때의 안정망을 제공할거에요.  
+이력이 실수로 변경됐을 때의 안정망을 제공할거에요.
 
 ([여기](https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog)에서 복제해와 수정했어요).
 
@@ -1581,7 +1581,7 @@ $ git reset --hard 0254ea7
 * [Sourcetree](https://www.sourcetreeapp.com/) - 아름답고 무료인 깃 GUI 안에서 단순함과 강력함이 만났어 Windows and Mac
 * [Tower](https://www.git-tower.com/) - 그래픽 Git 클라이언트 OS X (유료)
 * [tig](https://jonas.github.io/tig/) - 깃을 위한 터민러 텍스트 모드 인터페이스
-* [Magit](https://magit.vc/) - Emacs 패키지를 위해 구현된 깃 인터페이스 
+* [Magit](https://magit.vc/) - Emacs 패키지를 위해 구현된 깃 인터페이스
 * [GitExtensions](https://github.com/gitextensions/gitextensions) - 쉘 확장, 비주얼 스투디오 2010-2015 플러그인 그리고 독자적인 깃 레파지토리 도구
 * [Fork](https://git-fork.com/) - 빠르고 친숙한 깃 클라이언트 Mac (베타)
 * [gmaster](https://gmaster.io/) - 3-way 머지, 리팩터 분석기, 시멘틱 diff와 머지 기능의 윈도 전용 깃 클라이언트 (베타)
