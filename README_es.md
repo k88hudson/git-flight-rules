@@ -55,7 +55,7 @@ En aras de la claridad, todos los ejemplos de este documento usan un indicador d
     - [Crear una rama desde una confirmación](#crear-una-rama-desde-una-confirmaci%C3%B3n)
     - [Hice pull de / en la rama incorrecta](#hice-pull-de--en-la-rama-incorrecta)
     - [Quiero descartar confirmaciones locales para que mi rama sea la misma que la del servidor](#quiero-descartar-confirmaciones-locales-para-que-mi-rama-sea-la-misma-que-la-del-servidor)
-    - [Hice commit a master en lugar de una nueva rama](#hice-commit-a-master-en-lugar-de-una-nueva-rama)
+    - [Hice commit a main en lugar de una nueva rama](#hice-commit-a-main-en-lugar-de-una-nueva-rama)
     - [Quiero mantener todo el archivo de otro ref-ish](#quiero-mantener-todo-el-archivo-de-otro-ref-ish)
     - [Realicé varios commits en una sola rama que debería estar en diferentes ramas](#realic%C3%A9-varios-commits-en-una-sola-rama-que-deber%C3%ADa-estar-en-diferentes-ramas)
     - [Quiero eliminar las ramas locales que se eliminaron en sentido ascendente](#quiero-eliminar-las-ramas-locales-que-se-eliminaron-en-sentido-ascendente)
@@ -142,7 +142,7 @@ $ git clone [url]
 Digamos que simplemente hiciste cambios a ciegas con `git commit -a` y no estás seguro de cuál fue el contenido real de la confirmación que acabas de realizar. Puedes mostrar el último commit en su HEAD actual con:
 
 ```sh
-(master)$ git show
+(main)$ git show
 ```
 
 o
@@ -245,13 +245,13 @@ Si estás *absolutamente* seguro que nadie está trabajando en la misma rama o q
 Si accidentalmente hiciste `git reset --hard`, puedes volver a obtener tus commits de vuelta ya que git mantiene un registro de todo durante unos días.
 
 ```sh
-(master)$ git reflog
+(main)$ git reflog
 ```
 
 Verás una lista de tus antiguos commits, y un commit para el reset. Escoge el SHA del commit al que quieres retornar y has el reset de nuevo:
 
 ```sh
-(master)$ git reset --hard SHA1234
+(main)$ git reset --hard SHA1234
 ```
 
 Y deberías estar ubicado en ese commit.
@@ -361,7 +361,7 @@ Si deseas descartar todos los cambios organizados y no supervisados ​​locale
 ```sh
 (mi-rama) $ git reset --hard
 # o
-(master) $ git checkout -f
+(main) $ git checkout -f
 ```
 
 Esto borrará todos los archivos que hayas organizado con `git add`:
@@ -485,7 +485,7 @@ $ git checkout -b <branch> <SHA1_OF_COMMIT>
 Esta es otra oportunidad de usar `git reflog` para ver dónde apuntó el HEAD antes del mal tirón.
 
 ```sh
-(master) $ git reflog
+(main) $ git reflog
 ab7555f HEAD @ {0}: pull-wrong-branch: Fast-forward
 c5bc55a HEAD @ {1}: checkout: checkout message goes here
 ```
@@ -515,21 +515,21 @@ Confirma que no ha enviado sus cambios al servidor.
 Una forma de reiniciar para hacer coincidir el origin (tener lo mismo que lo que está en el control remoto) es hacer esto:
 
 ```sh
-(master) $ git reset --hard origin / my-branch
+(main) $ git reset --hard origin / my-branch
 ```
 
-### Hice commit a master en lugar de una nueva rama
+### Hice commit a main en lugar de una nueva rama
 
-Crea la nueva rama mientras permaneces en master:
+Crea la nueva rama mientras permaneces en main:
 
 ```sh
-(master) $ git branch my-branch
+(main) $ git branch my-branch
 ```
 
-Restablece la rama master al commit anterior:
+Restablece la rama main al commit anterior:
 
 ```sh
-(master) $ git reset --hard HEAD ^
+(main) $ git reset --hard HEAD ^
 ```
 
 `HEAD ^` es la abreviatura de `HEAD ^ 1`. Esto representa el primer padre de `HEAD`, del mismo modo` HEAD ^ 2` representa el segundo padre del commit (las fusiones pueden tener 2 padres).
@@ -541,14 +541,14 @@ Alternativamente, si no quieres usar `HEAD ^`, averigüe a qué hash de confirma
 Por ejemplo, si el hash del commit en el que se supone que está su rama principal es `a13b85e`:
 
 ```sh
-(master) $ git reset --hard a13b85e
+(main) $ git reset --hard a13b85e
 HEAD is now at a13b85e
 ```
 
 Verifique la nueva rama para continuar trabajando:
 
 ```sh
-(master) $ git checkout my-branch
+(main) $ git checkout my-branch
 ```
 
 ### Quiero mantener todo el archivo de otro ref-ish
@@ -592,7 +592,7 @@ Nota: Las soluciones de Spike están hechas para analizar o resolver el problema
 Digamos que estás en tu rama principal. Al ejecutar `git log`, verás que ha realizado dos commits:
 
 ```sh
-(master) $ git log
+(main) $ git log
 
 commit e3851e817c451cc36f2e6f3049db528415e3c114
 Author: Alex Lee <alexlee@example.com>
@@ -618,14 +618,14 @@ Toma nota de nuestros hashes de confirmación para cada error (`e3851e8` para # 
 Primero, restablece la rama principal al commit correcto (`a13b85e`):
 
 ```sh
-(master)$ git reset --hard a13b85e
+(main)$ git reset --hard a13b85e
 HEAD is now at a13b85e
 ```
 
 Ahora, puedes crear una nueva rama para la rama bug # 21:
 
 ```sh
-(master) $ git checkout -b 21
+(main) $ git checkout -b 21
 (21) $
 ```
 
@@ -637,11 +637,11 @@ Ahora, * selecciona con precisión * el commit para el error # 21 en la parte su
 
 En este punto, existe la posibilidad de que haya conflictos. Consulta la sección ** Hubo conflictos ** (# conflicto de fusión) en la [sección interactiva de rebase más arriba] (# interactive-rebase) para saber cómo resolver conflictos.
 
-Ahora creamos una nueva rama para el error # 14, también basado en el master
+Ahora creamos una nueva rama para el error # 14, también basado en el main
 
 ```sh
-(21) $ git checkout master
-(master) $ git checkout -b 14
+(21) $ git checkout main
+(main) $ git checkout -b 14
 (14) $
 ```
 
@@ -665,7 +665,7 @@ donde, 'ascendente' es el control remoto desde el que desea recuperar.
 Si empujas regularmente hacia el control remoto, deberías estar seguro la mayor parte del tiempo. Pero aún así a veces puede terminar borrando sus ramaes. Digamos que creamos una rama y creamos un nuevo archivo:
 
 ```sh
-(master)$ git checkout -b my-branch
+(main)$ git checkout -b my-branch
 (my-branch)$ git branch
 (my-branch)$ touch foo.txt
 (my-branch)$ ls
@@ -695,31 +695,31 @@ Date:   Tue Jul 29 13:14:46 2014 -0400
     Fixes #6: Force pushing after amending commits
 ```
 
-Ahora estamos volviendo a "master" y "accidentalmente" eliminando nuestra rama.
+Ahora estamos volviendo a "main" y "accidentalmente" eliminando nuestra rama.
 
 ```sh
-(my-branch)$ git checkout master
-Switched to branch 'master'
-Your branch is up-to-date with 'origin/master'.
-(master)$ git branch -D my-branch
+(my-branch)$ git checkout main
+Switched to branch 'main'
+Your branch is up-to-date with 'origin/main'.
+(main)$ git branch -D my-branch
 Deleted branch my-branch (was 4e3cd85).
-(master)$ echo oh noes, deleted my branch!
+(main)$ echo oh noes, deleted my branch!
 oh noes, deleted my branch!
 ```
 
 En este punto, debe familiarizarse con 'reflog', un registrador actualizado. Almacena el historial de todas las acciones en el repositorio.
 
 ```
-(master)$ git reflog
-69204cd HEAD@{0}: checkout: moving from my-branch to master
+(main)$ git reflog
+69204cd HEAD@{0}: checkout: moving from my-branch to main
 4e3cd85 HEAD@{1}: commit: foo.txt added
-69204cd HEAD@{2}: checkout: moving from master to my-branch
+69204cd HEAD@{2}: checkout: moving from main to my-branch
 ```
 
 Como puede ver, hemos confirmado el hash de nuestra rama eliminada. Veamos si podemos restaurar nuestra rama eliminada.
 
 ```sh
-(master)$ git checkout -b my-branch-help
+(main)$ git checkout -b my-branch-help
 Switched to a new branch 'my-branch-help'
 (my-branch-help)$ git reset --hard 4e3cd85
 HEAD is now at 4e3cd85 foo.txt added
@@ -734,25 +734,25 @@ Voila! Recuperamos nuestro archivo eliminado. `git reflog` también es útil cua
 Para eliminar una rama remota:
 
 ```sh
-(master) $ git push origin --delete my-branch
+(main) $ git push origin --delete my-branch
 ```
 
 También puedes hacer:
 
 ```sh
-(master) $ git push origin: my-branch
+(main) $ git push origin: my-branch
 ```
 
 Para eliminar una rama local:
 
 ```sh
-(master) $ git branch -d my-branch
+(main) $ git branch -d my-branch
 ```
 
 Para eliminar una rama local que * no * se ha fusionado con la rama actual o una cadena ascendente:
 
 ```sh
-(master) $ git branch -D my-branch
+(main) $ git branch -D my-branch
 ```
 
 ### Quiero eliminar varias ramas
@@ -760,7 +760,7 @@ Para eliminar una rama local que * no * se ha fusionado con la rama actual o una
 Supongamos que quiere eliminar todas las ramas que comienzan con `fix /`:
 
 ```sh
-(master) $ git rama | grep 'fix /' | xargs git branch -d
+(main) $ git rama | grep 'fix /' | xargs git branch -d
 ```
 
 ### Quiero cambiar el nombre de una rama
@@ -768,13 +768,13 @@ Supongamos que quiere eliminar todas las ramas que comienzan con `fix /`:
 Para cambiar el nombre de la rama actual (local):
 
 ```sh
-(master) $ git branch -m new-name
+(main) $ git branch -m new-name
 ```
 
 Para cambiar el nombre de una rama diferente (local):
 
 ```sh
-(master) $ git branch -m old-name new-name
+(main) $ git branch -m old-name new-name
 ```
 
 ### Quiero hacer checkout en una rama remota en la que alguien más está trabajando
@@ -782,13 +782,13 @@ Para cambiar el nombre de una rama diferente (local):
 Primero, busca todas las ramas desde el control remoto:
 
 ```sh
-(master)$ git fetch --all
+(main)$ git fetch --all
 ```
 
 Digamos que quieres hacer checkout a `daves` desde el repositorio remoto.
 
 ```sh
-(master)$ git checkout --track origin/daves
+(main)$ git checkout --track origin/daves
 Branch daves set up to track remote branch daves from origin.
 Switched to a new branch 'daves'
 ```
@@ -840,14 +840,14 @@ Al verificar tus ramas remotas, puedes ver en qué rama remota está rastreando 
 ```sh
 $ git branch -r
   origin/HEAD -> origin/gh-pages
-  origin/master
+  origin/main
 ```
 
-Cambiar `origin / HEAD` para rastrear` origin / master`, puedes ejecutar este comando:
+Cambiar `origin / HEAD` para rastrear` origin / main`, puedes ejecutar este comando:
 
 ```sh
 $ git remote set-head origin --auto
-origin/HEAD set to master
+origin/HEAD set to main
 ```
 
 ## Rebasing y Merging
@@ -867,20 +867,20 @@ Desafortunadamente, debes forzar el push, si deseas que esos cambios se reflejen
 
 
 ```sh
-(master)$ git checkout my-branch
-(my-branch)$ git rebase -i master
-(my-branch)$ git checkout master
-(master)$ git merge --ff-only my-branch
+(main)$ git checkout my-branch
+(my-branch)$ git rebase -i main
+(my-branch)$ git checkout main
+(main)$ git merge --ff-only my-branch
 ```
 
 Para obtener más información, consulte [este thread SO] (https://stackoverflow.com/questions/11058312/how-can-i-use-git-rebase-without-requiring-a-forced-push).
 
 ### Necesito combinar commits
 
-Supongamos que estás trabajando en una rama que es / se convertirá en un pull request contra master. En el caso más simple, cuando todo lo que quiere hacer es combinar todos los commits en uno solo y no le importa cometer timestamps, puedes restablecer y volver a hacer el commit. Asegúrate de que la rama principal esté actualizada y de que se hayan confirmado todos los cambios, luego:
+Supongamos que estás trabajando en una rama que es / se convertirá en un pull request contra main. En el caso más simple, cuando todo lo que quiere hacer es combinar todos los commits en uno solo y no le importa cometer timestamps, puedes restablecer y volver a hacer el commit. Asegúrate de que la rama principal esté actualizada y de que se hayan confirmado todos los cambios, luego:
 
 ```sh
-(my-branch)$ git reset --soft master
+(my-branch)$ git reset --soft main
 (my-branch)$ git commit -am "New awesome feature"
 ```
 
@@ -888,13 +888,13 @@ Si deseas más control y también conservar las marcas de tiempo, debe hacer alg
 
 
 ```sh
-(my-branch)$ git rebase -i master
+(my-branch)$ git rebase -i main
 ```
 
 Si no estás trabajando contra otra rama tendrás que volver a establecer una base relativa a tu `HEAD`. Si quieres aplastar las últimas 2 confirmaciones, por ejemplo, tendrás que volver a calcular contra `HEAD ~ 2`. Para los últimos 3, `HEAD ~ 3`, etc.
 
 ```sh
-(master)$ git rebase -i HEAD~2
+(main)$ git rebase -i HEAD~2
 ```
 
 Después de ejecutar el comando de rebase interactivo, verás algo como esto en tu editor de texto:
@@ -956,7 +956,7 @@ Newer, awesomer features
 # Please enter the commit message for your changes. Lines starting
 # with '#' will be ignored, and an empty message aborts the commit.
 # rebase in progress; onto 8074d12
-# You are currently editing a commit while rebasing branch 'master' on '8074d12'.
+# You are currently editing a commit while rebasing branch 'main' on '8074d12'.
 #
 # Changes to be committed:
 #   modified:   README.md
@@ -967,20 +967,20 @@ Newer, awesomer features
 Si todo tiene éxito, deberías ver algo como esto:
 
 ```sh
-(master)$ Successfully rebased and updated refs/heads/master.
+(main)$ Successfully rebased and updated refs/heads/main.
 ```
 
 #### Estrategia de merge segura
 `--no-commit` realiza el merge, pero simula que la combinación falló y no se confirma automáticamente, lo que le da al usuario la oportunidad de inspeccionar y modificar aún más el resultado de la combinación antes de realizar la tarea. `no-ff` mantiene la evidencia de que alguna vez existió una rama de características, manteniendo la historia del proyecto consistente.
 
 ```sh
-(master)$ git merge --no-ff --no-commit my-branch
+(main)$ git merge --no-ff --no-commit my-branch
 ```
 
 #### Necesito fusionar una rama en un solo commit
 
 ```sh
-(master)$ git merge --squash my-branch
+(main)$ git merge --squash my-branch
 ```
 
 #### Quiero combinar solo los commits sin haber hecho push
@@ -988,7 +988,7 @@ Si todo tiene éxito, deberías ver algo como esto:
 A veces tiene varios commits en progreso que deseas combinar antes de hacer push. No deseas combinar accidentalmente ningún commit que ya haya sido pusheado porque otra persona ya haya realizado commits que les hagan referencia.
 
 ```sh
-(master)$ git rebase -i @{u}
+(main)$ git rebase -i @{u}
 ```
 
 Esto hará una base de datos interactiva que enumera solo los commits que aún no has enviado, por lo que será seguro reordenar / arreglar / aplastar cualquier elemento de la lista.
@@ -1008,13 +1008,13 @@ Este comando está disponible desde la versión de Git> = 1.7.4
 Para comprobar si todos los commits de una rama se fusionan en otra, debe distinguir las cabeceras (o los commits) de esas ramas:
 
 ```sh
-(master)$ git log --graph --left-right --cherry-pick --oneline HEAD...feature/120-on-scroll
+(main)$ git log --graph --left-right --cherry-pick --oneline HEAD...feature/120-on-scroll
 ```
 
 Esto te dirá si hay commits en una pero no en la otra, y te dará una lista de las no compartidas entre las ramas. Otra opción es hacer esto:
 
 ```sh
-(master)$ git log master ^feature/120-on-scroll --no-merges
+(main)$ git log main ^feature/120-on-scroll --no-merges
 ```
 
 ### Posibles problemas con rebase interactivos
@@ -1062,7 +1062,7 @@ Tendrás que resolver las diferencias entre el código que se agregó en tu nuev
 Si deseas conservar la versión del código de una rama, puedes usar `--us` o` --theirs`:
 
 ```sh
-(master*)$ git checkout --ours README.md
+(main*)$ git checkout --ours README.md
 ```
 
 - Cuando haces *merge*, usa `--ours` para mantener los cambios de la rama local, o` --theirs` para mantener los cambios de la otra rama.
@@ -1071,7 +1071,7 @@ Si deseas conservar la versión del código de una rama, puedes usar `--us` o` -
 Si las fusiones son más complicadas, puede usar un editor visual diff:
 
 ```sh
-(master*)$ git mergetool -t opendiff
+(main*)$ git mergetool -t opendiff
 ```
 
 Después de haber resuelto todos los conflictos y probado el código, `git add` los archivos que has cambiado, y luego continúa el rebase con` git rebase --continue`
@@ -1275,7 +1275,7 @@ From github.com:foo/bar
 ### Exportar un repositorio como un archivo Zip
 
 ```sh
-$ git archive --format zip --output /full/path/to/zipfile.zip master
+$ git archive --format zip --output /full/path/to/zipfile.zip main
 ```
 
 ## Seguimiento de archivos
@@ -1283,20 +1283,20 @@ $ git archive --format zip --output /full/path/to/zipfile.zip master
 ### Quiero cambiar el uso de mayúsculas de un nombre de archivo, sin cambiar el contenido del archivo
 
 ```sh
-(master)$ git mv --force myfile MyFile
+(main)$ git mv --force myfile MyFile
 ```
 
 ### Quiero sobrescribir los archivos locales cuando hago un git pull
 
 ```sh
-(master)$ git fetch --all
-(master)$ git reset --hard origin/master
+(main)$ git fetch --all
+(main)$ git reset --hard origin/main
 ```
 
 ### Quiero eliminar un archivo de Git pero mantener el archivo
 
 ```sh
-(master)$ git rm --cached log.txt
+(main)$ git rm --cached log.txt
 ```
 
 ### Quiero revertir un archivo a una revisión específica
@@ -1304,13 +1304,13 @@ $ git archive --format zip --output /full/path/to/zipfile.zip master
 Suponiendo que el hash del commit que deseas es c5f567:
 
 ```sh
-(master)$ git checkout c5f567 -- file1/to/restore file2/to/restore
+(main)$ git checkout c5f567 -- file1/to/restore file2/to/restore
 ```
 
 Si desea volver a los cambios realizados solo 1 commit antes de c5f567, pase el hash de confirmación como c5f567 ~ 1:
 
 ```sh
-(master)$ git checkout c5f567~1 -- file1/to/restore file2/to/restore
+(main)$ git checkout c5f567~1 -- file1/to/restore file2/to/restore
 ```
 
 ## Configuración
@@ -1395,21 +1395,21 @@ Entonces, estás jodido, "reiniciaste" algo, o fusionaste la rama incorrecta, o 
 Para esto está hecho `git reflog`. `reflog` realiza un seguimiento de los cambios en la punta de una rama, incluso si esa sugerencia no está referenciada por una rama o una etiqueta. Básicamente, cada vez que HEAD cambia, se agrega una nueva entrada al reflog. Esto solo funciona para los repositorios locales, lamentablemente, y solo rastrea los movimientos (no los cambios a un archivo que no fueron grabados en ninguna parte, por ejemplo).
 
 ```sh
-(master)$ git reflog
+(main)$ git reflog
 0a2e358 HEAD@{0}: reset: moving to HEAD~2
-0254ea7 HEAD@{1}: checkout: moving from 2.2 to master
-c10f740 HEAD@{2}: checkout: moving from master to 2.2
+0254ea7 HEAD@{1}: checkout: moving from 2.2 to main
+c10f740 HEAD@{2}: checkout: moving from main to 2.2
 ```
 
-El reflog anterior muestra una salida desde master a la rama 2.2 y viceversa. A partir de ahí, hay un restablecimiento completo de un commit más antiguo. La última actividad se representa en la parte superior con la etiqueta 'HEAD @ {0} `.
+El reflog anterior muestra una salida desde main a la rama 2.2 y viceversa. A partir de ahí, hay un restablecimiento completo de un commit más antiguo. La última actividad se representa en la parte superior con la etiqueta 'HEAD @ {0} `.
 
-Si resulta que retrocedió accidentalmente, el reflog contendrá el master de un commit apuntado a (0254ea7) antes de que accidentalmente soltara 2 commits.
+Si resulta que retrocedió accidentalmente, el reflog contendrá el main de un commit apuntado a (0254ea7) antes de que accidentalmente soltara 2 commits.
 
 ```sh
 $ git reset --hard 0254ea7
 ```
 
-Usando `git reset` es posible cambiar el master al commit que era antes. Esto proporciona una red de seguridad en caso de que la historia se haya cambiado accidentalmente.
+Usando `git reset` es posible cambiar el main al commit que era antes. Esto proporciona una red de seguridad en caso de que la historia se haya cambiado accidentalmente.
 
 (copiado y editado desde [Fuente] (https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog)).
 
