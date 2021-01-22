@@ -1567,14 +1567,6 @@ $ git config --global user.name “[firstname lastname]”
 git config --global user.email “[valid-email]”
 ```
 
-### Tôi muốn thêm màu cho command Git
-
-Để thiết lập màu command tự động cho Git để dễ dàng xem lại:
-
-```sh
-$ git config --global color.ui auto
-```
-
 ## Tôi không nghĩ mình đã làm gì sai
 
 Vì vậy, bạn đang say - bạn `reset` vài thứ, hoặc bạn merge sai nhánh, hoặc bạn force push và bây giờ bạn không thể tìm thấy các commit của bạn. Bạn biết, tại một số thời điểm, bạn đã làm tốt, và bạn muốn quay trở lại trạng thái bạn đang ở đó.

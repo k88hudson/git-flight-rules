@@ -1564,14 +1564,6 @@ Pour configurer une adresse email qui sera associée à chaque ligne de l'histor
 git config --global user.email “[adresse-email-valide]”
 ```
 
-### Je veux ajouter une ligne de commande de coloration pour Git
-
-Pour configurer la colorisation de ligne de commande automatique de Git afin de faciliter la relecture :
-
-```sh
-$ git config --global color.ui auto
-```
-
 ## Je n'ai aucune idée de ce que j'ai mal fait
 
 Donc, vous êtes fichu - vous avez `reset` quelque chose, ou vous avez fusionné la mauvaise branche, ou vous avez poussé de force et maintenant vous ne pouvez plus trouver vos commits. Vous savez qu'à un moment donné, tout allait bien, et vous voulez revenir à un état dans lequel vous étiez avant.
