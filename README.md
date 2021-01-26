@@ -1929,14 +1929,6 @@ To set an email address that will be associated with each history marker:
 git config --global user.email “[valid-email]”
 ```
 
-### I want to add command line coloring for Git
-
-To set automatic command line coloring for Git for easy reviewing:
-
-```sh
-$ git config --global color.ui auto
-```
-
 ## I've no idea what I did wrong
 
 So, you're screwed - you `reset` something, or you merged the wrong branch, or you force pushed and now you can't find your commits. You know, at some point, you were doing alright, and you want to go back to some state you were at.

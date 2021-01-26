@@ -2060,14 +2060,6 @@ $ git config --global user.name “[firstname lastname]”
 git config --global user.email “[valid-email]”
 ```
 
-### Git のコマンドラインに色をつけたい
-
-レビューの際に見やすいようコマンドラインに自動で色を付けるには、次を実行します。
-
-```sh
-$ git config --global color.ui auto
-```
-
 ## 何を間違ったかわからないとき
 
 何かやらかした場合です。つまり、何かを `reset` してしまった、間違ったブランチをマージしてしまった、あるいは強制プッシュしてしまいコミットが見つけられない、といった状況です。

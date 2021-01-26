@@ -1509,14 +1509,6 @@ $ git config --global user.name “[firstname lastname]”
 git config --global user.email “[valid-email]”
 ```
 
-### 깃에 명령어 색상을 넣고 싶어
-
-손 쉬운 리뷰를 위한 깃 명령줄 자동 색상을 설정 하려면:
-
-```sh
-$ git config --global color.ui auto
-```
-
 ## 뭘 잘못했는지 모르겠어
 
 음, 망했군요. 뭔가를 `reset` 했거나, 다른 브랜치로 머지했거나, 지금은 찾질 못하는 커밋으로 강제 푸시를 해버렸군요.
