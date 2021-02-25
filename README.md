@@ -133,7 +133,6 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I want to cache a username and password for a repository](#i-want-to-cache-a-username-and-password-for-a-repository)
     - [I want to make Git ignore permissions and filemode changes](#i-want-to-make-git-ignore-permissions-and-filemode-changes)
     - [I want to set a global user](#i-want-to-set-a-global-user)
-    - [I want to add command line coloring for Git](#i-want-to-add-command-line-coloring-for-git)
   - [I've no idea what I did wrong](#ive-no-idea-what-i-did-wrong)
   - [Git Shortcuts](#git-shortcuts)
     - [Git Bash](#git-bash)
