@@ -83,6 +83,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I want to set a remote branch as the upstream for a local branch](#i-want-to-set-a-remote-branch-as-the-upstream-for-a-local-branch)
     - [I want to set my HEAD to track the default remote branch](#i-want-to-set-my-head-to-track-the-default-remote-branch)
     - [I made changes on the wrong branch](#i-made-changes-on-the-wrong-branch)
+    - [I want to split a branch into two](#i-want-to-split-a-branch-into-two)
   - [Rebasing and Merging](#rebasing-and-merging)
     - [I want to undo rebase/merge](#i-want-to-undo-rebasemerge)
     - [I rebased, but I don't want to force push](#i-rebased-but-i-dont-want-to-force-push)
