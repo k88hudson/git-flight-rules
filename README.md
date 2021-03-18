@@ -1206,6 +1206,20 @@ You've made uncommitted changes and realise you're on the wrong branch. Stash ch
 (correct_branch)$ git stash apply
 ```
 
+### I want to split a branch into two
+
+You've made a lot of commits on a branch and now want to separate it into two, ending with a branch up to an earlier commit and another with all the changes.
+
+Use `git log` to find the commit where you want to split. Then do the following:
+
+```sh
+(original_branch)$ git checkout -b new_branch
+(new_branch)$ git checkout original_branch
+(original_branch)$ git reset --hard <sha1 split here>
+```
+
+If you had previously pushed the `original_branch` to remote, you will need to do a force push.
+
 ## Rebasing and Merging
 
 <a name="undo-rebase"></a>
