@@ -1206,6 +1206,7 @@ You've made uncommitted changes and realise you're on the wrong branch. Stash ch
 (correct_branch)$ git stash apply
 ```
 
+<a name="i-want-to-split-a-branch-into-two"></a>
 ### I want to split a branch into two
 
 You've made a lot of commits on a branch and now want to separate it into two, ending with a branch up to an earlier commit and another with all the changes.
