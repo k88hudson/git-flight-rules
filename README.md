@@ -83,6 +83,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I want to set a remote branch as the upstream for a local branch](#i-want-to-set-a-remote-branch-as-the-upstream-for-a-local-branch)
     - [I want to set my HEAD to track the default remote branch](#i-want-to-set-my-head-to-track-the-default-remote-branch)
     - [I made changes on the wrong branch](#i-made-changes-on-the-wrong-branch)
+    - [I want to split a branch into two](#i-want-to-split-a-branch-into-two)
   - [Rebasing and Merging](#rebasing-and-merging)
     - [I want to undo rebase/merge](#i-want-to-undo-rebasemerge)
     - [I rebased, but I don't want to force push](#i-rebased-but-i-dont-want-to-force-push)
@@ -1205,6 +1206,21 @@ You've made uncommitted changes and realise you're on the wrong branch. Stash ch
 (wrong_branch)$ git checkout <correct_branch>
 (correct_branch)$ git stash apply
 ```
+
+<a name="i-want-to-split-a-branch-into-two"></a>
+### I want to split a branch into two
+
+You've made a lot of commits on a branch and now want to separate it into two, ending with a branch up to an earlier commit and another with all the changes.
+
+Use `git log` to find the commit where you want to split. Then do the following:
+
+```sh
+(original_branch)$ git checkout -b new_branch
+(new_branch)$ git checkout original_branch
+(original_branch)$ git reset --hard <sha1 split here>
+```
+
+If you had previously pushed the `original_branch` to remote, you will need to do a force push. For more information check [Stack Overlflow](https://stackoverflow.com/questions/28983458/how-to-split-a-branch-in-two-with-git/28983843#28983843)
 
 ## Rebasing and Merging
 
