@@ -1219,7 +1219,7 @@ Use `git log` to find the commit where you want to split. Then do the following:
 (original_branch)$ git reset --hard <sha1 split here>
 ```
 
-If you had previously pushed the `original_branch` to remote, you will need to do a force push.
+If you had previously pushed the `original_branch` to remote, you will need to do a force push. For more information check [Stack Overlflow](https://stackoverflow.com/questions/28983458/how-to-split-a-branch-in-two-with-git/28983843#28983843)
 
 ## Rebasing and Merging
 
