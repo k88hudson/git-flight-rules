@@ -28,21 +28,21 @@ Tất cả các command nên làm việc với phiên bản nhỏ nhất 2.13.0.
     - [Tôi muốn bắt đầu một repository trên local](#t%C3%B4i-mu%E1%BB%91n-b%E1%BA%AFt-%C4%91%E1%BA%A7u-m%E1%BB%99t-repository-tr%C3%AAn-local)
     - [Tôi muốn clone một remote repository](#t%C3%B4i-mu%E1%BB%91n-clone-m%E1%BB%99t-remote-repository)
   - [Chỉnh sửa Commit](#ch%E1%BB%89nh-s%E1%BB%ADa-commit)
-    - [Bạn vừa commit điều gì ?](#b%E1%BA%A1n-v%E1%BB%ABa-commit-%C4%91i%E1%BB%81u-g%C3%AC-)
+    - [Bạn vừa commit điều gì?](#b%E1%BA%A1n-v%E1%BB%ABa-commit-%C4%91i%E1%BB%81u-g%C3%AC)
     - [Tôi đã viết sai vài thứ trong message của commit](#t%C3%B4i-%C4%91%C3%A3-vi%E1%BA%BFt-sai-v%C3%A0i-th%E1%BB%A9-trong-message-c%E1%BB%A7a-commit)
     - [Tôi đã commit với tên và email cấu hình sai](#t%C3%B4i-%C4%91%C3%A3-commit-v%E1%BB%9Bi-t%C3%AAn-v%C3%A0-email-c%E1%BA%A5u-h%C3%ACnh-sai)
     - [Tôi muốn xoá một file từ commit trước](#t%C3%B4i-mu%E1%BB%91n-xo%C3%A1-m%E1%BB%99t-file-t%E1%BB%AB-commit-tr%C6%B0%E1%BB%9Bc)
     - [Tôi muốn xoá hoặc loại bỏ commit cuối cùng nhất của tôi](#t%C3%B4i-mu%E1%BB%91n-xo%C3%A1-ho%E1%BA%B7c-lo%E1%BA%A1i-b%E1%BB%8F-commit-cu%E1%BB%91i-c%C3%B9ng-nh%E1%BA%A5t-c%E1%BB%A7a-t%C3%B4i)
     - [Xoá/loại bỏ commit tuỳ ý](#xo%C3%A1lo%E1%BA%A1i-b%E1%BB%8F-commit-tu%E1%BB%B3-%C3%BD)
     - [Tôi đã cố gắng push commit đã sửa đổi lên remote, nhưng tôi gặp một thông báo lỗi](#t%C3%B4i-%C4%91%C3%A3-c%E1%BB%91-g%E1%BA%AFng-push-commit-%C4%91%C3%A3-s%E1%BB%ADa-%C4%91%E1%BB%95i-l%C3%AAn-remote-nh%C6%B0ng-t%C3%B4i-g%E1%BA%B7p-m%E1%BB%99t-th%C3%B4ng-b%C3%A1o-l%E1%BB%97i)
-    - [Tôi đã vô tình thực hiện hard reset, và tôii muốn các thay đổi của tôi trở lại trước đó.](#t%C3%B4i-%C4%91%C3%A3-v%C3%B4-t%C3%ACnh-th%E1%BB%B1c-hi%E1%BB%87n-hard-reset-v%C3%A0-t%C3%B4ii-mu%E1%BB%91n-c%C3%A1c-thay-%C4%91%E1%BB%95i-c%E1%BB%A7a-t%C3%B4i-tr%E1%BB%9F-l%E1%BA%A1i-tr%C6%B0%E1%BB%9Bc-%C4%91%C3%B3)
+    - [Tôi đã vô tình thực hiện hard reset và tôi muốn các thay đổi của tôi trở lại trước đó.](#t%C3%B4i-%C4%91%C3%A3-v%C3%B4-t%C3%ACnh-th%E1%BB%B1c-hi%E1%BB%87n-hard-reset-v%C3%A0-t%C3%B4i-mu%E1%BB%91n-c%C3%A1c-thay-%C4%91%E1%BB%95i-c%E1%BB%A7a-t%C3%B4i-tr%E1%BB%9F-l%E1%BA%A1i-tr%C6%B0%E1%BB%9Bc-%C4%91%C3%B3)
     - [Tôi vô tình commit và đẩy lên một merge](#t%C3%B4i-v%C3%B4-t%C3%ACnh-commit-v%C3%A0-%C4%91%E1%BA%A9y-l%C3%AAn-m%E1%BB%99t-merge)
     - [Tôi vô tình commit và đẩy các file chứa các dữ liệu nhảy cảm](#t%C3%B4i-v%C3%B4-t%C3%ACnh-commit-v%C3%A0-%C4%91%E1%BA%A9y-c%C3%A1c-file-ch%E1%BB%A9a-c%C3%A1c-d%E1%BB%AF-li%E1%BB%87u-nh%E1%BA%A3y-c%E1%BA%A3m)
   - [Staging](#staging)
     - [Tôi cần thêm các thay đổi đã stage cho commit trước đó](#t%C3%B4i-c%E1%BA%A7n-th%C3%AAm-c%C3%A1c-thay-%C4%91%E1%BB%95i-%C4%91%C3%A3-stage-cho-commit-tr%C6%B0%E1%BB%9Bc-%C4%91%C3%B3)
     - [Tôi muốn stage một phần của một file mới, nhưng không phải toàn bộ file](#t%C3%B4i-mu%E1%BB%91n-stage-m%E1%BB%99t-ph%E1%BA%A7n-c%E1%BB%A7a-m%E1%BB%99t-file-m%E1%BB%9Bi-nh%C6%B0ng-kh%C3%B4ng-ph%E1%BA%A3i-to%C3%A0n-b%E1%BB%99-file)
     - [Tôi muốn thêm các thay đổi trong một file vào 2 commit khác nhau](#t%C3%B4i-mu%E1%BB%91n-th%C3%AAm-c%C3%A1c-thay-%C4%91%E1%BB%95i-trong-m%E1%BB%99t-file-v%C3%A0o-2-commit-kh%C3%A1c-nhau)
-    - [Tôi muốn stage các chỉnh sửa chưa được stage, và unstage các chỉnh sửa đã stage](#t%C3%B4i-mu%E1%BB%91n-stage-c%C3%A1c-ch%E1%BB%89nh-s%E1%BB%ADa-ch%C6%B0a-%C4%91%C6%B0%E1%BB%A3c-stage-v%C3%A0-unstage-c%C3%A1c-ch%E1%BB%89nh-s%E1%BB%ADa-%C4%91%C3%A3-stage)
+    - [Tôi muốn stage các chỉnh sửa chưa được stage và unstage các chỉnh sửa đã stage](#t%C3%B4i-mu%E1%BB%91n-stage-c%C3%A1c-ch%E1%BB%89nh-s%E1%BB%ADa-ch%C6%B0a-%C4%91%C6%B0%E1%BB%A3c-stage-v%C3%A0-unstage-c%C3%A1c-ch%E1%BB%89nh-s%E1%BB%ADa-%C4%91%C3%A3-stage)
   - [Unstaged Edits](#unstaged-edits)
     - [Tôi muốn di chuyển các chỉnh sửa chưa được staged đến một nhánh mới](#t%C3%B4i-mu%E1%BB%91n-di-chuy%E1%BB%83n-c%C3%A1c-ch%E1%BB%89nh-s%E1%BB%ADa-ch%C6%B0a-%C4%91%C6%B0%E1%BB%A3c-staged-%C4%91%E1%BA%BFn-m%E1%BB%99t-nh%C3%A1nh-m%E1%BB%9Bi)
     - [Tôi muốn di chuyển các chỉnh sửa chưa stage của tôi đến một nhánh khác đã tồn tại](#t%C3%B4i-mu%E1%BB%91n-di-chuy%E1%BB%83n-c%C3%A1c-ch%E1%BB%89nh-s%E1%BB%ADa-ch%C6%B0a-stage-c%E1%BB%A7a-t%C3%B4i-%C4%91%E1%BA%BFn-m%E1%BB%99t-nh%C3%A1nh-kh%C3%A1c-%C4%91%C3%A3-t%E1%BB%93n-t%E1%BA%A1i)
@@ -65,7 +65,7 @@ Tất cả các command nên làm việc với phiên bản nhỏ nhất 2.13.0.
     - [Tôi muốn xoá một nhánh](#t%C3%B4i-mu%E1%BB%91n-xo%C3%A1-m%E1%BB%99t-nh%C3%A1nh)
     - [Tôi muốn xoá nhiều nhánh](#t%C3%B4i-mu%E1%BB%91n-xo%C3%A1-nhi%E1%BB%81u-nh%C3%A1nh)
     - [Tôi muốn đổi tên một nhánh](#t%C3%B4i-mu%E1%BB%91n-%C4%91%E1%BB%95i-t%C3%AAn-m%E1%BB%99t-nh%C3%A1nh)
-    - [TÔi muốn checkout đến một nhánh remote mà người khác đang làm việc trên đó](#t%C3%94i-mu%E1%BB%91n-checkout-%C4%91%E1%BA%BFn-m%E1%BB%99t-nh%C3%A1nh-remote-m%C3%A0-ng%C6%B0%E1%BB%9Di-kh%C3%A1c-%C4%91ang-l%C3%A0m-vi%E1%BB%87c-tr%C3%AAn-%C4%91%C3%B3)
+    - [Tôi muốn checkout đến một nhánh remote mà người khác đang làm việc trên đó](#t%C3%B4i-mu%E1%BB%91n-checkout-%C4%91%E1%BA%BFn-m%E1%BB%99t-nh%C3%A1nh-remote-m%C3%A0-ng%C6%B0%E1%BB%9Di-kh%C3%A1c-%C4%91ang-l%C3%A0m-vi%E1%BB%87c-tr%C3%AAn-%C4%91%C3%B3)
     - [Tôi muốn tạo một nhánh remote mới từ một nhánh local hiện tại](#t%C3%B4i-mu%E1%BB%91n-t%E1%BA%A1o-m%E1%BB%99t-nh%C3%A1nh-remote-m%E1%BB%9Bi-t%E1%BB%AB-m%E1%BB%99t-nh%C3%A1nh-local-hi%E1%BB%87n-t%E1%BA%A1i)
     - [Tôi muốn thiết lập một nhánh remote giống như upstream cho một nhánh local](#t%C3%B4i-mu%E1%BB%91n-thi%E1%BA%BFt-l%E1%BA%ADp-m%E1%BB%99t-nh%C3%A1nh-remote-gi%E1%BB%91ng-nh%C6%B0-upstream-cho-m%E1%BB%99t-nh%C3%A1nh-local)
     - [Tôi muốn thiết lập HEAD của tôi để theo dõi nhánh remote mặc định](#t%C3%B4i-mu%E1%BB%91n-thi%E1%BA%BFt-l%E1%BA%ADp-head-c%E1%BB%A7a-t%C3%B4i-%C4%91%E1%BB%83-theo-d%C3%B5i-nh%C3%A1nh-remote-m%E1%BA%B7c-%C4%91%E1%BB%8Bnh)
@@ -77,7 +77,7 @@ Tất cả các command nên làm việc với phiên bản nhỏ nhất 2.13.0.
       - [Chiến lược merge an toàn](#chi%E1%BA%BFn-l%C6%B0%E1%BB%A3c-merge-an-to%C3%A0n)
       - [Tôi cần merge một nhánh vào một commit duy nhất](#t%C3%B4i-c%E1%BA%A7n-merge-m%E1%BB%99t-nh%C3%A1nh-v%C3%A0o-m%E1%BB%99t-commit-duy-nh%E1%BA%A5t)
       - [Tôi chỉ muốn kết hợp các commit chưa push](#t%C3%B4i-ch%E1%BB%89-mu%E1%BB%91n-k%E1%BA%BFt-h%E1%BB%A3p-c%C3%A1c-commit-ch%C6%B0a-push)
-      - [Tôi cần huỷ việc merge](#t%C3%B4i-c%E1%BA%A7n-hu%E1%BB%B7-vi%E1%BB%87c-merge)
+      - [Tôi cần huỷ bỏ merge](#t%C3%B4i-c%E1%BA%A7n-hu%E1%BB%B7-b%E1%BB%8F-merge)
     - [Tôi cần cập nhật commit cha của nhánh của tôi](#t%C3%B4i-c%E1%BA%A7n-c%E1%BA%ADp-nh%E1%BA%ADt-commit-cha-c%E1%BB%A7a-nh%C3%A1nh-c%E1%BB%A7a-t%C3%B4i)
     - [Kiểm tra xem tất cả commit trên một nhánh đã được merge](#ki%E1%BB%83m-tra-xem-t%E1%BA%A5t-c%E1%BA%A3-commit-tr%C3%AAn-m%E1%BB%99t-nh%C3%A1nh-%C4%91%C3%A3-%C4%91%C6%B0%E1%BB%A3c-merge)
     - [Các vấn đề có thể xảy ra với interactive rebases](#c%C3%A1c-v%E1%BA%A5n-%C4%91%E1%BB%81-c%C3%B3-th%E1%BB%83-x%E1%BA%A3y-ra-v%E1%BB%9Bi-interactive-rebases)
@@ -137,7 +137,7 @@ Tất cả các command nên làm việc với phiên bản nhỏ nhất 2.13.0.
 
 ### Tôi muốn clone một remote repository
 
-Để clone (copy) một remote repository, copy đường dẫn url cho repository, và chạy:
+Để clone (copy) một remote repository, copy đường dẫn url cho repository và chạy:
 
 ```sh
 $ git clone [url]
@@ -154,7 +154,7 @@ $ git clone [url] name-of-new-folder
 ## Chỉnh sửa Commit
 
 <a name="diff-last"></a>
-### Bạn vừa commit điều gì ?
+### Bạn vừa commit điều gì?
 
 Giả sử bạn vừa commit thay đổi một cách mù quáng với lệnh `git commit -a` và bạn không chắc chắn nội dunng thực sự là của commit vừa thực hiện. Bạn có thể hiển thị ra commit gần nhất trên con trỏ HEAD hiện tại của bạn với lệnh:
 
@@ -228,7 +228,7 @@ $ git commit --amend --no-edit
 <a name="delete-pushed-commit"></a>
 ### Tôi muốn xoá hoặc loại bỏ commit cuối cùng nhất của tôi
 
-Nếu bạn muốn xoá các commit đã push, bạn có thể dụng cách sau. Tuy nhiên, nó sẽ không thể phục hồi thay đổi của lịch sử, và làm hỏng lịch sử của bất kỳ ai khác đã pull từ repository. Tóm lại, nếu bạn không chắc chắn, bạn không nên làm điều này.
+Nếu bạn muốn xoá các commit đã push, bạn có thể dụng cách sau. Tuy nhiên, nó sẽ không thể phục hồi thay đổi của lịch sử và làm hỏng lịch sử của bất kỳ ai khác đã pull từ repository. Tóm lại, nếu bạn không chắc chắn, bạn không nên làm điều này.
 
 ```sh
 $ git reset HEAD^ --hard
@@ -275,12 +275,12 @@ Lưu ý rằng, như với rebase (xem bên dưới), sử đổi thay thể com
 (my-branch)$ git push origin mybranch --force-with-lease
 ```
 
-Nói chung, **tránh force push**. Tốt nhất là tạo và push một commit mới thay vì force-push commit đã sửa đổi vì nó sẽ gây xung đột trong lịch sử của resource cho bất kỳ developer nào người mà đã tương tác với nhánh được đề cập hoặc bất kỳ nhánh con nào. `--force-with-lease` sẽ vẫn thất bại, nếu ai đó cũng đang làm việc trên cùng một nhánh với bạn, và việc push lên sẽ ghi đè lên những thay đổi đó.
+Nói chung, **tránh force push**. Tốt nhất là tạo và push một commit mới thay vì force-push commit đã sửa đổi vì nó sẽ gây xung đột trong lịch sử của resource cho bất kỳ developer nào người mà đã tương tác với nhánh được đề cập hoặc bất kỳ nhánh con nào. `--force-with-lease` sẽ vẫn thất bại, nếu ai đó cũng đang làm việc trên cùng một nhánh với bạn và việc push lên sẽ ghi đè lên những thay đổi đó.
 
 Nếu bạn hoàn toàn chắc chắn rằng không ai đang làm việc trên cùng một nhánh hoặc bạn muốn cập nhật phần đầu của một nhánh *vô điều kiện*, bạn có thể sử dụng `--force` (`-f`), nhưng điều này nói chung nên tránh.
 
 <a href="undo-git-reset-hard"></a>
-### Tôi đã vô tình thực hiện hard reset, và tôii muốn các thay đổi của tôi trở lại trước đó.
+### Tôi đã vô tình thực hiện hard reset và tôi muốn các thay đổi của tôi trở lại trước đó.
 
 Nếu vô tình bạn thực hiện `git reset --hard`, bạn có thể vẫn nhận được commit trước của bạn, vì git giữ một bản log cho tất cả mọi thứ trong 1 vài ngày.
 
@@ -290,7 +290,7 @@ Chú ý: Điều này chỉ hợp lệ nếu luồng làm việc của bạn đ�
 (main)$ git reflog
 ```
 
-Bạn sẽ thấy danh sách các commit gần đây, và một commit cho reset. Chọn SHA của commit và muốn quay trở lại và reset lại:
+Bạn sẽ thấy danh sách các commit gần đây và một commit cho reset. Chọn SHA của commit và muốn quay trở lại và reset lại:
 
 ```sh
 (main)$ git reset --hard SHA1234
@@ -383,7 +383,7 @@ Sau đó, bạn sẽ cần sử dụng tuỳ chọn `e` để dùng cách thủ 
 `git add` sẽ thêm toàn bộ file vào một commit. `git add -p` sẽ cho phép tương tác chọn những thay đổi bạn muốn thêm.
 
 <a href="unstaging-edits-and-staging-the-unstaged"></a>
-### Tôi muốn stage các chỉnh sửa chưa được stage, và unstage các chỉnh sửa đã stage
+### Tôi muốn stage các chỉnh sửa chưa được stage và unstage các chỉnh sửa đã stage
 
 Điều này là khó khăn. Cách tốt nhất là bạn nên stash các chỉnh sửa chưa stage. Sau đó, reset. Sau đóm hãy pop lại các chỉnh sửa đã stash và thêm chúng.
 
@@ -706,7 +706,7 @@ Bây giờ, chúng ta có thể tạo ra một nhánh mới cho lỗi của chú
 (21)$
 ```
 
-Bây giờ, hãy *cherry-pick* commit cho bug #21 trên dầu của nhánh. Điều này có ý nghĩa là chúng ta sẽ áp dụng commit đó, và chỉ commit đó, trực tiếp trên đầu của bất cứ head nào của chúng ta.
+Bây giờ, hãy *cherry-pick* commit cho bug #21 trên đầu của nhánh. Điều này có ý nghĩa là chúng ta sẽ áp dụng commit đó và chỉ commit đó, trực tiếp trên đầu của bất cứ head nào của chúng ta.
 
 ```sh
 (21)$ git cherry-pick e3851e8
@@ -858,7 +858,7 @@ Giả sử bạn muốn xoá tất cả nhánh bắt đầu với `fix/`:
 ```
 
 <a name="i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on"></a>
-### TÔi muốn checkout đến một nhánh remote mà người khác đang làm việc trên đó
+### Tôi muốn checkout đến một nhánh remote mà người khác đang làm việc trên đó
 
 Đầu tiên, fetch tất cả nhánh từ remote:
 
@@ -876,7 +876,7 @@ Switched to a new branch 'daves'
 
 (`--track` là viết tắt của `git checkout -b [branch] [remotename]/[branch]`)
 
-Điều này sẽ cung cấp cho bạn một bản sao cục bộ của nhánh `daves`, và mọi cập nhật đã được push cũng sẽ được hiển thị từ remote.
+Điều này sẽ cung cấp cho bạn một bản sao cục bộ của nhánh `daves` và mọi cập nhật đã được push cũng sẽ được hiển thị từ remote.
 
 ### Tôi muốn tạo một nhánh remote mới từ một nhánh local hiện tại
 
@@ -956,7 +956,7 @@ Bạn có thể đã merge hoặc rebase nhánh hiện tại của bạn với m
 <a name="force-push-rebase"></a>
 ### Tôi đã rebase, nhưng tôi không muốn force push
 
-Thật không may, bạn phải bắt buộc push, nếu bạn muốn những thay đổi đó được ánh xạ trên nhánh remote. Điều này là do bạn đã thay đổi lịch sử. Nhánh remote sẽ không chấp nhận thay đổi trừ khi bạn ép buộc. Đây là một trong những lý do chính khiến nhiều người sử dụng một luồng merge, thay vì một luồng rebasing - các nhóm lớn có thể gặp rắc rối với các developer bắt buộc push. Sử dụng điều này một cách thận trọng. Một cách an toàn hơn để sử dụng rebase không phải là để ánh xạ các thay đổi của bạn trên nhánh remte, và thay vào đó thực hiện các thao tác sau:
+Thật không may, bạn phải bắt buộc push, nếu bạn muốn những thay đổi đó được ánh xạ trên nhánh remote. Điều này là do bạn đã thay đổi lịch sử. Nhánh remote sẽ không chấp nhận thay đổi trừ khi bạn ép buộc. Đây là một trong những lý do chính khiến nhiều người sử dụng một luồng merge, thay vì một luồng rebasing - các nhóm lớn có thể gặp rắc rối với các developer bắt buộc push. Sử dụng điều này một cách thận trọng. Một cách an toàn hơn để sử dụng rebase không phải là để ánh xạ các thay đổi của bạn trên nhánh remote và thay vào đó thực hiện các thao tác sau:
 
 ```sh
 (main)$ git checkout my-branch
@@ -977,7 +977,7 @@ Giả sử bạn đang làm việc trong một nhánh có / sẽ trở thành m�
 (my-branch)$ git commit -am "New awesome feature"
 ```
 
-Nếu bạn muốn kiểm soát nhiều hơn, và cũng để bảo vệ timestamp, bạn cần phải làm  một vài thứ được gọi là một interactive rebase:
+Nếu bạn muốn kiểm soát nhiều hơn và cũng để bảo vệ timestamp, bạn cần phải làm một vài thứ được gọi là một interactive rebase:
 
 ```sh
 (my-branch)$ git rebase -i main
@@ -1018,7 +1018,7 @@ pick e3851e8 another fix
 
 Tất cả các dòng bắt đầu bằng một `#` là các comment, chúng sẽ không ảnh hưởng đến rebase của bạn.
 
-Sau đó bạn thay thể câu lệnh `pick` với những thư trong danh sách trên, và bạn cũng có thể loại bỏ các commit bằng cách xoá các dòng tương ứng.
+Sau đó bạn thay thể câu lệnh `pick` với những thư trong danh sách trên và bạn cũng có thể loại bỏ các commit bằng cách xoá các dòng tương ứng.
 
 Ví dụ, nếu bạn muốnn **di chuyển một mình commit cũ nhất(đầu tiên) và kết với với tất cả commit sau với commit cũ thứ 2**, bạn nên chỉnh sửa chữ cái bên cạnh mỗi commit ngoại trừ chữ cái đầu tiên và chữ cái thứ hai `f`:
 
@@ -1084,7 +1084,7 @@ Nếu mọi thứ thành công, bạn sẽ thấy một cái gì đó như thế
 
 Điều này sẽ làm một interactive rebase mà chỉ liệt kê các commit mà bạn chưa push, vì vậy nó sẽ được an toàn để sắp xếp lại / sửa chữa / squash bất cứ điều gì trong danh sách
 
-#### Tôi cần huỷ việc merge
+#### Tôi cần huỷ bỏ merge
 
 Đôi khi việc merge có thể gây ra sự cố trong một số file nhất định, trong những trường hợp đó, chúng ta có thể sử dụng tùy  `abort` để hủy bỏ quá trình giải quyết xung đột hiện tại và cố gắng xây dựng lại trạng thái merge trước.
 
@@ -1112,7 +1112,7 @@ Giả sử tôi có một nhánh main, một nhánh feature-1 tách nhánh từ 
 (main)$ git log --graph --left-right --cherry-pick --oneline HEAD...feature/120-on-scroll
 ```
 
-Điều này sẽ cho bạn biết nếu bất kỳ commit trong một nhưng không phải là nhánh khác, và sẽ cung cấp cho bạn một danh sách của bất kỳ nonshared giữa các nhánh. Một lựa chọn khác là làm điều này:
+Điều này sẽ cho bạn biết nếu bất kỳ commit trong một nhưng không phải là nhánh khác và sẽ cung cấp cho bạn một danh sách của bất kỳ nonshared giữa các nhánh. Một lựa chọn khác là làm điều này:
 
 ```sh
 (main)$ git log main ^feature/120-on-scroll --no-merges
@@ -1558,19 +1558,19 @@ $ git config --global core.fileMode false
 Để cấu hình thông tin người dùng được sử dụng trên tất cả các repository cục bộ và để đặt tên có thể nhận dạng khi xem lại phiên bản lịch sử:
 
 ```sh
-$ git config --global user.name “[firstname lastname]”
+$ git config --global user.name "[firstname lastname]"
 ```
 Để đặt địa chỉ email sẽ được liên kết với mỗi điểm đánh dấu lịch sử:
 
 ```sh
-git config --global user.email “[valid-email]”
+git config --global user.email "[valid-email]"
 ```
 
 ## Tôi không nghĩ mình đã làm gì sai
 
-Vì vậy, bạn đang say - bạn `reset` vài thứ, hoặc bạn merge sai nhánh, hoặc bạn force push và bây giờ bạn không thể tìm thấy các commit của bạn. Bạn biết, tại một số thời điểm, bạn đã làm tốt, và bạn muốn quay trở lại trạng thái bạn đang ở đó.
+Vì vậy, bạn đang say - bạn `reset` vài thứ, hoặc bạn merge sai nhánh, hoặc bạn force push và bây giờ bạn không thể tìm thấy các commit của bạn. Bạn biết, tại một số thời điểm, bạn đã làm tốt và bạn muốn quay trở lại trạng thái bạn đang ở đó.
 
-Đây là những gì `git reflog` cho. `reflog` theo dõi bất kỳ thay đổi nào đối với mẹo của nhánh, ngay cả khi mẹo đó không được tham chiếu bởi nhánh hoặc tag. Về cơ bản, mỗi lần HEAD thay đổi, một mục mới được thêm vào reflog. Điều này chỉ hoạt động đối với các repository cục bộ, thật đáng buồn, và nó chỉ theo dõi các chuyển động (ví dụ: không thay đổi một tệp không được ghi ở bất kỳ đâu).
+Đây là những gì `git reflog` cho. `reflog` theo dõi bất kỳ thay đổi nào đối với mẹo của nhánh, ngay cả khi mẹo đó không được tham chiếu bởi nhánh hoặc tag. Về cơ bản, mỗi lần HEAD thay đổi, một mục mới được thêm vào reflog. Điều này chỉ hoạt động đối với các repository cục bộ, thật đáng buồn và nó chỉ theo dõi các chuyển động (ví dụ: không thay đổi một tệp không được ghi ở bất kỳ đâu).
 
 ```sh
 (main)$ git reflog
@@ -1601,21 +1601,21 @@ Sử dụng `git reset` sau đó nó có thể thay đổi main trở về commi
 
 ## Hướng dẫn
 
-* [19 mẹo sử dụng GIT hàng ngày](https://www.alexkras.com/19-git-tips-for-everyday-use) - Một danh sách các mẹo dùng GIT hữu ích
-* [Atlassian's Git tutorial](https://www.atlassian.com/git/tutorials) Sử dụng Git đúng với các hướng dẫn từ cơ bản đến nâng cao.
-* [Learn Git branching](https://learngitbranching.js.org/) Hướng dẫn phân nhánh / merging / rebasing dựa trên web interactive
+* [19 mẹo sử dụng GIT hàng ngày](https://www.alexkras.com/19-git-tips-for-everyday-use) - Một danh sách các mẹo dùng GIT hữu ích.
+* [Atlassian's Git tutorial](https://www.atlassian.com/git/tutorials) - Sử dụng Git đúng với các hướng dẫn từ cơ bản đến nâng cao.
+* [Learn Git branching](https://learngitbranching.js.org/) - Hướng dẫn phân nhánh / merging / rebasing dựa trên web interactive
 * [Getting solid at Git rebase vs. merge](https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa)
 * [Git Commands and Best Practices Cheat Sheet](https://zeroturnaround.com/rebellabs/git-commands-and-best-practices-cheat-sheet) - Một Git cheat sheet trong một bài đăng trên blog với nhiều giải thích hơn
 * [Git from the inside out](https://codewords.recurse.com/issues/two/git-from-the-inside-out) - Hướng dẫn đi sâu vào vào Git
 * [git-workflow](https://github.com/asmeurer/git-workflow) - [Aaron Meurer](https://github.com/asmeurer) của cách sử dụng Git để đóng góp vào repository mã nguồn mở
-* [GitHub as a workflow](https://hugogiraudel.com/2015/08/13/github-as-a-workflow/) - Một điều thú vị khi sử dụng GitHub như một quy trình làm việc, đặc biệt với các PR trống
-* [Githug](https://github.com/Gazler/githug) - Một trò chơi để học thêm về luồng làm việc chung của Git
+* [GitHub as a workflow](https://hugogiraudel.com/2015/08/13/github-as-a-workflow/) - Một điều thú vị khi sử dụng GitHub như một quy trình làm việc, đặc biệt với các PR trống.
+* [Githug](https://github.com/Gazler/githug) - Một trò chơi để học thêm về luồng làm việc chung của Git.
 
 ## Scripts và các công cụ
 
-* [firstaidgit.io](http://firstaidgit.io/) Một lựa chọn có thể tìm kiếm các câu hỏi thường gặp nhất về Git
-* [git-extra-commands](https://github.com/unixorn/git-extra-commands) - tập hợp các script Git mở rộng hữu ích
-* [git-extras](https://github.com/tj/git-extras) - Các tiện ích GIT -- repo tóm tắt, thay thế, số lượng thay đổi, tỷ lệ phần trăm của tác giả và nhiều nữa
+* [firstaidgit.io](http://firstaidgit.io/) - Một lựa chọn có thể tìm kiếm các câu hỏi thường gặp nhất về Git
+* [git-extra-commands](https://github.com/unixorn/git-extra-commands) - Tập hợp các script Git mở rộng hữu ích
+* [git-extras](https://github.com/tj/git-extras) - Các tiện ích GIT -- Repo tóm tắt, thay thế, số lượng thay đổi, tỷ lệ phần trăm của tác giả và nhiều nữa
 * [git-fire](https://github.com/qw3rtman/git-fire) - git-fire là một plugin Git để giúp trong trường hợp khẩn cấp bằng cách thêm tất cả các tệp hiện tại, commit và push vào một nhánh mới (để ngăn xung đột khi merge).
 * [git-tips](https://github.com/git-tips/tips) - Các mẹo Git nhỏ
 * [git-town](https://github.com/Originate/git-town) - Hỗ trợ luồng làm việc Git chung, mức cao! http://www.git-town.com
@@ -1625,12 +1625,12 @@ Sử dụng `git reset` sau đó nó có thể thay đổi main trở về commi
 * [git-cola](https://git-cola.github.io/) - Git client khác cho Windows và OS X
 * [GitUp](https://github.com/git-up/GitUp) - Một GUI mới mẻ mà có một số cách rất quan tâm để giải quyết các việc khó chịu của Git
 * [gitx-dev](https://rowanj.github.io/gitx/) - Một Git client đồ hoạ khác cho OS X
-* [Sourcetree](https://www.sourcetreeapp.com/) - Sự đơn giản nhưng mạnh mẽ cho giao diện Git đẹp và miễn. Cho Windows and Mac.
+* [Sourcetree](https://www.sourcetreeapp.com/) - Sự đơn giản nhưng mạnh mẽ cho giao diện Git đẹp và miễn phí cho Windows và Mac.
 * [Tower](https://www.git-tower.com/) - Git client đồ hoạ cho OS X (trả phí)
-* [tig](https://jonas.github.io/tig/) - terminal text-mode interface cho Git
+* [tig](https://jonas.github.io/tig/) - Terminal text-mode interface cho Git
 * [Magit](https://magit.vc/) - Interface cho Git thực hiện như một gói Emacs .
 * [GitExtensions](https://github.com/gitextensions/gitextensions) - Một shell extension, một Visual Studio 2010-2015 plugin và một công cụ Git repository độc lập.
 * [Fork](https://git-fork.com/) - Một Git client nhanh và thân thiện cho Mac (beta)
 * [gmaster](https://gmaster.io/) - Một Git client cho Windows với 3 cách merge, analyze refactors, semantic diff và merge (beta)
-* [gitk](https://git-scm.com/docs/gitk) - Một Git client cho linux để cho phép xem đơn giản cho trạng thái repo.
+* [gitk](https://git-scm.com/docs/gitk) - Một Git client cho Linux để cho phép xem đơn giản cho trạng thái repo.
 * [SublimeMerge](https://www.sublimemerge.com/) - Client nhanh, mở rộng, cung cấp 3 cách merge, tìm kiếm mạnh mẽ và làm nổi bật cú pháp, đang phát triển tích cực.
