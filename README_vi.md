@@ -5,19 +5,19 @@
 
 #### "flight rules" là gì?
 
-Một hướng dẫn cho các phi hành gia astronauts (các lập trình viên sử dụng Git) về những việc cần làm khi một thứ gì đó xảy ra sai.
+Là tài liệu hướng dẫn cho các phi hành gia vũ trụ (và tại đây, cho các lập trình viên sử dụng Git) về những việc cần làm khi có sai lầm xảy ra.
 
->  *Flight Rules* là kiến thức khó thấy được trong các hướng dẫn sử dụng, từng bước, phải làm gì đếu điều X xảy ra và tại sao. Về cơ bản, chúng là các quy trình thực hiện theo tiêu chuẩn cụ thể cho từng kịch bản cụ thể. [...]
+>  *Flight Rules* là những kiến thức vất vả kiếm được trong các hướng dẫn sử dụng chỉ ra, từng bước, phải làm gì nếu X xảy ra và tại sao. Về cơ bản, chúng là các chuẩn quy trình thực hiện rất chi tiết cho từng kịch bản cụ thể . [...]
 
-> NASA đã nắm bắt được những sai lầm, thảm hoạ và giải pháp của chúng tôi kể từ đầu những năm 1960s, khi các nhóm Mercury-era bắt đầu thu thập "các bài học kinh nghiệm" thành một bản tóm tắt liệt kê hàng nghìn tình huống có vấn đề, từ lỗi động cơ đến các tay cầm bị bẻ cong đến trục trặc máy tính và các giải pháp của họ.
+> NASA qua thời gian đã ghi lại những sai lầm, thảm hoạ và giải pháp của chúng tôi kể từ đầu những năm 1960, khi các đội mặt đất trong thời kỳ chương trình Mercury bắt đầu thu thập "các bài học kinh nghiệm" thành một bản yếu lược liệt kê hàng nghìn tình huống có vấn đề, từ lỗi động cơ đến các tay cầm bị bẻ cong đến trục trặc máy tính, và các giải pháp của họ.
 
-&mdash; Chris Hadfield, *An Astronaut's Guide to Life*.
+&mdash; Chris Hadfield, *Sổ Tay Phi Hành Gia*.
 
-#### Chuyển sang tài liệu này
+#### Quy chuẩn cho tài liệu này
 
-Vì để rõ ràng nên tất cả các ví dụ trong tài liệu này sử dụng thêm dấu bash prompt được tuỳ chỉnh để chỉ ra nhánh hiện tại và có hoặc không sự thay đổi giai đoạn. Nhánh được đặt trong dấu ngoặc đơn và  The branch is enclosed in parentheses, and một ký tự `*` bên cạnh tên nhánh cho biết các thay đổi của giai đoạn.
+Để  chuyền tải rõ ràng, tất cả các ví dụ trong tài liệu này sử dụng bash prompt được tuỳ chỉnh để chỉ ra nhánh hiện tại và có hay không thay đổi trong vùng chuyển tiếp (staged changes). Nhánh được đặt trong dấu ngoặc đơn và một ký tự `*` bên cạnh tên nhánh cho biết các thay đổi trong vùng chuyển tiếp.
 
-Tất cả các command nên làm việc với phiên bản nhỏ nhất 2.13.0. Xem [git website](https://www.git-scm.com/) để cập nhật phiên bản git trên local của bạn.
+Tất cả các lệnh (command) phải thi hành với phiên bản lâu đời nhất là git 2.13.0. Xem [git website](https://www.git-scm.com/) để cập nhật phiên bản git trên local của bạn.
 
 [![Join the chat at https://gitter.im/k88hudson/git-flight-rules](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/k88hudson/git-flight-rules?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -25,10 +25,10 @@ Tất cả các command nên làm việc với phiên bản nhỏ nhất 2.13.0.
 **Danh mục nội dung**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
   - [Repositories](#repositories)
-    - [Tôi muốn bắt đầu một repository trên local](#t%C3%B4i-mu%E1%BB%91n-b%E1%BA%AFt-%C4%91%E1%BA%A7u-m%E1%BB%99t-repository-tr%C3%AAn-local)
+    - [Tôi muốn tạo một repository tại local](#t%C3%B4i-mu%E1%BB%91n-b%E1%BA%AFt-%C4%91%E1%BA%A7u-m%E1%BB%99t-repository-tr%C3%AAn-local)
     - [Tôi muốn clone một remote repository](#t%C3%B4i-mu%E1%BB%91n-clone-m%E1%BB%99t-remote-repository)
   - [Chỉnh sửa Commit](#ch%E1%BB%89nh-s%E1%BB%ADa-commit)
-    - [Bạn vừa commit điều gì?](#b%E1%BA%A1n-v%E1%BB%ABa-commit-%C4%91i%E1%BB%81u-g%C3%AC)
+    - [Tôi vừa commit cái gì?](#b%E1%BA%A1n-v%E1%BB%ABa-commit-%C4%91i%E1%BB%81u-g%C3%AC)
     - [Tôi đã viết sai vài thứ trong message của commit](#t%C3%B4i-%C4%91%C3%A3-vi%E1%BA%BFt-sai-v%C3%A0i-th%E1%BB%A9-trong-message-c%E1%BB%A7a-commit)
     - [Tôi đã commit với tên và email cấu hình sai](#t%C3%B4i-%C4%91%C3%A3-commit-v%E1%BB%9Bi-t%C3%AAn-v%C3%A0-email-c%E1%BA%A5u-h%C3%ACnh-sai)
     - [Tôi muốn xoá một file từ commit trước](#t%C3%B4i-mu%E1%BB%91n-xo%C3%A1-m%E1%BB%99t-file-t%E1%BB%AB-commit-tr%C6%B0%E1%BB%9Bc)
@@ -125,38 +125,140 @@ Tất cả các command nên làm việc với phiên bản nhỏ nhất 2.13.0.
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## Repositories
+## Repositories (Kho)
 
-### Tôi muốn bắt đầu một repository trên local
+### Tôi muốn tạo một repository trên local
 
-Để khởi tạo cho một Git repository trên thư mục đã tồn tại:
+Để tạo một Git repository tại thư mục đã tồn tại:
 
 ```sh
-(my-folder) $ git init
+(thư-mục-của-tôi) $ git init
 ```
 
 ### Tôi muốn clone một remote repository
 
-Để clone (copy) một remote repository, copy đường dẫn url cho repository và chạy:
+Để clone (copy) một remote repository, copy đường dẫn url cho repository, và chạy :
 
 ```sh
 $ git clone [url]
 ```
 
-Việc này sẽ lưu lại nó vào một thư mục có tên như tên của remote repository. Hãy chắc chắn rằng bạn có kết nối đến remote server khi bạn đang clone về (hầu hết các các việc này cần đảm bảo bạn được kết nối với internet).
+Lệnh này sẽ tải xuống một thư mục có tên giống tên của remote repository. Hãy chắc chắn rằng bạn có kết nối đến remote server khi bạn đang clone về (phần lớn thời gian nghĩa là cần đảm bảo bạn kết nối được với internet).
 
-Để clone vào một thư mực với tên khác với tên mặc định của repository:
+Để clone vào một thư mục với tên khác với tên mặc định của repository:
 
 ```sh
 $ git clone [url] name-of-new-folder
 ```
 
+### Tôi để sai remote repository
+
+Có thể có vài vấn đề khác nhau:
+
+Nếu bạn clone sai repository, chỉ cần xóa thư mục tạo bởi `git clone` và sau đó clone đúng remote repository.
+
+Nếu bạn để nhầm repository là origin của một local repository hiện tại, thay đổi URL của origin với lệnh:
+
+```sh
+$ git remote set-url origin [url của repo đúng]
+```
+
+Xem thêm tại [StackOverflow](https://stackoverflow.com/questions/2432764/how-to-change-the-uri-url-for-a-remote-git-repository#2432799).
+
+
+### Tôi muốn thêm sửa code cho repository của người khác
+
+Git không cho bạn thêm sửa code vào repository của người khác nếu không có quyền truy cập. GitHub cũng thế, GitHub khác với Git vì là dịch vụ hosting cho các Git repository. Nhưng bạn có thể  thêm sửa code với các patch vá lỗi, hoặc, nếu trên GitHub, với forks và pull requests.
+
+Trước hêt, một vài điều về fork. Một fork là một copy của một repository. Đây không phải là một lệnh git, mà là một hành động thường thấy trên GitHub, Bitbucket, GitLab — hoặc bắt cứ đâu host các Git repository. Bạn có thể fork một repository qua UI của dịch vụ host.
+
+#### Thêm sưa code với pull requests
+
+Sau khi bạn đã fork một repository, you normally need to clone the repository to your machine. You can do some small edits on GitHub, for instance, without cloning, but this isn't a github-flight-rules list, so let's go with how to do this locally.
+
+```sh
+# if you are using ssh
+$ git clone git@github.com:k88hudson/git-flight-rules.git
+
+# if you are using https
+$ git clone https://github.com/k88hudson/git-flight-rules.git
+```
+
+If you `cd` into the resulting directory, and type `git remote`, you'll see a list of the remotes. Normally there will be one remote - `origin` - which will point to `k88hudson/git-flight-rules`. In this case, we also want a remote that will point to your fork.
+
+First, to follow a Git convention, we normally use the remote name `origin` for your own repository and `upstream` for whatever you've forked. So, rename the `origin` remote to `upstream`
+
+```sh
+$ git remote rename origin upstream
+```
+
+You can also do this using `git remote set-url`, but it takes longer and is more steps.
+
+Then, set up a new remote that points to your project.
+
+```sh
+$ git remote add origin git@github.com:YourName/git-flight-rules.git
+```
+
+Note that now you have two remotes.
+
+- `origin` references your own repository.
+- `upstream` references the original one.
+
+From origin, you can read and write. From upstream, you can only read.
+
+When you've finished making whatever changes you like, push your changes (normally in a branch) to the remote named `origin`. If you're on a branch, you could use `--set-upstream` to avoid specifying the remote tracking branch on every future push using this branch. For instance:
+
+```sh
+$ (feature/my-feature) git push --set-upstream origin feature/my-feature
+```
+
+There is no way to suggest a pull request using the CLI using Git (although there are tools, like [hub](http://github.com/github/hub), which will do this for you). So, if you're ready to make a pull request, go to your GitHub (or another Git host) and create a new pull request. Note that your host automatically links the original and forked repositories.
+
+After all of this, do not forget to respond to any code review feedback.
+
+#### Suggesting code via patches
+
+Another approach to suggesting code changes that doesn't rely on third party sites such as Github is to use `git format-patch`.
+
+`format-patch` creates a .patch file for one or more commits. This file is essentially a list of changes that looks similar to the commit diffs you can view on Github.
+
+A patch can be viewed and even edited by the recipient and applied using `git am`.
+
+For example, to create a patch based on the previous commit you would run `git format-patch HEAD^` which would create a .patch file called something like 0001-My-Commit-Message.patch.
+
+To apply this patch file to your repository you would run `gim am ./0001-My-Commit-Message.patch`.
+
+Patches can also be sent via email using the `git send-email` command. For information on usage and configuration see: https://git-send-email.io
+
+#### I need to update my fork with latest updates from the original repository
+
+After a while, the `upstream` repository may have been updated, and these updates need to be pulled into your `origin` repo. Remember that like you, other people are contributing too. Suppose that you are in your own feature branch and you need to update it with the original repository updates.
+
+You probably have set up a remote that points to the original project. If not, do this now. Generally we use `upstream` as a remote name:
+
+```sh
+$ (main) git remote add upstream <link-to-original-repository>
+# $ (main) git remote add upstream git@github.com:k88hudson/git-flight-rules.git
+```
+
+Now you can fetch from upstream and get the latest updates.
+
+```sh
+$ (main) git fetch upstream
+$ (main) git merge upstream/main
+
+# or using a single command
+$ (main) git pull upstream main
+```
+
+
 ## Chỉnh sửa Commit
 
 <a name="diff-last"></a>
-### Bạn vừa commit điều gì?
+### Tôi vừa commit cái gì?
 
-Giả sử bạn vừa commit thay đổi một cách mù quáng với lệnh `git commit -a` và bạn không chắc chắn nội dunng thực sự là của commit vừa thực hiện. Bạn có thể hiển thị ra commit gần nhất trên con trỏ HEAD hiện tại của bạn với lệnh:
+Giả sử bạn vừa commit thay đổi một cách mù quáng với lệnh `git commit -a` và bạn không chắc chắn nội dung thực sự là của commit vừa thực hiện. Bạn có thể hiển thị ra commit gần nhất trên con trỏ HEAD hiện tại của bạn với lệnh:
 
 ```sh
 (main)$ git show
