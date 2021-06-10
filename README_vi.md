@@ -446,7 +446,119 @@ Nếu bạn muốn xóa hoàn toàn toàn bộ tệp (và không giữ tệp t�
 
 Nếu bạn đã thực hiện các commit khác (tức là dữ liệu nhạy cảm nằm tại commit trước commit mới nhất), bạn sẽ phải rebase.
 
-## Staging
+<a href="#i-want-to-remove-a-large-file-from-ever-existing-in-repo-history"></a>
+### I want to remove a large file from ever existing in repo history
+
+If the file you want to delete is secret or sensitive, instead see [how to remove sensitive files](#i-accidentally-committed-and-pushed-files-containing-sensitive-data).
+
+Even if you delete a large or unwanted file in a recent commit, it still exists in git history, in your repo's `.git` folder, and will make `git clone` download unneeded files.
+
+The actions in this part of the guide will require a force push, and rewrite large sections of repo history, so if you are working with remote collaborators, check first that any local work of theirs is pushed.
+
+There are two options for rewriting history, the built-in `git-filter-branch` or [`bfg-repo-cleaner`](https://rtyley.github.io/bfg-repo-cleaner/). `bfg` is significantly cleaner and more performant, but it is a third-party download and requires java. We will describe both alternatives. The final step is to force push your changes, which requires special consideration on top of a regular force push, given that a great deal of repo history will have been permanently changed.
+
+#### Recommended Technique: Use third-party bfg
+
+Using bfg-repo-cleaner requires java. Download the bfg jar from the link [here](https://rtyley.github.io/bfg-repo-cleaner/). Our examples will use `bfg.jar`, but your download may have a version number, e.g. `bfg-1.13.0.jar`.
+
+To delete a specific file.
+```sh
+(main)$ git rm path/to/filetoremove
+(main)$ git commit -m "Commit removing filetoremove"
+(main)$ java -jar ~/Downloads/bfg.jar --delete-files filetoremove
+```
+Note that in bfg you must use the plain file name even if it is in a subdirectory.
+
+You can also delete a file by pattern, e.g.:
+```sh
+(main)$ git rm *.jpg
+(main)$ git commit -m "Commit removing *.jpg"
+(main)$ java -jar ~/Downloads/bfg.jar --delete-files *.jpg
+```
+
+With bfg, the files that exist on your latest commit will not be affected. For example, if you had several large .tga files in your repo, and then in an earlier commit, you deleted a subset of them, this call does not touch files present in the latest commit
+
+Note, if you renamed a file as part of a commit, e.g. if it started as `LargeFileFirstName.mp4` and a commit changed it to `LargeFileSecondName.mp4`, running `java -jar ~/Downloads/bfg.jar --delete-files LargeFileSecondName.mp4` will not remove it from git history. Either run the `--delete-files` command with both filenames, or with a matching pattern.
+
+#### Built-in Technique: Use git-filter-branch
+
+`git-filter-branch` is more cumbersome and has less features, but you may use it if you cannot install or run `bfg`.
+
+In the below, replace `filepattern` may be a specific name or pattern, e.g. `*.jpg`. This will remove files matching the pattern from all history and branches.
+
+```sh
+(main)$ git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch filepattern' --prune-empty --tag-name-filter cat -- --all
+```
+
+Behind-the-scenes explanation:
+
+`--tag-name-filter cat` is a cumbersome, but simplest, way to apply the original tags to the new commits, using the command cat.
+
+`--prune-empty` removes any now-empty commits.
+
+#### Final Step: Pushing your changed repo history
+
+Once you have removed your desired files, test carefully that you haven't broken anything in your repo - if you have, it is easiest to re-clone your repo to start over.
+To finish, optionally use git garbage collection to minimize your local .git folder size, and then force push.
+```sh
+(main)$ git reflog expire --expire=now --all && git gc --prune=now --aggressive
+(main)$ git push origin --force --tags
+```
+
+Since you just rewrote the entire git repo history, the `git push` operation may be too large, and return the error `“The remote end hung up unexpectedly”`. If this happens, you can try increasing the git post buffer:
+```sh
+(main)$ git config http.postBuffer 524288000
+(main)$ git push --force
+```
+
+If this does not work, you will need to manually push the repo history in chunks of commits. In the command below, try increasing `<number>` until the push operation succeeds.
+```sh
+(main)$ git push -u origin HEAD~<number>:refs/head/main --force
+```
+Once the push operation succeeds the first time, decrease `<number>` gradually until a conventional `git push` succeeds.
+
+<a href="i-need-to-change-the-content-of-a-commit-which-is-not-my-last"></a>
+### I need to change the content of a commit which is not my last
+
+Consider you created some (e.g. three) commits and later realize you missed doing something that belongs contextually into the first of those commits. This bothers you, because if you'd create a new commit containing those changes, you'd have a clean code base, but your commits weren't atomic (i.e. changes that belonged to each other weren't in the same commit). In such a situation you may want to change the commit where these changes belong to, include them and have the following commits unaltered. In such a case, `git rebase` might save you.
+
+Consider a situation where you want to change the third last commit you made.
+
+```sh
+(your-branch)$ git rebase -i HEAD~4
+```
+
+gets you into interactive rebase mode, which allows you to edit any of your last three commits. A text editor pops up, showing you something like
+
+```sh
+pick 9e1d264 The third last commit
+pick 4b6e19a The second to last commit
+pick f4037ec The last commit
+```
+
+which you change into
+
+```sh
+edit 9e1d264 The third last commit
+pick 4b6e19a The second to last commit
+pick f4037ec The last commit
+```
+
+This tells rebase that you want to edit your third last commit and keep the other two unaltered. Then you'll save (and close) the editor. Git will then start to rebase. It stops on the commit you want to alter, giving you the chance to edit that commit. Now you can apply the changes which you missed applying when you initially committed that commit. You do so by editing and staging them. Afterwards you'll run
+
+```sh
+(your-branch)$ git commit --amend
+```
+
+which tells Git to recreate the commit, but to leave the commit message unedited. Having done that, the hard part is solved.
+
+```sh
+(your-branch)$ git rebase --continue
+```
+
+will do the rest of the work for you.
+
+## Staging (sân chuyển tiếp)
 
 <a href="#i-need-to-add-staged-changes-to-the-previous-commit"></a>
 ### Tôi cần thêm các thay đổi đã stage cho commit trước đó
@@ -1045,6 +1157,21 @@ Bạn đã thực hiện các thay đổi chưa được commit và nhận ra b�
 (correct_branch)$ git stash apply
 ```
 
+<a name="i-want-to-split-a-branch-into-two"></a>
+### I want to split a branch into two
+
+You've made a lot of commits on a branch and now want to separate it into two, ending with a branch up to an earlier commit and another with all the changes.
+
+Use `git log` to find the commit where you want to split. Then do the following:
+
+```sh
+(original_branch)$ git checkout -b new_branch
+(new_branch)$ git checkout original_branch
+(original_branch)$ git reset --hard <sha1 split here>
+```
+
+If you had previously pushed the `original_branch` to remote, you will need to do a force push. For more information check [Stack Overlflow](https://stackoverflow.com/questions/28983458/how-to-split-a-branch-in-two-with-git/28983843#28983843)
+
 ## Rebasing và Merging
 
 <a name="undo-rebase"></a>
@@ -1351,6 +1478,16 @@ $ git stash apply "stash@{n}"
 
 Ở đây, 'n' cho biết vị trí của stash trong stack. Stash trên cùng sẽ là vị trí 0.
 
+<a name="stage-and-keep-unstaged"></a>
+### Stash while keeping unstaged edits
+
+You can manually create a `stash commit`, and then use `git stash store`.
+
+```sh
+$ git stash create
+$ git stash store -m <message> CREATED_SHA1
+```
+
 ## Finding
 
 ### Tôi muốn tìm một chuỗi trong bất kỳ commit nào
@@ -1400,6 +1537,18 @@ Trong khi sử dụng ký tự đại diện, nó hữu ích để thông báo `
 ```sh
 $ git log --name-status -- **/*.js
 ```
+
+<a name="#i-want-to-view-the-commit-history-for-a-specific-function"></a>
+### I want to view the commit history for a specific function
+
+To trace the evolution of a single function you can use:
+
+```sh
+$ git log -L :FunctionName:FilePath
+```
+
+Note that you can combine this with further `git log` options, like [revision ranges](https://git-scm.com/docs/gitrevisions) and [commit limits](https://git-scm.com/docs/git-log/#_commit_limiting).
+
 
 ### Tìm một tag nơi một commit đã tham chiếu
 
@@ -1578,6 +1727,39 @@ Lưu ý rằng điều này không xóa tệp khỏi kiểm soát source - nó c
 $ git update-index --no-assume-unchanged file-to-stop-ignoring
 ```
 
+## Debugging with Git
+
+The [git-bisect](https://git-scm.com/docs/git-bisect) command uses a binary search to find which commit in your Git history introduced a bug.
+
+Suppose you're on the `main` branch, and you want to find the commit that broke some feature. You start bisect:
+
+```sh
+$ git bisect start
+```
+
+Then you should specify which commit is bad, and which one is known to be good. Assuming that your *current* version is bad, and `v1.1.1` is good:
+
+```sh
+$ git bisect bad
+$ git bisect good v1.1.1
+```
+
+Now `git-bisect` selects a commit in the middle of the range that you specified, checks it out, and asks you whether it's good or bad. You should see something like:
+
+```sh
+$ Bisecting: 5 revision left to test after this (roughly 5 step)
+$ [c44abbbee29cb93d8499283101fe7c8d9d97f0fe] Commit message
+$ (c44abbb)$
+```
+
+You will now check if this commit is good or bad. If it's good:
+
+```sh
+$ (c44abbb)$ git bisect good
+```
+
+and `git-bisect` will select another commit from the range for you. This process (selecting `good` or `bad`) will repeat until there are no more revisions left to inspect, and the command will finally print a description of the **first** bad commit.
+
 ## Cấu hình
 
 ### Tôi muốn thêm bí danh cho một số lệnh Git
@@ -1694,6 +1876,35 @@ Sử dụng `git reset` sau đó nó có thể thay đổi main trở về commi
 
 (đã sao chép và chỉnh sửa từ [Source](https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog)).
 
+<a name="git-shortcuts"></a>
+## Git Shortcuts
+
+### Git Bash
+
+Once you're comfortable with what the above commands are doing, you might want to create some shortcuts for Git Bash. This allows you to work a lot faster by doing complex tasks in really short commands.
+
+```sh
+alias sq=squash
+
+function squash() {
+    git rebase -i HEAD~$1
+}
+```
+
+Copy those commands to your .bashrc or .bash_profile.
+
+### PowerShell on Windows
+
+If you are using PowerShell on Windows, you can also set up aliases and functions. Add these commands to your profile, whose path is defined in the `$profile` variable. Learn more at the [About Profiles](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles) page on the Microsoft documentation site.
+
+```powershell
+Set-Alias sq Squash-Commits
+
+function Squash-Commits {
+  git rebase -i HEAD~$1
+}
+```
+
 # Tài nguyên khác
 
 ## Sách
@@ -1701,6 +1912,8 @@ Sử dụng `git reset` sau đó nó có thể thay đổi main trở về commi
 * [Learn Enough Git to Be Dangerous](https://www.learnenough.com/git-tutorial) - A book by Michael Hartl covering Git from basics
 * [Pro Git](https://git-scm.com/book/en/v2) - Scott Chacon and Ben Straub's excellent book about Git
 * [Git Internals](https://github.com/pluralsight/git-internals-pdf) - Scott Chacon's other excellent book about Git
+* [Nasa handbook](https://www.nasa.gov/sites/default/files/atoms/files/nasa_systems_engineering_handbook.pdf)
+
 
 ## Hướng dẫn
 
@@ -1713,6 +1926,7 @@ Sử dụng `git reset` sau đó nó có thể thay đổi main trở về commi
 * [git-workflow](https://github.com/asmeurer/git-workflow) - [Aaron Meurer](https://github.com/asmeurer) của cách sử dụng Git để đóng góp vào repository mã nguồn mở
 * [GitHub as a workflow](https://hugogiraudel.com/2015/08/13/github-as-a-workflow/) - Một điều thú vị khi sử dụng GitHub như một quy trình làm việc, đặc biệt với các PR trống.
 * [Githug](https://github.com/Gazler/githug) - Một trò chơi để học thêm về luồng làm việc chung của Git.
+* [learnGitBranching](https://github.com/pcottle/learnGitBranching) - An interactive git visualization to challenge and educate!
 
 ## Scripts và các công cụ
 
