@@ -172,83 +172,84 @@ Git không cho bạn thêm sửa code vào repository của người khác nếu
 
 Trước hêt, một vài điều về fork. Một fork là một copy của một repository. Đây không phải là một lệnh git, mà là một hành động thường thấy trên GitHub, Bitbucket, GitLab — hoặc bắt cứ đâu host các Git repository. Bạn có thể fork một repository qua UI của dịch vụ host.
 
-#### Thêm sưa code với pull requests
+#### Thêm sửa code với pull requests
 
-Sau khi bạn đã fork một repository, you normally need to clone the repository to your machine. You can do some small edits on GitHub, for instance, without cloning, but this isn't a github-flight-rules list, so let's go with how to do this locally.
+Sau khi đã fork một repository, bạn thường phải clone repository về máy của bạn. Tất nhiên bạn có thể tạo vài chỉnh sửa nhỏ trên GitHub nếu không clone về máy, nhưng văn bản này không phải là github-flight-rules, thế nên hãy xem cách trên máy local.
 
 ```sh
-# if you are using ssh
+# nếu bạn dùng ssh
 $ git clone git@github.com:k88hudson/git-flight-rules.git
 
-# if you are using https
+# nếu bạn dùng https
 $ git clone https://github.com/k88hudson/git-flight-rules.git
 ```
 
-If you `cd` into the resulting directory, and type `git remote`, you'll see a list of the remotes. Normally there will be one remote - `origin` - which will point to `k88hudson/git-flight-rules`. In this case, we also want a remote that will point to your fork.
+Nếu bạn `cd` vào thư mục được tạo, và chạy lệnh `git remote`, bạn sẽ thấy danh sách các remote. Thường sẽ có một remote - `origin` - trỏ đến `k88hudson/git-flight-rules`. Trong trường hợp này, bạn cũng muốn một remote trỏ đến fork của bạn.
 
-First, to follow a Git convention, we normally use the remote name `origin` for your own repository and `upstream` for whatever you've forked. So, rename the `origin` remote to `upstream`
+Đầu tiên, để theo quy chuẩn dùng Git, chúng ta sẽ dùng remote tên `origin` cho repository của bạn và tên `upstream` cho repository mà bạn fork. Để đổi tên cho remote `origin` sang tên `upstream` chạy lệnh:
 
 ```sh
 $ git remote rename origin upstream
 ```
 
-You can also do this using `git remote set-url`, but it takes longer and is more steps.
+Bạn cũng có thể đổi tên với lệnh `git remote set-url`, nhưng sẽ mất thêm thời gian và nhiều bước hơn.
 
-Then, set up a new remote that points to your project.
+Sau đó, tạo remote mới để trỏ về repository của bạn.
 
 ```sh
-$ git remote add origin git@github.com:YourName/git-flight-rules.git
+$ git remote add origin git@github.com:YourtGitHubUsername/git-flight-rules.git
 ```
 
-Note that now you have two remotes.
+Lưu ý là bây giờ bạn có hai remote.
 
-- `origin` references your own repository.
-- `upstream` references the original one.
+- `origin` trỏ đến repository của bạn.
+- `upstream` trỏ đến repository nguyên bản  .
 
-From origin, you can read and write. From upstream, you can only read.
+Với `origin`, bạn có thể đọc và viết. Với `upstream`, bạn chỉ có thể đọc.
 
-When you've finished making whatever changes you like, push your changes (normally in a branch) to the remote named `origin`. If you're on a branch, you could use `--set-upstream` to avoid specifying the remote tracking branch on every future push using this branch. For instance:
+Sau khi đã chỉnh sửa theo mong muốn, push (đẩy) các thay đổi (thường là ở trong branch) tới remote tên `origin`. Nếu bạn ở trên nhánh, bạn có thể dùng `--set-upstream` để tránh cần phải ghi rõ dùng brach nào của remote mỗi lần push trong tương lai khi dùng nhánh đấy. Ví dụ:
 
 ```sh
 $ (feature/my-feature) git push --set-upstream origin feature/my-feature
 ```
 
-There is no way to suggest a pull request using the CLI using Git (although there are tools, like [hub](http://github.com/github/hub), which will do this for you). So, if you're ready to make a pull request, go to your GitHub (or another Git host) and create a new pull request. Note that your host automatically links the original and forked repositories.
+Không có cách nào để tạo pull request trên giao diện lệnh (CLI) với Git (mặc dù có vài công cụ, như [hub](http://github.com/github/hub), có cho bạn lựa chọn này). Nếu bạn sãn sàng tạo Pull Request, trở lại GitHub (hoặc dịch vụ host Git) và tạo pull request mới. Nhớ là dịch vụ host sẽ tự động link repository nguyên bản và repository do fork.
 
-After all of this, do not forget to respond to any code review feedback.
+Sau cùng, nhớ đùng quên trả lời những comment phê duyệt code.
 
-#### Suggesting code via patches
+#### Thêm sửa code với các patch (vá)
 
-Another approach to suggesting code changes that doesn't rely on third party sites such as Github is to use `git format-patch`.
+Một cách khác để thêm sửa code mà không cần sử dụng dịch vụ bên thứ ba như GitHub là dùng `git format-patch`.
 
-`format-patch` creates a .patch file for one or more commits. This file is essentially a list of changes that looks similar to the commit diffs you can view on Github.
 
-A patch can be viewed and even edited by the recipient and applied using `git am`.
+`format-patch` tạo file (tệp) dạng .patch  cho một hoặc nhiều commit. File này là cơ bản là danh sách nhưng thay đổi, giống như những commit diffs bạn xem được trên Github.
 
-For example, to create a patch based on the previous commit you would run `git format-patch HEAD^` which would create a .patch file called something like 0001-My-Commit-Message.patch.
+Các patch có thể được xem hoặc thậm chí thêm sửa bởi người nhận và áp gắn với lệnh `git am`.
 
-To apply this patch file to your repository you would run `gim am ./0001-My-Commit-Message.patch`.
+Ví dụ, để tạo patch dựa vào commit mới nhât, bạn chạy lệnh `git format-patch HEAD^`, lệnh sẽ tạo một tệp .patch với tên như: `0001-My-Commit-Message.patch`.
 
-Patches can also be sent via email using the `git send-email` command. For information on usage and configuration see: https://git-send-email.io
+Để áp gắn tệp patch cho repository, bạn sẽ dùng lệnh `gim am ./0001-My-Commit-Message.patch`.
 
-#### I need to update my fork with latest updates from the original repository
+Các patch còn có thể gửi qua email với lệnh `git send-email`. Để xem thêm thông tin về cách dùng hoặc cấu hình, xem: https://git-send-email.io
 
-After a while, the `upstream` repository may have been updated, and these updates need to be pulled into your `origin` repo. Remember that like you, other people are contributing too. Suppose that you are in your own feature branch and you need to update it with the original repository updates.
+#### Tôi cần update fork của tôi với những thay đổi mới nhất từ repository nguyên bản
 
-You probably have set up a remote that points to the original project. If not, do this now. Generally we use `upstream` as a remote name:
+Sau một quãng thời gian, kho `upstream` có thể có thêm thay đổi, và những thay đổi này cần phải được tải về  kho `origin`. Nhớ là giống bạn, những người khác cũng đang góp sức của họ. Giả dụ bạn đang ở nhánh cho tính năng mới bạn đang thiết kế, và bạn cần update nhánh với những thay đổi trên repository nguyên bản.
+
+Có khi bạn đã có remote trỏ đến project nguyên bản. Nếu không, hãy tạo nó. Thường chúng ta dùng tên `upstream` cho remote này:
 
 ```sh
-$ (main) git remote add upstream <link-to-original-repository>
+$ (main) git remote add upstream <link-tới-repository-nguyên-bản>
 # $ (main) git remote add upstream git@github.com:k88hudson/git-flight-rules.git
 ```
 
-Now you can fetch from upstream and get the latest updates.
+Bây giờ bạn fetch (lấy) từ `upstream` và nhận những update mới nhất.
 
 ```sh
 $ (main) git fetch upstream
 $ (main) git merge upstream/main
 
-# or using a single command
+# hoặc với một lệnh duy nhất
 $ (main) git pull upstream main
 ```
 
@@ -258,7 +259,7 @@ $ (main) git pull upstream main
 <a name="diff-last"></a>
 ### Tôi vừa commit cái gì?
 
-Giả sử bạn vừa commit thay đổi một cách mù quáng với lệnh `git commit -a` và bạn không chắc chắn nội dung thực sự là của commit vừa thực hiện. Bạn có thể hiển thị ra commit gần nhất trên con trỏ HEAD hiện tại của bạn với lệnh:
+Giả sử bạn vừa commit những thay đổi một cách mù quáng với lệnh `git commit -a` và bạn không chắc chắn nội dung thực sự của commit vừa thực hiện là gì. Bạn có thể hiển thị ra commit gần nhất trên trỏ HEAD hiện tại của bạn với lệnh:
 
 ```sh
 (main)$ git show
@@ -270,47 +271,47 @@ Hoặc
 $ git log -n1 -p
 ```
 
-Nếu bạn muốn xem một file tại một commit cụ thể, bạn có thể cũng có thể làm được điều này ( `<commitid>`  là commit mà bạn quan tâm):
+Nếu bạn muốn xem một file tại một commit cụ thể, bạn cũng có thể làm được điều này (khi `<commitid>`  là commit mà bạn muốn biết) với lệnh:
 
 ```sh
 $ git show <commitid>:filename
 ```
 
-### Tôi đã viết sai vài thứ trong message của commit
+### Tôi đã viết sai vài thứ trong message (thông điệp) của commit
 
 Nếu bạn đã viết sai thứ gì đó và commit chưa được push lên, bạn có thể làm theo cách sau để thay đổi message của commit mà không làm thay đổi commit:
 
 ```sh
 $ git commit --amend --only
 ```
-Câu lệnh đó sẽ mở trình soạn thảo mặc định của bạn, nơi bạn có thể chỉnh sửa message. This will open your default text editor, where you can edit the message. Ngoài ra, bạn có thể làm tất cả điều này với một câu lệnh sau:
+Câu lệnh đó sẽ mở trình soạn thảo (text editor) mặc định của bạn, nơi bạn có thể chỉnh sửa message. Ngoài ra, bạn có thể làm tất cả điều này với lệnh sau:
 
 ```sh
 $ git commit --amend --only -m 'xxxxxxx'
 ```
 
-Nếu bạn đã đẩy message lên, bạn có thể chỉnh sửa commit và force push, nhưng điều đó không được khuyến khích.
+Nếu bạn đã đẩy message lên, bạn có thể chỉnh sửa commit và force push (đẩy ép), nhưng cách này không được khuyến khích.
 
 <a name="commit-wrong-author"></a>
-### Tôi đã commit với tên và email cấu hình sai
+### Tôi đã commit với cấu hình tên và email sai
 
 Nếu đó là một commit độc lập, chỉnh sửa nó:
 
 ```sh
-$ git commit --amend --no-edit --author "Tên tác giả mới <authoremail@mydomain.com>"
+$ git commit --amend --no-edit --author "TênTácGiảMới <authoremail@mydomain.com>"
 ```
 
-Một cách khác để cấu hình đúng tác giả là cài đặt trong `git config --global author.(name|email)` và sau đó sử dụng
+Một cách khác để cấu hình đúng tác giả là cài đặt lại với lệnh `git config --global author.(name|email)` và sau đó chạy lệnh
 
 ```sh
 $ git commit --amend --reset-author --no-edit
 ```
 
-Nếu bạn cần thay đổi tất cả lịch sử, hãy xem trang đó với `git filter-branch`.
+Nếu bạn cần thay đổi tất cả lịch sử, hãy xem trang `man` của `git filter-branch`.
 
 ### Tôi muốn xoá một file từ commit trước
 
-Để xoá các thay đổi đối với một file khỏi commit trước đó, hãy làm như sau:
+Để xoá các thay đổi đối với một file khỏi commit trước, hãy làm như sau:
 
 ```sh
 $ git checkout HEAD^ myfile
@@ -318,48 +319,48 @@ $ git add myfile
 $ git commit --amend --no-edit
 ```
 
-Trong trường hợp file mới được thêm vào commit và bạn muốn xoá nó (từ Git), hãy thực hiện:
+Trong trường hợp file mới được thêm vào commit và bạn muốn xoá nó (riêng trên Git), hãy thực hiện:
 
 ```sh
 $ git rm --cached myfile
 $ git commit --amend --no-edit
 ```
 
-Điều này đăc biệt hữu ích khi bạn có một bản patch mở và bạn đã commit một file không cần thiết và force push để cập nhật bản patch trên remote. Tuỳ chọn `--no-edit` được sử dụng để giữ message cho commit hiện tại.
+Cách này đăc biệt hữu ích khi bạn đang mở một bản patch và bạn đã commit một file không cần thiết và cần force push để cập nhật bản patch trên remote. Dòng `--no-edit` được dùng để giữ không thay đổi message cho commit hiện tại.
 
 <a name="delete-pushed-commit"></a>
-### Tôi muốn xoá hoặc loại bỏ commit cuối cùng nhất của tôi
+### Tôi muốn xoá hoặc loại bỏ commit mới nhất
 
-Nếu bạn muốn xoá các commit đã push, bạn có thể dụng cách sau. Tuy nhiên, nó sẽ không thể phục hồi thay đổi của lịch sử và làm hỏng lịch sử của bất kỳ ai khác đã pull từ repository. Tóm lại, nếu bạn không chắc chắn, bạn không nên làm điều này.
+Nếu bạn muốn xoá các commit đã push, bạn có thể làm như sau. Tuy nhiên, cách này sẽ thay đổi lịch sử  commit không thay đổi được và làm hỏng lịch sử của bất kỳ ai khác đã pull từ repository. Tóm lại, nếu bạn không chắc chắn, bạn không bao giờ nên làm cách này.
 
 ```sh
 $ git reset HEAD^ --hard
 $ git push --force-with-lease [remote] [branch]
 ```
 
-Nếu bạn chưa push, để reset Git về trạng thái trước khi bạn thực hiện commit cuối (trong khi vãn giữ các thay đổi của giai đoạn) sử dụng:
+Nếu bạn chưa push, để  đảo ngược Git về trạng thái trước khi bạn thực hiện commit mới nhất (trong khi vãn giữ các thay đổi trong stage) hãy chạy lệnh:
 
 ```
 (my-branch*)$ git reset --soft HEAD@{1}
 
 ```
 
-Điều này chỉ hoạt động nếu bạn chưa push. Nếu bạn đã push, điều thực sự an toàn nhất cần làm là `git revert SHAofBadCommit`. Điều đó sẽ tạo một commit mới để quay trở lại thay đổi của commit trước đó. Hoặc nếu nhánh bạn đã push là rebase-safe (các dev khác không định pull từ nó về), bạn chỉ có thể sử dụng `git push --force-with-lease`. Để biết thêm, hãy xem [phần trên](#deleteremove-last-pushed-commit).
+Cách này chỉ phù hợp nếu bạn chưa push. Nếu bạn đã push, điều thực sự an toàn nhất cần làm là `git revert SHAcủaCommitSai`. Lệnh này sẽ tạo một commit mới để quay trở lại thay đổi của commit trước đó. Hoặc nếu nhánh bạn đã push là rebase-safe (không có kỳ vọng các dev khác sẽ pull từ nó), bạn chỉ có thể sử dụng `git push --force-with-lease`. Để biết thêm, hãy xem [phần trên](#delete-pushed-commit).
 
 <a name="delete-any-commit"></a>
-### Xoá/loại bỏ commit tuỳ ý
+### Xoá/loại bỏ bất kỳ commit nào
 
-Lưu ý như trên. Không bao giờ làm điều này nếu có thể.
+Lưu ý như trên. Không bao giờ làm điều này nếu có thể tránh được.
 
 ```sh
 $ git rebase --onto SHA1_OF_BAD_COMMIT^ SHA1_OF_BAD_COMMIT
 $ git push --force-with-lease [remote] [branch]
 ```
 
-Hoặc thực hiện một [interactive rebase](#interactive-rebase) và loại bỏ các dòng tương ứng cho các commit bạn muốn loại bỏ.
+Hoặc thực hiện một [interactive rebase](#interactive-rebase) và loại bỏ các dòng tương ứng với các commit bạn muốn loại bỏ.
 
 <a name="#force-push"></a>
-### Tôi đã cố gắng push commit đã sửa đổi lên remote, nhưng tôi gặp một thông báo lỗi
+### Tôi đã cố gắng push commit đã sửa đổi lên remote, nhưng tôi gặp thông báo lỗi
 
 ```sh
 To https://github.com/yourusername/repo.git
@@ -371,61 +372,61 @@ hint: 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 ```
 
-Lưu ý rằng, như với rebase (xem bên dưới), sử đổi thay thể commit cũ với một commit mới, nên bạn phải force push (`--force-with-lease`) thay đổi của bạn nếu bạn đã push commit đã sửa đổi trược lên remote của bạn. Hãy cẩn thận khi bạn làm điều này &ndash; *luôn luôn* đảm bảo rằng bạn đã chỉ định một nhánh!
+Lưu ý rằng, như với rebase (xem bên dưới), amend **thay thế commit cũ với một commit mới**, nên bạn phải force push (`--force-with-lease`) các thay đổi của bạn nếu bạn đã push commit trước amend lên remote của bạn. Hãy cẩn thận khi bạn cách này &ndash; *luôn luôn* đảm bảo rằng bạn đã chỉ định một nhánh!
 
 ```sh
 (my-branch)$ git push origin mybranch --force-with-lease
 ```
 
-Nói chung, **tránh force push**. Tốt nhất là tạo và push một commit mới thay vì force-push commit đã sửa đổi vì nó sẽ gây xung đột trong lịch sử của resource cho bất kỳ developer nào người mà đã tương tác với nhánh được đề cập hoặc bất kỳ nhánh con nào. `--force-with-lease` sẽ vẫn thất bại, nếu ai đó cũng đang làm việc trên cùng một nhánh với bạn và việc push lên sẽ ghi đè lên những thay đổi đó.
+Nói chung, **tránh force push**. Tốt nhất là tạo và push một commit mới thay vì force-push commit đã sửa đổi vì nó sẽ gây xung đột trong lịch sử commit cho bất kỳ developer nào đã tương tác với nhánh được đề cập hoặc bất kỳ nhánh con nào. `--force-with-lease` sẽ vẫn fail, nếu ai khác cũng đang làm việc trên cùng một nhánh với bạn và việc push lên sẽ ép trên những thay đổi đó.
 
-Nếu bạn hoàn toàn chắc chắn rằng không ai đang làm việc trên cùng một nhánh hoặc bạn muốn cập nhật phần đầu của một nhánh *vô điều kiện*, bạn có thể sử dụng `--force` (`-f`), nhưng điều này nói chung nên tránh.
+Nếu bạn *hoàn toàn chắc chắn* rằng không ai đang làm việc trên cùng một nhánh hoặc bạn muốn cập nhật đỉnh nhánh (tip of branch) *vô điều kiện*, bạn có thể sử dụng `--force` (`-f`), nhưng cách này nói chung nên tránh.
 
 <a href="undo-git-reset-hard"></a>
-### Tôi đã vô tình thực hiện hard reset và tôi muốn các thay đổi của tôi trở lại trước đó.
+### Tôi đã vô tình thực hiện hard reset và tôi muốn các thay đổi của tôi.
 
-Nếu vô tình bạn thực hiện `git reset --hard`, bạn có thể vẫn nhận được commit trước của bạn, vì git giữ một bản log cho tất cả mọi thứ trong 1 vài ngày.
+Nếu vô tình bạn thực hiện `git reset --hard`, bạn có thể vẫn phục hồi lại được commit của bạn, vì git giữ một bản log cho tất cả mọi thứ trong vài ngày.
 
-Chú ý: Điều này chỉ hợp lệ nếu luồng làm việc của bạn đã được sao lưu, tức là được commit hoặc được stash. `git reset --hard` _sẽ loại bỏ_ các thay đổi không được commit, vì vậy hãy sử dụng nó một cách thận trọng. (Một tuỳ chọn an toàn là `git reset --keep`.)
+Chú ý: Điều này chỉ hợp lệ nếu đã có sao lưu, tức là đã có commit hoặc được `stash`. Lệnh `git reset --hard` *sẽ loại bỏ* các thay đổi chưa được commit, vì vậy hãy sử dụng nó một cách thận trọng. (Một lựa chọn an toàn là `git reset --keep`.)
 
 ```sh
 (main)$ git reflog
 ```
 
-Bạn sẽ thấy danh sách các commit gần đây và một commit cho reset. Chọn SHA của commit và muốn quay trở lại và reset lại:
+Bạn sẽ thấy danh sách các commit gần đây và một commit để reset. Chọn SHA của commit bạn muốn trở lại tới và reset lại:
 
 ```sh
 (main)$ git reset --hard SHA1234
 ```
 
-Và bạn nên tốt hơn để đi tiếp.
+Thế này là xong.
 
 <a href="undo-a-commit-merge"></a>
 ### Tôi vô tình commit và đẩy lên một merge
 
-Nếu bạn vô tình merge một nhánh tính năng vào nhánh phát triển chính trước khi nó sẵn sàng để merge, bạn vẫn có thể undo merge. Nhưng có một điểm phải nắm được: Một commit merge có một hoặc nhiều hơn một parent (thường là 2).
+Nếu bạn vô tình merge một nhánh tính năng mới vào nhánh phát triển chính trước khi sẵn sàng để merge, bạn vẫn có thể đảo ngược merge. Nhưng có một điểm phải nắm được: Một commit merge có một hoặc nhiều hơn một parent (gốc) (thường là 2).
 
-Câu lệnh để sử dụng:
+Lệnh để chạy:
 ```sh
 (feature-branch)$ git revert -m 1 <commit>
 ```
-Chỗ tuỳ chọn -m 1 cho biết số parent là 1 (nhánh mà merge được thực hiện) làm parent để revert.
+Dòng `-m 1` là để cho biết cần chọn parent thứ nhất` (nhánh mà merge được thực hiện) làm parent để đảo ngược lại.
 
-Chú ý: Số parent không phải là số để xác định commit. Thay vào đó, một commit merge có một dòng `Merge: 8e2ce2d 86ac2e7`. Số parent là một index trên 1 của một parent trên dòng này, số nhận dạng đầu tiên là 1, thứ 2 là số 2 và tiếp tục.
+Chú ý: Số parent không phải là số commit. Thay vào đó, một commit merge sẽ có một dòng như `Merge: 8e2ce2d 86ac2e7`. Số parent là số số nhận dạng đầu-1 (1-based index) của dòng nay, số nhận dạng đầu tiên là 1 cho parent thứ nhất, thứ 2 là cho parent 2, và tiếp tục như thế.
 
 <a href="undo-sensitive-commit-push"></a>
-### Tôi vô tình commit và đẩy các file chứa các dữ liệu nhảy cảm
+### Tôi vô tình commit và đẩy các file chứa dữ liệu nhảy cảm
 
-Nếu bạn vô tình push lên các file chứa dữ liệu nhạy cảm (passwords, keys, etc.), bạn có thể sửa đổi commit trước.. Lưu ý rằng khi bạn đã đẩy một commit, bạn nên xem xét bất kỳ dữ liệu nào nó chứa dữ liệu để bị xâm nhập. Các bước này có thể xoá dữ liệu nhạy cảm từ repo public hoặc bản sao cục bộ của repository, nhưng bạn không thể xóa dữ liệu nhạy cảm khỏi các bản sao được kéo về của người khác. Nếu bạn đã commit mật khẩu, hãy thay đổi mật khẩu ngay lập tức. Nếu bạn đã commit một key, hãy tạo lại key đó ngay lập tức. Việc sửa đổi commit đã đẩy là không đủ, vì bất kỳ ai cũng có thể đã pull commit ban đầu chứa dữ liệu nhạy cảm của bạn trong thời gian chờ đợi. Việc sửa đổi commit đã đẩy là không đủ, vì bất kỳ ai cũng có thể đã kéo cam kết ban đầu chứa dữ liệu nhạy cảm của bạn trong thời gian chờ đợi.
+Nếu bạn vô tình push lên các file chứa dữ liệu nhạy cảm (mật khẩu, keys, etc.), bạn có thể amend commit trước. Lưu ý rằng khi bạn đã đẩy một commit, bạn nên coi bất kỳ dữ liệu nào đã bị đẩy như đã bị lộ. Các bước này có thể xoá dữ liệu nhạy cảm từ repo công khai (public repo) hoặc bản sao nội bộ, nhưng bạn *không thể* xóa dữ liệu nhạy cảm khỏi các bản sao đã được tải về bởi người khác. Nếu bạn có commit mật khẩu, *hãy thay đổi mật khẩu ngay lập tức*. Nếu bạn đã commit một key, *hãy tạo lại key đó ngay lập tức*. Việc amend commit đã đẩy là không đủ, vì bất kỳ ai cũng có thể đã pull commit chứa dữ liệu nhạy cảm của bạn trong thời gian đấy.
 
-Nếu bạn chỉnh sửa tệp và xóa dữ liệu nhạy cảm, hãy chạy
+Nếu bạn đã chỉnh sửa tệp và xóa dữ liệu nhạy cảm, hãy chạy
 ```sh
-(feature-branch)$ git add edited_file
+(feature-branch)$ git add EditedFile
 (feature-branch)$ git commit --amend --no-edit
 (feature-branch)$ git push --force-with-lease origin [branch]
 ```
 
-Nếu bạn muốn xóa toàn bộ tệp (nhưng giữ nguyên tệp cục bộ), hãy chạy
+Nếu bạn muốn xóa toàn bộ tệp (nhưng giữ trên local), hãy chạy:
 ```sh
 (feature-branch)$ git rm --cached sensitive_file
 echo sensitive_file >> .gitignore
@@ -433,9 +434,9 @@ echo sensitive_file >> .gitignore
 (feature-branch)$ git commit --amend --no-edit
 (feature-branch)$ git push --force-with-lease origin [branch]
 ```
-Ngoài ra, lưu trữ dữ liệu nhạy cảm của bạn trong các biến môi trường cục bộ.
+Ngoài ra, lưu trữ dữ liệu nhạy cảm của bạn trong các biến môi trường (variable) của local.
 
-Nếu bạn muốn xóa hoàn toàn toàn bộ tệp (và không giữ nguyên tệp cục bộ), sau đó chạy
+Nếu bạn muốn xóa hoàn toàn toàn bộ tệp (và không giữ tệp tại local), hãy chạy
 
 ```sh
 (feature-branch)$ git rm sensitive_file
@@ -443,7 +444,7 @@ Nếu bạn muốn xóa hoàn toàn toàn bộ tệp (và không giữ nguyên t
 (feature-branch)$ git push --force-with-lease origin [branch]
 ```
 
-Nếu bạn đã thực hiện các commit khác trong thời gian chờ đợi (tức là dữ liệu nhạy cảm nằm trong commit trước commit trước đó), bạn sẽ phải rebase.
+Nếu bạn đã thực hiện các commit khác (tức là dữ liệu nhạy cảm nằm tại commit trước commit mới nhất), bạn sẽ phải rebase.
 
 ## Staging
 
