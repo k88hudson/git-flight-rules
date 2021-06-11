@@ -447,36 +447,37 @@ Nếu bạn muốn xóa hoàn toàn toàn bộ tệp (và không giữ tệp t�
 Nếu bạn đã thực hiện các commit khác (tức là dữ liệu nhạy cảm nằm tại commit trước commit mới nhất), bạn sẽ phải rebase.
 
 <a href="#i-want-to-remove-a-large-file-from-ever-existing-in-repo-history"></a>
-### I want to remove a large file from ever existing in repo history
+### Tôi muốn xóa file to quá để chưa bao giờ xuất hiện trong lịch sử repository
 
-If the file you want to delete is secret or sensitive, instead see [how to remove sensitive files](#i-accidentally-committed-and-pushed-files-containing-sensitive-data).
+Nếu file bạn muốn xóa cần bảo mật hay là file chưa thông tin nhạy cảm, xem phần [xóa file chứa thông tin nhạy cảm](#undo-sensitive-commit-push).
 
-Even if you delete a large or unwanted file in a recent commit, it still exists in git history, in your repo's `.git` folder, and will make `git clone` download unneeded files.
+Mặc dù bạn đã xóa một file to hay file không muốn có trong dự án, nó có thể vẫn tồn tại trong lịch sử git (git history) của respository trong thư mục `.git`, và sẽ khiến các lệnh `git clone` tải file không cần thiết.
 
-The actions in this part of the guide will require a force push, and rewrite large sections of repo history, so if you are working with remote collaborators, check first that any local work of theirs is pushed.
+Những bước trong phần này sẽ yêu cầu push ép, và viết lại phần nào lịch sử git của repository, thế nên nếu bạn làm việc với những người khác, kiểm tra là những thay đổi của họ đã được đẩy.
 
-There are two options for rewriting history, the built-in `git-filter-branch` or [`bfg-repo-cleaner`](https://rtyley.github.io/bfg-repo-cleaner/). `bfg` is significantly cleaner and more performant, but it is a third-party download and requires java. We will describe both alternatives. The final step is to force push your changes, which requires special consideration on top of a regular force push, given that a great deal of repo history will have been permanently changed.
+Có hai lựa chọn để viết lại lịch sử, sử dụng tính năng sãn có `git-filter-branch` hoặc dùng [`bfg-repo-cleaner`](https://rtyley.github.io/bfg-repo-cleaner/). `bfg` thao tác sạch hơn và nhanh hơn, nhưng đây là phần mềm bên thứ ba và cần có Java. Chúng ta sẽ xem cả hai cách. Bước cuối cùng là push ép thay đổi của bạn, lần này sẽ còn cần chú ý xem xét hơn các push ép bình thường bởi vì một phần không nhỏ lịch sử repository sẽ thay đổi vĩnh viễn. 
 
-#### Recommended Technique: Use third-party bfg
+#### Cách khuyến khích: Sử dụng dịch vụ bên thứ ba bfg
 
-Using bfg-repo-cleaner requires java. Download the bfg jar from the link [here](https://rtyley.github.io/bfg-repo-cleaner/). Our examples will use `bfg.jar`, but your download may have a version number, e.g. `bfg-1.13.0.jar`.
+Sử dụng bfg-repo-cleaner cần có Java. Tải file dạng .jar cho phần mềm bfg với đường link [này](https://rtyley.github.io/bfg-repo-cleaner/). Ví dụ tại đây sẽ dùng `bfg.jar`, nhưng file bạn tải xuống có thể có thêm số phiên bản như `bfg-1.13.0.jar`.
 
-To delete a specific file.
+Để xóa một file, dùng lệnh:
 ```sh
-(main)$ git rm path/to/filetoremove
+(main)$ git rm path/to/FileToRemove
 (main)$ git commit -m "Commit removing filetoremove"
-(main)$ java -jar ~/Downloads/bfg.jar --delete-files filetoremove
+(main)$ java -jar ~/Downloads/bfg.jar --delete-files FileToRemove
 ```
-Note that in bfg you must use the plain file name even if it is in a subdirectory.
+Lưu ý là với bfg bạn dùng tển của file chứ không phải đường dẫn đến file.
+Note that in bfg you must use the plain file name 
 
-You can also delete a file by pattern, e.g.:
+Bạn cũng có thể xóa file dượng theo một khuôn mẫu, ví dụ xóa tất cả file dạng .jpg:
 ```sh
 (main)$ git rm *.jpg
 (main)$ git commit -m "Commit removing *.jpg"
 (main)$ java -jar ~/Downloads/bfg.jar --delete-files *.jpg
 ```
 
-With bfg, the files that exist on your latest commit will not be affected. For example, if you had several large .tga files in your repo, and then in an earlier commit, you deleted a subset of them, this call does not touch files present in the latest commit
+Với bfg, the files that exist on your latest commit will not be affected. For example, if you had several large .tga files in your repo, and then in an earlier commit, you deleted a subset of them, this call does not touch files present in the latest commit
 
 Note, if you renamed a file as part of a commit, e.g. if it started as `LargeFileFirstName.mp4` and a commit changed it to `LargeFileSecondName.mp4`, running `java -jar ~/Downloads/bfg.jar --delete-files LargeFileSecondName.mp4` will not remove it from git history. Either run the `--delete-files` command with both filenames, or with a matching pattern.
 
