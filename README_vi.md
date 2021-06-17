@@ -479,44 +479,44 @@ Bạn cũng có thể xóa file dượng theo một khuôn mẫu, ví dụ xóa 
 
 Với bfg, the files that exist on your latest commit will not be affected. For example, if you had several large .tga files in your repo, and then in an earlier commit, you deleted a subset of them, this call does not touch files present in the latest commit
 
-Note, if you renamed a file as part of a commit, e.g. if it started as `LargeFileFirstName.mp4` and a commit changed it to `LargeFileSecondName.mp4`, running `java -jar ~/Downloads/bfg.jar --delete-files LargeFileSecondName.mp4` will not remove it from git history. Either run the `--delete-files` command with both filenames, or with a matching pattern.
+Lưu ý, nếu bạn thay đổi tên file trong một commit trước, ví dụ: nếu tệp bắt đầu với tên `LargeFileFirstName.mp4` và một commit đổi tên tệp thành `LargeFileSecondName.mp4`, chạy lệnh `java -jar ~/Downloads/bfg.jar --delete-files LargeFileSecondName.mp4` sé không xóa file trong lịch sử git. Hoặc là chạy lệnh `--delete-files` với cả hai tên, hoặc với khuôn mẫu như trên.
 
-#### Built-in Technique: Use git-filter-branch
+#### Cách có sẵn: Sử dụng git-filter-branch
 
-`git-filter-branch` is more cumbersome and has less features, but you may use it if you cannot install or run `bfg`.
+`git-filter-branch` nặng hơn và ít tính năng hơn, nhưng bạn có thể dùng cách này nếu không thể cài hay chạy `bfg`.
 
-In the below, replace `filepattern` may be a specific name or pattern, e.g. `*.jpg`. This will remove files matching the pattern from all history and branches.
+Trong lệnh bên dưới, thay `filepattern` với tên file hoặc khuông mẫu, v.d. `*.jpg`. Lệnh này sẽ xóa file theo khuôn mẫu khỏi tất cả lịch sử của tất cả các nhánh. 
 
 ```sh
 (main)$ git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch filepattern' --prune-empty --tag-name-filter cat -- --all
 ```
 
-Behind-the-scenes explanation:
+Giải thích lệnh trên:
 
-`--tag-name-filter cat` is a cumbersome, but simplest, way to apply the original tags to the new commits, using the command cat.
+`--tag-name-filter cat` khá là nặng, nhưng là cách đơn giản nhất để giữ nguyên các tags cho các commit mới bằng cách sử dụng lệnh `cat`.
 
-`--prune-empty` removes any now-empty commits.
+`--prune-empty` xóa những commit bây giờ để trống rỗng.
 
-#### Final Step: Pushing your changed repo history
+#### Bước cuối: Đẩy lịch sử đã thay đổi của repository
 
-Once you have removed your desired files, test carefully that you haven't broken anything in your repo - if you have, it is easiest to re-clone your repo to start over.
-To finish, optionally use git garbage collection to minimize your local .git folder size, and then force push.
+Một khi bạn đã xóa file, kiểm tra thật cẩn thận là bạn không làm hỏng cái gì trong repo - và nếu bạn đã làm hỏng cái gì đó, dễ nhất là clone repo lại và bắt đầu từ đầu.
+Để kết thúc, bạn có thể dùng chức năng thu hồi rác (garbage collection) để giảm thiểu kích cỡ tệp .git và rồi push ép. c
 ```sh
 (main)$ git reflog expire --expire=now --all && git gc --prune=now --aggressive
 (main)$ git push origin --force --tags
 ```
 
-Since you just rewrote the entire git repo history, the `git push` operation may be too large, and return the error `“The remote end hung up unexpectedly”`. If this happens, you can try increasing the git post buffer:
+Vì bạn vừa viết lại toàn bộ lịch sử git repository, lệnh `git push` có thể quá to để thi hành, và gửi lại thông điệp lỗi (error) `“The remote end hung up unexpectedly”`. Nếu việc này xảy ra, bạn có thể thử tăng post buffer của git:
 ```sh
 (main)$ git config http.postBuffer 524288000
 (main)$ git push --force
 ```
 
-If this does not work, you will need to manually push the repo history in chunks of commits. In the command below, try increasing `<number>` until the push operation succeeds.
+Nếu cách này không hiệu quả, bạn sẽ phải push thủ công lịch sử repo từng cục một. Với lệnh bên dưới, dần dần tăng con số cho `<số cục>` đến khi nào lệnh push thành công.
 ```sh
-(main)$ git push -u origin HEAD~<number>:refs/head/main --force
+(main)$ git push -u origin HEAD~<số cục>:refs/head/main --force
 ```
-Once the push operation succeeds the first time, decrease `<number>` gradually until a conventional `git push` succeeds.
+Một khi lệnh push thành công, dần dần giảm thiểu `<số cục>` cho đến khi một lệnh `git push` bình thường thành công.
 
 <a href="i-need-to-change-the-content-of-a-commit-which-is-not-my-last"></a>
 ### I need to change the content of a commit which is not my last
