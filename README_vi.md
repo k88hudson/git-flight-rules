@@ -519,9 +519,9 @@ Nếu cách này không hiệu quả, bạn sẽ phải push thủ công lịch 
 Một khi lệnh push thành công, dần dần giảm thiểu `<số cục>` cho đến khi một lệnh `git push` bình thường thành công.
 
 <a href="i-need-to-change-the-content-of-a-commit-which-is-not-my-last"></a>
-### I need to change the content of a commit which is not my last
+### Tôi cần thay đổi nội dung của một commit nhưng không phải là cái mới nhất
 
-Consider you created some (e.g. three) commits and later realize you missed doing something that belongs contextually into the first of those commits. This bothers you, because if you'd create a new commit containing those changes, you'd have a clean code base, but your commits weren't atomic (i.e. changes that belonged to each other weren't in the same commit). In such a situation you may want to change the commit where these changes belong to, include them and have the following commits unaltered. In such a case, `git rebase` might save you.
+Giả sử bạn đã có vài (v.d. ba) commit và sau nhận ra là bạn quên mất không cho vào một thứ gì đó hợp hơn với commit đầu tiên. Việc này and later realize you missed doing something that belongs contextually into the first of those commits. This bothers you, because if you'd create a new commit containing those changes, you'd have a clean code base, but your commits weren't atomic (i.e. changes that belonged to each other weren't in the same commit). In such a situation you may want to change the commit where these changes belong to, include them and have the following commits unaltered. In such a case, `git rebase` might save you.
 
 Consider a situation where you want to change the third last commit you made.
 
