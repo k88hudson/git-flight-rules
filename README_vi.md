@@ -521,43 +521,43 @@ Một khi lệnh push thành công, dần dần giảm thiểu `<số cục>` ch
 <a href="i-need-to-change-the-content-of-a-commit-which-is-not-my-last"></a>
 ### Tôi cần thay đổi nội dung của một commit nhưng không phải là cái mới nhất
 
-Giả sử bạn đã có vài (v.d. ba) commit và sau nhận ra là bạn quên mất không cho vào một thứ gì đó hợp hơn với commit đầu tiên. Việc này and later realize you missed doing something that belongs contextually into the first of those commits. This bothers you, because if you'd create a new commit containing those changes, you'd have a clean code base, but your commits weren't atomic (i.e. changes that belonged to each other weren't in the same commit). In such a situation you may want to change the commit where these changes belong to, include them and have the following commits unaltered. In such a case, `git rebase` might save you.
+Giả sử bạn đã có vài (v.d. ba) commit và sau nhận ra là bạn quên mất không cho vào một thứ gì đó hợp hơn với commit đầu tiên. Việc này làm phiền bạn vì mặc dù nếu tiếp tục commit bạn sẽ có lịch sử sạch sẽ nhưng commit của bạn không nguyên chất (những thay đổi liên quan với nhau nên ở cùng một commit). Trong trường hợp như vậy, bạn chắc muốn cho thêm những thay đổi liên quan vào commit mong muốn nhưng không muốn những commit sau tiếp cũng phải sửa theo. Trong trường hợp như vây, `git rebase` có thể cứu bạn.
 
-Consider a situation where you want to change the third last commit you made.
-
-```sh
-(your-branch)$ git rebase -i HEAD~4
-```
-
-gets you into interactive rebase mode, which allows you to edit any of your last three commits. A text editor pops up, showing you something like
+Hay xem trường hợp mà bạn muốn thay đổi commit số ba nếu đếm ngược. 
 
 ```sh
-pick 9e1d264 The third last commit
-pick 4b6e19a The second to last commit
-pick f4037ec The last commit
+(nhánh-bạn)$ git rebase -i HEAD~4
 ```
 
-which you change into
+Lệnh trên đưa bạn vào mode (chế độ) để rebase, chế độ cho phép bạn edit ba commit mới nhất. Một trình soạn thảo (text editor) sẽ bật lên trông giống như sau:
 
 ```sh
-edit 9e1d264 The third last commit
-pick 4b6e19a The second to last commit
-pick f4037ec The last commit
+pick 9e1d264 commit trước ba
+pick 4b6e19a commit trước hai
+pick f4037ec commit trước
 ```
 
-This tells rebase that you want to edit your third last commit and keep the other two unaltered. Then you'll save (and close) the editor. Git will then start to rebase. It stops on the commit you want to alter, giving you the chance to edit that commit. Now you can apply the changes which you missed applying when you initially committed that commit. You do so by editing and staging them. Afterwards you'll run
+và bạn thay/viết thành:
+
+```sh
+edit 9e1d264 commit trước ba
+pick 4b6e19a commit trước hai
+pick f4037ec commit trước
+```
+
+Lệnh này bảo rebase là bạn muốn thay đổi commit trước ba và giữ hai commit kia không thay đổi. Sau đó bạn save (và đóng) trình soạn thảo. Git bây giờ sẽ bắt đầu rebase. Nó dừng lại ở commit bạn để là edit và cho bạn cơ hội thay đổi commit đấy. Bây giờ bạn có thể cho thêm những thay đổi bạn lỡ không cho vào lần đầu. Để làm thế, bạn edit rồi stage những thay đổi đấyNow you can apply the changes which you missed applying when you initially committed that commit. Sau đó bạn chạy lệnh:
 
 ```sh
 (your-branch)$ git commit --amend
 ```
 
-which tells Git to recreate the commit, but to leave the commit message unedited. Having done that, the hard part is solved.
+Lệnh bảo Git là cần tạo lại commit, nhưng giữ nguyên thông điệp commit. which tells Git to recreate the commit, but to leave the commit message unedited. Thế là xong phần khó nhất. Cuối cùng là chạy lệnh:
 
 ```sh
 (your-branch)$ git rebase --continue
 ```
 
-will do the rest of the work for you.
+Lệnh này sẽ giải quyết phần còn lại.
 
 ## Staging (sân chuyển tiếp)
 
