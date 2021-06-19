@@ -529,7 +529,7 @@ Hay xem trường hợp mà bạn muốn thay đổi commit số ba nếu đếm
 (nhánh-bạn)$ git rebase -i HEAD~4
 ```
 
-Lệnh trên đưa bạn vào mode (chế độ) để rebase, chế độ cho phép bạn edit ba commit mới nhất. Một trình soạn thảo (text editor) sẽ bật lên trông giống như sau:
+Lệnh trên đưa bạn vào mode (chế độ) rebase tương tác (interactive rebase), chế độ cho phép bạn edit ba commit mới nhất. Một trình soạn thảo (text editor) sẽ bật lên trông giống như sau:
 
 ```sh
 pick 9e1d264 commit trước ba
@@ -557,18 +557,18 @@ Lệnh bảo Git là cần tạo lại commit, nhưng giữ nguyên thông đi�
 (your-branch)$ git rebase --continue
 ```
 
-Lệnh này sẽ giải quyết phần còn lại.
+Lệnh trên sẽ giải quyết phần còn lại.
 
 ## Staging (sân chuyển tiếp)
 
 <a href="#i-need-to-add-staged-changes-to-the-previous-commit"></a>
-### Tôi cần thêm các thay đổi đã stage cho commit trước đó
+### Tôi cần cho thêm các thay đổi đang trong stage vào commit trước
 
 ```sh
 (my-branch*)$ git commit --amend
 ```
 
-Nếu bạn đã biết bạn không muốn thay đổi message commit, bạn có thể yêu cầu git sử dụng lại commit message:
+Nếu bạn đã biết bạn không muốn thay đổi thông điệp commit, bạn có thể yêu cầu git sử dụng lại commit message:
 
 ```sh
 (my-branch*)$ git commit --amend -C HEAD
@@ -578,45 +578,54 @@ Nếu bạn đã biết bạn không muốn thay đổi message commit, bạn c�
 <a name="commit-partial-new-file"></a>
 ### Tôi muốn stage một phần của một file mới, nhưng không phải toàn bộ file
 
-Thông thường, nếu bạn muốn stage một phần của một file, bạn chạy điều này:
+Thông thường, nếu bạn muốn stage một phần của một file, bạn chạy lệnh này:
 
 ```sh
 $ git add --patch filename.x
 ```
 
-`-p` sẽ hoạt động trong ngắn hạn. Việc này sẽ mở chế độ interactive. Bạn sẽ có thể sử dụng tuỳ chọn `s` để cắt commit - tuy nhiên, nếu là file mới, bạn sẽ không có tuỳ chọn này. Để thêm một file mới, làm như sau:
+Bạn có thể dùng `-p` thay `--patch` cho ngắn. Lệnh này sẽ mở chế độ interactive. Bạn có thể cho thêm `s` để cắt commit - tuy nhiên, nếu là file mới, bạn sẽ không có lựa chọn này. Để thêm một file mới, làm như sau:
 
 ```sh
 $ git add -N filename.x
 ```
 
-Sau đó, bạn sẽ cần sử dụng tuỳ chọn `e` để dùng cách thủ công thêm dòng. Đang chạy `git diff --cached` hoặc
-`git diff --staged` sẽ cho bạn thấy những dòng bạn đã stage so với những dòng vẫn lưu ở cục bộ.
+Sau đó, bạn sẽ cần sử dụng `e` để thủ công thêm dòng. Chạy lệnh `git diff --cached` hoặc
+`git diff --staged` sẽ cho bạn thấy những dòng bạn đã stage so với những dòng vẫn lưu ở local.
 
 <a href="stage-in-two-commits"></a>
 ### Tôi muốn thêm các thay đổi trong một file vào 2 commit khác nhau
 
-`git add` sẽ thêm toàn bộ file vào một commit. `git add -p` sẽ cho phép tương tác chọn những thay đổi bạn muốn thêm.
+`git add` sẽ thêm toàn bộ file vào một commit. `git add -p` sẽ cho vào chế độ tương tác để chọn những thay đổi bạn muốn thêm vào.
+
+<a href="selective-unstage-edits"></a>
+### Tôi cho lên stage quá nhiều thay đổi, và tôi muốn tách ra thành các commit khác nhau
+
+`git reset -p` sẽ mở chế độ patch và hộp thoại để reset. Việc này sẽ giống như với lệnh `git add -p`, ngoại trừ là việc chọn "yes" sẽ đưa thay đổi khỏi stage, loại trừ nó khỏi commit tiếp đến.
 
 <a href="unstaging-edits-and-staging-the-unstaged"></a>
-### Tôi muốn stage các chỉnh sửa chưa được stage và unstage các chỉnh sửa đã stage
+### Tôi muốn cho lên stage các chỉnh sửa chưa được stage và hã khỏi stage các chỉnh sửa đã stage
 
-Điều này là khó khăn. Cách tốt nhất là bạn nên stash các chỉnh sửa chưa stage. Sau đó, reset. Sau đóm hãy pop lại các chỉnh sửa đã stash và thêm chúng.
+Phần lớn thời gian, bạn nên hạ tất cả các file đã trên stage và chọn lại những file bạn muốn commit.Nhưng giả sử bạn muốn thay các thay đổi lên và hạ stage, bạn có thể tạo một commit tạm thời, nâng lên stage các thay đổi, rồi stash (cất) nó. Sau đó, reset cái commit tạm thời rồi pop cái stage bạn vừa cất.
 
 ```sh
-$ git stash -k
-$ git reset --hard
-$ git stash pop
-$ git add -A
+$ git commit -m "WIP"
+$ git add . # "." sẽ thêm tất cả file chưa theo dõi
+$ git stash
+$ git reset HEAD^
+$ git stash pop --index 0
 ```
 
-## Unstaged Edits
+GHI CHÚ 1: Lý do để dùng `pop` là để giữ nguyên các thay đổi nhất có thể.
+GHI CHÚ 2: Các file đã nâng lên stage sẽ bị hạ nếu không có thêm cờ `--index`. ([Link](https://stackoverflow.com/questions/31595873/git-stash-with-staged-files-does-stash-convert-staged-files-to-unstaged?answertab=active#tab-top) explains why.)
+
+## Thay đổi chưa lên sân (Unstaged Edits)
 
 <a href="move-unstaged-edits-to-new-branch"></a>
-### Tôi muốn di chuyển các chỉnh sửa chưa được staged đến một nhánh mới
+### Tôi muốn di chuyển các chỉnh sửa chưa lên stage sang một nhánh mới
 
 ```sh
-$ git checkout -b my-branch
+$ git checkout -b nhánh-mới
 ```
 
 <a href="move-unstaged-edits-to-old-branch"></a>
@@ -624,98 +633,98 @@ $ git checkout -b my-branch
 
 ```sh
 $ git stash
-$ git checkout my-branch
+$ git checkout nhánh-tồn-tại
 $ git stash pop
 ```
 
 <a href="i-want-to-discard-my-local-uncommitted-changes"></a>
-### Tôi muốn bỏ các thay đôi chưa commit trên local (đã stage và chưa stage)
+### Tôi muốn bỏ các thay đôi chưa trong commit tại local (đã lên hoặc chưa lên stage)
 
-Nếu bạn muốn bỏ tất cả các thay đổi đã stage và chưa stage trên local của bạn, bạn có thể làm như thế này:
+Nếu bạn muốn bỏ tất cả các thay đổi đã lên hoặc chưa lên stage tại local của bạn, bạn có thể làm như sau:
 
 ```sh
 (my-branch)$ git reset --hard
-# or
+# hoặc
 (main)$ git checkout -f
 ```
 
-Nó sẽ unstage tất cả các file bạn đã stage với `git add`:
+Lệnh sau sẽ hạ khỏi stage tất cả thay đổi bạn đã cho lên stage với `git add`:
 
 ```sh
 $ git reset
 ```
 
-Nó sẽ revert tất cả các thay đổi chưa commit trên local (nên thực hiện trong thư mục gốc repo):
+Lệnh sau sẽ đảo ngược tất cả các thay đổi chưa commit tại local (nên chạy tại thư mục gốc repo):
 
 ```sh
 $ git checkout .
 ```
 
-Bạn cũng có thể revert các thay đổi chưa commit đối với một file hoặc một thư mục cụ thể:
+Bạn cũng có thể đảo ngược các thay đổi chưa commit cho một file hoặc một thư mục cụ thể:
 
 ```sh
-$ git checkout [some_dir|file.txt]
+$ git checkout [thư_mục|file.txt]
 ```
 
-Tuy nhiên, một cách khác để revert tất cả các thay đổi chưa commit (dài hơn để nhập, nhưng hoạt động từ bất kỳ thư mục con nào):
+Tuy nhiên, một cách khác để đảo ngược tất cả các thay đổi chưa commit (dài hơn để nhập, nhưng hoạt động từ bất kỳ thư mục con nào):
 
 ```sh
 $ git reset --hard HEAD
 ```
 
-Thao tác này sẽ xoá tất cả các file chưa theo dõi(untrack) trên local, do đó, chỉ các file đã theo dõi (tracked) được git giữ:
+Lệnh trên sẽ xoá tất cả các file chưa được theo dõi(untracked) tại local, do đó, chỉ các file đã được theo dõi bởi git (tracked) còn tồn:
 
 ```sh
 $ git clean -fd
 ```
 
-`-x` cũng sẽ xoá tất cả các file đã ignore.
+Thêm cờ `-x` để xoá tất cả các file đã ignore.
 
-### Tôi muốn loại bỏ các thay đổi chưa stage cụ thể
+### Tôi muốn loại bỏ các thay đổi cụ thể chưa lên stage
 
-Khi bạn muốn loại bỏ một số, nhưng không phải tất cả các thay đổi trong bản sao làm việc của bạn.
+Khi bạn muốn loại bỏ một số, nhưng không phải tất cả, các thay đổi trong bản sao làm việc của bạn.
 
-Checkout các thay đổi không mong muốn, giữa các thay đổi tốt.
+Checkout các thay đổi không mong muốn, giữ các thay đổi tốt.
 
 ```sh
 $ git checkout -p
-# Answer y to all of the snippets you want to drop
+# Trả lời y đối với những thay đổi bạn không muốn giữ
 ```
 
-Một cách khác liên quan đến việc sử dụng `stash`. Stash tất cả các thay đổi tốt, reset bản sao làm việc và apply lại các thay đổi tốt.
+Một cách khác thì sử dụng `stash` (cất). Cất tất cả các thay đổi tốt, reset bản sao làm việc và apply lại các thay đổi tốt.
 
 ```sh
 $ git stash -p
-# Select all of the snippets you want to save
+# Chọn những thay đổi bạn muốn giữ
 $ git reset --hard
 $ git stash pop
 ```
 
-Ngoài ra, stash những thay đổi không mong muốn của bạn và sau đó drop stash.
+Ngoài ra, còn cách cất những thay đổi không mong muốn của bạn và sau đó drop stash.
 
 ```sh
 $ git stash -p
-# Select all of the snippets you don't want to save
+# Chọn những thay đổi bạn không muốn giữ
 $ git stash drop
 ```
 
-### Tôi muốn loại bỏ các file chưa stage cụ thể
+### Tôi muốn loại bỏ các file cụ thể chưa lên stage
 
-Khi bạn muốn loại bỏ một file cụ thể trong bản sao đang làm việc của bạn.
-
-```sh
-$ git checkout myFile
-```
-
-Ngoài ra, dể loại bỏ nhiều file trong bản sao làm việc của bạn, hãy liệt kê tất cả chúng.
+Khi bạn muốn loại bỏ một file cụ thể trong bản sao làm việc của bạn.
 
 ```sh
-$ git checkout myFirstFile mySecondFile
+$ git checkout FileCủaTôi
 ```
 
-### Tôi chỉ loại bỏ các thay đổi chưa stage trên local
+Ngoài ra, để loại bỏ nhiều file trong bản sao làm việc của bạn, hãy liệt kê tất cả chúng.
 
-Khi bạn muốn loại bỏ tất cả các thay đổi chưa commit mà chưa stage trên local
+```sh
+$ git checkout FileThứNhất FileThứHai
+```
+
+### Tôi muốn chỉ loại bỏ các thay đổi chưa lên stage tại local
+
+Khi bạn muốn loại bỏ tất cả các thay đổi chưa commit mà chưa stage tại local
 
 ```sh
 $ git checkout .
@@ -730,21 +739,21 @@ $ git clean -f
 ```
 
 <a href="I-want-to-unstage-specific-staged-file"></a>
-### Tôi muốn untage một file cụ thể đã stage
+### Tôi muốn hạ khỏi stage một file cụ thể đã stage
 
-Đôi khi, chúng ta có một hoặc nhiều file đã vô tình bị kết thúc và các file này chưa được commit trước đó. Để unstage chúng:
+Đôi khi, chúng ta có một hoặc nhiều file đã vô tình lên stage và các file này chưa được commit trước đó. Để hạ chúng khỏi stage:
 
 ```sh
-$ git reset -- <filename>
+$ git reset -- <TênFile>
 ```
 
-Điều này dẫn đến việc các file đang chưa stage và làm cho nó giống như chưa được theo dõi.
+Lệnh trên sẽ hạ file khỏi stage và làm nó không được theo dõi (untracked).
 
 ## Nhánh
 
 ### Tôi muốn liệt kê tất cả các nhánh
 
-Liệt kê các nhanh trên local
+Liệt kê các nhanh tại local
 
 ```sh
 $ git branch
@@ -763,9 +772,9 @@ $ git branch -a
 ```
 
 <a name="create-branch-from-commit"></a>
-### Tạo một nhánh từ một commit
+### Tạo một nhánh mới từ một commit
 ```sh
-$ git checkout -b <branch> <SHA1_OF_COMMIT>
+$ git checkout -b <nhánh> <SHA1_Của_COMMIT>
 ```
 
 <a name="pull-wrong-branch"></a>
