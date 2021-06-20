@@ -778,17 +778,17 @@ $ git checkout -b <nhánh> <SHA1_Của_COMMIT>
 ```
 
 <a name="pull-wrong-branch"></a>
-### Tôi đã pull từ / vào sai nhánh
+### Tôi đã pull (kéo) từ/vào sai nhánh
 
-Đây là một cơ hội khác để sử dụng `git reflog` để xem nơi con trỏ HEAD đã trỏ trước khi pull sai.
+Đây là một cơ hội khác để dùng `git reflog` để xem HEAD đã trỏ ở đâu trước khi pull sai.
 
 ```sh
 (main)$ git reflog
-ab7555f HEAD@{0}: pull origin wrong-branch: Fast-forward
+ab7555f HEAD@{0}: pull origin nhánh-sai: Fast-forward
 c5bc55a HEAD@{1}: checkout: checkout message goes here
 ```
 
-Chỉ cần đặt lại nhánh trước đó của bạn để commit theo mong muốn:
+Chỉ cần reset nhánh của bạn về commit mong muốn:
 
 ```sh
 $ git reset --hard c5bc55a
@@ -797,11 +797,11 @@ $ git reset --hard c5bc55a
 Xong.
 
 <a href="discard-local-commits"></a>
-### Tôi muốn loại bỏ các commit trên local đển nhánh của tôi giống như một nhánh trên server
+### Tôi muốn loại bỏ các commit tại local để nhánh của tôi giống như nhánh trên server
 
-Xác nhận rằng bạn chưa push các thay đổi của mình đến server.
+Kiểm tra rằng bạn chưa push các thay đổi của mình đến server.
 
-`git status` sẽ hiển thị số lượng các commit bạn đang ở phía trước của origin:
+`git status` sẽ hiển thị số lượng các commit bạn có hơn origin:
 
 ```sh
 (my-branch)$ git status
@@ -811,14 +811,14 @@ Xác nhận rằng bạn chưa push các thay đổi của mình đến server.
 #
 ```
 
-Một cách khác để reset lại phù hợp với origin (để có các nhánh giống như trên remote) là thực hiện điều này:
+Một cách để reset về origin (để có nhánh giống như trên remote) là chạy lệnh:
 
 ```sh
 (main)$ git reset --hard origin/my-branch
 ```
 
 <a name="commit-wrong-branch"></a>
-### Tôi đã commit đến main thay vì một nhánh mới
+### Tôi đã tạo commit lên main thay vì một nhánh mới
 
 Tạo nhánh mới trong khi giữ main:
 
@@ -832,13 +832,13 @@ Reset nhánh main đến commit trước đó:
 (main)$ git reset --hard HEAD^
 ```
 
-`HEAD^` là viết tắt của `HEAD^1`. Điều này là viết tắt của parent  `HEAD`, tương tự `HEAD^2` là viết tắt của parent thứ hai của commit (merge có thể có 2 parent).
+`HEAD^` là viết tắt của `HEAD^1`. Đây là viết tắt của parent thứ nhất `HEAD`, tương tự `HEAD^2` là viết tắt của parent thứ hai của commit (merge có thể có 2 parent).
 
-Chú ý rằng `HEAD^2`  **không** giống như `HEAD~2` (xem [link này](http://www.paulboxley.com/blog/2011/06/git-caret-and-tilde) để có thêm thông tin).
+Chú ý rằng `HEAD^2`  **không** giống như `HEAD~2` (xem [link](http://www.paulboxley.com/blog/2011/06/git-caret-and-tilde) để thêm thông tin).
 
-Ngoài ra, nếu bạn không muốn sử dụng `HEAD^`, tìm mã hash của commit để thiết lập nhánh main của bạn (`git log` là một thủ thuật). Sau đó đặt lại mã hash. `git push` sẽ đảm bảo rằng thay đổi này được thể hiển trên remote của bạn.
+Ngoài ra, nếu bạn không muốn sử dụng `HEAD^`, tìm mã hash của commit mà bạn muốn main trỏ về(`git log` sẽ giúp bạn). Sau đó reset về mã hash đấy. `git push` sẽ đảm bảo rằng thay đổi này sẽ hiện trên remote của bạn.
 
-Ví dụ, nếu hash của commit mà nhánh main của bạn được cho là  `a13b85e`:
+Ví dụ, nếu hash của commit mà nhánh main của bạn đáng ra là `a13b85e`:
 
 ```sh
 (main)$ git reset --hard a13b85e
@@ -854,26 +854,26 @@ Checkout một nhánh mới để tiếp tục làm việc:
 <a name="keep-whole-file"></a>
 ### Tôi muốn giữ toàn bộ file từ một ref-ish khác
 
-Giả sử bạn có tăng đột biến mức độ làm việc (xem lưu ý), với hàng trăm thay đổi. Mọi thứ đang hoạt động. Bây giờ, bạn commit vào một nhánh khác để lưu công việc đó:
+Giả sử bạn có một cột mũi làm việc (xem Ghi Chú), với hàng trăm thay đổi. Mọi thứ đang hoạt động. Bây giờ, bạn commit vào một nhánh khác để lưu những thay đổi đó:
 
 ```sh
-(solution)$ git add -A && git commit -m "Adding all changes from this spike into one big commit."
+(solution)$ git add -A && git commit -m "Cho tất cả các thay đổi trong cột mũi làm việc này vào một commit to."
 ```
 
-Khi bạn muốn đặt nó vào một nhánh (có thể feature, có thể `develop`), bạn quan tâm đến việc giữ toàn bộ file. Bạn muốn chia commit lớn của bạn thành những cái nhỏ hơn.
+Khi bạn muốn đặt nó vào một nhánh (có thể là feature, có thể `develop`), bạn quan tâm đến việc giữ toàn bộ các file. Bạn muốn chia commit lớn của bạn thành những cái nhỏ hơn.
 
 Giả sử bạn có:
 
-  * nhánh `solution`, với solution để tăng đột biến của bạn. Phía trước `develop`.
+  * nhánh `solution`, với giáp pháp bạn phát triển với cột mũi làm việc của bạn. Hơn `develop` một commit.
   * nhánh `develop`, nơi bạn muốn thêm các thay đổi của bạn.
 
-Bạn có thể giải quyết nó mang nội dung đến nhánh của bạn:
+Bạn có thể giải quyết bằng cách mang nội dung thay đổi sang nhánh của bạn:
 
 ```sh
 (develop)$ git checkout solution -- file1.txt
 ```
 
-Điều này sẽ lấy nội dung của tập tin đó trong nhánh `solution` đến nhánh `develop` của bạn:
+Lệnh trên sẽ lấy nội dung của tập tin đó trong nhánh `solution` đến nhánh `develop` của bạn:
 
 ```sh
 # On branch develop
@@ -886,7 +886,7 @@ Bạn có thể giải quyết nó mang nội dung đến nhánh của bạn:
 
 Sau đó, commit như bình thường.
 
-Lưu ý: Các giải pháp tăng đột biến được thực hiện để phân tích hoặc giải quyết vấn đề. Các giải pháp này được sử dụng để ước tính và loại bỏ sau khi mọi người hiểu rõ vấn đề. ~ [Wikipedia](https://en.wikipedia.org/wiki/Extreme_programming_practices).
+Lưu ý: Cột mũi giải pháp được phát triển để phân tích hoặc giải quyết vấn đề. Các giải pháp này được sử dụng để ước tính và loại bỏ sau khi mọi người hiểu rõ vấn đề. ~ [Wikipedia](https://en.wikipedia.org/wiki/Extreme_programming_practices).
 
 <a name="cherry-pick"></a>
 ### Tôi đã thực hiện một số commit trên một nhánh duy nhất nó nên ở trên các nhánh khác nhau
