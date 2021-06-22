@@ -956,7 +956,7 @@ Và cuối cùng, hãy cherry-pick commit cho bug #14:
 <a name="delete-stale-local-branches"></a>
 ### Tôi muốn xóa các nhánh local đã bị xóa tại luồng trước (upstream)
 
-Khi bạn hợp một pull request trên GitHub, nó sẽ cho bạn lựa chọn để xóa nhánh đã được hợp trong fork của bạn. Nếu bạn không có kế hoạch tiếp tục làm việc trên nhánh đấy, mọi thứ sẽ sạch hơn nếu xóa các bản sao local của nhánh, do đó bạn không tồn đọng một cách lộn xộn tại bản sao làm việc của bạn với các nhánh cũ.
+Khi bạn kết hợp (merge) một pull request trên GitHub, nó sẽ cho bạn lựa chọn để xóa nhánh đã được kết hợp trong fork của bạn. Nếu bạn không có kế hoạch tiếp tục làm việc trên nhánh đấy, mọi thứ sẽ sạch hơn nếu xóa các bản sao local của nhánh, do đó bạn không tồn đọng một cách lộn xộn tại bản sao làm việc của bạn với các nhánh cũ.
 
 ```sh
 $ git fetch -p upstream
@@ -1210,26 +1210,26 @@ Thật không may, bạn bắt buộc phải push ép, nếu bạn muốn nhữn
 <a name="interactive-rebase"></a>
 ### Tôi cần kết hợp các commit
 
-Giả sử bạn đang làm việc trong một nhánh có / sẽ trở thành một pull-request  trái với `main`. Trong trường hợp đơn giản nhất khi tất cả những gì bạn muốn làm là kết hợp tất cả các commit thành một commit và bạn không quan tâm đến timestamo commit, bạn có thể đặt lại và commit lại. Đảm bảo rằng nhánh main được cập nhật và tất cả các thay đổi của bạn được commit, sau đó:
+Giả sử bạn đang làm việc trong một nhánh có / sẽ trở thành một pull-request cho `main`. Trong trường hợp đơn giản nhất khi bạn chỉ muốn là kết hợp *tất cả* các commit thành một commit và bạn không quan tâm đến timestamp (mốc thời gian) của commit, bạn có thể reset và commit lại. Đảm bảo rằng nhánh main được cập nhật và tất cả các thay đổi của bạn được commit, sau đó:
 
 ```sh
 (my-branch)$ git reset --soft main
 (my-branch)$ git commit -am "New awesome feature"
 ```
 
-Nếu bạn muốn kiểm soát nhiều hơn và cũng để bảo vệ timestamp, bạn cần phải làm một vài thứ được gọi là một interactive rebase:
+Nếu bạn muốn kiểm soát được nhiều hơn và cũng để bảo vệ timestamp, bạn cần phải làm một vài thứ được gọi là interactive rebase:
 
 ```sh
 (my-branch)$ git rebase -i main
 ```
 
-Nếu bạn không làm việc với một nhánh khác, bạn phải rebase liên quan tới `HEAD` của bạn. Nếu bạn muốn squash 2 commit cuối, bạn sẽ phải rebase lại `HEAD~2`. Cho commit cuối 3, `HEAD~3`,...
+Nếu bạn không làm việc với một nhánh khác, bạn phải rebase tương đối so với `HEAD` của bạn. Nếu bạn muốn gộp 2 commit cuối, bạn sẽ phải rebase tới `HEAD~2`. Cho 3 commit cuối, `HEAD~3`,...
 
 ```sh
 (main)$ git rebase -i HEAD~2
 ```
 
-Sau khi bạn chạy lệnh rebase interactive, bạn sẽ thấy một cái gì đó như thế này trong trình soạn thảo của bạn:
+Sau khi bạn chạy lệnh interactive rebase, bạn sẽ thấy trông giống thế này trong trình soạn thảo (text editor) của bạn:
 
 ```vim
 pick a9c8a1d Some refactoring
@@ -1256,11 +1256,11 @@ pick e3851e8 another fix
 # Note that empty commits are commented out
 ```
 
-Tất cả các dòng bắt đầu bằng một `#` là các comment, chúng sẽ không ảnh hưởng đến rebase của bạn.
+Tất cả các dòng bắt đầu bằng một `#` là các comment (chú thích), chúng sẽ không ảnh hưởng đến rebase của bạn.
 
-Sau đó bạn thay thể câu lệnh `pick` với những thư trong danh sách trên và bạn cũng có thể loại bỏ các commit bằng cách xoá các dòng tương ứng.
+Sau đó bạn thay thể  lệnh `pick` với những bất cứ lệnh nào trong danh sách trên và bạn cũng có thể loại bỏ các commit khỏi rebase bằng cách xoá các dòng tương ứng.
 
-Ví dụ, nếu bạn muốnn **di chuyển một mình commit cũ nhất(đầu tiên) và kết với với tất cả commit sau với commit cũ thứ 2**, bạn nên chỉnh sửa chữ cái bên cạnh mỗi commit ngoại trừ chữ cái đầu tiên và chữ cái thứ hai `f`:
+Ví dụ, nếu bạn muốnn **dữ nguyên commit cũ nhất(đầu tiên) và kết hợp tất cả commit sau với commit cũ thứ hai**, bạn nên chỉnh sửa chữ cái bên cạnh mỗi commit ngoại trừ chữ cái đầu tiên và chữ cái thứ hai với `f`:
 
 ```vim
 pick a9c8a1d Some refactoring
@@ -1269,7 +1269,7 @@ f b729ad5 fixup
 f e3851e8 another fix
 ```
 
-Nếu bạn muốn kết hợp các commit và **đổi tên commit**, bạn nên thêm một chữ cái `r` bên cạnh commit thứ 2 hoặc đơn giản sử dụng `s` thay vì `f`:
+Nếu bạn muốn kết hợp tất cả các commit **và đổi tên commit**, bạn nên thêm một chữ cái `r` bên cạnh commit thứ 2 hoặc đơn giản sử dụng `s` thay vì `f`:
 
 ```vim
 pick a9c8a1d Some refactoring
@@ -1278,7 +1278,7 @@ s b729ad5 fixup
 s e3851e8 another fix
 ```
 
-Bạn có thể đổi tên commit sau trong đoạn text bật lên.
+Bạn có thể đổi tên commit trong đoạn hội thoại sẽ bật lên.
 
 ```vim
 Newer, awesomer features
@@ -1294,20 +1294,20 @@ Newer, awesomer features
 
 ```
 
-Nếu mọi thứ thành công, bạn sẽ thấy một cái gì đó như thế này:
+Nếu mọi thứ thành công, bạn sẽ thấy giống như thế này:
 
 ```sh
 (main)$ Successfully rebased and updated refs/heads/main.
 ```
 
 #### Chiến lược merge an toàn
-`--no-commit` thực hiện merge nhưng giả vờ hợp nhất không thành công và không tự động, cho phép người dùng có cơ hội kiểm tra và tinh chỉnh thêm kết quả merge trước khi commit. `no-ff` duy trì bằng chứng rằng một nhánh tính năng đã từng tồn tại, giữ cho lịch sử dự án nhất quán.
+`--no-commit` thực hiện merge nhưng giả vờ kết hợp không thành công và không tự động tạo commit, cho phép người dùng có cơ hội kiểm tra và chỉnh thêm kết quả merge trước khi commit. `no-ff` duy trì bằng chứng rằng một nhánh tính năng đã từng tồn tại, giữ lịch sử dự án nhất quán.
 
 ```sh
 (main)$ git merge --no-ff --no-commit my-branch
 ```
 
-#### Tôi cần merge một nhánh vào một commit duy nhất
+#### Tôi cần merge một nhánh thành một commit duy nhất
 
 ```sh
 (main)$ git merge --squash my-branch
@@ -1316,27 +1316,27 @@ Nếu mọi thứ thành công, bạn sẽ thấy một cái gì đó như thế
 <a name="rebase-unpushed-commits"></a>
 #### Tôi chỉ muốn kết hợp các commit chưa push
 
-Đôi khi bạn có một số công việc đang tiến hành commit bạn muốn kết hợp trước khi bạn đẩy chúng lên upstream. Bạn không muốn vô tình kết hợp bất kỳ commit nào đã được push lên upstream vì một người khác có thể đã thực hiện các commit tham chiếu đến chúng.
+Đôi khi bạn có một số commit trong khi công-việc-đang-tiến-hành và bạn muốn kết hợp thành một trước khi bạn đẩy lên upstream. Bạn không muốn vô tình kết hợp bất kỳ commit nào đã được push lên upstream vì người khác có thể đã thực hiện các commit tham chiếu chúng.
 
 ```sh
 (main)$ git rebase -i @{u}
 ```
 
-Điều này sẽ làm một interactive rebase mà chỉ liệt kê các commit mà bạn chưa push, vì vậy nó sẽ được an toàn để sắp xếp lại / sửa chữa / squash bất cứ điều gì trong danh sách
+Lệnh này sẽ thực hành một interactive rebase mà chỉ liệt kê các commit bạn chưa push, vì vậy mọi thứ sẽ an toàn để sắp xếp lại / sửa chữa / squash (gộp) bất cứ gì trong danh sách
 
 #### Tôi cần huỷ bỏ merge
 
-Đôi khi việc merge có thể gây ra sự cố trong một số file nhất định, trong những trường hợp đó, chúng ta có thể sử dụng tùy  `abort` để hủy bỏ quá trình giải quyết xung đột hiện tại và cố gắng xây dựng lại trạng thái merge trước.
+Đôi khi việc merge có thể gây ra sự cố trong một số file nhất định, trong những trường hợp đó, chúng ta có thể sử dụng cờ `abort` để hủy bỏ quá trình giải quyết xung đột hiện tại và cố gắng xây dựng lại trạng thái trước merge.
 
 ```sh
 (my-branch)$ git merge --abort
 ```
 
-Lệnh này có sẵn kể từ phiên bản Git >= 1.7.4
+Lệnh này có sẵn từ phiên bản Git >= 1.7.4
 
-### Tôi cần cập nhật commit cha của nhánh của tôi
+### Tôi cần cập nhật commit gốc (parent commit) của nhánh của tôi
 
-Giả sử tôi có một nhánh main, một nhánh feature-1 tách nhánh từ main và một nhánh feature-2 tách nhánh từ feature-1. Nếu tôi thực hiện commit đối với feature-1, thì commit của feature-2 không còn chính xác nữa (nó phải là phần đầu của feature-1, vì chúng ta đã phân nhánh nó). Chúng ta có thể sửa điều này với `git rebase --onto`.
+Giả sử tôi có một nhánh main, một nhánh feature-1 tách từ main và một nhánh feature-2 tách từ feature-1. Nếu tôi thực hiện commit đối với feature-1, thì commit của feature-2 không còn chính xác nữa (gốc nên là đầu của feature-1, vì chúng ta đã tách nhánh từ nó). Chúng ta có thể sửa điều này với `git rebase --onto`.
 
 ```sh
 (feature-2)$ git rebase --onto feature-1 <the first commit in your feature-2 branch that you don't want to bring along> feature-2
