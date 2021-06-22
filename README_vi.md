@@ -889,7 +889,7 @@ Sau đó, commit như bình thường.
 Lưu ý: Cột mũi giải pháp được phát triển để phân tích hoặc giải quyết vấn đề. Các giải pháp này được sử dụng để ước tính và loại bỏ sau khi mọi người hiểu rõ vấn đề. ~ [Wikipedia](https://en.wikipedia.org/wiki/Extreme_programming_practices).
 
 <a name="cherry-pick"></a>
-### Tôi đã thực hiện một số commit trên một nhánh duy nhất nó nên ở trên các nhánh khác nhau
+### Tôi đã thực hiện một số commit trên một nhánh mặc dù chúng nên ở các nhánh khác nhau
 
 Giả sử bạn đang ở trên nhánh main của bạn. Chạy `git log`, bạn thấy bạn đã thực hiện 2 commit:
 
@@ -915,7 +915,7 @@ Date:   Tue Jul 21 01:12:48 2014 -0400
     First commit
 ```
 
-Hãy lưu ý các hash commit của chúng ta cho mỗi lỗi (`e3851e8` cho #21, `5ea5173` cho #14).
+Hãy lưu ý các hash commit của chúng ta cho mỗi bug (lỗi) (`e3851e8` cho #21, `5ea5173` cho #14).
 
 Trước tiên, hãy đặt lại nhánh main của chúng ta về commit chính xác (`a13b85e`):
 
@@ -924,22 +924,22 @@ Trước tiên, hãy đặt lại nhánh main của chúng ta về commit chính
 HEAD is now at a13b85e
 ```
 
-Bây giờ, chúng ta có thể tạo ra một nhánh mới cho lỗi của chúng ta #21:
+Bây giờ, chúng ta có thể tạo ra một nhánh mới cho lỗi #21 của chúng ta:
 
 ```sh
 (main)$ git checkout -b 21
 (21)$
 ```
 
-Bây giờ, hãy *cherry-pick* commit cho bug #21 trên đầu của nhánh. Điều này có ý nghĩa là chúng ta sẽ áp dụng commit đó và chỉ commit đó, trực tiếp trên đầu của bất cứ head nào của chúng ta.
+Bây giờ, hãy *cherry-pick* commit cho bug #21 trên đầu của nhánh. Nói tóm lại là chúng ta sẽ áp commit đó, và chỉ commit đó, trực tiếp vào đầu của nhánh.
 
 ```sh
 (21)$ git cherry-pick e3851e8
 ```
 
-Tại thời điểm này, có khả năng có thể có xung đột. Hãy xem phần [**There were conflicts**](#merge-conflict) trong [phầnn interactive rebasing trên](#interactive-rebase) để làm thế nào giải quyết xung đột.
+Tại thời điểm này, có khả năng có thể có xung đột hợp (merge conflicts). Hãy xem phần [**There were conflicts**](#merge-conflict) trong [phần interactive rebasing ở trên](#interactive-rebase) để làm thế nào giải quyết xung đột hợp.
 
-Bây giờ chúng ta hãy tạo một nhánh mới cho bug # 14, cũng dựa trên main
+Bây giờ chúng ta hãy tạo một nhánh mới cho bug # 14, cũng dựa trên nhánh main:
 
 ```sh
 (21)$ git checkout main
@@ -954,15 +954,15 @@ Và cuối cùng, hãy cherry-pick commit cho bug #14:
 ```
 
 <a name="delete-stale-local-branches"></a>
-### Tôi muốn xóa các nhánh local đã bị xóa luồng phía trước
+### Tôi muốn xóa các nhánh local đã bị xóa tại luồng trước (upstream)
 
-Khi bạn kết hợp một request pull trên GitHub, nó sẽ cho bạn tùy chọn để xóa nhánh đã merge trong fork của bạn. Nếu bạn không có kế hoạch tiếp tục làm việc trên nhánh, nó sạch hơn nếu xóa các bản sao local của nhánh, do đó bạn không kết thúc lộn xộn lên checkout luồng làm việc của bạn với rất nhiều nhánh cũ.
+Khi bạn hợp một pull request trên GitHub, nó sẽ cho bạn lựa chọn để xóa nhánh đã được hợp trong fork của bạn. Nếu bạn không có kế hoạch tiếp tục làm việc trên nhánh đấy, mọi thứ sẽ sạch hơn nếu xóa các bản sao local của nhánh, do đó bạn không tồn đọng một cách lộn xộn tại bản sao làm việc của bạn với các nhánh cũ.
 
 ```sh
 $ git fetch -p upstream
 ```
 
-nơi, `upstream` là remote bạn muốn fetch từ đó.
+upstream` là remote bạn muốn fetch (gọi) về.
 
 <a name='restore-a-deleted-branch'></a>
 ### Tôi vô tình xóa nhánh của tôi
@@ -977,7 +977,7 @@ Nếu bạn thường xuyên push lên remote, bạn sẽ an toàn phần lớn 
 README.md foo.txt
 ```
 
-Hãy thêm nó và commit.
+Hãy thêm nó và rồi tạo commit.
 
 ```sh
 (my-branch)$ git add .
@@ -1000,7 +1000,7 @@ Date:   Tue Jul 29 13:14:46 2014 -0400
     Fixes #6: Force pushing after amending commits
 ```
 
-Bây giờ chúng ta đang chuyển về main và 'vô tình' xóa nhánh của chúng ta
+Bây giờ chúng ta chuyển lại về main và 'vô tình' xóa nhánh của chúng ta
 
 ```sh
 (my-branch)$ git checkout main
@@ -1008,11 +1008,11 @@ Switched to branch 'main'
 Your branch is up-to-date with 'origin/main'.
 (main)$ git branch -D my-branch
 Deleted branch my-branch (was 4e3cd85).
-(main)$ echo oh noes, deleted my branch!
-oh noes, deleted my branch!
+(main)$ echo ôi không,tôi delete nhánh tôi!
+ôi không,tôi delete nhánh tôi!
 ```
 
-Tại thời điểm này, bạn nên làm quen với 'reflog', một logger được nâng cấp. Nó lưu trữ lịch sử của tất cả các hành động trong repo.
+Tại thời điểm này, bạn nên làm quen với 'reflog', một logger (ký sử) được nâng cấp. Nó lưu trữ lịch sử của tất cả các hành động trong repo.
 
 ```
 (main)$ git reflog
@@ -1021,7 +1021,7 @@ Tại thời điểm này, bạn nên làm quen với 'reflog', một logger đ�
 69204cd HEAD@{2}: checkout: moving from main to my-branch
 ```
 
-Như bạn có thể thấy chúng ta đã có commit hash từ nhánh đã xóa của chúng tôi. Hãy xem liệu chúng ta có thể khôi phục nhánh đã xóa của chúng ta hay không.
+Như bạn có thể thấy chúng ta có số hash của commit từ nhánh đã xóa của chúng ta. Hãy xem liệu chúng ta có thể khôi phục nhánh đã xóa của chúng ta hay không.
 
 ```sh
 (main)$ git checkout -b my-branch-help
@@ -1032,29 +1032,29 @@ HEAD is now at 4e3cd85 foo.txt added
 README.md foo.txt
 ```
 
-Và đấy! Chúng ta đã xoá file trước của chúng ta. `git reflog` cũng hữu ích khi rebase đi sai lầm lớn.
+Và đấy! Chúng ta đã phục hồi lại được file bị xóa của chúng ta. `git reflog` cũng hữu ích khi rebase tạo sai lầm lớn.
 
 ### Tôi muốn xoá một nhánh
 
-Để xoá một nhánh remote:
+Để xoá một nhánh tại remote:
 
 ```sh
 (main)$ git push origin --delete my-branch
 ```
 
-Bạn cũng có thể làm :
+Bạn cũng có thể chạy :
 
 ```sh
 (main)$ git push origin :my-branch
 ```
 
-Để xoá nhánh local:
+Để xoá nhánh tại local:
 
 ```sh
 (main)$ git branch -d my-branch
 ```
 
-Để xoá một nhánh local *không được* merge đến nhánh hiện tại hoặc một upstream:
+Để xoá một nhánh local *chưa được* merge với nhánh hiện tại hoặc trên upstream (luồng trước):
 
 ```sh
 (main)$ git branch -D my-branch
