@@ -1125,11 +1125,11 @@ Các hành vi của các chế độ khác của `git push` được mô tả tr
 
 ### Tôi muốn thiết lập một nhánh remote làm upstream (luồng trước) cho một nhánh local
 
-Bạn có thể thiết lập một nhánh remote làm upstream cho nhánh local hiện tại bằng cách sử dụng:
+Bạn có thể thiết lập một nhánh remote làm upstream cho nhánh local hiện tại bằng cách chạy lệnh:
 
 ```sh
 $ git branch --set-upstream-to [remotename]/[branch]
-# hoặc, dùng ngắn thuật:
+# hoặc, dùng tốc ký:
 $ git branch -u [remotename]/[branch]
 ```
 
@@ -1140,9 +1140,9 @@ $ git branch -u [remotename]/[branch] [local-branch]
 ```
 
 <a name="i-want-to-set-my-HEAD-to-track-the-default-remote-branch"></a>
-### Tôi muốn thiết lập HEAD của tôi để theo dõi nhánh remote mặc định
+### Tôi muốn để HEAD của tôi dõi theo nhánh mặc định của remote
 
-Bằng cách kiểm tra các nhánh remote của bạn, bạn có thể thấy rằng các nhánh remote mà HEAD của bạn đang theo dõi. Trong một số trường hợp, đây không phải là nhánh mong muốn.
+Bằng cách kiểm tra các nhánh remote của bạn, bạn có thể thấy nhánh remote nào mà HEAD của bạn đang theo dõi. Trong một số trường hợp, có thể đấy không phải là nhánh mong muốn.
 
 ```sh
 $ git branch -r
@@ -1150,53 +1150,53 @@ $ git branch -r
   origin/main
 ```
 
-Để thay đổi  `origin/HEAD` để theo dõi `origin/main`, bạn có thể chạy command này:
+Để thay đổi  `origin/HEAD` sang theo dõi `origin/main`, bạn có thể chạy lệnh này:
 
 ```sh
 $ git remote set-head origin --auto
 origin/HEAD set to main
 ```
 
-### Tôi đã thực hiện thay đổi trên nhánh sai
+### Tôi đã thực hiện thay đổi trên sai nhánh
 
-Bạn đã thực hiện các thay đổi chưa được commit và nhận ra bạn đang ở nhánh sai. Stash các thay đổi và apply chúng vào nhánh bạn muốn:
+Bạn đã thực hiện các thay đổi chưa được commit và nhận ra bạn đang ở sai nhánh. Stash (cất) các thay đổi và apply (áp dụng) chúng vào nhánh bạn muốn:
 
 ```sh
 (wrong_branch)$ git stash
-(wrong_branch)$ git checkout <correct_branch>
+(wrong_branch)$ git checkout nhánh_đúng
 (correct_branch)$ git stash apply
 ```
 
 <a name="i-want-to-split-a-branch-into-two"></a>
-### I want to split a branch into two
+### Tôi muốn tách một nhánh thành hai
 
-You've made a lot of commits on a branch and now want to separate it into two, ending with a branch up to an earlier commit and another with all the changes.
+Bạn đã tạo rất nhiều commit trên một nhành và bây giờ bạn muốn tách nhánh ra thành hai, một nhánh kết thúc với một commit cũ, và một nhánh với tất cả các thay đổi.
 
-Use `git log` to find the commit where you want to split. Then do the following:
+Dùng `git log` để tìm commit bạn muốn làm mốc để tách. Sau đó chạy lệnh như sau:
 
 ```sh
 (original_branch)$ git checkout -b new_branch
 (new_branch)$ git checkout original_branch
-(original_branch)$ git reset --hard <sha1 split here>
+(original_branch)$ git reset --hard <số sha1 commit để tách>
 ```
 
-If you had previously pushed the `original_branch` to remote, you will need to do a force push. For more information check [Stack Overlflow](https://stackoverflow.com/questions/28983458/how-to-split-a-branch-in-two-with-git/28983843#28983843)
+Nếu bạn trước đó đã push nhánh gốc lên remote, bạn sẽ cần phải push ép (force push). Để thêm thông tin xem [Stack Overlflow](https://stackoverflow.com/questions/28983458/how-to-split-a-branch-in-two-with-git/28983843#28983843).
 
 ## Rebasing và Merging
 
 <a name="undo-rebase"></a>
-### Tôi muốn huỷ bỏ rebase/merge
+### Tôi muốn đảo ngược rebase/merge
 
-Bạn có thể đã merge hoặc rebase nhánh hiện tại của bạn với một nhánh sai hoặc bạn không thể tìm ra cách hoàn thành quá trình rebase/merge. Git lưu con trỏ original HEAD trong một biến được gọi là ORIG_HEAD trước khi làm các hành động nguy hiểm, vì vậy nó giống như một nhánh khôi phục ở một trạng thái trước khi rebase/merge.
+Bạn có thể đã merge hoặc rebase nhánh hiện tại của bạn với một nhánh sai hoặc bạn không thể tìm ra cách hoàn thành quá trình rebase/merge. Git lưu con trỏ original HEAD trong một variable (biến) được gọi là ORIG_HEAD trước khi chạy các hành động nguy hiểm, vì vậy bạn có thể dễ dàng khôi phục lại trạng thái trước khi rebase/merge.
 
 ```sh
 (my-branch)$ git reset --hard ORIG_HEAD
 ```
 
 <a name="force-push-rebase"></a>
-### Tôi đã rebase, nhưng tôi không muốn force push
+### Tôi đã rebase, nhưng tôi không muốn push ép (force push)
 
-Thật không may, bạn phải bắt buộc push, nếu bạn muốn những thay đổi đó được ánh xạ trên nhánh remote. Điều này là do bạn đã thay đổi lịch sử. Nhánh remote sẽ không chấp nhận thay đổi trừ khi bạn ép buộc. Đây là một trong những lý do chính khiến nhiều người sử dụng một luồng merge, thay vì một luồng rebasing - các nhóm lớn có thể gặp rắc rối với các developer bắt buộc push. Sử dụng điều này một cách thận trọng. Một cách an toàn hơn để sử dụng rebase không phải là để ánh xạ các thay đổi của bạn trên nhánh remote và thay vào đó thực hiện các thao tác sau:
+Thật không may, bạn bắt buộc phải push ép, nếu bạn muốn những thay đổi đó được phản ánh trên nhánh remote. Điều này là do bạn đã thay đổi lịch sử. Nhánh remote sẽ không chấp nhận thay đổi trừ khi bạn push ép. Đây là một trong những lý do chính khiến nhiều người sử dụng quy trình làm việc trên merge, thay vì quy trình làm việc trên rebasing - các nhóm lớn có thể gặp rắc rối khi developer push ép. Nên sử dụng rebase một cách thận trọng. Một cách an toàn hơn để sử dụng rebase không là không phản ánh các thay đổi của bạn trên nhánh remote và thay vào đó thực hiện các thao tác sau:
 
 ```sh
 (main)$ git checkout my-branch
@@ -1205,7 +1205,7 @@ Thật không may, bạn phải bắt buộc push, nếu bạn muốn những th
 (main)$ git merge --ff-only my-branch
 ```
 
-Để biết thêm hãy xem [this SO thread](https://stackoverflow.com/questions/11058312/how-can-i-use-git-rebase-without-requiring-a-forced-push).
+Để biết thêm hãy xem [chủ đề này trên SO](https://stackoverflow.com/questions/11058312/how-can-i-use-git-rebase-without-requiring-a-forced-push).
 
 <a name="interactive-rebase"></a>
 ### Tôi cần kết hợp các commit
