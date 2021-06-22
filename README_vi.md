@@ -1062,7 +1062,7 @@ Bạn cũng có thể chạy :
 
 ### Tôi muốn xoá nhiều nhánh
 
-Giả sử bạn muốn xoá tất cả nhánh bắt đầu với `fix/`:
+Giả sử bạn muốn xoá tất cả các nhánh bắt đầu với `fix/`:
 
 ```sh
 (main)$ git branch | grep 'fix/' | xargs git branch -d
@@ -1073,13 +1073,13 @@ Giả sử bạn muốn xoá tất cả nhánh bắt đầu với `fix/`:
 Để đổi tên nhánh local hiện tại:
 
 ```sh
-(main)$ git branch -m new-name
+(main)$ git branch -m tên-mới
 ```
 
 Để đổi tên nhánh local khác:
 
 ```sh
-(main)$ git branch -m old-name new-name
+(main)$ git branch -m tên-cũ tên-mới
 ```
 
 <a name="i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on"></a>
@@ -1101,7 +1101,7 @@ Switched to a new branch 'daves'
 
 (`--track` là viết tắt của `git checkout -b [branch] [remotename]/[branch]`)
 
-Điều này sẽ cung cấp cho bạn một bản sao cục bộ của nhánh `daves` và mọi cập nhật đã được push cũng sẽ được hiển thị từ remote.
+Lệnh này sẽ cung cấp cho bạn một bản sao tại local của nhánh `daves` và mọi cập nhật đã được push cũng sẽ được hiển thị từ remote.
 
 ### Tôi muốn tạo một nhánh remote mới từ một nhánh local hiện tại
 
@@ -1109,27 +1109,27 @@ Switched to a new branch 'daves'
 $ git push <remote> HEAD
 ```
 
-Nếu bạn cũng muốn đặt nhánh từ remote như upstream cho nhánh hiện tại, sử dụng:
+Nếu bạn cũng muốn đặt nhánh remote là upstream cho nhánh hiện tại, sử dụng:
 
 ```sh
 $ git push -u <remote> HEAD
 ```
 
-Với chế độ `upstream` và `simple` (mặc định trong Git 2.0) của cấu hình `push.default`, command sau sẽ push nhánh hiện tại liên quan đến nhánh remote được đăng ký trước đó với `-u`:
+Với chế độ `upstream` và `simple` (mặc định trong Git 2.0) của cấu hình `push.default`, lệnh sau sẽ push nhánh hiện tại lên nhánh remote được đăng ký trước đó với `-u`:
 
 ```sh
 $ git push
 ```
 
-Các hành động khác của chế độ `git push` được mô tả trong [doc of `push.default`](https://git-scm.com/docs/git-config#git-config-pushdefault).
+Các hành vi của các chế độ khác của `git push` được mô tả trong [doc cho `push.default`](https://git-scm.com/docs/git-config#git-config-pushdefault).
 
-### Tôi muốn thiết lập một nhánh remote giống như upstream cho một nhánh local
+### Tôi muốn thiết lập một nhánh remote làm upstream (luồng trước) cho một nhánh local
 
-Bạn có thể thiết lập một nhánh remote như upstream cho nhánh local hiện tại bằng cách sử dụng:
+Bạn có thể thiết lập một nhánh remote làm upstream cho nhánh local hiện tại bằng cách sử dụng:
 
 ```sh
 $ git branch --set-upstream-to [remotename]/[branch]
-# or, using the shorthand:
+# hoặc, dùng ngắn thuật:
 $ git branch -u [remotename]/[branch]
 ```
 
