@@ -1334,51 +1334,51 @@ Lệnh này sẽ thực hành một interactive rebase mà chỉ liệt kê các
 
 Lệnh này có sẵn từ phiên bản Git >= 1.7.4
 
-### Tôi cần cập nhật commit gốc (parent commit) của nhánh của tôi
+### Tôi cần cập nhật commit gốc (parent commit) cho nhánh của tôi
 
-Giả sử tôi có một nhánh main, một nhánh feature-1 tách từ main và một nhánh feature-2 tách từ feature-1. Nếu tôi thực hiện commit đối với feature-1, thì commit của feature-2 không còn chính xác nữa (gốc nên là đầu của feature-1, vì chúng ta đã tách nhánh từ nó). Chúng ta có thể sửa điều này với `git rebase --onto`.
+Giả sử tôi có một nhánh main, một nhánh feature-1 tách từ main và một nhánh feature-2 tách từ feature-1. Nếu tôi thực hiện commit đối với feature-1, thì commit của feature-2 không còn chính xác nữa (gốc nên là đầu của feature-1, vì chúng ta đã tách nhánh từ nó). Chúng ta có thể sửa vấn đề này với `git rebase --onto`.
 
 ```sh
-(feature-2)$ git rebase --onto feature-1 <the first commit in your feature-2 branch that you don't want to bring along> feature-2
+(feature-2)$ git rebase --onto feature-1 <commit đầu tiên trong nhánh feature-2 mà bạn không muốn mang theo> feature-2
 ```
 
-Điều này giúp trong các trường hợp khó nơi bạn có thể có một feature được xây dựng trên một feature khác chưa được merge và một bugfix trên nhánh feature-1 cần được phản ánh trong nhánh feature-2 của bạn.
+Lệnh này giúp trong các trường hợp khó nơi bạn có thể có một feature được xây dựng trên một feature khác chưa được merge, hoặc một bugfix (vá lỗi) trên nhánh feature-1 cần được phản ánh trong nhánh feature-2 của bạn.
 
 ### Kiểm tra xem tất cả commit trên một nhánh đã được merge
 
-Để kiểm cháu tất cả commit trên một nhánh được merge vào nhánh khác, bạn nên diff giữa các head (hoặc mọi commit) của những nhánh đó:
+Để kiểm tra tất cả commit trên một nhánh đã được merge vào nhánh khác, bạn nên diff (khác biệt) giữa các head (hoặc các commit) của các nhánh:
 
 ```sh
 (main)$ git log --graph --left-right --cherry-pick --oneline HEAD...feature/120-on-scroll
 ```
 
-Điều này sẽ cho bạn biết nếu bất kỳ commit trong một nhưng không phải là nhánh khác và sẽ cung cấp cho bạn một danh sách của bất kỳ nonshared giữa các nhánh. Một lựa chọn khác là làm điều này:
+Lệnh này sẽ cho bạn biết nếu bất kỳ commit ở trong một nhánh nhưng không trong nhánh kia, và sẽ cung cấp cho bạn một danh sách của bất kỳ tệp không chia sẽ giữa các nhánh. Một lựa chọn khác là chạy lệnh:
 
 ```sh
 (main)$ git log main ^feature/120-on-scroll --no-merges
 ```
 
-### Các vấn đề có thể xảy ra với interactive rebases
+### Các vấn đề có thể xảy ra với interactive rebase
 
 <a name="noop"></a>
-#### Màn hình chỉnh sửa rebase cho biết 'noop'
+#### Màn hình chỉnh sửa rebase ghi 'noop'
 
-Nếu bạn thấy điều này:
+Nếu bạn thấy như sau:
 ```
 noop
 ```
 
-Điều này có nghĩa bạn đang cố rebase lại một nhánh mà là một commit giống hệt nhau hoặc là *ahead* của nhánh hiện tại. Bạn có thể thử:
+Điều này có nghĩa bạn đang cố rebase lại một nhánh đang có commit giống hệt hoặc là *ở trước* nhánh hiện tại. Bạn có thể thử:
 
-* đảm bảo nhánh main của bạn là nơi nó cần
-* rebase lại `HEAD~2` hoặc sớm hơn
+* đảm bảo nhánh main của bạn ở đúng chỗ
+* rebase với `HEAD~2` hoặc cũ hơn
 
 <a name="merge-conflict"></a>
 #### Có một vài xung đột
 
-Nếu bạn không thể hoàn tất thành việc rebase, bạn có thể phải giải quyết xung đột.
+Nếu bạn không thể hoàn tất thành công rebase, bạn có thể phải giải quyết xung đột.
 
-Đầu tiên chạy `git status` để xem tệp nào có xung đột trong chúng:
+Đầu tiên chạy `git status` để xem tệp nào có xung đột:
 
 ```sh
 (my-branch)$ git status
@@ -1390,7 +1390,7 @@ Changes not staged for commit:
   both modified:   README.md
 ```
 
-Trong ví dụ đó,, `README.md` có xung đột. Mở tệp đó và tìm kiếm những điều sau:
+Trong ví dụ đó, `README.md` có xung đột. Mở tệp đó và tìm những dòng trông như sau:
 
 ```vim
    <<<<<<< HEAD
@@ -1400,7 +1400,7 @@ Trong ví dụ đó,, `README.md` có xung đột. Mở tệp đó và tìm ki�
    >>>>>>> new-commit
 ```
 
-Bạn sẽ cần phải giải quyết sự khác biệt giữa code đã được thêm vào trong commit mới của bạn (trong ví dụ, mọi thứ từ dòng ở giữa  `new-commit`) và `HEAD` của bạn.
+Bạn sẽ cần phải giải quyết sự khác biệt giữa code đã được thêm vào với commit mới của bạn (trong ví dụ, mọi thứ từ dòng ở giữa cho đến  `new-commit`) và `HEAD` của bạn.
 
 Nếu bạn muốn giữ phiên bản code của một nhánh, bạn có thể sử dụng `--ours` hoặc `--theirs`:
 
@@ -1408,10 +1408,10 @@ Nếu bạn muốn giữ phiên bản code của một nhánh, bạn có thể s
 (main*)$ git checkout --ours README.md
 ```
 
-- Khi *đang merge*, sử dụng `--ours` để giữa các thay đổi từ nhánh local, hoặc `--theirs` để giữ các thay đổi từ nhánh khác.
-- Khi *đang rebase*, sử dụng `--theirs` để giữ các thay đổi từ nhánh local, hoặc `--ours` để giữ các thay đổi từ nhánh khác. Để giải thích về sự hoán đổi này, hãy xem [chú ý này trong tài liệu Git](https://git-scm.com/docs/git-rebase#git-rebase---merge).
+- Khi *đang merge*, sử dụng `--ours` để giữ các thay đổi từ nhánh local, hoặc `--theirs` để giữ các thay đổi từ nhánh khác.
+- Khi *đang rebase*, sử dụng `--theirs` để giữ các thay đổi từ nhánh local, hoặc `--ours` để giữ các thay đổi từ nhánh khác. Để hiểu giải thích về sự hoán đổi này, hãy xem [ghi chú này trong tài liệu Git](https://git-scm.com/docs/git-rebase#git-rebase---merge).
 
-Nếu việc merge phức tạp hơn, bạn có thể sử dụng trình chỉnh sửa khác biệt trực quan:
+Nếu việc merge phức tạp hơn, bạn có thể sử dụng trình chỉnh sửa khác biệt trực quan (visual diff editor):
 
 ```sh
 (main*)$ git mergetool -t opendiff
@@ -1424,7 +1424,7 @@ Sau khi bạn đã giải quyết tất cả xung đột và đã kiểm tra cod
 (my-branch)$ git rebase --continue
 ```
 
-Nếu sau khi giải quyết tất cả các xung đột bạn kết thúc bằng một cây giống hệt với cái trước khi thực hiện, bạn cần `git rebase --skip` thay thế.
+Nếu sau khi giải quyết tất cả các xung đột bạn kết thúc với một cây giống hệt với cái trước khi thực hiện, bạn cần `git rebase --skip`.
 
 Nếu bất kỳ lúc nào bạn muốn dừng toàn bộ quá trình rebase và quay trở lại trạng thái ban đầu nhánh của bạn, bạn có thể làm như thế này:
 
@@ -1434,7 +1434,7 @@ Nếu bất kỳ lúc nào bạn muốn dừng toàn bộ quá trình rebase và
 ```
 
 <a name="stashing"></a>
-## Stash
+## Stash (Cất)
 
 ### Stash tất cả chỉnh sửa
 
@@ -1444,7 +1444,7 @@ Nếu bất kỳ lúc nào bạn muốn dừng toàn bộ quá trình rebase và
 $ git stash
 ```
 
-Nếu bạn cũng muốn stash các file chưa được theo dõi, sử dụng tuỳ chọn `-u`.
+Nếu bạn cũng muốn stash các file chưa được theo dõi, sử dụng cờ `-u`.
 
 ```sh
 $ git stash -u
@@ -1465,22 +1465,27 @@ $ git stash push working-directory-path/filename1.ext working-directory-path/fil
 ```
 
 <a name="stash-msg"></a>
-### Stash với message
+### Stash với message (thông điệp)
 
 ```sh
 $ git stash save <message>
+```
+or
+
+```sh
+$ git stash push -m <message>
 ```
 
 <a name="stash-apply-specific"></a>
 ### Apply một stash cụ thể từ danh sách
 
-Đầu tiên kiểm tra danh sách các stash với message sử dụng
+Đầu tiên kiểm tra danh sách các stash với message bằng lệnh
 
 ```sh
 $ git stash list
 ```
 
-Sau đó apply một stash cụ thể từ danh sách sử dụng
+Sau đó apply (áp dụng) một stash cụ thể từ danh sách với
 
 ```sh
 $ git stash apply "stash@{n}"
@@ -1488,10 +1493,16 @@ $ git stash apply "stash@{n}"
 
 Ở đây, 'n' cho biết vị trí của stash trong stack. Stash trên cùng sẽ là vị trí 0.
 
-<a name="stage-and-keep-unstaged"></a>
-### Stash while keeping unstaged edits
+Hơn nữa, cũng có thể chỉ stash dựa vào mốc thời gian
 
-You can manually create a `stash commit`, and then use `git stash store`.
+```sh
+$ git stash apply "stash@{2.hours.ago}"
+```
+
+<a name="stage-and-keep-unstaged"></a>
+### Stash trong khi giữ các thay đổi chưa stage
+
+Bạn có thể  tạo một `stash commit`, rồi dùng lệnh  `git stash store`.
 
 ```sh
 $ git stash create
