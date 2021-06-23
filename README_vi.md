@@ -1129,7 +1129,7 @@ Bạn có thể thiết lập một nhánh remote làm upstream cho nhánh local
 
 ```sh
 $ git branch --set-upstream-to [remotename]/[branch]
-# hoặc, dùng tốc ký:
+# hoặc, dùng ký tắt:
 $ git branch -u [remotename]/[branch]
 ```
 
@@ -1509,35 +1509,35 @@ $ git stash create
 $ git stash store -m <message> CREATED_SHA1
 ```
 
-## Finding
+## Finding (Tìm)
 
-### Tôi muốn tìm một chuỗi trong bất kỳ commit nào
+### Tôi muốn tìm một chuỗi ký tự trong bất kỳ commit nào
 
-Để tìm một chuỗi nhất định được cho vào trong bất kỳ commit nào, bạn có thể sử dụng cấu trúc sau:
+Để tìm một chuỗi ký tự được giới thiệu với commit, bạn có thể sử dụng lệnh như sau:
 
 ```sh
-$ git log -S "string to find"
+$ git log -S "chuỗi ký tự để tìm"
 ```
 
-Các thông số chung:
+Các cờ thường dùng:
 
-* `--source` có nghĩa là hiển thị tên ref được đưa ra trên dòng lệnh mà mỗi lần commit đã đạt được.
+* `--source` có nghĩa là hiển thị tên ref được đưa ra trên dòng lệnh mà mỗi lần commit đã đạt tới.
 
-* `--all` nghĩa là bắt đầu từ mọi nhánhmeans to start from every branch.
+* `--all` nghĩa là bắt đầu từ mọi nhánh.
 
-* `--reverse` in theo thứ tự ngược lại, nó có nghĩa là sẽ hiển thị commit đầu tiên đã thực hiện thay đổi.
+* `--reverse` in theo thứ tự ngược lại, có nghĩa là hiển thị commit đầu tiên đã thực hiện thay đổi.
 
 <a name="i-want-to-find-by-author-committer"></a>
-### Tôi muốn tìm tác giác hoặc người commit
+### Tôi muốn tìm tác giả hoặc người commit
 
-Tìm tất cả commit từ tác giả hoặc người commit bạn có thể sử dụng:
+Để tìm tất cả commit từ tác giả hoặc người commit bạn có thể sử dụng:
 
 ```sh
-$ git log --author=<name or email>
-$ git log --committer=<name or email>
+$ git log --author=<tên hoặc email>
+$ git log --committer=<tên hoặc email>
 ```
 
-Hãy nhớ rằng tác giả và người commit không giống. `--author` là người ban đầu đã viết code; mặt khác,  `--committer`, là người đã commit code thay mặc tác giả gốc.
+Hãy nhớ rằng tác giả và người commit không giống nhau. `--author` là người ban đầu viết code; mặt khác,  `--committer`, là người đã commit code thay mặt tác giả gốc.
 
 ### Tôi muốn liệt kê các commit chứa các file cụ thể
 
@@ -1547,31 +1547,31 @@ Hãy nhớ rằng tác giả và người commit không giống. `--author` là 
 $ git log -- <path to file>
 ```
 
-Bạn thường sẽ chỉ định một đường dẫn chính xác, nhưng bạn cũng có thể sử dụng các ký tự đại diện trong đường dẫn và tên tệp:
+Bạn thường sẽ chỉ định một đường dẫn (filepath) chính xác, nhưng bạn cũng có thể sử dụng các ký tự đại diện bất kỳ cho đường dẫn và tên tệp:
 
 ```sh
 $ git log -- **/*.js
 ```
 
-Trong khi sử dụng ký tự đại diện, nó hữu ích để thông báo `--name-status` để xem danh sách các tệp đã commit:
+Trong khi sử dụng ký tự đại diện bất kỳ, sẽ hữu ích hơn khi thêm `--name-status` để xem danh sách các tệp trong commit:
 
 ```sh
 $ git log --name-status -- **/*.js
 ```
 
 <a name="#i-want-to-view-the-commit-history-for-a-specific-function"></a>
-### I want to view the commit history for a specific function
+### Tôi muốn xem lịch sử commit của một function (chức năng) cụ thể
 
-To trace the evolution of a single function you can use:
+Để truy tìm lịch sử tiến hóa của một function là dùng lệnh:
 
 ```sh
-$ git log -L :FunctionName:FilePath
+$ git log -L :TênFunction:FilePath
 ```
 
-Note that you can combine this with further `git log` options, like [revision ranges](https://git-scm.com/docs/gitrevisions) and [commit limits](https://git-scm.com/docs/git-log/#_commit_limiting).
+Ghi chú là bạn có thể xây dựng lệnh trên thêm với các cờ `git log` khác, giống như [phạm vi sửa đổi](https://git-scm.com/docs/gitrevisions) và [hạn mức commit](https://git-scm.com/docs/git-log/#_commit_limiting).
 
 
-### Tìm một tag nơi một commit đã tham chiếu
+### Tìm một tag mà một commit đã tham chiếu
 
 Để tìm tất cả các tag có chứa một commit cụ thể
 
@@ -1597,7 +1597,7 @@ $ git submodule update --init --recursive
 <a name="delete-submodule"></a>
 ### Xoá một submodule
 
-Tạo một submodule là khá nhanh, nhưng xóa chúng ít hơn như vậy. Các lệnh bạn cần là:
+Tạo một submodule là khá rõ rành, nhưng xóa chúng ít không như vậy. Các lệnh bạn cần là:
 
 ```sh
 $ git submodule deinit submodulename
@@ -1606,11 +1606,17 @@ $ git rm --cached submodulename
 $ rm -rf .git/modules/submodulename
 ```
 
-## Miscellaneous Objects
+## Miscellaneous Objects (Những thứ khác)
 
-### Khôi phục một file đã xoá
+### Copy thư mục hoặc tệp file từ một nhánh sang nhánh khác
 
-Đầu tiên tìm commit nơi mà lần cuối file đã tồn tại:
+```sh
+$ git checkout <nhánh-có-tệp-bạn-muốn> -- <thư mục hoặc tên file>
+```
+
+### Khôi phục một file đã bị xoá
+
+Đầu tiên tìm commit cuối cùng ma file vẫn tồn tại:
 
 ```sh
 $ git rev-list -n 1 HEAD -- filename
@@ -1619,7 +1625,7 @@ $ git rev-list -n 1 HEAD -- filename
 Sau đó checkout file:
 
 ```
-git checkout deletingcommitid^ -- filename
+git checkout id-của-commit-delete-trên^ -- filename
 ```
 
 ### Xoá tag
@@ -1630,15 +1636,15 @@ $ git push <remote> :refs/tags/<tag_name>
 ```
 
 <a name="recover-tag"></a>
-### Khôi phục một tag đã xoá
+### Khôi phục một tag đã bị xoá
 
-Nếu bạn muốn khôi phục tag đã bị xóa, bạn có thể làm được vậy bằng cách làm theo các bước sau: Trước tiên, bạn cần phải tìm tag không thể truy cập
+Nếu bạn muốn khôi phục tag đã bị xóa, bạn có thể làm được vậy với các bước sau: Trước tiên, bạn cần phải tìm tag không thể truy cập
 
 ```sh
 $ git fsck --unreachable | grep tag
 ```
 
-Ghi lại mã hash của tag. Sau đó, khôi phục tag đã xóa theo cách sau, sử  [`git update-ref`](https://git-scm.com/docs/git-update-ref):
+Ghi lại mã hash của tag. Sau đó, khôi phục tag đã xóa theo cách sử  dụng [`git update-ref`](https://git-scm.com/docs/git-update-ref):
 
 ```sh
 $ git update-ref refs/tags/<tag_name> <hash>
@@ -1646,9 +1652,9 @@ $ git update-ref refs/tags/<tag_name> <hash>
 
 Tag của bạn bây giờ đã được khôi phục.
 
-### Deleted Patch
+### Patch (Vá) bị xóa
 
-Nếu ai đó đã gửi cho bạn một pull request trên GitHub, nhưng sau đó đã xoá chúng trên fork gốc, bạn sẽ không thể clone repository của họ hoặc sử dụng `git am` như [.diff, .patch](https://github.com/blog/967-github-secrets) url không khả dụng. Nhưng bạn có thể checkout chính PR bằng cách sử dụng [GitHub's special refs](https://gist.github.com/piscisaureus/3342247). Để fetch nội dung của PR#1 vào một nhánh được gọi là pr_1:
+Nếu ai đó đã gửi cho bạn một pull request trên GitHub, nhưng sau đó đã xoá chúng trên fork gốc, bạn sẽ không thể clone repository của họ hoặc sử dụng `git am` vì url của [.diff, .patch](https://github.com/blog/967-github-secrets) không dùng được. Nhưng bạn có thể checkout chính PR bằng cách sử dụng [GitHub's special refs](https://gist.github.com/piscisaureus/3342247). Để fetch nội dung của PR#1 vào một nhánh được gọi là pr_1, chạy:
 
 ```sh
 $ git fetch origin refs/pull/1/head:pr_1
@@ -1663,7 +1669,7 @@ $ git archive --format zip --output /full/path/to/zipfile.zip main
 ```
 ### Push một nhánh và một tag có tên giống nhau
 
-Nếu có một tag trên một remote repository mà có tên giống với một nhánh bạn sẽ gặp phải lỗi khi cố push nhanh với một commad chuẩn `$ git push <remote> <branch>`.
+Nếu có một tag trên một remote repository mà có tên giống với một nhánh bạn sẽ gặp phải lỗi khi cố push nhanh với một lệnh `$ git push <remote> <branch>` bình thường.
 
 ```sh
 $ git push origin <branch>
@@ -1671,19 +1677,19 @@ error: dst refspec same matches more than one.
 error: failed to push some refs to '<git server>'
 ```
 
-Sửa lỗi này bằng cách chỉ định bạn muốn đẩy tham chiếu head.
+Sửa lỗi này bằng cách chỉ định bạn muốn đẩy tham chiếu của head.
 
 ```sh
 $ git push origin refs/heads/<branch-name>
 ```
 
-Nếu bạn muốn đẩy một tag vào một repository từ remote có cùng tên với một nhánh, bạn có thể sử dụng một lệnh tương tự.
+Nếu bạn muốn đẩy một tag vào một repository tại remote có cùng tên với một nhánh, bạn có thể sử dụng một lệnh tương tự.
 
 ```sh
 $ git push origin refs/tags/<tag-name>
 ```
 
-## Tracking các file
+## Tracking (Theo dõi) các file
 
 <a href="i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file"></a>
 ### Tôi muốn thay đổi cách viết hoa của tên tệp mà không thay đổi nội dung của tệp
@@ -1706,15 +1712,15 @@ $ git push origin refs/tags/<tag-name>
 (main)$ git rm --cached log.txt
 ```
 
-### Tôi muốn revert tệp về bản sửa đổi cụ thể
+### Tôi muốn đảo ngược tệp về bản sửa đổi cụ thể
 
-Giả sử mã hash của commit bạn muốn c5f567:
+Giả sử mã hash của commit bạn muốn là c5f567:
 
 ```sh
-(main)$ git checkout c5f567 -- file1/to/restore file2/to/restore
+(main)$ git checkout c5f567 -- fileSố1/Để/PhụcHồi fileSố2/Để/PhụcHồi
 ```
 
-Nếu bạn muốn revert các thay đổi được thực hiện chỉ 1 commit trước c5f567, vượt qua commit hash như c5f567~1:
+Nếu bạn muốn đảo ngược các thay đổi được thực hiện chỉ 1 commit trước c5f567, đưa số hash commit như c5f567~1:
 
 ```sh
 (main)$ git checkout c5f567~1 -- file1/to/restore file2/to/restore
@@ -1728,7 +1734,7 @@ Giả sử bạn muốn so sánh commit cuối cùng với tệp từ commit c5f
 $ git diff HEAD:path_to_file/file c5f567:path_to_file/file
 ```
 
-Cùng đi cho các nhánh:
+Cũng giống khi so sánh nhánh nhánh:
 
 ```sh
 $ git diff main:path_to_file/file staging:path_to_file/file
@@ -1736,36 +1742,36 @@ $ git diff main:path_to_file/file staging:path_to_file/file
 
 ### Tôi muốn Git bỏ qua những thay đổi đối với một tệp cụ thể
 
-Điều này hoạt động tốt cho các mẫu cấu hình hoặc các tệp khác yêu cầu thêm thông tin đăng nhập cục bộ mà không được commit
+Các bước sau khá hợp cho các mẫu cấu hình hoặc các tệp yêu cầu thêm thông tin đăng nhập tại local mà không nên commit
 
 ```sh
 $ git update-index --assume-unchanged file-to-ignore
 ```
 
-Lưu ý rằng điều này không xóa tệp khỏi kiểm soát source - nó chỉ bị bỏ qua cục bộ. Để hoàn tác thao tác này và yêu cầu Git lưu ý các thay đổi một lần nữa, điều này sẽ xóa ignore flag:
+Lưu ý rằng điều này không xóa tệp khỏi kiểm soát source - nó chỉ bị bỏ qua tại local. Để hoán đổi thao tác này và yêu cầu Git lại chú ý các thay đổi, lệnh sau sẽ xóa cờ bỏ qua (ignore flag):
 
 ```sh
 $ git update-index --no-assume-unchanged file-to-stop-ignoring
 ```
 
-## Debugging with Git
+## Debugging (Gỡ lỗi) with Git
 
-The [git-bisect](https://git-scm.com/docs/git-bisect) command uses a binary search to find which commit in your Git history introduced a bug.
+Lệnh [git-bisect](https://git-scm.com/docs/git-bisect) sử dụng tìm nhị phân để tìm commit đã giớ thiệu lỗi.
 
-Suppose you're on the `main` branch, and you want to find the commit that broke some feature. You start bisect:
+Giả sử bạn đang ở nhánh `main` và bạn muốn tìm commit đã làm hỏng cái gì đó. Bạn bắt đầu bisect với: 
 
 ```sh
 $ git bisect start
 ```
 
-Then you should specify which commit is bad, and which one is known to be good. Assuming that your *current* version is bad, and `v1.1.1` is good:
+Sau đó bạn đề rõ commit nào tồi và commit nào biết là tốt. Giả sử bạn biết phiên bản *hiện tại* là tồi, và `v1.1.1` là tốt: 
 
 ```sh
 $ git bisect bad
 $ git bisect good v1.1.1
 ```
 
-Now `git-bisect` selects a commit in the middle of the range that you specified, checks it out, and asks you whether it's good or bad. You should see something like:
+Bây giờ `git-bisect` chọn commit ở giữa khoảng cách bạn lựa chọn, checkout cái commit đấy, và hỏi bạn là commit này tồi hay tốt. Bạn sẽ thấy giống như thế này:
 
 ```sh
 $ Bisecting: 5 revision left to test after this (roughly 5 step)
@@ -1773,17 +1779,17 @@ $ [c44abbbee29cb93d8499283101fe7c8d9d97f0fe] Commit message
 $ (c44abbb)$
 ```
 
-You will now check if this commit is good or bad. If it's good:
+Bạn kiểm tra commit xem tốt hay tồi. Nếu tốt:
 
 ```sh
 $ (c44abbb)$ git bisect good
 ```
 
-and `git-bisect` will select another commit from the range for you. This process (selecting `good` or `bad`) will repeat until there are no more revisions left to inspect, and the command will finally print a description of the **first** bad commit.
+và `git-bisect` sẽ chọn một commit khác trong phạm vi của bạn. Quá trình này sẽ tiếp tục lặp lại cho đến khi không còn sửa đổi cần kiểm tra, và lệnh sẽ cuối cùng in ra mô tả của commit tồi **đầu tiên**
 
-## Cấu hình
+## Cấu hình (Configuration)
 
-### Tôi muốn thêm bí danh cho một số lệnh Git
+### Tôi muốn thêm bí danh (alias) cho một số lệnh Git
 
 Trên OS X và Linux, file cấu hình git được lưu trong ```~/.gitconfig```.  Tôi đã thêm một số bí danh mẫu mà tôi sử dụng làm shortcut (và một số lỗi chính tả phổ biến của tôi) trong phần ```[alias]``` được hiển thị như dưới đây:
 
@@ -1814,16 +1820,16 @@ Trên OS X và Linux, file cấu hình git được lưu trong ```~/.gitconfig``
 
 ### Tôi muốn thêm một thư mục trống vào repository của tôi
 
-Bạn không thể! Git không hỗ trợ điều này, nhưng có một cách hack. Bạn có thể tạo tệp .gitignore trong thư mục với các nội dung sau:
+Bạn không thể! Git không hỗ trợ điều này, nhưng có một hack. Bạn có thể tạo tệp .gitignore trong thư mục với các nội dung sau:
 
 ```
- # Ignore everything in this directory
+ # Bỏ qua tất cả mọi thứ trong repository
  *
- # Except this file
+ # Ngoại trừ file này
  !.gitignore
 ```
 
-Một quy ước chung khác là tạo một tệp trống trong thư mục có tiêu đề .gitkeep.
+Một quy ước chung khác là tạo một tệp trống trong thư mục có tên .gitkeep.
 
 
 ```sh
@@ -1831,23 +1837,49 @@ $ mkdir mydir
 $ touch mydir/.gitkeep
 ```
 
-Bạn cũng có thể đặt tên tệp là .keep, trong trường hợp dòng thứ hai ở trên sẽ ```touch mydir/.keep```
+Bạn cũng có thể đặt tên tệp là .keep, trong trường hợp đó dòng thứ hai ở trên sẽ ```touch mydir/.keep```
 
-### Tôi muốn cache một username và password cho một repository
+### Tôi muốn cache (cho vào bộ nhớ đệm) một username và password cho một repository
 
-Bạn có thể có một repository yêu cầu xác thực.  Trong trường hợp này bạn có thể cache một username và password vì vậy bạn không phải nhập nó vào mỗi lần push / pull. Việc xác thực có thể làm điều này cho bạn.
+Bạn có thể có một repository yêu cầu xác thực (authentication).  Trong trường hợp này bạn có thể cache một username và password vì vậy bạn không phải nhập nó vào mỗi lần push / pull. Phụ tá chứng chỉ(credential.helper) có thể làm điều này cho bạn.
 
 ```sh
 $ git config --global credential.helper cache
-# Set git to use the credential memory cache
+# Đặt git dùng bộ nhớ đệm chứng chỉ
 ```
 
 ```sh
 $ git config --global credential.helper 'cache --timeout=3600'
-# Set the cache to timeout after 1 hour (setting is in seconds)
+# Đặt bộ nhớ đệm kết thúc sau 1h (cấu hình dùng giây/s)
 ```
 
-### Tôi muốn làm cho Git bỏ qua các quyền và thay đổi về filemode
+Để tìm phụ tá chứng chỉ:
+
+```sh
+$ git help -a | grep credential
+# Phô bày các phụ tá chứng chỉ
+```
+
+Bộ nhớ đệm chứng chỉ cho các hệ điều hành (operating system/OS) cụ thể :
+
+```sh
+$ git config --global credential.helper osxkeychain
+# cho OSX
+```
+
+```sh
+$ git config --global credential.helper manager
+# Git for Windows 2.7.3+
+```
+
+```sh
+$ git config --global credential.helper gnome-keyring
+# Ubuntu và các bản phân phối dựa trên GNOME
+```
+
+Các phụ tá chứng chỉ khác có khả năng cao tìm được cho các bản phân phối và hệ điều hành khác.
+
+### Tôi muốn Git bỏ qua các quyền và thay đổi về filemode (chế độ file)
 
 ```sh
 $ git config core.fileMode false
@@ -1859,24 +1891,24 @@ Nếu bạn muốn đặt hành vi này là hành vi mặc định cho người 
 $ git config --global core.fileMode false
 ```
 
-### Tôi muốn đặt user toàn cục
+### Tôi muốn đặt người dùng toàn cục (global user)
 
-Để cấu hình thông tin người dùng được sử dụng trên tất cả các repository cục bộ và để đặt tên có thể nhận dạng khi xem lại phiên bản lịch sử:
-
-```sh
-$ git config --global user.name "[firstname lastname]"
-```
-Để đặt địa chỉ email sẽ được liên kết với mỗi điểm đánh dấu lịch sử:
+Để cấu hình thông tin người dùng được sử dụng trên tất cả các repository tại local và để đặt tên có thể nhận dạng khi xem lịch sử phiên bản:
 
 ```sh
-git config --global user.email "[valid-email]"
+$ git config --global user.name "[tên-riêng tên-họ]"
+```
+Để đặt địa chỉ email gắn với mỗi mốc lịch sử:
+
+```sh
+git config --global user.email "[email-có-hiệu-lực]"
 ```
 
-## Tôi không nghĩ mình đã làm gì sai
+## Tôi không biết mình đã làm gì sai
 
-Vì vậy, bạn đang say - bạn `reset` vài thứ, hoặc bạn merge sai nhánh, hoặc bạn force push và bây giờ bạn không thể tìm thấy các commit của bạn. Bạn biết, tại một số thời điểm, bạn đã làm tốt và bạn muốn quay trở lại trạng thái bạn đang ở đó.
+Ok, bạn gặp rắc rối lớn - bạn `reset` vài thứ, hoặc bạn merge sai nhánh, hoặc bạn push ép (force push) và bây giờ bạn không thể tìm thấy các commit của bạn. Bạn biết, tại một số thời điểm, bạn không có vấn đề và bạn muốn quay trở lại trạng thái bạn đang ở đó.
 
-Đây là những gì `git reflog` cho. `reflog` theo dõi bất kỳ thay đổi nào đối với mẹo của nhánh, ngay cả khi mẹo đó không được tham chiếu bởi nhánh hoặc tag. Về cơ bản, mỗi lần HEAD thay đổi, một mục mới được thêm vào reflog. Điều này chỉ hoạt động đối với các repository cục bộ, thật đáng buồn và nó chỉ theo dõi các chuyển động (ví dụ: không thay đổi một tệp không được ghi ở bất kỳ đâu).
+Đây là tình huống cho `git reflog`. `reflog` theo dõi bất kỳ thay đổi nào đối với đầu nhánh, ngay cả khi đầu nhánh đó không được tham chiếu bởi nhánh hoặc tag. Về cơ bản, mỗi lần HEAD thay đổi, một mục mới được thêm vào reflog. Thật đáng buồn là cách này chỉ hoạt động tốt đối với các repository ở local, và nó chỉ theo dõi các chuyển động (ví dụ: không thay đổi một tệp không được ghi ở bất kỳ đâu).
 
 ```sh
 (main)$ git reflog
@@ -1885,24 +1917,24 @@ Vì vậy, bạn đang say - bạn `reset` vài thứ, hoặc bạn merge sai nh
 c10f740 HEAD@{2}: checkout: moving from main to 2.2
 ```
 
-Các reflog ở trên cho thấy một checkout từ main đến nhánh 2.2 và trở lại. Từ đó, có một thiết lập cứng để một commit cũ hơn. Hoạt động mới nhất được thể hiện ở đầu được gắn nhãn `HEAD@{0}`.
+Các reflog ở trên cho thấy một checkout từ main đến nhánh 2.2 rồi quay trở lại. Từ đó, có một reset cứng về một commit cũ hơn. Hoạt động mới nhất được thể hiện ở đầu được gắn nhãn `HEAD@{0}`.
 
-Nếu nó chỉ ra rằng bạn vô tình di chuyển trở lại, các reflog sẽ chứa commit main chỉ đến (0254ea7) trước khi bạn vô tình giảm 2 commit
+Nếu nó chỉ ra rằng bạn vô tình di chuyển trở lại, các reflog sẽ chứa commit mà main chỉ đến (0254ea7) trước khi bạn vô tình giảm 2 commit
 
 ```sh
 $ git reset --hard 0254ea7
 ```
 
-Sử dụng `git reset` sau đó nó có thể thay đổi main trở về commit trước đó. Điều này cung cấp sự an toàn trong trường hợp lịch sử đã vô tình thay đổi.
+Sử dụng `git reset` để có thể thay đổi main trở về commit trước đó. Cách này cung cấp mạng lưới an toàn trong trường hợp lịch sử vô tình bị thay đổi.
 
 (đã sao chép và chỉnh sửa từ [Source](https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog)).
 
 <a name="git-shortcuts"></a>
-## Git Shortcuts
+## Git Shortcuts (phím tắt)
 
 ### Git Bash
 
-Once you're comfortable with what the above commands are doing, you might want to create some shortcuts for Git Bash. This allows you to work a lot faster by doing complex tasks in really short commands.
+Một khi bạn thấy thoải mái với các lệnh trên, bạn có thể muốn tạo các phím tắt cho Git Bash. Cách này giúp bạn làm việc nhanh hơn vì chạy các hành vi phức tạp với các lệnh ngắn hơn.
 
 ```sh
 alias sq=squash
@@ -1912,11 +1944,11 @@ function squash() {
 }
 ```
 
-Copy those commands to your .bashrc or .bash_profile.
+Copy các lệnh này vào .bashrc hoặc .bash_profile của bạn.
 
-### PowerShell on Windows
+### PowerShell trên Windows
 
-If you are using PowerShell on Windows, you can also set up aliases and functions. Add these commands to your profile, whose path is defined in the `$profile` variable. Learn more at the [About Profiles](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles) page on the Microsoft documentation site.
+Nếu bạn dùng Powershell trên Windows, bạn cũng có thể đặt các bí danh và chức năng tắt. Cho thêm các lệnh này vào prolfe của bạn, đường dẫn được định nghĩa ở biến `$profile`. Học thêm với trang [About Profiles](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles) tại trang tài liệu tham khảo của Microsoft .
 
 ```powershell
 Set-Alias sq Squash-Commits
@@ -1930,33 +1962,33 @@ function Squash-Commits {
 
 ## Sách
 
-* [Learn Enough Git to Be Dangerous](https://www.learnenough.com/git-tutorial) - A book by Michael Hartl covering Git from basics
-* [Pro Git](https://git-scm.com/book/en/v2) - Scott Chacon and Ben Straub's excellent book about Git
-* [Git Internals](https://github.com/pluralsight/git-internals-pdf) - Scott Chacon's other excellent book about Git
-* [Nasa handbook](https://www.nasa.gov/sites/default/files/atoms/files/nasa_systems_engineering_handbook.pdf)
+* [Learn Enough Git to Be Dangerous](https://www.learnenough.com/git-tutorial) - Sách của Michael Hartl cho Git từ những điều cơ bản
+* [Pro Git](https://git-scm.com/book/en/v2) - Một cuốn sách xuất chúng của Scott Chacon và Ben Straub
+* [Git Internals](https://github.com/pluralsight/git-internals-pdf) - Cuốn sách xuất chúng khác về Git của Scott Chacon
+* [Sổ tay NASA](https://www.nasa.gov/sites/default/files/atoms/files/nasa_systems_engineering_handbook.pdf)
 
 
 ## Hướng dẫn
 
 * [19 mẹo sử dụng GIT hàng ngày](https://www.alexkras.com/19-git-tips-for-everyday-use) - Một danh sách các mẹo dùng GIT hữu ích.
-* [Atlassian's Git tutorial](https://www.atlassian.com/git/tutorials) - Sử dụng Git đúng với các hướng dẫn từ cơ bản đến nâng cao.
-* [Learn Git branching](https://learngitbranching.js.org/) - Hướng dẫn phân nhánh / merging / rebasing dựa trên web interactive
-* [Getting solid at Git rebase vs. merge](https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa)
-* [Git Commands and Best Practices Cheat Sheet](https://zeroturnaround.com/rebellabs/git-commands-and-best-practices-cheat-sheet) - Một Git cheat sheet trong một bài đăng trên blog với nhiều giải thích hơn
-* [Git from the inside out](https://codewords.recurse.com/issues/two/git-from-the-inside-out) - Hướng dẫn đi sâu vào vào Git
-* [git-workflow](https://github.com/asmeurer/git-workflow) - [Aaron Meurer](https://github.com/asmeurer) của cách sử dụng Git để đóng góp vào repository mã nguồn mở
-* [GitHub as a workflow](https://hugogiraudel.com/2015/08/13/github-as-a-workflow/) - Một điều thú vị khi sử dụng GitHub như một quy trình làm việc, đặc biệt với các PR trống.
-* [Githug](https://github.com/Gazler/githug) - Một trò chơi để học thêm về luồng làm việc chung của Git.
-* [learnGitBranching](https://github.com/pcottle/learnGitBranching) - An interactive git visualization to challenge and educate!
+* [Hướng dẫn Git của Atlassian](https://www.atlassian.com/git/tutorials) - Sử dụng Git đúng với các hướng dẫn từ cơ bản đến nâng cao.
+* [Học về nhánh Git](https://learngitbranching.js.org/) - Hướng dẫn phân nhánh / merging / rebasing dựa trên web interactive
+* [Chở nên vững chắc về Git rebase vs. merge](https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa)
+* [Tờ gian lận lệnh và thực hành tốt Git ](https://zeroturnaround.com/rebellabs/git-commands-and-best-practices-cheat-sheet) - Một Git cheat sheet trong một bài đăng trên blog với nhiều giải thích hơn
+* [Git từ trong ra ngoài](https://codewords.recurse.com/issues/two/git-from-the-inside-out) - Hướng dẫn đi sâu vào Git
+* [git-workflow](https://github.com/asmeurer/git-workflow) - [Aaron Meurer](https://github.com/asmeurer) viết cách sử dụng Git để đóng góp vào repository mã nguồn mở (open source)
+* [GitHub as a workflow](https://hugogiraudel.com/2015/08/13/github-as-a-workflow/) - Một ý kiến thú vị về sử dụng GitHub như một quy trình làm việc, đặc biệt với các PR trống.
+* [Githug](https://github.com/Gazler/githug) - Một trò chơi để học thêm về luồng làm việc thường thấy của Git.
+* [learnGitBranching](https://github.com/pcottle/learnGitBranching) - Hình dung git có tương tác để thử thách và giáo dục!
 
-## Scripts và các công cụ
+## Scripts (tập lệnh) và các công cụ
 
-* [firstaidgit.io](http://firstaidgit.io/) - Một lựa chọn có thể tìm kiếm các câu hỏi thường gặp nhất về Git
+* [firstaidgit.io](http://firstaidgit.io/) - Danh sách được lựa chọn có thể tìm kiếm các câu hỏi thường gặp về Git
 * [git-extra-commands](https://github.com/unixorn/git-extra-commands) - Tập hợp các script Git mở rộng hữu ích
 * [git-extras](https://github.com/tj/git-extras) - Các tiện ích GIT -- Repo tóm tắt, thay thế, số lượng thay đổi, tỷ lệ phần trăm của tác giả và nhiều nữa
-* [git-fire](https://github.com/qw3rtman/git-fire) - git-fire là một plugin Git để giúp trong trường hợp khẩn cấp bằng cách thêm tất cả các tệp hiện tại, commit và push vào một nhánh mới (để ngăn xung đột khi merge).
+* [git-fire](https://github.com/qw3rtman/git-fire) - git-fire là một plugin cho Git để giúp trong trường hợp khẩn cấp bằng cách thêm tất cả các tệp hiện tại, commit và push vào một nhánh mới (để ngăn xung đột khi merge).
 * [git-tips](https://github.com/git-tips/tips) - Các mẹo Git nhỏ
-* [git-town](https://github.com/Originate/git-town) - Hỗ trợ luồng làm việc Git chung, mức cao! http://www.git-town.com
+* [git-town](https://github.com/Originate/git-town) - Hỗ trợ luồng làm việc Git chung, tầm nâng cao! http://www.git-town.com
 
 ## GUI Clients
 * [GitKraken](https://www.gitkraken.com/) - Client sang trọng cho Windows, Mac & Linux
