@@ -457,6 +457,7 @@ echo sensitive_file >> .gitignore
 Alternatively store your sensitive data in local environment variables.
 
 If you want to completely remove an entire file (and not keep it locally), then run
+
 ```sh
 (feature-branch)$ git rm sensitive_file
 (feature-branch)$ git commit --amend --no-edit
@@ -481,14 +482,17 @@ There are two options for rewriting history, the built-in `git-filter-branch` or
 Using bfg-repo-cleaner requires java. Download the bfg jar from the link [here](https://rtyley.github.io/bfg-repo-cleaner/). Our examples will use `bfg.jar`, but your download may have a version number, e.g. `bfg-1.13.0.jar`.
 
 To delete a specific file.
+
 ```sh
 (main)$ git rm path/to/filetoremove
 (main)$ git commit -m "Commit removing filetoremove"
 (main)$ java -jar ~/Downloads/bfg.jar --delete-files filetoremove
 ```
+
 Note that in bfg you must use the plain file name even if it is in a subdirectory.
 
 You can also delete a file by pattern, e.g.:
+
 ```sh
 (main)$ git rm *.jpg
 (main)$ git commit -m "Commit removing *.jpg"
@@ -609,7 +613,6 @@ If you already know you don't want to change the commit message, you can tell gi
 ```sh
 (my-branch*)$ git commit --amend -C HEAD
 ```
-
 
 <a name="commit-partial-new-file"></a>
 ### I want to stage part of a new file, but not the whole file
@@ -991,6 +994,7 @@ And finally, let's cherry-pick the commit for bug #14:
 
 <a name="delete-stale-local-branches"></a>
 ### I want to delete local branches that were deleted upstream
+
 Once you merge a pull request on GitHub, it gives you the option to delete the merged branch in your fork. If you aren't planning to keep working on the branch, it's cleaner to delete the local copies of the branch so you don't end up cluttering up your working checkout with a lot of stale branches.
 
 ```sh
@@ -1116,11 +1120,12 @@ To rename a different (local) branch:
 ```sh
 (main)$ git branch -m old-name new-name
 ```
- To delete the `old-name` remote branch and push the `new-name` local branch:
 
- ```sh
- (main)$ git push origin :old_name new_name
- ```
+To delete the `old-name` remote branch and push the `new-name` local branch:
+
+```sh
+(main)$ git push origin :old_name new_name
+```
 
 <a name="i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on"></a>
 ### I want to checkout to a remote branch that someone else is working on
@@ -1892,6 +1897,7 @@ $ git config --global credential.helper cache
 $ git config --global credential.helper 'cache --timeout=3600'
 # Set the cache to timeout after 1 hour (setting is in seconds)
 ```
+
 To find a credential helper:
 
 ```sh

@@ -3,9 +3,7 @@
 🌍
 *[English](README.md) ∙ [Español](README_es.md)  ∙  [Русский](README_ru.md) ∙ [简体中文](README_zh-CN.md)∙ [한국어](README_kr.md)  ∙  [Tiếng Việt](README_vi.md) ∙ [Français](README_fr.md) ∙ [日本語](README_ja.md)*
 
-<!-- Phiên bản tiếng Việt updated cuối cùng ngày 22/06/2021-->
-
-#### "flight rules" là gì?
+#### "Flight rules" là gì?
 
 Là tài liệu hướng dẫn cho các phi hành gia vũ trụ (và tại đây, cho các lập trình viên sử dụng Git) về những việc cần làm khi có sai lầm xảy ra.
 
@@ -51,6 +49,8 @@ Tất cả các lệnh (command) phải thi hành với phiên bản lâu đời
       - [Bước cuối: Đẩy lịch sử đã thay đổi của repository](#b%C6%B0%E1%BB%9Bc-cu%E1%BB%91i-%C4%91%E1%BA%A9y-l%E1%BB%8Bch-s%E1%BB%AD-%C4%91%C3%A3-thay-%C4%91%E1%BB%95i-c%E1%BB%A7a-repository)
     - [Tôi cần thay đổi nội dung của một commit nhưng không phải là cái mới nhất](#t%C3%B4i-c%E1%BA%A7n-thay-%C4%91%E1%BB%95i-n%E1%BB%99i-dung-c%E1%BB%A7a-m%E1%BB%99t-commit-nh%C6%B0ng-kh%C3%B4ng-ph%E1%BA%A3i-l%C3%A0-c%C3%A1i-m%E1%BB%9Bi-nh%E1%BA%A5t)
   - [Staging (sân chuyển tiếp)](#staging-s%C3%A2n-chuy%E1%BB%83n-ti%E1%BA%BFp)
+    - [Tôi muốn nâng lên stage tất cả file đang theo dõi và bỏ qua file không theo dõi](#t%C3%B4i-mu%E1%BB%91n-n%C3%A2ng-l%C3%AAn-stage-t%E1%BA%A5t-c%E1%BA%A3-file-%C4%91ang-theo-d%C3%B5i-v%C3%A0-b%E1%BB%8F-qua-file-kh%C3%B4ng-theo-d%C3%B5i)
+      - [Chỉ nâng một phần các file đang theo dõi](#ch%E1%BB%89-n%C3%A2ng-m%E1%BB%99t-ph%E1%BA%A7n-c%C3%A1c-file-%C4%91ang-theo-d%C3%B5i)
     - [Tôi cần cho thêm các thay đổi đang trong stage vào commit trước](#t%C3%B4i-c%E1%BA%A7n-cho-th%C3%AAm-c%C3%A1c-thay-%C4%91%E1%BB%95i-%C4%91ang-trong-stage-v%C3%A0o-commit-tr%C6%B0%E1%BB%9Bc)
     - [Tôi muốn stage một phần của một file mới, nhưng không phải toàn bộ file](#t%C3%B4i-mu%E1%BB%91n-stage-m%E1%BB%99t-ph%E1%BA%A7n-c%E1%BB%A7a-m%E1%BB%99t-file-m%E1%BB%9Bi-nh%C6%B0ng-kh%C3%B4ng-ph%E1%BA%A3i-to%C3%A0n-b%E1%BB%99-file)
     - [Tôi muốn thêm các thay đổi trong một file vào 2 commit khác nhau](#t%C3%B4i-mu%E1%BB%91n-th%C3%AAm-c%C3%A1c-thay-%C4%91%E1%BB%95i-trong-m%E1%BB%99t-file-v%C3%A0o-2-commit-kh%C3%A1c-nhau)
@@ -242,7 +242,6 @@ Sau cùng, nhớ đùng quên trả lời những comment phê duyệt code.
 
 Một cách khác để thêm sửa code mà không cần sử dụng dịch vụ bên thứ ba như GitHub là dùng `git format-patch`.
 
-
 `format-patch` tạo file (tệp) dạng .patch  cho một hoặc nhiều commit. File này là cơ bản là danh sách nhưng thay đổi, giống như những commit diffs bạn xem được trên Github.
 
 Các patch có thể được xem hoặc thậm chí thêm sửa bởi người nhận và áp gắn với lệnh `git am`.
@@ -274,7 +273,6 @@ $ (main) git merge upstream/main
 $ (main) git pull upstream main
 ```
 
-
 ## Chỉnh sửa Commit
 
 <a name="diff-last"></a>
@@ -305,6 +303,7 @@ Nếu bạn đã viết sai thứ gì đó và commit chưa được push lên, 
 ```sh
 $ git commit --amend --only
 ```
+
 Câu lệnh đó sẽ mở trình soạn thảo (text editor) mặc định của bạn, nơi bạn có thể chỉnh sửa message. Ngoài ra, bạn có thể làm tất cả điều này với lệnh sau:
 
 ```sh
@@ -483,15 +482,17 @@ Có hai lựa chọn để viết lại lịch sử, sử dụng tính năng sã
 Sử dụng bfg-repo-cleaner cần có Java. Tải file dạng .jar cho phần mềm bfg với đường link [này](https://rtyley.github.io/bfg-repo-cleaner/). Ví dụ tại đây sẽ dùng `bfg.jar`, nhưng file bạn tải xuống có thể có thêm số phiên bản như `bfg-1.13.0.jar`.
 
 Để xóa một file, dùng lệnh:
+
 ```sh
 (main)$ git rm path/to/FileToRemove
 (main)$ git commit -m "Commit removing filetoremove"
 (main)$ java -jar ~/Downloads/bfg.jar --delete-files FileToRemove
 ```
+
 Lưu ý là với bfg bạn dùng tển của file chứ không phải đường dẫn đến file.
-Note that in bfg you must use the plain file name 
 
 Bạn cũng có thể xóa file dượng theo một khuôn mẫu, ví dụ xóa tất cả file dạng .jpg:
+
 ```sh
 (main)$ git rm *.jpg
 (main)$ git commit -m "Commit removing *.jpg"
@@ -582,6 +583,24 @@ Lệnh trên sẽ giải quyết phần còn lại.
 
 ## Staging (sân chuyển tiếp)
 
+<a href="#i-want-to-stage-all-tracked-files-and-leave-untracked-files"></a>
+
+### Tôi muốn nâng lên stage tất cả file đang theo dõi và bỏ qua file không theo dõi
+
+```sh
+$ git add -u
+```
+
+#### Chỉ nâng một phần các file đang theo dõi
+
+```sh
+# Để nâng các file dạng .txt
+$ git add -u *.txt
+
+# Để nang các file trong thu mục src
+$ git add -u src/
+```
+
 <a href="#i-need-to-add-staged-changes-to-the-previous-commit"></a>
 ### Tôi cần cho thêm các thay đổi đang trong stage vào commit trước
 
@@ -594,7 +613,6 @@ Nếu bạn đã biết bạn không muốn thay đổi thông điệp commit, b
 ```sh
 (my-branch*)$ git commit --amend -C HEAD
 ```
-
 
 <a name="commit-partial-new-file"></a>
 ### Tôi muốn stage một phần của một file mới, nhưng không phải toàn bộ file
@@ -1103,6 +1121,12 @@ Giả sử bạn muốn xoá tất cả các nhánh bắt đầu với `fix/`:
 (main)$ git branch -m tên-cũ tên-mới
 ```
 
+Để vừa xóa nhánh `tên-cũ` tại remote và push nhánh `tên-mới` từ local:
+
+```sh
+(main)$ git push origin :tên_cũ tên_mới
+```
+
 <a name="i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on"></a>
 ### Tôi muốn checkout đến một nhánh remote mà người khác đang làm việc trên đó
 
@@ -1449,7 +1473,6 @@ Nếu sau khi giải quyết tất cả các xung đột bạn kết thúc với
 
 Nếu bất kỳ lúc nào bạn muốn dừng toàn bộ quá trình rebase và quay trở lại trạng thái ban đầu nhánh của bạn, bạn có thể làm như thế này:
 
-
 ```sh
 (my-branch)$ git rebase --abort
 ```
@@ -1491,7 +1514,8 @@ $ git stash push working-directory-path/filename1.ext working-directory-path/fil
 ```sh
 $ git stash save <message>
 ```
-or
+
+hoặc
 
 ```sh
 $ git stash push -m <message>
@@ -1590,7 +1614,6 @@ $ git log -L :TênFunction:FilePath
 ```
 
 Ghi chú là bạn có thể xây dựng lệnh trên thêm với các cờ `git log` khác, giống như [phạm vi sửa đổi](https://git-scm.com/docs/gitrevisions) và [hạn mức commit](https://git-scm.com/docs/git-log/#_commit_limiting).
-
 
 ### Tìm một tag mà một commit đã tham chiếu
 
@@ -1837,6 +1860,8 @@ Trên OS X và Linux, file cấu hình git được lưu trong ```~/.gitconfig``
     wc = whatchanged
     wip = rebase -i @{u}
     zap = fetch -p
+        day = log --reverse --no-merges --branches=* --date=local --since=midnight --author=\"$(git config --get user.name)\"
+    delete-merged-branches = "!f() { git checkout --quiet main && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
 ```
 
 ### Tôi muốn thêm một thư mục trống vào repository của tôi
@@ -1851,7 +1876,6 @@ Bạn không thể! Git không hỗ trợ điều này, nhưng có một hack. B
 ```
 
 Một quy ước chung khác là tạo một tệp trống trong thư mục có tên .gitkeep.
-
 
 ```sh
 $ mkdir mydir
@@ -1919,6 +1943,7 @@ $ git config --global core.fileMode false
 ```sh
 $ git config --global user.name "[tên-riêng tên-họ]"
 ```
+
 Để đặt địa chỉ email gắn với mỗi mốc lịch sử:
 
 ```sh
@@ -1987,7 +2012,6 @@ function Squash-Commits {
 * [Pro Git](https://git-scm.com/book/en/v2) - Một cuốn sách xuất chúng của Scott Chacon và Ben Straub
 * [Git Internals](https://github.com/pluralsight/git-internals-pdf) - Cuốn sách xuất chúng khác về Git của Scott Chacon
 * [Sổ tay NASA](https://www.nasa.gov/sites/default/files/atoms/files/nasa_systems_engineering_handbook.pdf)
-
 
 ## Hướng dẫn
 
