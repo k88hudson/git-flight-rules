@@ -2005,7 +2005,7 @@ function Squash-Commits {
 ```
 
 # Other Resources
-
+https://github.com/octocat/Spoon-Knife
 ## Books
 
 * [Learn Enough Git to Be Dangerous](https://www.learnenough.com/git-tutorial) - A book by Michael Hartl covering Git from basics
