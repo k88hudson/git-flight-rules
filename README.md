@@ -2006,6 +2006,13 @@ function Squash-Commits {
 
 # Other Resources
 
+## GITHUB Repositories about Robotics in ROS in A01746540 channel
+
+* https://github.com/A01746540/total_control
+* https://github.com/A01746540/nav_dif
+* https://github.com/A01746540/decision_auto
+* https://github.com/A01746540/zed_depth_sub_tutorial
+
 ## Books
 
 * [Learn Enough Git to Be Dangerous](https://www.learnenough.com/git-tutorial) - A book by Michael Hartl covering Git from basics
