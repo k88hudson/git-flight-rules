@@ -248,7 +248,7 @@ Các patch có thể được xem hoặc thậm chí thêm sửa bởi người 
 
 Ví dụ, để tạo patch dựa vào commit mới nhât, bạn chạy lệnh `git format-patch HEAD^`, lệnh sẽ tạo một tệp .patch với tên như: `0001-My-Commit-Message.patch`.
 
-Để áp gắn tệp patch cho repository, bạn sẽ dùng lệnh `gim am ./0001-My-Commit-Message.patch`.
+Để áp gắn tệp patch cho repository, bạn sẽ dùng lệnh `git am ./0001-My-Commit-Message.patch`.
 
 Các patch còn có thể gửi qua email với lệnh `git send-email`. Để xem thêm thông tin về cách dùng hoặc cấu hình, xem: https://git-send-email.io
 
