@@ -3,6 +3,9 @@
 🌍
 *[English](README.md) ∙ [Español](README_es.md)  ∙  [Русский](README_ru.md) ∙ [简体中文](README_zh-CN.md)∙ [한국어](README_kr.md)  ∙  [Tiếng Việt](README_vi.md) ∙ [Français](README_fr.md) ∙ [日本語](README_ja.md)*
 
+####Other Resources
+https://git-scm.com/download/win
+
 #### What are "flight rules"?
 
 A guide for astronauts (now, programmers using Git) about what to do when things go wrong.
