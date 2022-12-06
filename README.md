@@ -37,6 +37,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I wrote the wrong thing in a commit message](#i-wrote-the-wrong-thing-in-a-commit-message)
     - [I committed with the wrong name and email configured](#i-committed-with-the-wrong-name-and-email-configured)
     - [I want to remove a file from the previous commit](#i-want-to-remove-a-file-from-the-previous-commit)
+    - [I want to move a change from one commit to another](#i-want-to-move-a-change-from-one-commit-to-another)
     - [I want to delete or remove my last commit](#i-want-to-delete-or-remove-my-last-commit)
     - [Delete/remove arbitrary commit](#deleteremove-arbitrary-commit)
     - [I tried to push my amended commit to a remote, but I got an error message](#i-tried-to-push-my-amended-commit-to-a-remote-but-i-got-an-error-message)
@@ -347,6 +348,58 @@ $ git commit --amend --no-edit
 ```
 
 This is particularly useful when you have an open patch and you have committed an unnecessary file, and need to force push to update the patch on a remote. The `--no-edit` option is used to keep the existing commit message.
+
+<a name="move-change-to-new-commit"></a>
+### I want to move a change from one commit to another
+If you've made a commit that includes changes that would fit better in another commit, you can move the changes to the other commit using an interactive rebase. This comes from [stackoverflow](https://stackoverflow.com/a/54985304/2491502).
+
+For example, you have three commits (a, b, c). On b, you've changes file1 and file2 and you want to move the change on file1 from commit b to commit a.
+
+First, rebase interactively:
+
+```sh
+$ git rebase -i HEAD~3
+```
+
+This will open an editor with the following:
+
+```sh
+pick a
+pick b
+pick c
+```
+
+Change the lines with a and b to edit:
+
+```sh
+edit a
+edit b
+pick c
+```
+
+Save and close the editor. This will bring you to commit b. Now, reset the file1 changes:
+
+```sh
+$ git reset HEAD~1 file1
+```
+
+This will unstage the changes in file1. Now, stash those changes and continue the rebase:
+
+```sh
+$ git stash
+$ git rebase --continue
+```
+
+Now you will be editing commit a. Unstash the changes then add them to the current commit and continue the rebase:
+
+```sh
+$ git stash pop
+$ git add file1
+$ git commit --amend --no-edit
+$ git rebase --continue
+```
+
+Now your rebase is complete, with the changes from b on a. If you wanted to move the changes from b to c, you would have to do two rebases since c comes before b: one to get the changes out of b, then another to edit c and add the stashed changes.
 
 <a name="delete-pushed-commit"></a>
 ### I want to delete or remove my last commit
