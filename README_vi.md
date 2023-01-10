@@ -361,8 +361,7 @@ $ git push --force-with-lease [remote] [branch]
 Nếu bạn chưa push, để  đảo ngược Git về trạng thái trước khi bạn thực hiện commit mới nhất (trong khi vãn giữ các thay đổi trong stage) hãy chạy lệnh:
 
 ```
-(my-branch*)$ git reset --soft HEAD@{1}
-
+(my-branch)$ git reset --soft HEAD^
 ```
 
 Cách này chỉ phù hợp nếu bạn chưa push. Nếu bạn đã push, điều thực sự an toàn nhất cần làm là `git revert SHAcủaCommitSai`. Lệnh này sẽ tạo một commit mới để quay trở lại thay đổi của commit trước đó. Hoặc nếu nhánh bạn đã push là rebase-safe (không có kỳ vọng các dev khác sẽ pull từ nó), bạn chỉ có thể sử dụng `git push --force-with-lease`. Để biết thêm, hãy xem [phần trên](#delete-pushed-commit).

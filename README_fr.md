@@ -239,7 +239,7 @@ $ git push --force-with-lease [remote] [branche]
 Si vous n'avez pas poussé, pour réinitialiser Git vers l'état dans lequel il était avant que vous ne fassiez votre dernier commit (tout en gardant vos changements) :
 
 ```
-(ma-branche*)$ git reset --soft HEAD@{1}
+(ma-branche)$ git reset --soft HEAD^
 ```
 
 Cela ne marchera que si vous n'avez pas poussé. Si vous avez poussé, la seule vraie chose sécurisée à faire est `git revert SHAduMauvaisCommit`. Cela créera un nouveau commit qui annule tous les changements du commit en question. Ou, si la branche vers laquelle vous avez poussé est "rebase-safe" (en d'autres termes, les autres développeur·euse·s ne la récupéreront pas), vous pouvez juste lancer `git push --force-with-lease`. Pour plus d'informations, jetez un œil [à la section ci-dessus](#je-veux-supprimer-ou-retirer-mon-dernier-commit).

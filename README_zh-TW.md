@@ -163,8 +163,7 @@ $ git push -f [remote] [branch]
 如果你還沒有推到遠程, 把Git重設(reset)到你最後一次提交前的狀態就可以了(同時保存暫存的變化):
 
 ```
-(my-branch*)$ git reset --soft HEAD@{1}
-
+(my-branch)$ git reset --soft HEAD^
 ```
 
 這只能在沒有推送之前有用. 如果你已經推了, 唯一安全能做的是 `git revert SHAofBadCommit`， 那會創建一個新的提交(commit)用於撤消前一個提交的所有變化(changes)； 或者, 如果你推的這個分支是rebase-safe的 (例如： 其它開發者不會從這個分支拉), 只需要使用 `git push -f`； 更多, 請參考 [the above section](#deleteremove-last-pushed-commit)。
