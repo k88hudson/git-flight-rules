@@ -547,7 +547,7 @@ $ git reset --hard c5bc55a
 오리진(리모트과 같은 상태의)로 맞추는 리셋을 하는 방법 중 하나는:
 
 ```sh
-(main)$ git reset --hard origin/my-branch
+(my-branch)$ git reset --hard origin/my-branch
 ```
 
 <a name="commit-wrong-branch"></a>

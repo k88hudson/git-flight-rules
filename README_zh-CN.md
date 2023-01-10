@@ -376,7 +376,7 @@ $ git reset --hard c5bc55a
 一种方法是:
 
 ```sh
-(main)$ git reset --hard origin/my-branch
+(my-branch)$ git reset --hard origin/my-branch
 ```
 
 <a name="commit-wrong-branch"></a>

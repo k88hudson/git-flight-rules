@@ -919,7 +919,7 @@ $ git reset --hard c5bc55a
 origin と同じ状態にリセットする（リモートと同じ状態にする）方法の一つは次の通りです。
 
 ```sh
-(main)$ git reset --hard origin/my-branch
+(my-branch)$ git reset --hard origin/my-branch
 ```
 
 <a name="commit-wrong-branch"></a>
