@@ -1450,12 +1450,16 @@ Supposons que vous voulez comparer le dernier commit avec le fichier du commit `
 
 ```sh
 $ git diff HEAD:path_to_file/file c5f567:path_to_file/file
+# ou
+$ git diff HEAD c5f567 -- path_to_file/file
 ```
 
 Il en est de même pour les branches :
 
 ```sh
 $ git diff main:path_to_file/file staging:path_to_file/file
+# ou
+$ git diff main staging -- path_to_file/file
 ```
 
 ### Je veux que Git ignore les changements d'un fichier spécifique

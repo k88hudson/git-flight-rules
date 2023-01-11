@@ -1829,12 +1829,16 @@ Assuming you want to compare last commit with file from commit c5f567:
 
 ```sh
 $ git diff HEAD:path_to_file/file c5f567:path_to_file/file
+# or
+$ git diff HEAD c5f567 -- path_to_file/file
 ```
 
-Same goes for branches:
+If you are going to compare changes between the tips of the `main` and the `staging` branches:
 
 ```sh
 $ git diff main:path_to_file/file staging:path_to_file/file
+# or
+$ git diff main staging -- path_to_file/file
 ```
 
 ### I want Git to ignore changes to a specific file
