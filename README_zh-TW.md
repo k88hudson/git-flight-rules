@@ -5,100 +5,100 @@
 
 #### 前言
 
-- 英文原版[README](https://github.com/k88hudson/git-flight-rules/blob/master/README.md)
+- 英文原版 [README](https://github.com/k88hudson/git-flight-rules/blob/master/README.md)
 - 翻譯可能存在錯誤或不標準的地方，歡迎大家指正和修改，謝謝！
 
 #### 什麼是"飛行規則"?
 
-這是一篇給太空人（這裡就是指使用Git的程式設計師們）的指南，用來指導問題出現後的應對之法。
+這是一篇給太空人（這裡就是指使用 Git 的程式設計師們）的指南，用來指導問題出現後的應對之法。
 
->  *飛行規則(Flight Rules)* 是記錄在手冊上的來之不易的一系列知識，記錄了某個事情發生的原因，以及怎樣一步一步的進行處理。本質上, 它們是特定場景的非常詳細的標準處理流程。 [...]
+> 飛行規則（Flight Rules）是記錄在手冊上的來之不易的一系列知識，記錄了某個事情發生的原因，以及怎樣一步一步的進行處理。本質上，它們是特定場景的非常詳細的標準處理流程。[...]
 
-> 自20世紀60年代初以來，NASA一直在捕捉(capturing)我們的失誤，災難和解決方案, 當時水星時代(Mercury-era)的地面小組首先開始將“經驗教訓”收集到一個綱要(compendium)中，該綱現在已經有上千個問題情景，從發動機故障到破損的艙口把手到計算機故障，以及它們對應的解決方案。
+> 自 20 世紀 60 年代初以來，NASA 一直在捕捉（capturing）失誤、災難和解決方案。當時水星時代（Mercury-era）的地面小組首先開始將「經驗教訓」收集到一個綱要（compendium）中，該綱現在已經有上千個問題情景，從發動機故障、到破損的艙口把手、再到計算機故障，以及它們對應的解決方案。
 
-&mdash; Chris Hadfield, *一個太空人的生活指南(An Astronaut's Guide to Life)*。
+——Chris Hadfield，《一個太空人的生活指南》（An Astronaut's Guide to Life）
 
 #### 這篇文章的約定
 
-為了清楚的表述，這篇文件裡的所有例子使用了自訂的bash 提示，以便指示當前分支和是否有暫存的變化(changes)。分支名用小括號括起來，分支名後面跟的`*`表示暫存的變化(changes)。
+為了清楚的表述，這篇文件裡的所有例子使用了自訂的 bash 提示，以便指示目前分支和是否有暫存的變化（changes）。分支名用小括號括起來，分支名後面跟的 `*` 表示暫存的變化（changes）。
 
 [![Join the chat at https://gitter.im/k88hudson/git-flight-rules](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/k88hudson/git-flight-rules?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-  - [編輯提交(editting commits)](#%E7%BC%96%E8%BE%91%E6%8F%90%E4%BA%A4editting-commits)
-    - [我剛才提交了什麼?](#%E6%88%91%E5%88%9A%E6%89%8D%E6%8F%90%E4%BA%A4%E4%BA%86%E4%BB%80%E4%B9%88)
-    - [我的提交訊息(commit message)寫錯了](#%E6%88%91%E7%9A%84%E6%8F%90%E4%BA%A4%E4%BF%A1%E6%81%AFcommit-message%E5%86%99%E9%94%99%E4%BA%86)
-    - [我提交(commit)裡的使用者名稱和信箱不對](#%E6%88%91%E6%8F%90%E4%BA%A4commit%E9%87%8C%E7%9A%84%E7%94%A8%E6%88%B7%E5%90%8D%E5%92%8C%E9%82%AE%E7%AE%B1%E4%B8%8D%E5%AF%B9)
-    - [我想從一個提交(commit)裡移除一個文件](#%E6%88%91%E6%83%B3%E4%BB%8E%E4%B8%80%E4%B8%AA%E6%8F%90%E4%BA%A4commit%E9%87%8C%E7%A7%BB%E9%99%A4%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6)
-    - [我想刪除我的最後一次提交(commit)](#%E6%88%91%E6%83%B3%E5%88%A0%E9%99%A4%E6%88%91%E7%9A%84%E7%9A%84%E6%9C%80%E5%90%8E%E4%B8%80%E6%AC%A1%E6%8F%90%E4%BA%A4commit)
-    - [刪除任意提交(commit)](#%E5%88%A0%E9%99%A4%E4%BB%BB%E6%84%8F%E6%8F%90%E4%BA%A4commit)
-    - [我嘗試推一個修正後的提交(amended commit)到遠程，但是報錯：](#%E6%88%91%E5%B0%9D%E8%AF%95%E6%8E%A8%E4%B8%80%E4%B8%AA%E4%BF%AE%E6%AD%A3%E5%90%8E%E7%9A%84%E6%8F%90%E4%BA%A4amended-commit%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BD%86%E6%98%AF%E6%8A%A5%E9%94%99)
-    - [我意外的做了一次硬重設(hard reset)，我想找回我的內容](#%E6%88%91%E6%84%8F%E5%A4%96%E7%9A%84%E5%81%9A%E4%BA%86%E4%B8%80%E6%AC%A1%E7%A1%AC%E9%87%8D%E7%BD%AEhard-reset%E6%88%91%E6%83%B3%E6%89%BE%E5%9B%9E%E6%88%91%E7%9A%84%E5%86%85%E5%AE%B9)
-  - [暫存(Staging)](#%E6%9A%82%E5%AD%98staging)
-    - [我需要把暫存的內容添加到上一次的提交(commit)](#%E6%88%91%E9%9C%80%E8%A6%81%E6%8A%8A%E6%9A%82%E5%AD%98%E7%9A%84%E5%86%85%E5%AE%B9%E6%B7%BB%E5%8A%A0%E5%88%B0%E4%B8%8A%E4%B8%80%E6%AC%A1%E7%9A%84%E6%8F%90%E4%BA%A4commit)
-    - [我想要暫存一個新文件的一部分，而不是這個文件的全部](#%E6%88%91%E6%83%B3%E8%A6%81%E6%9A%82%E5%AD%98%E4%B8%80%E4%B8%AA%E6%96%B0%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%80%E9%83%A8%E5%88%86%E8%80%8C%E4%B8%8D%E6%98%AF%E8%BF%99%E4%B8%AA%E6%96%87%E4%BB%B6%E7%9A%84%E5%85%A8%E9%83%A8)
-    - [我想把在一個文件裡的變化(changes)加到兩個提交(commit)裡](#%E6%88%91%E6%83%B3%E6%8A%8A%E5%9C%A8%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E9%87%8C%E7%9A%84%E5%8F%98%E5%8C%96changes%E5%8A%A0%E5%88%B0%E4%B8%A4%E4%B8%AA%E6%8F%90%E4%BA%A4commit%E9%87%8C)
-    - [我想把暫存的內容變成未暫存，把未暫存的內容暫存起來](#%E6%88%91%E6%83%B3%E6%8A%8A%E6%9A%82%E5%AD%98%E7%9A%84%E5%86%85%E5%AE%B9%E5%8F%98%E6%88%90%E6%9C%AA%E6%9A%82%E5%AD%98%E6%8A%8A%E6%9C%AA%E6%9A%82%E5%AD%98%E7%9A%84%E5%86%85%E5%AE%B9%E6%9A%82%E5%AD%98%E8%B5%B7%E6%9D%A5)
-  - [未暫存(Unstaged)的內容](#%E6%9C%AA%E6%9A%82%E5%AD%98unstaged%E7%9A%84%E5%86%85%E5%AE%B9)
-    - [我想把未暫存的內容移動到一個新分支](#%E6%88%91%E6%83%B3%E6%8A%8A%E6%9C%AA%E6%9A%82%E5%AD%98%E7%9A%84%E5%86%85%E5%AE%B9%E7%A7%BB%E5%8A%A8%E5%88%B0%E4%B8%80%E4%B8%AA%E6%96%B0%E5%88%86%E6%94%AF)
-    - [我想把未暫存的內容移動到另一個已存在的分支](#%E6%88%91%E6%83%B3%E6%8A%8A%E6%9C%AA%E6%9A%82%E5%AD%98%E7%9A%84%E5%86%85%E5%AE%B9%E7%A7%BB%E5%8A%A8%E5%88%B0%E5%8F%A6%E4%B8%80%E4%B8%AA%E5%B7%B2%E5%AD%98%E5%9C%A8%E7%9A%84%E5%88%86%E6%94%AF)
-    - [我想丟棄本地未提交的變化(uncommitted changes)](#%E6%88%91%E6%83%B3%E4%B8%A2%E5%BC%83%E6%9C%AC%E5%9C%B0%E6%9C%AA%E6%8F%90%E4%BA%A4%E7%9A%84%E5%8F%98%E5%8C%96uncommitted-changes)
-    - [我想丟棄某些未暫存的內容](#%E6%88%91%E6%83%B3%E4%B8%A2%E5%BC%83%E6%9F%90%E4%BA%9B%E6%9C%AA%E6%9A%82%E5%AD%98%E7%9A%84%E5%86%85%E5%AE%B9)
+  - [編輯提交（editting commits）](#%E7%B7%A8%E8%BC%AF%E6%8F%90%E4%BA%A4editting-commits)
+    - [我剛才提交了什麼？](#%E6%88%91%E5%89%9B%E6%89%8D%E6%8F%90%E4%BA%A4%E4%BA%86%E4%BB%80%E9%BA%BC)
+    - [我的提交訊息（commit message）寫錯了](#%E6%88%91%E7%9A%84%E6%8F%90%E4%BA%A4%E8%A8%8A%E6%81%AFcommit-message%E5%AF%AB%E9%8C%AF%E4%BA%86)
+    - [我提交（commit）裡的使用者名稱和信箱不對](#%E6%88%91%E6%8F%90%E4%BA%A4commit%E8%A3%A1%E7%9A%84%E4%BD%BF%E7%94%A8%E8%80%85%E5%90%8D%E7%A8%B1%E5%92%8C%E4%BF%A1%E7%AE%B1%E4%B8%8D%E5%B0%8D)
+    - [我想從一個提交（commit）裡移除一個文件](#%E6%88%91%E6%83%B3%E5%BE%9E%E4%B8%80%E5%80%8B%E6%8F%90%E4%BA%A4commit%E8%A3%A1%E7%A7%BB%E9%99%A4%E4%B8%80%E5%80%8B%E6%96%87%E4%BB%B6)
+    - [我想刪除我最後一次提交（commit）](#%E6%88%91%E6%83%B3%E5%88%AA%E9%99%A4%E6%88%91%E6%9C%80%E5%BE%8C%E4%B8%80%E6%AC%A1%E6%8F%90%E4%BA%A4commit)
+    - [刪除任意提交（commit）](#%E5%88%AA%E9%99%A4%E4%BB%BB%E6%84%8F%E6%8F%90%E4%BA%A4commit)
+    - [我嘗試推送一個修正後的提交（amended commit）到遠端，但是報錯](#%E6%88%91%E5%98%97%E8%A9%A6%E6%8E%A8%E9%80%81%E4%B8%80%E5%80%8B%E4%BF%AE%E6%AD%A3%E5%BE%8C%E7%9A%84%E6%8F%90%E4%BA%A4amended-commit%E5%88%B0%E9%81%A0%E7%AB%AF%E4%BD%86%E6%98%AF%E5%A0%B1%E9%8C%AF)
+    - [我意外地硬重設（hard reset）了，我想找回我的內容](#%E6%88%91%E6%84%8F%E5%A4%96%E5%9C%B0%E7%A1%AC%E9%87%8D%E8%A8%ADhard-reset%E4%BA%86%E6%88%91%E6%83%B3%E6%89%BE%E5%9B%9E%E6%88%91%E7%9A%84%E5%85%A7%E5%AE%B9)
+  - [暫存(Staging)](#%E6%9A%AB%E5%AD%98staging)
+    - [我需要把暫存的內容添加到上一次的提交(commit)](#%E6%88%91%E9%9C%80%E8%A6%81%E6%8A%8A%E6%9A%AB%E5%AD%98%E7%9A%84%E5%85%A7%E5%AE%B9%E6%B7%BB%E5%8A%A0%E5%88%B0%E4%B8%8A%E4%B8%80%E6%AC%A1%E7%9A%84%E6%8F%90%E4%BA%A4commit)
+    - [我想要暫存一個新文件的一部分，而不是這個文件的全部](#%E6%88%91%E6%83%B3%E8%A6%81%E6%9A%AB%E5%AD%98%E4%B8%80%E5%80%8B%E6%96%B0%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%80%E9%83%A8%E5%88%86%E8%80%8C%E4%B8%8D%E6%98%AF%E9%80%99%E5%80%8B%E6%96%87%E4%BB%B6%E7%9A%84%E5%85%A8%E9%83%A8)
+    - [我想把在一個文件裡的變化(changes)加到兩個提交(commit)裡](#%E6%88%91%E6%83%B3%E6%8A%8A%E5%9C%A8%E4%B8%80%E5%80%8B%E6%96%87%E4%BB%B6%E8%A3%A1%E7%9A%84%E8%AE%8A%E5%8C%96changes%E5%8A%A0%E5%88%B0%E5%85%A9%E5%80%8B%E6%8F%90%E4%BA%A4commit%E8%A3%A1)
+    - [我想把暫存的內容變成未暫存，把未暫存的內容暫存起來](#%E6%88%91%E6%83%B3%E6%8A%8A%E6%9A%AB%E5%AD%98%E7%9A%84%E5%85%A7%E5%AE%B9%E8%AE%8A%E6%88%90%E6%9C%AA%E6%9A%AB%E5%AD%98%E6%8A%8A%E6%9C%AA%E6%9A%AB%E5%AD%98%E7%9A%84%E5%85%A7%E5%AE%B9%E6%9A%AB%E5%AD%98%E8%B5%B7%E4%BE%86)
+  - [未暫存(Unstaged)的內容](#%E6%9C%AA%E6%9A%AB%E5%AD%98unstaged%E7%9A%84%E5%85%A7%E5%AE%B9)
+    - [我想把未暫存的內容移動到一個新分支](#%E6%88%91%E6%83%B3%E6%8A%8A%E6%9C%AA%E6%9A%AB%E5%AD%98%E7%9A%84%E5%85%A7%E5%AE%B9%E7%A7%BB%E5%8B%95%E5%88%B0%E4%B8%80%E5%80%8B%E6%96%B0%E5%88%86%E6%94%AF)
+    - [我想把未暫存的內容移動到另一個已存在的分支](#%E6%88%91%E6%83%B3%E6%8A%8A%E6%9C%AA%E6%9A%AB%E5%AD%98%E7%9A%84%E5%85%A7%E5%AE%B9%E7%A7%BB%E5%8B%95%E5%88%B0%E5%8F%A6%E4%B8%80%E5%80%8B%E5%B7%B2%E5%AD%98%E5%9C%A8%E7%9A%84%E5%88%86%E6%94%AF)
+    - [我想丟棄本地未提交的變化(uncommitted changes)](#%E6%88%91%E6%83%B3%E4%B8%9F%E6%A3%84%E6%9C%AC%E5%9C%B0%E6%9C%AA%E6%8F%90%E4%BA%A4%E7%9A%84%E8%AE%8A%E5%8C%96uncommitted-changes)
+    - [我想丟棄某些未暫存的內容](#%E6%88%91%E6%83%B3%E4%B8%9F%E6%A3%84%E6%9F%90%E4%BA%9B%E6%9C%AA%E6%9A%AB%E5%AD%98%E7%9A%84%E5%85%A7%E5%AE%B9)
   - [分支(Branches)](#%E5%88%86%E6%94%AFbranches)
-    - [我從錯誤的分支拉取了內容，或把內容拉取到了錯誤的分支](#%E6%88%91%E4%BB%8E%E9%94%99%E8%AF%AF%E7%9A%84%E5%88%86%E6%94%AF%E6%8B%89%E5%8F%96%E4%BA%86%E5%86%85%E5%AE%B9%E6%88%96%E6%8A%8A%E5%86%85%E5%AE%B9%E6%8B%89%E5%8F%96%E5%88%B0%E4%BA%86%E9%94%99%E8%AF%AF%E7%9A%84%E5%88%86%E6%94%AF)
-    - [我想扔掉本地的提交(commit)，以便我的分支與遠程的保持一致](#%E6%88%91%E6%83%B3%E6%89%94%E6%8E%89%E6%9C%AC%E5%9C%B0%E7%9A%84%E6%8F%90%E4%BA%A4commit%E4%BB%A5%E4%BE%BF%E6%88%91%E7%9A%84%E5%88%86%E6%94%AF%E4%B8%8E%E8%BF%9C%E7%A8%8B%E7%9A%84%E4%BF%9D%E6%8C%81%E4%B8%80%E8%87%B4)
-    - [我需要提交到一個新分支，但錯誤的提交到了main](#%E6%88%91%E9%9C%80%E8%A6%81%E6%8F%90%E4%BA%A4%E5%88%B0%E4%B8%80%E4%B8%AA%E6%96%B0%E5%88%86%E6%94%AF%E4%BD%86%E9%94%99%E8%AF%AF%E7%9A%84%E6%8F%90%E4%BA%A4%E5%88%B0%E4%BA%86main)
-    - [我想保留來自另外一個ref-ish的整個文件](#%E6%88%91%E6%83%B3%E4%BF%9D%E7%95%99%E6%9D%A5%E8%87%AA%E5%8F%A6%E5%A4%96%E4%B8%80%E4%B8%AAref-ish%E7%9A%84%E6%95%B4%E4%B8%AA%E6%96%87%E4%BB%B6)
-    - [我把幾個提交(commit)提交到了同一個分支，而這些提交應該分布在不同的分支裡](#%E6%88%91%E6%8A%8A%E5%87%A0%E4%B8%AA%E6%8F%90%E4%BA%A4commit%E6%8F%90%E4%BA%A4%E5%88%B0%E4%BA%86%E5%90%8C%E4%B8%80%E4%B8%AA%E5%88%86%E6%94%AF%E8%80%8C%E8%BF%99%E4%BA%9B%E6%8F%90%E4%BA%A4%E5%BA%94%E8%AF%A5%E5%88%86%E5%B8%83%E5%9C%A8%E4%B8%8D%E5%90%8C%E7%9A%84%E5%88%86%E6%94%AF%E9%87%8C)
-    - [我想刪除上遊(upstream)分支被刪除了的本地分支](#%E6%88%91%E6%83%B3%E5%88%A0%E9%99%A4%E4%B8%8A%E6%B8%B8upstream%E5%88%86%E6%94%AF%E8%A2%AB%E5%88%A0%E9%99%A4%E4%BA%86%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF)
-    - [我不小心刪除了我的分支](#%E6%88%91%E4%B8%8D%E5%B0%8F%E5%BF%83%E5%88%A0%E9%99%A4%E4%BA%86%E6%88%91%E7%9A%84%E5%88%86%E6%94%AF)
-    - [我想刪除一個分支](#%E6%88%91%E6%83%B3%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E5%88%86%E6%94%AF)
-    - [我想從別人正在工作的遠程分枝籤出(checkout)一個分支](#%E6%88%91%E6%83%B3%E4%BB%8E%E5%88%AB%E4%BA%BA%E6%AD%A3%E5%9C%A8%E5%B7%A5%E4%BD%9C%E7%9A%84%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E7%AD%BE%E5%87%BAcheckout%E4%B8%80%E4%B8%AA%E5%88%86%E6%94%AF)
-  - [Rebasing 和合併(Merging)](#rebasing-%E5%92%8C%E5%90%88%E5%B9%B6merging)
-    - [我想撤銷rebase/merge](#%E6%88%91%E6%83%B3%E6%92%A4%E9%94%80rebasemerge)
-    - [我已經rebase過, 但是我不想強推(force push)](#%E6%88%91%E5%B7%B2%E7%BB%8Frebase%E8%BF%87-%E4%BD%86%E6%98%AF%E6%88%91%E4%B8%8D%E6%83%B3%E5%BC%BA%E6%8E%A8force-push)
-    - [我需要組合(combine)幾個提交(commit)](#%E6%88%91%E9%9C%80%E8%A6%81%E7%BB%84%E5%90%88combine%E5%87%A0%E4%B8%AA%E6%8F%90%E4%BA%A4commit)
-      - [安全合併(merging)策略](#%E5%AE%89%E5%85%A8%E5%90%88%E5%B9%B6merging%E7%AD%96%E7%95%A5)
-      - [我需要將一個分支合併成一個提交(commit)](#%E6%88%91%E9%9C%80%E8%A6%81%E5%B0%86%E4%B8%80%E4%B8%AA%E5%88%86%E6%94%AF%E5%90%88%E5%B9%B6%E6%88%90%E4%B8%80%E4%B8%AA%E6%8F%90%E4%BA%A4commit)
-      - [我只想組合(combine)未推的提交(unpushed commit)](#%E6%88%91%E5%8F%AA%E6%83%B3%E7%BB%84%E5%90%88combine%E6%9C%AA%E6%8E%A8%E7%9A%84%E6%8F%90%E4%BA%A4unpushed-commit)
-    - [檢查是否分支上的所有提交(commit)都合併(merge)過了](#%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E5%88%86%E6%94%AF%E4%B8%8A%E7%9A%84%E6%89%80%E6%9C%89%E6%8F%90%E4%BA%A4commit%E9%83%BD%E5%90%88%E5%B9%B6merge%E8%BF%87%E4%BA%86)
-    - [互動式rebase(interactive rebase)可能出現的問題](#%E4%BA%A4%E4%BA%92%E5%BC%8Frebaseinteractive-rebase%E5%8F%AF%E8%83%BD%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98)
-      - [這個rebase 編輯螢幕出現'noop'](#%E8%BF%99%E4%B8%AArebase-%E7%BC%96%E8%BE%91%E5%B1%8F%E5%B9%95%E5%87%BA%E7%8E%B0noop)
-      - [有衝突的情況](#%E6%9C%89%E5%86%B2%E7%AA%81%E7%9A%84%E6%83%85%E5%86%B5)
+    - [我從錯誤的分支拉取了內容，或把內容拉取到了錯誤的分支](#%E6%88%91%E5%BE%9E%E9%8C%AF%E8%AA%A4%E7%9A%84%E5%88%86%E6%94%AF%E6%8B%89%E5%8F%96%E4%BA%86%E5%85%A7%E5%AE%B9%E6%88%96%E6%8A%8A%E5%85%A7%E5%AE%B9%E6%8B%89%E5%8F%96%E5%88%B0%E4%BA%86%E9%8C%AF%E8%AA%A4%E7%9A%84%E5%88%86%E6%94%AF)
+    - [我想扔掉本地的提交(commit)，以便我的分支與遠程的保持一致](#%E6%88%91%E6%83%B3%E6%89%94%E6%8E%89%E6%9C%AC%E5%9C%B0%E7%9A%84%E6%8F%90%E4%BA%A4commit%E4%BB%A5%E4%BE%BF%E6%88%91%E7%9A%84%E5%88%86%E6%94%AF%E8%88%87%E9%81%A0%E7%A8%8B%E7%9A%84%E4%BF%9D%E6%8C%81%E4%B8%80%E8%87%B4)
+    - [我需要提交到一個新分支，但錯誤的提交到了main](#%E6%88%91%E9%9C%80%E8%A6%81%E6%8F%90%E4%BA%A4%E5%88%B0%E4%B8%80%E5%80%8B%E6%96%B0%E5%88%86%E6%94%AF%E4%BD%86%E9%8C%AF%E8%AA%A4%E7%9A%84%E6%8F%90%E4%BA%A4%E5%88%B0%E4%BA%86main)
+    - [我想保留來自另外一個ref-ish的整個文件](#%E6%88%91%E6%83%B3%E4%BF%9D%E7%95%99%E4%BE%86%E8%87%AA%E5%8F%A6%E5%A4%96%E4%B8%80%E5%80%8Bref-ish%E7%9A%84%E6%95%B4%E5%80%8B%E6%96%87%E4%BB%B6)
+    - [我把幾個提交(commit)提交到了同一個分支，而這些提交應該分布在不同的分支裡](#%E6%88%91%E6%8A%8A%E5%B9%BE%E5%80%8B%E6%8F%90%E4%BA%A4commit%E6%8F%90%E4%BA%A4%E5%88%B0%E4%BA%86%E5%90%8C%E4%B8%80%E5%80%8B%E5%88%86%E6%94%AF%E8%80%8C%E9%80%99%E4%BA%9B%E6%8F%90%E4%BA%A4%E6%87%89%E8%A9%B2%E5%88%86%E5%B8%83%E5%9C%A8%E4%B8%8D%E5%90%8C%E7%9A%84%E5%88%86%E6%94%AF%E8%A3%A1)
+    - [我想刪除上遊(upstream)分支被刪除了的本地分支](#%E6%88%91%E6%83%B3%E5%88%AA%E9%99%A4%E4%B8%8A%E9%81%8Aupstream%E5%88%86%E6%94%AF%E8%A2%AB%E5%88%AA%E9%99%A4%E4%BA%86%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF)
+    - [我不小心刪除了我的分支](#%E6%88%91%E4%B8%8D%E5%B0%8F%E5%BF%83%E5%88%AA%E9%99%A4%E4%BA%86%E6%88%91%E7%9A%84%E5%88%86%E6%94%AF)
+    - [我想刪除一個分支](#%E6%88%91%E6%83%B3%E5%88%AA%E9%99%A4%E4%B8%80%E5%80%8B%E5%88%86%E6%94%AF)
+    - [我想從別人正在工作的遠程分枝籤出(checkout)一個分支](#%E6%88%91%E6%83%B3%E5%BE%9E%E5%88%A5%E4%BA%BA%E6%AD%A3%E5%9C%A8%E5%B7%A5%E4%BD%9C%E7%9A%84%E9%81%A0%E7%A8%8B%E5%88%86%E6%9E%9D%E7%B1%A4%E5%87%BAcheckout%E4%B8%80%E5%80%8B%E5%88%86%E6%94%AF)
+  - [Rebasing 和合併(Merging)](#rebasing-%E5%92%8C%E5%90%88%E4%BD%B5merging)
+    - [我想撤銷rebase/merge](#%E6%88%91%E6%83%B3%E6%92%A4%E9%8A%B7rebasemerge)
+    - [我已經rebase過, 但是我不想強推(force push)](#%E6%88%91%E5%B7%B2%E7%B6%93rebase%E9%81%8E-%E4%BD%86%E6%98%AF%E6%88%91%E4%B8%8D%E6%83%B3%E5%BC%B7%E6%8E%A8force-push)
+    - [我需要組合(combine)幾個提交(commit)](#%E6%88%91%E9%9C%80%E8%A6%81%E7%B5%84%E5%90%88combine%E5%B9%BE%E5%80%8B%E6%8F%90%E4%BA%A4commit)
+      - [安全合併(merging)策略](#%E5%AE%89%E5%85%A8%E5%90%88%E4%BD%B5merging%E7%AD%96%E7%95%A5)
+      - [我需要將一個分支合併成一個提交(commit)](#%E6%88%91%E9%9C%80%E8%A6%81%E5%B0%87%E4%B8%80%E5%80%8B%E5%88%86%E6%94%AF%E5%90%88%E4%BD%B5%E6%88%90%E4%B8%80%E5%80%8B%E6%8F%90%E4%BA%A4commit)
+      - [我只想組合(combine)未推的提交(unpushed commit)](#%E6%88%91%E5%8F%AA%E6%83%B3%E7%B5%84%E5%90%88combine%E6%9C%AA%E6%8E%A8%E7%9A%84%E6%8F%90%E4%BA%A4unpushed-commit)
+    - [檢查是否分支上的所有提交(commit)都合併(merge)過了](#%E6%AA%A2%E6%9F%A5%E6%98%AF%E5%90%A6%E5%88%86%E6%94%AF%E4%B8%8A%E7%9A%84%E6%89%80%E6%9C%89%E6%8F%90%E4%BA%A4commit%E9%83%BD%E5%90%88%E4%BD%B5merge%E9%81%8E%E4%BA%86)
+    - [互動式rebase(interactive rebase)可能出現的問題](#%E4%BA%92%E5%8B%95%E5%BC%8Frebaseinteractive-rebase%E5%8F%AF%E8%83%BD%E5%87%BA%E7%8F%BE%E7%9A%84%E5%95%8F%E9%A1%8C)
+      - [這個rebase 編輯螢幕出現'noop'](#%E9%80%99%E5%80%8Brebase-%E7%B7%A8%E8%BC%AF%E8%9E%A2%E5%B9%95%E5%87%BA%E7%8F%BEnoop)
+      - [有衝突的情況](#%E6%9C%89%E8%A1%9D%E7%AA%81%E7%9A%84%E6%83%85%E6%B3%81)
   - [Stash](#stash)
-    - [暫存所有改動](#%E6%9A%82%E5%AD%98%E6%89%80%E6%9C%89%E6%94%B9%E5%8A%A8)
-    - [暫存指定文件](#%E6%9A%82%E5%AD%98%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6)
-    - [暫存時記錄消息](#%E6%9A%82%E5%AD%98%E6%97%B6%E8%AE%B0%E5%BD%95%E6%B6%88%E6%81%AF)
-    - [使用某個指定暫存](#%E4%BD%BF%E7%94%A8%E6%9F%90%E4%B8%AA%E6%8C%87%E5%AE%9A%E6%9A%82%E5%AD%98)
-    - [暫存時保留未暫存的內容](#%E6%9A%82%E5%AD%98%E6%97%B6%E4%BF%9D%E7%95%99%E6%9C%AA%E6%9A%82%E5%AD%98%E7%9A%84%E5%86%85%E5%AE%B9)
-  - [雜項(Miscellaneous Objects)](#%E6%9D%82%E9%A1%B9miscellaneous-objects)
-    - [複製所有子模組](#%E5%85%8B%E9%9A%86%E6%89%80%E6%9C%89%E5%AD%90%E6%A8%A1%E5%9D%97)
-    - [刪除標籤(tag)](#%E5%88%A0%E9%99%A4%E6%A0%87%E7%AD%BEtag)
-    - [恢覆已刪除標籤(tag)](#%E6%81%A2%E5%A4%8D%E5%B7%B2%E5%88%A0%E9%99%A4%E6%A0%87%E7%AD%BEtag)
-    - [已刪除補丁(patch)](#%E5%B7%B2%E5%88%A0%E9%99%A4%E8%A1%A5%E4%B8%81patch)
-  - [跟蹤文件(Tracking Files)](#%E8%B7%9F%E8%B8%AA%E6%96%87%E4%BB%B6tracking-files)
-    - [我只想改變一個檔案名字的大小寫，而不修改內容](#%E6%88%91%E5%8F%AA%E6%83%B3%E6%94%B9%E5%8F%98%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E5%90%8D%E5%AD%97%E7%9A%84%E5%A4%A7%E5%B0%8F%E5%86%99%E8%80%8C%E4%B8%8D%E4%BF%AE%E6%94%B9%E5%86%85%E5%AE%B9)
-    - [我想從Git刪除一個文件，但保留該文件](#%E6%88%91%E6%83%B3%E4%BB%8Egit%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E4%BD%86%E4%BF%9D%E7%95%99%E8%AF%A5%E6%96%87%E4%BB%B6)
+    - [暫存所有改動](#%E6%9A%AB%E5%AD%98%E6%89%80%E6%9C%89%E6%94%B9%E5%8B%95)
+    - [暫存指定文件](#%E6%9A%AB%E5%AD%98%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6)
+    - [暫存時記錄消息](#%E6%9A%AB%E5%AD%98%E6%99%82%E8%A8%98%E9%8C%84%E6%B6%88%E6%81%AF)
+    - [使用某個指定暫存](#%E4%BD%BF%E7%94%A8%E6%9F%90%E5%80%8B%E6%8C%87%E5%AE%9A%E6%9A%AB%E5%AD%98)
+    - [暫存時保留未暫存的內容](#%E6%9A%AB%E5%AD%98%E6%99%82%E4%BF%9D%E7%95%99%E6%9C%AA%E6%9A%AB%E5%AD%98%E7%9A%84%E5%85%A7%E5%AE%B9)
+  - [雜項(Miscellaneous Objects)](#%E9%9B%9C%E9%A0%85miscellaneous-objects)
+    - [複製所有子模組](#%E8%A4%87%E8%A3%BD%E6%89%80%E6%9C%89%E5%AD%90%E6%A8%A1%E7%B5%84)
+    - [刪除標籤(tag)](#%E5%88%AA%E9%99%A4%E6%A8%99%E7%B1%A4tag)
+    - [恢覆已刪除標籤(tag)](#%E6%81%A2%E8%A6%86%E5%B7%B2%E5%88%AA%E9%99%A4%E6%A8%99%E7%B1%A4tag)
+    - [已刪除補丁(patch)](#%E5%B7%B2%E5%88%AA%E9%99%A4%E8%A3%9C%E4%B8%81patch)
+  - [跟蹤文件(Tracking Files)](#%E8%B7%9F%E8%B9%A4%E6%96%87%E4%BB%B6tracking-files)
+    - [我只想改變一個檔案名字的大小寫，而不修改內容](#%E6%88%91%E5%8F%AA%E6%83%B3%E6%94%B9%E8%AE%8A%E4%B8%80%E5%80%8B%E6%AA%94%E6%A1%88%E5%90%8D%E5%AD%97%E7%9A%84%E5%A4%A7%E5%B0%8F%E5%AF%AB%E8%80%8C%E4%B8%8D%E4%BF%AE%E6%94%B9%E5%85%A7%E5%AE%B9)
+    - [我想從Git刪除一個文件，但保留該文件](#%E6%88%91%E6%83%B3%E5%BE%9Egit%E5%88%AA%E9%99%A4%E4%B8%80%E5%80%8B%E6%96%87%E4%BB%B6%E4%BD%86%E4%BF%9D%E7%95%99%E8%A9%B2%E6%96%87%E4%BB%B6)
   - [配置(Configuration)](#%E9%85%8D%E7%BD%AEconfiguration)
-    - [我想給一些Git命令添加別名(alias)](#%E6%88%91%E6%83%B3%E7%BB%99%E4%B8%80%E4%BA%9Bgit%E5%91%BD%E4%BB%A4%E6%B7%BB%E5%8A%A0%E5%88%AB%E5%90%8Dalias)
-    - [我想快取一個倉庫(repository)的使用者名稱和密碼](#%E6%88%91%E6%83%B3%E7%BC%93%E5%AD%98%E4%B8%80%E4%B8%AA%E4%BB%93%E5%BA%93repository%E7%9A%84%E7%94%A8%E6%88%B7%E5%90%8D%E5%92%8C%E5%AF%86%E7%A0%81)
-  - [我不知道我做錯了些什麼](#%E6%88%91%E4%B8%8D%E7%9F%A5%E9%81%93%E6%88%91%E5%81%9A%E9%94%99%E4%BA%86%E4%BA%9B%E4%BB%80%E4%B9%88)
-- [其它資源(Other Resources)](#%E5%85%B6%E5%AE%83%E8%B5%84%E6%BA%90other-resources)
-  - [書(Books)](#%E4%B9%A6books)
-  - [教學(Tutorials)](#%E6%95%99%E7%A8%8Btutorials)
-  - [腳本和工具(Scripts and Tools)](#%E8%84%9A%E6%9C%AC%E5%92%8C%E5%B7%A5%E5%85%B7scripts-and-tools)
-  - [GUI用戶端(GUI Clients)](#gui%E5%AE%A2%E6%88%B7%E7%AB%AFgui-clients)
+    - [我想給一些Git命令添加別名(alias)](#%E6%88%91%E6%83%B3%E7%B5%A6%E4%B8%80%E4%BA%9Bgit%E5%91%BD%E4%BB%A4%E6%B7%BB%E5%8A%A0%E5%88%A5%E5%90%8Dalias)
+    - [我想快取一個倉庫(repository)的使用者名稱和密碼](#%E6%88%91%E6%83%B3%E5%BF%AB%E5%8F%96%E4%B8%80%E5%80%8B%E5%80%89%E5%BA%ABrepository%E7%9A%84%E4%BD%BF%E7%94%A8%E8%80%85%E5%90%8D%E7%A8%B1%E5%92%8C%E5%AF%86%E7%A2%BC)
+  - [我不知道我做錯了些什麼](#%E6%88%91%E4%B8%8D%E7%9F%A5%E9%81%93%E6%88%91%E5%81%9A%E9%8C%AF%E4%BA%86%E4%BA%9B%E4%BB%80%E9%BA%BC)
+- [其它資源(Other Resources)](#%E5%85%B6%E5%AE%83%E8%B3%87%E6%BA%90other-resources)
+  - [書(Books)](#%E6%9B%B8books)
+  - [教學(Tutorials)](#%E6%95%99%E5%AD%B8tutorials)
+  - [腳本和工具(Scripts and Tools)](#%E8%85%B3%E6%9C%AC%E5%92%8C%E5%B7%A5%E5%85%B7scripts-and-tools)
+  - [GUI用戶端(GUI Clients)](#gui%E7%94%A8%E6%88%B6%E7%AB%AFgui-clients)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## 編輯提交(editting commits)
+## 編輯提交（editting commits）
 
 <a name="diff-last"></a>
-### 我剛才提交了什麼?
+### 我剛才提交了什麼？
 
-如果你用 `git commit -a` 提交了一次變化(changes)，而你又不確定到底這次提交了哪些內容。 你就可以用下面的命令顯示當前`HEAD`上的最近一次的提交(commit):
+如果你用 `git commit -a` 提交了一次變化（changes），而你又不確定到底這次提交了哪些內容，你可以用以下命令顯示目前 `HEAD` 上的最近一次的提交（commit）：
 
 ```sh
 (main)$ git show
@@ -111,36 +111,36 @@ $ git log -n1 -p
 ```
 
 <a name="#i-wrote-the-wrong-thing-in-a-commit-message"></a>
-### 我的提交訊息(commit message)寫錯了
+### 我的提交訊息（commit message）寫錯了
 
-如果你的提交訊息(commit message)寫錯了且這次提交(commit)還沒有推(push), 你可以透過下面的方法來修改提交訊息(commit message):
+如果你的提交訊息（commit message）寫錯了，且這次提交（commit）還沒有推送（push），你可以透過下面的方法來修改提交訊息（commit message）：
 
 ```sh
 $ git commit --amend --only
 ```
-這會打開你的默認編輯器, 在這裡你可以編輯訊息. 另一方面, 你也可以用一條命令一次完成:
+這會使用你的預設編輯器來完成。你也可以只使用一個命令：
 
 ```sh
 $ git commit --amend --only -m 'xxxxxxx'
 ```
 
-如果你已經推(push)了這次提交(commit), 你可以修改這次提交(commit)然後強推(force push), 但是不推薦這麼做。
+如果你已經推送（push）了這次提交（commit），你可以修改這次提交（commit）然後強制推送（force push），但是不推薦這麼做。
 
 <a name="commit-wrong-author"></a>
-### 我提交(commit)裡的使用者名稱和信箱不對
+### 我提交（commit）裡的使用者名稱和信箱不對
 
-如果這只是單個提交(commit)，修改它：
+如果這只是單個提交（commit），修改它：
 
 ```sh
 $ git commit --amend --author "New Authorname <authoremail@mydomain.com>"
 ```
 
-如果你需要修改所有歷史, 參考 'git filter-branch'的指南頁.
+如果你需要修改所有歷史，參考 `git filter-branch` 的手冊。
 
 <a href="#i-want-to-remove-a-file-from-a-commit"></a>
-### 我想從一個提交(commit)裡移除一個文件
+### 我想從一個提交（commit）裡移除一個文件
 
-通過下面的方法，從一個提交(commit)裡移除一個文件:
+通過下面的方法，從一個提交（commit）裡移除一個文件：
 
 ```sh
 $ git checkout HEAD^ myfile
@@ -148,41 +148,41 @@ $ git add -A
 $ git commit --amend
 ```
 
-這將非常有用，當你有一個開放的補丁(open patch)，你往上面提交了一個不必要的文件，你需要強推(force push)去更新這個遠程補丁。
+這非常有用，當你有一個開放的補丁（open patch），你往上面提交了一個不必要的文件，你需要強制推送（force push）去更新這個遠程補丁。
 
 <a name="delete-pushed-commit"></a>
-### 我想刪除我的的最後一次提交(commit)
+### 我想刪除我最後一次提交（commit）
 
-如果你需要刪除推了的提交(pushed commits)，你可以使用下面的方法。可是，這會不可逆的改變你的歷史，也會搞亂那些已經從該倉庫拉取(pulled)了的人的歷史。簡而言之，如果你不是很確定，千萬不要這麼做。
+如果你需要刪除推送了的提交（pushed commits），你可以使用以下方法。但是，這將不可逆的改變你的歷史，也會搞亂那些已經從該倉庫拉取（pulled）了的人的歷史。簡而言之，如果你不是很確定，千萬不要這麼做。
 
 ```sh
 $ git reset HEAD^ --hard
 $ git push -f [remote] [branch]
 ```
 
-如果你還沒有推到遠程, 把Git重設(reset)到你最後一次提交前的狀態就可以了(同時保存暫存的變化):
+如果你還沒有推送到遠端，重設（reset）到你最後一次提交前的狀態就可以了（同時保存暫存的變化）：
 
 ```
 (my-branch*)$ git reset --soft HEAD@{1}
 
 ```
 
-這只能在沒有推送之前有用. 如果你已經推了, 唯一安全能做的是 `git revert SHAofBadCommit`， 那會創建一個新的提交(commit)用於撤消前一個提交的所有變化(changes)； 或者, 如果你推的這個分支是rebase-safe的 (例如： 其它開發者不會從這個分支拉), 只需要使用 `git push -f`； 更多, 請參考 [the above section](#deleteremove-last-pushed-commit)。
+這只能在推送之前使用。如果你已經推送了，唯一安全的做法是 `git revert SHAofBadCommit`，那會創建一個新的提交（commit）來撤消前一個提交的所有變化（changes）；或者，如果這個分支是 rebase-safe 的（例如：其他開發者不會從這個分支拉取），只需要使用 `git push -f`；參見[上一節](#deleteremove-last-pushed-commit)。
 
 <a name="delete-any-commit"></a>
-### 刪除任意提交(commit)
+### 刪除任意提交（commit）
 
-同樣的警告：不到萬不得已的時候不要這麼做.
+同樣，除非必須，否則不要這麼做。
 
 ```sh
 $ git rebase --onto SHA1_OF_BAD_COMMIT^ SHA1_OF_BAD_COMMIT
 $ git push -f [remote] [branch]
 ```
 
-或者做一個 [互動式rebase](#interactive-rebase) 刪除那些你想要刪除的提交(commit)裡所對應的行。
+或者使用[互動式變基（interactive rebase）](#interactive-rebase) 刪除那些你想要刪除的提交（commit）所對應的行。
 
 <a name="#force-push"></a>
-### 我嘗試推一個修正後的提交(amended commit)到遠程，但是報錯：
+### 我嘗試推送一個修正後的提交（amended commit）到遠端，但是報錯
 
 ```sh
 To https://github.com/yourusername/repo.git
@@ -194,30 +194,28 @@ hint: 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 ```
 
-注意, rebasing(見下面)和修正(amending)會用一個**新的提交(commit)代替舊的**, 所以如果之前你已經往遠程倉庫上推過一次修正前的提交(commit)，那你現在就必須強推(force push) (`-f`)。 注意 &ndash; *總是* 確保你指明一個分支!
+注意，變基（rebasing）和修正（amending）會用一個新的提交（commit）取代舊的，所以如果舊的提交已經推送到遠端上了，那你必須強制推送（force push）。注意：總是確保你指明一個分支！
 
 ```sh
 (my-branch)$ git push origin mybranch -f
 ```
 
-一般來說, **要避免強推**. 最好是創建和推(push)一個新的提交(commit)，而不是強推一個修正後的提交。後者會使那些與該分支或該分支的子分支工作的開發者，在源歷史中產生衝突。
+一般來說，要避免強制推送。最好是創建和推送一個新的提交（commit），而不是強推一個修正後的提交。後者會使在該分支或該分支的子分支上工作的開發者，在源歷史中產生衝突。
 
 <a href="undo-git-reset-hard"></a>
-### 我意外的做了一次硬重設(hard reset)，我想找回我的內容
+### 我意外地硬重設（hard reset）了，我想找回我的內容
 
-如果你意外的做了 `git reset --hard`, 你通常能找回你的提交(commit), 因為Git對每件事都會有日誌，且都會保存幾天。
+如果你意外地做了 `git reset --hard`，你通常能找回你的提交（commit），因為 Git 對每件事都會有日誌，且都會保存幾天。
 
 ```sh
 (main)$ git reflog
 ```
 
-你將會看到一個你過去提交(commit)的列表, 和一個重設的提交。 選擇你想要回到的提交(commit)的SHA，再重設一次:
+你將會看到一個你過去提交（commit）的列表，和一個重設的提交。選擇你想要回到的提交（commit）的 SHA，再重設一次：
 
 ```sh
 (main)$ git reset --hard SHA1234
 ```
-
-這樣就完成了。
 
 ## 暫存(Staging)
 
