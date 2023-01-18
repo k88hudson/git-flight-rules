@@ -41,11 +41,11 @@
     - [我想要暫存一個新文件的一部分，而不是這個文件的全部](#%E6%88%91%E6%83%B3%E8%A6%81%E6%9A%AB%E5%AD%98%E4%B8%80%E5%80%8B%E6%96%B0%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%80%E9%83%A8%E5%88%86%E8%80%8C%E4%B8%8D%E6%98%AF%E9%80%99%E5%80%8B%E6%96%87%E4%BB%B6%E7%9A%84%E5%85%A8%E9%83%A8)
     - [我想把在一個文件裡的變化（changes）加到兩個提交（commit）裡](#%E6%88%91%E6%83%B3%E6%8A%8A%E5%9C%A8%E4%B8%80%E5%80%8B%E6%96%87%E4%BB%B6%E8%A3%A1%E7%9A%84%E8%AE%8A%E5%8C%96changes%E5%8A%A0%E5%88%B0%E5%85%A9%E5%80%8B%E6%8F%90%E4%BA%A4commit%E8%A3%A1)
     - [我想把暫存的內容變成未暫存，把未暫存的內容暫存起來](#%E6%88%91%E6%83%B3%E6%8A%8A%E6%9A%AB%E5%AD%98%E7%9A%84%E5%85%A7%E5%AE%B9%E8%AE%8A%E6%88%90%E6%9C%AA%E6%9A%AB%E5%AD%98%E6%8A%8A%E6%9C%AA%E6%9A%AB%E5%AD%98%E7%9A%84%E5%85%A7%E5%AE%B9%E6%9A%AB%E5%AD%98%E8%B5%B7%E4%BE%86)
-  - [未暫存(Unstaged)的內容](#%E6%9C%AA%E6%9A%AB%E5%AD%98unstaged%E7%9A%84%E5%85%A7%E5%AE%B9)
-    - [我想把未暫存的內容移動到一個新分支](#%E6%88%91%E6%83%B3%E6%8A%8A%E6%9C%AA%E6%9A%AB%E5%AD%98%E7%9A%84%E5%85%A7%E5%AE%B9%E7%A7%BB%E5%8B%95%E5%88%B0%E4%B8%80%E5%80%8B%E6%96%B0%E5%88%86%E6%94%AF)
-    - [我想把未暫存的內容移動到另一個已存在的分支](#%E6%88%91%E6%83%B3%E6%8A%8A%E6%9C%AA%E6%9A%AB%E5%AD%98%E7%9A%84%E5%85%A7%E5%AE%B9%E7%A7%BB%E5%8B%95%E5%88%B0%E5%8F%A6%E4%B8%80%E5%80%8B%E5%B7%B2%E5%AD%98%E5%9C%A8%E7%9A%84%E5%88%86%E6%94%AF)
-    - [我想丟棄本地未提交的變化(uncommitted changes)](#%E6%88%91%E6%83%B3%E4%B8%9F%E6%A3%84%E6%9C%AC%E5%9C%B0%E6%9C%AA%E6%8F%90%E4%BA%A4%E7%9A%84%E8%AE%8A%E5%8C%96uncommitted-changes)
-    - [我想丟棄某些未暫存的內容](#%E6%88%91%E6%83%B3%E4%B8%9F%E6%A3%84%E6%9F%90%E4%BA%9B%E6%9C%AA%E6%9A%AB%E5%AD%98%E7%9A%84%E5%85%A7%E5%AE%B9)
+  - [未暫存（unstaged）的變化](#%E6%9C%AA%E6%9A%AB%E5%AD%98unstaged%E7%9A%84%E8%AE%8A%E5%8C%96)
+    - [我想把未暫存的變化移動到新分支](#%E6%88%91%E6%83%B3%E6%8A%8A%E6%9C%AA%E6%9A%AB%E5%AD%98%E7%9A%84%E8%AE%8A%E5%8C%96%E7%A7%BB%E5%8B%95%E5%88%B0%E6%96%B0%E5%88%86%E6%94%AF)
+    - [我想把未暫存的變化移動到另一個已存在的分支](#%E6%88%91%E6%83%B3%E6%8A%8A%E6%9C%AA%E6%9A%AB%E5%AD%98%E7%9A%84%E8%AE%8A%E5%8C%96%E7%A7%BB%E5%8B%95%E5%88%B0%E5%8F%A6%E4%B8%80%E5%80%8B%E5%B7%B2%E5%AD%98%E5%9C%A8%E7%9A%84%E5%88%86%E6%94%AF)
+    - [我想丟棄本地未提交的變化（uncommitted changes）](#%E6%88%91%E6%83%B3%E4%B8%9F%E6%A3%84%E6%9C%AC%E5%9C%B0%E6%9C%AA%E6%8F%90%E4%BA%A4%E7%9A%84%E8%AE%8A%E5%8C%96uncommitted-changes)
+    - [我想丟棄某些未暫存的變化](#%E6%88%91%E6%83%B3%E4%B8%9F%E6%A3%84%E6%9F%90%E4%BA%9B%E6%9C%AA%E6%9A%AB%E5%AD%98%E7%9A%84%E8%AE%8A%E5%8C%96)
   - [分支(Branches)](#%E5%88%86%E6%94%AFbranches)
     - [我從錯誤的分支拉取了內容，或把內容拉取到了錯誤的分支](#%E6%88%91%E5%BE%9E%E9%8C%AF%E8%AA%A4%E7%9A%84%E5%88%86%E6%94%AF%E6%8B%89%E5%8F%96%E4%BA%86%E5%85%A7%E5%AE%B9%E6%88%96%E6%8A%8A%E5%85%A7%E5%AE%B9%E6%8B%89%E5%8F%96%E5%88%B0%E4%BA%86%E9%8C%AF%E8%AA%A4%E7%9A%84%E5%88%86%E6%94%AF)
     - [我想扔掉本地的提交(commit)，以便我的分支與遠程的保持一致](#%E6%88%91%E6%83%B3%E6%89%94%E6%8E%89%E6%9C%AC%E5%9C%B0%E7%9A%84%E6%8F%90%E4%BA%A4commit%E4%BB%A5%E4%BE%BF%E6%88%91%E7%9A%84%E5%88%86%E6%94%AF%E8%88%87%E9%81%A0%E7%A8%8B%E7%9A%84%E4%BF%9D%E6%8C%81%E4%B8%80%E8%87%B4)
@@ -265,17 +265,17 @@ $ git stash pop --index 0 # 彈出儲藏。
 註一：這裡使用 `pop` 僅僅是因為想盡可能保持冪等。
 註二：假如不加上 `--index`，會把暫存的文件標記為未暫存。[這裡](https://stackoverflow.com/questions/31595873/git-stash-with-staged-files-does-stash-convert-staged-files-to-unstaged?answertab=active#tab-top)解釋得比較清楚。（其大意是說，這是一個較為底層的問題，儲藏時會創建兩個提交，一個記錄 index 狀態、暫存的內容等，另一個紀錄 worktree 和其他的一些東西，如果你不在 apply 時加 index，Git 會把兩個一起銷毀，所以暫存區（stage）裡就空了）。
 
-## 未暫存(Unstaged)的內容
+## 未暫存（unstaged）的變化
 
 <a href="move-unstaged-edits-to-new-branch"></a>
-### 我想把未暫存的內容移動到一個新分支
+### 我想把未暫存的變化移動到新分支
 
 ```sh
 $ git checkout -b my-branch
 ```
 
 <a href="move-unstaged-edits-to-old-branch"></a>
-### 我想把未暫存的內容移動到另一個已存在的分支
+### 我想把未暫存的變化移動到另一個已存在的分支
 
 ```sh
 $ git stash
@@ -284,9 +284,9 @@ $ git stash pop
 ```
 
 <a href="i-want-to-discard-my-local-uncommitted-changes"></a>
-### 我想丟棄本地未提交的變化(uncommitted changes)
+### 我想丟棄本地未提交的變化（uncommitted changes）
 
-如果你只是想重設源(origin)和你本地(local)之間的一些提交(commit)，你可以：
+如果你只是想重設源（origin）和你本地（local）之間的一些提交（commit），你可以：
 
 ```sh
 # one commit
@@ -299,25 +299,25 @@ $ git stash pop
 (main)$ git checkout -f
 ```
 
-重設某個特殊的文件, 你可以用檔案名做為參數:
+如果要重設某個特定檔案，可以用檔案名做為引數：
 
 ```sh
 $ git reset filename
 ```
 
 <a href="i-want-to-discard-specific-unstaged-changes"></a>
-### 我想丟棄某些未暫存的內容
+### 我想丟棄某些未暫存的變化
 
 如果你想丟棄工作拷貝中的一部分內容，而不是全部。
 
-簽出(checkout)不需要的內容，保留需要的。
+簽出（checkout）不需要的內容，保留需要的。
 
 ```sh
 $ git checkout -p
 # Answer y to all of the snippets you want to drop
 ```
 
-另外一個方法是使用 `stash`， Stash所有要保留下的內容, 重設工作拷貝, 重新應用保留的部分。
+另外一個方法是使用儲藏（stash），儲藏所有要保留的變化，重設工作拷貝，然後把儲藏彈出。
 
 ```sh
 $ git stash -p
@@ -326,7 +326,7 @@ $ git reset --hard
 $ git stash pop
 ```
 
-或者, stash 你不需要的部分, 然後stash drop。
+或者，儲藏你不需要的部分，然後丟棄儲藏（drop stash）。
 
 ```sh
 $ git stash -p
