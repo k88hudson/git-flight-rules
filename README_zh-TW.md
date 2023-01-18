@@ -36,10 +36,10 @@
     - [刪除任意提交（commit）](#%E5%88%AA%E9%99%A4%E4%BB%BB%E6%84%8F%E6%8F%90%E4%BA%A4commit)
     - [我嘗試推送一個修正後的提交（amended commit）到遠端，但是報錯](#%E6%88%91%E5%98%97%E8%A9%A6%E6%8E%A8%E9%80%81%E4%B8%80%E5%80%8B%E4%BF%AE%E6%AD%A3%E5%BE%8C%E7%9A%84%E6%8F%90%E4%BA%A4amended-commit%E5%88%B0%E9%81%A0%E7%AB%AF%E4%BD%86%E6%98%AF%E5%A0%B1%E9%8C%AF)
     - [我意外地硬重設（hard reset）了，我想找回我的內容](#%E6%88%91%E6%84%8F%E5%A4%96%E5%9C%B0%E7%A1%AC%E9%87%8D%E8%A8%ADhard-reset%E4%BA%86%E6%88%91%E6%83%B3%E6%89%BE%E5%9B%9E%E6%88%91%E7%9A%84%E5%85%A7%E5%AE%B9)
-  - [暫存(Staging)](#%E6%9A%AB%E5%AD%98staging)
-    - [我需要把暫存的內容添加到上一次的提交(commit)](#%E6%88%91%E9%9C%80%E8%A6%81%E6%8A%8A%E6%9A%AB%E5%AD%98%E7%9A%84%E5%85%A7%E5%AE%B9%E6%B7%BB%E5%8A%A0%E5%88%B0%E4%B8%8A%E4%B8%80%E6%AC%A1%E7%9A%84%E6%8F%90%E4%BA%A4commit)
+  - [暫存（staging）](#%E6%9A%AB%E5%AD%98staging)
+    - [我需要把暫存的內容添加到上一次的提交（commit）](#%E6%88%91%E9%9C%80%E8%A6%81%E6%8A%8A%E6%9A%AB%E5%AD%98%E7%9A%84%E5%85%A7%E5%AE%B9%E6%B7%BB%E5%8A%A0%E5%88%B0%E4%B8%8A%E4%B8%80%E6%AC%A1%E7%9A%84%E6%8F%90%E4%BA%A4commit)
     - [我想要暫存一個新文件的一部分，而不是這個文件的全部](#%E6%88%91%E6%83%B3%E8%A6%81%E6%9A%AB%E5%AD%98%E4%B8%80%E5%80%8B%E6%96%B0%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%80%E9%83%A8%E5%88%86%E8%80%8C%E4%B8%8D%E6%98%AF%E9%80%99%E5%80%8B%E6%96%87%E4%BB%B6%E7%9A%84%E5%85%A8%E9%83%A8)
-    - [我想把在一個文件裡的變化(changes)加到兩個提交(commit)裡](#%E6%88%91%E6%83%B3%E6%8A%8A%E5%9C%A8%E4%B8%80%E5%80%8B%E6%96%87%E4%BB%B6%E8%A3%A1%E7%9A%84%E8%AE%8A%E5%8C%96changes%E5%8A%A0%E5%88%B0%E5%85%A9%E5%80%8B%E6%8F%90%E4%BA%A4commit%E8%A3%A1)
+    - [我想把在一個文件裡的變化（changes）加到兩個提交（commit）裡](#%E6%88%91%E6%83%B3%E6%8A%8A%E5%9C%A8%E4%B8%80%E5%80%8B%E6%96%87%E4%BB%B6%E8%A3%A1%E7%9A%84%E8%AE%8A%E5%8C%96changes%E5%8A%A0%E5%88%B0%E5%85%A9%E5%80%8B%E6%8F%90%E4%BA%A4commit%E8%A3%A1)
     - [我想把暫存的內容變成未暫存，把未暫存的內容暫存起來](#%E6%88%91%E6%83%B3%E6%8A%8A%E6%9A%AB%E5%AD%98%E7%9A%84%E5%85%A7%E5%AE%B9%E8%AE%8A%E6%88%90%E6%9C%AA%E6%9A%AB%E5%AD%98%E6%8A%8A%E6%9C%AA%E6%9A%AB%E5%AD%98%E7%9A%84%E5%85%A7%E5%AE%B9%E6%9A%AB%E5%AD%98%E8%B5%B7%E4%BE%86)
   - [未暫存(Unstaged)的內容](#%E6%9C%AA%E6%9A%AB%E5%AD%98unstaged%E7%9A%84%E5%85%A7%E5%AE%B9)
     - [我想把未暫存的內容移動到一個新分支](#%E6%88%91%E6%83%B3%E6%8A%8A%E6%9C%AA%E6%9A%AB%E5%AD%98%E7%9A%84%E5%85%A7%E5%AE%B9%E7%A7%BB%E5%8B%95%E5%88%B0%E4%B8%80%E5%80%8B%E6%96%B0%E5%88%86%E6%94%AF)
@@ -217,54 +217,53 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 (main)$ git reset --hard SHA1234
 ```
 
-## 暫存(Staging)
+## 暫存（staging）
 
 <a href="#i-need-to-add-staged-changes-to-the-previous-commit"></a>
-### 我需要把暫存的內容添加到上一次的提交(commit)
+### 我需要把暫存的內容添加到上一次的提交（commit）
 
 ```sh
 (my-branch*)$ git commit --amend
-
 ```
 
 <a name="commit-partial-new-file"></a>
 ### 我想要暫存一個新文件的一部分，而不是這個文件的全部
 
-一般來說, 如果你想暫存一個文件的一部分, 你可這樣做:
+一般來說，如果你想暫存一個文件的一部分，你可以使用以下命令來開啟互動式介面，並使用 `s` 選項來選擇想要的行。
 
 ```sh
-$ git add --patch filename.x
+$ git add --patch filename.x # 或 `-p`。
 ```
 
-`-p` 簡寫。這會打開交互模式， 你將能夠用 `s` 選項來分隔提交(commit)； 然而, 如果這個文件是新的, 會沒有這個選擇， 添加一個新文件時, 這樣做:
+然而，當這個檔案是新的，則需改用以下命令：
 
 ```sh
 $ git add -N filename.x
 ```
 
-然後, 你需要用 `e` 選項來手動選擇需要添加的行，執行 `git diff --cached` 將會顯示哪些行暫存了哪些行只是保存在本地了。
+然後，你需要用 `e` 選項來選擇需要添加的行，執行 `git diff --cached` 將會顯示哪些行暫存了、哪些行只是保存在本地了。
 
 <a href="stage-in-two-commits"></a>
-### 我想把在一個文件裡的變化(changes)加到兩個提交(commit)裡
+### 我想把在一個文件裡的變化（changes）加到兩個提交（commit）裡
 
-`git add` 會把整個文件加入到一個提交. `git add -p` 允許互動式的選擇你想要提交的部分.
+`git add` 會把整個文件加入到一個提交。`git add -p` 則允許你互動式地選擇想要提交的部分。
 
 <a href="unstaging-edits-and-staging-the-unstaged"></a>
 ### 我想把暫存的內容變成未暫存，把未暫存的內容暫存起來
 
-多數情況下，你應該將所有的內容變為未暫存，然後再選擇你想要的內容進行commit。
-但假定你就是想要這麼做，這裡你可以創建一個臨時的commit來保存你已暫存的內容，然後暫存你的未暫存的內容並進行stash。然後reset最後一個commit將原本暫存的內容變為未暫存，最後stash pop回來。
+多數情況下，你應該將所有的內容變為未暫存，然後再加入（add）你想要的內容提交（commit）。
+但如果你就是想這麼做，你可以創建一個臨時的提交來儲存你已暫存的內容，然後加入未暫存的內容並儲藏（stash）。最後，重設（reset）最後一個提交將原本暫存的內容變為未暫存，最後彈出儲藏（stash pop）。
 
 ```sh
-$ git commit -m "WIP"
-$ git add .
-$ git stash
-$ git reset HEAD^
-$ git stash pop --index 0
+$ git commit -m "WIP"     # 將之前已暫存的內容提交。
+$ git add .               # 加入未暫存的內容。
+$ git stash               # 儲藏剛剛加入的內容。
+$ git reset HEAD^         # 重設到父提交。
+$ git stash pop --index 0 # 彈出儲藏。
 ```
 
-注意1: 這裡使用`pop`僅僅是因為想盡可能保持冪等。
-注意2: 假如你不加上`--index`你會把暫存的文件標記為為儲存.這個[連結](https://stackoverflow.com/questions/31595873/git-stash-with-staged-files-does-stash-convert-staged-files-to-unstaged?answertab=active#tab-top) 解釋得比較清楚。（不過是英文的，其大意是說，這是一個較為底層的問題，stash時會做2個commit，其中一個會記錄index狀態，staged的文件等東西，另一個紀錄worktree和其他的一些東西，如果你不在apply時加index，git會把兩個一起銷毀，所以staged裡就空了）。
+註一：這裡使用 `pop` 僅僅是因為想盡可能保持冪等。
+註二：假如不加上 `--index`，會把暫存的文件標記為未暫存。[這裡](https://stackoverflow.com/questions/31595873/git-stash-with-staged-files-does-stash-convert-staged-files-to-unstaged?answertab=active#tab-top)解釋得比較清楚。（其大意是說，這是一個較為底層的問題，儲藏時會創建兩個提交，一個記錄 index 狀態、暫存的內容等，另一個紀錄 worktree 和其他的一些東西，如果你不在 apply 時加 index，Git 會把兩個一起銷毀，所以暫存區（stage）裡就空了）。
 
 ## 未暫存(Unstaged)的內容
 
