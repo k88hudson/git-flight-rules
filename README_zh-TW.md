@@ -46,16 +46,16 @@
     - [我想把未暫存的變化移動到另一個已存在的分支](#%E6%88%91%E6%83%B3%E6%8A%8A%E6%9C%AA%E6%9A%AB%E5%AD%98%E7%9A%84%E8%AE%8A%E5%8C%96%E7%A7%BB%E5%8B%95%E5%88%B0%E5%8F%A6%E4%B8%80%E5%80%8B%E5%B7%B2%E5%AD%98%E5%9C%A8%E7%9A%84%E5%88%86%E6%94%AF)
     - [我想丟棄本地未提交的變化（uncommitted changes）](#%E6%88%91%E6%83%B3%E4%B8%9F%E6%A3%84%E6%9C%AC%E5%9C%B0%E6%9C%AA%E6%8F%90%E4%BA%A4%E7%9A%84%E8%AE%8A%E5%8C%96uncommitted-changes)
     - [我想丟棄某些未暫存的變化](#%E6%88%91%E6%83%B3%E4%B8%9F%E6%A3%84%E6%9F%90%E4%BA%9B%E6%9C%AA%E6%9A%AB%E5%AD%98%E7%9A%84%E8%AE%8A%E5%8C%96)
-  - [分支(Branches)](#%E5%88%86%E6%94%AFbranches)
+  - [分支（branches）](#%E5%88%86%E6%94%AFbranches)
     - [我從錯誤的分支拉取了內容，或把內容拉取到了錯誤的分支](#%E6%88%91%E5%BE%9E%E9%8C%AF%E8%AA%A4%E7%9A%84%E5%88%86%E6%94%AF%E6%8B%89%E5%8F%96%E4%BA%86%E5%85%A7%E5%AE%B9%E6%88%96%E6%8A%8A%E5%85%A7%E5%AE%B9%E6%8B%89%E5%8F%96%E5%88%B0%E4%BA%86%E9%8C%AF%E8%AA%A4%E7%9A%84%E5%88%86%E6%94%AF)
-    - [我想扔掉本地的提交(commit)，以便我的分支與遠程的保持一致](#%E6%88%91%E6%83%B3%E6%89%94%E6%8E%89%E6%9C%AC%E5%9C%B0%E7%9A%84%E6%8F%90%E4%BA%A4commit%E4%BB%A5%E4%BE%BF%E6%88%91%E7%9A%84%E5%88%86%E6%94%AF%E8%88%87%E9%81%A0%E7%A8%8B%E7%9A%84%E4%BF%9D%E6%8C%81%E4%B8%80%E8%87%B4)
-    - [我需要提交到一個新分支，但錯誤的提交到了main](#%E6%88%91%E9%9C%80%E8%A6%81%E6%8F%90%E4%BA%A4%E5%88%B0%E4%B8%80%E5%80%8B%E6%96%B0%E5%88%86%E6%94%AF%E4%BD%86%E9%8C%AF%E8%AA%A4%E7%9A%84%E6%8F%90%E4%BA%A4%E5%88%B0%E4%BA%86main)
-    - [我想保留來自另外一個ref-ish的整個文件](#%E6%88%91%E6%83%B3%E4%BF%9D%E7%95%99%E4%BE%86%E8%87%AA%E5%8F%A6%E5%A4%96%E4%B8%80%E5%80%8Bref-ish%E7%9A%84%E6%95%B4%E5%80%8B%E6%96%87%E4%BB%B6)
-    - [我把幾個提交(commit)提交到了同一個分支，而這些提交應該分布在不同的分支裡](#%E6%88%91%E6%8A%8A%E5%B9%BE%E5%80%8B%E6%8F%90%E4%BA%A4commit%E6%8F%90%E4%BA%A4%E5%88%B0%E4%BA%86%E5%90%8C%E4%B8%80%E5%80%8B%E5%88%86%E6%94%AF%E8%80%8C%E9%80%99%E4%BA%9B%E6%8F%90%E4%BA%A4%E6%87%89%E8%A9%B2%E5%88%86%E5%B8%83%E5%9C%A8%E4%B8%8D%E5%90%8C%E7%9A%84%E5%88%86%E6%94%AF%E8%A3%A1)
-    - [我想刪除上遊(upstream)分支被刪除了的本地分支](#%E6%88%91%E6%83%B3%E5%88%AA%E9%99%A4%E4%B8%8A%E9%81%8Aupstream%E5%88%86%E6%94%AF%E8%A2%AB%E5%88%AA%E9%99%A4%E4%BA%86%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF)
-    - [我不小心刪除了我的分支](#%E6%88%91%E4%B8%8D%E5%B0%8F%E5%BF%83%E5%88%AA%E9%99%A4%E4%BA%86%E6%88%91%E7%9A%84%E5%88%86%E6%94%AF)
+    - [我想丟棄本地的提交（commit），以讓分支與遠端保持一致](#%E6%88%91%E6%83%B3%E4%B8%9F%E6%A3%84%E6%9C%AC%E5%9C%B0%E7%9A%84%E6%8F%90%E4%BA%A4commit%E4%BB%A5%E8%AE%93%E5%88%86%E6%94%AF%E8%88%87%E9%81%A0%E7%AB%AF%E4%BF%9D%E6%8C%81%E4%B8%80%E8%87%B4)
+    - [我需要提交到一個新分支，但錯誤的提交到了 `main`](#%E6%88%91%E9%9C%80%E8%A6%81%E6%8F%90%E4%BA%A4%E5%88%B0%E4%B8%80%E5%80%8B%E6%96%B0%E5%88%86%E6%94%AF%E4%BD%86%E9%8C%AF%E8%AA%A4%E7%9A%84%E6%8F%90%E4%BA%A4%E5%88%B0%E4%BA%86-main)
+    - [我想保留來自另外一個 ref-ish 的整個文件](#%E6%88%91%E6%83%B3%E4%BF%9D%E7%95%99%E4%BE%86%E8%87%AA%E5%8F%A6%E5%A4%96%E4%B8%80%E5%80%8B-ref-ish-%E7%9A%84%E6%95%B4%E5%80%8B%E6%96%87%E4%BB%B6)
+    - [我把幾個提交（commit）提交到了同一個分支，而這些提交應該在不同的分支上](#%E6%88%91%E6%8A%8A%E5%B9%BE%E5%80%8B%E6%8F%90%E4%BA%A4commit%E6%8F%90%E4%BA%A4%E5%88%B0%E4%BA%86%E5%90%8C%E4%B8%80%E5%80%8B%E5%88%86%E6%94%AF%E8%80%8C%E9%80%99%E4%BA%9B%E6%8F%90%E4%BA%A4%E6%87%89%E8%A9%B2%E5%9C%A8%E4%B8%8D%E5%90%8C%E7%9A%84%E5%88%86%E6%94%AF%E4%B8%8A)
+    - [我想刪除上遊（upstream）刪除了的本地分支](#%E6%88%91%E6%83%B3%E5%88%AA%E9%99%A4%E4%B8%8A%E9%81%8Aupstream%E5%88%AA%E9%99%A4%E4%BA%86%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF)
+    - [我不小心刪除了分支](#%E6%88%91%E4%B8%8D%E5%B0%8F%E5%BF%83%E5%88%AA%E9%99%A4%E4%BA%86%E5%88%86%E6%94%AF)
     - [我想刪除一個分支](#%E6%88%91%E6%83%B3%E5%88%AA%E9%99%A4%E4%B8%80%E5%80%8B%E5%88%86%E6%94%AF)
-    - [我想從別人正在工作的遠程分枝籤出(checkout)一個分支](#%E6%88%91%E6%83%B3%E5%BE%9E%E5%88%A5%E4%BA%BA%E6%AD%A3%E5%9C%A8%E5%B7%A5%E4%BD%9C%E7%9A%84%E9%81%A0%E7%A8%8B%E5%88%86%E6%9E%9D%E7%B1%A4%E5%87%BAcheckout%E4%B8%80%E5%80%8B%E5%88%86%E6%94%AF)
+    - [我想從別人正在工作的遠端分支簽出（checkout）一個分支](#%E6%88%91%E6%83%B3%E5%BE%9E%E5%88%A5%E4%BA%BA%E6%AD%A3%E5%9C%A8%E5%B7%A5%E4%BD%9C%E7%9A%84%E9%81%A0%E7%AB%AF%E5%88%86%E6%94%AF%E7%B0%BD%E5%87%BAcheckout%E4%B8%80%E5%80%8B%E5%88%86%E6%94%AF)
   - [Rebasing 和合併(Merging)](#rebasing-%E5%92%8C%E5%90%88%E4%BD%B5merging)
     - [我想撤銷rebase/merge](#%E6%88%91%E6%83%B3%E6%92%A4%E9%8A%B7rebasemerge)
     - [我已經rebase過, 但是我不想強推(force push)](#%E6%88%91%E5%B7%B2%E7%B6%93rebase%E9%81%8E-%E4%BD%86%E6%98%AF%E6%88%91%E4%B8%8D%E6%83%B3%E5%BC%B7%E6%8E%A8force-push)
@@ -334,12 +334,12 @@ $ git stash -p
 $ git stash drop
 ```
 
-## 分支(Branches)
+## 分支（branches）
 
 <a name="pull-wrong-branch"></a>
 ### 我從錯誤的分支拉取了內容，或把內容拉取到了錯誤的分支
 
-這是另外一種使用 `git reflog` 情況，找到在這次錯誤拉(pull) 之前HEAD的指向。
+這是另外一種可以使用 `git reflog` 情況，找到在這次錯誤拉取（pull）之前 HEAD 的指向。
 
 ```sh
 (main)$ git reflog
@@ -347,7 +347,7 @@ ab7555f HEAD@{0}: pull origin wrong-branch: Fast-forward
 c5bc55a HEAD@{1}: checkout: checkout message goes here
 ```
 
-重設分支到你所需的提交(desired commit):
+然後，重設分支到所需的提交：
 
 ```sh
 $ git reset --hard c5bc55a
@@ -356,11 +356,11 @@ $ git reset --hard c5bc55a
 完成。
 
 <a href="discard-local-commits"></a>
-### 我想扔掉本地的提交(commit)，以便我的分支與遠程的保持一致
+### 我想丟棄本地的提交（commit），以讓分支與遠端保持一致
 
-先確認你沒有推(push)你的內容到遠程。
+首先，確認你沒有推送（push）你的內容到遠端。
 
-`git status` 會顯示你領先(ahead)源(origin)多少個提交:
+`git status` 會顯示本地領先（ahead）源（origin）多少個提交：
 
 ```sh
 (my-branch)$ git status
@@ -370,69 +370,55 @@ $ git reset --hard c5bc55a
 #
 ```
 
-一種方法是:
+一種方法是：
 
 ```sh
 (main)$ git reset --hard origin/my-branch
 ```
 
 <a name="commit-wrong-branch"></a>
-### 我需要提交到一個新分支，但錯誤的提交到了main
+### 我需要提交到一個新分支，但錯誤的提交到了 `main`
 
-在main下創建一個新分支，不切換到新分支,仍在main下:
+在 `main` 下創建一個新分支：
 
 ```sh
 (main)$ git branch my-branch
 ```
 
-把main分支重設到前一個提交:
+把 `main` 重設到前一個提交：
 
 ```sh
 (main)$ git reset --hard HEAD^
 ```
 
-`HEAD^` 是 `HEAD^1` 的簡寫，你可以透過指定要設置的`HEAD`來進一步重設。
+`HEAD^` 是 `HEAD^1` 的縮寫，你可以指定數字來進一步重設。或者，如果你不想使用 `HEAD^`，你可以指定一個提交（commit）的雜湊值（hash）（可以使用 `git log` 查看），如 `git reset --hard a13b85e`。
 
-或者, 如果你不想使用 `HEAD^`, 找到你想重設到的提交(commit)的hash(`git log` 能夠完成)， 然後重設到這個hash。 使用`git push` 同步內容到遠程。
-
-例如, main分支想重設到的提交的hash為`a13b85e`:
-
-```sh
-(main)$ git reset --hard a13b85e
-HEAD is now at a13b85e
-```
-
-簽出(checkout)剛才新建的分支繼續工作:
+簽出（checkout）到剛才新建的分支繼續工作：
 
 ```sh
 (main)$ git checkout my-branch
 ```
 
 <a name="keep-whole-file"></a>
-### 我想保留來自另外一個ref-ish的整個文件
+### 我想保留來自另外一個 ref-ish 的整個文件
 
-假設你正在做一個原型方案(原文為working spike (see note)), 有成百的內容，每個都工作得很好。現在, 你提交到了一個分支，保存工作內容:
+假設你正在做一個原型方案（原文為 working spike），有成百上千的內容。當你提交到一個分支，儲存工作內容：
 
 ```sh
 (solution)$ git add -A && git commit -m "Adding all changes from this spike into one big commit."
 ```
 
-當你想要把它放到一個分支裡 (可能是`feature`, 或者 `develop`), 你關心是保持整個文件的完整，你想要一個大的提交分隔成比較小。
+當你想要把它放到一個分支裡（假設是 `develop`），你希望保持整個檔案的完整，並將大的提交分割成數個小的。
 
-假設你有:
+假設這裡有：
+  * 分支 `solution`，擁有原型方案，領先 `develop` 分支。
+  * 分支 `develop`，應用原型方案的一些內容。
 
-  * 分支 `solution`, 擁有原型方案， 領先 `develop` 分支。
-  * 分支 `develop`, 在這裡你應用原型方案的一些內容。
-
-我去可以透過把內容拿到你的分支裡，來解決這個問題:
+可以將內容放到那個分支中：
 
 ```sh
 (develop)$ git checkout solution -- file1.txt
-```
-
-這會把這個文件內容從分支 `solution` 拿到分支 `develop` 裡來:
-
-```sh
+(develop)$ git status
 # On branch develop
 # Your branch is up-to-date with 'origin/develop'.
 # Changes to be committed:
@@ -441,14 +427,14 @@ HEAD is now at a13b85e
 #        modified:   file1.txt
 ```
 
-然後, 正常提交。
+然後，普通地提交。
 
-Note: Spike solutions are made to analyze or solve the problem. These solutions are used for estimation and discarded once everyone gets clear visualization of the problem. ~ [Wikipedia](https://en.wikipedia.org/wiki/Extreme_programming_practices).
+註：Spike solutions are made to analyze or solve the problem. These solutions are used for estimation and discarded once everyone gets clear visualization of the problem. ~ [Wikipedia](https://en.wikipedia.org/wiki/Extreme_programming_practices).
 
 <a name="cherry-pick"></a>
-### 我把幾個提交(commit)提交到了同一個分支，而這些提交應該分布在不同的分支裡
+### 我把幾個提交（commit）提交到了同一個分支，而這些提交應該在不同的分支上
 
-假設你有一個`main`分支， 執行`git log`, 你看到你做過兩次提交:
+假設在 `main` 分支，執行 `git log` 的結果如下：
 
 ```sh
 (main)$ git log
@@ -472,73 +458,62 @@ Date:   Tue Jul 21 01:12:48 2014 -0400
     First commit
 ```
 
-讓我們用提交hash(commit hash)標記bug (`e3851e8` for #21, `5ea5173` for #14).
-
-首先, 我們把`main`分支重設到正確的提交(`a13b85e`):
+要把 `e3851e8` 和 `5ea5173` 分別移到新的分支，首先，要把 `main` 分支重設到正確的提交（`a13b85e`）：
 
 ```sh
 (main)$ git reset --hard a13b85e
 HEAD is now at a13b85e
 ```
 
-現在, 我們對 bug #21 創建一個新的分支:
+新增一個分支：
 
 ```sh
 (main)$ git checkout -b 21
-(21)$
 ```
 
-接著, 我們用 *cherry-pick* 把對bug #21的提交放入當前分支。 這意味著我們將應用(apply)這個提交(commit)，僅僅這一個提交(commit)，直接在HEAD上面。
+接著，然後挑揀（cherry-pick）提交到正確的分支上。這意味著我們將直接在 HEAD 上面應用（apply）這個提交。
 
 ```sh
 (21)$ git cherry-pick e3851e8
 ```
 
-這時候, 這裡可能會產生衝突， 參見[互動式 rebasing 章](#interactive-rebase) [**衝突節**](#merge-conflict) 解決衝突.
+這可能會造成衝突（conflict），參見〈[互動式變基](#interactive-rebase)・[衝突](#merge-conflict)〉來解決衝突。
 
-再者， 我們為bug #14 創建一個新的分支, 也基於`main`分支
+同樣地，為 `5ea5173` 也創建一個分支，並把提交挑揀到其上：
 
 ```sh
-(21)$ git checkout main
 (main)$ git checkout -b 14
-(14)$
-```
-
-最後, 為 bug #14 執行 `cherry-pick`:
-
-```sh
 (14)$ git cherry-pick 5ea5173
 ```
 
 <a name="delete-stale-local-branches"></a>
-### 我想刪除上遊(upstream)分支被刪除了的本地分支
-一旦你在github 上面合併(merge)了一個pull request, 你就可以刪除你fork裡被合併的分支。 如果你不準備繼續在這個分支裡工作, 刪除這個分支的本地拷貝會更乾淨，使你不會陷入工作分支和一堆陳舊分支的混亂之中。
+### 我想刪除上遊（upstream）刪除了的本地分支
+
+比方說，在 GitHub 中，合併（merge）了拉取請求（pull request）後，就可以刪除掉分支。如果不準備繼續在這個分支上工作，刪除這個分支會使工作拷貝（working copy）更乾淨。
 
 ```sh
 $ git fetch -p
 ```
 
 <a name='restore-a-deleted-branch'></a>
-### 我不小心刪除了我的分支
+### 我不小心刪除了分支
 
-如果你定期推送到遠程, 多數情況下應該是安全的，但有些時候還是可能刪除了還沒有推到遠程的分支。 讓我們先創建一個分支和一個新的文件:
+如果你定期推送（push）到遠端（remote），多數情況下應該是安全的，但有時可能刪除了還沒推送的分支。
+
+為了模擬這種情況，首先，創建一個分支和一個檔案：
 
 ```sh
 (main)$ git checkout -b my-branch
-(my-branch)$ git branch
 (my-branch)$ touch foo.txt
 (my-branch)$ ls
 README.md foo.txt
 ```
 
-添加文件並做一次提交
+加入變化並提交：
 
 ```sh
 (my-branch)$ git add .
 (my-branch)$ git commit -m 'foo.txt added'
-(my-branch)$ foo.txt added
- 1 files changed, 1 insertions(+)
- create mode 100644 foo.txt
 (my-branch)$ git log
 
 commit 4e3cd85a670ced7cc17a2b5d8d3d809ac88d5012
@@ -554,7 +529,7 @@ Date:   Tue Jul 29 13:14:46 2014 -0400
     Fixes #6: Force pushing after amending commits
 ```
 
-現在我們切回到主(main)分支，‘不小心的’刪除`my-branch`分支
+現在，切回 `main` 分支，並「不小心」刪除了 `my-branch`：
 
 ```sh
 (my-branch)$ git checkout main
@@ -566,7 +541,7 @@ Deleted branch my-branch (was 4e3cd85).
 oh noes, deleted my branch!
 ```
 
-在這時候你應該想起了`reflog`, 一個升級版的日誌，它儲存了倉庫(repo)裡面所有動作的歷史。
+你應該想起了 `reflog`，它記錄了所有動作。
 
 ```
 (main)$ git reflog
@@ -575,7 +550,7 @@ oh noes, deleted my branch!
 69204cd HEAD@{2}: checkout: moving from main to my-branch
 ```
 
-正如你所見，我們有一個來自刪除分支的提交hash(commit hash)，接下來看看是否能恢覆刪除了的分支。
+如你所見，其中包含了刪除分支的提交的雜湊值（hash）。可以藉此把提交找回來：
 
 ```sh
 (main)$ git checkout -b my-branch-help
@@ -586,39 +561,39 @@ HEAD is now at 4e3cd85 foo.txt added
 README.md foo.txt
 ```
 
-看! 我們把刪除的文件找回來了。 Git的 `reflog` 在rebasing出錯的時候也是同樣有用的。
+看！我們把遺失的檔案找回來了。Git 的 `reflog` 在變基（rebase）出錯時也同樣有用。
 
 <a name="i-want-to-delete-a-branch"></a>
 ### 我想刪除一個分支
 
-刪除一個遠程分支:
+刪除一個遠端分支：
 
 ```sh
 (main)$ git push origin --delete my-branch
 ```
 
-你也可以:
+或：
 
 ```sh
 (main)$ git push origin :my-branch
 ```
 
-刪除一個本地分支:
+刪除一個本地分支：
 
 ```sh
 (main)$ git branch -D my-branch
 ```
 
 <a name="i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on"></a>
-### 我想從別人正在工作的遠程分枝籤出(checkout)一個分支
+### 我想從別人正在工作的遠端分支簽出（checkout）一個分支
 
-首先, 從遠程拉取(fetch) 所有分支:
+首先，從遠端獲取（fetch）所有分支：
 
 ```sh
 (main)$ git fetch --all
 ```
 
-假設你想要從遠程的`daves`分枝籤出到本地的`daves`
+假設你想要從遠端的 `daves` 分支簽出到本地的 `daves`：
 
 ```sh
 (main)$ git checkout --track origin/daves
@@ -626,9 +601,9 @@ Branch daves set up to track remote branch daves from origin.
 Switched to a new branch 'daves'
 ```
 
-(`--track` 是 `git checkout -b [branch] [remotename]/[branch]` 的簡寫)
+（`--track` 是 `git checkout -b [branch] [remotename]/[branch]` 的縮寫。）
 
-這樣就得到了一個`daves`分支的本地拷貝, 任何推過(pushed)的更新，遠程都能看到.
+這樣就有 `daves` 的本地拷貝了。
 
 ## Rebasing 和合併(Merging)
 
