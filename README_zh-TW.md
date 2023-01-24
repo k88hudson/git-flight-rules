@@ -56,16 +56,16 @@
     - [我不小心刪除了分支](#%E6%88%91%E4%B8%8D%E5%B0%8F%E5%BF%83%E5%88%AA%E9%99%A4%E4%BA%86%E5%88%86%E6%94%AF)
     - [我想刪除一個分支](#%E6%88%91%E6%83%B3%E5%88%AA%E9%99%A4%E4%B8%80%E5%80%8B%E5%88%86%E6%94%AF)
     - [我想從別人正在工作的遠端分支簽出（checkout）一個分支](#%E6%88%91%E6%83%B3%E5%BE%9E%E5%88%A5%E4%BA%BA%E6%AD%A3%E5%9C%A8%E5%B7%A5%E4%BD%9C%E7%9A%84%E9%81%A0%E7%AB%AF%E5%88%86%E6%94%AF%E7%B0%BD%E5%87%BAcheckout%E4%B8%80%E5%80%8B%E5%88%86%E6%94%AF)
-  - [Rebasing 和合併(Merging)](#rebasing-%E5%92%8C%E5%90%88%E4%BD%B5merging)
-    - [我想撤銷rebase/merge](#%E6%88%91%E6%83%B3%E6%92%A4%E9%8A%B7rebasemerge)
-    - [我已經rebase過, 但是我不想強推(force push)](#%E6%88%91%E5%B7%B2%E7%B6%93rebase%E9%81%8E-%E4%BD%86%E6%98%AF%E6%88%91%E4%B8%8D%E6%83%B3%E5%BC%B7%E6%8E%A8force-push)
-    - [我需要組合(combine)幾個提交(commit)](#%E6%88%91%E9%9C%80%E8%A6%81%E7%B5%84%E5%90%88combine%E5%B9%BE%E5%80%8B%E6%8F%90%E4%BA%A4commit)
-      - [安全合併(merging)策略](#%E5%AE%89%E5%85%A8%E5%90%88%E4%BD%B5merging%E7%AD%96%E7%95%A5)
-      - [我需要將一個分支合併成一個提交(commit)](#%E6%88%91%E9%9C%80%E8%A6%81%E5%B0%87%E4%B8%80%E5%80%8B%E5%88%86%E6%94%AF%E5%90%88%E4%BD%B5%E6%88%90%E4%B8%80%E5%80%8B%E6%8F%90%E4%BA%A4commit)
-      - [我只想組合(combine)未推的提交(unpushed commit)](#%E6%88%91%E5%8F%AA%E6%83%B3%E7%B5%84%E5%90%88combine%E6%9C%AA%E6%8E%A8%E7%9A%84%E6%8F%90%E4%BA%A4unpushed-commit)
-    - [檢查是否分支上的所有提交(commit)都合併(merge)過了](#%E6%AA%A2%E6%9F%A5%E6%98%AF%E5%90%A6%E5%88%86%E6%94%AF%E4%B8%8A%E7%9A%84%E6%89%80%E6%9C%89%E6%8F%90%E4%BA%A4commit%E9%83%BD%E5%90%88%E4%BD%B5merge%E9%81%8E%E4%BA%86)
-    - [互動式rebase(interactive rebase)可能出現的問題](#%E4%BA%92%E5%8B%95%E5%BC%8Frebaseinteractive-rebase%E5%8F%AF%E8%83%BD%E5%87%BA%E7%8F%BE%E7%9A%84%E5%95%8F%E9%A1%8C)
-      - [這個rebase 編輯螢幕出現'noop'](#%E9%80%99%E5%80%8Brebase-%E7%B7%A8%E8%BC%AF%E8%9E%A2%E5%B9%95%E5%87%BA%E7%8F%BEnoop)
+  - [變基（rebase）與合併（merge）](#%E8%AE%8A%E5%9F%BArebase%E8%88%87%E5%90%88%E4%BD%B5merge)
+    - [撤銷變基或合併](#%E6%92%A4%E9%8A%B7%E8%AE%8A%E5%9F%BA%E6%88%96%E5%90%88%E4%BD%B5)
+    - [我做了變基，但是我不想強制推送（force push）](#%E6%88%91%E5%81%9A%E4%BA%86%E8%AE%8A%E5%9F%BA%E4%BD%86%E6%98%AF%E6%88%91%E4%B8%8D%E6%83%B3%E5%BC%B7%E5%88%B6%E6%8E%A8%E9%80%81force-push)
+    - [我需要組合（combine）幾個提交（commit）](#%E6%88%91%E9%9C%80%E8%A6%81%E7%B5%84%E5%90%88combine%E5%B9%BE%E5%80%8B%E6%8F%90%E4%BA%A4commit)
+      - [安全合併的策略](#%E5%AE%89%E5%85%A8%E5%90%88%E4%BD%B5%E7%9A%84%E7%AD%96%E7%95%A5)
+      - [我需要將一個分支合併成一個提交](#%E6%88%91%E9%9C%80%E8%A6%81%E5%B0%87%E4%B8%80%E5%80%8B%E5%88%86%E6%94%AF%E5%90%88%E4%BD%B5%E6%88%90%E4%B8%80%E5%80%8B%E6%8F%90%E4%BA%A4)
+      - [我只想組合（combine）未推送的提交](#%E6%88%91%E5%8F%AA%E6%83%B3%E7%B5%84%E5%90%88combine%E6%9C%AA%E6%8E%A8%E9%80%81%E7%9A%84%E6%8F%90%E4%BA%A4)
+    - [檢查分支上的所有提交是否都合併了](#%E6%AA%A2%E6%9F%A5%E5%88%86%E6%94%AF%E4%B8%8A%E7%9A%84%E6%89%80%E6%9C%89%E6%8F%90%E4%BA%A4%E6%98%AF%E5%90%A6%E9%83%BD%E5%90%88%E4%BD%B5%E4%BA%86)
+    - [互動式變基（interactive rebase）可能出現的問題](#%E4%BA%92%E5%8B%95%E5%BC%8F%E8%AE%8A%E5%9F%BAinteractive-rebase%E5%8F%AF%E8%83%BD%E5%87%BA%E7%8F%BE%E7%9A%84%E5%95%8F%E9%A1%8C)
+      - [編輯介面出現「noop」](#%E7%B7%A8%E8%BC%AF%E4%BB%8B%E9%9D%A2%E5%87%BA%E7%8F%BEnoop)
       - [有衝突的情況](#%E6%9C%89%E8%A1%9D%E7%AA%81%E7%9A%84%E6%83%85%E6%B3%81)
   - [Stash](#stash)
     - [暫存所有改動](#%E6%9A%AB%E5%AD%98%E6%89%80%E6%9C%89%E6%94%B9%E5%8B%95)
@@ -605,21 +605,23 @@ Switched to a new branch 'daves'
 
 這樣就有 `daves` 的本地拷貝了。
 
-## Rebasing 和合併(Merging)
+## 變基（rebase）與合併（merge）
 
 <a name="undo-rebase"></a>
-### 我想撤銷rebase/merge
+### 撤銷變基或合併
 
-你可以合併(merge)或rebase了一個錯誤的分支, 或者完成不了一個進行中的rebase/merge。 Git 在進行危險操作的時候會把原始的HEAD保存在一個叫ORIG_HEAD的變數裡, 所以要把分支恢覆到rebase/merge前的狀態是很容易的。
+你可能對一個錯誤的分支做了變基或合併，或者無法完成變基或合併。Git 在進行危險操作時，會將原本的 `HEAD` 存成 `ORIG_HEAD`，因此可以很容易的恢復到之前的狀態。
 
 ```sh
 (my-branch)$ git reset --hard ORIG_HEAD
 ```
 
 <a name="force-push-rebase"></a>
-### 我已經rebase過, 但是我不想強推(force push)
+### 我做了變基，但是我不想強制推送（force push）
 
-不幸的是，如果你想把這些變化(changes)反應到遠程分支上，你就必須得強推(force push)。 是因你快進(Fast forward)了提交，改變了Git歷史, 遠程分支不會接受變化(changes)，除非強推(force push)。這就是許多人使用 merge 工作流, 而不是 rebasing 工作流的主要原因之一， 開發者的強推(force push)會使大的團隊陷入麻煩。使用時需要注意，一種安全使用 rebase 的方法是，不要把你的變化(changes)反映到遠程分支上, 而是按下面的做:
+不幸的是，如果你想把變基的結果反映在遠端分支上，你必須強制推送（force push）。因為你改變了歷史，遠端不會接受使用快進（fast-forward），而必須強制推送。這就是許多人使用合併工作流程、而不是變基工作流程的主要原因之一，開發者的強制推送會使大團隊陷入麻煩。
+
+一種安全的方式是，不要推送到遠端：
 
 ```sh
 (main)$ git checkout my-branch
@@ -628,31 +630,33 @@ Switched to a new branch 'daves'
 (main)$ git merge --ff-only my-branch
 ```
 
-更多, 參見 [this SO thread](http://stackoverflow.com/questions/11058312/how-can-i-use-git-rebase-without-requiring-a-forced-push).
+參見[此 StackOverflow 討論串](http://stackoverflow.com/questions/11058312/how-can-i-use-git-rebase-without-requiring-a-forced-push)。
 
 <a name="interactive-rebase"></a>
-### 我需要組合(combine)幾個提交(commit)
+### 我需要組合（combine）幾個提交（commit）
 
-假設你的工作分支將會做對於 `main` 的pull-request。 一般情況下你不關心提交(commit)的時間戳，只想組合 *所有* 提交(commit) 到一個單獨的裡面, 然後重設(reset)重提交(recommit)。 確保主(main)分支是最新的和你的變化都已經提交了, 然後:
+假設你的工作分支將對 `main` 分支做拉取請求（pull request）。
+
+最簡單的情況下，不會關心提交的時間戳（timestamp），只想將所有的提交組合成一個單獨的提交，你可以重設（reset）和重新提交（recommit）。確保 `main` 是最新的，且你的變化都已經提交，然後：
 
 ```sh
 (my-branch)$ git reset --soft main
 (my-branch)$ git commit -am "New awesome feature"
 ```
 
-如果你想要更多的控制, 想要保留時間戳, 你需要做互動式rebase (interactive rebase):
+如果你想保留更多控制、保留時間戳，你需要互動式變基（interactive rebase）：
 
 ```sh
 (my-branch)$ git rebase -i main
 ```
 
-如果沒有相對的其它分支， 你將不得不相對自己的`HEAD` 進行 rebase。 例如：你想組合最近的兩次提交(commit), 你將相對於`HEAD~2` 進行rebase， 組合最近3次提交(commit), 相對於`HEAD~3`, 等等。
+如果沒有相對於其他分支，將不得不相對於 `HEAD` 變基。例如，要組合最近的兩次提交，需相對於 `HEAD~2` 變基，組合最近三次提交，則相對於 `HEAD~3`，以此類推。
 
 ```sh
 (main)$ git rebase -i HEAD~2
 ```
 
-在你執行了互動式 rebase的命令(interactive rebase command)後, 你將在你的編輯器裡看到類似下面的內容:
+在執行了互動式變基的命令（interactive rebase command）後，你會在編輯器裡看到類似以下的內容：
 
 ```vim
 pick a9c8a1d Some refactoring
@@ -679,11 +683,9 @@ pick e3851e8 another fix
 # Note that empty commits are commented out
 ```
 
-所有以 `#` 開頭的行都是注釋, 不會影響 rebase.
+（以 `#` 開頭的行是註解，不影響變基。）
 
-然後，你可以用任何上面命令列表的命令替換 `pick`, 你也可以透過刪除對應的行來刪除一個提交(commit)。
-
-例如, 如果你想 **單獨保留最舊(first)的提交(commit),組合所有剩下的到第二個裡面**, 你就應該編輯第二個提交(commit)後面的每個提交(commit) 前的單字為 `f`:
+你可以以註解中提到的命令替換 `pick`，也可以刪除一行來刪除對應的提交。例如，如果要保留最舊（first）的提交，並將其他組合成第二個提交，應該將第二個提交之後所有提交的命令改為 `f`：
 
 ```vim
 pick a9c8a1d Some refactoring
@@ -692,7 +694,7 @@ f b729ad5 fixup
 f e3851e8 another fix
 ```
 
-如果你想組合這些提交(commit) **並重命名這個提交(commit)**, 你應該在第二個提交(commit)旁邊添加一個`r`，或者更簡單的用`s` 替代 `f`:
+如果要組合並重新命名這個提交，應該在第二個提交加上 `r`，或使用 `s` 取代 `f`：
 
 ```vim
 pick a9c8a1d Some refactoring
@@ -701,7 +703,7 @@ s b729ad5 fixup
 s e3851e8 another fix
 ```
 
-你可以在接下來彈出的文本提示框裡重命名提交(commit)。
+你可以在接著彈出的文字提示中重新命名那個提交：
 
 ```vim
 Newer, awesomer features
@@ -714,75 +716,77 @@ Newer, awesomer features
 # Changes to be committed:
 #	modified:   README.md
 #
-
 ```
 
-如果成功了, 你應該看到類似下面的內容:
+應該會看到如下的成功訊息：
 
 ```sh
 (main)$ Successfully rebased and updated refs/heads/main.
 ```
 
-#### 安全合併(merging)策略
-`--no-commit` 執行合併(merge)但不自動提交, 給用戶在做提交前檢查和修改的機會。 `no-ff` 會為特性分支(feature branch)的存在過留下證據, 保持項目歷史一致。
+#### 安全合併的策略
+
+`--no-commit` 選項會合併但不會自動提交，給使用者在提交前檢查和修改的機會。`--no-ff` 會留下功能分支（feature branch）存在過的證據，保持歷史一致。
 
 ```sh
 (main)$ git merge --no-ff --no-commit my-branch
 ```
 
-#### 我需要將一個分支合併成一個提交(commit)
+#### 我需要將一個分支合併成一個提交
 
 ```sh
 (main)$ git merge --squash my-branch
 ```
 
 <a name="rebase-unpushed-commits"></a>
-#### 我只想組合(combine)未推的提交(unpushed commit)
+#### 我只想組合（combine）未推送的提交
 
-有時候，在將數據推向上遊之前，你有幾個正在進行的工作提交(commit)。這時候不希望把已經推(push)過的組合進來，因為其他人可能已經有提交(commit)引用它們了。
+假設在推送到上遊前，你有幾個正在進行的工作提交，這時候不希望把已推送的提交也組合進來，因為其他人可能已經有提交引用它們了。
 
 ```sh
 (main)$ git rebase -i @{u}
 ```
 
-這會產生一次互動式的rebase(interactive rebase), 只會列出沒有推(push)的提交(commit)， 在這個列表時進行reorder/fix/squash 都是安全的。
+這會進行一次互動式變基（interactive rebase），只會列出還沒推送的提交。對這些提交重新排序或做 squash、fixup 都是安全的。
 
 <a name="check-if-all-commits-on-a-branch-are-merged"></a>
-### 檢查是否分支上的所有提交(commit)都合併(merge)過了
+### 檢查分支上的所有提交是否都合併了
 
-檢查一個分支上的所有提交(commit)是否都已經合併(merge)到了其它分支, 你應該在這些分支的head(或任何 commits)之間做一次diff:
+要檢查一個分支上的所有提交是否都已經合併進了其它分支，應該在這些分支的 `HEAD`（或任何提交）之間檢查差異：
 
 ```sh
 (main)$ git log --graph --left-right --cherry-pick --oneline HEAD...feature/120-on-scroll
 ```
 
-這會告訴你在一個分支裡有而另一個分支沒有的所有提交(commit), 和分支之間不共享的提交(commit)的列表。 另一個做法可以是:
+這會顯示一個分支有而另一個分支沒有的提交，和分支之間不共享的提交的列表。
+
+另一個方法是：
 
 ```sh
 (main)$ git log main ^feature/120-on-scroll --no-merges
 ```
 
-### 互動式rebase(interactive rebase)可能出現的問題
+### 互動式變基（interactive rebase）可能出現的問題
 
 <a name="noop"></a>
-#### 這個rebase 編輯螢幕出現'noop'
+#### 編輯介面出現「noop」
 
-如果你看到的是這樣:
+如果你看到：
+
 ```
 noop
 ```
 
-這意味著你rebase的分支和當前分支在同一個提交(commit)上, 或者 *領先(ahead)* 當前分支。 你可以嘗試:
-
-* 檢查確保主(main)分支沒有問題
-* rebase  `HEAD~2` 或者更早
+表示變基的分支和目前分支在同一個提交，或領先（ahead）目前分支。你可以嘗試：
+  * 確保 `main` 分支沒有問題
+  * 對 `HEAD~2` 或更早的提交變基
 
 <a name="merge-conflict"></a>
 #### 有衝突的情況
 
-如果你不能成功的完成rebase, 你可能必須要解決衝突。
+如果不能成功的完成變基，你可能必須要解決衝突（resolve conflict）。
 
-首先執行 `git status` 找出哪些文件有衝突:
+首先用 `git status` 檢查哪些檔案有衝突：
 
 ```sh
 (my-branch)$ git status
@@ -794,7 +798,7 @@ Changes not staged for commit:
 	modified:   README.md
 ```
 
-在這個例子裡面, `README.md` 有衝突。 打開這個文件找到類似下面的內容:
+在這個例子中，`README.md` 有衝突。打開衝突的檔案會看到類似下面的內容：
 
 ```vim
    <<<<<<< HEAD
@@ -804,24 +808,24 @@ Changes not staged for commit:
    >>>>>>> new-commit
 ```
 
-你需要解決新提交的代碼(範例裡, 從中間`==`線到`new-commit`的地方)與`HEAD` 之間不一樣的地方.
+你必須解決新提交的內容和 `HEAD` 中的內容的衝突。
 
-有時候這些合並非常複雜，你應該使用可視化的差異編輯器(visual diff editor):
+有時候衝突非常複雜，你可以使用可視化差異編輯器（visual diff editor）：
 
 ```sh
 (main*)$ git mergetool -t opendiff
 ```
 
-在你解決完所有衝突和測試過後, `git add` 變化了的(changed)文件, 然後用`git rebase --continue` 繼續rebase。
+解決所有衝突後，加入變化了的檔案，然後用 `git rebase --continue` 繼續變基：
 
 ```sh
 (my-branch)$ git add README.md
 (my-branch)$ git rebase --continue
 ```
 
-如果在解決完所有的衝突過後，得到了與提交前一樣的結果, 可以執行`git rebase --skip`。
+如果在解決所有衝突過後，得到了與提交前一樣的結果，可以使用 `git rebase --skip`。
 
-任何時候你想結束整個rebase 過程，回來rebase前的分支狀態, 你可以做:
+如果想放棄變基，回到之前的狀態，可以在任何時候用：
 
 ```sh
 (my-branch)$ git rebase --abort
