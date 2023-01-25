@@ -67,24 +67,24 @@
     - [互動式變基（interactive rebase）可能出現的問題](#%E4%BA%92%E5%8B%95%E5%BC%8F%E8%AE%8A%E5%9F%BAinteractive-rebase%E5%8F%AF%E8%83%BD%E5%87%BA%E7%8F%BE%E7%9A%84%E5%95%8F%E9%A1%8C)
       - [編輯介面出現「noop」](#%E7%B7%A8%E8%BC%AF%E4%BB%8B%E9%9D%A2%E5%87%BA%E7%8F%BEnoop)
       - [有衝突的情況](#%E6%9C%89%E8%A1%9D%E7%AA%81%E7%9A%84%E6%83%85%E6%B3%81)
-  - [Stash](#stash)
-    - [暫存所有改動](#%E6%9A%AB%E5%AD%98%E6%89%80%E6%9C%89%E6%94%B9%E5%8B%95)
-    - [暫存指定文件](#%E6%9A%AB%E5%AD%98%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6)
-    - [暫存時記錄消息](#%E6%9A%AB%E5%AD%98%E6%99%82%E8%A8%98%E9%8C%84%E6%B6%88%E6%81%AF)
-    - [使用某個指定暫存](#%E4%BD%BF%E7%94%A8%E6%9F%90%E5%80%8B%E6%8C%87%E5%AE%9A%E6%9A%AB%E5%AD%98)
-    - [暫存時保留未暫存的內容](#%E6%9A%AB%E5%AD%98%E6%99%82%E4%BF%9D%E7%95%99%E6%9C%AA%E6%9A%AB%E5%AD%98%E7%9A%84%E5%85%A7%E5%AE%B9)
-  - [雜項(Miscellaneous Objects)](#%E9%9B%9C%E9%A0%85miscellaneous-objects)
+  - [儲藏（stash）](#%E5%84%B2%E8%97%8Fstash)
+    - [儲藏所有變化](#%E5%84%B2%E8%97%8F%E6%89%80%E6%9C%89%E8%AE%8A%E5%8C%96)
+    - [儲藏指定檔案](#%E5%84%B2%E8%97%8F%E6%8C%87%E5%AE%9A%E6%AA%94%E6%A1%88)
+    - [儲藏時附加訊息](#%E5%84%B2%E8%97%8F%E6%99%82%E9%99%84%E5%8A%A0%E8%A8%8A%E6%81%AF)
+    - [應用（apply）指定儲藏](#%E6%87%89%E7%94%A8apply%E6%8C%87%E5%AE%9A%E5%84%B2%E8%97%8F)
+    - [儲藏時保留未暫存的內容](#%E5%84%B2%E8%97%8F%E6%99%82%E4%BF%9D%E7%95%99%E6%9C%AA%E6%9A%AB%E5%AD%98%E7%9A%84%E5%85%A7%E5%AE%B9)
+  - [雜項](#%E9%9B%9C%E9%A0%85)
     - [複製所有子模組](#%E8%A4%87%E8%A3%BD%E6%89%80%E6%9C%89%E5%AD%90%E6%A8%A1%E7%B5%84)
-    - [刪除標籤(tag)](#%E5%88%AA%E9%99%A4%E6%A8%99%E7%B1%A4tag)
-    - [恢覆已刪除標籤(tag)](#%E6%81%A2%E8%A6%86%E5%B7%B2%E5%88%AA%E9%99%A4%E6%A8%99%E7%B1%A4tag)
-    - [已刪除補丁(patch)](#%E5%B7%B2%E5%88%AA%E9%99%A4%E8%A3%9C%E4%B8%81patch)
-  - [跟蹤文件(Tracking Files)](#%E8%B7%9F%E8%B9%A4%E6%96%87%E4%BB%B6tracking-files)
+    - [刪除標籤（tag）](#%E5%88%AA%E9%99%A4%E6%A8%99%E7%B1%A4tag)
+    - [恢復已刪除標籤（tag）](#%E6%81%A2%E5%BE%A9%E5%B7%B2%E5%88%AA%E9%99%A4%E6%A8%99%E7%B1%A4tag)
+    - [已刪除補丁（patch）](#%E5%B7%B2%E5%88%AA%E9%99%A4%E8%A3%9C%E4%B8%81patch)
+  - [追蹤檔案（tracking files）](#%E8%BF%BD%E8%B9%A4%E6%AA%94%E6%A1%88tracking-files)
     - [我只想改變一個檔案名字的大小寫，而不修改內容](#%E6%88%91%E5%8F%AA%E6%83%B3%E6%94%B9%E8%AE%8A%E4%B8%80%E5%80%8B%E6%AA%94%E6%A1%88%E5%90%8D%E5%AD%97%E7%9A%84%E5%A4%A7%E5%B0%8F%E5%AF%AB%E8%80%8C%E4%B8%8D%E4%BF%AE%E6%94%B9%E5%85%A7%E5%AE%B9)
-    - [我想從Git刪除一個文件，但保留該文件](#%E6%88%91%E6%83%B3%E5%BE%9Egit%E5%88%AA%E9%99%A4%E4%B8%80%E5%80%8B%E6%96%87%E4%BB%B6%E4%BD%86%E4%BF%9D%E7%95%99%E8%A9%B2%E6%96%87%E4%BB%B6)
-  - [配置(Configuration)](#%E9%85%8D%E7%BD%AEconfiguration)
-    - [我想給一些Git命令添加別名(alias)](#%E6%88%91%E6%83%B3%E7%B5%A6%E4%B8%80%E4%BA%9Bgit%E5%91%BD%E4%BB%A4%E6%B7%BB%E5%8A%A0%E5%88%A5%E5%90%8Dalias)
-    - [我想快取一個倉庫(repository)的使用者名稱和密碼](#%E6%88%91%E6%83%B3%E5%BF%AB%E5%8F%96%E4%B8%80%E5%80%8B%E5%80%89%E5%BA%ABrepository%E7%9A%84%E4%BD%BF%E7%94%A8%E8%80%85%E5%90%8D%E7%A8%B1%E5%92%8C%E5%AF%86%E7%A2%BC)
-  - [我不知道我做錯了些什麼](#%E6%88%91%E4%B8%8D%E7%9F%A5%E9%81%93%E6%88%91%E5%81%9A%E9%8C%AF%E4%BA%86%E4%BA%9B%E4%BB%80%E9%BA%BC)
+    - [我想從 Git 刪除一個檔案，但保留該檔案](#%E6%88%91%E6%83%B3%E5%BE%9E-git-%E5%88%AA%E9%99%A4%E4%B8%80%E5%80%8B%E6%AA%94%E6%A1%88%E4%BD%86%E4%BF%9D%E7%95%99%E8%A9%B2%E6%AA%94%E6%A1%88)
+  - [組態（configuration）](#%E7%B5%84%E6%85%8Bconfiguration)
+    - [我想為 Git 命令設定別名（alias）](#%E6%88%91%E6%83%B3%E7%82%BA-git-%E5%91%BD%E4%BB%A4%E8%A8%AD%E5%AE%9A%E5%88%A5%E5%90%8Dalias)
+    - [我想快取一個倉庫（repository）的使用者名稱和密碼](#%E6%88%91%E6%83%B3%E5%BF%AB%E5%8F%96%E4%B8%80%E5%80%8B%E5%80%89%E5%BA%ABrepository%E7%9A%84%E4%BD%BF%E7%94%A8%E8%80%85%E5%90%8D%E7%A8%B1%E5%92%8C%E5%AF%86%E7%A2%BC)
+  - [我不知道我做錯了什麼](#%E6%88%91%E4%B8%8D%E7%9F%A5%E9%81%93%E6%88%91%E5%81%9A%E9%8C%AF%E4%BA%86%E4%BB%80%E9%BA%BC)
 - [其它資源(Other Resources)](#%E5%85%B6%E5%AE%83%E8%B3%87%E6%BA%90other-resources)
   - [書(Books)](#%E6%9B%B8books)
   - [教學(Tutorials)](#%E6%95%99%E5%AD%B8tutorials)
@@ -832,75 +832,76 @@ Changes not staged for commit:
 ```
 
 <a name="stashing"></a>
-## Stash
+## 儲藏（stash）
 
-### 暫存所有改動
+### 儲藏所有變化
 
-暫存你工作目錄下的所有改動
+儲藏工作目錄下所有變化：
 
 ```sh
 $ git stash
 ```
 
-你可以使用`-u`來排除一些文件
+可以使用 `-u` 選項排除一些檔案：
 
 ```sh
 $ git stash -u
 ```
 
-### 暫存指定文件
+### 儲藏指定檔案
 
-假設你只想暫存某一個文件
+儲藏一個檔案：
 
 ```sh
 $ git stash push working-directory-path/filename.ext
 ```
 
-假設你想暫存多個文件
+儲藏多個檔案：
 
 ```sh
 $ git stash push working-directory-path/filename1.ext working-directory-path/filename2.ext
 ```
 
 <a name="stash-msg"></a>
-### 暫存時記錄消息
-
-這樣你可以在`list`時看到它
+### 儲藏時附加訊息
 
 ```sh
 $ git stash save <message>
 ```
+
 或
+
 ```sh
 $ git stash push -m <message>
 ```
-<a name="stash-apply-specific"></a>
-### 使用某個指定暫存
 
-首先你可以查看你的`stash`記錄
+如此可以在使用 `stash list` 時看到訊息。
+
+<a name="stash-apply-specific"></a>
+### 應用（apply）指定儲藏
+
+可以先列出擁有的儲藏：
 
 ```sh
 $ git stash list
 ```
 
-然後你可以`apply`某個`stash`
+然後，將以下命令的 `n` 替換成儲藏在堆疊中的位置（最上方為 `0`），應用指定儲藏：
 
 ```sh
 $ git stash apply "stash@{n}"
 ```
 
-此處， 'n'是`stash`在棧中的位置，最上層的`stash`會是0
-
-除此之外，也可以使用時間標記(假如你能記得的話)。
+除此之外，也可以使用時間標記（假如你能記住的話），如：
 
 ```sh
 $ git stash apply "stash@{2.hours.ago}"
 ```
 
 <a href="stage-and-keep-unstaged"></a>
-### 暫存時保留未暫存的內容
+### 儲藏時保留未暫存的內容
 
-你需要手動create一個`stash commit`， 然後使用`git stash store`。
+你需要先手動創建一個儲藏提交，然後使用 `git stash store`。
 
 ```sh
 $ git stash create
@@ -908,7 +909,7 @@ $ git stash store -m "commit-message" CREATED_SHA1
 ```
 
 <a name="miscellaneous-objects"></a>
-## 雜項(Miscellaneous Objects)
+## 雜項
 
 <a name="clone-submodules"></a>
 ### 複製所有子模組
@@ -917,14 +918,14 @@ $ git stash store -m "commit-message" CREATED_SHA1
 $ git clone --recursive git://github.com/foo/bar.git
 ```
 
-如果已經複製了:
+如果已經複製了：
 
 ```sh
 $ git submodule update --init --recursive
 ```
 
 <a name="delete-tag"></a>
-### 刪除標籤(tag)
+### 刪除標籤（tag）
 
 ```sh
 $ git tag -d <tag_name>
@@ -932,30 +933,28 @@ $ git push <remote> :refs/tags/<tag_name>
 ```
 
 <a name="recover-tag"></a>
-### 恢覆已刪除標籤(tag)
+### 恢復已刪除標籤（tag）
 
-如果你想恢覆一個已刪除標籤(tag), 可以按照下面的步驟: 首先, 需要找到無法訪問的標籤(unreachable tag):
+如果想恢復一個已刪除標籤，首先，找到無法觸及的標籤（unreachable tag）：
 
 ```sh
 $ git fsck --unreachable | grep tag
 ```
 
-記下這個標籤(tag)的hash，然後用Git的 [update-ref](http://git-scm.com/docs/git-update-ref):
+記下這個標籤的雜湊值，然後用 Git 的 [`update-ref`](http://git-scm.com/docs/git-update-ref)：
 
 ```sh
 $ git update-ref refs/tags/<tag_name> <hash>
 ```
 
-這時你的標籤(tag)應該已經恢覆了。
-
 <a name="deleted-patch"></a>
-### 已刪除補丁(patch)
+### 已刪除補丁（patch）
 
-如果某人在 GitHub 上給你發了一個pull request, 但是然後他刪除了他自己的原始 fork, 你將沒辦法複製他們的提交(commit)或使用 `git am`。在這種情況下, 最好手動的查看他們的提交(commit)，並把它們拷貝到一個本地新分支，然後做提交。
+如果有人在 GitHub 上向你提出了拉取請求（pull request），但他接著刪除了他的分叉（fork），你無法複製他的提交或使用 `git am`。在這種情況下，最好手動的查看他們的提交，把它們拷貝到一個本地新分支，然後提交。
 
-做完提交後, 再修改作者，參見[變更作者](#commit-wrong-author)。 然後, 應用變化, 再發起一個新的pull request。
+最後，再修改作者，參見[〈變更作者〉](#commit-wrong-author)。然後，應用變化，再發起一個新的拉取請求。
 
-## 跟蹤文件(Tracking Files)
+## 追蹤檔案（tracking files）
 
 <a href="i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file"></a>
 ### 我只想改變一個檔案名字的大小寫，而不修改內容
@@ -965,18 +964,18 @@ $ git update-ref refs/tags/<tag_name> <hash>
 ```
 
 <a href="remove-from-git"></a>
-### 我想從Git刪除一個文件，但保留該文件
+### 我想從 Git 刪除一個檔案，但保留該檔案
 
 ```sh
 (main)$ git rm --cached log.txt
 ```
 
-## 配置(Configuration)
+## 組態（configuration）
 
 <a name="adding-command-aliases"></a>
-### 我想給一些Git命令添加別名(alias)
+### 我想為 Git 命令設定別名（alias）
 
-在 OS X 和 Linux 下, 你的 Git的配置文件儲存在 ```~/.gitconfig```。我在```[alias]``` 部分添加了一些快捷別名(和一些我容易拼寫錯誤的)，如下:
+在 OS X 和 Linux 下，Git 的組態檔案儲存在 `~/.gitconfig`。可以在 `[alias]` 部分設定一些快捷別名（以及容易拼錯的），如：
 
 ```vim
 [alias]
@@ -1002,26 +1001,26 @@ $ git update-ref refs/tags/<tag_name> <hash>
 ```
 
 <a name="credential-helper"></a>
-### 我想快取一個倉庫(repository)的使用者名稱和密碼
+### 我想快取一個倉庫（repository）的使用者名稱和密碼
 
-你可能有一個倉庫需要授權，這時你可以快取使用者名稱和密碼，而不用每次推/拉(push/pull)的時候都輸入，Credential helper能幫你。
+假設有一個倉庫需要授權，這時你可以快取使用者名稱和密碼，而不用每次推送和拉取時都輸入一次：
 
 ```sh
 $ git config --global credential.helper cache
-# Set git to use the credential memory cache
+# Set Git to use the credential memory cache.
 ```
 
 ```sh
 $ git config --global credential.helper 'cache --timeout=3600'
-# Set the cache to timeout after 1 hour (setting is in seconds)
+# Set the cache to timeout after 1 hour (setting is in seconds).
 ```
 
 <a href="#ive-no-idea-what-i-did-wrong"></a>
-## 我不知道我做錯了些什麼
+## 我不知道我做錯了什麼
 
-你把事情搞砸了：你 `重設(reset)` 了一些東西, 或者你合併了錯誤的分支, 亦或你強推了後找不到你自己的提交(commit)了。有些時候, 你一直都做得很好, 但你想回到以前的某個狀態。
+如果你把事情搞砸了：你錯誤地重設、合併，或強制推送後找不到自己的提交了，抑或你做得很好，但你想回到以前的某個狀態。
 
-這就是 `git reflog` 的目的， `reflog` 記錄對分支頂端(the tip of a branch)的任何改變, 即使那個頂端沒有被任何分支或標籤引用。基本上, 每次HEAD的改變, 一條新的紀錄就會增加到`reflog`。遺憾的是，這只對本地分支起作用，且它只跟蹤動作 (例如，不會跟蹤一個沒有被記錄的文件的任何改變)。
+這就是 `git reflog` 的目的，`reflog` 記錄對分支頂端（the tip of a branch）的任何改變，即使沒有任何分支或標籤參考那個頂端。基本上，只要 `HEAD` 改變，`reflog` 就會記錄下來。遺憾的是，這只對本地分支起作用，且它只追蹤動作（例如，不會追蹤一個沒被記錄的檔案的任何改變）。
 
 ```sh
 (main)$ git reflog
@@ -1030,17 +1029,15 @@ $ git config --global credential.helper 'cache --timeout=3600'
 c10f740 HEAD@{2}: checkout: moving from main to 2.2
 ```
 
-上面的reflog展示了從main分枝籤出(checkout)到2.2 分支，然後再簽回。 那裡，還有一個硬重設(hard reset)到一個較舊的提交。最新的動作出現在最上面以 `HEAD@{0}`標識.
+上面的 `reflog` 顯示了曾經從 `main` 分支簽出到 `2.2` 分支，然後再簽出回去，還有硬重設到一個較舊的提交。最新的動作出現在最上面，並以 `HEAD@{0}` 標示。
 
-如果事實證明你不小心回移(move back)了提交(commit), reflog 會包含你不小心回移前main上指向的提交(0254ea7)。
+如果你不小心回移（move back）了提交，`reflog` 會包含回移前 `main` 參考的提交（在這個例子中是 `0254ea7`）。只要硬重設就能恢復到之前的狀態，這提供了歷史不小心被變更時的安全網。
 
 ```sh
 $ git reset --hard 0254ea7
 ```
 
-然後使用git reset就可以把main改回到之前的commit，這提供了一個在歷史被意外更改情況下的安全網。
-
-([摘自](https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog)).
+摘自[這裡](https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog)。
 
 # 其它資源(Other Resources)
 
