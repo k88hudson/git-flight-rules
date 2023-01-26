@@ -85,11 +85,11 @@
     - [我想為 Git 命令設定別名（alias）](#%E6%88%91%E6%83%B3%E7%82%BA-git-%E5%91%BD%E4%BB%A4%E8%A8%AD%E5%AE%9A%E5%88%A5%E5%90%8Dalias)
     - [我想快取一個倉庫（repository）的使用者名稱和密碼](#%E6%88%91%E6%83%B3%E5%BF%AB%E5%8F%96%E4%B8%80%E5%80%8B%E5%80%89%E5%BA%ABrepository%E7%9A%84%E4%BD%BF%E7%94%A8%E8%80%85%E5%90%8D%E7%A8%B1%E5%92%8C%E5%AF%86%E7%A2%BC)
   - [我不知道我做錯了什麼](#%E6%88%91%E4%B8%8D%E7%9F%A5%E9%81%93%E6%88%91%E5%81%9A%E9%8C%AF%E4%BA%86%E4%BB%80%E9%BA%BC)
-- [其它資源(Other Resources)](#%E5%85%B6%E5%AE%83%E8%B3%87%E6%BA%90other-resources)
-  - [書(Books)](#%E6%9B%B8books)
-  - [教學(Tutorials)](#%E6%95%99%E5%AD%B8tutorials)
-  - [腳本和工具(Scripts and Tools)](#%E8%85%B3%E6%9C%AC%E5%92%8C%E5%B7%A5%E5%85%B7scripts-and-tools)
-  - [GUI用戶端(GUI Clients)](#gui%E7%94%A8%E6%88%B6%E7%AB%AFgui-clients)
+- [其他資源](#%E5%85%B6%E4%BB%96%E8%B3%87%E6%BA%90)
+  - [書籍](#%E6%9B%B8%E7%B1%8D)
+  - [教學](#%E6%95%99%E5%AD%B8)
+  - [腳本和工具](#%E8%85%B3%E6%9C%AC%E5%92%8C%E5%B7%A5%E5%85%B7)
+  - [GUI 客戶端](#gui-%E5%AE%A2%E6%88%B6%E7%AB%AF)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -1039,33 +1039,34 @@ $ git reset --hard 0254ea7
 
 摘自[這裡](https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog)。
 
-# 其它資源(Other Resources)
+# 其他資源
 
-## 書(Books)
+## 書籍
 
-* [Pro Git](https://git-scm.com/book/en/v2) - Scott Chacon's excellent git book
-* [Git Internals](https://github.com/pluralsight/git-internals-pdf) - Scott Chacon's other excellent git book
+* [Pro Git](https://git-scm.com/book/en/v2)——Scott Chacon 的傑出書籍
+* [Git Internals](https://github.com/pluralsight/git-internals-pdf)——Scott Chacon 的另一本傑出書籍
 
-## 教學(Tutorials)
+## 教學
 
-* [Learn Git branching](https://learngitbranching.js.org/) 一個基於網頁的互動式 branching/merging/rebasing 教學
+* [Learn Git branching](https://learngitbranching.js.org/)——一個基於網頁的互動式分支、合併、變基教學
 * [Getting solid at Git rebase vs. merge](https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa)
-* [git-workflow](https://github.com/asmeurer/git-workflow) - [Aaron Meurer](https://github.com/asmeurer)的怎麼使用Git為開源倉庫貢獻
-* [GitHub as a workflow](http://hugogiraudel.com/2015/08/13/github-as-a-workflow/) - 使用GitHub做為工作流的趣事, 尤其是空PRs
+* [git-workflow](https://github.com/asmeurer/git-workflow)——[Aaron Meurer](https://github.com/asmeurer) 的怎麼使用 Git 開源貢獻
+* [GitHub as a workflow](http://hugogiraudel.com/2015/08/13/github-as-a-workflow/)——GitHub 作為工作流程的趣事，特別是空拉取請求
 
-## 腳本和工具(Scripts and Tools)
+## 腳本和工具
 
-* [firstaidgit.io](http://firstaidgit.io/) 一個可搜索的最常被問到的Git的問題
-* [git-extra-commands](https://github.com/unixorn/git-extra-commands) - 一堆有用的額外的Git腳本
-* [git-extras](https://github.com/tj/git-extras) - GIT 工具集 -- repo summary, repl, changelog population, author commit percentages and more
-* [git-fire](https://github.com/qw3rtman/git-fire) - git-fire 是一個 Git 插件，用於幫助在緊急情況下添加所有當前文件, 做提交(committing), 和推(push)到一個新分支(阻止合併衝突)。
-* [git-tips](https://github.com/git-tips/tips) - Git小提示
-* [git-town](https://github.com/Originate/git-town) - 通用，高級Git工作流支持！ http://www.git-town.com
+* [firstaidgit.io](http://firstaidgit.io/)——一個可搜尋的 Git 常見問題集
+* [git-extra-commands](https://github.com/unixorn/git-extra-commands)——一堆有用的額外 Git 腳本
+* [git-extras](https://github.com/tj/git-extras)——Git 工具集，倉庫概要、repl、變更記錄、提交百分比和更多
+* [git-fire](https://github.com/qw3rtman/git-fire)——git-fire 是一個 Git 插件，用於在緊急情況下幫助加入目前所有檔案、提交、推送到一個新分支（防止合併衝突）。
+* [git-tips](https://github.com/git-tips/tips)——Git 小撇步
+* [git-town](https://github.com/Originate/git-town)——通用、高級 Git 工作流程支援！ http://www.git-town.com
 
-## GUI用戶端(GUI Clients)
-* [GitKraken](https://www.gitkraken.com/) - 豪華的Git用戶端 Windows, Mac & Linux
-* [git-cola](https://git-cola.github.io/) - 另外一個Git用戶端 Windows & OS X
-* [GitUp](https://github.com/git-up/GitUp) - 一個新的Git用戶端，在處理Git的複雜性上有自己的特點
-* [gitx-dev](https://rowanj.github.io/gitx/) - 圖形化的Git用戶端 OS X
-* [Source Tree](https://www.sourcetreeapp.com/) - 免費的圖形化Git用戶端 Windows & OS X
-* [Tower](http://www.git-tower.com/) - 圖形化Git用戶端 OS X(付費)
+## GUI 客戶端
+
+* [GitKraken](https://www.gitkraken.com/)——豪華的 Git 客戶端，適用於 Windows、Mac、Linux
+* [git-cola](https://git-cola.github.io/)——又一個 Git 客戶端，適用於 Windows、OS X
+* [GitUp](https://github.com/git-up/GitUp)——一個新的 Git 客戶端，在解決 Git 的複雜問題上有自己的特點
+* [gitx-dev](https://rowanj.github.io/gitx/)——又一個圖形化的 Git 客戶端，適用於 OS X
+* [Source Tree](https://www.sourcetreeapp.com/)——簡單而強大的免費 Git GUI 客戶端，適用於 Windows、OS X
+* [Tower](http://www.git-tower.com/)——圖形化 Git 客戶端，適用於 OS X（付費）
