@@ -369,7 +369,7 @@ $ git push --force-with-lease [remote] [branch]
 まだコミットをプッシュしていない場合は、次のようにして（ステージされた編集はそのままで）直前のコミットをする前の状態に Git をリセットできます。
 
 ```
-(my-branch*)$ git reset --soft HEAD@{1}
+(my-branch)$ git reset --soft HEAD^
 ```
 
 これはプッシュしていない場合にのみ有効な方法です。

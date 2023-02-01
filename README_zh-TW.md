@@ -163,8 +163,7 @@ $ git push -f [remote] [branch]
 如果你還沒有推送到遠端，重設（reset）到你最後一次提交前的狀態就可以了（同時保存暫存的變化）：
 
 ```
-(my-branch*)$ git reset --soft HEAD@{1}
-
+(my-branch)$ git reset --soft HEAD^
 ```
 
 這只能在推送之前使用。如果你已經推送了，唯一安全的做法是 `git revert SHAofBadCommit`，那會創建一個新的提交（commit）來撤消前一個提交的所有變化（changes）；或者，如果這個分支是 rebase-safe 的（例如：其他開發者不會從這個分支拉取），只需要使用 `git push -f`；參見[上一節](#deleteremove-last-pushed-commit)。

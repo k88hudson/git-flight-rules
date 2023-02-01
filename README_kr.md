@@ -237,7 +237,7 @@ $ git push --force-with-lease [remote] [branch]
 아직 푸시 안했으면, 리셋으로 마지막 커밋 전 상태로 돌아가요. (변경점은 스테이지에 두고서)
 
 ```
-(my-branch*)$ git reset --soft HEAD@{1}
+(my-branch)$ git reset --soft HEAD^
 ```
 
 이 방법은 푸시를 안 했을 때만 동작해요. 푸시를 했으면, 안전한 방법은 `git revert SHAofBadCommit` 한가지 밖이에요.

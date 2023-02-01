@@ -201,8 +201,7 @@ $ git push --force-with-lease [remote] [branch]
 Si no has subido tus cambios, para resetear Git al estado en el que estaba antes de realizar tu último commit (mientras mantengas tus cambios en staging):
 
 ```
-(my-branch*)$ git reset --soft HEAD@{1}
-
+(my-branch)$ git reset --soft HEAD^
 ```
 
 Esto solo funciona si no subiste tu commit. Si lo hiciste, la única cosa segura por hacer es `git revert SHAofBadCommit`. Eso creará un nuevo commit que deshace todos los cambios del anterior commit. O,  si la rama que subiste es segura ante reorganizaciones (ej. otros desarrolladores no esperan recibir cambios desde ahí), puedes usar `git push --force-with-lease`. Para más, mira [la sección de arriba](#quiero-borrar-o-remover-mi-ultimo-commit).
