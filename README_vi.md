@@ -852,7 +852,7 @@ Kiểm tra rằng bạn chưa push các thay đổi của mình đến server.
 Một cách để reset về origin (để có nhánh giống như trên remote) là chạy lệnh:
 
 ```sh
-(main)$ git reset --hard origin/my-branch
+(my-branch)$ git reset --hard origin/my-branch
 ```
 
 <a name="commit-wrong-branch"></a>

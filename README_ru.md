@@ -807,7 +807,7 @@ $ git reset --hard c5bc55a
 Один из способов сбросить до источника (чтобы иметь то же, что и в удаленном репозитории):
 
 ```sh
-(main)$ git reset --hard origin/my-branch
+(my-branch)$ git reset --hard origin/my-branch
 ```
 
 <a name="commit-wrong-branch"></a>

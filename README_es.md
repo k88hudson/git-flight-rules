@@ -514,7 +514,7 @@ Confirma que no ha enviado sus cambios al servidor.
 Una forma de reiniciar para hacer coincidir el origin (tener lo mismo que lo que está en el control remoto) es hacer esto:
 
 ```sh
-(main) $ git reset --hard origin / my-branch
+(my-branch) $ git reset --hard origin/my-branch
 ```
 
 ### Hice commit a main en lugar de una nueva rama

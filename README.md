@@ -902,10 +902,10 @@ Confirm that you haven't pushed your changes to the server.
 #
 ```
 
-One way of resetting to match origin (to have the same as what is on the remote) is to do this:
+One way of resetting branch `my-branch` to match `origin/my-branch` (to have the same as what is on the remote) is to do this:
 
 ```sh
-(main)$ git reset --hard origin/my-branch
+(my-branch)$ git reset --hard origin/my-branch
 ```
 
 <a name="commit-wrong-branch"></a>

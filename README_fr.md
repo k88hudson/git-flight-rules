@@ -576,7 +576,6 @@ Assurez-vous que vous n'avez pas poussé vos modifications sur le serveur.
 `git status` devrait vous indiquer combien de commits en avance vous êtes par rapport à origin :
 
 ```sh
-(my-branch)$ git status
 (ma-branche)$ git status
 # On branch ma-branche
 # Your branch is ahead of 'origin/my-branch' by 2 commits.
@@ -587,7 +586,7 @@ Assurez-vous que vous n'avez pas poussé vos modifications sur le serveur.
 Une des façons de faire pour réinitialiser votre branche afin qu'elle corresponde à origin (afin d'avoir la même chose que le dépôt distant) est de lancer ceci :
 
 ```sh
-(main)$ git reset --hard origin/ma-branche
+(ma-branche)$ git reset --hard origin/ma-branche
 ```
 
 <a name="commit-wrong-branch"></a>
