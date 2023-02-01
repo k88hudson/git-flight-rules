@@ -1681,12 +1681,16 @@ $ git push origin refs/tags/<tag-name>
 
 ```sh
 $ git diff HEAD:path_to_file/file c5f567:path_to_file/file
+# или
+$ git diff HEAD c5f567 -- path_to_file/file
 ```
 
 Аналогично для веток:
 
 ```sh
 $ git diff main:path_to_file/file staging:path_to_file/file
+# или
+$ git diff main staging -- path_to_file/file
 ```
 
 ### Я хочу, чтобы Git игнорировал изменения в определенном файле

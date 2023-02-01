@@ -1409,12 +1409,16 @@ c5f567 한 단계전으로 복구하고 싶다면, c5f567~1로 적어줘요:
 
 ```sh
 $ git diff HEAD:path_to_file/file c5f567:path_to_file/file
+# 아니면 짧게:
+$ git diff HEAD c5f567 -- path_to_file/file
 ```
 
 브랜치도 같은 방법으로:
 
 ```sh
 $ git diff main:path_to_file/file staging:path_to_file/file
+# 아니면 짧게:
+$ git diff main staging -- path_to_file/file
 ```
 
 ## 설정

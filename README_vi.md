@@ -1776,12 +1776,16 @@ Giả sử bạn muốn so sánh commit cuối cùng với tệp từ commit c5f
 
 ```sh
 $ git diff HEAD:path_to_file/file c5f567:path_to_file/file
+# hoặc
+$ git diff HEAD c5f567 -- path_to_file/file
 ```
 
 Cũng giống khi so sánh nhánh nhánh:
 
 ```sh
 $ git diff main:path_to_file/file staging:path_to_file/file
+# hoặc
+$ git diff main staging -- path_to_file/file
 ```
 
 ### Tôi muốn Git bỏ qua những thay đổi đối với một tệp cụ thể

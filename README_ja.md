@@ -1873,12 +1873,16 @@ $ git push origin refs/tags/<tag-name>
 
 ```sh
 $ git diff HEAD:path_to_file/file c5f567:path_to_file/file
+# または
+$ git diff HEAD c5f567 -- path_to_file/file
 ```
 
 ブランチでも同様です。
 
 ```sh
 $ git diff main:path_to_file/file staging:path_to_file/file
+# または
+$ git diff main staging -- path_to_file/file
 ```
 
 ### 特定のファイルの変更を無視したい
