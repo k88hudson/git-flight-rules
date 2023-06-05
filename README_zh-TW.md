@@ -12,7 +12,7 @@
 
 這是一篇給太空人（這裡就是指使用 Git 的程式設計師們）的指南，用來指導問題出現後的應對之法。
 
-> 飛行規則（Flight Rules）是記錄在手冊上的來之不易的一系列知識，記錄了某個事情發生的原因，以及怎樣一步一步的進行處理。本質上，它們是特定場景的非常詳細的標準處理流程。[...]
+> 飛行規則（flight rules）是記錄在手冊上的來之不易的一系列知識，記錄了某個事情發生的原因，以及怎樣一步一步的進行處理。本質上，它們是特定場景的非常詳細的標準處理流程。[...]
 
 > 自 20 世紀 60 年代初以來，NASA 一直在捕捉（capturing）失誤、災難和解決方案。當時水星時代（Mercury-era）的地面小組首先開始將「經驗教訓」收集到一個綱要（compendium）中，該綱現在已經有上千個問題情景，從發動機故障、到破損的艙口把手、再到計算機故障，以及它們對應的解決方案。
 
@@ -20,7 +20,7 @@
 
 #### 這篇文章的約定
 
-為了清楚的表述，這篇文件裡的所有例子使用了自訂的 bash 提示，以便指示目前分支和是否有暫存的變化（changes）。分支名用小括號括起來，分支名後面跟的 `*` 表示暫存的變化（changes）。
+為了清楚的表述，這篇文件裡的所有例子使用了自訂的 Bash 提示，以便指示目前分支和是否有暫存的變化（changes）。分支名用小括號括起來，分支名後面跟的 `*` 表示暫存的變化（changes）。
 
 [![Join the chat at https://gitter.im/k88hudson/git-flight-rules](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/k88hudson/git-flight-rules?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
