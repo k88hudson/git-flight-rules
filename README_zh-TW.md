@@ -1,4 +1,4 @@
-# Git飛行規則(Flight Rules)
+# Git 飛行規則（Flight Rules）
 
 🌍
 *[English](README.md) ∙ [Español](README_es.md)  ∙  [Русский](README_ru.md) ∙ [繁體中文](README_zh-TW.md) ∙ [簡體中文](README_zh-CN.md) ∙ [한국어](README_kr.md)  ∙  [Tiếng Việt](README_vi.md) ∙ [Français](README_fr.md) ∙ [日本語](README_ja.md)*
@@ -8,7 +8,7 @@
 - 英文原版 [README](https://github.com/k88hudson/git-flight-rules/blob/master/README.md)
 - 翻譯可能存在錯誤或不標準的地方，歡迎大家指正和修改，謝謝！
 
-#### 什麼是"飛行規則"?
+#### 什麼是「飛行規則」？
 
 這是一篇給太空人（這裡就是指使用 Git 的程式設計師們）的指南，用來指導問題出現後的應對之法。
 
