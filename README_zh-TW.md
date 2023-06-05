@@ -20,7 +20,7 @@
 
 #### 這篇文章的約定
 
-為了清楚的表述，這篇文件裡的所有例子使用了自訂的 Bash 提示，以便指示目前分支和是否有暫存的變化（changes）。分支名用小括號括起來，分支名後面跟的 `*` 表示暫存的變化（changes）。
+為了清楚的表述，這篇文件裡的所有例子使用了自訂的 Bash 提示字元，以便指示目前分支和是否有暫存的變化（changes）。分支名用小括號括起來，分支名後面跟的 `*` 表示暫存的變化（changes）。
 
 [![Join the chat at https://gitter.im/k88hudson/git-flight-rules](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/k88hudson/git-flight-rules?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
