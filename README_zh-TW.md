@@ -31,15 +31,15 @@
     - [我剛才提交了什麼？](#%E6%88%91%E5%89%9B%E6%89%8D%E6%8F%90%E4%BA%A4%E4%BA%86%E4%BB%80%E9%BA%BC)
     - [我的提交訊息（commit message）寫錯了](#%E6%88%91%E7%9A%84%E6%8F%90%E4%BA%A4%E8%A8%8A%E6%81%AFcommit-message%E5%AF%AB%E9%8C%AF%E4%BA%86)
     - [我提交（commit）裡的使用者名稱和信箱不對](#%E6%88%91%E6%8F%90%E4%BA%A4commit%E8%A3%A1%E7%9A%84%E4%BD%BF%E7%94%A8%E8%80%85%E5%90%8D%E7%A8%B1%E5%92%8C%E4%BF%A1%E7%AE%B1%E4%B8%8D%E5%B0%8D)
-    - [我想從一個提交（commit）裡移除一個文件](#%E6%88%91%E6%83%B3%E5%BE%9E%E4%B8%80%E5%80%8B%E6%8F%90%E4%BA%A4commit%E8%A3%A1%E7%A7%BB%E9%99%A4%E4%B8%80%E5%80%8B%E6%96%87%E4%BB%B6)
+    - [我想從一個提交（commit）裡移除一個檔案](#%E6%88%91%E6%83%B3%E5%BE%9E%E4%B8%80%E5%80%8B%E6%8F%90%E4%BA%A4commit%E8%A3%A1%E7%A7%BB%E9%99%A4%E4%B8%80%E5%80%8B%E6%AA%94%E6%A1%88)
     - [我想刪除我最後一次提交（commit）](#%E6%88%91%E6%83%B3%E5%88%AA%E9%99%A4%E6%88%91%E6%9C%80%E5%BE%8C%E4%B8%80%E6%AC%A1%E6%8F%90%E4%BA%A4commit)
     - [刪除任意提交（commit）](#%E5%88%AA%E9%99%A4%E4%BB%BB%E6%84%8F%E6%8F%90%E4%BA%A4commit)
     - [我嘗試推送一個修正後的提交（amended commit）到遠端，但是報錯](#%E6%88%91%E5%98%97%E8%A9%A6%E6%8E%A8%E9%80%81%E4%B8%80%E5%80%8B%E4%BF%AE%E6%AD%A3%E5%BE%8C%E7%9A%84%E6%8F%90%E4%BA%A4amended-commit%E5%88%B0%E9%81%A0%E7%AB%AF%E4%BD%86%E6%98%AF%E5%A0%B1%E9%8C%AF)
     - [我意外地硬重設（hard reset）了，我想找回我的內容](#%E6%88%91%E6%84%8F%E5%A4%96%E5%9C%B0%E7%A1%AC%E9%87%8D%E8%A8%ADhard-reset%E4%BA%86%E6%88%91%E6%83%B3%E6%89%BE%E5%9B%9E%E6%88%91%E7%9A%84%E5%85%A7%E5%AE%B9)
   - [暫存（staging）](#%E6%9A%AB%E5%AD%98staging)
     - [我需要把暫存的內容添加到上一次的提交（commit）](#%E6%88%91%E9%9C%80%E8%A6%81%E6%8A%8A%E6%9A%AB%E5%AD%98%E7%9A%84%E5%85%A7%E5%AE%B9%E6%B7%BB%E5%8A%A0%E5%88%B0%E4%B8%8A%E4%B8%80%E6%AC%A1%E7%9A%84%E6%8F%90%E4%BA%A4commit)
-    - [我想要暫存一個新文件的一部分，而不是這個文件的全部](#%E6%88%91%E6%83%B3%E8%A6%81%E6%9A%AB%E5%AD%98%E4%B8%80%E5%80%8B%E6%96%B0%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%80%E9%83%A8%E5%88%86%E8%80%8C%E4%B8%8D%E6%98%AF%E9%80%99%E5%80%8B%E6%96%87%E4%BB%B6%E7%9A%84%E5%85%A8%E9%83%A8)
-    - [我想把在一個文件裡的變化（changes）加到兩個提交（commit）裡](#%E6%88%91%E6%83%B3%E6%8A%8A%E5%9C%A8%E4%B8%80%E5%80%8B%E6%96%87%E4%BB%B6%E8%A3%A1%E7%9A%84%E8%AE%8A%E5%8C%96changes%E5%8A%A0%E5%88%B0%E5%85%A9%E5%80%8B%E6%8F%90%E4%BA%A4commit%E8%A3%A1)
+    - [我想要暫存一個新檔案的一部分，而不是這個檔案的全部](#%E6%88%91%E6%83%B3%E8%A6%81%E6%9A%AB%E5%AD%98%E4%B8%80%E5%80%8B%E6%96%B0%E6%AA%94%E6%A1%88%E7%9A%84%E4%B8%80%E9%83%A8%E5%88%86%E8%80%8C%E4%B8%8D%E6%98%AF%E9%80%99%E5%80%8B%E6%AA%94%E6%A1%88%E7%9A%84%E5%85%A8%E9%83%A8)
+    - [我想把在一個檔案裡的變化（changes）加到兩個提交（commit）裡](#%E6%88%91%E6%83%B3%E6%8A%8A%E5%9C%A8%E4%B8%80%E5%80%8B%E6%AA%94%E6%A1%88%E8%A3%A1%E7%9A%84%E8%AE%8A%E5%8C%96changes%E5%8A%A0%E5%88%B0%E5%85%A9%E5%80%8B%E6%8F%90%E4%BA%A4commit%E8%A3%A1)
     - [我想把暫存的內容變成未暫存，把未暫存的內容暫存起來](#%E6%88%91%E6%83%B3%E6%8A%8A%E6%9A%AB%E5%AD%98%E7%9A%84%E5%85%A7%E5%AE%B9%E8%AE%8A%E6%88%90%E6%9C%AA%E6%9A%AB%E5%AD%98%E6%8A%8A%E6%9C%AA%E6%9A%AB%E5%AD%98%E7%9A%84%E5%85%A7%E5%AE%B9%E6%9A%AB%E5%AD%98%E8%B5%B7%E4%BE%86)
   - [未暫存（unstaged）的變化](#%E6%9C%AA%E6%9A%AB%E5%AD%98unstaged%E7%9A%84%E8%AE%8A%E5%8C%96)
     - [我想把未暫存的變化移動到新分支](#%E6%88%91%E6%83%B3%E6%8A%8A%E6%9C%AA%E6%9A%AB%E5%AD%98%E7%9A%84%E8%AE%8A%E5%8C%96%E7%A7%BB%E5%8B%95%E5%88%B0%E6%96%B0%E5%88%86%E6%94%AF)
@@ -50,7 +50,7 @@
     - [我從錯誤的分支拉取了內容，或把內容拉取到了錯誤的分支](#%E6%88%91%E5%BE%9E%E9%8C%AF%E8%AA%A4%E7%9A%84%E5%88%86%E6%94%AF%E6%8B%89%E5%8F%96%E4%BA%86%E5%85%A7%E5%AE%B9%E6%88%96%E6%8A%8A%E5%85%A7%E5%AE%B9%E6%8B%89%E5%8F%96%E5%88%B0%E4%BA%86%E9%8C%AF%E8%AA%A4%E7%9A%84%E5%88%86%E6%94%AF)
     - [我想丟棄本地的提交（commit），以讓分支與遠端保持一致](#%E6%88%91%E6%83%B3%E4%B8%9F%E6%A3%84%E6%9C%AC%E5%9C%B0%E7%9A%84%E6%8F%90%E4%BA%A4commit%E4%BB%A5%E8%AE%93%E5%88%86%E6%94%AF%E8%88%87%E9%81%A0%E7%AB%AF%E4%BF%9D%E6%8C%81%E4%B8%80%E8%87%B4)
     - [我需要提交到一個新分支，但錯誤的提交到了 `main`](#%E6%88%91%E9%9C%80%E8%A6%81%E6%8F%90%E4%BA%A4%E5%88%B0%E4%B8%80%E5%80%8B%E6%96%B0%E5%88%86%E6%94%AF%E4%BD%86%E9%8C%AF%E8%AA%A4%E7%9A%84%E6%8F%90%E4%BA%A4%E5%88%B0%E4%BA%86-main)
-    - [我想保留來自另外一個 ref-ish 的整個文件](#%E6%88%91%E6%83%B3%E4%BF%9D%E7%95%99%E4%BE%86%E8%87%AA%E5%8F%A6%E5%A4%96%E4%B8%80%E5%80%8B-ref-ish-%E7%9A%84%E6%95%B4%E5%80%8B%E6%96%87%E4%BB%B6)
+    - [我想保留來自另外一個 ref-ish 的整個檔案](#%E6%88%91%E6%83%B3%E4%BF%9D%E7%95%99%E4%BE%86%E8%87%AA%E5%8F%A6%E5%A4%96%E4%B8%80%E5%80%8B-ref-ish-%E7%9A%84%E6%95%B4%E5%80%8B%E6%AA%94%E6%A1%88)
     - [我把幾個提交（commit）提交到了同一個分支，而這些提交應該在不同的分支上](#%E6%88%91%E6%8A%8A%E5%B9%BE%E5%80%8B%E6%8F%90%E4%BA%A4commit%E6%8F%90%E4%BA%A4%E5%88%B0%E4%BA%86%E5%90%8C%E4%B8%80%E5%80%8B%E5%88%86%E6%94%AF%E8%80%8C%E9%80%99%E4%BA%9B%E6%8F%90%E4%BA%A4%E6%87%89%E8%A9%B2%E5%9C%A8%E4%B8%8D%E5%90%8C%E7%9A%84%E5%88%86%E6%94%AF%E4%B8%8A)
     - [我想刪除上遊（upstream）刪除了的本地分支](#%E6%88%91%E6%83%B3%E5%88%AA%E9%99%A4%E4%B8%8A%E9%81%8Aupstream%E5%88%AA%E9%99%A4%E4%BA%86%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF)
     - [我不小心刪除了分支](#%E6%88%91%E4%B8%8D%E5%B0%8F%E5%BF%83%E5%88%AA%E9%99%A4%E4%BA%86%E5%88%86%E6%94%AF)
@@ -134,9 +134,9 @@ $ git commit --amend --author "New Authorname <authoremail@mydomain.com>"
 
 如果你需要修改所有歷史，參考 `git filter-branch` 的手冊頁。
 
-### 我想從一個提交（commit）裡移除一個文件
+### 我想從一個提交（commit）裡移除一個檔案
 
-要從一個提交（commit）裡移除一個文件：
+要從一個提交（commit）裡移除一個檔案：
 
 ```sh
 $ git checkout HEAD^ myfile
@@ -144,7 +144,7 @@ $ git add -A
 $ git commit --amend
 ```
 
-當你有一個開放的補丁（open patch），而你往上面提交了一個不必要的文件，需要強制推送（force push）去更新這個遠程補丁時，這非常有用。
+當你有一個開放的補丁（open patch），而你往上面提交了一個不必要的檔案，需要強制推送（force push）去更新這個遠程補丁時，這非常有用。
 
 ### 我想刪除我最後一次提交（commit）
 
@@ -216,9 +216,9 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 (my-branch*)$ git commit --amend
 ```
 
-### 我想要暫存一個新文件的一部分，而不是這個文件的全部
+### 我想要暫存一個新檔案的一部分，而不是這個檔案的全部
 
-一般來說，如果你想暫存一個文件的一部分，你可以使用以下命令來開啟互動式介面，並使用 `s` 選項來選擇想要的行。
+一般來說，如果你想暫存一個檔案的一部分，你可以使用以下命令來開啟互動式介面，並使用 `s` 選項來選擇想要的行。
 
 ```sh
 $ git add --patch filename.x # 或 `-p`。
@@ -232,9 +232,9 @@ $ git add -N filename.x
 
 然後，你需要用 `e` 選項來選擇需要添加的行，執行 `git diff --cached` 將會顯示哪些行暫存了、哪些行只是保存在本地了。
 
-### 我想把在一個文件裡的變化（changes）加到兩個提交（commit）裡
+### 我想把在一個檔案裡的變化（changes）加到兩個提交（commit）裡
 
-`git add` 會把整個文件加入到一個提交。`git add -p` 則允許你互動式地選擇想要提交的部分。
+`git add` 會把整個檔案加入到一個提交。`git add -p` 則允許你互動式地選擇想要提交的部分。
 
 ### 我想把暫存的內容變成未暫存，把未暫存的內容暫存起來
 
@@ -250,7 +250,7 @@ $ git stash pop --index 0 # 彈出儲藏。
 ```
 
 註一：這裡使用 `pop` 僅僅是因為想盡可能保持冪等。
-註二：假如不加上 `--index`，會把暫存的文件標記為未暫存。[這裡](https://stackoverflow.com/questions/31595873/git-stash-with-staged-files-does-stash-convert-staged-files-to-unstaged?answertab=active#tab-top)解釋得比較清楚。（其大意是說，這是一個較為底層的問題，儲藏時會創建兩個提交，一個記錄 index 狀態、暫存的內容等，另一個紀錄 worktree 和其他的一些東西，如果你不在 apply 時加 index，Git 會把兩個一起銷毀，所以暫存區（stage）裡就空了）。
+註二：假如不加上 `--index`，會把暫存的檔案標記為未暫存。[這裡](https://stackoverflow.com/questions/31595873/git-stash-with-staged-files-does-stash-convert-staged-files-to-unstaged?answertab=active#tab-top)解釋得比較清楚。（其大意是說，這是一個較為底層的問題，儲藏時會創建兩個提交，一個記錄 index 狀態、暫存的內容等，另一個紀錄 worktree 和其他的一些東西，如果你不在 apply 時加 index，Git 會把兩個一起銷毀，所以暫存區（stage）裡就空了）。
 
 ## 未暫存（unstaged）的變化
 
@@ -379,7 +379,7 @@ $ git reset --hard c5bc55a
 (main)$ git checkout my-branch
 ```
 
-### 我想保留來自另外一個 ref-ish 的整個文件
+### 我想保留來自另外一個 ref-ish 的整個檔案
 
 假設你正在做一個原型方案（原文為 working spike），有成百上千的內容。當你提交到一個分支，儲存工作內容：
 
