@@ -97,7 +97,7 @@
 
 ### 我剛才提交了什麼？
 
-如果你用 `git commit -a` 提交了一次變化（changes），而你又不確定到底這次提交了哪些內容，你可以用以下命令顯示目前 `HEAD` 上的最近一次的提交（commit）：
+如果你盲目地用 `git commit -a` 提交了變化（changes），而不確定到底提交了哪些內容，可以用以下命令顯示目前 `HEAD` 上的最近一次的提交（commit）：
 
 ```sh
 (main)$ git show
@@ -111,18 +111,18 @@ $ git log -n1 -p
 
 ### 我的提交訊息（commit message）寫錯了
 
-如果你的提交訊息（commit message）寫錯了，且這次提交（commit）還沒有推送（push），你可以透過下面的方法來修改提交訊息（commit message）：
+如果你的提交訊息（commit message）寫錯了，且這次提交（commit）還沒有推送（push），可以透過下面的方法來修改提交訊息（commit message）：
 
 ```sh
 $ git commit --amend --only
 ```
-這會使用你的預設編輯器來完成。你也可以只使用一個命令：
+這會開啟你的預設編輯器來編輯訊息。你也可以選擇只靠一個命令來做這些事：
 
 ```sh
 $ git commit --amend --only -m 'xxxxxxx'
 ```
 
-如果你已經推送（push）了這次提交（commit），你可以修改這次提交（commit）然後強制推送（force push），但是不推薦這麼做。
+如果你已經推送（push）了這次提交（commit），可以修改這次提交（commit）然後強制推送（force push），但是不推薦這麼做。
 
 ### 我提交（commit）裡的使用者名稱和信箱不對
 
@@ -132,11 +132,11 @@ $ git commit --amend --only -m 'xxxxxxx'
 $ git commit --amend --author "New Authorname <authoremail@mydomain.com>"
 ```
 
-如果你需要修改所有歷史，參考 `git filter-branch` 的手冊。
+如果你需要修改所有歷史，參考 `git filter-branch` 的手冊頁。
 
 ### 我想從一個提交（commit）裡移除一個文件
 
-通過下面的方法，從一個提交（commit）裡移除一個文件：
+要從一個提交（commit）裡移除一個文件：
 
 ```sh
 $ git checkout HEAD^ myfile
@@ -144,7 +144,7 @@ $ git add -A
 $ git commit --amend
 ```
 
-這非常有用，當你有一個開放的補丁（open patch），你往上面提交了一個不必要的文件，你需要強制推送（force push）去更新這個遠程補丁。
+當你有一個開放的補丁（open patch），而你往上面提交了一個不必要的文件，需要強制推送（force push）去更新這個遠程補丁時，這非常有用。
 
 ### 我想刪除我最後一次提交（commit）
 
@@ -971,9 +971,9 @@ $ git config --global credential.helper 'cache --timeout=3600'
 
 ## 我不知道我做錯了什麼
 
-如果你把事情搞砸了：你錯誤地重設、合併，或強制推送後找不到自己的提交了，抑或你做得很好，但你想回到以前的某個狀態。
+如果你把事情搞砸了：你錯誤地重設、合併、或強制推送後，找不到自己的提交了；抑或你做得很好，但你想回到以前的某個狀態。
 
-這就是 `git reflog` 的目的，`reflog` 記錄對分支頂端（the tip of a branch）的任何改變，即使沒有任何分支或標籤參考那個頂端。基本上，只要 `HEAD` 改變，`reflog` 就會記錄下來。遺憾的是，這只對本地分支起作用，且它只追蹤動作（例如，不會追蹤一個沒被記錄的檔案的任何改變）。
+這時 `git reflog` 就派上用場了。`reflog` 記錄對分支頂端（the tip of a branch）的任何改變，即使沒有任何分支或標籤參考那個頂端。基本上，只要 `HEAD` 改變，`reflog` 就會記錄下來。然而，這只能用於本地分支，且它只追蹤動作（例如，不會追蹤一個沒被記錄的檔案的任何改變）。
 
 ```sh
 (main)$ git reflog
