@@ -95,7 +95,6 @@
 
 ## 編輯提交（editting commits）
 
-<a name="diff-last"></a>
 ### 我剛才提交了什麼？
 
 如果你用 `git commit -a` 提交了一次變化（changes），而你又不確定到底這次提交了哪些內容，你可以用以下命令顯示目前 `HEAD` 上的最近一次的提交（commit）：
@@ -110,7 +109,6 @@
 $ git log -n1 -p
 ```
 
-<a name="#i-wrote-the-wrong-thing-in-a-commit-message"></a>
 ### 我的提交訊息（commit message）寫錯了
 
 如果你的提交訊息（commit message）寫錯了，且這次提交（commit）還沒有推送（push），你可以透過下面的方法來修改提交訊息（commit message）：
@@ -126,7 +124,6 @@ $ git commit --amend --only -m 'xxxxxxx'
 
 如果你已經推送（push）了這次提交（commit），你可以修改這次提交（commit）然後強制推送（force push），但是不推薦這麼做。
 
-<a name="commit-wrong-author"></a>
 ### 我提交（commit）裡的使用者名稱和信箱不對
 
 如果這只是單個提交（commit），修改它：
@@ -137,7 +134,6 @@ $ git commit --amend --author "New Authorname <authoremail@mydomain.com>"
 
 如果你需要修改所有歷史，參考 `git filter-branch` 的手冊。
 
-<a href="#i-want-to-remove-a-file-from-a-commit"></a>
 ### 我想從一個提交（commit）裡移除一個文件
 
 通過下面的方法，從一個提交（commit）裡移除一個文件：
@@ -150,7 +146,6 @@ $ git commit --amend
 
 這非常有用，當你有一個開放的補丁（open patch），你往上面提交了一個不必要的文件，你需要強制推送（force push）去更新這個遠程補丁。
 
-<a name="delete-pushed-commit"></a>
 ### 我想刪除我最後一次提交（commit）
 
 如果你需要刪除推送了的提交（pushed commits），你可以使用以下方法。但是，這將不可逆的改變你的歷史，也會搞亂那些已經從該倉庫拉取（pulled）了的人的歷史。簡而言之，如果你不是很確定，千萬不要這麼做。
@@ -168,7 +163,6 @@ $ git push -f [remote] [branch]
 
 這只能在推送之前使用。如果你已經推送了，唯一安全的做法是 `git revert SHAofBadCommit`，那會創建一個新的提交（commit）來撤消前一個提交的所有變化（changes）；或者，如果這個分支是 rebase-safe 的（例如：其他開發者不會從這個分支拉取），只需要使用 `git push -f`；參見[上一節](#deleteremove-last-pushed-commit)。
 
-<a name="delete-any-commit"></a>
 ### 刪除任意提交（commit）
 
 同樣，除非必須，否則不要這麼做。
@@ -180,7 +174,6 @@ $ git push -f [remote] [branch]
 
 或者使用[互動式變基（interactive rebase）](#interactive-rebase) 刪除那些你想要刪除的提交（commit）所對應的行。
 
-<a name="#force-push"></a>
 ### 我嘗試推送一個修正後的提交（amended commit）到遠端，但是報錯
 
 ```sh
@@ -201,7 +194,6 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 
 一般來說，要避免強制推送。最好是創建和推送一個新的提交（commit），而不是強推一個修正後的提交。後者會使在該分支或該分支的子分支上工作的開發者，在源歷史中產生衝突。
 
-<a href="undo-git-reset-hard"></a>
 ### 我意外地硬重設（hard reset）了，我想找回我的內容
 
 如果你意外地做了 `git reset --hard`，你通常能找回你的提交（commit），因為 Git 對每件事都會有日誌，且都會保存幾天。
@@ -218,14 +210,12 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 
 ## 暫存（staging）
 
-<a href="#i-need-to-add-staged-changes-to-the-previous-commit"></a>
 ### 我需要把暫存的內容添加到上一次的提交（commit）
 
 ```sh
 (my-branch*)$ git commit --amend
 ```
 
-<a name="commit-partial-new-file"></a>
 ### 我想要暫存一個新文件的一部分，而不是這個文件的全部
 
 一般來說，如果你想暫存一個文件的一部分，你可以使用以下命令來開啟互動式介面，並使用 `s` 選項來選擇想要的行。
@@ -242,12 +232,10 @@ $ git add -N filename.x
 
 然後，你需要用 `e` 選項來選擇需要添加的行，執行 `git diff --cached` 將會顯示哪些行暫存了、哪些行只是保存在本地了。
 
-<a href="stage-in-two-commits"></a>
 ### 我想把在一個文件裡的變化（changes）加到兩個提交（commit）裡
 
 `git add` 會把整個文件加入到一個提交。`git add -p` 則允許你互動式地選擇想要提交的部分。
 
-<a href="unstaging-edits-and-staging-the-unstaged"></a>
 ### 我想把暫存的內容變成未暫存，把未暫存的內容暫存起來
 
 多數情況下，你應該將所有的內容變為未暫存，然後再加入（add）你想要的內容提交（commit）。
@@ -266,14 +254,12 @@ $ git stash pop --index 0 # 彈出儲藏。
 
 ## 未暫存（unstaged）的變化
 
-<a href="move-unstaged-edits-to-new-branch"></a>
 ### 我想把未暫存的變化移動到新分支
 
 ```sh
 $ git checkout -b my-branch
 ```
 
-<a href="move-unstaged-edits-to-old-branch"></a>
 ### 我想把未暫存的變化移動到另一個已存在的分支
 
 ```sh
@@ -282,7 +268,6 @@ $ git checkout my-branch
 $ git stash pop
 ```
 
-<a href="i-want-to-discard-my-local-uncommitted-changes"></a>
 ### 我想丟棄本地未提交的變化（uncommitted changes）
 
 如果你只是想重設源（origin）和你本地（local）之間的一些提交（commit），你可以：
@@ -304,7 +289,6 @@ $ git stash pop
 $ git reset filename
 ```
 
-<a href="i-want-to-discard-specific-unstaged-changes"></a>
 ### 我想丟棄某些未暫存的變化
 
 如果你想丟棄工作拷貝中的一部分內容，而不是全部。
@@ -335,7 +319,6 @@ $ git stash drop
 
 ## 分支（branches）
 
-<a name="pull-wrong-branch"></a>
 ### 我從錯誤的分支拉取了內容，或把內容拉取到了錯誤的分支
 
 這是另外一種可以使用 `git reflog` 情況，找到在這次錯誤拉取（pull）之前 HEAD 的指向。
@@ -354,7 +337,6 @@ $ git reset --hard c5bc55a
 
 完成。
 
-<a href="discard-local-commits"></a>
 ### 我想丟棄本地的提交（commit），以讓分支與遠端保持一致
 
 首先，確認你沒有推送（push）你的內容到遠端。
@@ -375,7 +357,6 @@ $ git reset --hard c5bc55a
 (my-branch)$ git reset --hard origin/my-branch
 ```
 
-<a name="commit-wrong-branch"></a>
 ### 我需要提交到一個新分支，但錯誤的提交到了 `main`
 
 在 `main` 下創建一個新分支：
@@ -398,7 +379,6 @@ $ git reset --hard c5bc55a
 (main)$ git checkout my-branch
 ```
 
-<a name="keep-whole-file"></a>
 ### 我想保留來自另外一個 ref-ish 的整個文件
 
 假設你正在做一個原型方案（原文為 working spike），有成百上千的內容。當你提交到一個分支，儲存工作內容：
@@ -430,7 +410,6 @@ $ git reset --hard c5bc55a
 
 註：Spike solutions are made to analyze or solve the problem. These solutions are used for estimation and discarded once everyone gets clear visualization of the problem. ~ [Wikipedia](https://en.wikipedia.org/wiki/Extreme_programming_practices).
 
-<a name="cherry-pick"></a>
 ### 我把幾個提交（commit）提交到了同一個分支，而這些提交應該在不同的分支上
 
 假設在 `main` 分支，執行 `git log` 的結果如下：
@@ -485,7 +464,6 @@ HEAD is now at a13b85e
 (14)$ git cherry-pick 5ea5173
 ```
 
-<a name="delete-stale-local-branches"></a>
 ### 我想刪除上遊（upstream）刪除了的本地分支
 
 比方說，在 GitHub 中，合併（merge）了拉取請求（pull request）後，就可以刪除掉分支。如果不準備繼續在這個分支上工作，刪除這個分支會使工作拷貝（working copy）更乾淨。
@@ -494,7 +472,6 @@ HEAD is now at a13b85e
 $ git fetch -p
 ```
 
-<a name='restore-a-deleted-branch'></a>
 ### 我不小心刪除了分支
 
 如果你定期推送（push）到遠端（remote），多數情況下應該是安全的，但有時可能刪除了還沒推送的分支。
@@ -562,7 +539,6 @@ README.md foo.txt
 
 看！我們把遺失的檔案找回來了。Git 的 `reflog` 在變基（rebase）出錯時也同樣有用。
 
-<a name="i-want-to-delete-a-branch"></a>
 ### 我想刪除一個分支
 
 刪除一個遠端分支：
@@ -583,7 +559,6 @@ README.md foo.txt
 (main)$ git branch -D my-branch
 ```
 
-<a name="i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on"></a>
 ### 我想從別人正在工作的遠端分支簽出（checkout）一個分支
 
 首先，從遠端獲取（fetch）所有分支：
@@ -606,7 +581,6 @@ Switched to a new branch 'daves'
 
 ## 變基（rebase）與合併（merge）
 
-<a name="undo-rebase"></a>
 ### 撤銷變基或合併
 
 你可能對一個錯誤的分支做了變基或合併，或者無法完成變基或合併。Git 在進行危險操作時，會將原本的 `HEAD` 存成 `ORIG_HEAD`，因此可以很容易的恢復到之前的狀態。
@@ -615,7 +589,6 @@ Switched to a new branch 'daves'
 (my-branch)$ git reset --hard ORIG_HEAD
 ```
 
-<a name="force-push-rebase"></a>
 ### 我做了變基，但是我不想強制推送（force push）
 
 不幸的是，如果你想把變基的結果反映在遠端分支上，你必須強制推送（force push）。因為你改變了歷史，遠端不會接受使用快進（fast-forward），而必須強制推送。這就是許多人使用合併工作流程、而不是變基工作流程的主要原因之一，開發者的強制推送會使大團隊陷入麻煩。
@@ -631,7 +604,6 @@ Switched to a new branch 'daves'
 
 參見[此 StackOverflow 討論串](http://stackoverflow.com/questions/11058312/how-can-i-use-git-rebase-without-requiring-a-forced-push)。
 
-<a name="interactive-rebase"></a>
 ### 我需要組合（combine）幾個提交（commit）
 
 假設你的工作分支將對 `main` 分支做拉取請求（pull request）。
@@ -737,7 +709,6 @@ Newer, awesomer features
 (main)$ git merge --squash my-branch
 ```
 
-<a name="rebase-unpushed-commits"></a>
 #### 我只想組合（combine）未推送的提交
 
 假設在推送到上遊前，你有幾個正在進行的工作提交，這時候不希望把已推送的提交也組合進來，因為其他人可能已經有提交引用它們了。
@@ -748,7 +719,6 @@ Newer, awesomer features
 
 這會進行一次互動式變基（interactive rebase），只會列出還沒推送的提交。對這些提交重新排序或做 squash、fixup 都是安全的。
 
-<a name="check-if-all-commits-on-a-branch-are-merged"></a>
 ### 檢查分支上的所有提交是否都合併了
 
 要檢查一個分支上的所有提交是否都已經合併進了其它分支，應該在這些分支的 `HEAD`（或任何提交）之間檢查差異：
@@ -767,7 +737,6 @@ Newer, awesomer features
 
 ### 互動式變基（interactive rebase）可能出現的問題
 
-<a name="noop"></a>
 #### 編輯介面出現「noop」
 
 如果你看到：
@@ -780,7 +749,6 @@ noop
   * 確保 `main` 分支沒有問題
   * 對 `HEAD~2` 或更早的提交變基
 
-<a name="merge-conflict"></a>
 #### 有衝突的情況
 
 如果不能成功的完成變基，你可能必須要解決衝突（resolve conflict）。
@@ -830,7 +798,6 @@ Changes not staged for commit:
 (my-branch)$ git rebase --abort
 ```
 
-<a name="stashing"></a>
 ## 儲藏（stash）
 
 ### 儲藏所有變化
@@ -861,7 +828,6 @@ $ git stash push working-directory-path/filename.ext
 $ git stash push working-directory-path/filename1.ext working-directory-path/filename2.ext
 ```
 
-<a name="stash-msg"></a>
 ### 儲藏時附加訊息
 
 ```sh
@@ -876,7 +842,6 @@ $ git stash push -m <message>
 
 如此可以在使用 `stash list` 時看到訊息。
 
-<a name="stash-apply-specific"></a>
 ### 應用（apply）指定儲藏
 
 可以先列出擁有的儲藏：
@@ -897,7 +862,6 @@ $ git stash apply "stash@{n}"
 $ git stash apply "stash@{2.hours.ago}"
 ```
 
-<a href="stage-and-keep-unstaged"></a>
 ### 儲藏時保留未暫存的內容
 
 你需要先手動創建一個儲藏提交，然後使用 `git stash store`。
@@ -907,10 +871,8 @@ $ git stash create
 $ git stash store -m "commit-message" CREATED_SHA1
 ```
 
-<a name="miscellaneous-objects"></a>
 ## 雜項
 
-<a name="clone-submodules"></a>
 ### 複製所有子模組
 
 ```sh
@@ -923,7 +885,6 @@ $ git clone --recursive git://github.com/foo/bar.git
 $ git submodule update --init --recursive
 ```
 
-<a name="delete-tag"></a>
 ### 刪除標籤（tag）
 
 ```sh
@@ -931,7 +892,6 @@ $ git tag -d <tag_name>
 $ git push <remote> :refs/tags/<tag_name>
 ```
 
-<a name="recover-tag"></a>
 ### 恢復已刪除標籤（tag）
 
 如果想恢復一個已刪除標籤，首先，找到無法觸及的標籤（unreachable tag）：
@@ -946,7 +906,6 @@ $ git fsck --unreachable | grep tag
 $ git update-ref refs/tags/<tag_name> <hash>
 ```
 
-<a name="deleted-patch"></a>
 ### 已刪除補丁（patch）
 
 如果有人在 GitHub 上向你提出了拉取請求（pull request），但他接著刪除了他的分叉（fork），你無法複製他的提交或使用 `git am`。在這種情況下，最好手動的查看他們的提交，把它們拷貝到一個本地新分支，然後提交。
@@ -955,14 +914,12 @@ $ git update-ref refs/tags/<tag_name> <hash>
 
 ## 追蹤檔案（tracking files）
 
-<a href="i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file"></a>
 ### 我只想改變一個檔案名字的大小寫，而不修改內容
 
 ```sh
 (main)$ git mv --force myfile MyFile
 ```
 
-<a href="remove-from-git"></a>
 ### 我想從 Git 刪除一個檔案，但保留該檔案
 
 ```sh
@@ -971,7 +928,6 @@ $ git update-ref refs/tags/<tag_name> <hash>
 
 ## 組態（configuration）
 
-<a name="adding-command-aliases"></a>
 ### 我想為 Git 命令設定別名（alias）
 
 在 OS X 和 Linux 下，Git 的組態檔案儲存在 `~/.gitconfig`。可以在 `[alias]` 部分設定一些快捷別名（以及容易拼錯的），如：
@@ -999,7 +955,6 @@ $ git update-ref refs/tags/<tag_name> <hash>
     zap = fetch -p
 ```
 
-<a name="credential-helper"></a>
 ### 我想快取一個倉庫（repository）的使用者名稱和密碼
 
 假設有一個倉庫需要授權，這時你可以快取使用者名稱和密碼，而不用每次推送和拉取時都輸入一次：
@@ -1014,7 +969,6 @@ $ git config --global credential.helper 'cache --timeout=3600'
 # Set the cache to timeout after 1 hour (setting is in seconds).
 ```
 
-<a href="#ive-no-idea-what-i-did-wrong"></a>
 ## 我不知道我做錯了什麼
 
 如果你把事情搞砸了：你錯誤地重設、合併，或強制推送後找不到自己的提交了，抑或你做得很好，但你想回到以前的某個狀態。
