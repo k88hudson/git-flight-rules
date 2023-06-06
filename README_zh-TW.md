@@ -116,6 +116,7 @@ $ git log -n1 -p
 ```sh
 $ git commit --amend --only
 ```
+
 這會開啟你的預設編輯器來編輯訊息。你也可以選擇只靠一個命令來做這些事：
 
 ```sh
@@ -172,7 +173,7 @@ $ git rebase --onto SHA1_OF_BAD_COMMIT^ SHA1_OF_BAD_COMMIT
 $ git push -f [remote] [branch]
 ```
 
-或者使用[互動式重定基底](#interactive-rebase) 刪除那些你想要刪除的提交所對應的行。
+或者使用[互動式重定基底](#interactive-rebase)刪除那些你想要刪除的提交所對應的行。
 
 ### 我嘗試推送一個修正後的提交到遠端，但是報錯
 
@@ -238,8 +239,7 @@ $ git add -N filename.x
 
 ### 我想把暫存的內容變成未暫存，把未暫存的內容暫存起來
 
-多數情況下，你應該將所有的內容變為未暫存，然後再加入你想要的內容提交。
-但如果你就是想這麼做，你可以創建一個臨時的提交來儲存你已暫存的內容，然後加入未暫存的內容並貯存起來。最後，重設最後一個提交將原本暫存的內容變為未暫存，最後彈出貯存。
+多數情況下，你應該將所有的內容變為未暫存，然後再加入你想要的內容提交。但如果你就是想這麼做，你可以創建一個臨時的提交來儲存你已暫存的內容，然後加入未暫存的內容並貯存起來。最後，重設最後一個提交將原本暫存的內容變為未暫存，最後彈出貯存。
 
 ```sh
 $ git commit -m "WIP"     # 將之前已暫存的內容提交。
@@ -250,6 +250,7 @@ $ git stash pop --index 0 # 彈出貯存。
 ```
 
 註一：這裡使用 `pop` 僅僅是因為想盡可能保持冪等。
+
 註二：假如不加上 `--index`，會把暫存的檔案標記為未暫存。[這裡](https://stackoverflow.com/questions/31595873/git-stash-with-staged-files-does-stash-convert-staged-files-to-unstaged?answertab=active#tab-top)解釋得比較清楚。（其大意是說，這是一個較為底層的問題，貯存時會創建兩個提交，一個記錄 index 狀態、暫存的內容等，另一個紀錄 worktree 和其他的一些東西，如果你不在 apply 時加 index，Git 會把兩個一起銷毀，所以暫存區裡就空了）。
 
 ## 未暫存的更動
