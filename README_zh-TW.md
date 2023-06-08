@@ -251,7 +251,7 @@ $ git stash pop --index 0 # 彈出貯存。
 
 註一：這裡使用 `pop` 僅僅是因為想盡可能保持冪等。
 
-註二：假如不加上 `--index`，會把暫存的檔案標記為未暫存。[這裡](https://stackoverflow.com/questions/31595873/git-stash-with-staged-files-does-stash-convert-staged-files-to-unstaged?answertab=active#tab-top)解釋得比較清楚。（其大意是說，這是一個較為底層的問題，貯存時會創建兩個提交，一個記錄 index 狀態、暫存的內容等，另一個紀錄 worktree 和其他的一些東西，如果你不在 apply 時加 index，Git 會把兩個一起銷毀，所以暫存區裡就空了）。
+註二：假如不加上 `--index`，會把暫存的檔案標記為未暫存。[這裡](https://stackoverflow.com/questions/31595873/git-stash-with-staged-files-does-stash-convert-staged-files-to-unstaged?answertab=active#tab-top)解釋得比較清楚。（其大意是說，這是一個較為底層的問題，貯存時會創建兩個提交，一個記錄索引狀態、暫存的內容等，另一個紀錄工作區和其他的一些東西，如果你不在套用時指定索引，Git 會把兩個一起銷毀，所以暫存區裡就空了）。
 
 ## 未暫存的更動
 
@@ -382,7 +382,7 @@ $ git reset --hard c5bc55a
 
 ### 我想保留來自另外一個 ref-ish 的整個檔案
 
-假設你正在做一個原型方案（原文為 working spike），有成百上千的內容。當你提交到一個分支，儲存工作內容：
+假設你正在做一個探針解決方案（註），有成百上千的內容。當你提交到一個分支，儲存工作內容：
 
 ```sh
 (solution)$ git add -A && git commit -m "Adding all changes from this spike into one big commit."
@@ -409,7 +409,7 @@ $ git reset --hard c5bc55a
 
 然後，普通地提交。
 
-註：Spike solutions are made to analyze or solve the problem. These solutions are used for estimation and discarded once everyone gets clear visualization of the problem. ~ [Wikipedia](https://en.wikipedia.org/wiki/Extreme_programming_practices).
+註：探針解決方案（spike solution）旨在分析或解決問題。當所有人都清楚瞭解問題後，這些方案將用於估計或被丟棄。參見 [Wikipedia](https://en.wikipedia.org/wiki/Extreme_programming_practices)。
 
 ### 我把幾個提交提交到了同一個分支，而這些提交應該在不同的分支上
 
