@@ -27,6 +27,14 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
+  - [版本庫](#%E7%89%88%E6%9C%AC%E5%BA%AB)
+    - [我想建立本機版本庫](#%E6%88%91%E6%83%B3%E5%BB%BA%E7%AB%8B%E6%9C%AC%E6%A9%9F%E7%89%88%E6%9C%AC%E5%BA%AB)
+    - [我想複製遠端版本庫](#%E6%88%91%E6%83%B3%E8%A4%87%E8%A3%BD%E9%81%A0%E7%AB%AF%E7%89%88%E6%9C%AC%E5%BA%AB)
+    - [我設定了錯的遠端版本庫](#%E6%88%91%E8%A8%AD%E5%AE%9A%E4%BA%86%E9%8C%AF%E7%9A%84%E9%81%A0%E7%AB%AF%E7%89%88%E6%9C%AC%E5%BA%AB)
+    - [我想將程式碼加到其他人的版本庫中](#%E6%88%91%E6%83%B3%E5%B0%87%E7%A8%8B%E5%BC%8F%E7%A2%BC%E5%8A%A0%E5%88%B0%E5%85%B6%E4%BB%96%E4%BA%BA%E7%9A%84%E7%89%88%E6%9C%AC%E5%BA%AB%E4%B8%AD)
+      - [透過拉取請求建議程式碼](#%E9%80%8F%E9%81%8E%E6%8B%89%E5%8F%96%E8%AB%8B%E6%B1%82%E5%BB%BA%E8%AD%B0%E7%A8%8B%E5%BC%8F%E7%A2%BC)
+      - [透過修補建議程式碼](#%E9%80%8F%E9%81%8E%E4%BF%AE%E8%A3%9C%E5%BB%BA%E8%AD%B0%E7%A8%8B%E5%BC%8F%E7%A2%BC)
+      - [我需要將分叉更新到原版的最新進度](#%E6%88%91%E9%9C%80%E8%A6%81%E5%B0%87%E5%88%86%E5%8F%89%E6%9B%B4%E6%96%B0%E5%88%B0%E5%8E%9F%E7%89%88%E7%9A%84%E6%9C%80%E6%96%B0%E9%80%B2%E5%BA%A6)
   - [編輯提交](#%E7%B7%A8%E8%BC%AF%E6%8F%90%E4%BA%A4)
     - [我剛才提交了什麼？](#%E6%88%91%E5%89%9B%E6%89%8D%E6%8F%90%E4%BA%A4%E4%BA%86%E4%BB%80%E9%BA%BC)
     - [我的提交訊息寫錯了](#%E6%88%91%E7%9A%84%E6%8F%90%E4%BA%A4%E8%A8%8A%E6%81%AF%E5%AF%AB%E9%8C%AF%E4%BA%86)
@@ -92,6 +100,131 @@
   - [GUI 客戶端](#gui-%E5%AE%A2%E6%88%B6%E7%AB%AF)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## 版本庫
+
+### 我想建立本機版本庫
+
+將現有目錄初始化為 Git 版本庫：
+
+```sh
+(my-folder)$ git init
+```
+
+### 我想複製遠端版本庫
+
+要複製遠端版本庫，找到該版本庫的 URL，然後執行：
+
+```sh
+$ git clone [URL]
+```
+
+版本庫會複製到與其名稱相同的目錄中。確保你能連線到你要從之複製的遠端伺服器（通常來說，這表示你要連接上網際網路。）
+
+如果想要將版本庫複製到不同名稱的目錄：
+
+```sh
+$ git clone [URL] [目錄名稱]
+```
+
+### 我設定了錯的遠端版本庫
+
+有幾種可能的情況：
+
+如果你複製錯了遠端版本庫，刪掉 `git clone` 創建的目錄，然後複製正確的版本庫就好。
+
+如果你為本機版本庫設定了錯的遠端，你可以用以下命令變更 `origin` 的 URL：
+
+```sh
+$ git remote set-url origin [正確的 URL]
+```
+
+詳見 [此 StackOverflow](https://stackoverflow.com/questions/2432764/how-to-change-the-uri-url-for-a-remote-git-repository#2432799)。
+
+### 我想將程式碼加到其他人的版本庫中
+
+Git 不允許沒有存取權的人將程式碼加到其他人的版本庫。GitHub，一個 Git 版本庫的託管服務，也不行。不過你可以建議程式碼，透過修補，或者用 GitHub 的分叉與拉取請求。
+
+關於分叉：分叉是版本庫的複本。這不是 Git 的功能，但是是 GitHub、Bitbucket、GitLab——或其他任何託管 Git 版本庫的地方——上很常見的動作。你可以透過其 UI 分叉版本庫。
+
+#### 透過拉取請求建議程式碼
+
+在分叉版本庫後，你只需要一般地將其複製到你的機器上。你可以在 GitHub 上做一些小修改，而不需要複製，但這不是一份 GitHub 飛行規則，所以我們還是來談談該怎麼在本機上操作吧。
+
+```sh
+# 如果你用 SSH 的話：
+$ git clone git@github.com:k88hudson/git-flight-rules.git
+
+# 如果你用 HTTPS 的話：
+$ git clone https://github.com/k88hudson/git-flight-rules.git
+```
+
+如果你 `cd` 進創建的目錄，然後輸入 `git remote`，你會看到遠端的列表。基本上，會有一個遠端——`origin`——指向 `k88hudson/git-flight-rules`。在這個情況下，我們也希望有一個指向你的分叉的遠端。
+
+首先，按照 Git 的慣例，我們用 `origin` 表示你的分叉、`upstream` 表示原本的版本庫。因此，先將 `origin` 重新命名為 `upstream`：
+
+```sh
+$ git remote rename origin upstream
+```
+
+你也可以用 `git remote set-url` 來達到同樣的結果，但會花費更多步驟。
+
+接著，設定一個新的遠端指向你的版本庫：
+
+```sh
+$ git remote add origin git@github.com:YourName/git-flight-rules.git
+```
+
+現在有兩個遠端了：
+
+- `origin` 指向你分叉版本庫。
+- `upstream` 則指向原版版本庫。
+
+`origin` 可以讀寫，`upstream` 則是唯讀的。
+
+當你完成更動後，推送你（通常在某個分支上的）更動到遠端 `origin`。如果是在分支上，你可以用 `--set-upstream` 來避免每次推送都要指定遠端分支。例如：
+
+```sh
+(feature/my-feature)$ git push --set-upstream origin feature/my-feature
+```
+
+你沒辦法用 Git 在 CLI 中發起拉取請求（但有一些工具可以幫你做這件事，例如 [hub](https://github.com/github/hub)）。所以當你準備好時，到 GitHub（或其他 Git 託管服務）上創建拉取請求。
+
+之後也別忘了回覆程式碼的檢閱回饋。
+
+#### 透過修補建議程式碼
+
+另一個建議更動的方法是用 `git format-patch`，這不依賴於如 GitHub 的第三方服務。
+
+`format-patch` 會為你的提交創建一個 `.patch` 檔案，本質上就是類似於能在 GitHub 上看到的提交差異的更動列表。
+
+`git am` 可以用於查看、甚至編輯、套用修補檔。
+
+例如，要基於前一個提交創建修補檔，你可以執行 `git format-patch HEAD^`，來創建一個名字類似於 `0001-提交訊息.patch` 的修補檔。
+
+將修補檔套用至你的版本庫則需執行 `git am ./0001-提交訊息.patch`。
+
+修補檔也可以以 `git send-email` 命令透過 email 傳送。使用與組態資訊參見：https://git-send-email.io
+
+#### 我需要將分叉更新到原版的最新進度
+
+在一段時間後，`upstream` 版本庫可能更新了，而這些更新需要拉取至你的 `origin` 版本庫。
+
+你可能已經設定了指向原版的遠端。如果還沒的話，執行以下命令。通常我們用 `upstream` 作為名稱：
+
+```sh
+$ git remote add upstream [原版的 URL]
+```
+
+現在你可以從 `upstream` 抓取，並取得最新更新了。
+
+```sh
+(main)$ git fetch upstream
+(main)$ git merge upstream/main
+
+# 或者：
+(main)$ git pull upstream main
+```
 
 ## 編輯提交
 
