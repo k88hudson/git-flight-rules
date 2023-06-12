@@ -40,10 +40,18 @@
     - [我的提交訊息寫錯了](#%E6%88%91%E7%9A%84%E6%8F%90%E4%BA%A4%E8%A8%8A%E6%81%AF%E5%AF%AB%E9%8C%AF%E4%BA%86)
     - [我提交裡的使用者名稱和信箱不對](#%E6%88%91%E6%8F%90%E4%BA%A4%E8%A3%A1%E7%9A%84%E4%BD%BF%E7%94%A8%E8%80%85%E5%90%8D%E7%A8%B1%E5%92%8C%E4%BF%A1%E7%AE%B1%E4%B8%8D%E5%B0%8D)
     - [我想從一個提交裡移除一個檔案](#%E6%88%91%E6%83%B3%E5%BE%9E%E4%B8%80%E5%80%8B%E6%8F%90%E4%BA%A4%E8%A3%A1%E7%A7%BB%E9%99%A4%E4%B8%80%E5%80%8B%E6%AA%94%E6%A1%88)
+    - [我想將更動從一個提交移到另一個](#%E6%88%91%E6%83%B3%E5%B0%87%E6%9B%B4%E5%8B%95%E5%BE%9E%E4%B8%80%E5%80%8B%E6%8F%90%E4%BA%A4%E7%A7%BB%E5%88%B0%E5%8F%A6%E4%B8%80%E5%80%8B)
     - [我想刪除我最後一次提交](#%E6%88%91%E6%83%B3%E5%88%AA%E9%99%A4%E6%88%91%E6%9C%80%E5%BE%8C%E4%B8%80%E6%AC%A1%E6%8F%90%E4%BA%A4)
     - [刪除任意提交](#%E5%88%AA%E9%99%A4%E4%BB%BB%E6%84%8F%E6%8F%90%E4%BA%A4)
     - [我嘗試推送一個修正後的提交到遠端，但是報錯](#%E6%88%91%E5%98%97%E8%A9%A6%E6%8E%A8%E9%80%81%E4%B8%80%E5%80%8B%E4%BF%AE%E6%AD%A3%E5%BE%8C%E7%9A%84%E6%8F%90%E4%BA%A4%E5%88%B0%E9%81%A0%E7%AB%AF%E4%BD%86%E6%98%AF%E5%A0%B1%E9%8C%AF)
     - [我意外地硬性重設了，我想找回我的內容](#%E6%88%91%E6%84%8F%E5%A4%96%E5%9C%B0%E7%A1%AC%E6%80%A7%E9%87%8D%E8%A8%AD%E4%BA%86%E6%88%91%E6%83%B3%E6%89%BE%E5%9B%9E%E6%88%91%E7%9A%84%E5%85%A7%E5%AE%B9)
+    - [我意外地提交並推送了合併](#%E6%88%91%E6%84%8F%E5%A4%96%E5%9C%B0%E6%8F%90%E4%BA%A4%E4%B8%A6%E6%8E%A8%E9%80%81%E4%BA%86%E5%90%88%E4%BD%B5)
+    - [我意外地提交並推送了敏感資料](#%E6%88%91%E6%84%8F%E5%A4%96%E5%9C%B0%E6%8F%90%E4%BA%A4%E4%B8%A6%E6%8E%A8%E9%80%81%E4%BA%86%E6%95%8F%E6%84%9F%E8%B3%87%E6%96%99)
+    - [我想要從現有的版本庫歷史記錄中移除大檔案](#%E6%88%91%E6%83%B3%E8%A6%81%E5%BE%9E%E7%8F%BE%E6%9C%89%E7%9A%84%E7%89%88%E6%9C%AC%E5%BA%AB%E6%AD%B7%E5%8F%B2%E8%A8%98%E9%8C%84%E4%B8%AD%E7%A7%BB%E9%99%A4%E5%A4%A7%E6%AA%94%E6%A1%88)
+      - [推薦的工具：第三方的 BFG](#%E6%8E%A8%E8%96%A6%E7%9A%84%E5%B7%A5%E5%85%B7%E7%AC%AC%E4%B8%89%E6%96%B9%E7%9A%84-bfg)
+      - [內建的工具：`git filter-branch`](#%E5%85%A7%E5%BB%BA%E7%9A%84%E5%B7%A5%E5%85%B7git-filter-branch)
+      - [最後一步：推送你變更過的歷史](#%E6%9C%80%E5%BE%8C%E4%B8%80%E6%AD%A5%E6%8E%A8%E9%80%81%E4%BD%A0%E8%AE%8A%E6%9B%B4%E9%81%8E%E7%9A%84%E6%AD%B7%E5%8F%B2)
+    - [我需要變更非最新者的提交的內容](#%E6%88%91%E9%9C%80%E8%A6%81%E8%AE%8A%E6%9B%B4%E9%9D%9E%E6%9C%80%E6%96%B0%E8%80%85%E7%9A%84%E6%8F%90%E4%BA%A4%E7%9A%84%E5%85%A7%E5%AE%B9)
   - [暫存](#%E6%9A%AB%E5%AD%98)
     - [我需要把暫存的內容添加到上一次的提交](#%E6%88%91%E9%9C%80%E8%A6%81%E6%8A%8A%E6%9A%AB%E5%AD%98%E7%9A%84%E5%85%A7%E5%AE%B9%E6%B7%BB%E5%8A%A0%E5%88%B0%E4%B8%8A%E4%B8%80%E6%AC%A1%E7%9A%84%E6%8F%90%E4%BA%A4)
     - [我想要暫存一個新檔案的一部分，而不是這個檔案的全部](#%E6%88%91%E6%83%B3%E8%A6%81%E6%9A%AB%E5%AD%98%E4%B8%80%E5%80%8B%E6%96%B0%E6%AA%94%E6%A1%88%E7%9A%84%E4%B8%80%E9%83%A8%E5%88%86%E8%80%8C%E4%B8%8D%E6%98%AF%E9%80%99%E5%80%8B%E6%AA%94%E6%A1%88%E7%9A%84%E5%85%A8%E9%83%A8)
@@ -242,6 +250,12 @@ $ git remote add upstream [原版的 URL]
 $ git log -n1 -p
 ```
 
+如果你想查看特定提交的特定檔案，你可以用：（`[提交]` 是你想要的提交）
+
+```sh
+$ git show [提交]:filename
+```
+
 ### 我的提交訊息寫錯了
 
 如果你的提交訊息寫錯了，且這次提交還沒有推送，可以透過下面的方法來修改提交訊息：
@@ -256,14 +270,20 @@ $ git commit --amend --only
 $ git commit --amend --only -m 'xxxxxxx'
 ```
 
-如果你已經推送了這次提交，可以修改這次提交然後強制推送，但是不推薦這麼做。
+如果你已經推送了提交，可以在修改後強制推送，但是不推薦這麼做。
 
 ### 我提交裡的使用者名稱和信箱不對
 
-如果這只是單個提交，修改它：
+如果只是單個提交有錯，修正它：
 
 ```sh
-$ git commit --amend --author "New Authorname <authoremail@mydomain.com>"
+$ git commit --amend --no-edit --author "New Authorname <authoremail@mydomain.com>"
+```
+
+另一個方法是在 `git config --global author.(name|email)` 正確配置你的作者資訊，然後用：
+
+```sh
+$ git commit --amend --no-edit --reset-author
 ```
 
 如果你需要修改所有歷史記錄，參考 `git filter-branch` 的手冊頁。
@@ -273,12 +293,71 @@ $ git commit --amend --author "New Authorname <authoremail@mydomain.com>"
 要從一個提交裡移除一個檔案：
 
 ```sh
-$ git checkout HEAD^ myfile
-$ git add -A
-$ git commit --amend
+$ git checkout HEAD^ filename
+$ git add filename
+$ git commit --amend --no-edit
 ```
 
-當你有一個開放的修補，而你往上面提交了一個不必要的檔案，需要強制推送去更新這個遠端修補時，這非常有用。
+如果該檔案是新加入的，而你想要（從 Git）刪除它，用：
+
+```sh
+$ git rm --cached filename
+$ git commit --amend --no-edit
+```
+
+當你有一個開放的修補，而你往上面提交了一個不必要的檔案，需要強制推送去更新這個遠端修補時，這非常有用。`--no-edit` 選項將保留現有提交訊息。
+
+### 我想將更動從一個提交移到另一個
+
+如果你在一個提交作了一個更動，而它更符合另一個提交做的事，你可以用互動式重定基底將更動移動過去。這節來自 [StackOverflow](https://stackoverflow.com/a/54985304/2491502)。
+
+假設你有三個提交，`a`、`b`、`c`。`b` 變更了 `file1` 和 `file2`，你想要把 `file1` 的更動從 `b` 移到 `a`。
+
+首先，互動式重定基底：
+
+```sh
+$ git rebase -i HEAD~3
+```
+
+這會打開包含以下內容的編輯器：
+
+```vim
+pick a
+pick b
+pick c
+```
+
+將 `a` 和 `b` 那行改為 `edit`：
+
+```vim
+edit a
+edit b
+pick c
+```
+
+儲存並關閉編輯器後，你會被帶到 `b`。重設 `file1` 的更動：
+
+```sh
+$ git reset HEAD~1 file1
+```
+
+這會取消暫存 `file1` 的更動。貯存更動然後繼續重定基底：
+
+```sh
+$ git stash
+$ git rebase --continue
+```
+
+現在要編輯 `a`。彈出貯存，將更動加入這個提交，然後繼續重定基底：
+
+```sh
+$ git stash pop
+$ git add file1
+$ git commit --amend --no-edit
+$ git rebase --continue
+```
+
+現在你完成重定基底，並將更動從 `b` 移到 `a` 了。如果你要將更動從 `b` 移到 `c`，因為 `c` 在 `b` 之前，你會需要重定基底兩次，一次將更動從 `b` 取出，一次將更動加入到 `c`。
 
 ### 我想刪除我最後一次提交
 
@@ -286,7 +365,7 @@ $ git commit --amend
 
 ```sh
 $ git reset HEAD^ --hard
-$ git push -f [remote] [branch]
+$ git push --force-with-lease [遠端] [分支]
 ```
 
 如果你還沒有推送到遠端，重設到你最後一次提交前的狀態就可以了（同時保存暫存的更動）：
@@ -295,18 +374,18 @@ $ git push -f [remote] [branch]
 (my-branch)$ git reset --soft HEAD^
 ```
 
-這只能在推送之前使用。如果你已經推送了，唯一安全的做法是 `git revert SHAofBadCommit`，那會創建一個新的提交來還原前一個提交的所有更動；或者，如果這個分支是 rebase-safe 的（例如：其他開發者不會從這個分支拉取），只需要使用 `git push -f`；參見[上一節](#deleteremove-last-pushed-commit)。
+這只能在推送之前使用。如果你已經推送了，唯一安全的做法是 `git revert [不要的提交]`，那會創建一個新的提交來還原前一個提交的所有更動；或者，如果這個分支是重定基底安全的（即其他開發者不會從這個分支拉取），只需要使用 `git push --force-with-lease`，參見這一節前半部分。
 
 ### 刪除任意提交
 
 同樣，除非必須，否則不要這麼做。
 
 ```sh
-$ git rebase --onto SHA1_OF_BAD_COMMIT^ SHA1_OF_BAD_COMMIT
-$ git push -f [remote] [branch]
+$ git rebase --onto [不要的提交]^ [不要的提交]
+$ git push --force-with-lease [遠端] [分支]
 ```
 
-或者使用[互動式重定基底](#interactive-rebase)刪除那些你想要刪除的提交所對應的行。
+或者使用[互動式重定基底](#%E6%88%91%E9%9C%80%E8%A6%81%E7%B5%84%E5%90%88%E5%B9%BE%E5%80%8B%E6%8F%90%E4%BA%A4)刪除那些你想要刪除的提交所對應的行。
 
 ### 我嘗試推送一個修正後的提交到遠端，但是報錯
 
@@ -320,17 +399,21 @@ hint: 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 ```
 
-注意，重定基底和修正會用一個新的提交取代舊的，所以如果舊的提交已經推送到遠端上了，那你必須強制推送。注意：總是確保你指明一個分支！
+注意，重定基底和修正會**用新的提交取代舊的**，所以如果舊的提交已經推送到遠端上了，那你必須強制推送。注意：總是確保你指明一個分支！
 
 ```sh
-(my-branch)$ git push origin mybranch -f
+(my-branch)$ git push --force-with-lease origin mybranch
 ```
 
-一般來說，要避免強制推送。最好是創建和推送一個新的提交，而不是強制推送一個修正後的提交。後者會使其他開發者該分支或其子分支的歷史記錄，與遠端歷史記錄產生衝突。
+一般來說，**應該避免強制推送**。最好是創建和推送一個新的提交，而不是強制推送一個修正後的提交。後者會使其他開發者該分支或其子分支的歷史記錄，與遠端歷史記錄產生衝突。`--force-with-lease` 仍然可能失敗，如果有人在同樣的分支上推送了提交，而你的推送會覆蓋他們的更動。
+
+如果你*完全*確定沒有人在同一個分支上工作，或者你想要*無條件*更新分支的頂端，你可以用 `--force`（`-f`），但通常應該避免。
 
 ### 我意外地硬性重設了，我想找回我的內容
 
 如果你意外地做了 `git reset --hard`，你通常能找回你的提交，因為 Git 對每件事都會有日誌，且都會保存幾天。
+
+注意，只適用於你的作業備份了的情況，即有提交或貯存。`git reset --hard` *會移除*未提交的更動，所以請謹慎使用。（更安全的選擇是 `git reset --keep`。）
 
 ```sh
 (main)$ git reflog
@@ -339,7 +422,161 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 你將會看到一個你過去提交的列表，和一個重設的提交。選擇你想要回到的提交的 SHA，再重設一次：
 
 ```sh
-(main)$ git reset --hard SHA1234
+(main)$ git reset --hard [SHA]
+```
+
+### 我意外地提交並推送了合併
+
+如果你意外地將功能分支在準備好合併之前，合併進了主開發分支，你可以撤銷合併。但有個問題：合併提交有多於一個親代（通常是兩個）。
+
+使用命令：
+
+```sh
+(feature-branch)$ git revert -m 1 [提交]
+```
+
+`-m 1` 選項的意思是選擇 1 號親代（合併進去的分支）作為要還原到的親代。
+
+注意，親代編號不是提交識別符。合併提交有一行 `Merge: 8e2ce2d 86ac2e7`，親代編號是這行上的親代從 1 開始的索引，第一個識別符是 1 號親代，第二個是 2 號，以此類推。
+
+### 我意外地提交並推送了敏感資料
+
+如果你意外地推送了包含敏感或私人資料（密碼、金鑰等）的檔案，你可以修正該提交。記得，你應該認定其中的所有資料都外洩了。以下步驟可以從你的本機複本和公開版本庫移除敏感資料，但你**不能**從別人拉取的複本移除敏感資料。如果你提交了密碼，**立刻變更**，如果你提交了金鑰，**立刻重新生成**。修正推送的提交並不夠，任何人都可能拉取了包含敏感資料的原提交。
+
+如果你編輯檔案移除了敏感資料，執行：
+
+```sh
+$ git add [編輯過的檔案]
+$ git commit --amend --no-edit
+$ git push --force-with-lease [遠端] [分支]
+```
+
+或是將敏感資料儲存在本機環境變數。
+
+如果你希望移除整個檔案（但保留在本機），執行：
+
+```sh
+$ git rm --cached [敏感的檔案]
+$ echo [敏感的檔案] >> .gitignore
+$ git add .gitignore
+$ git commit --amend --no-edit
+$ git push --force-with-lease [遠端] [分支]
+```
+
+如果你同時做了其他提交（即，敏感資料不是在上一個提交引入的），你需要重定基底。
+
+### 我想要從現有的版本庫歷史記錄中移除大檔案
+
+如果你想移除的檔案是機密或敏感的，見[〈我意外地提交並推送了敏感資料〉](#%E6%88%91%E6%84%8F%E5%A4%96%E5%9C%B0%E6%8F%90%E4%BA%A4%E4%B8%A6%E6%8E%A8%E9%80%81%E4%BA%86%E6%95%8F%E6%84%9F%E8%B3%87%E6%96%99)。
+
+即使你在最近的提交中刪除了大或不想要的檔案，它仍然存於 Git 歷史記錄，存於版本庫的 `.git` 目錄中，且 `git clone` 也會下載到不需要的檔案。
+
+這節中提到的操作需要強制推送，且會重寫版本庫大部分的歷史，所以如果你與其他人在進行遠端協作，請先確認他們的本機複本都推送了。
+
+有兩個方法可以重寫歷史記錄：內建的 `git filter-branch` 或 [BFG Repo-Cleaner](https://rtyley.github.io/bfg-repo-cleaner/)。BFG 能以更好的效能顯著清理，但是是第三方，且需要 Java。這裡兩種選擇都會描述。最後一步是強制推送，這需要比起一般強制推送更再三考慮，因為這會永久變更版本庫大量的歷史記錄。
+
+#### 推薦的工具：第三方的 BFG
+
+BFG Repo Cleaner 需要 Java。到[這裡]下載 BFG 的 JAR 檔。以下例子中將假設檔案名稱為 `bfg.jar`，位於 `~/Downloads/`。
+
+刪除特定檔案：
+
+```sh
+$ git rm path/filename
+$ git commit
+$ java -jar ~/Downloads/bfg.jar --delete-files filename
+```
+
+注意，你應該直接給 BFG 檔案名稱，即使其在子目錄中。
+
+你也可以用 glob 模式刪除檔案：
+
+```sh
+$ git rm *.jpg
+$ git commit
+$ java -jar ~/Downloads/bfg.jar --delete-files *.jpg
+```
+
+BFG 不會影響在最新提交中存在的檔案。例如，版本庫中有幾個大 `.tga` 檔，在之前的提交移除了其中一些，在最新的提交還存在的檔案則不會觸及。
+
+注意，如果你重新命名了檔案，例如原本是 `LargeFileFirstName.mp4` 的檔案在一次提交中重新命名為 `LargeFileSecondName.mp4`，`java -jar ~/Downloads/bfg.jar --delete-files LargeFileSecondName.mp4` 並不會從 Git 歷史記錄中刪除這個檔案。需要對兩個檔案名都執行一次，或使用匹配到兩個檔案名的模式。
+
+#### 內建的工具：`git filter-branch`
+
+`git filter-branch` 較為麻煩且功能較少，但如果你不能安裝或執行 BFG，你可以使用它。
+
+將以下例子中的 `filepattern` 替換為某個檔案名稱或模式，例如 `*.jpg`。所有分支的歷史記錄中匹配到的檔案都會被移除。
+
+```sh
+$ git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch filepattern' --prune-empty --tag-name-filter cat -- --all
+```
+
+解釋：
+
+`--tag-name-filter cat` 是使用 `cat` 命令將原本的標籤套用至新提交上，麻煩、但最簡單的方法。
+
+`--prune-empty` 移除任何變為空的提交。
+
+#### 最後一步：推送你變更過的歷史
+
+一旦你移除了檔案，細心地測試一下你沒有弄壞版本庫的任何東西——如果有，最簡單的方法是重新複製一個，然後重頭來過。最後，可以用 Git 垃圾收集來最小化你本機 `.git` 目錄的大小，然後強制推送。
+
+```sh
+$ git reflog expire --expire=now --all && git gc --prune=now --aggressive
+$ git push --force --tags [遠端]
+```
+
+由於你重寫了整個歷史記錄，`git push` 可能會需要推送太多資料，導致回傳錯誤 `The remote end hung up unexpectedly`（遠端意外掛斷了）。如果出現這個問題，可以嘗試增加 Git post 緩衝區大小：
+
+```sh
+$ git config http.postBuffer 524288000
+$ git push --force
+```
+
+如果沒有用的話，你需要手動將提交分成多塊推送歷史記錄。試著增加以下命令中的 `<數量>` 直到成功推送：
+
+```sh
+(main)$ git push -u [遠端] HEAD~<數量>:refs/head/main --force
+```
+
+第一次成功推送後，逐步減少 `<數量>`，直到可以成功使用常規的 `git push`。
+
+### 我需要變更非最新者的提交的內容
+
+如果你創建了好幾個提交，然後發現自己少做了一些應該在其中的第一個提交做的事。若創建新提交來放這些少做的更動，你會有乾淨的版本庫，但是你的提交便不是「原子」的（也就是說，應該在一起的更動沒有在同一個提交）。因此，你可能會想變更第一個提交，也就是這些更動應該在的地方，並保持其後的提交不變。這種情況下，重定基底或許能幫上忙。
+
+假設你要變更第三新的提交。
+
+```sh
+$ git rebase -i HEAD~4
+```
+
+開始互動式重定基底後，你可以編輯最新的三個提交。啟動的文字編輯器會顯示類似這樣的內容：
+
+```vim
+pick 9e1d264 第三新的提交
+pick 4b6e19a 第二新的提交
+pick f4037ec 最新的提交
+```
+
+將其改為：
+
+```vim
+edit 9e1d264 第三新的提交
+pick 4b6e19a 第二新的提交
+pick f4037ec 最新的提交
+```
+
+然後儲存並退出編輯器。這表示你想要編輯第三新的提交，並保持其他兩者不變。重定基底會在你想編輯的提交停下，你可以做原本少了的更動，和往常一樣編輯、暫存，然後：
+
+```sh
+$ git commit --amend
+```
+
+這會修正這個提交，也就是用原本的更動和新做出的更動，重新創建一個提交來替換掉舊的。接著繼續重定基底就好了：
+
+```sh
+$ git rebase --continue
 ```
 
 ## 暫存
