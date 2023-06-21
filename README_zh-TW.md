@@ -66,15 +66,24 @@
     - [我想捨棄未提交的更動](#%E6%88%91%E6%83%B3%E6%8D%A8%E6%A3%84%E6%9C%AA%E6%8F%90%E4%BA%A4%E7%9A%84%E6%9B%B4%E5%8B%95)
     - [我想捨棄某些未暫存的更動](#%E6%88%91%E6%83%B3%E6%8D%A8%E6%A3%84%E6%9F%90%E4%BA%9B%E6%9C%AA%E6%9A%AB%E5%AD%98%E7%9A%84%E6%9B%B4%E5%8B%95)
   - [分支](#%E5%88%86%E6%94%AF)
-    - [我從錯誤的分支拉取了內容，或把內容拉取到了錯誤的分支](#%E6%88%91%E5%BE%9E%E9%8C%AF%E8%AA%A4%E7%9A%84%E5%88%86%E6%94%AF%E6%8B%89%E5%8F%96%E4%BA%86%E5%85%A7%E5%AE%B9%E6%88%96%E6%8A%8A%E5%85%A7%E5%AE%B9%E6%8B%89%E5%8F%96%E5%88%B0%E4%BA%86%E9%8C%AF%E8%AA%A4%E7%9A%84%E5%88%86%E6%94%AF)
-    - [我想丟棄本地的提交，以讓分支與遠端保持一致](#%E6%88%91%E6%83%B3%E4%B8%9F%E6%A3%84%E6%9C%AC%E5%9C%B0%E7%9A%84%E6%8F%90%E4%BA%A4%E4%BB%A5%E8%AE%93%E5%88%86%E6%94%AF%E8%88%87%E9%81%A0%E7%AB%AF%E4%BF%9D%E6%8C%81%E4%B8%80%E8%87%B4)
+    - [我想列出所有分支](#%E6%88%91%E6%83%B3%E5%88%97%E5%87%BA%E6%89%80%E6%9C%89%E5%88%86%E6%94%AF)
+    - [我想從一個提交創建分支](#%E6%88%91%E6%83%B3%E5%BE%9E%E4%B8%80%E5%80%8B%E6%8F%90%E4%BA%A4%E5%89%B5%E5%BB%BA%E5%88%86%E6%94%AF)
+    - [我從錯誤的分支拉取，或拉取到錯誤的分支了](#%E6%88%91%E5%BE%9E%E9%8C%AF%E8%AA%A4%E7%9A%84%E5%88%86%E6%94%AF%E6%8B%89%E5%8F%96%E6%88%96%E6%8B%89%E5%8F%96%E5%88%B0%E9%8C%AF%E8%AA%A4%E7%9A%84%E5%88%86%E6%94%AF%E4%BA%86)
+    - [我想捨棄本機上的提交，以讓分支與遠端保持一致](#%E6%88%91%E6%83%B3%E6%8D%A8%E6%A3%84%E6%9C%AC%E6%A9%9F%E4%B8%8A%E7%9A%84%E6%8F%90%E4%BA%A4%E4%BB%A5%E8%AE%93%E5%88%86%E6%94%AF%E8%88%87%E9%81%A0%E7%AB%AF%E4%BF%9D%E6%8C%81%E4%B8%80%E8%87%B4)
     - [我需要提交到一個新分支，但錯誤的提交到了 `main`](#%E6%88%91%E9%9C%80%E8%A6%81%E6%8F%90%E4%BA%A4%E5%88%B0%E4%B8%80%E5%80%8B%E6%96%B0%E5%88%86%E6%94%AF%E4%BD%86%E9%8C%AF%E8%AA%A4%E7%9A%84%E6%8F%90%E4%BA%A4%E5%88%B0%E4%BA%86-main)
-    - [我想保留來自另外一個 ref-ish 的整個檔案](#%E6%88%91%E6%83%B3%E4%BF%9D%E7%95%99%E4%BE%86%E8%87%AA%E5%8F%A6%E5%A4%96%E4%B8%80%E5%80%8B-ref-ish-%E7%9A%84%E6%95%B4%E5%80%8B%E6%AA%94%E6%A1%88)
-    - [我把幾個提交提交到了同一個分支，而這些提交應該在不同的分支上](#%E6%88%91%E6%8A%8A%E5%B9%BE%E5%80%8B%E6%8F%90%E4%BA%A4%E6%8F%90%E4%BA%A4%E5%88%B0%E4%BA%86%E5%90%8C%E4%B8%80%E5%80%8B%E5%88%86%E6%94%AF%E8%80%8C%E9%80%99%E4%BA%9B%E6%8F%90%E4%BA%A4%E6%87%89%E8%A9%B2%E5%9C%A8%E4%B8%8D%E5%90%8C%E7%9A%84%E5%88%86%E6%94%AF%E4%B8%8A)
-    - [我想刪除上游刪除了的本地分支](#%E6%88%91%E6%83%B3%E5%88%AA%E9%99%A4%E4%B8%8A%E6%B8%B8%E5%88%AA%E9%99%A4%E4%BA%86%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF)
+    - [我想從另一個引用之類保留整個檔案](#%E6%88%91%E6%83%B3%E5%BE%9E%E5%8F%A6%E4%B8%80%E5%80%8B%E5%BC%95%E7%94%A8%E4%B9%8B%E9%A1%9E%E4%BF%9D%E7%95%99%E6%95%B4%E5%80%8B%E6%AA%94%E6%A1%88)
+    - [我把在同一分支提交了幾次，而這些提交應該在不同的分支上](#%E6%88%91%E6%8A%8A%E5%9C%A8%E5%90%8C%E4%B8%80%E5%88%86%E6%94%AF%E6%8F%90%E4%BA%A4%E4%BA%86%E5%B9%BE%E6%AC%A1%E8%80%8C%E9%80%99%E4%BA%9B%E6%8F%90%E4%BA%A4%E6%87%89%E8%A9%B2%E5%9C%A8%E4%B8%8D%E5%90%8C%E7%9A%84%E5%88%86%E6%94%AF%E4%B8%8A)
+    - [我想刪除上游刪除了的本機分支](#%E6%88%91%E6%83%B3%E5%88%AA%E9%99%A4%E4%B8%8A%E6%B8%B8%E5%88%AA%E9%99%A4%E4%BA%86%E7%9A%84%E6%9C%AC%E6%A9%9F%E5%88%86%E6%94%AF)
     - [我不小心刪除了分支](#%E6%88%91%E4%B8%8D%E5%B0%8F%E5%BF%83%E5%88%AA%E9%99%A4%E4%BA%86%E5%88%86%E6%94%AF)
     - [我想刪除一個分支](#%E6%88%91%E6%83%B3%E5%88%AA%E9%99%A4%E4%B8%80%E5%80%8B%E5%88%86%E6%94%AF)
-    - [我想從別人正在工作的遠端分支簽出一個分支](#%E6%88%91%E6%83%B3%E5%BE%9E%E5%88%A5%E4%BA%BA%E6%AD%A3%E5%9C%A8%E5%B7%A5%E4%BD%9C%E7%9A%84%E9%81%A0%E7%AB%AF%E5%88%86%E6%94%AF%E7%B0%BD%E5%87%BA%E4%B8%80%E5%80%8B%E5%88%86%E6%94%AF)
+    - [我想刪除多個分支](#%E6%88%91%E6%83%B3%E5%88%AA%E9%99%A4%E5%A4%9A%E5%80%8B%E5%88%86%E6%94%AF)
+    - [我想重新命名一個分支](#%E6%88%91%E6%83%B3%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D%E4%B8%80%E5%80%8B%E5%88%86%E6%94%AF)
+    - [我想簽出別人正在其上工作的遠端分支](#%E6%88%91%E6%83%B3%E7%B0%BD%E5%87%BA%E5%88%A5%E4%BA%BA%E6%AD%A3%E5%9C%A8%E5%85%B6%E4%B8%8A%E5%B7%A5%E4%BD%9C%E7%9A%84%E9%81%A0%E7%AB%AF%E5%88%86%E6%94%AF)
+    - [我想從本機分支創建一個遠端的](#%E6%88%91%E6%83%B3%E5%BE%9E%E6%9C%AC%E6%A9%9F%E5%88%86%E6%94%AF%E5%89%B5%E5%BB%BA%E4%B8%80%E5%80%8B%E9%81%A0%E7%AB%AF%E7%9A%84)
+    - [我想設定本機分支的上游](#%E6%88%91%E6%83%B3%E8%A8%AD%E5%AE%9A%E6%9C%AC%E6%A9%9F%E5%88%86%E6%94%AF%E7%9A%84%E4%B8%8A%E6%B8%B8)
+    - [我想設定 `HEAD` 追蹤預設遠端分支](#%E6%88%91%E6%83%B3%E8%A8%AD%E5%AE%9A-head-%E8%BF%BD%E8%B9%A4%E9%A0%90%E8%A8%AD%E9%81%A0%E7%AB%AF%E5%88%86%E6%94%AF)
+    - [我在錯誤的分支上做了更動](#%E6%88%91%E5%9C%A8%E9%8C%AF%E8%AA%A4%E7%9A%84%E5%88%86%E6%94%AF%E4%B8%8A%E5%81%9A%E4%BA%86%E6%9B%B4%E5%8B%95)
+    - [我想將分支一分為二](#%E6%88%91%E6%83%B3%E5%B0%87%E5%88%86%E6%94%AF%E4%B8%80%E5%88%86%E7%82%BA%E4%BA%8C)
   - [重定基底與合併](#%E9%87%8D%E5%AE%9A%E5%9F%BA%E5%BA%95%E8%88%87%E5%90%88%E4%BD%B5)
     - [撤銷重定基底或合併](#%E6%92%A4%E9%8A%B7%E9%87%8D%E5%AE%9A%E5%9F%BA%E5%BA%95%E6%88%96%E5%90%88%E4%BD%B5)
     - [我做了重定基底，但是我不想強制推送](#%E6%88%91%E5%81%9A%E4%BA%86%E9%87%8D%E5%AE%9A%E5%9F%BA%E5%BA%95%E4%BD%86%E6%98%AF%E6%88%91%E4%B8%8D%E6%83%B3%E5%BC%B7%E5%88%B6%E6%8E%A8%E9%80%81)
@@ -727,9 +736,35 @@ $ git stash drop
 
 ## 分支
 
-### 我從錯誤的分支拉取了內容，或把內容拉取到了錯誤的分支
+### 我想列出所有分支
 
-這是另外一種可以使用 `git reflog` 情況，找到在這次錯誤拉取之前 HEAD 的指向。
+列出本機分支：
+
+```sh
+$ git branch
+```
+
+列出遠端分支：
+
+```sh
+$ git branch -r
+```
+
+列出兩者：
+
+```sh
+$ git branch -a
+```
+
+### 我想從一個提交創建分支
+
+```sh
+$ git checkout -b [分支名稱] [提交 SHA]
+```
+
+### 我從錯誤的分支拉取，或拉取到錯誤的分支了
+
+這是另外一種可以使用 `git reflog` 情況。找到在這次錯誤拉取之前 HEAD 的指向。
 
 ```sh
 (main)$ git reflog
@@ -745,9 +780,9 @@ $ git reset --hard c5bc55a
 
 完成。
 
-### 我想丟棄本地的提交，以讓分支與遠端保持一致
+### 我想捨棄本機上的提交，以讓分支與遠端保持一致
 
-首先，確認你沒有推送你的內容到遠端。
+首先，確認你沒有推送到遠端。
 
 `git status` 會顯示本機領先遠端多少個提交：
 
@@ -779,29 +814,33 @@ $ git reset --hard c5bc55a
 (main)$ git reset --hard HEAD^
 ```
 
-`HEAD^` 是 `HEAD^1` 的縮寫，你可以指定數字來進一步重設。或者，如果你不想使用 `HEAD^`，你可以指定一個提交的雜湊值（可以使用 `git log` 查看），如 `git reset --hard a13b85e`。
+`HEAD^` 是 `HEAD^1` 的縮寫，表示 `HEAD` 的第一個親代，而 `HEAD^2` 則是其第二個親代（合併提交會有兩個親代）。
 
-簽出到剛才新建的分支繼續工作：
+請注意 `HEAD^2` **不同於** `HEAD~2`，詳見 [這篇部落格](http://www.paulboxley.com/blog/2011/06/git-caret-and-tilde)。
+
+或者，如果你不想用 `HEAD^`，找到想要將 `main` 重設到的提交的雜湊值（`git log` 可以做到這件事）。然後重設到那個提交。例如，要將 `main` 重設到 `a13b85e`，執行 `git reset --hard a13b85e`。
+
+簽出剛才新建的分支繼續工作：
 
 ```sh
 (main)$ git checkout my-branch
 ```
 
-### 我想保留來自另外一個 ref-ish 的整個檔案
+### 我想從另一個引用之類保留整個檔案
 
-假設你正在做一個探針解決方案（註），有成百上千的內容。當你提交到一個分支，儲存工作內容：
+假設你正在做一個探針解決方案（註），有成百上千的更動，一切都運作良好。現在，你提交到另一個分支來儲存該工作：
 
 ```sh
 (solution)$ git add -A && git commit -m "Adding all changes from this spike into one big commit."
 ```
 
-當你想要把它放到一個分支裡（假設是 `develop`），你希望保持整個檔案的完整，並將大的提交分割成數個小的。
+當你想要把它放到一個分支裡（可能是功能分支，可能是 `develop`），你希望保持整個檔案的完整，並將大的提交分割成數個小的。
 
-假設這裡有：
-  * 分支 `solution`，擁有原型方案，領先 `develop` 分支。
-  * 分支 `develop`，應用原型方案的一些內容。
+假設有：
+  * 分支 `solution`，擁有原型方案，領先 `develop`。
+  * 分支 `develop`，你想套用解決方案的分支。
 
-可以將內容放到那個分支中：
+假如檔案名稱是 `file1.txt`，你可以將 `solution` 分支的那個檔案的內容放到 `develop` 分支。
 
 ```sh
 (develop)$ git checkout solution -- file1.txt
@@ -816,9 +855,9 @@ $ git reset --hard c5bc55a
 
 然後，普通地提交。
 
-註：探針解決方案（spike solution）旨在分析或解決問題。當所有人都清楚瞭解問題後，這些方案將用於估計或被丟棄。參見 [Wikipedia](https://en.wikipedia.org/wiki/Extreme_programming_practices)。
+註：探針解決方案（spike solution）旨在分析或解決問題。當所有人都清楚瞭解問題後，這些方案將被評估或捨棄。參見 [Wikipedia](https://en.wikipedia.org/wiki/Extreme_programming_practices)。
 
-### 我把幾個提交提交到了同一個分支，而這些提交應該在不同的分支上
+### 我把在同一分支提交了幾次，而這些提交應該在不同的分支上
 
 假設在 `main` 分支，執行 `git log` 的結果如下：
 
@@ -844,7 +883,7 @@ Date:   Tue Jul 21 01:12:48 2014 -0400
     First commit
 ```
 
-要把 `e3851e8` 和 `5ea5173` 分別移到新的分支，首先，要把 `main` 分支重設到正確的提交（`a13b85e`）：
+要將 `e3851e8` 和 `5ea5173` 分別移到新的分支，首先，要把 `main` 分支重設到正確的提交（`a13b85e`）：
 
 ```sh
 (main)$ git reset --hard a13b85e
@@ -857,7 +896,7 @@ HEAD is now at a13b85e
 (main)$ git checkout -b 21
 ```
 
-接著，然後揀選提交到正確的分支上。這意味著我們將直接在 HEAD 上面套用這個提交。
+接著，將提交揀選到這個分支的頂端。這意味著套用、且只套用該提交，直接在 `HEAD` 的頂端。
 
 ```sh
 (21)$ git cherry-pick e3851e8
@@ -872,19 +911,17 @@ HEAD is now at a13b85e
 (14)$ git cherry-pick 5ea5173
 ```
 
-### 我想刪除上游刪除了的本地分支
+### 我想刪除上游刪除了的本機分支
 
-比方說，在 GitHub 中，合併了拉取請求後，就可以刪除掉分支。如果不準備繼續在這個分支上工作，刪除這個分支會使工作複本更乾淨。
+比方說，在 GitHub 中，拉取請求合併後，會有一個選項可以刪除你分叉中合併了的分支。如果你並未計劃在該分支上繼續工作，將該分支的本機複本刪除會更乾淨，而不會有一堆陳舊分支。
 
 ```sh
-$ git fetch -p
+$ git fetch -p [遠端]
 ```
 
 ### 我不小心刪除了分支
 
-如果你定期推送到遠端，多數情況下應該是安全的，但有時可能刪除了還沒推送的分支。
-
-為了模擬這種情況，首先，創建一個分支和一個檔案：
+如果你定期推送到遠端，多數情況下應該是安全的。但有時可能刪除了還沒推送的分支。為了模擬這種情況，首先，創建一個分支和一個檔案：
 
 ```sh
 (main)$ git checkout -b my-branch
@@ -967,7 +1004,41 @@ README.md foo.txt
 (main)$ git branch -D my-branch
 ```
 
-### 我想從別人正在工作的遠端分支簽出一個分支
+刪除一個*未*合併進目前分支或上游的分支：
+
+```sh
+(main)$ git branch -D my-branch
+```
+
+### 我想刪除多個分支
+
+假如你想刪除以 `fix/` 開頭的所有分支：
+
+```sh
+(main)$ git branch | grep 'fix/' | xargs git branch -d
+```
+
+### 我想重新命名一個分支
+
+重新命名目前的本機分支：
+
+```sh
+$ git branch -m [新名稱]
+```
+
+重新命名另一個本機分支：
+
+```sh
+$ git branch -m [原名稱] [新名稱]
+```
+
+刪除遠端上原名稱的分支，並推送新名稱的分支：
+
+```sh
+$ git push [遠端] :[原名稱] [新名稱]
+```
+
+### 我想簽出別人正在其上工作的遠端分支
 
 首先，從遠端抓取所有分支：
 
@@ -975,7 +1046,7 @@ README.md foo.txt
 (main)$ git fetch --all
 ```
 
-假設你想要從遠端的 `daves` 分支簽出到本機的 `daves`：
+假設你想要從遠端 `origin` 簽出分支 `daves`。
 
 ```sh
 (main)$ git checkout --track origin/daves
@@ -983,9 +1054,85 @@ Branch daves set up to track remote branch daves from origin.
 Switched to a new branch 'daves'
 ```
 
-（`--track` 是 `git checkout -b [branch] [remotename]/[branch]` 的縮寫。）
+（`--track` 是 `git checkout -b [分支] [遠端]/[分支]` 的縮寫。）
 
 這樣就有 `daves` 的本機複本了。
+
+### 我想從本機分支創建一個遠端的
+
+```sh
+$ git push [遠端] HEAD
+```
+
+如果你亦希望將該遠端分支設為上游，則改用：
+
+```sh
+$ git push -u [遠端] HEAD
+```
+
+若 `push.default` 組態為 `upstream` 模式或 `simple` 模式（Git 2.0 的預設值），以下命令會將目前分支推送到先前以 `-u` 註冊的遠端分支：
+
+```sh
+$ git push
+```
+
+`git push` 其他模式的行為參見 [`push.default` 的文件](https://git-scm.com/docs/git-config#git-config-pushdefault)。
+
+### 我想設定本機分支的上游
+
+設定目前的本機分支的上游：
+
+```sh
+$ git branch --set-upstream-to [遠端]/[分支]
+# 或
+$ git branch -u [遠端]/[分支]
+```
+
+設定另一個本機分支的上游：
+
+```sh
+$ git branch -u [遠端]/[分支] [本機分支]
+```
+
+### 我想設定 `HEAD` 追蹤預設遠端分支
+
+透過檢查遠端分支，可以看到 `HEAD` 在追蹤哪個遠端分支。在某些情況下，可能不會是希望的分支。
+
+```sh
+$ git branch -r
+origin/HEAD -> origin/gh-pages
+origin/main
+```
+
+設定 `origin/HEAD` 追蹤 `origin/main`：
+
+```sh
+$ git remote set-head origin --auto
+origin/HEAD set to main
+```
+
+### 我在錯誤的分支上做了更動
+
+如果你有未提交的更動，而其應該在另一個分支上，貯存更動然後在正確的分支上套用：
+
+```sh
+(wrong-branch)$ git stash
+(wrong-branch)$ git checkout correct-branch
+(correct-branch)$ git stash apply
+```
+
+### 我想將分支一分為二
+
+你在一個分支上提交了幾次，而你想其一分為二，一個結束於較早的某個提交，一個包含所有提交。
+
+用 `git log` 找到你想作為分開點的提交的 SHA，然後：
+
+```sh
+(original-branch)$ git branch new-branch
+(original-branch)$ git reset --hard [分開點]
+```
+
+如果你先前已推送 `original-branch`，你將需要強制推送，參見 [Stack Overflow](https://stackoverflow.com/questions/28983458/how-to-split-a-branch-in-two-with-git/28983843#28983843)。
 
 ## 重定基底與合併
 
