@@ -161,7 +161,7 @@ $ git clone [URL] [目錄名稱]
 $ git remote set-url origin [正確的 URL]
 ```
 
-詳見 [此 StackOverflow](https://stackoverflow.com/questions/2432764/how-to-change-the-uri-url-for-a-remote-git-repository#2432799)。
+詳見 [此 Stack Overflow 討論串](https://stackoverflow.com/questions/2432764/how-to-change-the-uri-url-for-a-remote-git-repository#2432799)。
 
 ### 我想將程式碼加到其他人的版本庫中
 
@@ -323,7 +323,7 @@ $ git commit --amend --no-edit
 
 ### 我想將更動從一個提交移到另一個
 
-如果你在一個提交作了一個更動，而它更符合另一個提交做的事，你可以用互動式重定基底將更動移動過去。這節來自 [StackOverflow](https://stackoverflow.com/a/54985304/2491502)。
+如果你在一個提交作了一個更動，而它更符合另一個提交做的事，你可以用互動式重定基底將更動移動過去。這節來自 [Stack Overflow](https://stackoverflow.com/a/54985304/2491502)。
 
 假設你有三個提交，`a`、`b`、`c`。`b` 變更了 `file1` 和 `file2`，你想要把 `file1` 的更動從 `b` 移到 `a`。
 
