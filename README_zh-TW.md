@@ -1401,7 +1401,7 @@ $ git checkout --ours README.md
 $ git stash
 ```
 
-可以使用 `-u` 選項排除一些檔案：
+也貯存未追蹤的檔案：
 
 ```sh
 $ git stash -u
@@ -1437,7 +1437,7 @@ $ git stash push -m <message>
 
 ### 套用指定貯存
 
-可以先列出擁有的貯存：
+先列出貯存：
 
 ```sh
 $ git stash list
