@@ -113,9 +113,13 @@
     - [複製所有子模組](#%E8%A4%87%E8%A3%BD%E6%89%80%E6%9C%89%E5%AD%90%E6%A8%A1%E7%B5%84)
     - [移除子模組](#%E7%A7%BB%E9%99%A4%E5%AD%90%E6%A8%A1%E7%B5%84)
   - [雜項](#%E9%9B%9C%E9%A0%85)
+    - [從另一個分支拷貝檔案](#%E5%BE%9E%E5%8F%A6%E4%B8%80%E5%80%8B%E5%88%86%E6%94%AF%E6%8B%B7%E8%B2%9D%E6%AA%94%E6%A1%88)
+    - [恢復刪除的檔案](#%E6%81%A2%E5%BE%A9%E5%88%AA%E9%99%A4%E7%9A%84%E6%AA%94%E6%A1%88)
     - [刪除標籤](#%E5%88%AA%E9%99%A4%E6%A8%99%E7%B1%A4)
     - [恢復已刪除標籤](#%E6%81%A2%E5%BE%A9%E5%B7%B2%E5%88%AA%E9%99%A4%E6%A8%99%E7%B1%A4)
     - [已刪除修補檔](#%E5%B7%B2%E5%88%AA%E9%99%A4%E4%BF%AE%E8%A3%9C%E6%AA%94)
+    - [將版本庫導出為 Zip 檔](#%E5%B0%87%E7%89%88%E6%9C%AC%E5%BA%AB%E5%B0%8E%E5%87%BA%E7%82%BA-zip-%E6%AA%94)
+    - [推送有相同名稱的分支與標籤](#%E6%8E%A8%E9%80%81%E6%9C%89%E7%9B%B8%E5%90%8C%E5%90%8D%E7%A8%B1%E7%9A%84%E5%88%86%E6%94%AF%E8%88%87%E6%A8%99%E7%B1%A4)
   - [追蹤檔案](#%E8%BF%BD%E8%B9%A4%E6%AA%94%E6%A1%88)
     - [我只想改變一個檔案名字的大小寫，而不修改內容](#%E6%88%91%E5%8F%AA%E6%83%B3%E6%94%B9%E8%AE%8A%E4%B8%80%E5%80%8B%E6%AA%94%E6%A1%88%E5%90%8D%E5%AD%97%E7%9A%84%E5%A4%A7%E5%B0%8F%E5%AF%AB%E8%80%8C%E4%B8%8D%E4%BF%AE%E6%94%B9%E5%85%A7%E5%AE%B9)
     - [我想從 Git 刪除一個檔案，但保留該檔案](#%E6%88%91%E6%83%B3%E5%BE%9E-git-%E5%88%AA%E9%99%A4%E4%B8%80%E5%80%8B%E6%AA%94%E6%A1%88%E4%BD%86%E4%BF%9D%E7%95%99%E8%A9%B2%E6%AA%94%E6%A1%88)
@@ -1555,11 +1559,31 @@ $ rm -rf .git/modules/[子模組名稱]
 
 ## 雜項
 
+### 從另一個分支拷貝檔案
+
+```sh
+$ git checkout [分支] -- [檔案名稱]
+```
+
+### 恢復刪除的檔案
+
+先找到該檔案最後存在的提交：
+
+```sh
+$ git rev-list -n 1 HEAD -- [檔案名稱]
+```
+
+然後簽出該檔案：
+
+```sh
+$ git checkout [刪除檔案的提交]^ -- [檔案名稱]
+```
+
 ### 刪除標籤
 
 ```sh
-$ git tag -d <tag_name>
-$ git push <remote> :refs/tags/<tag_name>
+$ git tag -d [標籤名稱]
+$ git push [遠端] :refs/tags/[標籤名稱]
 ```
 
 ### 恢復已刪除標籤
@@ -1570,17 +1594,49 @@ $ git push <remote> :refs/tags/<tag_name>
 $ git fsck --unreachable | grep tag
 ```
 
-記下這個標籤的雜湊值，然後用 Git 的 [`update-ref`](http://git-scm.com/docs/git-update-ref)：
+記下這個標籤的雜湊值，然後用 [`git update-ref`](http://git-scm.com/docs/git-update-ref)：
 
 ```sh
-$ git update-ref refs/tags/<tag_name> <hash>
+$ git update-ref refs/tags/[標籤名稱] [雜湊值]
 ```
 
 ### 已刪除修補檔
 
-如果有人在 GitHub 上向你提出了拉取請求，但他接著刪除了他的分叉，你無法複製他的提交或使用 `git am`。在這種情況下，最好手動的查看他們的提交，把它們拷貝到一個新的本機分支，然後提交。
+如果有人在 GitHub 上向你提出了拉取請求，但他接著刪除了他的分叉，因為 [`.diff` 和 `.patch` URL](https://github.com/blog/967-github-secrets) 失效，你無法複製他的提交或使用 `git am`。但你可以透過 [GitHub 的特殊引用](https://gist.github.com/piscisaureus/3342247)簽出拉取請求本身。例如將拉取請求 #1 的內容抓取到名為 `pr_1` 的新分支：
 
-最後，再修改作者，參見[〈變更作者〉](#commit-wrong-author)。然後，套用更動，再發起一個新的拉取請求。
+```sh
+$ git fetch [遠端] refs/pull/1/head:pr_1
+From github.com:foo/bar
+ * [new ref]         refs/pull/1/head -> pr_1
+```
+
+### 將版本庫導出為 Zip 檔
+
+```sh
+$ git archive --format zip --output [zip 的完整檔案路徑] main
+```
+
+### 推送有相同名稱的分支與標籤
+
+如果遠端有與分支同名的標籤，若試圖以標準的 `git push [遠端] [分支]` 命令推送該分支時會得到以下錯誤：
+
+```sh
+$ git push [遠端] [分支]
+error: dst refspec same matches more than one.
+error: failed to push some refs to '<git server>'
+```
+
+指明要推送 `HEAD` 引用來修正這個問題：
+
+```sh
+$ git push [遠端] refs/heads/[分支名稱]
+```
+
+相對地，推送標籤使用：
+
+```sh
+$ git push [遠端] refs/tags/[標籤名稱]
+```
 
 ## 追蹤檔案
 
