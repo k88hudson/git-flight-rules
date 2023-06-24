@@ -130,7 +130,10 @@
   - [用 Git 除錯](#%E7%94%A8-git-%E9%99%A4%E9%8C%AF)
   - [組態](#%E7%B5%84%E6%85%8B)
     - [我想為 Git 命令設定別名](#%E6%88%91%E6%83%B3%E7%82%BA-git-%E5%91%BD%E4%BB%A4%E8%A8%AD%E5%AE%9A%E5%88%A5%E5%90%8D)
+    - [我想將空目錄加入到版本庫](#%E6%88%91%E6%83%B3%E5%B0%87%E7%A9%BA%E7%9B%AE%E9%8C%84%E5%8A%A0%E5%85%A5%E5%88%B0%E7%89%88%E6%9C%AC%E5%BA%AB)
     - [我想快取一個版本庫的使用者名稱和密碼](#%E6%88%91%E6%83%B3%E5%BF%AB%E5%8F%96%E4%B8%80%E5%80%8B%E7%89%88%E6%9C%AC%E5%BA%AB%E7%9A%84%E4%BD%BF%E7%94%A8%E8%80%85%E5%90%8D%E7%A8%B1%E5%92%8C%E5%AF%86%E7%A2%BC)
+    - [我想 Git 忽略權限與檔案模式更動](#%E6%88%91%E6%83%B3-git-%E5%BF%BD%E7%95%A5%E6%AC%8A%E9%99%90%E8%88%87%E6%AA%94%E6%A1%88%E6%A8%A1%E5%BC%8F%E6%9B%B4%E5%8B%95)
+    - [我想設定全域使用者資訊](#%E6%88%91%E6%83%B3%E8%A8%AD%E5%AE%9A%E5%85%A8%E5%9F%9F%E4%BD%BF%E7%94%A8%E8%80%85%E8%B3%87%E8%A8%8A)
   - [我不知道我做錯了什麼](#%E6%88%91%E4%B8%8D%E7%9F%A5%E9%81%93%E6%88%91%E5%81%9A%E9%8C%AF%E4%BA%86%E4%BB%80%E9%BA%BC)
 - [其他資源](#%E5%85%B6%E4%BB%96%E8%B3%87%E6%BA%90)
   - [書籍](#%E6%9B%B8%E7%B1%8D)
@@ -1738,7 +1741,7 @@ Git 會從範圍中選擇另一個提交，這個過程將重複直到沒有剩�
 
 ### 我想為 Git 命令設定別名
 
-在 OS X 和 Linux 下，Git 的組態檔案儲存在 `~/.gitconfig`。可以在 `[alias]` 部分設定一些快捷別名（以及容易拼錯的），如：
+在 OS X 和 Linux 下，Git 組態檔案位於 `~/.gitconfig`。可以在 `[alias]` 部分設定一些快捷別名（以及容易拼錯的），如：
 
 ```vim
 [alias]
@@ -1763,18 +1766,84 @@ Git 會從範圍中選擇另一個提交，這個過程將重複直到沒有剩�
     zap = fetch -p
 ```
 
-### 我想快取一個版本庫的使用者名稱和密碼
+### 我想將空目錄加入到版本庫
 
-假設有一個版本庫需要授權，這時你可以快取使用者名稱和密碼，而不用每次推送和拉取時都輸入一次：
+你無法這麼做！Git 不支援，但有一個技巧——你可以在該目錄創建包含以下內容的 `.gitignore` 檔案：
+
+```
+# 忽略這個目錄中所有檔案。
+.
+# 除了這個檔案自身。
+!.gitignore
+```
+
+另一個慣例是在該目錄中創建一個名為 `.gitkeep` 的空檔案：
 
 ```sh
+$ mkdir 空目錄
+$ touch 空目錄/.gitkeep
+```
+
+你也可以改稱其為 `.keep`，將第二個命令改為 `touch 空目錄/.keep` 即可。
+
+### 我想快取一個版本庫的使用者名稱和密碼
+
+假設有一個版本庫需要身分認證，這時你可以快取使用者名稱和密碼，而不用每次推送和拉取時都輸入一次。憑證協助程式可以做到這點：
+
+```sh
+# 設定 Git 使用憑證記憶快取。
 $ git config --global credential.helper cache
-# Set Git to use the credential memory cache.
 ```
 
 ```sh
+# 設定快取在 1 小時後過期（以秒為單位）。
 $ git config --global credential.helper 'cache --timeout=3600'
-# Set the cache to timeout after 1 hour (setting is in seconds).
+```
+
+顯示可能的憑證協助程式：
+
+```sh
+$ git help -a | grep credential
+```
+
+作業系統特定的憑證快取協助程式：
+
+```sh
+# OS X：
+$ git config --global credential.helper osxkeychain
+```
+
+```sh
+# Windows 2.7.3+：
+$ git config --global credential.helper manager
+```
+
+```sh
+# Ubuntu 或其他使用 GNOME 的發行版：
+$ git config --global credential.helper gnome-keyring
+```
+
+其他作業系統和發行版可能有不同的協助程式。
+
+### 我想 Git 忽略權限與檔案模式更動
+
+```sh
+$ git config core.fileMode false
+```
+
+如果要設定為目前登入的使用者的預設行為：
+
+```sh
+$ git config --global core.fileMode false
+```
+
+### 我想設定全域使用者資訊
+
+設定跨版本庫的使用者資訊：
+
+```sh
+$ git config --global user.name [名字]
+$ git config --global user.email [email]
 ```
 
 ## 我不知道我做錯了什麼
