@@ -127,6 +127,7 @@
     - [我想將特定檔案還原至某個修訂版](#%E6%88%91%E6%83%B3%E5%B0%87%E7%89%B9%E5%AE%9A%E6%AA%94%E6%A1%88%E9%82%84%E5%8E%9F%E8%87%B3%E6%9F%90%E5%80%8B%E4%BF%AE%E8%A8%82%E7%89%88)
     - [我想列出提交或分支之間特定檔案的差異](#%E6%88%91%E6%83%B3%E5%88%97%E5%87%BA%E6%8F%90%E4%BA%A4%E6%88%96%E5%88%86%E6%94%AF%E4%B9%8B%E9%96%93%E7%89%B9%E5%AE%9A%E6%AA%94%E6%A1%88%E7%9A%84%E5%B7%AE%E7%95%B0)
     - [我想 Git 忽略特定檔案的更動](#%E6%88%91%E6%83%B3-git-%E5%BF%BD%E7%95%A5%E7%89%B9%E5%AE%9A%E6%AA%94%E6%A1%88%E7%9A%84%E6%9B%B4%E5%8B%95)
+  - [用 Git 除錯](#%E7%94%A8-git-%E9%99%A4%E9%8C%AF)
   - [組態](#%E7%B5%84%E6%85%8B)
     - [我想為 Git 命令設定別名](#%E6%88%91%E6%83%B3%E7%82%BA-git-%E5%91%BD%E4%BB%A4%E8%A8%AD%E5%AE%9A%E5%88%A5%E5%90%8D)
     - [我想快取一個版本庫的使用者名稱和密碼](#%E6%88%91%E6%83%B3%E5%BF%AB%E5%8F%96%E4%B8%80%E5%80%8B%E7%89%88%E6%9C%AC%E5%BA%AB%E7%9A%84%E4%BD%BF%E7%94%A8%E8%80%85%E5%90%8D%E7%A8%B1%E5%92%8C%E5%AF%86%E7%A2%BC)
@@ -1698,6 +1699,40 @@ $ git update-index --assume-unchanged [要忽略的檔案]
 ```sh
 $ git update-index --no-assume-unchanged [要取消忽略的檔案]
 ```
+
+## 用 Git 除錯
+
+[`git bisect`](https://git-scm.com/docs/git-bisect) 命令透過二分搜尋找到哪個提交引入了漏洞。
+
+假設你在 `main` 分支上，想找到哪個提交導致程式出錯。你開始二分搜尋：
+
+```sh
+$ git bisect start
+```
+
+接著你應該指定哪個提交已經包含了這個漏洞，哪個沒有。例如，你目前所在的修訂版是壞的，而 `v1.1.1` 是好的：
+
+```sh
+$ git bisect bad
+$ git bisect good v1.1.1
+```
+
+接著 Git 會簽出你提供的範圍中間的提交，並詢問該提交是好是壞。你應該會看到類似這樣的訊息：
+
+```sh
+Bisecting: 5 revision left to test after this (roughly 5 step)
+[c44abbbee29cb93d8499283101fe7c8d9d97f0fe] Commit message
+(c44abbb)$
+```
+
+然後你可以檢查這個提交是好是壞。然後用以下命令告訴 Git：
+
+```sh
+$ git bisect good # 如果是好的。
+$ git bisect bad  # 如果是壞的。
+```
+
+Git 會從範圍中選擇另一個提交，這個過程將重複直到沒有剩下的修訂版需要檢查，而命令最後會印出**第一個**壞提交。
 
 ## 組態
 
