@@ -135,6 +135,9 @@
     - [我想 Git 忽略權限與檔案模式更動](#%E6%88%91%E6%83%B3-git-%E5%BF%BD%E7%95%A5%E6%AC%8A%E9%99%90%E8%88%87%E6%AA%94%E6%A1%88%E6%A8%A1%E5%BC%8F%E6%9B%B4%E5%8B%95)
     - [我想設定全域使用者資訊](#%E6%88%91%E6%83%B3%E8%A8%AD%E5%AE%9A%E5%85%A8%E5%9F%9F%E4%BD%BF%E7%94%A8%E8%80%85%E8%B3%87%E8%A8%8A)
   - [我不知道我做錯了什麼](#%E6%88%91%E4%B8%8D%E7%9F%A5%E9%81%93%E6%88%91%E5%81%9A%E9%8C%AF%E4%BA%86%E4%BB%80%E9%BA%BC)
+  - [Git 快捷命令](#git-%E5%BF%AB%E6%8D%B7%E5%91%BD%E4%BB%A4)
+    - [Git Bash](#git-bash)
+    - [Windows 上的 PowerShell](#windows-%E4%B8%8A%E7%9A%84-powershell)
 - [其他資源](#%E5%85%B6%E4%BB%96%E8%B3%87%E6%BA%90)
   - [書籍](#%E6%9B%B8%E7%B1%8D)
   - [教學](#%E6%95%99%E5%AD%B8)
@@ -1868,6 +1871,34 @@ $ git reset --hard 0254ea7
 ```
 
 摘自[這裡](https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog)。
+
+## Git 快捷命令
+
+### Git Bash
+
+如果你已經很熟悉以上命令的用法了，你可能會想創建一些快捷方式，讓你可以用很短的命令完成複雜的任務。
+
+```sh
+alias sq=squash
+
+function squash() {
+    git rebase -i HEAD~$1
+}
+```
+
+將以上命令複製至你的 `.bashrc` 或 `.bash_profile`。
+
+### Windows 上的 PowerShell
+
+Windows 上的 PowerShell 也可以設定別名與函式。將以下命令加到你位於 `$profile` 變數的設定檔，詳見微軟文件網頁的 [關於設定檔](https://learn.microsoft.com/zh-tw/powershell/module/microsoft.powershell.core/about/about_profiles)。
+
+```powershell
+Set-Alias sq Squash-Commit
+
+function Squash-Commit {
+    git rebase -i HEAD~$1
+}
+```
 
 # 其他資源
 
