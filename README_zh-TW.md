@@ -1904,15 +1904,23 @@ function Squash-Commit {
 
 ## 書籍
 
-* [Pro Git](https://git-scm.com/book/en/v2)——Scott Chacon 的傑出書籍
+* [Learn Enough Git to Be Dangerous](https://www.learnenough.com/git-tutorial)——Michael Hartl 所著的從基礎開始的 Git 書籍
+* [Pro Git](https://git-scm.com/book/en/v2)——Scott Chacon 與 Ben Straub 合著的傑出書籍
 * [Git Internals](https://github.com/pluralsight/git-internals-pdf)——Scott Chacon 的另一本傑出書籍
+* [Nasa Handbook](https://www.nasa.gov/sites/default/files/atoms/files/nasa_systems_engineering_handbook.pdf)
 
 ## 教學
 
-* [Learn Git branching](https://learngitbranching.js.org/)——一個基於網頁的互動式分支、合併、重定基底教學
+* [19 Git Tips For Everyday Use](https://www.alexkras.com/19-git-tips-for-everyday-use)——實用的 Git 一行命令列表
+* [Atlassian's Git tutorial](https://www.atlassian.com/git/tutorials)——從初學到熟練，正確掌握 Git 的教學
+* [Learn Git branching](https://learngitbranching.js.org/)——分支、合併、重定基底的互動式網頁教學
 * [Getting solid at Git rebase vs. merge](https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa)
-* [git-workflow](https://github.com/asmeurer/git-workflow)——[Aaron Meurer](https://github.com/asmeurer) 的怎麼使用 Git 開源貢獻
-* [GitHub as a workflow](http://hugogiraudel.com/2015/08/13/github-as-a-workflow/)——GitHub 作為工作流程的趣事，特別是空拉取請求
+* [Git Commands and Best Practices Cheat Sheet](https://zeroturnaround.com/rebellabs/git-commands-and-best-practices-cheat-sheet)——一篇部落格中的 Git 小抄與更多解釋
+* [Git from the inside out](https://codewords.recurse.com/issues/two/git-from-the-inside-out)——深度探討 Git 內部的教學
+* [git-workflow](https://github.com/asmeurer/git-workflow) - [Aaron Meurer](https://github.com/asmeurer)——如何用 Git 貢獻開源版本庫
+* [GitHub as a workflow](https://hugogiraudel.com/2015/08/13/github-as-a-workflow/)——將 GitHub 用作工作流程的有趣做法，尤其是空 PR
+* [Githug](https://github.com/Gazler/githug)——學習常見 Git 工作流程的遊戲
+* [learnGitBranching](https://github.com/pcottle/learnGitBranching)——用於挑戰與教育的互動式 Git 可視化！
 
 ## 腳本和工具
 
@@ -1921,7 +1929,7 @@ function Squash-Commit {
 * [git-extras](https://github.com/tj/git-extras)——Git 工具集，版本庫概要、repl、歷史記錄、提交百分比和更多
 * [git-fire](https://github.com/qw3rtman/git-fire)——git-fire 是一個 Git 插件，用於在緊急情況下幫助加入目前所有檔案、提交、推送到一個新分支（防止合併衝突）。
 * [git-tips](https://github.com/git-tips/tips)——Git 小撇步
-* [git-town](https://github.com/Originate/git-town)——通用、高級 Git 工作流程支援！ http://www.git-town.com
+* [git-town](https://github.com/Originate/git-town)——通用、高級 Git 工作流程支援！<http://www.git-town.com>
 
 ## GUI 客戶端
 
@@ -1929,5 +1937,12 @@ function Squash-Commit {
 * [git-cola](https://git-cola.github.io/)——又一個 Git 客戶端，適用於 Windows、OS X
 * [GitUp](https://github.com/git-up/GitUp)——一個新的 Git 客戶端，在解決 Git 的複雜問題上有自己的特點
 * [gitx-dev](https://rowanj.github.io/gitx/)——又一個圖形化的 Git 客戶端，適用於 OS X
-* [Source Tree](https://www.sourcetreeapp.com/)——簡單而強大的免費 Git GUI 客戶端，適用於 Windows、OS X
+* [Sourcetree](https://www.sourcetreeapp.com/)——簡單而強大的免費 Git GUI 客戶端，適用於 Windows、OS X
 * [Tower](http://www.git-tower.com/)——圖形化 Git 客戶端，適用於 OS X（付費）
+* [tig](https://jonas.github.io/tig/)——Git 的終端文本模式介面
+* [Magit](https://magit.vc/)——Emacs 的 Git 介面
+* [GitExtensions](https://github.com/gitextensions/gitextensions)——殼層插件、Visual Studio 2010-2015 插件、獨立的 Git 版本庫工具
+* [Fork](https://git-fork.com/)——快速且友善的 Git 客戶端，適用於 Mac（beta）
+* [gmaster](https://gmaster.io/)——包含三路合併、分析重構、語意化差異、合併等的 Git 客戶端，適用於 Windows（beta）
+* [gitk](https://git-scm.com/docs/gitk)——可以簡單查看版本庫狀態的 Git 客戶端，適用於 Linux
+* [SublimeMerge](https://www.sublimemerge.com/)——極速、可擴展的客戶端，有三路合併、強大的搜尋、語法高亮功能，活躍開發中
