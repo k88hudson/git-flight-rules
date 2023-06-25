@@ -927,7 +927,7 @@ HEAD is now at a13b85e
 (21)$ git cherry-pick e3851e8
 ```
 
-這可能會造成衝突，參見〈[互動式重定基底](#interactive-rebase)・[衝突](#merge-conflict)〉來解決衝突。
+這可能會造成衝突，參見〈[互動式重定基底可能出現的問題](#%E4%BA%92%E5%8B%95%E5%BC%8F%E9%87%8D%E5%AE%9A%E5%9F%BA%E5%BA%95%E5%8F%AF%E8%83%BD%E5%87%BA%E7%8F%BE%E7%9A%84%E5%95%8F%E9%A1%8C)・[衝突](#%E8%A1%9D%E7%AA%81)〉來解決衝突。
 
 同樣地，為 `5ea5173` 也創建一個分支，並把提交揀選到其上：
 
