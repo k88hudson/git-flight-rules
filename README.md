@@ -625,7 +625,7 @@ This tells rebase that you want to edit your third last commit and keep the othe
 (your-branch)$ git commit --amend
 ```
 
-which tells Git to recreate the commit, but to leave the commit message unedited. Having done that, the hard part is solved.
+which tells Git to recreate the commit. Also, Git will ask you to write a new commit message, using the original commit message as a starting point. Having done that, the hard part is solved.
 
 ```sh
 (your-branch)$ git rebase --continue
