@@ -1506,7 +1506,7 @@ If you want to keep one branch's version of the code, you can use `--ours` or `-
 ```
 
 - When *merging*, use `--ours` to keep changes from the local branch, or `--theirs` to keep changes from the other branch.
-- When *rebasing*, use `--theirs` to keep changes from the local branch, or `--ours` to keep changes from the other branch. For an explanation of this swap, see [this note in the Git documentation](https://git-scm.com/docs/git-rebase#git-rebase---merge).
+- When *rebasing*, use `--theirs` to keep changes from the local branch, or `--ours` to keep changes from the other branch. For an explanation of this swap, see [this note in the Git documentation](https://git-scm.com/docs/git-rebase#Documentation/git-rebase.txt---merge).
 
 If the merges are more complicated, you can use a visual diff editor:
 

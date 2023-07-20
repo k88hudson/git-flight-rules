@@ -1165,7 +1165,7 @@ Si vous voulez garder la version du code d'une des branches, vous pouvez utilise
 ```
 
 - Quand vous *fusionnez*, utilisez `--ours` pour garder les modifications de la branche locale, ou `--theirs` pour garder les modifications de l'autre branche.
-- Quand vous *rebasez*, utilisez `--theirs` pour garder les modifications de la branche locale, ou `--ours` pour garder les modifications de l'autre branche. Pour des explications concernant cet échange, consultez [cette note dans la documentation de Git](https://git-scm.com/docs/git-rebase#git-rebase---merge).
+- Quand vous *rebasez*, utilisez `--theirs` pour garder les modifications de la branche locale, ou `--ours` pour garder les modifications de l'autre branche. Pour des explications concernant cet échange, consultez [cette note dans la documentation de Git](https://git-scm.com/docs/git-rebase#Documentation/git-rebase.txt---merge).
 
 Si les fusions sont plus complexes, vous pouvez utiliser un éditeur de diff visuel :
 

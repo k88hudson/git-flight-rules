@@ -1453,7 +1453,7 @@ Nếu bạn muốn giữ phiên bản code của một nhánh, bạn có thể s
 ```
 
 - Khi *đang merge*, sử dụng `--ours` để giữ các thay đổi từ nhánh local, hoặc `--theirs` để giữ các thay đổi từ nhánh khác.
-- Khi *đang rebase*, sử dụng `--theirs` để giữ các thay đổi từ nhánh local, hoặc `--ours` để giữ các thay đổi từ nhánh khác. Để hiểu giải thích về sự hoán đổi này, hãy xem [ghi chú này trong tài liệu Git](https://git-scm.com/docs/git-rebase#git-rebase---merge).
+- Khi *đang rebase*, sử dụng `--theirs` để giữ các thay đổi từ nhánh local, hoặc `--ours` để giữ các thay đổi từ nhánh khác. Để hiểu giải thích về sự hoán đổi này, hãy xem [ghi chú này trong tài liệu Git](https://git-scm.com/docs/git-rebase#Documentation/git-rebase.txt---merge).
 
 Nếu việc merge phức tạp hơn, bạn có thể sử dụng trình chỉnh sửa khác biệt trực quan (visual diff editor):
 

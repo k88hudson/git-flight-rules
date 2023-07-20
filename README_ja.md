@@ -1545,7 +1545,7 @@ Changes not staged for commit:
 ```
 
 - *マージする*場合、ローカルブランチの編集を残したいとき `--ours` を指定し、他方の編集を残したいとき `--theirs` を指定します。
-- *リベースする*場合、ローカルブランチの編集を残したいとき `--theirs` を指定し、他方の編集を残したいとき `--ours` を指定します。このように逆転する理由は[ Git ドキュメントのこのノート](https://git-scm.com/docs/git-rebase#git-rebase---merge)を参照してください。
+- *リベースする*場合、ローカルブランチの編集を残したいとき `--theirs` を指定し、他方の編集を残したいとき `--ours` を指定します。このように逆転する理由は[ Git ドキュメントのこのノート](https://git-scm.com/docs/git-rebase#Documentation/git-rebase.txt---merge)を参照してください。
 
 マージがもっと複雑なときは、ビジュアル差分エディタを使うとよいです。
 
