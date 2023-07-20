@@ -110,7 +110,7 @@
 $ git log -n1 -p
 ```
 
-<a name="#i-wrote-the-wrong-thing-in-a-commit-message"></a>
+<a name="wrong-thing-in-commit-message"></a>
 ### 我的提交信息(commit message)写错了
 
 如果你的提交信息(commit message)写错了且这次提交(commit)还没有推(push), 你可以通过下面的方法来修改提交信息(commit message):
@@ -137,7 +137,7 @@ $ git commit --amend --author "New Authorname <authoremail@mydomain.com>"
 
 如果你需要修改所有历史, 参考 'git filter-branch'的指南页.
 
-<a href="#i-want-to-remove-a-file-from-a-commit"></a>
+<a name="remove-file-from-commit"></a>
 ### 我想从一个提交(commit)里移除一个文件
 
 通过下面的方法，从一个提交(commit)里移除一个文件:
@@ -180,7 +180,7 @@ $ git push -f [remote] [branch]
 
 或者做一个 [交互式rebase](#interactive-rebase) 删除那些你想要删除的提交(commit)里所对应的行。
 
-<a name="#force-push"></a>
+<a name="force-push"></a>
 ### 我尝试推一个修正后的提交(amended commit)到远程，但是报错：
 
 ```sh
@@ -201,7 +201,7 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 
 一般来说, **要避免强推**. 最好是创建和推(push)一个新的提交(commit)，而不是强推一个修正后的提交。后者会使那些与该分支或该分支的子分支工作的开发者，在源历史中产生冲突。
 
-<a href="undo-git-reset-hard"></a>
+<a name="undo-git-reset-hard"></a>
 ### 我意外的做了一次硬重置(hard reset)，我想找回我的内容
 
 如果你意外的做了 `git reset --hard`, 你通常能找回你的提交(commit), 因为Git对每件事都会有日志，且都会保存几天。
@@ -220,7 +220,7 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 
 ## 暂存(Staging)
 
-<a href="#i-need-to-add-staged-changes-to-the-previous-commit"></a>
+<a name="add-staged-changes-to-previous-commit"></a>
 ### 我需要把暂存的内容添加到上一次的提交(commit)
 
 ```sh
@@ -245,12 +245,12 @@ $ git add -N filename.x
 
 然后, 你需要用 `e` 选项来手动选择需要添加的行，执行 `git diff --cached` 将会显示哪些行暂存了哪些行只是保存在本地了。
 
-<a href="stage-in-two-commits"></a>
+<a name="stage-in-two-commits"></a>
 ### 我想把在一个文件里的变化(changes)加到两个提交(commit)里
 
 `git add` 会把整个文件加入到一个提交. `git add -p` 允许交互式的选择你想要提交的部分.
 
-<a href="unstaging-edits-and-staging-the-unstaged"></a>
+<a name="unstaging-edits-and-staging-the-unstaged"></a>
 ### 我想把暂存的内容变成未暂存，把未暂存的内容暂存起来
 
 多数情况下，你应该将所有的内容变为未暂存，然后再选择你想要的内容进行commit。
@@ -269,14 +269,14 @@ $ git stash pop --index 0
 
 ## 未暂存(Unstaged)的内容
 
-<a href="move-unstaged-edits-to-new-branch"></a>
+<a name="move-unstaged-edits-to-new-branch"></a>
 ### 我想把未暂存的内容移动到一个新分支
 
 ```sh
 $ git checkout -b my-branch
 ```
 
-<a href="move-unstaged-edits-to-old-branch"></a>
+<a name="move-unstaged-edits-to-old-branch"></a>
 ### 我想把未暂存的内容移动到另一个已存在的分支
 
 ```sh
@@ -285,7 +285,7 @@ $ git checkout my-branch
 $ git stash pop
 ```
 
-<a href="i-want-to-discard-my-local-uncommitted-changes"></a>
+<a name="discard-local-uncommitted-changes"></a>
 ### 我想丢弃本地未提交的变化(uncommitted changes)
 
 如果你只是想重置源(origin)和你本地(local)之间的一些提交(commit)，你可以：
@@ -307,7 +307,7 @@ $ git stash pop
 $ git reset filename
 ```
 
-<a href="i-want-to-discard-specific-unstaged-changes"></a>
+<a name="discard-specific-unstaged-changes"></a>
 ### 我想丢弃某些未暂存的内容
 
 如果你想丢弃工作拷贝中的一部分内容，而不是全部。
@@ -357,7 +357,7 @@ $ git reset --hard c5bc55a
 
 完成。
 
-<a href="discard-local-commits"></a>
+<a name="discard-local-commits"></a>
 ### 我想扔掉本地的提交(commit)，以便我的分支与远程的保持一致
 
 先确认你没有推(push)你的内容到远程。
@@ -520,7 +520,7 @@ HEAD is now at a13b85e
 $ git fetch -p
 ```
 
-<a name='restore-a-deleted-branch'></a>
+<a name="restore-a-deleted-branch"></a>
 ### 我不小心删除了我的分支
 
 如果你定期推送到远程, 多数情况下应该是安全的，但有些时候还是可能删除了还没有推到远程的分支。 让我们先创建一个分支和一个新的文件:
@@ -590,7 +590,7 @@ README.md foo.txt
 
 看! 我们把删除的文件找回来了。 Git的 `reflog` 在rebasing出错的时候也是同样有用的。
 
-<a name="i-want-to-delete-a-branch"></a>
+<a name="delete-branch"></a>
 ### 我想删除一个分支
 
 删除一个远程分支:
@@ -611,7 +611,7 @@ README.md foo.txt
 (main)$ git branch -D my-branch
 ```
 
-<a name="i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on"></a>
+<a name="working-on-checkout-remote-branch"></a>
 ### 我想从别人正在工作的远程分支签出(checkout)一个分支
 
 首先, 从远程拉取(fetch) 所有分支:
@@ -920,7 +920,7 @@ $ git stash apply "stash@{n}"
 $ git stash apply "stash@{2.hours.ago}"
 ```
 
-<a href="stage-and-keep-unstaged"></a>
+<a name="stage-and-keep-unstaged"></a>
 ### 暂存时保留未暂存的内容
 
 你需要手动create一个`stash commit`， 然后使用`git stash store`。
@@ -980,14 +980,14 @@ $ git update-ref refs/tags/<tag_name> <hash>
 
 ## 跟踪文件(Tracking Files)
 
-<a href="i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file"></a>
+<a name="change-file-name-capitalization-without-changing-contents"></a>
 ### 我只想改变一个文件名字的大小写，而不修改内容
 
 ```sh
 (main)$ git mv --force myfile MyFile
 ```
 
-<a href="remove-from-git"></a>
+<a name="remove-from-git"></a>
 ### 我想从Git删除一个文件，但保留该文件
 
 ```sh
@@ -1039,7 +1039,7 @@ $ git config --global credential.helper 'cache --timeout=3600'
 # Set the cache to timeout after 1 hour (setting is in seconds)
 ```
 
-<a href="#ive-no-idea-what-i-did-wrong"></a>
+<a name="ive-no-idea-what-i-did-wrong"></a>
 ## 我不知道我做错了些什么
 
 你把事情搞砸了：你 `重置(reset)` 了一些东西, 或者你合并了错误的分支, 亦或你强推了后找不到你自己的提交(commit)了。有些时候, 你一直都做得很好, 但你想回到以前的某个状态。
