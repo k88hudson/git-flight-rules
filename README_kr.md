@@ -858,7 +858,7 @@ $ git push -u <remote> HEAD
 $ git push
 ```
 
-`git push`의 다른 모드의 동작은 [`push.default` 문서](https://git-scm.com/docs/git-config#git-config-pushdefault)에 설명돼 있어요.
+`git push`의 다른 모드의 동작은 [`push.default` 문서](https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushdefault)에 설명돼 있어요.
 
 ### 리모트 브랜치를 로컬 브랜치를 위한 업스트림으로 설정하고 싶어
 

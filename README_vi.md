@@ -1165,7 +1165,7 @@ Với chế độ `upstream` và `simple` (mặc định trong Git 2.0) của c�
 $ git push
 ```
 
-Các hành vi của các chế độ khác của `git push` được mô tả trong [doc cho `push.default`](https://git-scm.com/docs/git-config#git-config-pushdefault).
+Các hành vi của các chế độ khác của `git push` được mô tả trong [doc cho `push.default`](https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushdefault).
 
 ### Tôi muốn thiết lập một nhánh remote làm upstream (luồng trước) cho một nhánh local
 

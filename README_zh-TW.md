@@ -1101,7 +1101,7 @@ $ git push -u [遠端] HEAD
 $ git push
 ```
 
-`git push` 其他模式的行為參見 [`push.default` 的文件](https://git-scm.com/docs/git-config#git-config-pushdefault)。
+`git push` 其他模式的行為參見 [`push.default` 的文件](https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushdefault)。
 
 ### 我想設定本機分支的上游
 

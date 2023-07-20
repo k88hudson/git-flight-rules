@@ -1218,7 +1218,7 @@ With the `upstream` mode and the `simple` (default in Git 2.0) mode of the `push
 $ git push
 ```
 
-The behavior of the other modes of `git push` is described in the [doc of `push.default`](https://git-scm.com/docs/git-config#git-config-pushdefault).
+The behavior of the other modes of `git push` is described in the [doc of `push.default`](https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushdefault).
 
 ### I want to set a remote branch as the upstream for a local branch
 

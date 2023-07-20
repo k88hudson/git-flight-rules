@@ -1246,7 +1246,7 @@ $ git push -u <remote> HEAD
 $ git push
 ```
 
-他のモードが `git push` でどう振る舞うかは、[`push.default` のドキュメント](https://git-scm.com/docs/git-config#git-config-pushdefault)で説明されています。
+他のモードが `git push` でどう振る舞うかは、[`push.default` のドキュメント](https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushdefault)で説明されています。
 
 ### リモートブランチをローカルブランチの upstream に設定したい
 

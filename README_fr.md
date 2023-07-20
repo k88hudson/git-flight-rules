@@ -892,7 +892,7 @@ Avec le mode `upstream` et le mode `simple` (défaut dans Git 2.0) de la configu
 $ git push
 ```
 
-Le comportement des autres modes de `git push` est détaillé dans la [documentation de `push.default`](https://git-scm.com/docs/git-config#git-config-pushdefault).
+Le comportement des autres modes de `git push` est détaillé dans la [documentation de `push.default`](https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushdefault).
 
 ### Je veux configurer une branche distante en tant qu'upstream pour une branche locale
 
