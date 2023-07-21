@@ -1101,7 +1101,7 @@ $ git push -u [遠端] HEAD
 $ git push
 ```
 
-`git push` 其他模式的行為參見 [`push.default` 的文件](https://git-scm.com/docs/git-config#git-config-pushdefault)。
+`git push` 其他模式的行為參見 [`push.default` 的文件](https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushdefault)。
 
 ### 我想設定本機分支的上游
 
@@ -1391,7 +1391,7 @@ $ git checkout --ours README.md
 * *合併*時，`--ours` 代表保留本機分支的更動，`--theirs` 則是另一個分支的更動。
 * *重定基底*時，`--theirs` 代表保留本機分支的更動，`--ours` 則是另一個分支的更動。
 
-關於為什麼互換了，參見 [Git 文件的此註記](https://git-scm.com/docs/git-rebase#git-rebase---merge)。
+關於為什麼互換了，參見 [Git 文件的此註記](https://git-scm.com/docs/git-rebase#Documentation/git-rebase.txt---merge)。
 
 有時候衝突非常複雜，你可以使用可視化差異編輯器：
 

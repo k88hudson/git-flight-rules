@@ -296,6 +296,7 @@ Nếu bạn muốn xem một file tại một commit cụ thể, bạn cũng có
 $ git show <commitid>:filename
 ```
 
+<a name="wrong-thing-in-commit-message"></a>
 ### Tôi đã viết sai vài thứ trong message (thông điệp) của commit
 
 Nếu bạn đã viết sai thứ gì đó và commit chưa được push lên, bạn có thể làm theo cách sau để thay đổi message của commit mà không làm thay đổi commit:
@@ -378,7 +379,7 @@ $ git push --force-with-lease [remote] [branch]
 
 Hoặc thực hiện một [interactive rebase](#interactive-rebase) và loại bỏ các dòng tương ứng với các commit bạn muốn loại bỏ.
 
-<a name="#force-push"></a>
+<a name="force-push"></a>
 ### Tôi đã cố gắng push commit đã sửa đổi lên remote, nhưng tôi gặp thông báo lỗi
 
 ```sh
@@ -401,7 +402,7 @@ Nói chung, **tránh force push**. Tốt nhất là tạo và push một commit 
 
 Nếu bạn *hoàn toàn chắc chắn* rằng không ai đang làm việc trên cùng một nhánh hoặc bạn muốn cập nhật đỉnh nhánh (tip of branch) *vô điều kiện*, bạn có thể sử dụng `--force` (`-f`), nhưng cách này nói chung nên tránh.
 
-<a href="undo-git-reset-hard"></a>
+<a name="undo-git-reset-hard"></a>
 ### Tôi đã vô tình thực hiện hard reset và tôi muốn các thay đổi của tôi.
 
 Nếu vô tình bạn thực hiện `git reset --hard`, bạn có thể vẫn phục hồi lại được commit của bạn, vì git giữ một bản log cho tất cả mọi thứ trong vài ngày.
@@ -420,7 +421,7 @@ Bạn sẽ thấy danh sách các commit gần đây và một commit để rese
 
 Thế này là xong.
 
-<a href="undo-a-commit-merge"></a>
+<a name="undo-a-commit-merge"></a>
 ### Tôi vô tình commit và đẩy lên một merge
 
 Nếu bạn vô tình merge một nhánh tính năng mới vào nhánh phát triển chính trước khi sẵn sàng để merge, bạn vẫn có thể đảo ngược merge. Nhưng có một điểm phải nắm được: Một commit merge có một hoặc nhiều hơn một parent (gốc) (thường là 2).
@@ -433,7 +434,7 @@ Dòng `-m 1` là để cho biết cần chọn parent thứ nhất` (nhánh mà 
 
 Chú ý: Số parent không phải là số commit. Thay vào đó, một commit merge sẽ có một dòng như `Merge: 8e2ce2d 86ac2e7`. Số parent là số số nhận dạng đầu-1 (1-based index) của dòng nay, số nhận dạng đầu tiên là 1 cho parent thứ nhất, thứ 2 là cho parent 2, và tiếp tục như thế.
 
-<a href="undo-sensitive-commit-push"></a>
+<a name="undo-sensitive-commit-push"></a>
 ### Tôi vô tình commit và đẩy các file chứa dữ liệu nhảy cảm
 
 Nếu bạn vô tình push lên các file chứa dữ liệu nhạy cảm (mật khẩu, keys, etc.), bạn có thể amend commit trước. Lưu ý rằng khi bạn đã đẩy một commit, bạn nên coi bất kỳ dữ liệu nào đã bị đẩy như đã bị lộ. Các bước này có thể xoá dữ liệu nhạy cảm từ repo công khai (public repo) hoặc bản sao nội bộ, nhưng bạn *không thể* xóa dữ liệu nhạy cảm khỏi các bản sao đã được tải về bởi người khác. Nếu bạn có commit mật khẩu, *hãy thay đổi mật khẩu ngay lập tức*. Nếu bạn đã commit một key, *hãy tạo lại key đó ngay lập tức*. Việc amend commit đã đẩy là không đủ, vì bất kỳ ai cũng có thể đã pull commit chứa dữ liệu nhạy cảm của bạn trong thời gian đấy.
@@ -465,7 +466,7 @@ Nếu bạn muốn xóa hoàn toàn toàn bộ tệp (và không giữ tệp t�
 
 Nếu bạn đã thực hiện các commit khác (tức là dữ liệu nhạy cảm nằm tại commit trước commit mới nhất), bạn sẽ phải rebase.
 
-<a href="#i-want-to-remove-a-large-file-from-ever-existing-in-repo-history"></a>
+<a name="remove-large-file-in-repo-history"></a>
 ### Tôi muốn xóa file to quá để chưa bao giờ xuất hiện trong lịch sử repository
 
 Nếu file bạn muốn xóa cần bảo mật hay là file chưa thông tin nhạy cảm, xem phần [xóa file chứa thông tin nhạy cảm](#undo-sensitive-commit-push).
@@ -539,7 +540,7 @@ Nếu cách này không hiệu quả, bạn sẽ phải push thủ công lịch 
 ```
 Một khi lệnh push thành công, dần dần giảm thiểu `<số cục>` cho đến khi một lệnh `git push` bình thường thành công.
 
-<a href="i-need-to-change-the-content-of-a-commit-which-is-not-my-last"></a>
+<a name="change-content-of-commit-not-my-last"></a>
 ### Tôi cần thay đổi nội dung của một commit nhưng không phải là cái mới nhất
 
 Giả sử bạn đã có vài (v.d. ba) commit và sau nhận ra là bạn quên mất không cho vào một thứ gì đó hợp hơn với commit đầu tiên. Việc này làm phiền bạn vì mặc dù nếu tiếp tục commit bạn sẽ có lịch sử sạch sẽ nhưng commit của bạn không nguyên chất (những thay đổi liên quan với nhau nên ở cùng một commit). Trong trường hợp như vậy, bạn chắc muốn cho thêm những thay đổi liên quan vào commit mong muốn nhưng không muốn những commit sau tiếp cũng phải sửa theo. Trong trường hợp như vây, `git rebase` có thể cứu bạn.
@@ -582,8 +583,7 @@ Lệnh trên sẽ giải quyết phần còn lại.
 
 ## Staging (sân chuyển tiếp)
 
-<a href="#i-want-to-stage-all-tracked-files-and-leave-untracked-files"></a>
-
+<a name="stage-tracked-files-and-leave-untracked-files"></a>
 ### Tôi muốn nâng lên stage tất cả file đang theo dõi và bỏ qua file không theo dõi
 
 ```sh
@@ -600,7 +600,7 @@ $ git add -u *.txt
 $ git add -u src/
 ```
 
-<a href="#i-need-to-add-staged-changes-to-the-previous-commit"></a>
+<a name="add-staged-changes-to-previous-commit"></a>
 ### Tôi cần cho thêm các thay đổi đang trong stage vào commit trước
 
 ```sh
@@ -631,17 +631,17 @@ $ git add -N filename.x
 Sau đó, bạn sẽ cần sử dụng `e` để thủ công thêm dòng. Chạy lệnh `git diff --cached` hoặc
 `git diff --staged` sẽ cho bạn thấy những dòng bạn đã stage so với những dòng vẫn lưu ở local.
 
-<a href="stage-in-two-commits"></a>
+<a name="stage-in-two-commits"></a>
 ### Tôi muốn thêm các thay đổi trong một file vào 2 commit khác nhau
 
 `git add` sẽ thêm toàn bộ file vào một commit. `git add -p` sẽ cho vào chế độ tương tác để chọn những thay đổi bạn muốn thêm vào.
 
-<a href="selective-unstage-edits"></a>
+<a name="selective-unstage-edits"></a>
 ### Tôi cho lên stage quá nhiều thay đổi, và tôi muốn tách ra thành các commit khác nhau
 
 `git reset -p` sẽ mở chế độ patch và hộp thoại để reset. Việc này sẽ giống như với lệnh `git add -p`, ngoại trừ là việc chọn "yes" sẽ đưa thay đổi khỏi stage, loại trừ nó khỏi commit tiếp đến.
 
-<a href="unstaging-edits-and-staging-the-unstaged"></a>
+<a name="unstaging-edits-and-staging-the-unstaged"></a>
 ### Tôi muốn cho lên stage các chỉnh sửa chưa được stage và hã khỏi stage các chỉnh sửa đã stage
 
 Phần lớn thời gian, bạn nên hạ tất cả các file đã trên stage và chọn lại những file bạn muốn commit.Nhưng giả sử bạn muốn thay các thay đổi lên và hạ stage, bạn có thể tạo một commit tạm thời, nâng lên stage các thay đổi, rồi stash (cất) nó. Sau đó, reset cái commit tạm thời rồi pop cái stage bạn vừa cất.
@@ -659,14 +659,14 @@ GHI CHÚ 2: Các file đã nâng lên stage sẽ bị hạ nếu không có thê
 
 ## Thay đổi chưa lên sân (Unstaged Edits)
 
-<a href="move-unstaged-edits-to-new-branch"></a>
+<a name="move-unstaged-edits-to-new-branch"></a>
 ### Tôi muốn di chuyển các chỉnh sửa chưa lên stage sang một nhánh mới
 
 ```sh
 $ git checkout -b nhánh-mới
 ```
 
-<a href="move-unstaged-edits-to-old-branch"></a>
+<a name="move-unstaged-edits-to-old-branch"></a>
 ### Tôi muốn di chuyển các chỉnh sửa chưa stage của tôi đến một nhánh khác đã tồn tại
 
 ```sh
@@ -675,7 +675,7 @@ $ git checkout nhánh-tồn-tại
 $ git stash pop
 ```
 
-<a href="i-want-to-discard-my-local-uncommitted-changes"></a>
+<a name="discard-local-uncommitted-changes"></a>
 ### Tôi muốn bỏ các thay đôi chưa trong commit tại local (đã lên hoặc chưa lên stage)
 
 Nếu bạn muốn bỏ tất cả các thay đổi đã lên hoặc chưa lên stage tại local của bạn, bạn có thể làm như sau:
@@ -767,7 +767,7 @@ Khi bạn muốn loại bỏ tất cả các thay đổi chưa commit mà chưa 
 ```sh
 $ git checkout .
 ```
-<a href="i-want-to-discard-all-my-untracked-files"></a>
+<a name="discard-all-untracked-files"></a>
 ### Tôi muốn loại bỏ tất cả các file chưa được theo dõi (track)
 
 Khi bạn muốn loại bỏ tất cả các file chưa được theo dõi
@@ -776,7 +776,7 @@ Khi bạn muốn loại bỏ tất cả các file chưa được theo dõi
 $ git clean -f
 ```
 
-<a href="I-want-to-unstage-specific-staged-file"></a>
+<a name="unstage-specific-staged-file"></a>
 ### Tôi muốn hạ khỏi stage một file cụ thể đã stage
 
 Đôi khi, chúng ta có một hoặc nhiều file đã vô tình lên stage và các file này chưa được commit trước đó. Để hạ chúng khỏi stage:
@@ -834,7 +834,7 @@ $ git reset --hard c5bc55a
 
 Xong.
 
-<a href="discard-local-commits"></a>
+<a name="discard-local-commits"></a>
 ### Tôi muốn loại bỏ các commit tại local để nhánh của tôi giống như nhánh trên server
 
 Kiểm tra rằng bạn chưa push các thay đổi của mình đến server.
@@ -975,7 +975,7 @@ Bây giờ, hãy *cherry-pick* commit cho bug #21 trên đầu của nhánh. Nó
 (21)$ git cherry-pick e3851e8
 ```
 
-Tại thời điểm này, có khả năng có thể có xung đột hợp (merge conflicts). Hãy xem phần [**There were conflicts**](#merge-conflict) trong [phần interactive rebasing ở trên](#interactive-rebase) để làm thế nào giải quyết xung đột hợp.
+Tại thời điểm này, có khả năng có thể có xung đột hợp (merge conflicts). Hãy xem phần [**Có một vài xung đột**](#merge-conflict) trong [phần interactive rebasing ở trên](#interactive-rebase) để làm thế nào giải quyết xung đột hợp.
 
 Bây giờ chúng ta hãy tạo một nhánh mới cho bug # 14, cũng dựa trên nhánh main:
 
@@ -1002,7 +1002,7 @@ $ git fetch -p upstream
 
 upstream` là remote bạn muốn fetch (gọi) về.
 
-<a name='restore-a-deleted-branch'></a>
+<a name="restore-a-deleted-branch"></a>
 ### Tôi vô tình xóa nhánh của tôi
 
 Nếu bạn thường xuyên push lên remote, bạn sẽ an toàn phần lớn thời gian. Nhưng đôi khi bạn có thể sẽ xóa các nhánh của bạn. Giả sử chúng ta tạo một nhánh và tạo một tệp mới:
@@ -1126,7 +1126,7 @@ Giả sử bạn muốn xoá tất cả các nhánh bắt đầu với `fix/`:
 (main)$ git push origin :tên_cũ tên_mới
 ```
 
-<a name="i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on"></a>
+<a name="working-on-checkout-remote-branch"></a>
 ### Tôi muốn checkout đến một nhánh remote mà người khác đang làm việc trên đó
 
 Đầu tiên, fetch tất cả nhánh từ remote:
@@ -1165,7 +1165,7 @@ Với chế độ `upstream` và `simple` (mặc định trong Git 2.0) của c�
 $ git push
 ```
 
-Các hành vi của các chế độ khác của `git push` được mô tả trong [doc cho `push.default`](https://git-scm.com/docs/git-config#git-config-pushdefault).
+Các hành vi của các chế độ khác của `git push` được mô tả trong [doc cho `push.default`](https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushdefault).
 
 ### Tôi muốn thiết lập một nhánh remote làm upstream (luồng trước) cho một nhánh local
 
@@ -1183,7 +1183,7 @@ $ git branch -u [remotename]/[branch]
 $ git branch -u [remotename]/[branch] [local-branch]
 ```
 
-<a name="i-want-to-set-my-HEAD-to-track-the-default-remote-branch"></a>
+<a name="head-to-track-remote-branch"></a>
 ### Tôi muốn để HEAD của tôi dõi theo nhánh mặc định của remote
 
 Bằng cách kiểm tra các nhánh remote của bạn, bạn có thể thấy nhánh remote nào mà HEAD của bạn đang theo dõi. Trong một số trường hợp, có thể đấy không phải là nhánh mong muốn.
@@ -1211,7 +1211,7 @@ Bạn đã thực hiện các thay đổi chưa được commit và nhận ra b�
 (correct_branch)$ git stash apply
 ```
 
-<a name="i-want-to-split-a-branch-into-two"></a>
+<a name="split-branch-into-two"></a>
 ### Tôi muốn tách một nhánh thành hai
 
 Bạn đã tạo rất nhiều commit trên một nhành và bây giờ bạn muốn tách nhánh ra thành hai, một nhánh kết thúc với một commit cũ, và một nhánh với tất cả các thay đổi.
@@ -1453,7 +1453,7 @@ Nếu bạn muốn giữ phiên bản code của một nhánh, bạn có thể s
 ```
 
 - Khi *đang merge*, sử dụng `--ours` để giữ các thay đổi từ nhánh local, hoặc `--theirs` để giữ các thay đổi từ nhánh khác.
-- Khi *đang rebase*, sử dụng `--theirs` để giữ các thay đổi từ nhánh local, hoặc `--ours` để giữ các thay đổi từ nhánh khác. Để hiểu giải thích về sự hoán đổi này, hãy xem [ghi chú này trong tài liệu Git](https://git-scm.com/docs/git-rebase#git-rebase---merge).
+- Khi *đang rebase*, sử dụng `--theirs` để giữ các thay đổi từ nhánh local, hoặc `--ours` để giữ các thay đổi từ nhánh khác. Để hiểu giải thích về sự hoán đổi này, hãy xem [ghi chú này trong tài liệu Git](https://git-scm.com/docs/git-rebase#Documentation/git-rebase.txt---merge).
 
 Nếu việc merge phức tạp hơn, bạn có thể sử dụng trình chỉnh sửa khác biệt trực quan (visual diff editor):
 
@@ -1571,7 +1571,7 @@ Các cờ thường dùng:
 
 * `--reverse` in theo thứ tự ngược lại, có nghĩa là hiển thị commit đầu tiên đã thực hiện thay đổi.
 
-<a name="i-want-to-find-by-author-committer"></a>
+<a name="find-by-committer"></a>
 ### Tôi muốn tìm tác giả hoặc người commit
 
 Để tìm tất cả commit từ tác giả hoặc người commit bạn có thể sử dụng:
@@ -1603,7 +1603,7 @@ Trong khi sử dụng ký tự đại diện bất kỳ, sẽ hữu ích hơn kh
 $ git log --name-status -- **/*.js
 ```
 
-<a name="#i-want-to-view-the-commit-history-for-a-specific-function"></a>
+<a name="view-commit-history-for-specific-function"></a>
 ### Tôi muốn xem lịch sử commit của một function (chức năng) cụ thể
 
 Để truy tìm lịch sử tiến hóa của một function là dùng lệnh:
@@ -1734,7 +1734,7 @@ $ git push origin refs/tags/<tag-name>
 
 ## Tracking (Theo dõi) các file
 
-<a href="i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file"></a>
+<a name="change-file-name-capitalization-without-changing-contents"></a>
 ### Tôi muốn thay đổi cách viết hoa của tên tệp mà không thay đổi nội dung của tệp
 
 ```sh
@@ -1748,7 +1748,7 @@ $ git push origin refs/tags/<tag-name>
 (main)$ git reset --hard origin/main
 ```
 
-<a href="remove-from-git"></a>
+<a name="remove-from-git"></a>
 ### Tôi muốn xóa một tệp khỏi Git nhưng vẫn giữ tệp
 
 ```sh

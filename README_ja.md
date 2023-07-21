@@ -299,6 +299,7 @@ $ git log -n1 -p
 $ git show <commitid>:filename
 ```
 
+<a name="wrong-thing-in-commit-message"></a>
 ### コミットメッセージに間違った内容を書いてしまった
 
 コミットメッセージに間違った内容を書いてしまったとします。
@@ -390,7 +391,7 @@ $ git push --force-with-lease [remote] [branch]
 
 あるいは、[対話的 rebase](#interactive-rebase) で削除したいコミットに対応する行を選択して削除します。
 
-<a name="#force-push"></a>
+<a name="force-push"></a>
 ### 修正したコミットをリモートにプッシュしようとしたら、エラーメッセージが出た
 
 ```sh
@@ -419,7 +420,7 @@ amend による修正は、rebase と同様に（後述）、**古いコミッ�
 
 他の誰も同じブランチで作業していないことが*絶対に*確実な場合、あるいはブランチの一部を*無条件で*更新したい場合は `--force` (`-f`) で行うことができますが、これは原則として避けるべきです。
 
-<a href="undo-git-reset-hard"></a>
+<a name="undo-git-reset-hard"></a>
 ### 間違えて hard reset してしまい、元に戻したい
 
 間違えて `git reset --hard` をしてしまっても、大抵はコミットを復元できます。
@@ -441,7 +442,7 @@ Git は数日間のログを全て残してくれているからです。
 
 これで大丈夫です。
 
-<a href="undo-a-commit-merge"></a>
+<a name="undo-a-commit-merge"></a>
 ### 間違えてマージをコミットしてプッシュしてしまった
 
 マージの準備ができていないフィーチャーブランチをメインのブランチにマージしてしまったときは、マージを取り消すことができます。
@@ -459,7 +460,7 @@ Git は数日間のログを全て残してくれているからです。
 マージコミットの行は `Merge: 8e2ce2d 86ac2e7` のようになっています。
 親番号はこのコミットの親を指定する 1 から始まる番号で、最初の番号は 1 番、次は 2 番、のように振られます。
 
-<a href="undo-sensitive-commit-push"></a>
+<a name="undo-sensitive-commit-push"></a>
 ### 間違えて機密情報を含むファイルをコミットしプッシュしてしまった
 
 機密情報やプライベートな情報（パスワードやキー等）を含むデータを誤ってプッシュしてしまった場合、コミットを修正できます。
@@ -499,10 +500,10 @@ echo sensitive_file >> .gitignore
 
 すでに他のコミットをしてしまった場合（つまり、機密情報のコミットが直前のコミットよりも前である場合）は、リベースする必要があります。
 
-<a href="#i-want-to-remove-a-large-file-from-ever-existing-in-repo-history"></a>
+<a name="remove-large-file-in-repo-history"></a>
 ### 大容量のファイルに関する履歴を完全に削除したい
 
-削除したいファイルが機密情報である場合は[機密情報を削除する方法](#i-accidentally-committed-and-pushed-files-containing-sensitive-data)を参照してください。
+削除したいファイルが機密情報である場合は[機密情報を削除する方法](#undo-sensitive-commit-push)を参照してください。
 
 コミットで大容量のファイルや不要なファイルを削除しても、`.git` フォルダの Git 履歴には残るので、`git clone` したときに余計なファイルまでダウンロードしてしまうことになります。
 
@@ -587,7 +588,7 @@ bfg は最新のコミットにあるファイルには影響しません。
 
 プッシュが成功したら、通常の`git push` が 成功するまで `<number>` を徐々に減らしてください。
 
-<a href="i-need-to-change-the-content-of-a-commit-which-is-not-my-last"></a>
+<a name="change-content-of-commit-not-my-last"></a>
 ### 直近でないコミットの内容を編集したい
 
 複数（たとえば三件）のコミットを行ったあと、文脈的に最初のコミットに属する作業をし忘れたことに気づいたとします。
@@ -637,8 +638,7 @@ pick f4037ec The last commit
 
 ## ステージ
 
-<a href="#i-want-to-stage-all-tracked-files-and-leave-untracked-files"></a>
-
+<a name="stage-tracked-files-and-leave-untracked-files"></a>
 ### バージョン管理されているファイルを全部ステージしたい
 
 ```sh
@@ -655,7 +655,7 @@ $ git add -u *.txt
 $ git add -u src/
 ```
 
-<a href="#i-need-to-add-staged-changes-to-the-previous-commit"></a>
+<a name="add-staged-changes-to-previous-commit"></a>
 ### ステージされた編集を直前のコミットに追加したい
 
 ```sh
@@ -688,19 +688,19 @@ $ git add -N filename.x
 オプション `e` を使うと、どの行を追加するか手動で選択することができます。
 コマンド `git diff --cached` あるいは `git diff --staged` を実行すると、ステージした行がローカルに保存されたものと比較して表示されます。
 
-<a href="stage-in-two-commits"></a>
+<a name="stage-in-two-commits"></a>
 ### 一つのファイルに加えた編集を二つの異なるコミットに追加したい
 
 コマンド `git add` はファイル全体をコミットに追加します。
 また、`git add -p` を使うと、どの編集を追加するか対話的に選択できます。
 
-<a href="selective-unstage-edits"></a>
+<a name="selective-unstage-edits"></a>
 ### ステージした編集が多すぎるので、いくつかのコミットに分割したい
 
 コマンド `git reset -p` を実行すると、パッチモードのリセットダイアログが開きます。
 なお、`git add -p` と似ていますが、"yes" がステージを取り消して次のコミットから除去することを意味する点で異なります。
 
-<a href="unstaging-edits-and-staging-the-unstaged"></a>
+<a name="unstaging-edits-and-staging-the-unstaged"></a>
 ### ステージされていない編集をステージし、ステージされた編集のステージを取り消したい
 
 通常は、ステージされたファイルのステージを一旦全部取り消したあと、コミットしたいものをピックするべきです。
@@ -721,14 +721,14 @@ $ git stash pop --index 0
 
 ## ステージされていない編集
 
-<a href="move-unstaged-edits-to-new-branch"></a>
+<a name="move-unstaged-edits-to-new-branch"></a>
 ### ステージされていない編集を新しいブランチに移したい
 
 ```sh
 $ git checkout -b my-branch
 ```
 
-<a href="move-unstaged-edits-to-old-branch"></a>
+<a name="move-unstaged-edits-to-old-branch"></a>
 ### ステージされていない編集を別の既存のブランチに移したい
 
 ```sh
@@ -737,7 +737,7 @@ $ git checkout my-branch
 $ git stash pop
 ```
 
-<a href="i-want-to-discard-my-local-uncommitted-changes"></a>
+<a name="discard-local-uncommitted-changes"></a>
 ### コミットされていないローカルの編集を破棄したい
 
 ステージされている編集とされていない編集の両方を全て破棄したいときは、次のようにします。
@@ -831,7 +831,7 @@ $ git checkout myFirstFile mySecondFile
 $ git checkout .
 ```
 
-<a href="i-want-to-discard-all-my-untracked-files"></a>
+<a name="discard-all-untracked-files"></a>
 ### バージョン管理されていないファイルを全て破棄したい
 
 バージョン管理されていないファイルを全て破棄したいときは、次を実行します。
@@ -840,7 +840,7 @@ $ git checkout .
 $ git clean -f
 ```
 
-<a href="I-want-to-unstage-specific-staged-file"></a>
+<a name="unstage-specific-staged-file"></a>
 ### 特定のステージされたファイルのステージを取り消したい
 
 間違えてステージしたが、コミットはしていないファイルが一つまたは複数ある場合です。
@@ -901,7 +901,7 @@ $ git reset --hard c5bc55a
 
 これで完了です。
 
-<a href="discard-local-commits"></a>
+<a name="discard-local-commits"></a>
 ### ローカルのコミットを破棄して、ブランチをサーバ上と同じ状態にしたい
 
 サーバに編集をプッシュしていないことを確認してください。
@@ -1049,7 +1049,7 @@ HEAD is now at a13b85e
 ```
 
 この時点で、コミットのコンフリクトが発生しているかもしれません。
-コンフリクトを解消する方法は、[interactive rebasing section above](#interactive-rebase) セクションの [**There were conflicts**](#merge-conflict) を参照してください。
+コンフリクトを解消する方法は、[対話的 rebase 章上](#interactive-rebase) セクションの [**コンフリクトがあった**](#merge-conflict) を参照してください。
 
 次に、#14 に対応する、マスターに紐づいたブランチを作成しましょう。
 
@@ -1077,7 +1077,7 @@ $ git fetch -p upstream
 
 ここで `upstream` は取得したい元のリモートを指します。
 
-<a name='restore-a-deleted-branch'></a>
+<a name="restore-a-deleted-branch"></a>
 ### 間違ってブランチを削除してしまった
 
 いつもリモートにプッシュしているなら大抵大丈夫です。
@@ -1207,7 +1207,7 @@ README.md foo.txt
 (main)$ git push origin :old_name new_name
 ```
 
-<a name="i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on"></a>
+<a name="working-on-checkout-remote-branch"></a>
 ### 他の人が作業しているリモートブランチにチェックアウトしたい
 
 まず、リモートから全ブランチを取得します。
@@ -1246,7 +1246,7 @@ $ git push -u <remote> HEAD
 $ git push
 ```
 
-他のモードが `git push` でどう振る舞うかは、[`push.default` のドキュメント](https://git-scm.com/docs/git-config#git-config-pushdefault)で説明されています。
+他のモードが `git push` でどう振る舞うかは、[`push.default` のドキュメント](https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushdefault)で説明されています。
 
 ### リモートブランチをローカルブランチの upstream に設定したい
 
@@ -1264,7 +1264,7 @@ $ git branch -u [remotename]/[branch]
 $ git branch -u [remotename]/[branch] [local-branch]
 ```
 
-<a name="i-want-to-set-my-HEAD-to-track-the-default-remote-branch"></a>
+<a name="head-to-track-remote-branch"></a>
 ### 自分の HEAD をデフォルトのリモートブランチを追跡するよう設定したい
 
 リモートブランチを調べると、自分の HEAD がどのリモートブランチを追跡しているかがわかります。
@@ -1545,7 +1545,7 @@ Changes not staged for commit:
 ```
 
 - *マージする*場合、ローカルブランチの編集を残したいとき `--ours` を指定し、他方の編集を残したいとき `--theirs` を指定します。
-- *リベースする*場合、ローカルブランチの編集を残したいとき `--theirs` を指定し、他方の編集を残したいとき `--ours` を指定します。このように逆転する理由は[ Git ドキュメントのこのノート](https://git-scm.com/docs/git-rebase#git-rebase---merge)を参照してください。
+- *リベースする*場合、ローカルブランチの編集を残したいとき `--theirs` を指定し、他方の編集を残したいとき `--ours` を指定します。このように逆転する理由は[ Git ドキュメントのこのノート](https://git-scm.com/docs/git-rebase#Documentation/git-rebase.txt---merge)を参照してください。
 
 マージがもっと複雑なときは、ビジュアル差分エディタを使うとよいです。
 
@@ -1661,7 +1661,7 @@ $ git log -S "string to find"
 * `--all` は全てのブランチから検索します。
 * `--reverse` は逆順に表示します。すなわち最初のコミットから表示します。
 
-<a name="i-want-to-find-by-author-committer"></a>
+<a name="find-by-committer"></a>
 ### author または committer から検索する
 
 全てのコミットを author または committer の名前から検索するには次のようにします。
@@ -1694,7 +1694,7 @@ $ git log -- **/*.js
 $ git log --name-status -- **/*.js
 ```
 
-<a name="#i-want-to-view-the-commit-history-for-a-specific-function"></a>
+<a name="view-commit-history-for-specific-function"></a>
 ### 特定の関数に関するコミット履歴を見たい
 
 特定の関数の履歴を追跡するには次を実行します。
@@ -1832,7 +1832,7 @@ $ git push origin refs/tags/<tag-name>
 
 ## ファイルの追跡
 
-<a href="i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file"></a>
+<a name="change-file-name-capitalization-without-changing-contents"></a>
 ### ファイルの内容は変えずに、ファイル名の大文字・小文字を変更したい
 
 ```sh
@@ -1846,7 +1846,7 @@ $ git push origin refs/tags/<tag-name>
 (main)$ git reset --hard origin/main
 ```
 
-<a href="remove-from-git"></a>
+<a name="remove-from-git"></a>
 ### ファイルを残しつつ Git から削除したい
 
 ```sh

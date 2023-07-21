@@ -151,7 +151,6 @@ $ git clone [url] name-of-new-folder
 
 <a name="diff-last"></a>
 <!-- ### What did I just commit? -->
-
 ### 내가 방금 어떤 커밋을 남겼지?
 
 `git commit -a` 로 막 커밋을 남기고 내가 뭐라고 안에 적었더라? 한다고 하고. 최근의 커밋을 현재 HEAD에서 볼 수 있어요.
@@ -172,6 +171,7 @@ $ git log -n1 -p
 $ git show <commitid>:filename
 ```
 
+<a name="wrong-thing-in-commit-message"></a>
 ### 커밋 메세지를 잘못 썼어
 
 만약 메시지를 잘못 썼고 아직 푸시를 안했다면, 커밋 메시지 바꾸기를 따라해 볼 수 있어요.
@@ -256,7 +256,7 @@ $ git push --force-with-lease [remote] [branch]
 
 아니면 [대화형 리베이스](#interactive-rebase)를 쓰고 지우고 싶은 커밋 라인을 지워도 돼요.
 
-<a name="#force-push"></a>
+<a name="force-push"></a>
 ### 수정된 커밋을 푸시했는데, 에러 메세지가 떠
 
 ```sh
@@ -283,7 +283,7 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 
 절대로 아무도 같은 브랜치를 안 쓰거나, 절대로 브랜치에 업데이트를 해야할때 `--force` (`-f`) 옵션을 쓸 수 있지만 일반적으론 피하는게 좋아요.
 
-<a href="undo-git-reset-hard"></a>
+<a name="undo-git-reset-hard"></a>
 ### 하드 리셋을 해버렸는데 되돌리고 싶어
 
 만약 하드 리셋을 했다고 해도 커밋을 돌릴 순 있어요. 깃은 며칠간은 로그를 가지고 있거든요.
@@ -302,7 +302,7 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 
 계속 할 수 있을거에요.
 
-<a href="undo-a-commit-merge"></a>
+<a name="undo-a-commit-merge"></a>
 ### 머지를 실수로 커밋, 푸시해버렸어
 
 만약 실수로 머지할 준비가 안된 피쳐 브랜치를 메인 브랜치에 머지했어도 되돌릴 순 있어요.
@@ -321,7 +321,7 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 
 ## 스테이지
 
-<a href="#i-need-to-add-staged-changes-to-the-previous-commit"></a>
+<a name="add-staged-changes-to-previous-commit"></a>
 ### 지난 커밋에 스테이지 변경점을 추가하고 싶어
 
 ```sh
@@ -345,12 +345,12 @@ $ git add -N filename.x
 
 그 다음 임의적으로 라인들을 골라 추가해주려면 `e`옵션이 필요할거에요. `git diff --cached`나 `git diff --staged`는 로컬에 저장된 부분과 스테이지에 있는 라인들을 비교해서 보여줄 거에요.
 
-<a href="stage-in-two-commits"></a>
+<a name="stage-in-two-commits"></a>
 ### 하나의 파일 변경점을 두개의 다른 커밋에 남기고 싶어
 
 `git add`는 전체 파일들을 커밋에 추가해요. `git add -p`는 대화형으로 추가하고픈 변경점들을 고를 수 있어요.
 
-<a href="unstaging-edits-and-staging-the-unstaged"></a>
+<a name="unstaging-edits-and-staging-the-unstaged"></a>
 ### 아직 스테이지에 안 올라간 변경점을 스테이지에 추가하고, 스테이지에 있는 변경점을 다시 빼고 싶어
 
 이건 좀 꼼수인데요, 스테이지 전인 파일들을 스테이시해서 빼두고선 리셋 할 수 있을거에요. 그 다음 스테이시를 다시 불러와 추가를 해요.
@@ -364,14 +364,14 @@ $ git add -A
 
 ## 스테이지 전의 변경점
 
-<a href="move-unstaged-edits-to-new-branch"></a>
+<a name="move-unstaged-edits-to-new-branch"></a>
 ### 스테이지 전의 변경점을 새 브랜치로 옮기고 싶어
 
 ```sh
 $ git checkout -b my-branch
 ```
 
-<a href="move-unstaged-edits-to-old-branch"></a>
+<a name="move-unstaged-edits-to-old-branch"></a>
 ### 스테이지전 변경점을 만들어둔 다른 브랜치로 옮기고 싶어
 
 ```sh
@@ -380,7 +380,7 @@ $ git checkout my-branch
 $ git stash pop
 ```
 
-<a href="i-want-to-discard-my-local-uncommitted-changes"></a>
+<a name="discard-local-uncommitted-changes"></a>
 ### 내 로컬에 있는 커밋 안된 변경점을 다 무시하고 싶어 (스테이징 됐던 안됐던)
 
 만약 모든 스테이징 됐거나 안 된 변경점을 버리고 싶다면 이렇게 해요:
@@ -472,7 +472,7 @@ $ git checkout myFirstFile mySecondFile
 $ git checkout .
 ```
 
-<a href="i-want-to-discard-all-my-untracked-files"></a>
+<a name="discard-all-untracked-files"></a>
 ### 트래킹 안된 파일들 다 지우고 싶어
 
 트래킹 안된 파일들 다 지우고 싶을 땐
@@ -529,7 +529,7 @@ $ git reset --hard c5bc55a
 
 끝!
 
-<a href="discard-local-commits"></a>
+<a name="discard-local-commits"></a>
 ### 로컬의 커밋을 지워서 서버에 있는 내 브랜치와 맞추고 싶어
 
 서버에 변경점을 푸시 안했는지부터 확인해요.
@@ -700,7 +700,7 @@ $ git fetch -p upstream
 
 여기서, `upstream`은 패치로 가져오려는 리모트 레파지토리에요.
 
-<a name='restore-a-deleted-branch'></a>
+<a name="restore-a-deleted-branch"></a>
 ### 브랜치를 지워버렸어
 
 주기적으로 리모트으로 푸시한다면, 대부분은 안전해야 해요. 그치만 가끔은 브랜치를 지울 수 있어요. 새 브랜치를 만들고 파일을 하나 만들었다고 해보죠:
@@ -818,7 +818,7 @@ README.md foo.txt
 (main)$ git branch -m old-name new-name
 ```
 
-<a name="i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on"></a>
+<a name="working-on-checkout-remote-branch"></a>
 ### 다른 사람이 작업중인 리모트 브랜치로 체크아웃 하고 싶어
 
 우선, 리모트 레파지토리에서 모든 브랜치를 패치 받아요:
@@ -858,7 +858,7 @@ $ git push -u <remote> HEAD
 $ git push
 ```
 
-`git push`의 다른 모드의 동작은 [`push.default` 문서](https://git-scm.com/docs/git-config#git-config-pushdefault)에 설명돼 있어요.
+`git push`의 다른 모드의 동작은 [`push.default` 문서](https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushdefault)에 설명돼 있어요.
 
 ### 리모트 브랜치를 로컬 브랜치를 위한 업스트림으로 설정하고 싶어
 
@@ -876,8 +876,7 @@ $ git branch -u [remotename]/[branch]
 $ git branch -u [remotename]/[branch] [local-branch]
 ```
 
-<a name="i-want-to-set-my-HEAD-to-track-the-default-remote-branch"></a>
-
+<a name="head-to-track-remote-branch"></a>
 ### HEAD를 기본 리모트 브랜치로 트래킹하도록 설정하고 싶어
 
 리모트 브랜치를 확인해보는 것으로, HEAD가 트래킹 중인 리모트 브랜치를 볼 수 있어요. 몇몇 경우에는, 원하던 브랜치가 아닐거에요.
@@ -1101,7 +1100,6 @@ noop
 * 대신해서 `HEAD~2` 또는 더 기존 항목을 리베이스
 
 <a name="merge-conflict"></a>
-
 #### 충돌이 있어
 
 리베이스를 똑바로 끝내지 못했다면, 충돌을 해결해야 할거에요.
@@ -1137,7 +1135,7 @@ Changes not staged for commit:
 ```
 
 - *머지*할때, `--ours`를 쓰면 로컬 브랜치의 변경점 유지하고, `--theirs` 는 다른 브랜치의 변경점를 유지해요.
-- *리베이스*할 땐, `--theirs`가 로컬 브랜치의 변경점을 유지하고 `--ours`는 다른 브랜치의 변경점을 유지해요. 이런 차이에 관한 설명은 Git 정식 문서 중 [이 문서](https://git-scm.com/docs/git-rebase#git-rebase---merge)를 보세요.
+- *리베이스*할 땐, `--theirs`가 로컬 브랜치의 변경점을 유지하고 `--ours`는 다른 브랜치의 변경점을 유지해요. 이런 차이에 관한 설명은 Git 정식 문서 중 [이 문서](https://git-scm.com/docs/git-rebase#Documentation/git-rebase.txt---merge)를 보세요.
 
 만약 머지가 더 복잡하면, 비주얼 디프 에디터를 쓸 수도 있어요:
 
@@ -1234,7 +1232,7 @@ $ git log -S "string to find"
 
 * `--reverse` 반대의 순서로 출력해요, 변경점의 첫번째 커밋이 보일꺼란 거죠.
 
-<a name="i-want-to-find-by-author-committer"></a>
+<a name="find-by-committer"></a>
 ### 작성자나 커미터를 찾고 싶어
 
 작성자나 커미터의 모든 커밋을 찾으려면 이렇게 쓸 수 있어요:
@@ -1279,7 +1277,6 @@ $ git tag --contains <commitid>
 ## 서브모듈
 
 <a name="clone-submodules"></a>
-
 ### 모든 서브모듈을 클론하기
 
 ```sh
@@ -1366,7 +1363,7 @@ $ git archive --format zip --output /full/path/to/zipfile.zip main
 
 ## 파일 추적하기
 
-<a href="i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file"></a>
+<a name="change-file-name-capitalization-without-changing-contents"></a>
 
 ### 파일 내용엔 변경이 없이 파일 이름을 앞글자만 대문자로 바꾸고 싶어
 
@@ -1381,7 +1378,7 @@ $ git archive --format zip --output /full/path/to/zipfile.zip main
 (main)$ git reset --hard origin/main
 ```
 
-<a href="remove-from-git"></a>
+<a name="remove-from-git"></a>
 ### 파일을 로컬에는 보관하고 깃에서 지우고 싶어
 
 ```sh

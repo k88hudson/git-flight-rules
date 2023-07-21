@@ -297,6 +297,7 @@ If you want to see a file at a specific commit, you can also do this (where `<co
 $ git show <commitid>:filename
 ```
 
+<a name="wrong-thing-in-commit-message"></a>
 ### I wrote the wrong thing in a commit message
 
 If you wrote the wrong thing and the commit has not yet been pushed, you can do the following to change the commit message without changing the changes in the commit:
@@ -431,7 +432,7 @@ $ git push --force-with-lease [remote] [branch]
 
 Or do an [interactive rebase](#interactive-rebase) and remove the line(s) corresponding to commit(s) you want to see removed.
 
-<a name="#force-push"></a>
+<a name="force-push"></a>
 ### I tried to push my amended commit to a remote, but I got an error message
 
 ```sh
@@ -454,7 +455,7 @@ In general, **avoid force pushing**. It is best to create and push a new commit 
 
 If you are *absolutely* sure that nobody is working on the same branch or you want to update the tip of the branch *unconditionally*, you can use `--force` (`-f`), but this should be avoided in general.
 
-<a href="undo-git-reset-hard"></a>
+<a name="undo-git-reset-hard"></a>
 ### I accidentally did a hard reset, and I want my changes back
 
 If you accidentally do `git reset --hard`, you can normally still get your commit back, as git keeps a log of everything for a few days.
@@ -473,7 +474,7 @@ You'll see a list of your past commits, and a commit for the reset. Choose the S
 
 And you should be good to go.
 
-<a href="undo-a-commit-merge"></a>
+<a name="undo-a-commit-merge"></a>
 ### I accidentally committed and pushed a merge
 
 If you accidentally merged a feature branch to the main development branch before it was ready to be merged, you can still undo the merge. But there's a catch: A merge commit has more than one parent (usually two).
@@ -486,7 +487,7 @@ where the -m 1 option says to select parent number 1 (the branch into which the 
 
 Note: the parent number is not a commit identifier. Rather, a merge commit has a line `Merge: 8e2ce2d 86ac2e7`. The parent number is the 1-based index of the desired parent on this line, the first identifier is number 1, the second is number 2, and so on.
 
-<a href="undo-sensitive-commit-push"></a>
+<a name="undo-sensitive-commit-push"></a>
 ### I accidentally committed and pushed files containing sensitive data
 
 If you accidentally pushed files containing sensitive, or private data (passwords, keys, etc.), you can amend the previous commit. Keep in mind that once you have pushed a commit, you should consider any data it contains to be compromised. These steps can remove the sensitive data from your public repo or your local copy, but you **cannot** remove the sensitive data from other people's pulled copies. If you committed a password, **change it immediately**. If you committed a key, **re-generate it immediately**. Amending the pushed commit is not enough, since anyone could have pulled the original commit containing your sensitive data in the meantime.
@@ -518,10 +519,10 @@ If you want to completely remove an entire file (and not keep it locally), then 
 
 If you have made other commits in the meantime (i.e. the sensitive data is in a commit before the previous commit), you will have to rebase.
 
-<a href="#i-want-to-remove-a-large-file-from-ever-existing-in-repo-history"></a>
+<a name="remove-large-file-in-repo-history"></a>
 ### I want to remove a large file from ever existing in repo history
 
-If the file you want to delete is secret or sensitive, instead see [how to remove sensitive files](#i-accidentally-committed-and-pushed-files-containing-sensitive-data).
+If the file you want to delete is secret or sensitive, instead see [how to remove sensitive files](#undo-sensitive-commit-push).
 
 Even if you delete a large or unwanted file in a recent commit, it still exists in git history, in your repo's `.git` folder, and will make `git clone` download unneeded files.
 
@@ -592,7 +593,7 @@ If this does not work, you will need to manually push the repo history in chunks
 ```
 Once the push operation succeeds the first time, decrease `<number>` gradually until a conventional `git push` succeeds.
 
-<a href="i-need-to-change-the-content-of-a-commit-which-is-not-my-last"></a>
+<a name="change-content-of-commit-not-my-last"></a>
 ### I need to change the content of a commit which is not my last
 
 Consider you created some (e.g. three) commits and later realize you missed doing something that belongs contextually into the first of those commits. This bothers you, because if you'd create a new commit containing those changes, you'd have a clean code base, but your commits weren't atomic (i.e. changes that belonged to each other weren't in the same commit). In such a situation you may want to change the commit where these changes belong to, include them and have the following commits unaltered. In such a case, `git rebase` might save you.
@@ -635,8 +636,7 @@ will do the rest of the work for you.
 
 ## Staging
 
-<a href="#i-want-to-stage-all-tracked-files-and-leave-untracked-files"></a>
-
+<a name="stage-tracked-files-and-leave-untracked-files"></a>
 ### I want to stage all tracked files and leave untracked files
 
 ```sh
@@ -653,7 +653,7 @@ $ git add -u *.txt
 $ git add -u src/
 ```
 
-<a href="#i-need-to-add-staged-changes-to-the-previous-commit"></a>
+<a name="add-staged-changes-to-previous-commit"></a>
 ### I need to add staged changes to the previous commit
 
 ```sh
@@ -684,17 +684,17 @@ $ git add -N filename.x
 Then, you will need to use the `e` option to manually choose which lines to add. Running `git diff --cached` or
 `git diff --staged` will show you which lines you have staged compared to which are still saved locally.
 
-<a href="stage-in-two-commits"></a>
+<a name="stage-in-two-commits"></a>
 ### I want to add changes in one file to two different commits
 
 `git add` will add the entire file to a commit. `git add -p` will allow to interactively select which changes you want to add.
 
-<a href="selective-unstage-edits"></a>
+<a name="selective-unstage-edits"></a>
 ### I staged too many edits, and I want to break them out into a separate commit
 
 `git reset -p` will open a patch mode reset dialog.  This is similar to `git add -p`, except that selecting "yes" will unstage the change, removing it from the upcoming commit.
 
-<a href="unstaging-edits-and-staging-the-unstaged"></a>
+<a name="unstaging-edits-and-staging-the-unstaged"></a>
 ### I want to stage my unstaged edits, and unstage my staged edits
 
 In many cases, you should unstage all of your staged files and then pick the file you want and commit it. However, if you want to switch the staged and unstaged edits, you can create a temporary commit to store your staged files, stage your unstaged files and then stash them. Then, reset the temporary commit and pop your stash.
@@ -712,14 +712,14 @@ NOTE 2: Your staged files will be marked as unstaged if you don't use the `--ind
 
 ## Unstaged Edits
 
-<a href="move-unstaged-edits-to-new-branch"></a>
+<a name="move-unstaged-edits-to-new-branch"></a>
 ### I want to move my unstaged edits to a new branch
 
 ```sh
 $ git checkout -b my-branch
 ```
 
-<a href="move-unstaged-edits-to-old-branch"></a>
+<a name="move-unstaged-edits-to-old-branch"></a>
 ### I want to move my unstaged edits to a different, existing branch
 
 ```sh
@@ -728,7 +728,7 @@ $ git checkout my-branch
 $ git stash pop
 ```
 
-<a href="i-want-to-discard-my-local-uncommitted-changes"></a>
+<a name="discard-local-uncommitted-changes"></a>
 ### I want to discard my local uncommitted changes (staged and unstaged)
 
 If you want to discard all your local staged and unstaged changes, you can do this:
@@ -820,7 +820,7 @@ When you want to get rid of all of your unstaged local uncommitted changes
 ```sh
 $ git checkout .
 ```
-<a href="i-want-to-discard-all-my-untracked-files"></a>
+<a name="discard-all-untracked-files"></a>
 ### I want to discard all of my untracked files
 
 When you want to get rid of all of your untracked files
@@ -829,7 +829,7 @@ When you want to get rid of all of your untracked files
 $ git clean -f
 ```
 
-<a href="I-want-to-unstage-specific-staged-file"></a>
+<a name="unstage-specific-staged-file"></a>
 ### I want to unstage a specific staged file
 
 Sometimes we have one or more files that accidentally ended up being staged, and these files have not been committed before. To unstage them:
@@ -887,7 +887,7 @@ $ git reset --hard c5bc55a
 
 Done.
 
-<a href="discard-local-commits"></a>
+<a name="discard-local-commits"></a>
 ### I want to discard local commits so my branch is the same as one on the server
 
 Confirm that you haven't pushed your changes to the server.
@@ -1055,7 +1055,7 @@ $ git fetch -p upstream
 
 where, `upstream` is the remote you want to fetch from.
 
-<a name='restore-a-deleted-branch'></a>
+<a name="restore-a-deleted-branch"></a>
 ### I accidentally deleted my branch
 
 If you're regularly pushing to remote, you should be safe most of the time. But still sometimes you may end up deleting your branches. Let's say we create a branch and create a new file:
@@ -1179,7 +1179,7 @@ To delete the `old-name` remote branch and push the `new-name` local branch:
 (main)$ git push origin :old_name new_name
 ```
 
-<a name="i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on"></a>
+<a name="working-on-checkout-remote-branch"></a>
 ### I want to checkout to a remote branch that someone else is working on
 
 First, fetch all branches from remote:
@@ -1218,7 +1218,7 @@ With the `upstream` mode and the `simple` (default in Git 2.0) mode of the `push
 $ git push
 ```
 
-The behavior of the other modes of `git push` is described in the [doc of `push.default`](https://git-scm.com/docs/git-config#git-config-pushdefault).
+The behavior of the other modes of `git push` is described in the [doc of `push.default`](https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushdefault).
 
 ### I want to set a remote branch as the upstream for a local branch
 
@@ -1236,7 +1236,7 @@ To set the upstream remote branch for another local branch:
 $ git branch -u [remotename]/[branch] [local-branch]
 ```
 
-<a name="i-want-to-set-my-HEAD-to-track-the-default-remote-branch"></a>
+<a name="head-to-track-remote-branch"></a>
 ### I want to set my HEAD to track the default remote branch
 
 By checking your remote branches, you can see which remote branch your HEAD is tracking. In some cases, this is not the desired branch.
@@ -1264,7 +1264,7 @@ You've made uncommitted changes and realise you're on the wrong branch. Stash ch
 (correct_branch)$ git stash apply
 ```
 
-<a name="i-want-to-split-a-branch-into-two"></a>
+<a name="split-branch-into-two"></a>
 ### I want to split a branch into two
 
 You've made a lot of commits on a branch and now want to separate it into two, ending with a branch up to an earlier commit and another with all the changes.
@@ -1506,7 +1506,7 @@ If you want to keep one branch's version of the code, you can use `--ours` or `-
 ```
 
 - When *merging*, use `--ours` to keep changes from the local branch, or `--theirs` to keep changes from the other branch.
-- When *rebasing*, use `--theirs` to keep changes from the local branch, or `--ours` to keep changes from the other branch. For an explanation of this swap, see [this note in the Git documentation](https://git-scm.com/docs/git-rebase#git-rebase---merge).
+- When *rebasing*, use `--theirs` to keep changes from the local branch, or `--ours` to keep changes from the other branch. For an explanation of this swap, see [this note in the Git documentation](https://git-scm.com/docs/git-rebase#Documentation/git-rebase.txt---merge).
 
 If the merges are more complicated, you can use a visual diff editor:
 
@@ -1624,7 +1624,7 @@ Commons parameters:
 
 * `--reverse` prints in reverse order, it means that will show the first commit that made the change.
 
-<a name="i-want-to-find-by-author-committer"></a>
+<a name="find-by-committer"></a>
 ### I want to find by author/committer
 
 To find all commits by author/committer you can use:
@@ -1656,7 +1656,7 @@ While using wildcards, it's useful to inform `--name-status` to see the list of 
 $ git log --name-status -- **/*.js
 ```
 
-<a name="#i-want-to-view-the-commit-history-for-a-specific-function"></a>
+<a name="view-commit-history-for-specific-function"></a>
 ### I want to view the commit history for a specific function
 
 To trace the evolution of a single function you can use:
@@ -1787,7 +1787,7 @@ $ git push origin refs/tags/<tag-name>
 
 ## Tracking Files
 
-<a href="i-want-to-change-a-file-names-capitalization-without-changing-the-contents-of-the-file"></a>
+<a name="change-file-name-capitalization-without-changing-contents"></a>
 ### I want to change a file name's capitalization, without changing the contents of the file
 
 ```sh
@@ -1801,7 +1801,7 @@ $ git push origin refs/tags/<tag-name>
 (main)$ git reset --hard origin/main
 ```
 
-<a href="remove-from-git"></a>
+<a name="remove-from-git"></a>
 ### I want to remove a file from Git but keep the file
 
 ```sh

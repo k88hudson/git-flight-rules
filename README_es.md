@@ -1065,7 +1065,7 @@ Si deseas conservar la versión del código de una rama, puedes usar `--us` o` -
 ```
 
 - Cuando haces *merge*, usa `--ours` para mantener los cambios de la rama local, o` --theirs` para mantener los cambios de la otra rama.
-- Cuando haces *rebase*, usa `--theirs` para mantener los cambios de la rama local, o` --ours` para mantener los cambios de la otra rama. Para obtener una explicación de este intercambio, consulte [esta nota en la documentación de Git] (https://git-scm.com/docs/git-rebase#git-rebase---merge).
+- Cuando haces *rebase*, usa `--theirs` para mantener los cambios de la rama local, o` --ours` para mantener los cambios de la otra rama. Para obtener una explicación de este intercambio, consulte [esta nota en la documentación de Git] (https://git-scm.com/docs/git-rebase#Documentation/git-rebase.txt---merge).
 
 Si las fusiones son más complicadas, puede usar un editor visual diff:
 
