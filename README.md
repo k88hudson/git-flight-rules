@@ -57,20 +57,20 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I want to add changes in one file to two different commits](#i-want-to-add-changes-in-one-file-to-two-different-commits)
     - [I staged too many edits, and I want to break them out into a separate commit](#i-staged-too-many-edits-and-i-want-to-break-them-out-into-a-separate-commit)
     - [I want to stage my unstaged edits, and unstage my staged edits](#i-want-to-stage-my-unstaged-edits-and-unstage-my-staged-edits)
-  - [Unstaged Edits](#unstaged-edits)
-    - [I want to move my unstaged edits to a new branch](#i-want-to-move-my-unstaged-edits-to-a-new-branch)
-    - [I want to move my unstaged edits to a different, existing branch](#i-want-to-move-my-unstaged-edits-to-a-different-existing-branch)
+    - [I want to unstage a specific staged file](#i-want-to-unstage-a-specific-staged-file)
+  - [Discarding changes](#discarding-changes)
     - [I want to discard my local uncommitted changes (staged and unstaged)](#i-want-to-discard-my-local-uncommitted-changes-staged-and-unstaged)
     - [I want to discard specific unstaged changes](#i-want-to-discard-specific-unstaged-changes)
     - [I want to discard specific unstaged files](#i-want-to-discard-specific-unstaged-files)
     - [I want to discard only my unstaged local changes](#i-want-to-discard-only-my-unstaged-local-changes)
     - [I want to discard all of my untracked files](#i-want-to-discard-all-of-my-untracked-files)
-    - [I want to unstage a specific staged file](#i-want-to-unstage-a-specific-staged-file)
   - [Branches](#branches)
     - [I want to list all branches](#i-want-to-list-all-branches)
     - [Create a branch from a commit](#create-a-branch-from-a-commit)
     - [I pulled from/into the wrong branch](#i-pulled-frominto-the-wrong-branch)
     - [I want to discard local commits so my branch is the same as one on the server](#i-want-to-discard-local-commits-so-my-branch-is-the-same-as-one-on-the-server)
+    - [I want to move my unstaged edits to a new branch](#i-want-to-move-my-unstaged-edits-to-a-new-branch)
+    - [I want to move my unstaged edits to a different, existing branch](#i-want-to-move-my-unstaged-edits-to-a-different-existing-branch)
     - [I committed to main instead of a new branch](#i-committed-to-main-instead-of-a-new-branch)
     - [I want to keep the whole file from another ref-ish](#i-want-to-keep-the-whole-file-from-another-ref-ish)
     - [I made several commits on a single branch that should be on different branches](#i-made-several-commits-on-a-single-branch-that-should-be-on-different-branches)
@@ -710,23 +710,18 @@ $ git stash pop --index 0
 NOTE 1: The reason to use `pop` here is want to keep idempotent as much as possible.
 NOTE 2: Your staged files will be marked as unstaged if you don't use the `--index` flag. ([This link](https://stackoverflow.com/questions/31595873/git-stash-with-staged-files-does-stash-convert-staged-files-to-unstaged?answertab=active#tab-top) explains why.)
 
-## Unstaged Edits
+<a name="unstage-specific-staged-file"></a>
+### I want to unstage a specific staged file
 
-<a name="move-unstaged-edits-to-new-branch"></a>
-### I want to move my unstaged edits to a new branch
-
-```sh
-$ git checkout -b my-branch
-```
-
-<a name="move-unstaged-edits-to-old-branch"></a>
-### I want to move my unstaged edits to a different, existing branch
+Sometimes we have one or more files that accidentally ended up being staged, and these files have not been committed before. To unstage them:
 
 ```sh
-$ git stash
-$ git checkout my-branch
-$ git stash pop
+$ git reset -- <filename>
 ```
+
+This results in unstaging the file and make it look like it's untracked.
+
+## Discarding changes
 
 <a name="discard-local-uncommitted-changes"></a>
 ### I want to discard my local uncommitted changes (staged and unstaged)
@@ -829,17 +824,6 @@ When you want to get rid of all of your untracked files
 $ git clean -f
 ```
 
-<a name="unstage-specific-staged-file"></a>
-### I want to unstage a specific staged file
-
-Sometimes we have one or more files that accidentally ended up being staged, and these files have not been committed before. To unstage them:
-
-```sh
-$ git reset -- <filename>
-```
-
-This results in unstaging the file and make it look like it's untracked.
-
 ## Branches
 
 ### I want to list all branches
@@ -906,6 +890,22 @@ One way of resetting branch `my-branch` to match `origin/my-branch` (to have the
 
 ```sh
 (my-branch)$ git reset --hard origin/my-branch
+```
+
+<a name="move-unstaged-edits-to-new-branch"></a>
+### I want to move my unstaged edits to a new branch
+
+```sh
+$ git checkout -b my-branch
+```
+
+<a name="move-unstaged-edits-to-old-branch"></a>
+### I want to move my unstaged edits to a different, existing branch
+
+```sh
+$ git stash
+$ git checkout my-branch
+$ git stash pop
 ```
 
 <a name="commit-wrong-branch"></a>
