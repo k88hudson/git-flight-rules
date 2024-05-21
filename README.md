@@ -336,6 +336,9 @@ $ git -c rebase.instructionFormat='%s%nexec GIT_COMMITTER_DATE="%cD" GIT_AUTHOR_
 ```
 
 `<commit>` is a commit before all your bad commits. If you need to change all of history in the current branch including the root of the branch, put `--root` there instead.
+
+If you need to change all of history, see the man page for `git filter-branch`.
+
 Note this will change the history and a force push is required.
 
 ### I want to remove a file from the previous commit
