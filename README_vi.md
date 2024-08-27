@@ -350,6 +350,58 @@ $ git commit --amend --no-edit
 Cách này đăc biệt hữu ích khi bạn đang mở một bản patch và bạn đã commit một file không cần thiết và cần force push để cập nhật bản patch trên remote. Dòng `--no-edit` được dùng để giữ không thay đổi message cho commit hiện tại.
 
 <a name="delete-pushed-commit"></a>
+### Tôi muốn chuyển một thay đổi từ commit sang commit khác
+Nếu bạn đã thực hiện một commit bao gồm các thay đổi phù hợp hơn với một commit khác, bạn có thể di chuyển các thay đổi sang commit khác bằng cách sử dụng rebase tương tác (interactive rebase). Đó là câu trả lời từ [stackoverflow](https://stackoverflow.com/a/54985304/2491502).
+
+Ví dụ: bạn có ba commit (a, b, c). Trên b, bạn đã thay đổi file1 và file2 và bạn muốn chuyển thay đổi trên file1 từ commit b sang commit a.
+
+Đầu tiên, rebase interactively:
+
+```sh
+$ git rebase -i HEAD~3
+```
+
+Editor sẽ hiện lên như bên dưới:
+
+```sh
+pick a
+pick b
+pick c
+```
+
+Sửa 2 dòng với a và b thành edit:
+
+```sh
+edit a
+edit b
+pick c
+```
+
+Lưu và đóng Editor. Bạn sẽ được đưa tới commit b. Bây giờ, hãy reset các thay đổi của file1:
+
+```sh
+$ git reset HEAD~1 file1
+```
+
+Thao tác trên sẽ unstash những thay đổi trong file1. Tiếp tục, stash những thay đổi đó và tiếp tục rebase:
+
+```sh
+$ git stash
+$ git rebase --continue
+```
+
+Bây giờ bạn sẽ quay lại chỉnh sửa commit a. Unstash các thay đổi sau đó thêm chúng vào commit hiện tại và tiếp tục rebase:
+
+```sh
+$ git stash pop
+$ git add file1
+$ git commit --amend --no-edit
+$ git rebase --continue
+```
+
+Bây giờ quá trình rebase của bạn đã hoàn tất, với những thay đổi từ b trên a. Nếu bạn muốn di chuyển các thay đổi từ b sang c, bạn sẽ phải thực hiện hai lần rebase vì c đứng trước b: một để lấy các thay đổi ra khỏi b, sau đó một để chỉnh sửa c và thêm các thay đổi đã stash.
+
+<a name="delete-pushed-commit"></a>
 ### Tôi muốn xoá hoặc loại bỏ commit mới nhất
 
 Nếu bạn muốn xoá các commit đã push, bạn có thể làm như sau. Tuy nhiên, cách này sẽ thay đổi lịch sử  commit không thay đổi được và làm hỏng lịch sử của bất kỳ ai khác đã pull từ repository. Tóm lại, nếu bạn không chắc chắn, bạn không bao giờ nên làm cách này.
@@ -642,7 +694,7 @@ Sau đó, bạn sẽ cần sử dụng `e` để thủ công thêm dòng. Chạy
 `git reset -p` sẽ mở chế độ patch và hộp thoại để reset. Việc này sẽ giống như với lệnh `git add -p`, ngoại trừ là việc chọn "yes" sẽ đưa thay đổi khỏi stage, loại trừ nó khỏi commit tiếp đến.
 
 <a name="unstaging-edits-and-staging-the-unstaged"></a>
-### Tôi muốn cho lên stage các chỉnh sửa chưa được stage và hã khỏi stage các chỉnh sửa đã stage
+### Tôi muốn cho lên stage các chỉnh sửa chưa được stage và bỏ khỏi stage các chỉnh sửa đã stage
 
 Phần lớn thời gian, bạn nên hạ tất cả các file đã trên stage và chọn lại những file bạn muốn commit.Nhưng giả sử bạn muốn thay các thay đổi lên và hạ stage, bạn có thể tạo một commit tạm thời, nâng lên stage các thay đổi, rồi stash (cất) nó. Sau đó, reset cái commit tạm thời rồi pop cái stage bạn vừa cất.
 
@@ -657,23 +709,18 @@ $ git stash pop --index 0
 GHI CHÚ 1: Lý do để dùng `pop` là để giữ nguyên các thay đổi nhất có thể.
 GHI CHÚ 2: Các file đã nâng lên stage sẽ bị hạ nếu không có thêm cờ `--index`. ([Link](https://stackoverflow.com/questions/31595873/git-stash-with-staged-files-does-stash-convert-staged-files-to-unstaged?answertab=active#tab-top) explains why.)
 
-## Thay đổi chưa lên sân (Unstaged Edits)
+<a name="unstage-specific-staged-file"></a>
+### Tôi muốn unstage 1 file đã stage cụ thể 
 
-<a name="move-unstaged-edits-to-new-branch"></a>
-### Tôi muốn di chuyển các chỉnh sửa chưa lên stage sang một nhánh mới
-
-```sh
-$ git checkout -b nhánh-mới
-```
-
-<a name="move-unstaged-edits-to-old-branch"></a>
-### Tôi muốn di chuyển các chỉnh sửa chưa stage của tôi đến một nhánh khác đã tồn tại
+Đôi khi chúng tôi có một hoặc nhiều tệp vô tình bị stage và những tệp này chưa được commit trước đó. Để loại bỏ chúng:
 
 ```sh
-$ git stash
-$ git checkout nhánh-tồn-tại
-$ git stash pop
+$ git reset -- <filename>
 ```
+
+Lệnh trên dẫn đến việc unstage tệp và làm cho nó không bị track.
+
+## Hủy bỏ những thay đổi (Discarding changes)
 
 <a name="discard-local-uncommitted-changes"></a>
 ### Tôi muốn bỏ các thay đôi chưa trong commit tại local (đã lên hoặc chưa lên stage)
@@ -777,15 +824,6 @@ $ git clean -f
 ```
 
 <a name="unstage-specific-staged-file"></a>
-### Tôi muốn hạ khỏi stage một file cụ thể đã stage
-
-Đôi khi, chúng ta có một hoặc nhiều file đã vô tình lên stage và các file này chưa được commit trước đó. Để hạ chúng khỏi stage:
-
-```sh
-$ git reset -- <TênFile>
-```
-
-Lệnh trên sẽ hạ file khỏi stage và làm nó không được theo dõi (untracked).
 
 ## Nhánh
 
@@ -853,6 +891,22 @@ Một cách để reset về origin (để có nhánh giống như trên remote)
 
 ```sh
 (my-branch)$ git reset --hard origin/my-branch
+```
+
+<a name="move-unstaged-edits-to-new-branch"></a>
+### Tôi muốn chuyển những thay đổi chưa lên stage tới nhánh mới 
+
+```sh
+$ git checkout -b my-branch
+```
+
+<a name="move-unstaged-edits-to-old-branch"></a>
+### Tôi muốn chuyển những thay đổi chưa lên stage tới nhánh khác đã tạo
+
+```sh
+$ git stash
+$ git checkout my-branch
+$ git stash pop
 ```
 
 <a name="commit-wrong-branch"></a>
@@ -1229,7 +1283,7 @@ Nếu bạn trước đó đã push nhánh gốc lên remote, bạn sẽ cần p
 ## Rebasing và Merging
 
 <a name="undo-rebase"></a>
-### Tôi muốn đảo ngược rebase/merge
+### Tôi muốn hoàn tác rebase/merge
 
 Bạn có thể đã merge hoặc rebase nhánh hiện tại của bạn với một nhánh sai hoặc bạn không thể tìm ra cách hoàn thành quá trình rebase/merge. Git lưu con trỏ original HEAD trong một variable (biến) được gọi là ORIG_HEAD trước khi chạy các hành động nguy hiểm, vì vậy bạn có thể dễ dàng khôi phục lại trạng thái trước khi rebase/merge.
 
@@ -2039,6 +2093,7 @@ function Squash-Commits {
 * [git-town](https://github.com/Originate/git-town) - Hỗ trợ luồng làm việc Git chung, tầm nâng cao! http://www.git-town.com
 
 ## GUI Clients
+
 * [GitKraken](https://www.gitkraken.com/) - Client sang trọng cho Windows, Mac & Linux
 * [git-cola](https://git-cola.github.io/) - Git client khác cho Windows và OS X
 * [GitUp](https://github.com/git-up/GitUp) - Một GUI mới mẻ mà có một số cách rất quan tâm để giải quyết các việc khó chịu của Git
