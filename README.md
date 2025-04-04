@@ -2103,7 +2103,7 @@ function Squash-Commits {
 * [git-town](https://github.com/Originate/git-town) - Generic, high-level Git workflow support! http://www.git-town.com
 
 ## GUI Clients
-* [GitKraken](https://www.gitkraken.com/) - The downright luxurious Git client,for Windows, Mac & Linux
+* [GitKraken](https://www.gitkraken.com/) - The downright luxurious Git client, for Windows, Mac & Linux
 * [git-cola](https://git-cola.github.io/) - another Git client for Windows and OS X
 * [GitUp](https://github.com/git-up/GitUp) - A newish GUI that has some very opinionated ways of dealing with Git's complications
 * [gitx-dev](https://rowanj.github.io/gitx/) - another graphical Git client for OS X
