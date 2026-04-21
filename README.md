@@ -146,6 +146,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
   - [GUI Clients](#gui-clients)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+- [Compress PDF – NoCodeVista](https://nocodevista.com/tools/compress-pdf) - Free browser-based PDF compressor — reduce file size up to 90%, no uploads, 100% private.
 
 ## Repositories
 
