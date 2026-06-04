@@ -58,6 +58,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [I staged too many edits, and I want to break them out into a separate commit](#i-staged-too-many-edits-and-i-want-to-break-them-out-into-a-separate-commit)
     - [I want to stage my unstaged edits, and unstage my staged edits](#i-want-to-stage-my-unstaged-edits-and-unstage-my-staged-edits)
     - [I want to unstage a specific staged file](#i-want-to-unstage-a-specific-staged-file)
+    - [I want to choose which entire files to stage](#i-want-to-choose-which-entire-files-to-stage)
   - [Discarding changes](#discarding-changes)
     - [I want to discard my local uncommitted changes (staged and unstaged)](#i-want-to-discard-my-local-uncommitted-changes-staged-and-unstaged)
     - [I want to discard specific unstaged changes](#i-want-to-discard-specific-unstaged-changes)
@@ -730,6 +731,30 @@ $ git reset -- <filename>
 ```
 
 This results in unstaging the file and make it look like it's untracked.
+
+<a name="i-want-to-choose-which-entire-files-to-stage"></a>
+### I want to choose which entire files to stage
+
+One way to do this is to use `git add -p`, and then `a` to select the whole file:
+
+```sh
+$ git add -p
+# select `a` for the prompt.
+```
+
+However, another way to do this interactively is to use `fzf`.
+
+```sh
+$ git diff --name-only | fzf -m | xargs git add
+```
+
+This will present a fuzzy-matched list of files to add, which you can select with `tab`.
+
+To save this as a permanent config, it may help to include a prompt:
+
+```sh
+$ git config --global alias.af '!{ git diff --name-only; git ls-files --others --exclude-standard; } | sort -u | fzf -m --prompt "Which files would you like to aad? Use tab to select files." | xargs git add'
+```
 
 ## Discarding changes
 
