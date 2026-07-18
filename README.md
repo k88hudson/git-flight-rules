@@ -236,7 +236,7 @@ When you've finished making whatever changes you like, push your changes (normal
 $ (feature/my-feature) git push --set-upstream origin feature/my-feature
 ```
 
-There is no way to suggest a pull request using the CLI using Git (although there are tools, like [hub](http://github.com/github/hub), which will do this for you). So, if you're ready to make a pull request, go to your GitHub (or another Git host) and create a new pull request. Note that your host automatically links the original and forked repositories.
+There is no way to suggest a pull request using the CLI using Git (although there are tools, like [hub](https://github.com/github/hub), which will do this for you). So, if you're ready to make a pull request, go to your GitHub (or another Git host) and create a new pull request. Note that your host automatically links the original and forked repositories.
 
 After all of this, do not forget to respond to any code review feedback.
 
@@ -960,7 +960,7 @@ Reset the branch main to the previous commit:
 
 `HEAD^` is short for `HEAD^1`. This stands for the first parent of `HEAD`, similarly `HEAD^2` stands for the second parent of the commit (merges can have 2 parents).
 
-Note that `HEAD^2` is **not** the same as `HEAD~2` (see [this link](http://www.paulboxley.com/blog/2011/06/git-caret-and-tilde) for more information).
+Note that `HEAD^2` is **not** the same as `HEAD~2` (see [this link](https://www.paulboxley.com/blog/2011/06/git-caret-and-tilde) for more information).
 
 Alternatively, if you don't want to use `HEAD^`, find out what the commit hash you want to set your main branch to (`git log` should do the trick). Then reset to that hash. `git push` will make sure that this change is reflected on your remote.
 
@@ -2120,12 +2120,12 @@ function Squash-Commits {
 
 ## Scripts and Tools
 
-* [firstaidgit.io](http://firstaidgit.io/) A searchable selection of the most frequently asked Git questions
+* [firstaidgit.io](https://firstaidgit.io/) A searchable selection of the most frequently asked Git questions
 * [git-extra-commands](https://github.com/unixorn/git-extra-commands) - a collection of useful extra Git scripts
 * [git-extras](https://github.com/tj/git-extras) - GIT utilities -- repo summary, repl, changelog population, author commit percentages and more
 * [git-fire](https://github.com/qw3rtman/git-fire) - git-fire is a Git plugin that helps in the event of an emergency by adding all current files, committing, and pushing to a new branch (to prevent merge conflicts).
 * [git-tips](https://github.com/git-tips/tips) - Small Git tips
-* [git-town](https://github.com/Originate/git-town) - Generic, high-level Git workflow support! http://www.git-town.com
+* [git-town](https://github.com/Originate/git-town) - Generic, high-level Git workflow support! https://www.git-town.com
 
 ## GUI Clients
 * [GitKraken](https://www.gitkraken.com/) - The downright luxurious Git client, for Windows, Mac & Linux
