@@ -52,6 +52,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
   - [Staging](#staging)
     - [I want to stage all tracked files and leave untracked files](#i-want-to-stage-all-tracked-files-and-leave-untracked-files)
       - [To stage part of tracked files](#to-stage-part-of-tracked-files)
+    - [I want to stage all untracked files and leave tracked files](#i-want-to-stage-all-untracked-files-and-leave-tracked-files)
     - [I need to add staged changes to the previous commit](#i-need-to-add-staged-changes-to-the-previous-commit)
     - [I want to stage part of a new file, but not the whole file](#i-want-to-stage-part-of-a-new-file-but-not-the-whole-file)
     - [I want to add changes in one file to two different commits](#i-want-to-add-changes-in-one-file-to-two-different-commits)
@@ -662,6 +663,22 @@ $ git add -u *.txt
 
 # to stage all files inside directory src
 $ git add -u src/
+```
+
+### I want to stage all untracked files and leave tracked files
+
+```sh
+$ git stash
+$ git add .
+$ git stash pop
+```
+
+Note that files are tracked once they're staged.
+
+If you already have some changes staged, and you want to keep them staged, replace the last command with
+
+```sh
+$ git stash pop --index
 ```
 
 <a name="add-staged-changes-to-previous-commit"></a>
