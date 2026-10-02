@@ -2134,6 +2134,7 @@ function Squash-Commits {
 * [Githug](https://github.com/Gazler/githug) - A game to learn more common Git workflows
 * [Learn Git branching](https://learngitbranching.js.org/) An interactive web based branching/merging/rebasing tutorial
 * [learnGitBranching](https://github.com/pcottle/learnGitBranching) - An interactive git visualization to challenge and educate!
+* [WebTerm Git tutorials](https://webterm.app/en/git) - Hands-on scenarios for fixing common Git mistakes (undoing a commit, committing to the wrong branch, recovering lost commits with reflog, resolving merge conflicts) in a simulated terminal in the browser, with no install or signup
 
 ## Scripts and Tools
 
