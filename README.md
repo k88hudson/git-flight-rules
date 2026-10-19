@@ -2125,6 +2125,7 @@ function Squash-Commits {
 
 * [19 Git Tips For Everyday Use](https://www.alexkras.com/19-git-tips-for-everyday-use) - A list of useful Git one liners
 * [Atlassian's Git tutorial](https://www.atlassian.com/git/tutorials) Get Git right with tutorials from beginner to advanced.
+* [Coddy Git commands](https://coddy.tech/git-commands) - A free reference for everyday Git commands grouped by task, with syntax, common flags and examples for each
 * [Getting solid at Git rebase vs. merge](https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa)
 * [Git and GitHub Cartoons](https://allisonhorst.com/git-github) – Cartoons by Allison Horst that showcase how to use Git.
 * [Git Commands and Best Practices Cheat Sheet](https://zeroturnaround.com/rebellabs/git-commands-and-best-practices-cheat-sheet) - A Git cheat sheet in a blog post with more explanations
