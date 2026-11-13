@@ -2129,6 +2129,7 @@ function Squash-Commits {
 * [Getting solid at Git rebase vs. merge](https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa)
 * [Git and GitHub Cartoons](https://allisonhorst.com/git-github) – Cartoons by Allison Horst that showcase how to use Git.
 * [Git Commands and Best Practices Cheat Sheet](https://zeroturnaround.com/rebellabs/git-commands-and-best-practices-cheat-sheet) - A Git cheat sheet in a blog post with more explanations
+* [Git Recover Lost Commits: 12 Fixes for Common Mistakes](https://devtoolhub.com/git-recover-lost-commits/) - Twelve common Git mistakes, each fixed and verified on Git 2.56.0: lost commits after reset, deleted branches, detached HEAD, merges, rebases and dropped stashes
 * [Git from the inside out](https://codewords.recurse.com/issues/two/git-from-the-inside-out) - A tutorial that dives into Git's internals
 * [git-workflow](https://github.com/asmeurer/git-workflow) - [Aaron Meurer](https://github.com/asmeurer)'s howto on using Git to contribute to open source repositories
 * [GitHub as a workflow](https://hugogiraudel.com/2015/08/13/github-as-a-workflow/) - An interesting take on using GitHub as a workflow, particularly with empty PRs
