@@ -2143,6 +2143,7 @@ function Squash-Commits {
 * [git-extra-commands](https://github.com/unixorn/git-extra-commands) - a collection of useful extra Git scripts
 * [git-extras](https://github.com/tj/git-extras) - GIT utilities -- repo summary, repl, changelog population, author commit percentages and more
 * [git-fire](https://github.com/qw3rtman/git-fire) - git-fire is a Git plugin that helps in the event of an emergency by adding all current files, committing, and pushing to a new branch (to prevent merge conflicts).
+* [Git Power Tools](https://plugins.jetbrains.com/plugin/36152-git-power-tools) - JetBrains IDE plugin with a reflog browser, lost commit recovery and pickaxe search (paid, 30-day free trial), plus free git-flow without the CLI
 * [git-tips](https://github.com/git-tips/tips) - Small Git tips
 * [git-town](https://github.com/Originate/git-town) - Generic, high-level Git workflow support! https://www.git-town.com
 
