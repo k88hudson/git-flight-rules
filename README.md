@@ -353,6 +353,13 @@ $ git add myfile
 $ git commit --amend --no-edit
 ```
 
+That throws the change away entirely. If you want to drop it from the commit but keep it in your working tree, reset the file instead:
+
+```sh
+$ git reset HEAD^ myfile
+$ git commit --amend --no-edit
+```
+
 In case the file was newly added to the commit and you want to remove it (from Git alone), do:
 
 ```sh
