@@ -982,6 +982,8 @@ Reset the branch main to the previous commit:
 (main)$ git reset --hard HEAD^
 ```
 
+This doesn't lose the commit — `git branch my-branch` above left it on `my-branch`, and only `main` is being rewound. Uncommitted work is a different matter: `git reset --hard` _will remove_ uncommitted modifications, so commit or stash those first.
+
 `HEAD^` is short for `HEAD^1`. This stands for the first parent of `HEAD`, similarly `HEAD^2` stands for the second parent of the commit (merges can have 2 parents).
 
 Note that `HEAD^2` is **not** the same as `HEAD~2` (see [this link](https://www.paulboxley.com/blog/2011/06/git-caret-and-tilde) for more information).
